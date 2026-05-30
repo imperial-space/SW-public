@@ -12,6 +12,9 @@ public sealed partial class SeaComponent : Component
     public bool Disabled;
 
     [DataField, AutoNetworkedField]
+    public bool WindEnabledLocal = true;
+
+    [DataField, AutoNetworkedField]
     public string CalmParallax = "OceanMedieval";
 
     [DataField, AutoNetworkedField]

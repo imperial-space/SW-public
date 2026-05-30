@@ -135,13 +135,19 @@ public sealed class SailSystem : EntitySystem
             }
 
             var mapUid = _transform.GetMap(boat);
-            if (!mapUid.HasValue || !HasComp<SeaComponent>(mapUid.Value))
+            if (!mapUid.HasValue || !TryComp<SeaComponent>(mapUid.Value, out var sea))
             {
                 SetLastSailEfficencyMod(sailEntity, sailComponent, 0f);
                 continue;
             }
 
             EnsureComp<ShipDrowningComponent>(boat);
+
+            if (!sea.WindEnabledLocal)
+            {
+                SetLastSailEfficencyMod(sailEntity, sailComponent, 0f);
+                continue;
+            }
 
             if (!sailComponent.Push)
             {

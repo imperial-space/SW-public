@@ -122,7 +122,7 @@ public sealed class SeaWindOverlay : Overlay
         if (!_entityManager.TryGetComponent<SeaComponent>(args.MapUid, out var sea) || sea.Disabled)
             return false;
 
-        return ShouldSpawnParticles() ||
+        return ShouldSpawnParticles(sea) ||
                _particlesByMap.TryGetValue(args.MapId, out var particles) && particles.Count > 0;
     }
 
@@ -131,15 +131,15 @@ public sealed class SeaWindOverlay : Overlay
         var particles = GetParticles(args.MapId);
         var visibleBounds = args.WorldAABB;
 
-        if (ShouldSpawnParticles())
+        if (_entityManager.TryGetComponent<SeaComponent>(args.MapUid, out var sea) && ShouldSpawnParticles(sea))
             SpawnParticles(particles, visibleBounds);
 
         DrawParticles(args.WorldHandle, particles, visibleBounds);
     }
 
-    private bool ShouldSpawnParticles()
+    private bool ShouldSpawnParticles(SeaComponent sea)
     {
-        return _configuration.GetCVar(ShipsCCVars.WindEnabled) && _windStrength > VisibleStrengthThreshold;
+        return sea.WindEnabledLocal && _configuration.GetCVar(ShipsCCVars.WindEnabled) && _windStrength > VisibleStrengthThreshold;
     }
 
     private List<WindParticle> GetParticles(MapId mapId)
