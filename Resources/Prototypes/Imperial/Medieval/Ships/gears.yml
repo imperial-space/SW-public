@@ -63,16 +63,13 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: Objects/Devices/pinpointer.rsi
+    sprite: Imperial/Medieval/Ships/Compass/medieval_compass.rsi
     layers:
-    - state: pinpointer-way
+    - state: compass-n
       map: ["enum.MedievalCompassLayers.Base"]
-    - state: pinonfar
-      map: ["enum.MedievalCompassLayers.Arrow"]
-      shader: unshaded
   - type: Icon
-    sprite: Objects/Devices/pinpointer.rsi
-    state: pinpointer-way
+    sprite: Imperial/Medieval/Ships/Compass/medieval_compass.rsi
+    state: compass-n
   - type: Item
     sprite: Objects/Devices/pinpointer.rsi
     inhandVisuals:

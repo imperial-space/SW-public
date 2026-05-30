@@ -20,12 +20,14 @@ public sealed class MedievalCompassSystem : EntitySystem
         {
             var rotation = Angle.FromWorldVec(Vector2.UnitY) - sprite.Rotation;
 
-            // Normal sprites receive eye rotation while rendering; no-rotation sprites do not.
             rotation += sprite.NoRotation
                 ? _eyeManager.CurrentEye.Rotation
                 : -_transform.GetWorldRotation(xform);
 
-            _sprite.LayerSetRotation((uid, sprite), MedievalCompassLayers.Arrow, rotation);
+            var snappedIndex = (int) Math.Round(rotation.Reduced().Theta / (Math.PI / 4));
+            snappedIndex = ((snappedIndex % 8) + 8) % 8;
+
+            _sprite.LayerSetState((uid, sprite), MedievalCompassLayers.Base, MedievalCompassComponent.DirectionStates[snappedIndex]);
         }
     }
 }
