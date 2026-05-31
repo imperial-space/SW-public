@@ -62,7 +62,10 @@
   description: A compass whose needle always points north.
   parent: BaseItem
   components:
+  - type: Transform
+    noRot: True
   - type: Sprite
+    noRot: True
     sprite: Imperial/Medieval/Ships/Compass/medieval_compass.rsi
     layers:
     - state: compass-n
