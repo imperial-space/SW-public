@@ -5648,3 +5648,222 @@
       sprite: Imperial/Medieval/Objects/Tools/lantern.rsi
       equippedPrefix: off
 
+- type: entity
+  id: MedievalDecorBigRock1
+  parent: MedievalDecorCastleBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rock_b1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+
+- type: entity
+  id: MedievalDecorBigRock2
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rock_b2
+
+- type: entity
+  id: MedievalDecorBigRock3
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rockmoss_b1
+
+- type: entity
+  id: MedievalDecorBigRock4
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rockmoss_b2
+
+- type: entity
+  id: MedievalDecorBigRock5
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rocksand_b1
+
+- type: entity
+  id: MedievalDecorBigRock6
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rocksand_b2
+
+- type: entity
+  id: MedievalDecorMediumRock1
+  parent: MedievalDecorCastleBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.15
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  id: MedievalDecorMediumRock2
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s2
+
+- type: entity
+  id: MedievalDecorMediumRock3
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s3
+
+- type: entity
+  id: MedievalDecorMediumRock4
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s7
+
+- type: entity
+  id: MedievalDecorMediumRock5
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s1
+
+- type: entity
+  id: MedievalDecorMediumRock6
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s2
+
+- type: entity
+  id: MedievalDecorMediumRock7
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s3
+
+- type: entity
+  id: MedievalDecorMediumRock8
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s7
+
+- type: entity
+  id: MedievalDecorMediumRock9
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s1
+
+- type: entity
+  id: MedievalDecorMediumRock10
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s2
+
+- type: entity
+  id: MedievalDecorMediumRock11
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s3
+
+- type: entity
+  id: MedievalDecorMediumRock12
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s7
