@@ -1,0 +1,44 @@
+- type: entity
+  id: ShipTradeHole
+  name: ship terminal
+  description: A terminal for purchasing ships.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.ShipBuyTerminalUiKey.Key:
+        type: ShipBuyTerminalBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.ShipBuyTerminalUiKey.Key
+  - type: ShipBuyTerminal
+    balance: 10000
+    globalOffset: 1
+    spawnAngle: 0
+    gridOffers:
+    - VictoriaShip
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight

@@ -1,0 +1,6 @@
+- type: shipGridOffer
+  id: VictoriaShip
+  displayName: Victoria
+  gridPath: /Maps/Imperial/Medieval/Ships/Victoria.yml
+  cost: 1000
+  localOffset: 5

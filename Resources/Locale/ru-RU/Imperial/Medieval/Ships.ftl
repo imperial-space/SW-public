@@ -54,6 +54,12 @@ ent-MedievalShipWindow = окно
     .suffix = { "Средневековье"}
 ent-MedievalSteeringMap = стол с картой
     .desc = Где мои сокровища? Где мой корабль? А я просто карандаш с карты не убрал.
+ent-ShipTradeHole = терминал кораблей
+    .desc = Здесь можно купить корабль.
+    .suffix = { "Средневековье" }
+ship-buy-terminal-ui-title = Корабельная верфь
+ship-buy-terminal-currency-name = ревентов
+
 sail-menu-rotate-left = Повернуть влево
 sail-menu-toggle-fold = Свернуть/развернуть
 sail-menu-rotate-right = Повернуть вправо

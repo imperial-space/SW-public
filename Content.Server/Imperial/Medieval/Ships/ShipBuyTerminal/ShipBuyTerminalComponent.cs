@@ -1,0 +1,24 @@
+using Content.Shared.Imperial.Medieval.Ships.ShipBuyTerminal;
+using Content.Shared.Store;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server.Imperial.Medieval.Ships.ShipBuyTerminal;
+
+[RegisterComponent]
+public sealed partial class ShipBuyTerminalComponent : Component
+{
+    [DataField]
+    public int Balance;
+
+    [DataField]
+    public float GlobalOffset = 1f;
+
+    [DataField]
+    public float SpawnAngle;
+
+    [DataField]
+    public ProtoId<CurrencyPrototype> Currency = "Revent";
+
+    [DataField]
+    public List<ProtoId<ShipGridOfferPrototype>> GridOffers = new();
+}
