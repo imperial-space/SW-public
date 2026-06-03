@@ -11,3 +11,4 @@ helm-examine-right = The helm is turned { $degrees } degrees to starboard
 helm-examine-left = The helm is turned { $degrees } degrees to port
 helm-examine-center = You are holding a straight course
 helm-examine-sails-efficiency = Total sail efficiency: { $efficiency }
+helm-examine-ship-load = Ship carrying capacity: { $weight } / { $overloadCeil }

@@ -26,31 +26,31 @@ public sealed class SeaWindOverlay : Overlay
     private const float AngleSmoothSpeed = 4f;
     private const float StrengthSmoothSpeed = 2f;
 
-    private const float ParticleDensityBase = 0.052f;
-    private const float ParticleDensityStrength = 0.09f;
+    private const float ParticleDensityBase = 0.112f;
+    private const float ParticleDensityStrength = 0.0325f;
     private const int MinParticleCount = 34;
     private const int MaxParticleCount = 220;
     private const float ActiveBoundsBasePadding = 1.8f;
     private const float ActiveBoundsStrengthPadding = 2.8f;
     private const float DrawBoundsExtraPadding = 2f;
 
-    private const float AngleJitter = 0.2f;
-    private const float SpeedBaseMin = 2.55f;
-    private const float SpeedBaseMax = 4.35f;
-    private const float SpeedStrengthMin = 6f;
-    private const float SpeedStrengthMax = 11f;
-    private const float TravelDistanceBaseMin = 20f;
-    private const float TravelDistanceBaseMax = 28f;
-    private const float TravelDistanceStrengthMin = 18f;
-    private const float TravelDistanceStrengthMax = 32f;
-    private const float LengthBaseMin = 0.7125f;
-    private const float LengthBaseMax = 1.1625f;
-    private const float LengthStrengthMin = 0.6875f;
-    private const float LengthStrengthMax = 1.6875f;
+    private const float AngleJitter = 0.1f;
+    private const float SpeedBaseMin = 8.25f;
+    private const float SpeedBaseMax = 14.35f;
+    private const float SpeedStrengthMin = 0.375f;
+    private const float SpeedStrengthMax = 0.6875f;
+    private const float TravelDistanceBaseMin = 38f;
+    private const float TravelDistanceBaseMax = 60f;
+    private const float TravelDistanceStrengthMin = 1.125f;
+    private const float TravelDistanceStrengthMax = 2f;
+    private const float LengthBaseMin = 1.3525f;
+    private const float LengthBaseMax = 2.8325f;
+    private const float LengthStrengthMin = 0.04296875f;
+    private const float LengthStrengthMax = 0.1055f;
     private const float MinimumSpeed = 0.1f;
 
-    private const float SpawnMarginBase = 4f;
-    private const float SpawnMarginStrength = 6f;
+    private const float SpawnMarginBase = 9.6f;
+    private const float SpawnMarginStrength = 0.375f;
     private const float SpawnDirectionMinOffset = 0.5f;
     private const float SpawnLateralPadding = 2f;
     private const float SpawnDirectionJitter = 0.5f;
@@ -90,7 +90,8 @@ public sealed class SeaWindOverlay : Overlay
 
     private float _windAngle;
     private float _windStrength;
-    private float _stormStrength;
+    private float _windPower;
+    private float _stormLevel;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
@@ -108,7 +109,8 @@ public sealed class SeaWindOverlay : Overlay
         var targetStrength = NormalizeStrength(MathF.Max(windPower, stormLevel));
         var angleDelta = NormalizeAngle(targetAngle - _windAngle);
 
-        _stormStrength = NormalizeStrength(stormLevel);
+        _windPower = windPower;
+        _stormLevel = stormLevel;
         _windAngle = NormalizeAngle(_windAngle + angleDelta * SmoothRatio(args.DeltaSeconds, AngleSmoothSpeed));
         _windStrength = Approach(_windStrength, targetStrength, args.DeltaSeconds, StrengthSmoothSpeed);
 
@@ -120,7 +122,7 @@ public sealed class SeaWindOverlay : Overlay
         if (!_entityManager.TryGetComponent<SeaComponent>(args.MapUid, out var sea) || sea.Disabled)
             return false;
 
-        return ShouldSpawnParticles() ||
+        return ShouldSpawnParticles(sea) ||
                _particlesByMap.TryGetValue(args.MapId, out var particles) && particles.Count > 0;
     }
 
@@ -129,15 +131,15 @@ public sealed class SeaWindOverlay : Overlay
         var particles = GetParticles(args.MapId);
         var visibleBounds = args.WorldAABB;
 
-        if (ShouldSpawnParticles())
+        if (_entityManager.TryGetComponent<SeaComponent>(args.MapUid, out var sea) && ShouldSpawnParticles(sea))
             SpawnParticles(particles, visibleBounds);
 
         DrawParticles(args.WorldHandle, particles, visibleBounds);
     }
 
-    private bool ShouldSpawnParticles()
+    private bool ShouldSpawnParticles(SeaComponent sea)
     {
-        return _configuration.GetCVar(ShipsCCVars.WindEnabled) && _windStrength > VisibleStrengthThreshold;
+        return sea.WindEnabledLocal && _configuration.GetCVar(ShipsCCVars.WindEnabled) && _windStrength > VisibleStrengthThreshold;
     }
 
     private List<WindParticle> GetParticles(MapId mapId)
@@ -192,7 +194,7 @@ public sealed class SeaWindOverlay : Overlay
     private void SpawnParticles(List<WindParticle> particles, Box2 visibleBounds)
     {
         var area = visibleBounds.Width * visibleBounds.Height;
-        var intensity = _windStrength * _stormStrength;
+        var intensity = GetIntensity();
         var density = ParticleDensityBase + intensity * ParticleDensityStrength;
         var targetCount = Math.Clamp((int) MathF.Ceiling(area * density), MinParticleCount, MaxParticleCount);
         var activeBounds = GetActiveBounds(visibleBounds);
@@ -228,14 +230,14 @@ public sealed class SeaWindOverlay : Overlay
         var direction = angle.ToWorldVec();
         var perpendicular = new Vector2(-direction.Y, direction.X);
         var bounds = GetParticleSpawnBounds(visibleBounds, direction, perpendicular);
-        var intensity = _windStrength * _stormStrength;
+        var intensity = GetIntensity();
 
         var speed = RandomRange(SpeedBaseMin, SpeedBaseMax) + intensity * RandomRange(SpeedStrengthMin, SpeedStrengthMax);
         var travelDistance = RandomRange(TravelDistanceBaseMin, TravelDistanceBaseMax) +
                              intensity * RandomRange(TravelDistanceStrengthMin, TravelDistanceStrengthMax);
         var lifetime = travelDistance / MathF.Max(speed, MinimumSpeed);
         var length = RandomRange(LengthBaseMin, LengthBaseMax) + intensity * RandomRange(LengthStrengthMin, LengthStrengthMax);
-        var spawnMargin = SpawnMarginBase + _windStrength * SpawnMarginStrength;
+        var spawnMargin = SpawnMarginBase + intensity * SpawnMarginStrength;
         var position = CreateSpawnPosition(visibleBounds, bounds, direction, perpendicular, spawnMargin);
         var particle = new WindParticle
         {
@@ -254,6 +256,11 @@ public sealed class SeaWindOverlay : Overlay
         WarmStartParticle(ref particle, bounds.DirectionExtent, spawnMargin, speed);
 
         return particle;
+    }
+
+    private float GetIntensity()
+    {
+        return _windPower * _stormLevel;
     }
 
     private ParticleSpawnBounds GetParticleSpawnBounds(Box2 visibleBounds, Vector2 direction, Vector2 perpendicular)

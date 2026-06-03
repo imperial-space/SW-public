@@ -3,6 +3,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Weather;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Parallax;
 using Content.Shared.Weather;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -31,7 +32,9 @@ public sealed class ServerWindSystem : EntitySystem
 
     public override void Initialize()
     {
-        _cfg.OnValueChanged(ShipsCCVars.StormLevel, OnStormLevelChanged, true);
+        SubscribeLocalEvent<StormLevelChangedEvent>(OnStormLevelChanged);
+
+        _cfg.OnValueChanged(ShipsCCVars.StormLevel, OnStormLevelCVarChanged, true);
     }
 
     public override void Update(float frameTime)
@@ -90,10 +93,10 @@ public sealed class ServerWindSystem : EntitySystem
             stormLevel += 1f;
         else if (roll < increaseChance + decreaseChance)
             stormLevel -= 1f;
-        else
-            return;
 
-        _cfg.SetCVar(ShipsCCVars.StormLevel, Math.Clamp(stormLevel, minStormLevel, maxStormLevel));
+        stormLevel = Math.Clamp(stormLevel, minStormLevel, maxStormLevel);
+        if (Math.Abs(stormLevel - _cfg.GetCVar(ShipsCCVars.StormLevel)) > 0.001f)
+            _cfg.SetCVar(ShipsCCVars.StormLevel, stormLevel);
     }
 
     private int FindShips()
@@ -113,7 +116,7 @@ public sealed class ServerWindSystem : EntitySystem
         return count;
     }
 
-    private void OnStormLevelChanged(float stormLevel)
+    private void OnStormLevelCVarChanged(float stormLevel)
     {
         var minStormLevel = _cfg.GetCVar(ShipsCCVars.StormMinLevel);
         var maxStormLevel = _cfg.GetCVar(ShipsCCVars.StormMaxLevel);
@@ -124,8 +127,24 @@ public sealed class ServerWindSystem : EntitySystem
             return;
         }
 
-        _cfg.SetCVar(ShipsCCVars.WindPower, clampedLevel);
-        UpdateStormWeather(clampedLevel);
+        RaiseLocalEvent(new StormLevelChangedEvent(clampedLevel));
+    }
+
+    private void OnStormLevelChanged(StormLevelChangedEvent args)
+    {
+        ApplyStormLevel(args.StormLevel);
+    }
+
+    private void ApplyStormLevel(float stormLevel)
+    {
+        UpdateStormWindPower(stormLevel);
+        UpdateStormWeather(stormLevel);
+        UpdateStormParallax(stormLevel);
+    }
+
+    private void UpdateStormWindPower(float stormLevel)
+    {
+        _cfg.SetCVar(ShipsCCVars.WindPower, stormLevel);
     }
 
     private void UpdateStormWeather(float stormLevel)
@@ -170,5 +189,53 @@ public sealed class ServerWindSystem : EntitySystem
 
         rainData.EndTime = endTime;
         Dirty(mapUid.Value, weatherComp);
+    }
+
+    private void UpdateStormParallax(float stormLevel)
+    {
+        var seaMaps = new HashSet<MapId>();
+        foreach (var seaComp in EntityManager.EntityQuery<SeaComponent>())
+        {
+            if (seaComp.Disabled)
+                continue;
+
+            var seaParallax = GetStormParallax(stormLevel, seaComp);
+
+            var mapId = _transform.GetMapId(seaComp.Owner);
+            if (mapId == MapId.Nullspace || !seaMaps.Add(mapId))
+                continue;
+
+            if (!_mapSystem.TryGetMap(mapId, out var mapUid))
+                continue;
+
+            var parallax = EnsureComp<ParallaxComponent>(mapUid.Value);
+            if (parallax.Parallax == seaParallax)
+                continue;
+
+            parallax.Parallax = seaParallax;
+            Dirty(mapUid.Value, parallax);
+        }
+    }
+
+    private static string GetStormParallax(float stormLevel, SeaComponent sea)
+    {
+        if (stormLevel >= 7f)
+            return sea.StormParallax3;
+        if (stormLevel >= 5f)
+            return sea.StormParallax2;
+        if (stormLevel >= 3f)
+            return sea.StormParallax1;
+
+        return sea.CalmParallax;
+    }
+}
+
+public sealed class StormLevelChangedEvent : EntityEventArgs
+{
+    public readonly float StormLevel;
+
+    public StormLevelChangedEvent(float stormLevel)
+    {
+        StormLevel = stormLevel;
     }
 }

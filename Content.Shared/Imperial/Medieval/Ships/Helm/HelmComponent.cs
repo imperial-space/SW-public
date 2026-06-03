@@ -23,4 +23,7 @@ public sealed partial class HelmComponent : Component
 
     [DataField("minShipWeight")]
     public float MinShipWeight = 10f;
+
+    [DataField("OverloadCeilPerTile")]
+    public float OverloadCeilPerTile = 20f;
 }

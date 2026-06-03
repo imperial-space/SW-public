@@ -8,6 +8,7 @@ using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Maps;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
+using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -31,6 +32,7 @@ public sealed class WaveSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
 
     private readonly List<Vector2i> _nearbyTiles = new();
     private readonly HashSet<EntityUid> _tileContents = new();
@@ -138,7 +140,7 @@ public sealed class WaveSystem : EntitySystem
         if (!HasComp<ShipDrowningComponent>(targetEntity))
         {
             if (component.DeleteOnCollide)
-                EntityManager.DeleteEntity(wave);
+                DeleteWaveOnGridImpact(wave, component, collisionPos);
 
             return;
         }
@@ -146,7 +148,7 @@ public sealed class WaveSystem : EntitySystem
         if (_cfg.GetCVar(ShipsCCVars.WaveMinToBreakLevel) > _cfg.GetCVar(ShipsCCVars.StormLevel))
         {
             if (component.DeleteOnCollide)
-                EntityManager.DeleteEntity(wave);
+                DeleteWaveOnGridImpact(wave, component, collisionPos);
 
             return;
         }
@@ -195,7 +197,7 @@ public sealed class WaveSystem : EntitySystem
         if (_nearbyTiles.Count == 0)
         {
             if (component.DeleteOnCollide)
-                EntityManager.DeleteEntity(wave);
+                DeleteWaveOnGridImpact(wave, component, collisionPos);
 
             return;
         }
@@ -223,7 +225,57 @@ public sealed class WaveSystem : EntitySystem
             component.HitList.Add(targetEntity);
 
         if (component.DeleteOnCollide)
-            EntityManager.DeleteEntity(wave);
+            DeleteWaveOnGridImpact(wave, component, collisionPos);
+    }
+
+    private void DeleteWaveOnGridImpact(EntityUid wave, WaveComponent component, MapCoordinates collisionPos)
+    {
+        RepulseEntitiesFromWaveImpact(wave, component, collisionPos);
+        EntityManager.DeleteEntity(wave);
+    }
+
+    private void RepulseEntitiesFromWaveImpact(EntityUid wave, WaveComponent component, MapCoordinates collisionPos)
+    {
+        var stormLevel = MathF.Max(0f, _cfg.GetCVar(ShipsCCVars.StormLevel));
+        var range = component.RepulseRangePerStormLevel * stormLevel;
+        var distance = component.RepulseDistancePerStormLevel * stormLevel;
+        if (range <= 0f || distance <= 0f)
+            return;
+
+        var repulseTargets = new HashSet<EntityUid>();
+        _lookup.GetEntitiesInRange(
+            collisionPos.MapId,
+            collisionPos.Position,
+            range,
+            repulseTargets,
+            flags: LookupFlags.Dynamic | LookupFlags.Sundries);
+
+        foreach (var target in repulseTargets)
+        {
+            if (target == wave ||
+                TerminatingOrDeleted(target) ||
+                HasComp<MapGridComponent>(target) ||
+                HasComp<MapComponent>(target))
+            {
+                continue;
+            }
+
+            var targetPos = _transform.GetMapCoordinates(target);
+            if (targetPos.MapId != collisionPos.MapId)
+                continue;
+
+            var direction = targetPos.Position - collisionPos.Position;
+            var directionLength = direction.Length();
+            if (directionLength <= 0f)
+                continue;
+
+            _throwing.TryThrow(
+                target,
+                direction / directionLength * distance,
+                baseThrowSpeed: MathF.Max(distance, 0.1f),
+                recoil: false,
+                compensateFriction: true);
+        }
     }
 
     public EntityUid? SpawnWave(MapCoordinates coords, Vector2 velocity = default, bool deleteOnCollide = true, float lifetime = 60)

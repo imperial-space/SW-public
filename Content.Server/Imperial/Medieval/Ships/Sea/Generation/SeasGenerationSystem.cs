@@ -81,10 +81,10 @@ public sealed class SeasGenerationSystem : EntitySystem
                 var mixture = new GasMixture(moles, Atmospherics.T20C);
                 _atmos.SetMapAtmosphere(mapUid, false, mixture);
 
+                var sea = AddComp<SeaComponent>(mapUid);
                 var parallax = AddComp<ParallaxComponent>(mapUid);
-                parallax.Parallax = "OceanMedieval";
+                parallax.Parallax = sea.CalmParallax;
                 var mapId = _transform.GetMapId(mapUid);
-                AddComp<SeaComponent>(mapUid);
                 seaMatrix.SetSeaId(x, y, mapId);
                 seaMatrix.SetGenerated(x, y, false);
             }

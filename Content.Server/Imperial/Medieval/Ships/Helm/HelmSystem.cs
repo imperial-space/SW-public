@@ -8,6 +8,7 @@ using Content.Shared.Imperial.Medieval.Ships.Helm;
 using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Maps;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
@@ -28,6 +29,7 @@ public sealed class HelmSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -73,6 +75,14 @@ public sealed class HelmSystem : EntitySystem
         }
 
         args.PushMarkup(Loc.GetString("helm-examine-sails-efficiency", ("efficiency", FormatEfficiency(GetSailsEfficiency(uid)))));
+
+        if (TryGetShipLoad(uid, component, out var weight, out var overloadCeil))
+        {
+            args.PushMarkup(Loc.GetString(
+                "helm-examine-ship-load",
+                ("weight", FormatWeight(weight)),
+                ("overloadCeil", FormatWeight(overloadCeil))));
+        }
     }
 
     private void OnMenuOptionSelected(HelmMenuActionEvent args, EntitySessionEventArgs session)
@@ -175,7 +185,7 @@ public sealed class HelmSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(boat, out var body))
             return;
 
-        var weight = MathF.Max(helmComponent.MinShipWeight, _rdWeight.GetTotal(boat));
+        var weight = MathF.Max(helmComponent.MinShipWeight, _rdWeight.GetTotalOnGrid(boat));
         var weightDivider = 1f + weight * 0.01f;
         var steeringInput = GetSteeringInput(helmComponent);
         if (MathF.Abs(steeringInput) < 0.001f)
@@ -256,6 +266,35 @@ public sealed class HelmSystem : EntitySystem
         return efficiency;
     }
 
+    private bool TryGetShipLoad(EntityUid helm, HelmComponent helmComponent, out float weight, out float overloadCeil)
+    {
+        weight = 0f;
+        overloadCeil = 0f;
+
+        var helmXform = Transform(helm);
+        if (!TryGetGrid(helm, helmXform, out var boat) || !TryComp<MapGridComponent>(boat, out var mapGrid))
+            return false;
+
+        if (!TryGetOverloadCeil(boat, mapGrid, helmComponent.OverloadCeilPerTile, out overloadCeil))
+            return false;
+
+        weight = _rdWeight.GetTotalOnGrid(boat);
+        return true;
+    }
+
+    private bool TryGetOverloadCeil(EntityUid gridUid, MapGridComponent mapGrid, float overloadCeilPerTile, out float overloadCeil)
+    {
+        var totalTiles = 0;
+        var allTiles = _map.GetAllTilesEnumerator(gridUid, mapGrid);
+        while (allTiles.MoveNext(out _))
+        {
+            totalTiles++;
+        }
+
+        overloadCeil = totalTiles * overloadCeilPerTile;
+        return totalTiles > 0;
+    }
+
     private bool TryGetGrid(EntityUid uid, TransformComponent xform, out EntityUid grid)
     {
         grid = _transform.GetMoverCoordinates(uid, xform).EntityId;
@@ -270,6 +309,11 @@ public sealed class HelmSystem : EntitySystem
     }
 
     private static string FormatEfficiency(float value)
+    {
+        return value.ToString("0.##");
+    }
+
+    private static string FormatWeight(float value)
     {
         return value.ToString("0.##");
     }

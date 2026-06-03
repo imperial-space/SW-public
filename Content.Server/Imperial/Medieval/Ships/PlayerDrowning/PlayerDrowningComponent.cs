@@ -1,4 +1,5 @@
 using Content.Shared.Damage;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 
@@ -22,4 +23,7 @@ public sealed partial class PlayerDrowningComponent : Component
             { "Asphyxiation", 10 }
         }
     };
+
+    [DataField]
+    public EntProtoId SplashEffect = "MedievalShipSplashEffect";
 }
