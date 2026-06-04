@@ -12,6 +12,9 @@ public sealed class ShipGridOfferPrototype : IPrototype
     public string DisplayName = string.Empty;
 
     [DataField]
+    public string DisplayDescription = string.Empty;
+
+    [DataField]
     public string GridPath = string.Empty;
 
     [DataField]

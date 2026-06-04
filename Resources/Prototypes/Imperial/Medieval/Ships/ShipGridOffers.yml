@@ -1,6 +1,7 @@
 - type: shipGridOffer
   id: VictoriaShip
   displayName: Victoria
+  displayDescription: Небольшой корабль, подходящий для коротких путешествий
   gridPath: /Maps/Imperial/Medieval/Ships/Victoria.yml
   cost: 1000
   localOffset: 5
