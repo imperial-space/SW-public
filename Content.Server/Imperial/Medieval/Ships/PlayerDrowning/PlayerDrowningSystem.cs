@@ -10,6 +10,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
@@ -28,6 +29,7 @@ public sealed class PlayerDrowningSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -81,6 +83,9 @@ public sealed class PlayerDrowningSystem : EntitySystem
         var query = EntityQueryEnumerator<TransformComponent>();
         while (query.MoveNext(out var uid, out var transform))
         {
+            if (_container.IsEntityOrParentInContainer(uid))
+                continue;
+
             var onGrid = transform.GridUid is { } gridUid && HasComp<MapGridComponent>(gridUid);
             var resetDrowning = !seaMaps.Contains(transform.MapID) ||
                                 HasComp<MapComponent>(uid) ||
@@ -148,14 +153,16 @@ public sealed class PlayerDrowningSystem : EntitySystem
         var drowner = EnsureComp<PlayerDrowningComponent>(uid);
         drowner.DrownTime += 1;
 
-        _damageable.TryChangeDamage(uid, drowner.DrowningDamage, true, false);
+        if (drowner.DrownTime >= drowner.DamageDrownDelay)
+            _damageable.TryChangeDamage(uid, drowner.DrowningDamage, true, false);
 
         if (drowner.DrownTime < drowner.MaxDrownTime)
             return;
 
-        if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState == MobState.Alive)
+        if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState != MobState.Dead)
         {
             drowner.DrownTime = 0;
+            drowner.DamageDrownDelay = 0;
             return;
         }
 

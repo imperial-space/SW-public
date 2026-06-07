@@ -12,6 +12,9 @@ public sealed partial class PlayerDrowningComponent : Component
     [DataField("maxDrownTime")]
     public int MaxDrownTime = 25;
 
+    [DataField("damageDrownDelay")]
+    public int DamageDrownDelay = 7;
+
     [DataField("speedModifier")]
     public float SpeedModifier = 0.5f;
 
