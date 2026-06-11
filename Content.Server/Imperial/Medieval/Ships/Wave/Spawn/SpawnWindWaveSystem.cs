@@ -43,6 +43,9 @@ public sealed class SpawnWindWaveSystem : EntitySystem
 
             foreach (var shipComp in ships)
             {
+                if (shipComp.Comp.AnchorUsedTime is { } parkingTime && parkingTime + TimeSpan.FromMinutes(2) <= _timing.CurTime)
+                    continue;
+
                 var ship = shipComp.Owner;
                 if (!TryComp<MapGridComponent>(ship, out var grid))
                     continue;
