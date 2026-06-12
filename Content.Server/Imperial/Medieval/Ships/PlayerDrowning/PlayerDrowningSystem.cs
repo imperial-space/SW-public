@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Content.Server.Imperial.Medieval.Ships.Wave;
 using Content.Shared.Damage;
+using Content.Shared.Drowning;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
@@ -152,6 +153,14 @@ public sealed class PlayerDrowningSystem : EntitySystem
 
         var drowner = EnsureComp<PlayerDrowningComponent>(uid);
         drowner.DrownTime += 1;
+
+        if (TryComp<DrowningModifierComponent>(uid, out var modifier))
+        {
+            var mod = Math.Max(0.001f, modifier.ResistanceModifier);
+            drowner.MaxDrownTime *= mod;
+            drowner.DamageDrownDelay *= mod;
+            drowner.DrowningDamage *= 1 / mod;
+        }
 
         if (drowner.DrownTime >= drowner.DamageDrownDelay)
             _damageable.TryChangeDamage(uid, drowner.DrowningDamage, true, false);

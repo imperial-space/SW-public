@@ -12,6 +12,8 @@ using Robust.Shared.Timing;
 using Content.Shared.Imperial.Medieval.Ships.Islands;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Content.Shared.Examine;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Ships.Anchor;
 
@@ -29,6 +31,7 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
     {
         SubscribeLocalEvent<MedievalAnchorComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MedievalAnchorComponent, UseAnchorEvent>(OnUseAnchor);
+        SubscribeLocalEvent<MedievalAnchorComponent, ExaminedEvent>(OnExamine);
     }
 
     private void OnStartup(EntityUid uid, MedievalAnchorComponent component, ComponentStartup args)
@@ -68,17 +71,19 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
             }
 
             if (SearchIslandInRange(uid, component.IslandSearchRange))
-                shipDrowningComponent.AnchorUsedTime = _timing.CurTime;
+                component.AnchorUsedTime = _timing.CurTime;
             else
-                shipDrowningComponent.AnchorUsedTime = null;
+                component.AnchorUsedTime = null;
         }
         else
         {
             shuttleComponent.Enabled = true;
             _shuttleSystem.Enable(grid.Value);
 
-            shipDrowningComponent.AnchorUsedTime = null;
+            component.AnchorUsedTime = null;
         }
+
+        shipDrowningComponent.AnchorUsedTime = component.AnchorUsedTime;
 
         component.Enabled = !anchorDown;
         UpdateAnchorVisuals(uid, component);
@@ -109,5 +114,25 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
         }
 
         return false;
+    }
+
+    private void OnExamine(EntityUid uid, MedievalAnchorComponent component, ref ExaminedEvent args)
+    {
+        var messageRange = new FormattedMessage();
+        messageRange.AddText(Loc.GetString($"examine-anchor-island-search-range") + " ");
+        messageRange.PushColor(Color.Aqua);
+        messageRange.AddText($"{component.IslandSearchRange}\n");
+        messageRange.Pop();
+        args.PushMessage(messageRange);
+
+        if (component.AnchorUsedTime is not { } timeUsed || timeUsed + TimeSpan.FromMinutes(2) <= _timing.CurTime)
+            return;
+
+        var message = new FormattedMessage();
+        message.AddText(Loc.GetString($"examine-anchor-time-to-disable-waves") + " ");
+        message.PushColor(Color.Aquamarine);
+        message.AddText($"{(int)(timeUsed + TimeSpan.FromMinutes(2) - _timing.CurTime).TotalSeconds}");
+        message.Pop();
+        args.PushMessage(message);
     }
 }
