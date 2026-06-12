@@ -1,0 +1,44 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellStoneRidgeBeginner
+  name: medieval-store-spells-earth-stone-ridge-beginner-name
+  description: medieval-store-spells-earth-stone-ridge-beginner-desc
+  productAction: MedievalActionStoneRidgeBeginner
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellStoneRidgeMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/StoneRidge/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalEarth: 20
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellStoneRidgeMiddle
+  name: medieval-store-spells-earth-stone-ridge-middle-name
+  description: medieval-store-spells-earth-stone-ridge-middle-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellStoneRidgeMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/StoneRidge/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalEarth: 55
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellStoneRidgeBeginner
+

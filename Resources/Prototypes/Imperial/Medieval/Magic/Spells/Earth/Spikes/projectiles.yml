@@ -1,0 +1,102 @@
+- type: entity
+  id: MedievalProjectileInactiveSpikesBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Spikes/projectiles.rsi
+    state: beginner-spawn
+    drawdepth: FloorTiles
+  - type: TimedDespawn
+    lifetime: 1
+  - type: SpawnOnDespawn
+    prototype: MedievalProjectileActiveSpikeBeginner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+
+
+- type: entity
+  id: MedievalProjectileActiveSpikeBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Spikes/projectiles.rsi
+    state: beginner
+    drawdepth: FloorTiles
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: Clickable
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        hard: false
+  - type: MedievalNotAllowDash
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: DamageContacts
+    damage:
+      types:
+        Piercing: 10
+
+- type: entity
+  id: MedievalSpikesLineBeginner
+  components:
+  - type: Physics
+  - type: Fixtures
+  - type: Brarrier
+    spawnedEntity: MedievalProjectileInactiveSpikesBeginner
+    barrierLength: 5
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.2
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    onlyOneSide: true
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  id: MedievalSpikesLineMiddle
+  components:
+  - type: Physics
+  - type: Fixtures
+  - type: Brarrier
+    spawnedEntity: MedievalProjectileInactiveSpikesBeginner
+    barrierLength: 10
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.15
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    onlyOneSide: true
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  id: MedievalSpikesLineSenior
+  components:
+  - type: Physics
+  - type: Fixtures
+  - type: Brarrier
+    spawnedEntity: MedievalProjectileInactiveSpikesBeginner
+    barrierLength: 15
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    onlyOneSide: true
+  - type: TimedDespawn
+    lifetime: 5

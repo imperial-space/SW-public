@@ -207,6 +207,9 @@
     - AnomalyHost
   - type: Damageable
     damageModifierSet: Lamian
+  - type: Wagging
+  - type: Bloodstream
+    bloodReagent: LamianBlood
 
 - type: damageModifierSet
   id: Lamian
@@ -244,12 +247,28 @@
       points: 1
       required: false
     FacialHair:
-      points: 0
+      points: 1
       required: false
-    Tail: 
-      points: 1 
+    HeadTop:
+      points: 1
       required: true
-      defaultMarkings: [ LamianTail ]
+      defaultMarkings: [ LamianEars ]
+    HeadSide:
+      points: 1
+      required: false
+    Chest:
+      points: 3
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ LamianTailSmoothPrime ]
 
 - type: speciesBaseSprites
   id: MobLamianSprites
@@ -268,8 +287,9 @@
     RLeg: MobLamianRLeg
     LFoot: MobLamianLFoot
     RFoot: MobLamianRFoot
-    Tail: MobHumanoidAnyMarking 
+    Tail: MobHumanoidAnyMarking
     HeadTop: MobLamianEars # imperial HairAndTail
+    HeadSide: MobHumanoidAnyMarking
 
 - type: humanoidBaseSprite
   id: MobLamianEars
@@ -362,10 +382,172 @@
     state: r_foot
 
 - type: marking
-  id: LamianTail
+  id: LamianTailSmoothPrime
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
-    state: tail_lamian_prime
+    state: tail_smooth_primary
+
+- type: marking
+  id: LamianTailSmooth
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: tail_smooth
+
+- type: marking
+  id: LamianTailSpikes
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: tail_spikes
+
+- type: marking
+  id: LamianTailSpikesAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: tail_spikes_wagging
+
+- type: marking
+  id: LamianTailSmoothAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: tail_smooth_wagging
+
+- type: marking
+  id: LamianEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: ears
+
+- type: marking
+  id: LamianEarsLong
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: ears_long
+
+- type: marking
+  id: LamianEarsLow
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: ears_low
+
+- type: marking
+  id: LamianEarsTop
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: ears_top
+
+- type: marking
+  id: LamianBodyTigerFat
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: body_tiger_fat
+
+- type: marking
+  id: LamianFrillsaquatic
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_aquatic
+
+- type: marking
+  id: LamianFrillsAxolotl
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_axolotl
+
+- type: marking
+  id: LamianFrillsBig
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_big
+
+- type: marking
+  id: LamianFrillsGills
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_gills
+
+- type: marking
+  id: LamianFrillsNeckfull
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_neckfull
+
+- type: marking
+  id: LamianFrillsSharp
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_sharp
+
+- type: marking
+  id: LamianFrillsShort
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_short
+
+- type: marking
+  id: LamianFrillsSimple
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_simple
+
+- type: marking
+  id: LamianFrillsWide
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: frills_wide

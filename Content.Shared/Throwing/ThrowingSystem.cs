@@ -5,7 +5,6 @@ using Content.Shared.CCVar;
 using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Friction;
-using Content.Shared.Gravity;
 using Content.Shared.Projectiles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -13,6 +12,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Imperial.Medieval.Skills; // --- IMPERIAL MEDIEVAL
 
 namespace Content.Shared.Throwing;
 
@@ -30,7 +30,6 @@ public sealed class ThrowingSystem : EntitySystem
     private float _airDamping;
 
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ThrownItemSystem _thrownSystem = default!;
@@ -165,11 +164,21 @@ public sealed class ThrowingSystem : EntitySystem
 
         // Set the time the item is supposed to be in the air so we can apply OnGround status.
         // This is a free parameter, but we should set it to something reasonable.
-        var flyTime = direction.Length() / baseThrowSpeed;
-        if (compensateFriction)
-            flyTime *= FlyTimePercentage;
+        // --- IMPERIAL MEDIEVAL START ---
+        var kin = ThrowSpeedHelper.Compute(
+            direction,
+            baseThrowSpeed,
+            tileFriction,
+            compensateFriction,
+            FlyTimePercentage,
+            uid,
+            user,
+            EntityManager);
+        if (kin.ThrowSpeed <= 0f)
+            return;
         comp.ThrownTime = _gameTiming.CurTime;
-        comp.LandTime = comp.ThrownTime + TimeSpan.FromSeconds(flyTime);
+        comp.LandTime = comp.ThrownTime + TimeSpan.FromSeconds(kin.FlyTimeSeconds);
+        // --- IMPERIAL MEDIEVAL END
         comp.PlayLandSound = playSound;
         AddComp(uid, comp, true);
 
@@ -192,8 +201,6 @@ public sealed class ThrowingSystem : EntitySystem
             }
         }
 
-        var throwEvent = new ThrownEvent(user, uid);
-        RaiseLocalEvent(uid, ref throwEvent, true);
         if (user != null)
             _adminLogger.Add(LogType.Throw, LogImpact.Low, $"{ToPrettyString(user.Value):user} threw {ToPrettyString(uid):entity}");
 
@@ -202,9 +209,16 @@ public sealed class ThrowingSystem : EntitySystem
         // This is an exact formula we get from exponentially decaying velocity after landing.
         // If someone changes how tile friction works at some point, this will have to be adjusted.
         // This doesn't actually compensate for air friction, but it's low enough it shouldn't matter.
-        var throwSpeed = compensateFriction ? direction.Length() / (flyTime + 1 / tileFriction) : baseThrowSpeed;
-        var impulseVector = direction.Normalized() * throwSpeed * physics.Mass;
+        var impulseVector = direction.Normalized() * kin.ThrowSpeed * physics.Mass; // --- IMPERIAL MEDIEVAL ---
         _physics.ApplyLinearImpulse(uid, impulseVector, body: physics);
+
+        var thrownEvent = new ThrownEvent(user, uid);
+        RaiseLocalEvent(uid, ref thrownEvent, true);
+        if (user != null)
+        {
+            var throwEvent = new ThrowEvent(user, uid);
+            RaiseLocalEvent(user.Value, ref throwEvent, true);
+        }
 
         if (comp.LandTime == null || comp.LandTime <= TimeSpan.Zero)
         {
@@ -222,17 +236,21 @@ public sealed class ThrowingSystem : EntitySystem
             _recoil.KickCamera(user.Value, -direction * 0.04f);
 
         // Give thrower an impulse in the other direction
-        if (pushbackRatio != 0.0f &&
-            physics.Mass > 0f &&
-            TryComp(user.Value, out PhysicsComponent? userPhysics) &&
-            _gravity.IsWeightless(user.Value, userPhysics))
-        {
-            var msg = new ThrowPushbackAttemptEvent();
-            RaiseLocalEvent(uid, msg);
-            const float massLimit = 5f;
+        if (pushbackRatio == 0.0f ||
+            physics.Mass == 0f ||
+            !TryComp(user.Value, out PhysicsComponent? userPhysics))
+            return;
+        var msg = new ThrowPushbackAttemptEvent();
+        RaiseLocalEvent(uid, msg);
 
-            if (!msg.Cancelled)
-                _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
-        }
+        if (msg.Cancelled)
+            return;
+
+        var pushEv = new ThrowerImpulseEvent();
+        RaiseLocalEvent(user.Value, ref pushEv);
+        const float massLimit = 5f;
+
+        if (pushEv.Push)
+            _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
     }
 }

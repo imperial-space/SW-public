@@ -12,6 +12,7 @@
   - MedievalInnkeeperN
   - MedievalChaplain
   - MedievalWanderMag
+  - MedievalArchivist
 
 - type: department
   id: Legion
@@ -23,12 +24,14 @@
   - MedievalLegionJailer
   - MedievalLegionRecruit
   - MedievalLegionLegioner
+  - MedievalLegionTreasurer
   - MedievalLegionGateman
   - MedievalLegionOpcion
   - MedievalLegionTribun
   - MedievalLegionLegat
   - MedievalLegionMag
   - MedievalLegionAlchemic
+  - MedievalLegionCourier
 
 - type: department
   id: Insurgency

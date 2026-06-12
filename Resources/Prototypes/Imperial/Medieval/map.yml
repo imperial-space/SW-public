@@ -19,7 +19,7 @@
             MedievalBum: [ 10, 10 ]
             MedievalInnkeeper: [ 1, 1 ]
             MedievalInnkeeperN: [ 1, 1 ]
-            MedievalChaplain: [ 6, 6 ]
+            MedievalChaplain: [ 7, 7 ]
             MedievalWanderMag: [ 4, 4 ]
             # Legion (29 total)
             MedievalLegionJailed: [ 5, 5 ]
@@ -32,6 +32,7 @@
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 2, 2 ]
             MedievalLegionAlchemic: [ 2, 2 ]
+            MedievalLegionCourier: [ 3, 3 ]
             # Insurgency (29 total)
             MedievalInsurgencyRecruit: [ 7, 7 ]
             MedievalInsurgencyInsurgencyer: [ 11, 11 ]
@@ -113,6 +114,7 @@
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 1, 1 ]
             MedievalLegionAlchemic: [ 1, 1 ]
+            MedievalLegionCourier: [ 3, 3 ]
             # Insurgency (22 total)
             MedievalInsurgencyRecruit: [ 6, 6 ]
             MedievalInsurgencyInsurgencyer: [ 8, 8 ]
@@ -194,6 +196,7 @@
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 1, 1 ]
             MedievalLegionAlchemic: [ 1, 1 ]
+            MedievalLegionCourier: [ 3, 3 ]
             # Insurgency (15 total)
             MedievalInsurgencyRecruit: [ 3, 3 ]
             MedievalInsurgencyInsurgencyer: [ 5, 5 ]
@@ -274,6 +277,7 @@
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 1, 1 ]
             MedievalLegionAlchemic: [ 1, 1 ]
+            MedievalLegionCourier: [ 3, 3 ]
             # Insurgency (11 total)
             MedievalInsurgencyRecruit: [ 3, 3 ]
             MedievalInsurgencyInsurgencyer: [ 3, 3 ]
@@ -344,6 +348,7 @@
         - type: StationJobs
           availableJobs:
             MedievalTraveller: [ -1, -1 ]
+            MedievalLegionCourier: [ 3, 3 ]
 
 - type: gameMap
   id: MedievalStationFighters
@@ -365,6 +370,7 @@
             MedievalLegionTribun: [ 1, 1 ]
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 1, 1 ]
+            MedievalLegionCourier: [ 3, 3 ]
             # Insurgency (5 total)
             MedievalInsurgencyRecruit: [ -1, -1 ]
             MedievalInsurgencyInsurgencyer: [ 8, 8 ]

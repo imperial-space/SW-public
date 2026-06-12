@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by discord: fortengamer",
+    "size": {
+        "x": 64,
+        "y": 96
+    },
+    "states": [
+        {
+            "name": "mushroomtree11"
+        },
+        {
+            "name": "mushroomtree12"
+        },
+        {
+            "name": "mushroomtree13"
+        },
+        {
+            "name": "mushroomtree21"
+        },
+        {
+            "name": "mushroomtree22"
+        },
+        {
+            "name": "mushroomtree23"
+        },
+        {
+            "name": "mushroomtree31"
+        },
+        {
+            "name": "mushroomtree32"
+        },
+        {
+            "name": "mushroomtree33"
+        },
+        {
+            "name": "mushroomtree4"
+        }
+    ]
+}

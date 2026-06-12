@@ -1,0 +1,43 @@
+- type: imperialCurrency
+  id: MagicMedievalEarth
+  displayName: medieval-currency-display-magic-earth
+  displayNameColor: "#442d20"
+  shortName: medieval-currency-display-magic-earth-short
+  canWithdraw: false
+  cash:
+    1: MagicMedievalEarth1
+
+# Entity
+
+- type: entity
+  id: MagicMedievalEarth
+  parent: BaseItem
+  name: essence of earth
+  description: Magical essence of earth
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#442d20"
+    state: essence
+    noRot: true
+  - type: Stack
+    count: 20
+    stackType: MagicMedievalEarth
+  - type: ImperialCurrency
+    price:
+      MagicMedievalEarth: 1
+
+- type: entity
+  id: MagicMedievalEarth1
+  parent: MagicMedievalEarth
+  components:
+  - type: Stack
+    count: 1
+
+# Stack
+
+- type: stack
+  id: MagicMedievalEarth
+  name: MagicMedievalEarth
+  icon: Imperial/Other/ErtCall/bluespacecube.rsi
+  spawn: MagicMedievalEarth1

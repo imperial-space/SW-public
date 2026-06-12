@@ -13,6 +13,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
@@ -39,6 +40,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
+using Content.Shared.Imperial.Medieval.ChargedAttack;
+using Content.Shared.Imperial.Medieval.Weapons;
+using Content.Shared.Imperial.Medieval.WeaponSkillSystem; // imperial medieval
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -52,6 +56,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
     [Dependency] protected readonly ActionBlockerSystem Blocker = default!;
     [Dependency] protected readonly DamageableSystem Damageable = default!;
+    [Dependency] private   readonly SharedHandsSystem _hands = default!;
     [Dependency] private   readonly InventorySystem _inventory = default!;
     [Dependency] private   readonly MeleeSoundSystem _meleeSound = default!;
     [Dependency] protected readonly MobStateSystem MobState = default!;
@@ -62,8 +67,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!; // imperial charged attack
+    [Dependency] private readonly ChargedAttackSystem _chargedAttack = default!; // imperial charged attack
+    [Dependency] private readonly InnerWeaponSystem _innerWeapon = default!; // imperial medieval inner weapon
+    [Dependency] private readonly ImperialMeleeSystem _imperial = default!; // imperial medieval
 
-    private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
+
+    private const int AttackMask = (int)(CollisionGroup.MobMask | CollisionGroup.Opaque);
 
     /// <summary>
     /// Maximum amount of targets allowed for a wide-attack.
@@ -210,6 +220,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             return;
         }
+        // imperial charge attack start
+        if (TryComp<ChargedAttackComponent>(weaponUid, out var comp))
+        {
+            _chargedAttack.StopAttacking(weaponUid, comp, user);
+        }
+        // imperial charge attack end
 
         AttemptAttack(user, weaponUid, weapon, msg, args.SenderSession);
     }
@@ -299,15 +315,14 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
 
         // Use inhands entity if we got one.
-        if (EntityManager.TryGetComponent(entity, out HandsComponent? hands) &&
-            hands.ActiveHandEntity is { } held)
+        if (_hands.TryGetActiveItem(entity, out var held))
         {
             // Make sure the entity is a weapon AND it doesn't need
             // to be equipped to be used (E.g boxing gloves).
-            if (EntityManager.TryGetComponent(held, out melee) &&
+            if (TryComp(held, out melee) &&
                 !melee.MustBeEquippedToUse)
             {
-                weaponUid = held;
+                weaponUid = held.Value;
                 return true;
             }
 
@@ -323,6 +338,16 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             melee = glovesMelee;
             return true;
         }
+
+        // Imperial Medieval start
+        if (_innerWeapon.TryGetInnerWeapon(entity, out var inner, out _) &&
+            TryComp<MeleeWeaponComponent>(inner, out var innerComp))
+        {
+            weaponUid = inner.Value;
+            melee = innerComp;
+            return true;
+        }
+        // Imperial Medieval end
 
         // Use our own melee
         if (TryComp(entity, out melee))
@@ -354,6 +379,28 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         return AttemptAttack(user, weaponUid, weapon, new DisarmAttackEvent(GetNetEntity(target), GetNetCoordinates(targetXform.Coordinates)), null);
     }
+
+    // imperial charge attack start
+    public bool AttemptHeavyAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon, EntityCoordinates coordinates)
+    {
+        var userXform = Transform(user);
+        var targetMap = TransformSystem.ToMapCoordinates(coordinates);
+
+        if (targetMap.MapId != userXform.MapID)
+            return false;
+
+        var userPos = TransformSystem.GetWorldPosition(userXform);
+        var direction = targetMap.Position - userPos;
+        var distance = MathF.Min(weapon.Range, direction.Length());
+
+        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), weapon.Angle, distance, userXform.MapID, user).ToList());
+
+        if (!_playerManager.TryGetSessionByEntity(user, out var session))
+            return AttemptAttack(user, weaponUid, weapon, new HeavyAttackEvent(GetNetEntity(weaponUid), entities, GetNetCoordinates(coordinates)), null);
+
+        return AttemptAttack(user, weaponUid, weapon, new HeavyAttackEvent(GetNetEntity(weaponUid), entities, GetNetCoordinates(coordinates)), session);
+    }
+    // imperial charge attack end
 
     /// <summary>
     /// Called when a windup is finished and an attack is tried.
@@ -422,7 +469,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // Do this AFTER attack so it doesn't spam every tick
         var ev = new AttemptMeleeEvent();
         RaiseLocalEvent(weaponUid, ref ev);
-
+        //CrystallEdge melee improvment
+        if (weapon.CPSwingBeverage)
+            weapon.SwingLeft = !weapon.SwingLeft;
+        //CrystallEdge melee improvment end
         if (ev.Cancelled)
         {
             if (ev.Message != null)
@@ -477,6 +527,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         // If I do not come back later to fix Light Attacks being Heavy Attacks you can throw me in the spider pit -Errant
         var damage = GetDamage(meleeUid, user, component) * GetHeavyDamageModifier(meleeUid, user, component);
+        // [IMPERIAL]
+        var skillEffects = _imperial.GetSkillEffects(meleeUid, user);
+        damage *= skillEffects.DamageMultiplier;
+        // [IMPERIAL]
         var target = GetEntity(ev.Target);
         var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
 
@@ -549,9 +603,21 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // For stuff that cares about it being attacked.
         var attackedEvent = new AttackedEvent(meleeUid, user, targetXform.Coordinates);
         RaiseLocalEvent(target.Value, attackedEvent);
+        // [IMPERIAL] 2. Добавляем бонусный урон
+        var totalBonus = hitEvent.BonusDamage + attackedEvent.BonusDamage;
+        if (skillEffects.BonusDamage != null)
+            totalBonus += skillEffects.BonusDamage;
 
-        var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+        var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + totalBonus, hitEvent.ModifiersList);
+        // ---------------------------------------------------------
         var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin:user, ignoreResistances:resistanceBypass);
+        // [IMPERIAL]
+        var bypassResult = _imperial.ApplySkillEffects(target.Value, user, meleeUid, skillEffects, damageResult, component);
+        if ((damageResult == null || damageResult.Empty) && (bypassResult != null && !bypassResult.Empty))
+        {
+            damageResult = bypassResult;
+        }
+        // [IMPERIAL]
 
         if (damageResult is {Empty: false})
         {
@@ -560,6 +626,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             {
                 _stamina.TakeStaminaDamage(target.Value, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
             }
+
+            // Imperial Medieval start
+            var dealtEv = new MeleeDamageDealtEvent(target.Value, user, weapon, damageResult);
+            RaiseLocalEvent(user, ref dealtEv);
+            // Imperial Medieval end
 
             if (meleeUid == user)
             {
@@ -615,8 +686,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var distance = Math.Min(component.Range, direction.Length());
 
         var damage = GetDamage(meleeUid, user, component);
+        var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
+        var skillEffects = _imperial.GetSkillEffects(meleeUid, user);
+        damage *= skillEffects.DamageMultiplier;
         // imperial medieval end
-
         if (entities.Count == 0)
         {
             if (meleeUid == user)
@@ -718,9 +791,15 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             var attackedEvent = new AttackedEvent(meleeUid, user, GetCoordinates(ev.Coordinates));
             RaiseLocalEvent(entity, attackedEvent);
-            var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+            // [IMPERIAL]
+            var totalBonus = hitEvent.BonusDamage + attackedEvent.BonusDamage;
+            if (skillEffects.BonusDamage != null)
+                totalBonus += skillEffects.BonusDamage;
 
-            var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin:user);
+            var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + totalBonus, hitEvent.ModifiersList);
+            // [IMPERIAL]
+
+            var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
 
             if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero)
             {
@@ -731,6 +810,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 }
 
                 appliedDamage += damageResult;
+
+                // Imperial Medieval start
+                var dealtEv = new MeleeDamageDealtEvent(entity, user, weapon, damageResult);
+                RaiseLocalEvent(user, ref dealtEv);
+                // Imperial Medieval end
+
 
                 if (meleeUid == user)
                 {
@@ -903,9 +988,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         EntityUid? inTargetHand = null;
 
-        if (targetHandsComponent?.ActiveHand is { IsEmpty: false })
+        if (_hands.TryGetActiveItem(target.Value, out var activeHeldEntity))
         {
-            inTargetHand = targetHandsComponent.ActiveHand.HeldEntity!.Value;
+            inTargetHand = activeHeldEntity.Value;
         }
 
         var attemptEvent = new DisarmAttemptEvent(target.Value, user, inTargetHand);

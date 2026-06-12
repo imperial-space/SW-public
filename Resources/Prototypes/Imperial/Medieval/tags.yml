@@ -1,4 +1,7 @@
 - type: Tag
+  id: Animal #Этот тег убирает из колеса эмоций мобов "человеческие" эмоции (чихание, свист и т.д)
+
+- type: Tag
   id: Vendigo
 
 - type: Tag
@@ -27,6 +30,9 @@
 
 - type: Tag
   id: MedievalAdamOre
+
+- type: Tag
+  id: MedievalAdam
 
 - type: Tag
   id: MedievalFireSerdolick
@@ -98,6 +104,9 @@
   id: MyrmexResourceYant
 
 - type: Tag
+  id: MyrmexResourceYantGear
+
+- type: Tag
   id: Mushroom1
 
 - type: Tag
@@ -114,3 +123,21 @@
 
 - type: Tag
   id: MedievalAntHitin
+
+- type: Tag
+  id: MedievalShowPlagueIcons
+
+- type: Tag
+  id: WizardKey
+
+- type: Tag
+  id: ReinforcedDoor
+
+- type: Tag
+  id: CultConductor
+
+- type: Tag
+  id: CultConductorRod
+
+- type: Tag
+  id: CourierLetter

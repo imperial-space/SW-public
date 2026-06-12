@@ -189,6 +189,8 @@
   - type: LocalLight
     energy: 0.2
     radius: 2.8
+  - type: Bloodstream
+    bloodReagent: DarkElvishBlood
 
 - type: entity
   parent: BaseMobDarkElf
@@ -229,7 +231,7 @@
   sprites: MobDarkElfSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobDarkElfDummy
-  skinColoration: Hues
+  skinColoration: DarkElfColors
 
 - type: speciesBaseSprites
   id: MobDarkElfSprites

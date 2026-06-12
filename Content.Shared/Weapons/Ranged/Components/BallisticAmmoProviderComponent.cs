@@ -57,4 +57,8 @@ public sealed partial class BallisticAmmoProviderComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan FillDelay = TimeSpan.FromSeconds(0.2);
+
+    /// Imperial Medieval
+    [DataField]
+    public TimeSpan CartridgeFillDelay = TimeSpan.FromSeconds(0);
 }

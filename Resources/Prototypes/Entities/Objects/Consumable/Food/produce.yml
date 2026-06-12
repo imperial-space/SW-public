@@ -9,14 +9,23 @@
   - type: SolutionContainerManager
   - type: Sprite
     state: produce
-  # let cows eat raw produce like wheat and oats
-  - type: Food
-    requiredStomachs: 2
   - type: Produce
   - type: PotencyVisuals
   - type: Appearance
   - type: Extractable
     grindableSolutionName: food
+
+- type: entity
+  parent: ProduceBase
+  id: ProduceBaseRuminant
+  abstract: true
+  components:
+  # let cows eat raw produce like wheat and oats
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+    - Ruminant
 
 # For produce that can be immediately eaten
 
@@ -40,8 +49,10 @@
   name: wheat bushel
   description: Sigh... wheat... a-grain?
   id: WheatBushel
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: QuestItem # imperial medieval
     contractName: "пшеница" # imperial medieval
   - type: Sprite
@@ -59,13 +70,16 @@
   - type: Tag
     tags:
     - Wheat
+    - Ruminant
 
 - type: entity
   name: meatwheat bushel
   description: Some blood-drenched wheat stalks. You can crush them into what passes for meat if you squint hard enough.
   id: MeatwheatBushel
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/meatwheat.rsi
   - type: Item
@@ -88,10 +102,14 @@
   name: oat bushel
   description: Eat oats, do squats.
   id: OatBushel
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/oat.rsi
+  - type: Item
+    heldPrefix: produce
   - type: SolutionContainerManager
     solutions:
       food:
@@ -110,8 +128,10 @@
   name: sugarcane
   description: Sickly sweet.
   id: Sugarcane
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/sugarcane.rsi
   - type: Item
@@ -131,6 +151,8 @@
   id: Papercane
   parent: ProduceBase
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/papercane.rsi
   - type: Item
@@ -148,6 +170,8 @@
   name: laughin' pea pod
   description: The clown's favorite plant.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - peas
@@ -176,6 +200,7 @@
   - type: Tag
     tags:
     - Vegetable
+    - Ruminant
 
 - type: entity
   name: tower-cap log
@@ -183,6 +208,8 @@
   id: Log
   parent: ProduceBase
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/towercap.rsi
   - type: Item
@@ -206,6 +233,8 @@
   id: SteelLog
   parent: ProduceBase
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/steelcap.rsi
   - type: Item
@@ -225,8 +254,10 @@
   name: nettle
   description: Stingy little prick.
   id: Nettle
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/nettle.rsi
   - type: Item
@@ -258,6 +289,8 @@
   id: DeathNettle
   parent: [ProduceBase, BaseMajorContraband]
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/death_nettle.rsi
   - type: Item
@@ -324,10 +357,12 @@
   id: FoodBanana
   description: Rich in potassium.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - banana
-  - type: Food
+  - type: Edible
     trash:
     - TrashBananaPeel
   - type: SolutionContainerManager
@@ -365,11 +400,13 @@
   id: FoodMimana
   description: Mime's favorite.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - banana
       - nothing
-  - type: Food
+  - type: Edible
     trash:
     - TrashMimanaPeel
   - type: SolutionContainerManager
@@ -441,6 +478,10 @@
     - Recyclable
     - Trash
     - BananaPeel
+    - Ruminant
+
+    - WhitelistChameleon
+    - HamsterWearable
   - type: SolutionContainerManager
     solutions:
       food:
@@ -451,14 +492,23 @@
   - type: Extractable
     grindableSolutionName: food
   - type: SpaceGarbage
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
+  - type: Clothing
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+    equippedPrefix: peel
+    slots:
+    - HEAD
+    quickEquip: false
 
 - type: entity
   name: baked banana peel
   parent: TrashBananaPeel
   id: TrashBakedBananaPeel
   components:
+  - type: Clothing
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+    equippedPrefix: baked-peel
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/banana.rsi
     state: baked-peel
@@ -487,6 +537,9 @@
   - type: Item
     sprite: Objects/Specific/Hydroponics/mimana.rsi
     heldPrefix: peel
+  - type: Clothing
+    sprite: Objects/Specific/Hydroponics/mimana.rsi
+    equippedPrefix: peel
   - type: Slippery
     slipSound:
       path: /Audio/Effects/slip.ogg
@@ -505,6 +558,9 @@
     sprite: Objects/Materials/materials.rsi
     heldPrefix: peel
   - type: Slippery
+  - type: Clothing
+    sprite: Objects/Materials/materials.rsi
+    equippedPrefix: peel
 
 - type: entity
   name: carrot
@@ -512,6 +568,8 @@
   id: FoodCarrot
   description: It's good for the eyes!
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: QuestItem # imperial medieval
     contractName: "морковь" # imperial medieval
   - type: FlavorProfile
@@ -556,6 +614,8 @@
   id: FoodCabbage
   description: Ewwwwwwwwww. Cabbage.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: QuestItem # imperial medieval
     contractName: "капуста" # imperial medieval
   - type: FlavorProfile
@@ -623,6 +683,8 @@
   id: FoodLemon
   description: When life gives you lemons, be grateful they aren't limes.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - sour
@@ -661,6 +723,8 @@
   id: FoodLemoon
   description: People says Moon is made out of cheese, but Moon is actually made out of milk and laurel!
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - lemoon
@@ -698,6 +762,8 @@
   id: FoodLime
   description: Cures Space Scurvy, allows you to act like a Space Pirate.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - sour
@@ -727,6 +793,8 @@
   id: FoodOrange
   description: Healthy, very orange.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - orange
@@ -755,6 +823,8 @@
   id: FoodExtradimensionalOrange
   description: You can hardly wrap your head around this thing.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - truenature
@@ -799,6 +869,8 @@
   id: FoodPineapple
   description: Mmm, tropical.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - pineapple
@@ -837,6 +909,8 @@
   id: FoodPotato
   description: The space Irish starved to death after their potato crops died. Sadly they were unable to fish for space carp due to it being the queen's space. Bringing this up to any space IRA member will drive them insane with anger.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: QuestItem # imperial medieval
     contractName: "картофель" # imperial medieval
   - type: FlavorProfile
@@ -878,6 +952,8 @@
   id: FoodTomato
   description: I say to-mah-to, you say tom-mae-to.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: QuestItem # imperial medieval
     contractName: "помидоры" # imperial medieval
   - type: FlavorProfile
@@ -942,6 +1018,8 @@
   id: FoodBlueTomato
   description: This one is blue.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: SolutionContainerManager
     solutions:
       food:
@@ -1043,6 +1121,8 @@
   id: FoodEggplant
   description: Maybe there's a chicken inside?
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - eggplant
@@ -1072,6 +1152,8 @@
   id: FoodApple
   description: It's a little piece of Eden.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: QuestItem # imperial medieval
     contractName: "яблоки" # imperial medieval
   - type: FlavorProfile
@@ -1088,6 +1170,8 @@
           Quantity: 4
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/apple.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: apple
   - type: Extractable
@@ -1107,6 +1191,8 @@
   id: FoodGoldenApple
   description: It should be shaped like a cube, shouldn't it?
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - apple
@@ -1149,6 +1235,8 @@
   id: FoodCocoaPod
   description: You can never have too much chocolate!
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - chocolate
@@ -1182,10 +1270,12 @@
   id: FoodCorn
   description: Needs some butter! And some cooking...
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - corn
-  - type: Food
+  - type: Edible
     trash:
     - FoodCornTrash
   - type: SolutionContainerManager
@@ -1313,6 +1403,8 @@
   id: FoodMushroom
   description: "Cantharellus Cibarius: These jolly yellow little shrooms sure look tasty!"
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: SolutionContainerManager
     solutions:
       food:
@@ -1445,6 +1537,8 @@
   id: FoodChiliPepper
   description: Spicy, best not touch your eyes.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - spicy
@@ -1480,6 +1574,8 @@
   id: FoodChillyPepper
   description: Icy hot.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - spicy
@@ -1513,6 +1609,8 @@
   id: FoodAloe
   description: A fragrant plant with soothing properties.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - medicine
@@ -1547,6 +1645,8 @@
   id: FoodPoppy
   description: A flower with extracts often used in the production of medicine.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Clothing
     slots:
     - HEAD
@@ -1583,6 +1683,8 @@
   id: FoodLily
   description: A beautiful orange flower.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - medicine
@@ -1615,6 +1717,8 @@
   id: FoodLingzhi
   description: A potent medicinal mushroom. Don't go overboard.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - mushroom
@@ -1650,6 +1754,8 @@
   id: FoodAmbrosiaVulgaris
   description: A medicinal plant. May make you feel a little funny.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - leafy
@@ -1695,6 +1801,8 @@
   id: FoodAmbrosiaDeus
   description: An extremely sought-after medicinal plant. May have some funky side effects.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - leafy
@@ -1738,6 +1846,8 @@
   id: FoodGalaxythistle
   description: A medicinal plant used for its antitoxin.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - medicine
@@ -1771,6 +1881,8 @@
   id: FoodGlasstle
   description: A fragile crystal plant with lot of spiky thorns.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Item
     size: Small
     sprite: Objects/Specific/Hydroponics/glasstle.rsi
@@ -1839,6 +1951,8 @@
   id: FoodFlyAmanita
   description: A delicious-looking mushroom like you see in those cartoons.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - mushroom
@@ -1874,6 +1988,8 @@
   id: FoodGatfruit
   description: A delicious, gun-shaped fruit with a thick wooden stem.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - gunpowder
@@ -1890,7 +2006,7 @@
     sprite: Objects/Specific/Hydroponics/gatfruit.rsi
   - type: Produce
     seedId: gatfruit
-  - type: Food
+  - type: Edible
     trash:
     - WeaponRevolverPython
   - type: Tag
@@ -1907,6 +2023,8 @@
   id: FoodRealCapfruit
   description: A soft but smooth gun-shaped fruit.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - plastic
@@ -1925,7 +2043,7 @@
     heldPrefix: produce
   - type: Produce
     seedId: realCapfruit
-  - type: Food
+  - type: Edible
     trash:
     - RevolverCapGun
   - type: Tag
@@ -1942,9 +2060,11 @@
   id: FoodFakeCapfruit
   suffix: Fake
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Produce
     seedId: fakeCapfruit
-  - type: Food
+  - type: Edible
     trash:
     - RevolverCapGunFake
 
@@ -1952,8 +2072,10 @@
   name: rice bushel
   description: Can be ground into rice, perfect for pudding or sake.
   id: RiceBushel
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/rice.rsi
   - type: Item
@@ -1971,8 +2093,10 @@
   name: soybeans
   description: For those who can't stand seeing good old meat.
   id: FoodSoybeans
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/soybeans.rsi
   - type: SolutionContainerManager
@@ -2003,6 +2127,8 @@
   id: FoodSpacemansTrumpet
   parent: FoodProduceBase
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - violets
@@ -2035,8 +2161,10 @@
   name: koibean
   description: These beans seem a little bit fishy.
   id: FoodKoibean
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/koibean.rsi
   - type: SolutionContainerManager
@@ -2069,6 +2197,8 @@
   id: FoodWatermelon
   description: Round green object that you can slice and eat.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Item
     size: Small
     heldPrefix: produce
@@ -2171,6 +2301,8 @@
   id: FoodHolymelon
   description: The water within this melon has been blessed by some deity that's particularly fond of watermelon.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Item
     size: Small
     heldPrefix: produce
@@ -2275,6 +2407,8 @@
   id: FoodGrape
   description: The food of emperors, Space France inhabitants (usually as wine) and soccer moms. One day it could be used in wine production for the bartender if he ever runs out.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - grape
@@ -2308,6 +2442,8 @@
   id: FoodBerries
   description: A handful of various types of berries.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - berry
@@ -2345,10 +2481,12 @@
   id: FoodBungo
   description: The humble bungo fruit.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - bungo
-  - type: Food
+  - type: Edible
     trash:
     - FoodBungoPit
   - type: SolutionContainerManager
@@ -2382,6 +2520,8 @@
   parent: FoodInjectableBase
   id: FoodBungoPit
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/bungo.rsi
     state: pit
@@ -2411,6 +2551,8 @@
   name: pea pod
   description: A duck's favorite treat!
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - peas
@@ -2443,6 +2585,8 @@
   name: cluster of world peas
   description: It's rumored to bring peace to any who consume it.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - numbingtranquility
@@ -2477,6 +2621,8 @@
   id: FoodPumpkin
   description: A large, orange... berry. Seriously.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Item
     size: Small
     heldPrefix: produce
@@ -2527,6 +2673,8 @@
   id: FoodBluePumpkin
   description: A large, blue... berry. Seriously.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Item
     size: Small
     heldPrefix: produce
@@ -2585,7 +2733,7 @@
   - type: FlavorProfile
     flavors:
       - cotton
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -2612,12 +2760,14 @@
   id: PyrottonBol
   parent: FoodProduceBase
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/pyrotton.rsi
   - type: FlavorProfile
     flavors:
       - pyrotton
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -2648,10 +2798,12 @@
   id: FoodCherry
   description: Juicy red cherry with a pit inside.
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - cherry
-  - type: Food
+  - type: Edible
     trash:
     - TrashCherryPit
   - type: SolutionContainerManager
@@ -2685,12 +2837,15 @@
   parent: FoodInjectableBase
   id: TrashCherryPit
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/cherry.rsi
     state: pit
   - type: Item
     sprite: Objects/Specific/Hydroponics/cherry.rsi
     heldPrefix: pit
+    size: Tiny
   - type: Tag
     tags:
     - Recyclable
@@ -2715,6 +2870,8 @@
   parent: FoodProduceBase
   id: FoodAnomalyBerry
   components:
+  - type: FishingBait
+    baitType: Plant
   - type: FlavorProfile
     flavors:
       - strange
@@ -2725,7 +2882,7 @@
     heldPrefix: produce
   - type: Produce
     seedId: anomalyBerry
-  - type: Food
+  - type: Edible
     trash:
     - EffectAnomalyFloraBulb # Random loot
   - type: SolutionContainerManager
@@ -2746,3 +2903,80 @@
     entries:
       Taco: AnomalyBerry
       Burger: AnomalyBerryBurger
+
+- type: entity
+  name: bloonion bulb
+  description: A strange floating bulb.. Nothing worth crying over.
+  parent: BaseStructureDynamic
+  id: FoodBloonion
+  components:
+  - type: FishingBait
+    baitType: Plant
+  - type: Appearance
+  - type: Sprite
+    drawdepth: Items
+    noRot: true
+    sprite: Objects/Specific/Hydroponics/bloonion.rsi
+    state: produce
+  - type: Item
+    size: Small
+    sprite: Objects/Specific/Hydroponics/bloonion.rsi
+    heldPrefix: produce
+  - type: Produce
+    seedId: bloonion
+  - type: Tag
+    tags:
+    - Vegetable
+  - type: PotencyVisuals
+  - type: FlavorProfile
+    flavors:
+    - onion
+    - strange
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        canReact: false
+        reagents:
+        - ReagentId: Potassium
+          Quantity: 1
+        - ReagentId: Phosphorus
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 1
+        - ReagentId: Allicin
+          Quantity: 4
+  - type: Extractable
+    grindableSolutionName: food
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 0.001
+    intensitySlope: 1
+    totalIntensity: 0.1
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:SpillBehavior
+        solution: food
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.20
+          position: 0, 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer

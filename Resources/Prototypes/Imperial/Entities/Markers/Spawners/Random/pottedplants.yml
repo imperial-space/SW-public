@@ -1,0 +1,28 @@
+- type: entity
+  parent: MarkerBase
+  id: PottedPlantRandomSW
+  name: potted plant spawner
+  description: A festive bucket for all your treats.
+  components:
+  - type: Sprite
+    layers:
+      - sprite: Structures/Furniture/potted_plants.rsi
+        state: random
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - PottedPlant0
+      - PottedPlant1
+      - PottedPlant2
+      - PottedPlant4
+      - PottedPlant5
+      - PottedPlant8
+      - PottedPlant11
+      - PottedPlant12
+      - PottedPlant15
+      - PottedPlant17
+      - PottedPlant20
+      - PottedPlant22
+      - PottedPlant23
+      - PottedPlant24
+    chance: 1        

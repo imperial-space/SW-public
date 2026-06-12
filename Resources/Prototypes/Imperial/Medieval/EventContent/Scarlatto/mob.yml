@@ -1,0 +1,66 @@
+- type: entity
+  id: MobSpawnMobDohodyagaScarlatto
+  name: mobspawner MobDohodyagaScarlatto
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/mobs/parts.rsi
+    state: spawn
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: SpawnOnDespawn
+    prototype: MobDohodyagaScarlatto
+
+- type: entity
+  parent: SimpleMobBaseNoFood
+  id: MobDohodyagaScarlatto
+  name: Urist McDohodyaga
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Stamina
+    critThreshold: 600
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: MedievalTeleportEffect
+  - type: DeleteOnTrigger
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/mobs/parts.rsi
+    state: icon
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: MeleeWeapon
+    attackRate: 0.7
+    hidden: true
+    angle: 0
+    animation: WeaponArcPunch
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 1
+        Radiation: 8
+  - type: MedievalUnthrowable

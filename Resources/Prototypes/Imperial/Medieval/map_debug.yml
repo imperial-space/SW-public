@@ -1,0 +1,14 @@
+- type: gameMap
+  id: Debug
+  mapName: Debug
+  mapPath: /Maps/Imperial/Medieval/debug.yml
+  minPlayers: 0
+  stations:
+    Debug:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Debug"
+        - type: StationJobs
+          availableJobs:
+            MedievalTraveller: [ -1, -1 ]

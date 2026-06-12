@@ -13,6 +13,7 @@
   - type: Tag
     tags:
     - Spear
+    - ScurretWearable
   - type: Fixtures
     fixtures:
       fix1:

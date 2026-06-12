@@ -4,30 +4,32 @@
   description: drink blood
   noSpawn: true
   components:
-    - type: EntityTargetAction
+    - type: Action
       itemIconStyle: BigAction
       useDelay: 2.2
-      deselectOnMiss: true
-      repeat: false
-      canTargetSelf: false
-      checkCanAccess: false
-      interactOnMiss: false
-      targetingIndicator: true
       icon:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
         state: drink
-      event: !type:NocturnDrinkActionEvent
+    - type: TargetAction
+      interactOnMiss: false
+      targetingIndicator: true
+      deselectOnMiss: true
+      repeat: false
+      checkCanAccess: false
+    - type: EntityTargetAction
+      canTargetSelf: false
       whitelist:
         components:
           - HumanoidAppearance
           - NocturnBadFood
+      event: !type:NocturnDrinkActionEvent
 
 - type: entity
   id: NocturnDisguiseAction
   name: Apply a disguise
   description: Use a disguise to take on a human form. If there is a lack of blood, the ability will become unavailable.
   components:
-    - type: InstantAction
+    - type: Action
       itemIconStyle: BigAction
       icon:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
@@ -35,8 +37,9 @@
       iconOn:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
         state: disguise_on
-      event: !type:NocturnDisguiseActionEvent
       useDelay: 30
+    - type: InstantAction
+      event: !type:NocturnDisguiseActionEvent
 
 - type: alert
   id: NocturnBlood
@@ -63,10 +66,26 @@
     state: bleed9
   - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
     state: bleed10
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed11
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed12
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed13
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed14
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed15
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed16
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed17
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed18
   name: Уровень крови
   description: Шкала, примерно отображающая ваш голод. Если запас крови близок к нулю, идет слабый урон. Если кровь на нуле - сильный урон. Если запас больше половины и полученый урон меньше 70, то идет постепенная слабая регенерация, расход увеличивается в 3 раза. Если запас больше половины и полученый урон от 70 до 100, то регенерация увеличивается в 3 раза, а расход крови в 40 раз.
   minSeverity: 0
-  maxSeverity: 10
+  maxSeverity: 18
 
 - type: entity
   id: ZveresScreamAction
@@ -74,11 +93,12 @@
   description: drink blood
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 240
       icon:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
         state: zveres
+    - type: InstantAction
       event: !type:ZveresScreamActionEvent
 
 - type: entity
@@ -87,11 +107,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: legion
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -100,11 +121,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: myateg
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -113,11 +135,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: bandits
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -126,11 +149,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: naemniki
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -139,11 +163,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: naemniki
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -152,11 +177,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: kollegiya
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -165,9 +191,10 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: miner
+    - type: InstantAction
       event: !type:CloackMessageActionEvent

@@ -73,6 +73,11 @@ public partial class StatusIconData : IComparable<StatusIconData>
     /// </summary>
     [DataField]
     public bool IsShaded = false;
+
+    // Imperial Medieval start
+    [DataField]
+    public bool ShowToSelf = true;
+    // Imperial Medieval end
     public int CompareTo(StatusIconData? other)
     {
         return Priority.CompareTo(other?.Priority ?? int.MaxValue);
@@ -215,20 +220,6 @@ public sealed partial class SsdIconPrototype : StatusIconPrototype, IInheritingP
     [AbstractDataField]
     public bool Abstract { get; private set; }
 }
-// imperial medieval nrp start
-[Prototype]
-public sealed partial class NrpIconPrototype : StatusIconPrototype, IInheritingPrototype
-{
-    /// <inheritdoc />
-    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<NrpIconPrototype>))]
-    public string[]? Parents { get; private set; }
-
-    /// <inheritdoc />
-    [NeverPushInheritance]
-    [AbstractDataField]
-    public bool Abstract { get; private set; }
-}
-// imperial medieval nrp end
 
 [Serializable, NetSerializable]
 public enum StatusIconLocationPreference : byte

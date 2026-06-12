@@ -21,25 +21,28 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 10
+  - type: SpellCastEffect
+    effectProto: DivineTouchSpellCastEffectBeginner
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 15
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: beginner
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchBeginner
       spellCastDoAfter:
-        delay: 3.5
+        delay: 7
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         breakOnDamage: true
         needHand: true
-        speedModifier: 1
+        speedModifier: 0.2
       speechPoints:
         0:
           speech: medieval-spell-speach-divine-touch
@@ -67,24 +70,25 @@
       groups:
         Burn: 15
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 19
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: middle
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchMiddle
       spellCastDoAfter:
-        delay: 3.5
+        delay: 7
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         breakOnDamage: true
         needHand: true
-        speedModifier: 0.3
+        speedModifier: 0.2
       speechPoints:
         0:
           speech: medieval-spell-speach-divine-touch
@@ -107,24 +111,25 @@
       groups:
         Burn: 22
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 27
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: senior
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchSenior
       spellCastDoAfter:
-        delay: 3.5
+        delay: 7
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         breakOnDamage: true
         needHand: true
-        speedModifier: 0.3
+        speedModifier: 0.2
       speechPoints:
         0:
           speech: medieval-spell-speach-divine-touch

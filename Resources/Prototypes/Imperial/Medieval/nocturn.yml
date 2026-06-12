@@ -1,3 +1,22 @@
+# Blood
+
+- type: reagent
+  id: DrouBlood
+  parent: Blood
+  name: reagent-name-drou-blood
+  slipData: null
+  desc: reagent-desc-drou-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-drou-blood
+  color: "#02000f"
+  flavor: droublood
+
+- type: flavor
+  id: droublood
+  flavorType: Complex
+  description: flavor-complex-drou-blood
+
 - type: entity
   id: PartDrou
   parent: [BaseItem, BasePart]
@@ -9,7 +28,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: DemonsBlood
+      - ReagentId: DrouBlood
         Quantity: 10
 
 - type: entity
@@ -25,7 +44,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
-      - ReagentId: DemonsBlood
+      - ReagentId: DrouBlood
         Quantity: 20
 
 - type: entity
@@ -41,7 +60,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: DemonsBlood
+      - ReagentId: DrouBlood
         Quantity: 10
 
 - type: entity
@@ -266,17 +285,19 @@
     thresholds:
       0: Alive
       95: Critical
-      160: Dead
+      180: Dead
   - type: Mana
     maxManaRaceModifier: 0.95
     regenRaceModifier: 0.95
   - type: Nocturn
   - type: LocalLight
-    energy: 0.22
-    radius: 3.5
+    energy: 0.4
+    radius: 4.5
   #- type: Thieving
   #  stripTimeReduction: 1.5
   #  stealthy: false
+  - type: Bloodstream
+    bloodReagent: DrouBlood
 
 - type: entity
   parent: BaseSpeciesDummy

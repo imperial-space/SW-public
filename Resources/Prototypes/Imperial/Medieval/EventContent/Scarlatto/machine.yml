@@ -1,0 +1,214 @@
+- type: entity
+  parent: MedievalFoundry
+  id: MedievalSmeltery
+  name: foundry
+  description: It produces sheets and ingots using ores.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/ore_processor.rsi
+    layers:
+      - state: icon
+      - state: unshaded
+        shader: unshaded
+  - type: CP14Workbench
+    craftSpeed: 1
+    craftSound: "/Audio/Imperial/Medieval/craft_foundry.ogg"
+    recipes:
+    - MedievalGlinaFormaReady
+    - FoodBowlBig
+    - SheetSteelMedieval
+    - SheetSteelMedieval10
+    - MedievalSteelIngot
+    - MedievalSteelIngot10
+    - MedievalGoldOre
+    - MedievalGoldOre10
+    - MedievalStoneBrick
+    - EbonitMedieval
+    - EbonitMedieval10
+    - ForstoneMedieval
+    - ForstoneMedieval10
+    - MaterialGunpowder
+    - MaterialGunpowder10
+    - MedievalCoal
+    - MedievalCoal10
+    - SheetPlasma1
+    - SheetPlasma10
+    - SheetUranium1
+    - SheetUranium10
+
+- type: entity
+  parent: BaseLatheLube
+  id: MedievalAutolathe
+  name: foundry
+  description: It produces sheets and ingots using ores.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/autolathe.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    staticPacks:
+    - MedievalToolsStatic
+    - MedievalPartsStatic
+    - MedievalElectronicsStatic
+    - CablesStatic
+    - MaterialsStatic
+    - MedievalMedicStatic
+    - MedievalPowerCellsStatic
+    - MedievalBlanks
+    - MedievalWeaponsAutolath
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 280
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  parent: CP14BaseWorkbench
+  id: MedievalSteelWorkbench
+  name: foundry
+  description: It produces sheets and ingots using ores.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: craft
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 180
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: CP14Workbench
+    craftSpeed: 1
+    craftSound: "/Audio/Items/welder2.ogg"
+    recipes:
+    - SheetGlass10
+    - SheetSteel10
+    - PartRodMetal5
+    - SheetRGlass10
+    - SheetPGlass10
+    - SheetRPGlass10
+    - SheetUGlass10
+    - SheetRUGlass10
+    - MedievalWindowCraft
+    - MedievalArmWindowCraft
+    - MedievalGrilleCraft
+    - MedievalComputerFrameCraft
+    - MedievalUnfinishedMachineFrameCraft
+    - MedievalCombatKnife
+    - MedievalTruncheon
+    - MedievalHatchetEvent
+    - MedievalPickaxeEvent
+    - MedievalClothingOuterArmorStandard
+
+- type: entity
+  parent: CP14BaseWorkbench
+  id: MedievalSteelWeaponery
+  name: foundry
+  description: It produces sheets and ingots using ores.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/weaponery.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 180
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
+  - type: ActivatableUIRequiresPower
+  - type: CP14Workbench
+    craftSpeed: 1
+    craftSound: "/Audio/Items/welder2.ogg"
+    recipes:
+    - WeaponPistolViperEvent
+    - WeaponAdvancedLaserEvent
+    - WeaponPulsePistolEvent
+    - WeaponPistolViperEvent
+    - WeaponPulseCarbineEvent
+    - WeaponRifleM90GrenadeLauncherImperialEvent
+    - WeaponSniperHristovEvent

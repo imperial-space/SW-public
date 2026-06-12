@@ -84,7 +84,7 @@ chatsan-word-94 = пиздишь
 chatsan-replacement-94 = балаболишь
 
 chatsan-word-95 = нахуй
-chatsan-replacement-95 = в бездну
+chatsan-replacement-95 = к дьяволу
 
 chatsan-word-96 = пиздит
 chatsan-replacement-96 = брешет
@@ -114,10 +114,10 @@ chatsan-word-104 = выебать
 chatsan-replacement-104 = спустить с небес на землю
 
 chatsan-word-105 = дохуя
-chatsan-replacement-105 = очень много
+chatsan-replacement-105 = дьявольски много
 
 chatsan-word-106 = нихуя
-chatsan-replacement-106 = вот это да
+chatsan-replacement-106 = ни искры
 
 chatsan-word-107 = ебал
 chatsan-replacement-107 = проклинал
@@ -226,12 +226,6 @@ chatsan-replacement-139 = перст
 
 chatsan-word-140 = пальцы
 chatsan-replacement-140 = перста
-
-chatsan-word-141 = глаз
-chatsan-replacement-141 = око
-
-chatsan-word-142 = глаза
-chatsan-replacement-142 = ока
 
 chatsan-word-143 = убийца
 chatsan-replacement-143 = душегуб
@@ -480,10 +474,10 @@ chatsan-word-227 = пии
 chatsan-replacement-227 = говорящий ларец
 
 chatsan-word-228 = схуяли
-chatsan-replacement-228 = почему же
+chatsan-replacement-228 = какого дьявола
 
 chatsan-word-229 = хули
-chatsan-replacement-229 = почему же
+chatsan-replacement-229 = какого дьявола
 
 chatsan-word-230 = гойда
 chatsan-replacement-230 = вперед
@@ -522,7 +516,7 @@ chatsan-word-241 = захуярим
 chatsan-replacement-241 = сразим
 
 chatsan-word-242 = хуя
-chatsan-replacement-242 = черта
+chatsan-replacement-242 = дьявола
 
 chatsan-word-243 = блядота
 chatsan-replacement-243 = ничтожество
@@ -580,3 +574,9 @@ chatsan-replacement-260 = спустобрешили
 
 chatsan-word-261 = напиздеть
 chatsan-replacement-261 = спустобрешить
+
+chatsan-word-262 = чо
+chatsan-replacement-262 = что
+
+chatsan-word-263 = че
+chatsan-replacement-263 = что

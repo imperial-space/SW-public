@@ -43,16 +43,18 @@
             allowedState: Alive
         addedEssences:
           MagicMedievalFire1: 1
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 8
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: beginner-cursor
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileMagicArrowCursorFolloverBeginner
@@ -109,16 +111,18 @@
             allowedState: Alive
         addedEssences:
           MagicMedievalFire1: 1
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 9
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: middle-cursor
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileMagicArrowCursorFolloverMiddle
@@ -146,6 +150,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 15
+  - type: SpellCastEffect
+    effectProto: MagicArrowCursorFollowerSpellCastEffectSenior
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
@@ -176,16 +182,18 @@
         addedEssences:
           MagicMedievalFire1: 1
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 11
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: senior-cursor
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileMagicArrowCursorFolloverSenior

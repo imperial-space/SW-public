@@ -17,6 +17,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Medieval.Skills;  // --- IMPERIAL MEDIEVAL
 
 namespace Content.Shared.Blocking;
 
@@ -32,6 +33,7 @@ public sealed partial class BlockingSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly IEntitySystemManager _systems = default!; // Imperial Medieval CombatStance
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     public override void Initialize()
     {
@@ -97,7 +99,7 @@ public sealed partial class BlockingSystem : EntitySystem
         if (!handQuery.TryGetComponent(args.Performer, out var hands))
             return;
 
-        var shields = _handsSystem.EnumerateHeld(args.Performer, hands).ToArray();
+        var shields = _handsSystem.EnumerateHeld((args.Performer, hands)).ToArray();
 
         foreach (var shield in shields)
         {
@@ -166,7 +168,7 @@ public sealed partial class BlockingSystem : EntitySystem
         }
 
         //Don't allow someone to block if someone else is on the same tile
-        var playerTileRef = xform.Coordinates.GetTileRef();
+        var playerTileRef = _turf.GetTileRef(xform.Coordinates);
         if (playerTileRef != null)
         {
             var intersecting = _lookup.GetLocalEntitiesIntersecting(playerTileRef.Value); // 0f); Imperial Medieval Blocking Fix Edit
@@ -277,7 +279,7 @@ public sealed partial class BlockingSystem : EntitySystem
         if (!handQuery.TryGetComponent(user, out var hands))
             return;
 
-        var shields = _handsSystem.EnumerateHeld(user, hands).ToArray();
+        var shields = _handsSystem.EnumerateHeld((user, hands)).ToArray();
 
         foreach (var shield in shields)
         {
@@ -298,6 +300,14 @@ public sealed partial class BlockingSystem : EntitySystem
             return;
 
         var fraction = component.IsBlocking ? component.ActiveBlockFraction : component.PassiveBlockFraction;
+        //  IMPERIAL MEDIEVAL Start
+        if (component.User != null)
+        {
+            var ev = new GetShieldBlockFractionEvent(uid, component.User.Value, fraction);
+            RaiseLocalEvent(component.User.Value, ref ev);
+            fraction = ev.BlockFraction;
+        }
+        // IMPERIAL MEDIEVAL END
         var modifier = component.IsBlocking ? component.ActiveBlockDamageModifier : component.PassiveBlockDamageModifer;
 
         var msg = new FormattedMessage();

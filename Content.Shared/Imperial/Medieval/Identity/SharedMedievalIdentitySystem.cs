@@ -1,5 +1,6 @@
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
+using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
@@ -46,5 +47,11 @@ public abstract class SharedMedievalIdentitySystem : EntitySystem
     private void OnExamined(EntityUid uid, IdentityRequiresKnowledgeComponent component, ExaminedEvent args)
     {
         args.PushMarkup($"[font=Default size=8][color=gray]Идентификатор игрока:[/color] {component.Identifier}[/font]", -1);
+    }
+    public bool IsIdentityMasked(EntityUid entity)
+    {
+        var ev = new SeeIdentityAttemptEvent();
+        RaiseLocalEvent(entity, ev);
+        return ev.Cancelled;  // Если отменено, то идентичность заблокирована (маска или полный coverage)
     }
 }

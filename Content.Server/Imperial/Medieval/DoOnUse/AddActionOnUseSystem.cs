@@ -14,7 +14,7 @@ public sealed partial class AddActionOnUseSystem : EntitySystem
     }
     private void OnDo(EntityUid uid, AddActionOnUseComponent component, UseInHandEvent ev)
     {
-        QueueDel(uid);
         _action.AddAction(ev.User, component.ActionId);
+        QueueDel(uid);
     }
 }

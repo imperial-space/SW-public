@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Content.Shared.Actions;
 
-namespace Content.Shared.Friends.Components
+namespace Content.Shared.Imperial.Medieval.Factions.Components
 {
 
     public sealed partial class CloackMessageActionEvent : InstantActionEvent { }
@@ -14,5 +14,7 @@ namespace Content.Shared.Friends.Components
 
         [DataField]
         public string Faction = "none";
+
+        public EntityUid? ActionEntity;
     }
 }

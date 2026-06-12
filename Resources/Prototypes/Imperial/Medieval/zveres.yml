@@ -205,6 +205,10 @@
   - type: LocalLight
     energy: 0.2
     radius: 2
+  - type: TypingIndicator
+    proto: wolf
+  - type: Bloodstream
+    bloodReagent: ZveresBlood
 
 - type: damageModifierSet
   id: Zveres
@@ -232,7 +236,7 @@
   sprites: MobZveresSprites
   markingLimits: MobZveresMarkingLimits
   dollPrototype: MobZveresDummy
-  skinColoration: Hues
+  skinColoration: MoonwolfColors
   defaultSkinTone: "#5f5f5f"
 
 - type: speciesBaseSprites

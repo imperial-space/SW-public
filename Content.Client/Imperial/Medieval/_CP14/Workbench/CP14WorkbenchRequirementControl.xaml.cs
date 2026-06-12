@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This file is sublicensed under MIT License
  * https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT
  */
@@ -67,5 +67,12 @@ public sealed partial class CP14WorkbenchRequirementControl : Control
         }
 
         View.Texture = _sprite.GetPrototypeIcon(iconSource).Default;
+
+        if (_prototype.TryIndex<EntityPrototype>(iconSource, out var entProto) &&
+            entProto.TryGetComponent<SpriteComponent>(out var sprite, _entity.ComponentFactory))
+        {
+            View.ModulateSelfOverride = sprite.Color;
+            View.TextureScale = sprite.Scale;
+        }
     }
 }

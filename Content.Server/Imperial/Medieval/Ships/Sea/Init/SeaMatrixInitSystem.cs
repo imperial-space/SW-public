@@ -1,0 +1,171 @@
+using Content.Server.Imperial.Medieval.Ships.Sea.Generation;
+using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Interaction;
+using Robust.Server.GameObjects;
+using Robust.Shared.Map;
+
+namespace Content.Server.Imperial.Medieval.Ships.Sea.Init;
+
+/// <summary>
+/// по идее должно работать с матрицой моря
+/// грёбаные костыли, я только примерно понимаю что делаю но вроде как всё нормально(нет я не пишу нейронкой, просто не особо понимаю, райдер помогает исправлять слишком грубые ошибки)
+/// </summary>
+public sealed class SeaMatrixInitSystem : EntitySystem
+{
+    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly EntityManager _entManager = default!;
+
+    /// <inheritdoc/>
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<MapForSeasInitComponent, ComponentInit>(OnInitMap);
+        SubscribeLocalEvent<MapForSeasInitComponent, ActivateInWorldEvent>(OnActivate);
+        SubscribeLocalEvent<MapForSeasInitComponent, InteractUsingEvent>(OnInteractUsing);
+    }
+
+    private void OnInitMap(EntityUid uid, MapForSeasInitComponent component, ComponentInit args)
+    {
+        if (component.MapX == 0 && component.MapY == 0)
+            return;
+        SetMapPos(uid, component.MapX, component.MapY);
+    }
+
+
+    private void OnActivate(EntityUid uid, MapForSeasInitComponent component, ActivateInWorldEvent args)
+    {
+        SetMapPos(args.Target, component.MapX, component.MapY);
+    }
+
+    private void OnInteractUsing(EntityUid uid, MapForSeasInitComponent component, InteractUsingEvent args)
+    {
+        SetMapPos(args.Target, component.MapX, component.MapY);
+    }
+
+    public void SetMapPos(EntityUid uid, int x, int y)
+    {
+        var mapId = _transform.GetMapId(uid);
+        foreach (var seasGenerationState in EntityManager.EntityQuery<SeasGenerationStateComponent>())
+        {
+            if (seasGenerationState.SeaMatrix is null)
+                continue;
+            seasGenerationState.SeaMatrix.SetSeaId(x, y, mapId);
+        }
+    }
+    /// <summary>
+    /// ищем мапу либо -1 пишем
+    /// </summary>
+    public MapId TryFoundMap(int x, int y)
+    {
+        if (_entManager == null)
+            throw new InvalidOperationException("EntityManager not initialized!");
+        foreach (var notSeaComponent in _entManager.EntityQuery<NotSeaComponent>())
+        {
+            if (notSeaComponent.NotSeaPosX != x || notSeaComponent.NotSeaPosY != y)
+                continue;
+
+            return _transform.GetMapId(notSeaComponent.Owner);
+        }
+        return new MapId(-1);
+    }
+
+
+
+
+
+
+}
+public sealed class SeaMatrix
+{
+
+    private readonly SeaCell[,] _matrix = new SeaCell[5, 5]; // 5x5 матрица
+
+
+    public SeaMatrix(IEnumerable<(int x, int y)>? nonGeneratableCoordinates = null)
+    {
+
+        for (int x = 0; x < 5; x++)
+        {
+            for (int y = 0; y < 5; y++)
+            {
+                _matrix[x, y] = new SeaCell
+                {
+                    SeaId = new MapId(-1),
+                    NeedGenerate = true
+                };
+            }
+        }
+
+
+        if (nonGeneratableCoordinates != null)
+        {
+            foreach (var (x, y) in nonGeneratableCoordinates)
+            {
+                if (x >= 0 && x < 5 && y >= 0 && y < 5)
+                {
+                    _matrix[x, y].NeedGenerate = false;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Получение ячейки по координатам
+    /// </summary>
+    public SeaCell GetCell(int x, int y)
+    {
+        if (x < 0 || x >= 5 || y < 0 || y >= 5)
+            throw new ArgumentOutOfRangeException("Coordinates out of 5x5 range!");
+
+        return _matrix[x, y];
+    }
+    /// <summary>
+    /// Установка ID моря
+    /// </summary>
+    public void SetSeaId(int x, int y, MapId seaId)
+    {
+        if (x < 0 || x >= 5 || y < 0 || y >= 5)
+            throw new ArgumentOutOfRangeException("Coordinates out of 5x5 range!");
+
+        _matrix[x, y].SeaId = seaId;
+        _matrix[x, y].NeedGenerate = false; // Сбрасываем флаг после назначения ID
+    }
+
+    /// <summary>
+    /// Проверка, нужно ли генерировать море в ячейке
+    /// </summary>
+    public bool NeedsGeneration(int x, int y)
+    {
+        return GetCell(x, y).NeedGenerate;
+    }
+    /// <summary>
+    /// Ставим значение ячейке
+    /// </summary>
+    public void SetGenerated(int x, int y, bool generated)
+    {
+        _matrix[x, y].NeedGenerate = generated;
+    }
+
+    /// <summary>
+    /// Поиск ячейки по айди
+    /// </summary>
+    public (int, int)? FoundSell(MapId seaId, SeaMatrix seaMatrix)
+    {
+        for (int x = 0; x < 5; x++)
+        {
+            for (int y = 0; y < 5; y++)
+            {
+                if (_matrix[x, y].SeaId == seaId)
+                {
+                    return (x, y);
+                }
+            }
+        }
+        return null;
+    }
+}
+public struct SeaCell
+{
+    public MapId SeaId;          // Уникальный ID моря
+    public bool NeedGenerate;  // Флаг, что море нужно сгенерировать
+}

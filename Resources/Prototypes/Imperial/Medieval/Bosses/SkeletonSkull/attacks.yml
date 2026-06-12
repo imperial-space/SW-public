@@ -14,13 +14,13 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 40
-        mask: #mouse can pass under, but I think this is can understandable by logic
-        - TableMask
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
         layer:
-        - TableLayer
+        - MobLayer
   - type: Sprite
     snapCardinals: true
     sprite: Imperial/Medieval/Structures/bone_spike_big.rsi
@@ -79,13 +79,13 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 40
-        mask: #mouse can pass under, but I think this is can understandable by logic
-        - TableMask
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+        - MobMask
         layer:
-        - TableLayer
+        - MobLayer
   - type: Clickable
   - type: InteractionOutline
   - type: TimedBossHeal
@@ -1202,3 +1202,29 @@
   - type: PointLight
     energy: 7
     color: "#c70de0"
+  # Временное решение бага
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Skeleton
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer

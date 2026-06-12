@@ -2,6 +2,7 @@ using Content.Shared.Damage;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 
 namespace Content.Server.Cult.Components;
 
@@ -51,6 +52,10 @@ public sealed partial class CultCheckPictureComponent : Component
     {
         Params = AudioParams.Default.WithVolume(-2f).WithVariation(0.015f),
     };
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier VictimSuccessSound { get; set; } = new SoundPathSpecifier("/Audio/Imperial/Medieval/Cult/victim_ritual_success.ogg");
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField, AutoNetworkedField]

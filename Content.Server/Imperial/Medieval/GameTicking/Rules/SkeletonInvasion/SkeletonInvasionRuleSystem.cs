@@ -24,6 +24,7 @@ using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
 using Robust.Shared.Player;
 using Content.Server.Ghost.Roles.Events;
+using Content.Shared.Imperial.Medieval.SkeletonInvasion;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 
@@ -55,14 +56,20 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         SubscribeLocalEvent<BossWonEvent>(OnBossWin);
     }
 
-    protected override void Started(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Added(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        base.Started(uid, component, gameRule, args);
+        base.Added(uid, component, gameRule, args);
 
         if (!_mapLoader.TryLoadMap(component.Arena, out var map, out var grids, new DeserializationOptions() { InitializeMaps = true }))
             return;
 
         _bossUid = EntityManager.AllEntities<BossComponent>().Where(x => Transform(x).MapUid == map.Value.Owner).First();
+    }
+
+    protected override void Started(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    {
+        base.Started(uid, component, gameRule, args);
+
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>().Select(x => x.Owner).ToList();
         _chat.DispatchGlobalAnnouncement("Посланники темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
         component.NextSpawn = _timing.CurTime;
@@ -157,6 +164,9 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
             return;
         }
 
+        if (!_bossUid.IsValid())
+            return;
+
         var xform = Transform(args.Stand);
         var players = EntityManager.AllEntities<HumanoidAppearanceComponent>().Where(x => !HasComp<IgnoreBossStartComponent>(x.Owner) && Transform(x).MapUid == Transform(args.Stand).MapUid);
 
@@ -167,7 +177,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
                 continue;
 
             bossfightPlayers.Add(item.Owner);
-            _flash.Flash(item.Owner, null, null, 5, 0.3f, false);
+            _flash.Flash(item.Owner, null, null, TimeSpan.FromSeconds(5), 0.3f, false);
             _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/teleport.ogg")), item.Owner);
         }
 

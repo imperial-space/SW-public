@@ -1,0 +1,124 @@
+- type: entity
+  id: ForgedWoodenHead
+  name: ForgedWoodenHead
+  parent: ForgedHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: wooden_head_icon
+  - type: ForgedModule
+    partSlot: head
+    layerState: wooden_head
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
+    resistanceModifier: -0.03
+    speedModifier: -0.02
+
+- type: entity
+  id: ForgedWoodenTorso
+  name: ForgedWoodenTorso
+  parent: ForgedTorsoBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    layers:
+    - state: wooden_torso
+      map: ["torso"]
+    - state: blank
+      map: ["head"]
+    - state: blank
+      map: ["eyes"]
+    - state: blank
+      map: ["right_arm"]
+    - state: blank
+      map: ["left_arm"]
+    - state: blank
+      map: ["right_hand"]
+    - state: blank
+      map: ["left_hand"]
+    - state: blank
+      map: ["core"]
+      offset: 0, -0.1
+    - state: blank
+      map: ["right_leg"]
+    - state: blank
+      map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
+  - type: ForgedAssembly
+    torso: ForgedWoodenTorso
+  - type: ForgedModule
+    partSlot: torso
+    layerState: wooden_torso
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
+    resistanceModifier: -0.12
+    speedModifier: -0.10
+
+- type: entity
+  id: ForgedWoodenRArm
+  name: ForgedWoodenRArm
+  parent: ForgedRArmBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: wooden_arm_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_arm
+    layerState: wooden_right_arm
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
+    resistanceModifier: -0.03
+    speedModifier: -0.01
+
+- type: entity
+  id: ForgedWoodenLArm
+  name: ForgedWoodenLArm
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: wooden_arm_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_arm
+    layerState: wooden_left_arm
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
+    resistanceModifier: -0.03
+    speedModifier: -0.01
+
+- type: entity
+  id: ForgedWoodenRLeg
+  name: ForgedWoodenRLeg
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: wooden_leg_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_leg
+    layerState: wooden_right_leg
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
+    resistanceModifier: -0.045
+    speedModifier: 0.02
+
+- type: entity
+  id: ForgedWoodenLLeg
+  name: ForgedWoodenLLeg
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: wooden_leg_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_leg
+    layerState: wooden_left_leg
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
+    resistanceModifier: -0.045
+    speedModifier: 0.02

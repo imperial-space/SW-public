@@ -23,7 +23,7 @@ public sealed partial class BossComponent : Component
     public SoundSpecifier? Song;
 
     [DataField]
-    public float SongDuration = 130f;
+    public float SongDuration = 240f;
 
     [DataField]
     public SoundSpecifier DefeatSound;

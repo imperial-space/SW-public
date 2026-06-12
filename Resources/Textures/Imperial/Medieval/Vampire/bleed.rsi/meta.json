@@ -5,7 +5,7 @@
     "y": 32
   },
   "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-  "copyright": "for imperial space",
+  "copyright": "by crookielv",
   "states": [
     {
       "name": "bleed0"
@@ -39,6 +39,30 @@
     },
     {
       "name": "bleed10"
+    },
+    {
+      "name": "bleed11"
+    },
+    {
+      "name": "bleed12"
+    },
+    {
+      "name": "bleed13"
+    },
+    {
+      "name": "bleed14"
+    },
+    {
+      "name": "bleed15"
+    },
+    {
+      "name": "bleed16"
+    },
+    {
+      "name": "bleed17"
+    },
+    {
+      "name": "bleed18"
     }
   ]
 }

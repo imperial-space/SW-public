@@ -1,3 +1,68 @@
+# Blood
+
+- type: reagent
+  id: ElvishBlood
+  parent: Blood
+  name: reagent-name-elvish-blood
+  slipData: null
+  desc: reagent-desc-elvish-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-elvish-blood
+  color: "#0072a7"
+  flavor: elvishblood
+
+- type: flavor
+  id: elvishblood
+  flavorType: Complex
+  description: flavor-complex-elvish-blood
+
+- type: entity
+  id: PartElf
+  parent: [BaseItem, BasePart]
+  name: "Elf body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: ElvishBlood
+        Quantity: 10
+
+- type: entity
+  id: TorsoElf
+  name: "Elf torso"
+  parent: [PartElf, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: ElvishBlood
+        Quantity: 20
+
+- type: entity
+  id: HeadElf
+  name: "Elf head"
+  parent: [PartDarkElf, BaseHead]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: ElvishBlood
+        Quantity: 10
+
 - type: entity
   id: OrganElfHeart
   parent: OrganHumanHeart
@@ -43,14 +108,14 @@
   root: torso
   slots:
     head:
-      part: HeadHuman
+      part: HeadElf
       connections:
       - torso
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
     torso:
-      part: TorsoHuman
+      part: TorsoElf
       connections:
       - right arm
       - left arm
@@ -180,7 +245,8 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
-
+  - type: Bloodstream
+    bloodReagent: ElvishBlood
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -281,3 +347,6 @@
       points: 1
       required: true
       defaultMarkings: [ ElfEarsStandart ]
+    Hair:
+      points: 1
+      required: false

@@ -550,10 +550,12 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger
-        damage: 100
+        damage: 250
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -879,8 +881,10 @@
     - MedievalPlantBag
     - MedievalOreBag
     - MedievalMonsterBag
+    - MedievalHealBag
     - MedievalAlchemicBelt
     - MedievalClothingHeadHatCowboyBrown
+    - MedievalCultConductor
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -919,6 +923,7 @@
     recipes:
     - MedievalWeaponCrossbow
     - MedievalWoodenSword
+    - FishingRodT2
     - MedievalBolt
     - MedievalBoltSteel
     - MedievalBoltPractice
@@ -938,6 +943,9 @@
     - MedievalMopItem
     - MedievalMopBucket
     - MedievalKnut
+    - MedievalBeeHoneyBandage
+    - MedievalCustomBeeHive
+    - MedievalBeeSmoke
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -983,6 +991,7 @@
     - MedievalSteelIngot10
     - MedievalGoldOre
     - MedievalGoldOre10
+    - MedievalStoneBrick
     - EbonitMedieval
     - EbonitMedieval10
     - ForstoneMedieval
@@ -1027,6 +1036,7 @@
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
+    - MedievalManaBurnGrenade
     - MedievalGlowStone
     - MedievalCompactDefibrillator
     - MedievalShoesSpeed
@@ -1042,6 +1052,52 @@
     - MedaljonAntiMana
     - MedievalClothingEyesEyepatchHudBeer
     - MedievalClothingEyesEyepatchHudMedical
+    - MedievalReliefStoneWeakCraft
+    - MedievalReliefStoneStrongCraft
+    - MedievalAntiGravitationStoneCraft
+    - MedievalObeliskInfusionCraft
+    - MedievalDragonQuantEssence
+    - MedievalScrollsHalberdCraft
+    - MedievalScrollsFalshionCraft
+    - MedievalScrollsDaggerCraft
+    - MedievalScrollsBowCraft
+    - MedievalScrollsCrossbowCraft
+    - MedievalScrollsFireCraft
+    - MedievalScrollsPnyaCraft
+    - MedievalScrollsKoboldCraft
+    - MedievalScrollsPetSlimeCraft
+    - MedievalClothingHeadHelmetCharmerNeutral
+    - MedievalClothingOuterArmorCharmerNeutral
+    - ForgedCoreSerdolicCraft
+    - ForgedCoreAdamCraft
+    - ForgedCoreTopazCraft
+    - ForgedCoreGoldCraft
+    - ForgedWoodenHeadCraft
+    - ForgedWoodenTorsoCraft
+    - ForgedWoodenRArmCraft
+    - ForgedWoodenLArmCraft
+    - ForgedWoodenRLegCraft
+    - ForgedWoodenLLegCraft
+    - ForgedIronHeadCraft
+    - ForgedIronTorsoCraft
+    - ForgedIronRArmCraft
+    - ForgedIronLArmCraft
+    - ForgedIronRLegCraft
+    - ForgedIronLLegCraft
+    - ForgedGoldenHeadCraft
+    - ForgedGoldenTorsoCraft
+    - ForgedGoldenRArmCraft
+    - ForgedGoldenLArmCraft
+    - ForgedGoldenRLegCraft
+    - ForgedGoldenLLegCraft
+    - ForgedEyesSerdolickCraft
+    - ForgedEyesAdamCraft
+    - ForgedEyesTopazCraft
+    - ForgedEyesBloodCraft
+    - ForgedRHandBladeCraft
+    - ForgedLHandBladeCraft
+    - ForgedCrossbowRHandCraft
+    - ForgedCrossbowLHandCraft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1142,6 +1198,10 @@
     - MedievalShortSwordSteel
     - MedievalSaber
     - MedievalSaberSteel
+    - MedievalIronClaymore
+    - MedievalIronClaymoreSteel
+    - MedievalIronZweihander
+    - MedievalIronZweihanderSteel
     - MedievalMaceT3Steel
     - MedievalPalice
     - MedievalPaliceSteel
@@ -1164,6 +1224,7 @@
     - MedievalPickaxeForStone
     - MedievalPickaxeEbonit
     - MedievalRepairStone
+    - MedievalShieldRepairKit
     - MedievalHoe
     - MedievalScythe
     - MedievalClippers
@@ -1172,21 +1233,58 @@
     - MedievalHatchet
     - BarberScissors
     - MedievalGrenade
+    - MedievalLintstock
+    - MedievalGunpowderCharge
+    - MedievalCannonballShip
+    - MedievalCannonballExplosive
+    - MedievalGrapeshot
     - MedievalKeyStorage
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
+    - MedievalStoneWallCraft
+    - MedievalFireplaceCraft
+    - MedievalStoneLoopHoleCraft
     - MedievalWeaponTurretNanoTrasenCraft
-    - MedievalChemistryEmptyBottle01
-    - MedievalChemistryEmptyBottle02
-    - MedievalChemistryEmptyBottle03
-    - MedievalChemistryEmptyBottle04
+    - MedievalChemistryEmptyBottleTempering01Craft
+    - MedievalChemistryEmptyBottleTempering02Craft
+    - MedievalChemistryEmptyBottleTempering03Craft
+    - MedievalChemistryEmptyBottleTempering04Craft
     - MedievalKotel
     - Syringe
     - MedievalHorseLeatherArmor
     - MedievalHorseChainMailArmor
     - MedievalHorseUpIronArmor
     - MedievalHorseHorseshoe
-
+    - MedievalClothingHeadHelmetDragonBoneIce
+    - MedievalClothingOuterArmorDragonBoneIce
+    - MedievalDragonBoneGlovesIce
+    - MedievalClothingFeetDragonBoneIce
+    - MedievalClothingHeadHelmetDragonBoneFire
+    - MedievalClothingOuterArmorDragonBoneFire
+    - MedievalDragonBoneGlovesFire
+    - MedievalClothingFeetDragonBoneFire
+    - MedievalClothingHeadHelmetDragonBoneAcid
+    - MedievalClothingOuterArmorDragonBoneAcid
+    - MedievalDragonBoneGlovesAcid
+    - MedievalClothingFeetDragonBoneAcid
+    - MedievalClothingHeadHelmetDragonBoneThunder
+    - MedievalClothingOuterArmorDragonBoneThunder
+    - MedievalDragonBoneGlovesThunder
+    - MedievalClothingFeetDragonBoneThunder
+    - MedievalClothingHeadHelmetDragonBoneBone
+    - MedievalClothingOuterArmorDragonBoneBone
+    - MedievalDragonBoneGlovesBone
+    - MedievalClothingFeetDragonBoneBone
+    - MedievalBloodlettingNeedle
+    - MedievalCultConductorRodIron
+    - FishingRodT3
+    - Spoon
+    - Fork
+    - MedievalSilverCup
+    - MedievalGoldCup
+    - GoldenFork
+    - GoldenSpoon
+    - GoldenPlate
 - type: entity
   parent: CP14BaseWorkbench
   id: MedievalClothWorkingPlace
@@ -1304,3 +1402,28 @@
       - CarpetPurpleCraft
       #- CarpetCraft
       - CarpetWhiteCraft
+      - BardArlekinoHead
+      - BardAsianHat
+      - BardCrown
+      - BardHat
+      - BardHeadscarf
+      - BardHorse
+      - BardManHead
+      - BardWig
+      - BardArlekino
+      - BardBear
+      - BardKimano
+      - BardMagicDress
+      - BardPierro
+      - BardGrinCoat
+      - BardRedcoat
+      - BardMaskLove
+      - BardMaskSad
+      - BardMaskSmile
+      - MedievalDecorBardDragon
+      - MedievalDecorBardFire
+      - MedievalDecorBardMoon
+      - MedievalDecorBardSun
+      - MedievalDecorBardThrone
+      - MedievalDecorBardTower
+      - MedievalDecorBardTree

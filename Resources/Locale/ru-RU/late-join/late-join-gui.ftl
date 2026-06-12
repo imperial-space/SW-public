@@ -8,3 +8,4 @@ late-join-gui-job-slot-capped = {$jobName} ({$amount} {$amount ->
        *[other] доступно
     })
 late-join-gui-job-slot-uncapped = {$jobName} (Без ограничений)
+late-join-gui-job-slot-obelisk-destroyed = {$jobName} (Обелиск уничтожен)

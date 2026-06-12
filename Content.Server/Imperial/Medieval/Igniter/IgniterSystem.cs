@@ -1,6 +1,8 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.DoAfter;
+using Content.Server.Imperial.Medieval.Cannon;
+using Content.Shared.Atmos.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.IgnitionSource;
 using Content.Shared.Imperial.Medieval.Igniter;
@@ -29,7 +31,11 @@ public sealed partial class IgniterSystem : EntitySystem
 
     private void OnInteract(EntityUid uid, IgniterComponent component, AfterInteractEvent args)
     {
-        if (!HasComp<FlammableComponent>(args.Target)) return;
+        if (args.Target == null)
+            return;
+
+        if (!CanIgniteTarget(args.Target.Value))
+            return;
 
         var ev = new IgniteAttemptDoAfterEvent(GetNetEntity(args.User), GetNetEntity(args.Target.Value));
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.IgniteTime, ev, uid, target: args.Target, used: args.User)
@@ -53,6 +59,12 @@ public sealed partial class IgniterSystem : EntitySystem
         var performer = GetEntity(args.Performer);
         var target = GetEntity(args.IgniteTarget);
 
+        if (!CanIgniteTarget(target))
+        {
+            args.Repeat = false;
+            return;
+        }
+
         SpawnAtPosition(component.EffectPrototype, Transform(performer).Coordinates);
         _audioSystem.PlayPvs(component.IgniteSound, performer);
 
@@ -63,15 +75,26 @@ public sealed partial class IgniterSystem : EntitySystem
 
     private bool TryIgniteTarget(EntityUid performer, EntityUid target, IgniterComponent igniterComponent)
     {
-        if (!HasComp<FlammableComponent>(target)) return false;
+        if (!CanIgniteTarget(target)) return false;
         if (!_random.Prob(igniterComponent.IgniteChance)) return false;
 
-        _flammableSystem.AdjustFireStacks(target, igniterComponent.FlammableStacks);
-        _flammableSystem.Ignite(target, performer);
+        if (HasComp<FlammableComponent>(target))
+        {
+            _flammableSystem.AdjustFireStacks(target, igniterComponent.FlammableStacks);
+            _flammableSystem.Ignite(target, performer);
+        }
 
         RaiseLocalEvent(target, new IgniteEvent());
 
         return true;
+    }
+
+    private bool CanIgniteTarget(EntityUid target)
+    {
+        if (HasComp<FlammableComponent>(target))
+            return true;
+
+        return TryComp<CannonComponent>(target, out var cannon) && cannon.State == CannonState.ReadyToFire;
     }
 
     #endregion

@@ -8,6 +8,7 @@
   rules:
   - TDM
   - MedievalStatsCounter
+  - MedievalFactionGoalsRule
 
 - type: gamePreset
   id: MedievalDevelop
@@ -28,6 +29,7 @@
   - TDM
   - Myrmex
   - MedievalStatsCounter
+  - MedievalFactionGoalsRule
 
 - type: gamePreset
   id: MedievalSkeletron
@@ -40,3 +42,30 @@
   - TDM
   - MedievalStatsCounter
   - MedievalSkeletonInvasionRule
+  - MedievalFactionGoalsRule
+
+- type: gamePreset
+  id: MedievalPlague
+  alias:
+  - medievalmyrmex
+  name: medieval-plague-title
+  showInVote: true
+  description: medieval-plague-description
+  rules:
+  - TDM
+  - MedievalPlague
+  - MedievalStatsCounter
+  - MedievalFactionGoalsRule
+
+- type: gamePreset
+  id: MedievalWerewolves
+  alias:
+  - medievalwerewolf
+  name: medieval-werewolf-title
+  showInVote: true
+  description: medieval-werewolf-description
+  rules:
+  - TDM
+  - MedievalWerewolves
+  - MedievalStatsCounter
+  - MedievalFactionGoalsRule

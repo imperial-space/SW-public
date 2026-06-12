@@ -7,6 +7,7 @@ using Content.Server.SpikeTrap.Components;
 using Content.Server.MagicBarrier.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.MedievalDigger
 {

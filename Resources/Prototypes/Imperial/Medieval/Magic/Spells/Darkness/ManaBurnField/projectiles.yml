@@ -1,0 +1,176 @@
+- type: entity
+  id: MedievalManaBurnField
+  name: Mana Burn Field
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles.rsi
+    state: beginner
+    drawdepth: FloorTiles
+    noRot: true
+    shader: unshaded
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        hard: false
+  - type: ManaBurnField
+    burnPopup: medieval-mana-burn-field-popup
+
+# Beginner
+
+- type: entity
+  id: MedievalManaBurnFieldSpawnBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles/beginner.rsi
+    state: beginner-spawn
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: PointLight
+    radius: 4
+    energy: 8
+    color: "#B000FF"
+  - type: SpawnOnDespawn
+    prototype: MedievalManaBurnFieldBeginner
+
+
+- type: entity
+  id: MedievalManaBurnFieldBeginner
+  parent: MedievalManaBurnField
+  name: Mana Burn Field
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles/beginner.rsi
+    state: beginner
+    drawdepth: FloorTiles
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 12
+  - type: PointLight
+    radius: 4
+    energy: 8
+    color: "#B000FF"
+  - type: ManaBurnField
+    radius: 2.5
+    burnQuantity: 15
+    burnDelay: 1
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Imperial/Medieval/lightning_strike_weak.ogg
+
+# Middle
+
+- type: entity
+  id: MedievalManaBurnFieldSpawnMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles/middle.rsi
+    state: middle-spawn
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 0.55
+  - type: PointLight
+    radius: 5
+    energy: 8
+    color: "#B000FF"
+  - type: SpawnOnDespawn
+    prototype: MedievalManaBurnFieldMiddle
+
+- type: entity
+  id: MedievalManaBurnFieldMiddle
+  parent: MedievalManaBurnField
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles/middle.rsi
+    state: middle
+    drawdepth: FloorTiles
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 15
+  - type: PointLight
+    radius: 5
+    energy: 8
+    color: "#B000FF"
+  - type: ManaBurnField
+    radius: 3
+    burnQuantity: 20
+    burnDelay: 1
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Imperial/Medieval/lightning_strike_strong.ogg
+
+# Senior
+
+- type: entity
+  id: MedievalManaBurnFieldSpawnSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles/senior.rsi
+    state: senior-spawn
+    noRot: true
+    drawdepth: FloorTiles
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: PointLight
+    radius: 5
+    energy: 10
+    color: "#670097"
+  - type: SingularityDistortion
+    intensity: 130
+    falloffPower: 2
+  - type: SpawnOnDespawn
+    prototype: MedievalManaBurnFieldSenior
+
+- type: entity
+  id: MedievalManaBurnFieldSenior
+  parent: MedievalManaBurnField
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles/senior.rsi
+    state: senior
+    drawdepth: FloorTiles
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 20
+  - type: PointLight
+    radius: 5
+    energy: 10
+    color: "#670097"
+  - type: ManaBurnField
+    radius: 3.5
+    burnQuantity: 22
+    burnDelay: 1
+  - type: SingularityDistortion
+    intensity: 130
+    falloffPower: 2
+  - type: GravityWell
+    maxRange: 3.5
+    minRange: 0.2
+    baseRadialAcceleration: 25
+    baseTangentialAcceleration: 6
+    gravPulsePeriod: 0.14
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Imperial/Medieval/blackhole_static.ogg
+

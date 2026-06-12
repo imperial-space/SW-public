@@ -24,6 +24,7 @@
     soundHit:
       collection: MetalThud
   - type: CollisionWake
+  - type: GravityAffected
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -101,7 +102,9 @@
       min: 5
       max: 20
   - type: ShiftFrontGun
-  - type: TrashClear # imperial medieval end
+  - type: TrashClear
+  #- type: MedievalWeaponSkillCategory
+  #  skill: Throwing # imperial medieval end
 
 - type: entity
   name: "storage item"

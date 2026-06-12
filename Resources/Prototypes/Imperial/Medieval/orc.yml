@@ -194,6 +194,8 @@
     sleepLevelPerUpdate: 0.35
   - type: BadSmellRaceModifier
     modifier: 1.15
+  - type: Bloodstream
+    bloodReagent: OrcBlood
 
 - type: entity
   parent: BaseMobOrc
@@ -216,7 +218,7 @@
   sprites: MobOrcSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobOrcDummy
-  skinColoration: TintedHues
+  skinColoration: OrcColors
 
 - type: speciesBaseSprites
   id: MobOrcSprites

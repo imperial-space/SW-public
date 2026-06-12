@@ -1,0 +1,125 @@
+- type: entity
+  id: ForgedForstoneHead
+  name: ForgedForstoneHead
+  parent: ForgedHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/forstone.rsi
+    state: forstone_head_icon
+  - type: ForgedModule
+    partSlot: head
+    layerState: forstone_head
+    rsiPath: Imperial/Medieval/Forged/forstone.rsi
+    resistanceModifier: 0.05
+    speedModifier: -0.05
+
+- type: entity
+  id: ForgedForstoneTorso
+  name: ForgedForstoneTorso
+  parent: ForgedTorsoBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/forstone.rsi
+    state: TorsoBase
+    layers:
+    - state: forstone_torso
+      map: ["torso"]
+    - state: blank
+      map: ["head"]
+    - state: blank
+      map: ["eyes"]
+    - state: blank
+      map: ["right_arm"]
+    - state: blank
+      map: ["left_arm"]
+    - state: blank
+      map: ["right_hand"]
+    - state: blank
+      map: ["left_hand"]
+    - state: blank
+      map: ["core"]
+      offset: 0, -0.1
+    - state: blank
+      map: ["right_leg"]
+    - state: blank
+      map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
+  - type: ForgedAssembly
+    torso: ForgedForstoneTorso
+  - type: ForgedModule
+    partSlot: torso
+    layerState: forstone_torso
+    rsiPath: Imperial/Medieval/Forged/forstone.rsi
+    resistanceModifier: 0.20
+    speedModifier: -0.15
+
+- type: entity
+  id: ForgedForstoneRArm
+  name: ForgedForstoneRArm
+  parent: ForgedRArmBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/forstone.rsi
+    state: forstone_arm_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_arm
+    layerState: forstone_right_arm
+    rsiPath: Imperial/Medieval/Forged/forstone.rsi
+    resistanceModifier: 0.05
+    speedModifier: -0.025
+
+- type: entity
+  id: ForgedForstoneLArm
+  name: ForgedForstoneLArm
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/forstone.rsi
+    state: forstone_arm_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_arm
+    layerState: forstone_left_arm
+    rsiPath: Imperial/Medieval/Forged/forstone.rsi
+    resistanceModifier: 0.05
+    speedModifier: -0.025
+
+- type: entity
+  id: ForgedForstoneRLeg
+  name: ForgedForstoneRLeg
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/forstone.rsi
+    state: forstone_leg_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_leg
+    layerState: forstone_right_leg
+    rsiPath: Imperial/Medieval/Forged/forstone.rsi
+    resistanceModifier: 0.075
+    speedModifier: 0.125
+
+- type: entity
+  id: ForgedForstoneLLeg
+  name: ForgedForstoneLLeg
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/forstone.rsi
+    state: forstone_leg_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_leg
+    layerState: forstone_left_leg
+    rsiPath: Imperial/Medieval/Forged/forstone.rsi
+    resistanceModifier: 0.075
+    speedModifier: 0.125

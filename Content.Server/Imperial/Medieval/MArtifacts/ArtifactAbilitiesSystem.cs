@@ -137,7 +137,7 @@ public sealed class ArtifacAbilitiestSystem : EntitySystem
         {
             if (!HasComp<HumanoidAppearanceComponent>(target))
                 continue;
-            _flash.Flash(target, args.User, args.Weapon, component.FlashTime * 1000, 1f, true, true);
+            _flash.Flash(target, args.User, args.Weapon, TimeSpan.FromSeconds(component.FlashTime * 1000), 1f, true, true);
         }
     }
     private void LightInit(EntityUid _, ArtifactLightWeaponComponent component, ArtifactInit args)

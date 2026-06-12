@@ -33,11 +33,11 @@ public sealed class OpenNrpPanelCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        //if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
-        //{
-        //    shell.WriteLine("Command is disabled on server");
-        //    return;
-        //}
+        if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
+        {
+            shell.WriteLine("Command is disabled on server");
+            return;
+        }
         if (shell.Player is not { } player)
         {
             shell.WriteError(Loc.GetString("shell-cannot-run-command-from-server"));

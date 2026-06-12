@@ -20,6 +20,7 @@ namespace Content.Shared.Nocturn.Components
     public sealed partial class NocturnDisguiseDoAfterEvent : SimpleDoAfterEvent { }
 
     public sealed partial class ZveresScreamActionEvent : InstantActionEvent { }
+    public sealed partial class CanselDeathEvent : InstantActionEvent { }
 
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class NocturnComponent : Component
@@ -34,7 +35,7 @@ namespace Content.Shared.Nocturn.Components
         public float BloodLevel = 250.0f;
 
         [ViewVariables(VVAccess.ReadWrite)]
-        public float BloodDrainPerSecond = 0.15f;
+        public float BloodDrainPerSecond = 0.115f;
         public TimeSpan StartTime = TimeSpan.FromSeconds(0f);
         public TimeSpan EndTime = TimeSpan.FromSeconds(0f);
         public float FreshDrinkTimer = 0f;
@@ -64,23 +65,24 @@ namespace Content.Shared.Nocturn.Components
         {
             DamageDict = new()
             {
-                { "Asphyxiation", 0.7 },
-                { "Bloodloss", 1.1 },
-                { "Blunt", 0.37 },
-                { "Heat", 0.4 },
-                { "Piercing", 0.6 },
+                { "Asphyxiation", 1.7 },
+                { "Bloodloss", 2.1 },
+                { "Blunt", 1.1 },
+                { "Heat", 0.8 },
+                { "Piercing", 0.9 },
                 { "Poison", 2.1 },
-                { "Slash", 0.7 },
+                { "Slash", 1.1 },
                 { "Shock", 0.5 },
                 { "Radiation", 0.5 },
+                { "Cold", 0.5 },
                 { "Cellular", 1.1 }
             }
         };
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnDrink = "/Audio/Imperial/Medieval/drink_blood.ogg";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnDisguise = "/Audio/Magic/Eldritch/voidblink.ogg";
 
         [DataField]

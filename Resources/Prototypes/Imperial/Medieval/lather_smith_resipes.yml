@@ -808,6 +808,15 @@
   result: WorkpieceMedievalRepairStone
 
 - type: CP14Recipe
+  id: MedievalShieldRepairKit
+  craftTime: 4
+  iconOverride: MedievalShieldRepairKit
+  stacks:
+    MedievalLeather1: 2
+    MedievalIronIngot: 1
+  result: MedievalShieldRepairKit
+
+- type: CP14Recipe
   id: MedievalHoe
   craftTime: 7
   iconOverride: MedievalHoe
@@ -881,6 +890,15 @@
   result: WorkpieceMedievalGrenade
 
 - type: CP14Recipe
+  id: MedievalManaBurnGrenade
+  craftTime: 5
+  iconOverride: MedievalManaBurnGrenade
+  stacks:
+    MedievalAdam: 1
+    MedievalGold: 1
+  result: MedievalManaBurnGrenade
+
+- type: CP14Recipe
   id: MedievalKeyStorage
   craftTime: 4
   iconOverride: MedievalKeyStorage
@@ -926,36 +944,36 @@
   result: WorkpieceSyringe
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle01
+  id: MedievalChemistryEmptyBottleTempering01Craft
   craftTime: 3
-  iconOverride: MedievalChemistryEmptyBottle01
+  iconOverride: MedievalChemistryEmptyBottleTempering01
   stacks:
-    MedievalIronIngot: 2
-  result: WorkpieceMedievalChemistryEmptyBottle01
+    MedievalIronIngot: 1
+  result: MedievalChemistryEmptyBottleTempering01
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle02
+  id: MedievalChemistryEmptyBottleTempering02Craft
   craftTime: 3
-  iconOverride: MedievalChemistryEmptyBottle02
+  iconOverride: MedievalChemistryEmptyBottleTempering02
   stacks:
-    MedievalIronIngot: 2
-  result: WorkpieceMedievalChemistryEmptyBottle02
+    MedievalIronIngot: 1
+  result: MedievalChemistryEmptyBottleTempering02
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle03
-  iconOverride: MedievalChemistryEmptyBottle03
+  id: MedievalChemistryEmptyBottleTempering03Craft
+  iconOverride: MedievalChemistryEmptyBottleTempering03
   craftTime: 3
   stacks:
-    MedievalIronIngot: 2
-  result: WorkpieceMedievalChemistryEmptyBottle03
+    MedievalIronIngot: 1
+  result: MedievalChemistryEmptyBottleTempering03
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle04
-  iconOverride: MedievalChemistryEmptyBottle04
+  id: MedievalChemistryEmptyBottleTempering04Craft
+  iconOverride: MedievalChemistryEmptyBottleTempering04
   craftTime: 3
   stacks:
-    MedievalIronIngot: 2
-  result: WorkpieceMedievalChemistryEmptyBottle04
+    MedievalIronIngot: 1
+  result: MedievalChemistryEmptyBottleTempering04
 
 - type: CP14Recipe
   id: MedievalKotel
@@ -977,3 +995,39 @@
     MedievalLeatherBelt: 1
     MedievalShoulder: 2
   result: WorkpieceMedievalClothingOuterArmorGoblinIron
+
+- type: CP14Recipe
+  id: MedievalBloodlettingNeedle
+  iconOverride: MedievalBloodlettingNeedle
+  craftTime: 4
+  stacks:
+    MedievalIronIngot: 1
+  result: MedievalBloodlettingNeedle
+
+- type: CP14Recipe
+  id: MedievalCultConductorRodIron
+  craftTime: 2
+  iconOverride: MedievalCultConductorRodIron
+  stacks:
+    MedievalIronIngot: 2
+  result: MedievalCultConductorRodIron
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorCharmerNeutral
+  craftTime: 14
+  iconOverride: MedievalClothingOuterArmorCharmerNeutral
+  stacks:
+    MedievalSteelIngot: 2
+    Cloth: 16
+    MedievalAdam: 4
+  result: MedievalClothingOuterArmorCharmerNeutral
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetCharmerNeutral
+  craftTime: 14
+  iconOverride: MedievalClothingHeadHelmetCharmerNeutral
+  stacks:
+    MedievalSteelIngot: 1
+    Cloth: 8
+    MedievalAdam: 2
+  result: MedievalClothingHeadHelmetCharmerNeutral

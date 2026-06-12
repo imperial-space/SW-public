@@ -84,7 +84,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 _damageable.TryChangeDamage(uid, damage);
             if (stunSeconds > 0)
             {
-                _stun.TryStun(uid, TimeSpan.FromSeconds(stunSeconds), true);
+                _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(stunSeconds));
                 _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
             }
 

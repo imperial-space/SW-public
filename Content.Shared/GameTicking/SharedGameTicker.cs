@@ -15,11 +15,16 @@ namespace Content.Shared.GameTicking
         [Dependency] private readonly IReplayRecordingManager _replay = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
 
+        /// <summary>
+        ///     A list storing the start times of all game rules that have been started this round.
+        ///     Game rules can be started and stopped at any time, including midround.
+        /// </summary>
+        public abstract IReadOnlyList<(TimeSpan, string)> AllPreviousGameRules { get; }
+
         // See ideally these would be pulled from the job definition or something.
         // But this is easier, and at least it isn't hardcoded.
         //TODO: Move these, they really belong in StationJobsSystem or a cvar.
-        [ValidatePrototypeId<JobPrototype>]
-        public const string FallbackOverflowJob = "MedievalTraveller"; // imperial medieval
+        public static readonly ProtoId<JobPrototype> FallbackOverflowJob = "MedievalTraveller"; // imperial medieval
 
         public const string FallbackOverflowJobName = "job-name-traveller"; // imperial medieval
 
@@ -142,7 +147,8 @@ namespace Content.Shared.GameTicking
     [Serializable, NetSerializable]
     public sealed class TickerJobsAvailableEvent(
         Dictionary<NetEntity, string> stationNames,
-        Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation)
+        Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation,
+        List<ProtoId<DepartmentPrototype>> obeliskDestroyedDepartments)
         : EntityEventArgs
     {
         /// <summary>
@@ -151,6 +157,8 @@ namespace Content.Shared.GameTicking
         public Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailableByStation { get; } = jobsAvailableByStation;
 
         public Dictionary<NetEntity, string> StationNames { get; } = stationNames;
+
+        public List<ProtoId<DepartmentPrototype>> ObeliskDestroyedDepartments { get; } = obeliskDestroyedDepartments;
     }
 
     [Serializable, NetSerializable, DataDefinition]
@@ -194,6 +202,9 @@ namespace Content.Shared.GameTicking
         public int PlayerCount { get; }
         public RoundEndPlayerInfo[] AllPlayersEndInfo { get; }
 
+        // Imperial Medieval Last Words
+        public string[] LastWords { get; }
+
         /// <summary>
         /// Sound gets networked due to how entity lifecycle works between client / server and to avoid clipping.
         /// </summary>
@@ -206,7 +217,8 @@ namespace Content.Shared.GameTicking
             int roundId,
             int playerCount,
             RoundEndPlayerInfo[] allPlayersEndInfo,
-            ResolvedSoundSpecifier? restartSound)
+            ResolvedSoundSpecifier? restartSound,
+            string[] lastWords) // Imperial Medieval Last Words
         {
             GamemodeTitle = gamemodeTitle;
             RoundEndText = roundEndText;
@@ -215,6 +227,7 @@ namespace Content.Shared.GameTicking
             PlayerCount = playerCount;
             AllPlayersEndInfo = allPlayersEndInfo;
             RestartSound = restartSound;
+            LastWords = lastWords; // Imperial Medieval Last Words
         }
     }
 

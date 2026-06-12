@@ -1,0 +1,145 @@
+- type: entity
+  name: bee
+  id: MedievalBaseBee
+  parent: SimpleMobBaseNoFood
+  suffix: Beekeeping
+  abstract: true
+  components:
+  - type: CombatMode
+    disarm: null
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      2: 1
+      20: 0.85
+      30: 0.7
+      40: 0.6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.3
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Body
+    prototype: Reptilian
+    requiredLegs: 2
+  - type: Appearance
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Monkey_burning
+  #- type: GhostTakeoverAvailable
+  #- type: WarningOnAttach
+  #  message: medieval-warning-goblin
+  #- type: GhostRole
+  #  makeSentient: true
+  #  name: ghost-role-information-goblin-name
+  #  description: ghost-role-information-goblin-description
+  #  rules: ghost-role-information-goblin-rules
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: InputMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  #- type: Butcherable
+  #  spawned:
+  #  - id: MedievalLootGoblin
+  #    amount: 1
+  #  - id: MedievalLeather1
+  #    amount: 1
+  #  - id: MedievalLootgoblin2
+  #    amount: 2
+  #    prob: 0.7
+  #  - id: MedievalMagicStoneRandom
+  #    amount: 1
+  #    prob: 0.1
+  #- type: Vocal
+  #  sounds:
+  #    Male: Goblins
+  #    Female: Goblins
+  #    Unsexed: Goblins
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.2
+  - type: MeleeParryAble
+  - type: NocturnBadFood
+    timesCanBeBiten: 2
+  - type: MedievalBee
+
+- type: entity
+  name: bee
+  id: MedievalMobBeeWorker
+  parent: MedievalBaseBee
+  description: bee
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: worker
+      sprite: Imperial/Medieval/Bee/npc.rsi
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Poison: 6
+        Slash: 8
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: worker
+      Critical:
+        Base: worker-dead
+      Dead:
+        Base: worker-dead
+
+- type: entity
+  name: killer bee
+  id: MedievalMobBeeKiller
+  parent: MedievalBaseBee
+  description: bee
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: killer
+      sprite: Imperial/Medieval/Bee/npc.rsi
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Poison: 8
+        Slash: 12
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: killer
+      Critical:
+        Base: killer-dead
+      Dead:
+        Base: killer-dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      340: Dead

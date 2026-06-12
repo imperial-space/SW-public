@@ -1,0 +1,22 @@
+# Beginner
+
+- type: entity
+  id: MedievalStoneRidgeBeginner
+  components:
+  - type: TriggerOnSpawn
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalShelterRock
+    radius: 1
+    quantity: 4
+
+# Middle
+
+- type: entity
+  id: MedievalStoneRidgeMiddle
+  components:
+  - type: TriggerOnSpawn
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalShelterRock
+    radius: 2
+    quantity: 8
+

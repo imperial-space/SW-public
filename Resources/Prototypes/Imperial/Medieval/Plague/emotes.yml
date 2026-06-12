@@ -1,0 +1,12 @@
+- type: emote
+  id: Hiccup
+  name: chat-emote-name-hiccup
+  icon: Interface/Emotes/Sneeze.png # imperial medieval "emotions"
+  category: Vocal
+  blacklist:
+    tags:
+    - Animal
+  chatMessages: ["икает"]
+  chatTriggers:
+    - ик
+    - икает

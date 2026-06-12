@@ -1,0 +1,18 @@
+- type: tile
+  id: MedievalFloorHive
+  name: medieval-tiles-hive
+  sprite: /Textures/Imperial/Medieval/Bee/Tiles/Hive/tile.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+#  baseTurf: FloorCave
+  isSubfloor: false
+  #deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+#  itemDrop: FloorTileItemSteel
+  heatCapacity: 99910000
+#  badSmellMod: 0.5 # imperial medieval badsmell

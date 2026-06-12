@@ -292,7 +292,7 @@
   equipment:
     shoes: MedievalClothingFeetSteel
     head: MedievalClothingHeadHelmetSaladLight
-    gloves: MedievalLeatherGloves
+    gloves: MedievalClothingHandsGlovesColorBlack
     outerClothing: MedievalClothingOuterArmorStudded
     mask: MedievalMaskFace
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
@@ -311,7 +311,7 @@
   id: MedievalFastGearLightAlt3
   equipment:
     shoes: MedievalShoesSapogi
-    gloves: MedievalClothGloves
+    gloves: MedievalClothingHandsGlovesCloth
     outerClothing: MedievalClothingOuterArmorLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     back: MedievalClothingBackpackSatchelLeather

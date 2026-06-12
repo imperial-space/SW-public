@@ -5,14 +5,16 @@
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: merc
-  wantedText: "[color=red]Изгнанник.[/color]"
+  wantedText: "[color=red]Изгнанник[/color]"
   defaultRelations:
     Legion: Trading
     Miner: Trading
+  envelopeProto: MedievalPaperEnvelopeVillage
 
 - type: medievalFaction
   id: Legion
   name: легион
+  color: "#2c518a"
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: legion
@@ -26,11 +28,12 @@
     Village: Trading
     Bandit: War
     Kayot: War
-
+  envelopeProto: MedievalPaperEnvelopeLegion
 
 - type: medievalFaction
   id: Insurgency
   name: мятежники
+  color: "#a82e2b"
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: insurgency
@@ -44,20 +47,23 @@
     Bandit: War
     Kayot: War
     Cult: War
+  envelopeProto: MedievalPaperEnvelopeRebel
 
 - type: medievalFaction
   id: Bandit
   name: банда
+  color: "#5f6263"
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: bandit
-  wantedText: "[color=red]Изгнанник.[/color]"
+  wantedText: "[color=red]Изгнанник[/color]"
   defaultRelations:
     Kayot: War
     Legion: War
     Insurgency: War
   blockedRelations:
     - Kayot
+  envelopeProto: MedievalPaperEnvelopeBandit
 
 - type: medievalFaction
   id: Kayot
@@ -65,13 +71,14 @@
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: bandit
-  wantedText: "[color=red]Изгнанник.[/color]"
+  wantedText: "[color=red]Изгнанник[/color]"
   defaultRelations:
     Bandit: War
     Legion: War
     Insurgency: War
   blockedRelations:
     - Bandit
+  envelopeProto: MedievalPaperEnvelopeCoyote
 
 - type: medievalFaction
   id: Merc
@@ -79,10 +86,11 @@
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: merc
-  wantedText: "[color=red]Предатель.[/color]"
+  wantedText: "[color=red]Предатель[/color]"
   defaultRelations:
     Insurgency: Trading
     Legion: Trading
+  envelopeProto: MedievalPaperEnvelopeMerc
 
 - type: medievalFaction
   id: Collegium
@@ -95,24 +103,28 @@
     Cult: War
   blockedRelations:
     - Cult
+  envelopeProto: MedievalPaperEnvelopeCollegium
 
 - type: medievalFaction
   id: Miner
   name: шахтёры
+  color: "#397a44"
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: miner
-  wantedText: "[color=red]Уволен.[/color]"
+  wantedText: "[color=red]Уволен[/color]"
   defaultRelations:
     Legion: Trading
     Insurgency: Trading
     Village: Trading
+  envelopeProto: MedievalPaperEnvelopeMiner
 
 - type: medievalFaction
   id: Tribe
   name: племя
   allowHeadhunt: false
-  wantedText: "[color=red]Изгнанник.[/color]"
+  wantedText: "[color=red]Изгнанник[/color]"
+  envelopeProto: MedievalPaperEnvelopeTribe
 
 - type: medievalFaction
   id: Cult
@@ -124,6 +136,7 @@
     Insurgency: War
   blockedRelations:
     - Collegium
+  envelopeProto: MedievalPaperEnvelopeCult
 
 - type: factionRelations
   id: Neutral

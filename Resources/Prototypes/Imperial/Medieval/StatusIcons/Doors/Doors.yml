@@ -1,0 +1,7 @@
+- type: entity
+  id: MedievalBlackDoor
+  name: WoodDoor
+  parent: WoodDoor
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Walls/medieval_door_dlak.rsi

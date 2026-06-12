@@ -45,10 +45,15 @@
       projectiles: !type:ContainerSlot
   - type: ContainerAmmoProvider
     container: projectiles
+    # imperial medieval start
+  - type: MedievalWeaponSkillCategory
+    skill: Bow
+    # imperial medieval end
 
 - type: entity
   id: BowImprovised
   parent: BaseBow
+  name: improvised shortbow
   components:
   - type: Sprite
     layers:

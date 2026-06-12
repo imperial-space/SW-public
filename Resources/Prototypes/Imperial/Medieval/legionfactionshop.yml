@@ -66,7 +66,7 @@
   - type: Tag
     tags:
     - RawMaterial
-    - MedievalMedalLegion
+    - MedalLegion
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -184,11 +184,53 @@
   categories:
   - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionBowImprovised
+  productEntity: BowImprovised
+  cost:
+    MedalLegion: 1
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalWeaponCrossbow
+  productEntity: MedievalWeaponCrossbow
+  cost:
+    MedalLegion: 5
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalQuiverFullArrowIronPhysics
+  productEntity: MedievalQuiverFullArrowIronPhysics
+  cost:
+    MedalLegion: 1
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalQuiverFullArrowSteelPhysics
+  productEntity: MedievalQuiverFullArrowSteelPhysics
+  cost:
+    MedalLegion: 2
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalQuiverFullBoltIron
+  productEntity: MedievalQuiverFullBoltIron
+  cost:
+    MedalLegion: 3
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalQuiverFullBoltSteel
+  productEntity: MedievalQuiverFullBoltSteel
+  cost:
+    MedalLegion: 4
+  categories:
+  - MedievalLegionWeapon
 
 - type: listing
   id: MdvLegionMedievalSaber
@@ -211,6 +253,22 @@
   productEntity: MedievalFalshionT3Legion
   cost:
     MedalLegion: 1
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalIronZweihander
+  productEntity: MedievalIronZweihander
+  cost:
+    MedalLegion: 4
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalIronClaymore
+  productEntity: MedievalIronClaymore
+  cost:
+    MedalLegion: 4
   categories:
   - MedievalLegionWeapon
 
@@ -239,10 +297,26 @@
   - MedievalLegionWeapon
 
 - type: listing
+  id: MdvLegionMedievalIronZweihanderSteel
+  productEntity: MedievalIronZweihanderSteel
+  cost:
+    MedalLegion: 10
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalIronClaymoreSteel
+  productEntity: MedievalIronClaymoreSteel
+  cost:
+    MedalLegion: 10
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
   id: MdvLegionMedievalIronHalberdT3
   productEntity: MedievalIronHalberdT3
   cost:
-    MedalLegion: 3
+    MedalLegion: 4
   categories:
   - MedievalLegionWeapon
 
@@ -395,6 +469,54 @@
   productEntity: MedievalHorseWhistle
   cost:
     MedalLegion: 18
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalBlackHorseWhistle
+  productEntity: MedievalBlackHorseWhistle
+  cost:
+    MedalLegion: 22
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalBlackSpotHorseWhistle
+  productEntity: MedievalBlackSpotHorseWhistle
+  cost:
+    MedalLegion: 8
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalBlackWhiteHorseWhistle
+  productEntity: MedievalBlackWhiteHorseWhistle
+  cost:
+    MedalLegion: 13
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalGreyHorseWhistle
+  productEntity: MedievalGreyHorseWhistle
+  cost:
+    MedalLegion: 15
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalWhiteHorseWhistle
+  productEntity: MedievalWhiteHorseWhistle
+  cost:
+    MedalLegion: 18
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalWhiteRoyalHorseWhistle
+  productEntity: MedievalWhiteRoyalHorseWhistle
+  cost:
+    MedalLegion: 40
   categories:
   - MedievalLegionTransport
 

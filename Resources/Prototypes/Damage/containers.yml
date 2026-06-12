@@ -38,6 +38,7 @@
     - Brute
   supportedTypes:
     - Heat
+    - Structural # spellward shields changes
 
 - type: damageContainer
   id: Box
@@ -72,3 +73,11 @@
   - Airloss
   - Genetic
   - Metaphysical
+
+#Imperial Forged starts
+- type: damageContainer
+  id: Forged
+  supportedGroups:
+    - Brute
+    - Burn
+#Imperial Forged ends

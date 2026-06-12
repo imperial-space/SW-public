@@ -27,6 +27,8 @@
     color: red
     energy: 1.8
     radius: 2.5
+    netsync: true
+    enabled: true
   - type: HealCurse
   - type: LanguageSpeaker
     languages:
@@ -136,10 +138,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
     #pocket1: BaseMagicNecroShop
-
-
-
-
+    pocket2: MedievalCursedMarkNecro
 
 - type: entity
   #noSpawn: true
@@ -192,6 +191,7 @@
     id: MedievalKeyChapel
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
+    pocket2: MedievalCursedMarkNecro
   storage:
     back:
     - BaseMagicNecroShop
@@ -244,6 +244,7 @@
     gloves: MedievalNecroGlovesLight
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
+    pocket2: MedievalCursedMarkNecro
   storage:
     back:
     - BaseMagicNecroShopLeader
@@ -281,6 +282,8 @@
     preset: StorePresetMedievalNecro
     balance:
       UnholyMedieval: 140
+  - type: CurseItem
+    cult: true
 
 - type: entity
   parent: BaseMagicNecroShop
@@ -524,6 +527,14 @@
   - MedievalNecroOther
 
 - type: listing
+  id: MagicNecroShopMedievalManaBurnGrenade
+  productEntity: MedievalManaBurnGrenade
+  cost:
+    UnholyMedieval: 5
+  categories:
+  - MedievalNecroOther
+
+- type: listing
   id: MagicNecroShopMedievalServerMap
   productEntity: MedievalServerMap
   cost:
@@ -606,6 +617,7 @@
         - id: MedievalClothingOuterArmorNecro
         - id: MedievalClothingFeetNecromancer
         - id: MedievalNecroGloves
+    - type: CurseItem
 
 - type: entity
   #noSpawn: true
@@ -641,13 +653,15 @@
         Piercing: 0.75
         Heat: 0.45
         Cold: 0.55
-        Stamina: 0.5 ## Stamina resistance
+  - type: StaminaResistance
+    damageCoefficient: 0.5
   - type: Item
     size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 0.7
+  - type: CurseItem
 
 - type: entity
   parent: ClothingOuterBase
@@ -669,13 +683,15 @@
         Piercing: 0.9
         Heat: 0.75
         Cold: 0.75
-        Stamina: 0.8 ## Stamina resistance
+  - type: StaminaResistance
+    damageCoefficient: 0.8
   - type: Item
     size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.85
   - type: ManaRegen
     regen: 2.5
+  - type: CurseItem
 
 - type: listing
   id: NecroListingMedievalRepairStone
@@ -685,6 +701,13 @@
   categories:
   - MedievalNecroOther
 
+- type: listing
+  id: NecroListingMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
+  cost:
+    UnholyMedieval: 4
+  categories:
+  - MedievalNecroOther
 
 - type: listing
   id: ListingMedievalClothingOuterArmorCharmerNecro2
@@ -701,3 +724,23 @@
     UnholyMedieval: 50
   categories:
   - MedievalNecroArmor
+
+- type: entity
+  id: MedievalCursedMarkNecro
+  parent: BaseItem
+  name: Cursed Mark
+  description: This cursed mark created by Morbius for all of the Necropolis citizens.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cursed_mark.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: PointLight
+    enabled: true
+    color: "#8A1313"
+    radius: 4.0
+    energy: 6.0
+  - type: Unremoveable
+  - type: CurseItem
+

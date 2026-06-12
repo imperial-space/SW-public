@@ -12,7 +12,7 @@ game-ticker-get-info-text = Привет и добро пожаловать на
                             Текущий временной виток: [color=white]#{ $roundId }[/color]
                             Текущее количество игроков: [color=white]{ $playerCount }[/color]
                             Текущая карта: [color=white]{$mapName}[/color]
-                            Текущий режим игры: [color=white]{$gmTitle}[/color]
+                            Текущее испытание: [color=white]{$gmTitle}[/color]
                             >[color=yellow]{ $desc }[/color]
 game-ticker-get-info-preround-text = Привет и добро пожаловать на сервер [color=white]Spellward![/color]
                             Текущий временной виток: [color=white]#{$roundId}[/color]
@@ -21,7 +21,7 @@ game-ticker-get-info-preround-text = Привет и добро пожалова
                                *[other] готовы
                             })
                             Текущая карта: [color=white]{$mapName}[/color]
-                            Текущий режим игры: [color=white]{$gmTitle}[/color]
+                            Текущее испытание: [color=white]{$gmTitle}[/color]
                             >[color=yellow]{$desc}[/color]
 game-ticker-no-map-selected = [color=yellow]Карта ещё не выбрана![/color]
 game-ticker-player-no-jobs-available-when-joining = При попытке присоединиться к игре ни одной роли не было доступно.
@@ -33,13 +33,17 @@ player-first-join-message = Игрок {$name} зашёл впервые!
 # Displayed in chat to admins when a player leaves
 player-leave-message = Игрок {$name} вышел.
 
-latejoin-arrival-announcement = {$character} ({$job}) прибыл на станцию!
+latejoin-arrival-announcement = {$character}, {$job}, прибыл на станцию!
+latejoin-arrival-announcement-special = {$job} {$character} на борту!
 latejoin-arrival-sender = Общее
 latejoin-arrivals-direction = Вскоре прибудет шаттл, который доставит вас на станцию.
 latejoin-arrivals-direction-time = Шаттл, который доставит вас на станцию, прибудет через {$time}.
-game-run-level-PreRoundLobby = Лобби до начала раунда
-game-run-level-PostRound = После раунда
-game-run-level-InRound = В раунде
 latejoin-arrivals-dumped-from-shuttle = Таинственная сила не позволяет вам улететь на шаттле прибытия.
 latejoin-arrivals-teleport-to-spawn = Таинственная сила телепортирует вас с шаттла прибытия. Удачной смены!
-latejoin-arrival-announcement-special = {$job} {$character} на борту!
+
+preset-not-enough-ready-players = Невозможно запустить испытание бога {$presetName}. Требуется {$minimumPlayers} готовых игроков, сейчас: {$readyPlayersCount}.
+preset-no-one-ready = Невозможно запустить испытание бога {$presetName}. Нет готовых игроков.
+
+game-run-level-PreRoundLobby = Лобби до начала раунда
+game-run-level-InRound = В раунде
+game-run-level-PostRound = После раунда

@@ -1,0 +1,27 @@
+<Document>
+  ### Произнесение:
+  
+  1. Ave [italic](пауза)[/italic]
+  2. The [italic](пауза)[/italic]
+  3. Bronus
+  
+  ### Эффект:
+  
+  Сливает воедино 5 слитков кровавого железа лежащих вокруг и вашу мантию, делая её бронированной.
+
+  <GuideEntityEmbed Entity="MedievalCultClothingArmor" Scale="2" Caption="" Margin="0 0"/>
+
+  ## Заклятье магической робы
+  
+  ### Произнесение:
+  
+  1. Ave [italic](пауза)[/italic]
+  2. The [italic](пауза)[/italic]
+  3. Magical [italic](пауза)[/italic]
+  
+  ### Эффект:
+  
+  Сливает воедино 5 кровавой кожи лежащих вокруг и вашу мантию, делая её проводимее для магии.
+
+  <GuideEntityEmbed Entity="MedievalCultClothingMana" Scale="2" Caption="" Margin="0 0"/>
+</Document>

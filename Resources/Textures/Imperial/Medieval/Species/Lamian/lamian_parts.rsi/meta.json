@@ -8,7 +8,232 @@
   },
   "states": [
     {
+      "name": "body_tiger_fat",
+      "directions": 4
+    },
+    {
+      "name": "ears",
+      "directions": 4
+    },
+    {
+      "name": "ears_long",
+      "directions": 4
+    },
+    {
+      "name": "ears_low",
+      "directions": 4
+    },
+    {
+      "name": "ears_top",
+      "directions": 4
+    },
+    {
+      "name": "frills_aquatic",
+      "directions": 4
+    },
+    {
+      "name": "frills_axolotl",
+      "directions": 4
+    },
+    {
+      "name": "frills_big",
+      "directions": 4
+    },
+    {
+      "name": "frills_gills",
+      "directions": 4
+    },
+    {
+      "name": "frills_neckfull",
+      "directions": 4
+    },
+    {
+      "name": "frills_sharp",
+      "directions": 4
+    },
+    {
+      "name": "frills_short",
+      "directions": 4
+    },
+    {
+      "name": "frills_simple",
+      "directions": 4
+    },
+    {
+      "name": "frills_wide",
+      "directions": 4
+    },
+
+    {
       "name": "tail_lamian_prime",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "tail_smooth_primary",
+      "directions": 4
+    },
+    {
+      "name": "tail_smooth",
+      "directions": 4
+    },
+    {
+      "name": "tail_smooth_wagging",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "tail_spikes",
+      "directions": 4
+    },
+    {
+      "name": "tail_spikes_wagging",
       "directions": 4,
       "delays": [
         [

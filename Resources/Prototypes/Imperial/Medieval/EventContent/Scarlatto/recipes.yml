@@ -1,0 +1,606 @@
+- type: CP14Recipe
+  id: SheetGlass10
+  craftTime: 5
+  iconOverride: SheetGlass10
+  stacks:
+    MedievalGlina: 5
+  result: SheetGlass10
+
+- type: CP14Recipe
+  id: SheetSteel10
+  craftTime: 5
+  iconOverride: SheetSteel10
+  stacks:
+    MedievalSteelIngot: 1
+  result: SheetSteel10
+
+- type: CP14Recipe
+  id: MaterialDurathread10
+  craftTime: 5
+  iconOverride: MaterialDurathread10
+  stacks:
+    Plastic: 10
+    Cloth: 10
+  result: MaterialDurathread10
+
+- type: CP14Recipe
+  id: PartRodMetal5
+  craftTime: 5
+  iconOverride: PartRodMetal5
+  stacks:
+    Steel: 1
+  result: PartRodMetal5
+
+- type: CP14Recipe
+  id: SheetRGlass10
+  craftTime: 5
+  iconOverride: SheetRGlass10
+  stacks:
+    MetalRod: 10
+    Glass: 10
+  result: SheetRGlass10
+
+- type: CP14Recipe
+  id: SheetPGlass10
+  craftTime: 5
+  iconOverride: SheetPGlass10
+  stacks:
+    Plasma: 10
+    Glass: 10
+  result: SheetPGlass10
+
+- type: CP14Recipe
+  id: SheetRPGlass10
+  craftTime: 5
+  iconOverride: SheetRPGlass10
+  stacks:
+    PlasmaGlass: 10
+    MetalRod: 10
+  result: SheetRPGlass10
+
+- type: CP14Recipe
+  id: SheetUGlass10
+  craftTime: 5
+  iconOverride: SheetUGlass10
+  stacks:
+    Glass: 10
+    Uranium: 10
+  result: SheetUGlass10
+
+- type: CP14Recipe
+  id: SheetRUGlass10
+  craftTime: 5
+  iconOverride: SheetRUGlass10
+  stacks:
+    UraniumGlass: 10
+    MetalRod: 10
+  result: SheetRUGlass10
+
+- type: CP14Recipe
+  id: MedievalWindowCraft
+  craftTime: 10
+  iconOverride: MedievalWindowCraft
+  stacks:
+    Glass: 5
+  result: MedievalWindowCraft
+
+- type: CP14Recipe
+  id: MedievalArmWindowCraft
+  craftTime: 10
+  iconOverride: MedievalArmWindowCraft
+  stacks:
+    ReinforcedGlass: 5
+  result: MedievalArmWindowCraft
+
+- type: CP14Recipe
+  id: MedievalGrilleCraft
+  craftTime: 10
+  iconOverride: MedievalGrilleCraft
+  stacks:
+    MetalRod: 8
+  result: MedievalGrilleCraft
+
+- type: CP14Recipe
+  id: MedievalComputerFrameCraft
+  craftTime: 10
+  iconOverride: MedievalComputerFrameCraft
+  stacks:
+    Steel: 5
+  result: MedievalComputerFrameCraft
+
+- type: CP14Recipe
+  id: MedievalUnfinishedMachineFrameCraft
+  craftTime: 10
+  iconOverride: MedievalUnfinishedMachineFrameCraft
+  stacks:
+    Steel: 5
+  result: MedievalUnfinishedMachineFrameCraft
+
+- type: CP14Recipe
+  id: MedievalCombatKnife
+  craftTime: 20
+  iconOverride: MedievalCombatKnife
+  stacks:
+    Plastic: 5
+    Plasteel: 12
+  result: MedievalCombatKnife
+
+- type: CP14Recipe
+  id: MedievalTruncheon
+  craftTime: 20
+  iconOverride: MedievalTruncheon
+  stacks:
+    Plastic: 10
+    Plasteel: 15
+    Durathread: 2
+  result: MedievalTruncheon
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorStandard
+  craftTime: 20
+  iconOverride: MedievalClothingOuterArmorStandard
+  stacks:
+    Plastic: 5
+    Plasteel: 10
+    Durathread: 15
+  result: MedievalClothingOuterArmorStandard
+
+- type: CP14Recipe
+  id: SheetPlasma1
+  craftTime: 5
+  iconOverride: SheetPlasma1
+  stacks:
+    PlasmaOre: 1
+    MedievalCoal: 1
+  result: SheetPlasma1
+
+- type: CP14Recipe
+  id: SheetPlasma10
+  craftTime: 15
+  iconOverride: SheetPlasma10
+  stacks:
+    PlasmaOre: 10
+    MedievalCoal: 10
+  result: SheetPlasma10
+
+- type: CP14Recipe
+  id: SheetUranium1
+  craftTime: 5
+  iconOverride: SheetUranium1
+  stacks:
+    UraniumOre: 1
+    MedievalCoal: 1
+  result: SheetUranium1
+
+- type: CP14Recipe
+  id: SheetUranium10
+  craftTime: 15
+  iconOverride: SheetUranium10
+  stacks:
+    UraniumOre: 10
+    MedievalCoal: 10
+  result: SheetUranium10
+
+- type: CP14Recipe
+  id: MedievalHatchetEvent
+  craftTime: 20
+  iconOverride: MedievalHatchetEvent
+  stacks:
+    Steel: 12
+    Plastic: 5
+    WoodPlank: 4
+  result: MedievalHatchetEvent
+
+- type: CP14Recipe
+  id: MedievalPickaxeEvent
+  craftTime: 20
+  iconOverride: MedievalPickaxe
+  stacks:
+    Steel: 14
+    WoodPlank: 8
+  result: MedievalPickaxe
+
+- type: latheRecipePack
+  id: MedievalToolsStatic
+  recipes:
+  - MedievalWirecutterCraft
+  - MedievalScrewdriverCraft
+  - MedievalWrenchCraft
+  - MedievalCrowbarCraft
+  - Welder
+  - SprayPainter
+  - SprayPainterAmmo
+  - FlashlightLantern
+  - UtilityBelt
+  - HandheldGPSBasic
+  - ClothingHeadHatWelding
+
+- type: latheRecipePack
+  id: MedievalPartsStatic
+  recipes:
+  - MedievalCapacitorStockPart
+  - MedievalMicroManipulatorStockPart
+  - MedievalMatterBinStockPart
+  - MedievalProximitySensor
+
+- type: latheRecipePack
+  id: MedievalPowerCellsStatic
+  recipes:
+  - MedievalPowerCellSmall
+  - MedievalPowerCellMedium
+  - MedievalPowerCellHigh
+  - MedievalPowerCellHyper
+
+- type: latheRecipePack
+  id: MedievalBlanks
+  recipes:
+  - MedievalWeaponTurretNanoTrasenCraftEventCraft
+  - MedievalThruster_smallCraftCraft
+  - MedievalWallShuttleStarCorpsCraftCraft
+  - MedievalDarkWallShuttleStarCorpsCraftCraft
+  - MedievalPlasmaWindowCraftCraft
+  - MedievalReinforcedPlasmaWindowCraftCraft
+  - MedievalUraniumWindowCraftCraft
+  - MedievalReinforcedUraniumWindowCraftCraft
+  - MedievalDarkAirlockStarCorpsCraftCraft
+  - MedievalAPCBasicCraftCraft
+
+- type: latheRecipePack
+  id: MedievalWeaponsAutolath
+  recipes:
+  - MedievalWeaponPulseCarbineEvent
+  - MedievalWeaponAdvancedLaser
+  - MedievalFlashlightSecliteCraft
+  - MedievalFlashCraft
+
+- type: latheRecipePack
+  id: MedievalElectronicsStatic
+  recipes:
+  - SMESMachineCircuitboard
+  - SubstationMachineCircuitboard
+  - CellRechargerCircuitboard
+  - WeaponCapacitorRechargerCircuitboard
+  - PortableGeneratorPacmanMachineCircuitboard
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+  - PortableGeneratorJrPacmanMachineCircuitboard
+  - HydroponicsTrayMachineCircuitboard
+  - MicrowaveMachineCircuitboard
+  - ReagentGrinderMachineCircuitboard
+
+- type: latheRecipePack
+  id: MedievalMedicStatic
+  recipes:
+  - Beaker
+  - LargeBeaker
+  - Jug
+  - MedievalRegenerativeMesh
+  - MedievalMedicatedSuture
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalRegenerativeMesh
+  result: OintmentAdvanced1
+  materials:
+    Durathread: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalMedicatedSuture
+  result: BrutepackAdvanced1
+  materials:
+    Durathread: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalFlashlightSecliteCraft
+  result: MedievalFlashlightSeclite
+  materials:
+    Steel: 600
+    Glass: 500
+    Plastic: 400
+    Capacitor: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalFlashCraft
+  result: MedievalFlash
+  materials:
+    Plastic: 300
+    Glass: 200
+    Capacitor: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalWeaponPulseCarbineEvent
+  result: WeaponPulseCarbineEvent
+  materials:
+    Plasteel: 1000
+    Plasma: 500
+    Capacitor: 200
+    Manipulator: 200
+    BluespaceEssence: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalWeaponAdvancedLaser
+  result: WeaponAdvancedLaser
+  materials:
+    Plasteel: 700
+    Uranium: 500
+    MatterBin: 200
+    Manipulator: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalDarkAirlockStarCorpsCraftCraft
+  result: MedievalDarkAirlockStarCorpsCraft
+  materials:
+    Plasteel: 1300
+    Manipulator: 100
+    ProximitySensor: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalAPCBasicCraftCraft
+  result: MedievalAPCBasicCraft
+  materials:
+    Steel: 800
+    Glass: 1000
+    Capacitor: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalWeaponTurretNanoTrasenCraftEventCraft
+  result: MedievalWeaponTurretNanoTrasenCraftEvent
+  materials:
+    Plasteel: 1500
+    Steel: 1000
+    Capacitor: 200
+    Manipulator: 500
+    ProximitySensor: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalThruster_smallCraftCraft
+  result: MedievalThruster_smallCraft
+  materials:
+    Plasteel: 1200
+    Steel: 1000
+    MatterBin: 400
+    BluespaceEssence: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalWallShuttleStarCorpsCraftCraft
+  result: MedievalWallShuttleStarCorpsCraft
+  materials:
+    Plasteel: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalDarkWallShuttleStarCorpsCraftCraft
+  result: MedievalDarkWallShuttleStarCorpsCraft
+  materials:
+    Plasteel: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalPlasmaWindowCraftCraft
+  result: MedievalPlasmaWindowCraft
+  materials:
+    PlasmaGlass: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalReinforcedPlasmaWindowCraftCraft
+  result: MedievalReinforcedPlasmaWindowCraft
+  materials:
+    ReinforcedPlasmaGlass: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalUraniumWindowCraftCraft
+  result: MedievalUraniumWindowCraft
+  materials:
+    UraniumGlass: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalReinforcedUraniumWindowCraftCraft
+  result: MedievalReinforcedUraniumWindowCraft
+  materials:
+    ReinforcedUraniumGlass: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalWirecutterCraft
+  result: MedievalWirecutter
+  materials:
+    Steel: 500
+    Plastic: 300
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalScrewdriverCraft
+  result: MedievalScrewdriver
+  materials:
+    Steel: 500
+    Plastic: 300
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalCrowbarCraft
+  result: MedievalCrowbar
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalWrenchCraft
+  result: MedievalWrenchEvent
+  materials:
+    Steel: 700
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalCapacitorStockPart
+  result: CapacitorStockPart
+  materials:
+    Steel: 500
+    Plastic: 300
+    Plasma: 300
+    Uranium: 200
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalMicroManipulatorStockPart
+  result: MicroManipulatorStockPart
+  materials:
+    Steel: 300
+    Plastic: 200
+    MedievalGold: 50
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalMatterBinStockPart
+  result: MatterBinStockPart
+  materials:
+    Plasteel: 400
+    Glass: 300
+    MedievalGold: 30
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: MedievalProximitySensor
+  result: ProximitySensor
+  materials:
+    Plastic: 500
+    Glass: 200
+    MedievalGold: 30
+
+- type: latheRecipe
+  parent: BasePowerCellRecipe
+  id: MedievalPowerCellSmall
+  result: PowerCellSmallPrinted
+  completetime: 1
+  materials:
+    Steel: 100
+    Plastic: 100
+
+- type: latheRecipe
+  parent: BasePowerCellRecipe
+  id: MedievalPowerCellMedium
+  result: PowerCellMediumPrinted
+  completetime: 6
+  materials:
+    Steel: 300
+    Glass: 300
+    Plastic: 100
+    MedievalGold: 20
+
+- type: latheRecipe
+  parent: BasePowerCellRecipe
+  id: MedievalPowerCellHigh
+  result: PowerCellHighPrinted
+  completetime: 10
+  materials:
+    Steel: 500
+    Glass: 400
+    Plastic: 300
+    MedievalGold: 40
+    Plasma: 200
+
+- type: latheRecipe
+  parent: BasePowerCellRecipe
+  id: MedievalPowerCellHyper
+  result: PowerCellHyperPrinted
+  completetime: 10
+  materials:
+    Steel: 800
+    Glass: 700
+    Plasma: 300
+    MedievalGold: 200
+    MatterBin: 100
+
+# Weaponery
+
+- type: CP14Recipe
+  id: WeaponPistolViperEvent
+  craftTime: 10
+  iconOverride: WeaponPistolViperEvent
+  stacks:
+    Steel: 7
+    Manipulator: 1
+    Plastic: 3
+  result: WeaponPistolViperEvent
+
+- type: CP14Recipe
+  id: WeaponPulseCarbineEvent
+  craftTime: 10
+  iconOverride: WeaponPulseCarbineEvent
+  stacks:
+    Plasteel: 10
+    Plasma: 5
+    Capacitor: 2
+    Manipulator: 2
+    BluespaceEssence: 1
+  result: WeaponPulseCarbineEvent
+
+- type: CP14Recipe
+  id: WeaponPulsePistolEvent
+  craftTime: 10
+  iconOverride: WeaponPulsePistolEvent
+  stacks:
+    Plasteel: 6
+    Plasma: 4
+    Capacitor: 1
+    Manipulator: 1
+    Uranium: 8
+  result: WeaponPulsePistolEvent
+
+- type: CP14Recipe
+  id: WeaponRifleM90GrenadeLauncherImperialEvent
+  craftTime: 10
+  iconOverride: WeaponRifleM90GrenadeLauncherImperialEvent
+  stacks:
+    Plasteel: 14
+    Plastic: 12
+    MatterBin: 1
+    Manipulator: 2
+    Glass: 3
+  result: WeaponRifleM90GrenadeLauncherImperialEvent
+
+- type: CP14Recipe
+  id: WeaponAdvancedLaserEvent
+  craftTime: 10
+  iconOverride: WeaponAdvancedLaserEvent
+  stacks:
+    Plasteel: 8
+    Plasma: 3
+    Capacitor: 1
+    MatterBin: 1
+    Uranium: 10
+  result: WeaponAdvancedLaserEvent
+
+- type: CP14Recipe
+  id: WeaponSniperHristovEvent
+  craftTime: 10
+  iconOverride: WeaponSniperHristovEvent
+  stacks:
+    Plasteel: 20
+    Plastic: 15
+    Glass: 5
+    MatterBin: 1
+    Manipulator: 3
+  result: WeaponSniperHristovEvent
+
+- type: CP14Recipe
+  id: WeaponRevolverDeckardEvent
+  craftTime: 10
+  iconOverride: WeaponRevolverDeckardEvent
+  stacks:
+    Plasteel: 10
+    Plastic: 8
+    MatterBin: 1
+    Manipulator: 1
+  result: WeaponRevolverDeckardEvent

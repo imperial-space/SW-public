@@ -1,3 +1,23 @@
+# Blood
+
+- type: reagent
+  id: BeastmenBlood
+  parent: Blood
+  name: reagent-name-beastmen-blood
+  slipData: null
+  desc: reagent-desc-beastmen-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-beastmen-blood
+  color: "#9b0015"
+  flavor: beastmenblood
+
+- type: flavor
+  id: beastmenblood
+  flavorType: Complex
+  description: flavor-complex-beastmen-blood
+
+
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
@@ -11,7 +31,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: Blood
+      - ReagentId: BeastmenBlood
         Quantity: 10
 
 - type: entity
@@ -27,7 +47,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
-      - ReagentId: Blood
+      - ReagentId: BeastmenBlood
         Quantity: 20
 
 - type: entity
@@ -43,7 +63,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: Blood
+      - ReagentId: BeastmenBlood
         Quantity: 10
 
 - type: entity

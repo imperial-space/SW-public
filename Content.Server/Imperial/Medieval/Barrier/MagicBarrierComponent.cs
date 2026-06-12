@@ -1,5 +1,7 @@
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using System.Numerics;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.MagicBarrier.Components
 {
@@ -20,19 +22,22 @@ namespace Content.Server.MagicBarrier.Components
 
         [DataField]
         public float MaxStability = 60f;
+
         [DataField]
         public float Lose = 0.7f;
+
         [DataField]
         public float Rate = 1.5f;
+
         [DataField]
         public int Cycle = 0;
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnScrollAdd = "/Audio/Imperial/Medieval/scroll_use.ogg";
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnFinish = "/Audio/Imperial/Medieval/magic_craft.ogg";
 
-        // starfall
         [DataField]
         public float StarfallCurrentPoints = 0f;
 
@@ -45,5 +50,19 @@ namespace Content.Server.MagicBarrier.Components
         [DataField]
         public float StarfallRandomise = 10;
 
+        [DataField]
+        public Dictionary<NetUserId, int> ReviveCount = new();
+
+        [DataField]
+        public TimeSpan ElementalRiftNextSpawnTime = TimeSpan.Zero;
+
+        [DataField]
+        public float ElementalRiftStabilityLossPerMinute = 0.0015f;
+
+        [DataField]
+        public float ElementalRiftMinSpawnMinutes = 30f;
+
+        [DataField]
+        public float ElementalRiftMaxSpawnMinutes = 60f;
     }
 }

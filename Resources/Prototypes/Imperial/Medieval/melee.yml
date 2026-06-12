@@ -1,6 +1,6 @@
 - type: entity
   name: bone spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: SpearBone
   description: A spear made of bones.
   components:
@@ -26,7 +26,11 @@
       types:
         Piercing: 9
     angle: 0
-    animation: WeaponArcThrust
+    #animation: WeaponArcThrust
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1.8
   - type: Item
     size: Huge
   - type: Clothing
@@ -34,7 +38,7 @@
     slots:
     - back
   - type: Wieldable
-    wieldTime: 0.5
+    #wieldTime: 0.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -43,8 +47,8 @@
     damage:
       types:
         Piercing: 21
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -71,7 +75,7 @@
 
 - type: entity
   name: MedievalDaggerNecro
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerNecro
   description: A deadly knife intended for melee confrontations.
   components:
@@ -98,6 +102,10 @@
     resetOnHandSelected: false
     soundHit:
       path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
   - type: RadiationSource
     intensity: 1
     slope: 1
@@ -125,7 +133,7 @@
 
 - type: entity
   name: MedievalDaggerShadow
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerShadow
   description: A deadly knife intended for melee confrontations.
   components:
@@ -151,6 +159,10 @@
     resetOnHandSelected: false
     soundHit:
       path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -170,7 +182,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerAdmin
   description: A deadly knife intended for melee confrontations.
   components:
@@ -191,8 +203,12 @@
         ParryAble: 1
     soundHit:
       path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -229,14 +245,17 @@
     wideAnimationRotation: -140
     attackRate: 0.65
     clickDamageModifier: 1.28
-    range: 3.5
+    range: 2.4
     damage:
       types:
         Piercing: 15
         Caustic: 4
         ParryAble: 1
     angle: 0
-    animation: WeaponArcThrust
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1.8
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     soundSwing:
@@ -253,8 +272,8 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -270,7 +289,7 @@
 
 - type: entity
   name: medieval spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearAdmin
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -292,7 +311,10 @@
         Piercing: 38
         ParryAble: 1
     angle: 0
-    animation: WeaponArcThrust
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1.8
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Item
@@ -307,8 +329,8 @@
     damage:
       types:
         Piercing: 14
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -322,13 +344,13 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalWoodenSword
   description: An ancient war blade.
   components:
   - type: RDWeight
     value: 2
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
     state: icon
@@ -347,6 +369,10 @@
         ParryAble: 1
     soundHit:
       path: /Audio/Imperial/Medieval/wooden-hit.ogg
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
   - type: MedievalMeleeResource
     resourceWaste: 0.2
   - type: Item
@@ -382,7 +408,7 @@
 
 - type: entity
   name: MedievalBanjoInstrument
-  parent: BanjoInstrument
+  parent: [ BanjoInstrument, BaseCrushingCharged ]
   id: MedievalBanjoInstrument
   description: music!
   components:
@@ -395,6 +421,10 @@
     damage:
       types:
         Blunt: 7
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
   - type: Item
     size: Normal
   - type: DamageOtherOnHit
@@ -457,6 +487,10 @@
         Piercing: 6
         Caustic: 3.5
         ParryAble: 1
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     resetOnHandSelected: false
   #- type: QualityOfItem
   #  qualityWeights:
@@ -511,6 +545,7 @@
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
     attackRate: 0.42
+    angle: 150
     damage:
       types:
         Piercing: 10
@@ -518,6 +553,10 @@
         Structural: 3
         Caustic: 6
         ParryAble: 1
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   #- type: QualityOfItem
@@ -542,7 +581,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdAdmin
   description: A medieval poleaxe.
   components:
@@ -578,6 +617,10 @@
         Slash: 90
         Blunt: 120
         ParryAble: 1
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Wieldable
@@ -595,7 +638,7 @@
 
 - type: entity
   name: iron hammer
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHammer
   description: A medieval hammer.
   components:
@@ -621,6 +664,11 @@
     clickDamageModifier: 2.2
     wideAnimationRotation: -140
     attackRate: 0.15
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    angle: 120
+    cPAnimationOffset: 1
     damage:
       types:
         Blunt: 12
@@ -630,7 +678,7 @@
     resourceWaste: 0.7
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3.5
+    #wieldTime: 3.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -665,7 +713,7 @@
 
 - type: entity
   name: hoe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalHoe
   description: It's used for removing weeds or scratching your back.
   components:
@@ -677,6 +725,10 @@
     sprite: Imperial/Medieval/Melee/medieval_hoe.rsi
     state: icon
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
     damage:
@@ -702,7 +754,7 @@
 
 - type: entity
   name: hatchet
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalHatchet
   description: A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood.
   components:
@@ -716,6 +768,10 @@
   - type: MeleeParry
     parryChanse: 0.24
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
     swingLeft: false
@@ -741,8 +797,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.1,0.1
+  #- type: EmbeddableProjectile
+    #offset: 0.1,0.1
   - type: Tag
     tags:
     - Spear
@@ -766,7 +822,7 @@
 
 - type: entity
   name: scythe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalScythe
   description: A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow.
   components:
@@ -786,6 +842,10 @@
   - type: MeleeParry
     parryChanse: 0.45
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.3
     wideAnimationRotation: -140
     damage:
@@ -840,6 +900,10 @@
     sprite: Imperial/Medieval/Melee/medieval_clippers.rsi
     state: icon
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.2
     damage:
       types:
@@ -864,7 +928,7 @@
     resourceCount: 2
 
 - type: entity
-  parent: Pickaxe
+  parent: [ Pickaxe, BaseTwoHandedCharged ]
   id: MedievalPickaxe
   name: MedievalPickaxe
   description: MedievalPickaxe
@@ -883,6 +947,10 @@
   - type: MeleeParry
     parryChanse: 0.3
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.37
     damage:
       types:
@@ -907,7 +975,7 @@
     resourceCount: 2
 
 - type: entity
-  parent: Pickaxe
+  parent: [ Pickaxe, BaseTwoHandedCharged ]
   id: MedievalPickaxeSteel
   name: MedievalPickaxe
   description: MedievalPickaxe
@@ -926,6 +994,10 @@
   - type: MeleeParry
     parryChanse: 0.32
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.42
     damage:
       types:
@@ -951,13 +1023,17 @@
 
 - type: entity
   name: MedievalIngotGold
-  parent: Gohei
+  parent: [ Gohei, BaseOneHandedCharged ]
   id: MedievalKnut
   description: MedievalKnut
   components:
   - type: StaminaDamageOnHit
     damage: 8
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     attackRate: 1.1
     damage:
       types:
@@ -987,7 +1063,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 10
+      value: 7
     - type: Sprite
       sprite: Imperial/Medieval/Shields/woodknight.rsi
       state: shield
@@ -1021,20 +1097,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 110
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 28
-    - type: HeldSpeedModifier
-      walkModifier: 0.75
-      sprintModifier: 0.75
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -1081,7 +1153,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 7
+      value: 5
     - type: Sprite
       sprite: Imperial/Medieval/Shields/wooden.rsi
       state: shield
@@ -1115,20 +1187,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 60
+            damage: 120
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 15
-    - type: HeldSpeedModifier
-      walkModifier: 0.9
-      sprintModifier: 0.9
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -1137,7 +1205,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 4
+      value: 3
     - type: Sprite
       sprite: Imperial/Medieval/Shields/buckler.rsi
       state: shield
@@ -1171,20 +1239,28 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 45
+            damage: 90
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 11
-    - type: HeldSpeedModifier
-      walkModifier: 0.97
-      sprintModifier: 0.97
-      mirrorClothingModifier: false
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldBuckler
+  id: MedievalWoodenShieldBucklerRoyal
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/royalbuckler.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/royalbuckler.rsi
 
 - type: entity
   name: iron shield
@@ -1193,7 +1269,7 @@
   description: Iron shield.
   components:
     - type: RDWeight
-      value: 14
+      value: 10
     - type: EmitSoundOnLand
       sound:
         collection: MedievalIronDrop
@@ -1227,20 +1303,17 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 150
+            damage: 300
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
-              sound: /Audio/Effects/metalbreak.ogg
+              sound:
+                path: /Audio/Effects/metalbreak.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 40
-    - type: HeldSpeedModifier
-      walkModifier: 0.9
-      sprintModifier: 0.9
-      mirrorClothingModifier: false
     - type: Meltable
       resourceCount: 7
 
@@ -1251,7 +1324,7 @@
   description: Iron shield.
   components:
     - type: RDWeight
-      value: 6
+      value: 4
     - type: EmitSoundOnLand
       sound:
         collection: MedievalIronDrop
@@ -1291,20 +1364,17 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 78
+            damage: 156
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
-              sound: /Audio/Effects/metalbreak.ogg
+              sound:
+                path: /Audio/Effects/metalbreak.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 20
-    - type: HeldSpeedModifier
-      walkModifier: 0.95
-      sprintModifier: 0.95
-      mirrorClothingModifier: false
     - type: Meltable
       resourceCount: 7
 
@@ -1342,7 +1412,7 @@
     Piercing: 5
 
 - type: entity
-  parent: Shovel
+  parent: [ Shovel, BaseCrushingCharged ]
   id: MedievalShovel
   name: MedievalShovel
   description: MedievalShovel
@@ -1354,6 +1424,10 @@
           variation: 0.02
           volume: 1
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     attackRate: 0.7
   - type: MeleeThrowOnHit
     distance: 0.2
@@ -1362,12 +1436,6 @@
     resourceCount: 1
   - type: Item
     size: Large
-
-- type: entity
-  id: MedievalWrench
-  name: MedievalWrench
-  description: MedievalWrench
-  parent: Wrench
 
 - type: entity
   name: falshion
@@ -1393,6 +1461,29 @@
 
 - type: entity
   name: falshion
+  parent: MedievalFalshionT3
+  id: MedievalFalshionT3Viking
+  description: An ancient war blade.
+  components:
+  - type: ToggleableLight
+    turnOnSound:
+      path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
+      volume: -1
+    turnOffSound:
+      path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
+      volume: -1
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    energy: 3
+    color: "#b19155"
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/viking.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/viking.rsi
+
+- type: entity
+  name: falshion
   parent: MedievalFalshionT3Steel
   id: MedievalFalshionT3SteelGold
   description: An ancient war blade.
@@ -1401,6 +1492,51 @@
     sprite: Imperial/Medieval/Melee/iron_sword_gold.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Melee/iron_sword_gold.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3Steel
+  id: MedievalFalshionT3SteelViking
+  description: An ancient war blade.
+  components:
+  - type: ToggleableLight
+    turnOnSound:
+      path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
+      volume: -1
+    turnOffSound:
+      path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
+      volume: -1
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    energy: 3
+    color: "#b19155"
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/viking.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/viking.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3Steel
+  id: MedievalFalshionT3SteelFoxei
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3
+  id: MedievalFalshionT3Foxei
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/foxei.rsi
 
 - type: entity
   name: falshion
@@ -1437,7 +1573,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3
   description: An ancient war blade.
   components:
@@ -1458,13 +1594,17 @@
   - type: MeleeParry
     parryChanse: 0.7
   - type: MeleeWeapon
-    ParryAble: 1
     clickDamageModifier: 1.15
     wideAnimationRotation: -140
     attackRate: 0.9
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     damage:
       types:
         Slash: 16.5
+        ParryAble: 1
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     soundSwing:
@@ -1489,8 +1629,8 @@
     damage:
       types:
         Slash: 6
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: MedievalItemRust
   #- type: QualityOfItem
   #  qualityWeights:
@@ -1511,7 +1651,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerT3
   description: A deadly knife intended for melee confrontations.
   components:
@@ -1527,6 +1667,10 @@
   - type: MeleeParry
     parryChanse: 0.12
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
     clickDamageModifier: 1.33
     resetOnHandSelected: false
     attackRate: 1.34
@@ -1573,7 +1717,7 @@
 
 - type: entity
   name: medieval spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -1593,13 +1737,16 @@
     clickDamageModifier: 1.28
     wideAnimationRotation: -140
     attackRate: 0.65
-    range: 2.3
+    range: 2.4
     damage:
       types:
         Piercing: 8
         ParryAble: 1
     angle: 0
-    animation: WeaponArcThrust
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1.8
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     soundSwing:
@@ -1614,7 +1761,7 @@
     - back
     - suitStorage
   - type: Wieldable
-    wieldTime: 0.5
+    #wieldTime: 0.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -1632,8 +1779,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -1663,7 +1810,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3
   description: An ancient war blade.
   components:
@@ -1677,7 +1824,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_mace.rsi
     state: icon
@@ -1687,6 +1834,10 @@
     clickDamageModifier: 1.26
     wideAnimationRotation: -140
     attackRate: 1.1
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     damage:
       types:
         Blunt: 7
@@ -1726,7 +1877,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3Heavy
   description: An ancient war blade.
   components:
@@ -1740,13 +1891,17 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/heavy_mace.rsi
     state: icon
   - type: MeleeParry
     parryChanse: 0.25
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.33
     wideAnimationRotation: -140
     attackRate: 0.72
@@ -1789,7 +1944,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdT3
   description: A medieval poleaxe.
   components:
@@ -1818,9 +1973,14 @@
   - type: MeleeParry
     parryChanse: 0.6
   - type: MeleeWeapon
+    angle: 150
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
-    attackRate: 0.4
+    attackRate: 0.26
     damage:
       types:
         Piercing: 9
@@ -1833,7 +1993,7 @@
     resourceWaste: 0.8
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -1846,8 +2006,8 @@
     damage:
       types:
         Slash: 12
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -1871,7 +2031,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronSekir
   description: A medieval poleaxe.
   components:
@@ -1893,11 +2053,16 @@
     sprite: Imperial/Medieval/Melee/sekir.rsi
     state: icon
   - type: MeleeParry
-    parryChanse: 0.55
+    parryChanse: 0.35
   - type: MeleeWeapon
+    angle: 135
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.54
+    attackRate: 0.35
     damage:
       types:
         Piercing: 6
@@ -1910,7 +2075,7 @@
     resourceWaste: 0.7
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -1923,8 +2088,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   - type: Clothing
     sprite: Imperial/Medieval/Melee/sekir.rsi
@@ -1953,7 +2118,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronSekirSteel
   description: A medieval poleaxe.
   components:
@@ -1975,11 +2140,16 @@
     sprite: Imperial/Medieval/Melee/sekir.rsi
     state: icon
   - type: MeleeParry
-    parryChanse: 0.55
+    parryChanse: 0.35
   - type: MeleeWeapon
+    angle: 135
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.6
+    attackRate: 0.4
     damage:
       types:
         Piercing: 10
@@ -1992,7 +2162,7 @@
     resourceWaste: 0.6
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2005,9 +2175,14 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/sekir.rsi
+    slots:
+    - back
+    - suitStorage
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -2027,8 +2202,610 @@
     sprintModifier: 0.85
 
 - type: entity
+  name: iron halberd
+  parent: MedievalIronHalberdT3
+  id: MedievalIronHalberdT3Deimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronHalberdT3Steel
+  id: MedievalIronHalberdT3SteelDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronSekirSteel
+  id: MedievalIronSekirSteelDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronSekir
+  id: MedievalIronSekirDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron zweihander
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalIronZweihander
+  description: A medieval zweihander.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.2
+    wideAnimationRotation: -140
+    attackRate: 0.34
+    damage:
+      types:
+        Piercing: 6
+        Slash: 6
+        Structural: 2
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.6
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 6
+        Structural: 9
+        Slash: 15
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/zweihander.rsi
+    state: icon
+
+- type: entity
+  name: steel zweihander
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalIronZweihanderSteel
+  description: A medieval zweihander.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.22
+    wideAnimationRotation: -140
+    attackRate: 0.4
+    damage:
+      types:
+        Piercing: 10
+        Slash: 15.7
+        Structural: 3
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.5
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 9
+        Structural: 17
+        Slash: 12
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/zweihander.rsi
+    state: icon
+
+- type: entity
+  name: iron claymore
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalIronClaymore
+  description: A medieval claymore.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.2
+    wideAnimationRotation: -140
+    attackRate: 0.34
+    damage:
+      types:
+        Piercing: 6
+        Slash: 6
+        Structural: 2
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.6
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 8
+        Structural: 9
+        Slash: 14
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/claymore.rsi
+    state: icon
+
+- type: entity
+  name: steel claymore
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalIronClaymoreSteel
+  description: A medieval claymore.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.22
+    wideAnimationRotation: -140
+    attackRate: 0.4
+    damage:
+      types:
+        Piercing: 8
+        Slash: 17.7
+        Structural: 3
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.5
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 9
+        Structural: 17
+        Slash: 12
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/claymore.rsi
+    state: icon
+
+- type: entity
+  name: claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreKosmos
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+
+- type: entity
+  name: steel claymore
+  parent: MedievalIronClaymoreSteel
+  id: MedievalIronClaymoreSteelKosmos
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+
+- type: entity
+  name: claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreAbibi
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+  - type: MeleeWeapon
+    angle: 140
+    animation: WeaponArcAbibi
+    wideAnimation: WeaponArcAbibi
+    clickDamageModifier: 1.2
+    attackRate: 0.34
+    damage:
+      types:
+        Piercing: 6
+        Slash: 6
+        Structural: 2
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/cosmic_expansion.ogg
+      params:
+          variation: 0.02
+          volume: -2
+
+- type: entity
+  name: steel claymore
+  parent: MedievalIronClaymoreSteel
+  id: MedievalIronClaymoreSteelAbibi
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+  - type: MeleeWeapon
+    angle: 140
+    animation: WeaponArcAbibi
+    wideAnimation: WeaponArcAbibi
+    clickDamageModifier: 1.22
+    attackRate: 0.4
+    damage:
+      types:
+        Piercing: 8
+        Slash: 17.7
+        Structural: 3
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/cosmic_expansion.ogg
+      params:
+          variation: 0.02
+          volume: -2
+
+- type: entity
+  name: steel zweihander
+  parent: MedievalIronZweihanderSteel
+  id: MedievalIronZweihanderSteelAbibi
+  description: A medieval zweihander.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+
+- type: entity
+  name: iron zweihander
+  parent: MedievalIronZweihander
+  id: MedievalIronZweihanderAbibi
+  description: A medieval zweihander.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3
+  id: MedievalDaggerT3Kosmos
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+    size: Small
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3Steel
+  id: MedievalDaggerT3SteelKosmos
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+    size: Small
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+
+- type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3Legion
   description: An ancient war blade.
   components:
@@ -2049,6 +2826,10 @@
   - type: MeleeParry
     parryChanse: 0.67
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.15
     wideAnimationRotation: -140
     attackRate: 1.1
@@ -2080,8 +2861,8 @@
     damage:
       types:
         Slash: 10
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -2126,6 +2907,36 @@
     state: icon
   - type: Clothing
     sprite: Imperial/Medieval/Melee/dark_sword.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
+
+- type: entity
+  name: dark blade
+  parent: MedievalFalshionT3Legion
+  id: MedievalFalshionT3DarkerSword
+  description: Is a mysterious and powerful weapon covered in age-old secrets. Its curved black blade, as if absorbing light, shines only in the light of the moon, thanks to ancient rune inscriptions that twinkle like stars in the night sky. The handle, wrapped in black leather and adorned with mysterious symbols, radiates coldness, causing those skilled in the art of combat to feel an inner strength and attraction.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
+
+- type: entity
+  name: dark blade
+  parent: MedievalFalshionT3LegionSteel
+  id: MedievalFalshionT3DarkerSwordSteel
+  description: Is a mysterious and powerful weapon covered in age-old secrets. Its curved black blade, as if absorbing light, shines only in the light of the moon, thanks to ancient rune inscriptions that twinkle like stars in the night sky. The handle, wrapped in black leather and adorned with mysterious symbols, radiates coldness, causing those skilled in the art of combat to feel an inner strength and attraction.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/darksword.rsi
   - type: MedievalMeleeResource
     safeToHitGroup: tree
 
@@ -2208,6 +3019,10 @@
   - type: MeleeParry
     parryChanse: 0.67
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.15
     wideAnimationRotation: -140
     attackRate: 1.15
@@ -2239,8 +3054,8 @@
     damage:
       types:
         Slash: 11
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -2260,7 +3075,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3Steel
   description: An ancient war blade.
   components:
@@ -2281,6 +3096,10 @@
   - type: MeleeParry
     parryChanse: 0.7
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.15
     wideAnimationRotation: -140
     attackRate: 0.9
@@ -2312,8 +3131,8 @@
     damage:
       types:
         Slash: 10.5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -2347,6 +3166,10 @@
   - type: MeleeParry
     parryChanse: 0.12
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
     clickDamageModifier: 1.33
     attackRate: 1.35
     range: 1
@@ -2388,7 +3211,7 @@
 
 - type: entity
   name: medieval spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearT3Steel
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -2408,13 +3231,16 @@
     clickDamageModifier: 1.28
     wideAnimationRotation: -140
     attackRate: 0.6
-    range: 2.3
+    range: 2.4
     damage:
       types:
         Piercing: 9
         ParryAble: 1
     angle: 0
-    animation: WeaponArcThrust
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1.8
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     soundSwing:
@@ -2429,7 +3255,7 @@
     - back
     - suitStorage
   - type: Wieldable
-    wieldTime: 0.5
+    #wieldTime: 0.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2447,8 +3273,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -2478,7 +3304,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3Steel
   description: An ancient war blade.
   components:
@@ -2492,13 +3318,17 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_mace.rsi
     state: icon
   - type: MeleeParry
     parryChanse: 0.1
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.26
     wideAnimationRotation: -140
     attackRate: 1.1
@@ -2541,7 +3371,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3SteelHeavy
   description: An ancient war blade.
   components:
@@ -2555,13 +3385,17 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/heavy_mace.rsi
     state: icon
   - type: MeleeParry
     parryChanse: 0.25
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.33
     wideAnimationRotation: -140
     attackRate: 0.72
@@ -2604,7 +3438,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdT3Steel
   description: A medieval poleaxe.
   components:
@@ -2628,9 +3462,14 @@
   - type: MeleeParry
     parryChanse: 0.6
   - type: MeleeWeapon
+    angle: 150
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
-    attackRate: 0.4
+    attackRate: 0.25
     damage:
       types:
         Piercing: 13
@@ -2643,7 +3482,7 @@
     resourceWaste: 0.7
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2656,8 +3495,8 @@
     damage:
       types:
         Slash: 28
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   - type: Clothing
     sprite: Imperial/Medieval/Melee/halberd.rsi
@@ -2686,7 +3525,7 @@
 
 - type: entity
   name: iron hammer
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHammerSteel
   description: A medieval hammer.
   components:
@@ -2709,6 +3548,11 @@
   - type: MeleeParry
     parryChanse: 0.6
   - type: MeleeWeapon
+    angle: 120
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 2.2
     wideAnimationRotation: -140
     attackRate: 0.15
@@ -2721,7 +3565,7 @@
     resourceWaste: 0.7
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3.5
+    #wieldTime: 3.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2756,7 +3600,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionForest
   description: An ancient war blade.
   components:
@@ -2773,6 +3617,10 @@
   - type: MeleeParry
     parryChanse: 0.67
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
     attackRate: 1.1
@@ -2820,7 +3668,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionVamp
   description: An ancient war blade.
   components:
@@ -2837,6 +3685,10 @@
   - type: MeleeParry
     parryChanse: 0.7
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.26
     wideAnimationRotation: -140
     attackRate: 1.1
@@ -2888,7 +3740,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdBloodBerserk
   description: A medieval poleaxe.
   components:
@@ -2908,6 +3760,10 @@
   - type: MeleeParry
     parryChanse: 0.7
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
     attackRate: 0.3
@@ -2920,7 +3776,7 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Wieldable
-    wieldTime: 3.5
+    #wieldTime: 3.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2951,7 +3807,7 @@
 
 - type: entity
   name: LongAxe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalLongAxe
   description: An ancient war blade.
   components:
@@ -2970,6 +3826,10 @@
   - type: MeleeParry
     parryChanse: 0.75
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 10
     clickDamageModifier: 2
     wideAnimationRotation: -180
     range: 50
@@ -3001,7 +3861,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerT3Bone
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3015,6 +3875,10 @@
     size: Small
     sprite: Imperial/Medieval/Melee/dagger_bone.rsi
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
     clickDamageModifier: 1.3
     attackRate: 1.32
     range: 1
@@ -3040,8 +3904,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3063,7 +3927,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalGoblinFalshion
   description: An ancient war blade.
   components:
@@ -3084,6 +3948,10 @@
   - type: MeleeParry
     parryChanse: 0.6
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.15
     wideAnimationRotation: -140
     attackRate: 1.05
@@ -3116,8 +3984,8 @@
     damage:
       types:
         Slash: 6
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -3137,7 +4005,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionNecro
   description: An ancient war blade.
   components:
@@ -3156,6 +4024,10 @@
   - type: MeleeParry
     parryChanse: 0.7
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     clickDamageModifier: 1.18
     wideAnimationRotation: -140
     attackRate: 0.95
@@ -3188,8 +4060,8 @@
     damage:
       types:
         Slash: 10.5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -3209,7 +4081,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseOneHandedCharged ]
   id: MedievalShortSword
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3233,6 +4105,10 @@
   - type: MeleeParry
     parryChanse: 0.55
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.29
     #resetOnHandSelected: false
     attackRate: 1
@@ -3260,8 +4136,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3314,6 +4190,34 @@
     sprite: Imperial/Medieval/Melee/gs_sword.rsi
 
 - type: entity
+  name: short sword
+  parent: MedievalShortSword
+  id: MedievalShortSwordArtur
+  description: MedievalShortSwordArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+
+- type: entity
+  name: short sword
+  parent: MedievalShortSwordSteel
+  id: MedievalShortSwordSteelArtur
+  description: MedievalShortSwordSteelArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+
+- type: entity
   name: dagger
   parent: MedievalShortSword
   id: MedievalShortSwordGold
@@ -3351,6 +4255,10 @@
   - type: MeleeParry
     parryChanse: 0.65
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.3
     #resetOnHandSelected: false
     attackRate: 1.05
@@ -3376,8 +4284,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3418,7 +4326,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseOneHandedCharged ]
   id: MedievalSaber
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3442,6 +4350,10 @@
   - type: MeleeParry
     parryChanse: 0.62
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     range: 1.42
     clickDamageModifier: 0.6
     wideAnimationRotation: -140
@@ -3467,8 +4379,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3531,6 +4443,10 @@
   - type: MeleeParry
     parryChanse: 0.62
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     range: 1.45
     clickDamageModifier: 0.6
     wideAnimationRotation: -140
@@ -3554,8 +4470,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3596,7 +4512,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalPalice
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3620,6 +4536,10 @@
   - type: MeleeParry
     parryChanse: 0.3
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.3
     wideAnimationRotation: -140
     attackRate: 0.8
@@ -3643,8 +4563,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3667,7 +4587,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalPaliceSteel
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3691,6 +4611,10 @@
   - type: MeleeParry
     parryChanse: 0.62
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.33
     wideAnimationRotation: -140
     attackRate: 0.8
@@ -3714,8 +4638,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3738,7 +4662,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3HeavyBone
   description: An ancient war blade.
   components:
@@ -3746,11 +4670,15 @@
     value: 3
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/bone_mace.rsi
     state: icon
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 1.3
     wideAnimationRotation: -140
     attackRate: 0.7
@@ -3839,7 +4767,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 3
+      value: 2
     - type: Sprite
       sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
       state: shield
@@ -3873,20 +4801,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 35
+            damage: 70
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 10
-    - type: HeldSpeedModifier
-      walkModifier: 0.98
-      sprintModifier: 0.98
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -3942,7 +4866,7 @@
 
 - type: entity
   name: pickaxe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalPickaxeEbonit
   description: Ebonit pickaxe.
   components:
@@ -3963,6 +4887,10 @@
     sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
     state: pickaxe
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     attackRate: 0.7
     wideAnimationRotation: -135
     soundHit:
@@ -4001,7 +4929,7 @@
 
 - type: entity
   name: pickaxe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalPickaxeForStone
   description: ForStone pickaxe.
   components:
@@ -4022,6 +4950,10 @@
     sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
     state: pickaxe
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
     attackRate: 1.5
     wideAnimationRotation: -135
     soundHit:
@@ -4060,7 +4992,7 @@
 
 - type: entity
   name: Pilum
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearPilum
   description: Just a spear
   components:
@@ -4072,13 +5004,16 @@
     state: spear
   - type: Sharp
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     wideAnimationRotation: -140
     attackRate: 0.65
     damage:
       types:
         Piercing: 10
     angle: 0
-    animation: WeaponArcThrust
   - type: Item
     size: Normal
     storedSprite:
@@ -4097,8 +5032,8 @@
       types:
         Piercing: 39
         Blunt: 3
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4125,7 +5060,7 @@
 
 - type: entity
   name: Sulica
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearSulica
   description: Just a spear
   components:
@@ -4137,13 +5072,16 @@
     state: spear
   - type: Sharp
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     wideAnimationRotation: -140
     attackRate: 0.65
     damage:
       types:
         Piercing: 10
     angle: 0
-    animation: WeaponArcThrust
   - type: Item
     size: Normal
     storedSprite:
@@ -4162,8 +5100,8 @@
       types:
         Piercing: 39
         Blunt: 3
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4218,7 +5156,7 @@
 
 - type: entity
   name: medieval cavalery spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalCavalerySpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -4270,3 +5208,24 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
+
+- type: entity
+  name: baseball bat
+  parent: BaseBallBat
+  id: BaseBallBatAlaraniel
+  description: A robust baseball bat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bat.rsi
+    state: icon
+
+- type: entity
+  name: medieval spear
+  parent: MedievalSpearT3
+  id: MedievalSpearT3Bib
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear

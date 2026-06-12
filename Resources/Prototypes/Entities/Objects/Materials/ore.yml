@@ -166,6 +166,7 @@
     tags:
     - Ore
     - OrePlasma
+    - RawMaterial # Imperial Space
 
 - type: entity
   parent: PlasmaOre
@@ -281,6 +282,7 @@
     tags:
     - Ore
     - OreUranium
+    - RawMaterial # Imperial Space
 
 - type: entity
   parent: UraniumOre
@@ -435,3 +437,4 @@
   components:
   - type: Stack
     count: 1
+

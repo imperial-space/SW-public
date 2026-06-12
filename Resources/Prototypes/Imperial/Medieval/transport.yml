@@ -224,7 +224,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.49
+          radius: 0.6
         density: 30
         mask:
         - MobMask
@@ -296,6 +296,7 @@
     friction: 1
     baseWalkSpeed: 3
     baseSprintSpeed: 3
+  - type: NoRotateOnMove
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -323,9 +324,20 @@
     buckleOffset: "-0.00, -0.02"
     buckleDoafterTime: 5
     maxBuckleDistance: 1
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/on_horse.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/on_horse.ogg
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/animal_horse.ogg
+  - type: HorseControl
+    turnSpeed: 90
+    turnSpeedSlowdown: 1.1
+    turnSpeedSlowdownSpeedScale: 0.3
+    noInputFrictionMultiplier: 0.35
+    reverseBrakeMultiplier: 1.5
+    minInertiaSpeed: 0.35
   - type: Rideable
     pikeShape: !type:PolygonShape
       vertices:
@@ -361,3 +373,185 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/skeletonhorse_arrive.ogg
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/black.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      360: Critical
+      430: Dead
+  - type: RideableSprint
+    accelerationTime: 2
+    maxSpeedModifier: 1.4
+    riderDamageOnCollide:
+      types:
+        Blunt: 12
+    damageOnCollide:
+      types:
+        Blunt: 16
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackSpotHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/blackspot.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Critical
+      170: Dead
+  - type: RideableSprint
+    accelerationTime: 16
+    maxSpeedModifier: 1.6
+    riderDamageOnCollide:
+      types:
+        Blunt: 15
+    damageOnCollide:
+      types:
+        Blunt: 4
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackWhiteHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/blackwhite.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 2.4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      430: Critical
+      480: Dead
+  - type: RideableSprint
+    accelerationTime: 12
+    maxSpeedModifier: 1.7
+    riderDamageOnCollide:
+      types:
+        Blunt: 5
+    damageOnCollide:
+      types:
+        Blunt: 5
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalGreyHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/grey.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      260: Critical
+      310: Dead
+  - type: RideableSprint
+    accelerationTime: 16
+    maxSpeedModifier: 1.8
+    riderDamageOnCollide:
+      types:
+        Blunt: 12
+    damageOnCollide:
+      types:
+        Blunt: 7
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalWhiteHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/white.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      200: Dead
+  - type: RideableSprint
+    accelerationTime: 10
+    maxSpeedModifier: 2
+    riderDamageOnCollide:
+      types:
+        Blunt: 45
+    damageOnCollide:
+      types:
+        Blunt: 4
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalWhiteRoyalHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/royal.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      510: Critical
+      570: Dead
+  - type: RideableSprint
+    accelerationTime: 2.5
+    maxSpeedModifier: 2
+    riderDamageOnCollide:
+      types:
+        Blunt: 4
+    damageOnCollide:
+      types:
+        Blunt: 28

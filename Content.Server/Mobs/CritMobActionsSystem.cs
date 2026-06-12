@@ -9,6 +9,7 @@ using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Chat;
+using Content.Shared.Damage;
 
 namespace Content.Server.Mobs;
 
@@ -23,8 +24,18 @@ public sealed class CritMobActionsSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
     private const int MaxLastWordsLength = 30;
+    // imperial medieval edit: start
+    private static DamageSpecifier LastWordsDamage = new()
+    {
+        DamageDict = new()
+        {
+            { "Asphyxiation", 10}
+        }
+    };
+    // industrial medieval edit: end
 
     public override void Initialize()
     {
@@ -66,6 +77,10 @@ public sealed class CritMobActionsSystem : EntitySystem
         _quickDialog.OpenDialog(actor.PlayerSession, Loc.GetString("action-name-crit-last-words"), "",
             (string lastWords) =>
             {
+                // if a person is gibbed/deleted, they can't say last words
+                if (Deleted(uid))
+                    return;
+
                 // Intentionally does not check for muteness
                 if (actor.PlayerSession.AttachedEntity != uid
                     || !_mobState.IsCritical(uid))
@@ -78,7 +93,9 @@ public sealed class CritMobActionsSystem : EntitySystem
                 lastWords += "...";
 
                 _chat.TrySendInGameICMessage(uid, lastWords, InGameICChatType.Whisper, ChatTransmitRange.Normal, checkRadioPrefix: false, ignoreActionBlocker: true);
-                _host.ExecuteCommand(actor.PlayerSession, "ghost");
+                // imperial medieval edit: start
+                _damageableSystem.TryChangeDamage(uid, LastWordsDamage, true);
+                // imdustrial medieval edit: end
             });
 
         args.Handled = true;

@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Imperial.MedievalNotAllowDash.Components;
 using Content.Shared.Imperial.PhaseSpace;
 using Content.Shared.Input;
 using Content.Shared.Movement.Systems;
@@ -18,6 +19,7 @@ namespace Content.Shared.Imperial.Dash;
 
 public sealed partial class MedievalDashSystem : EntitySystem
 {
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
@@ -48,7 +50,8 @@ public sealed partial class MedievalDashSystem : EntitySystem
             if (!component.IsDashing) continue;
 
             component.IsDashing = false;
-
+            var ev = new DashEndedEvent();
+            RaiseLocalEvent(uid, ref ev);
 
             if (_net.IsClient) return;
 
@@ -76,6 +79,17 @@ public sealed partial class MedievalDashSystem : EntitySystem
 
         if (!_actionBlockerSystem.CanMove(uid))
             return false;
+
+        var xform = Transform(uid);
+        var coords = xform.Coordinates;
+
+        foreach (var entity in _lookup.GetEntitiesInRange(coords, 0.35f))
+        {
+            if (TryComp<MedievalNotAllowDashComponent>(entity, out var Dash))
+            {
+                return false;
+            }
+        }
 
         var ev = new CanDashEvent();
         RaiseLocalEvent(uid, ref ev);
@@ -108,7 +122,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var staminaEv = new CheckDashStaminaCostModifiersEvent(1f);
         RaiseLocalEvent(player, ref staminaEv);
 
-        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage * staminaEv.Modifier, ignoreResistances: true))
+        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage * staminaEv.Modifier, ignoreResist: true))
             return false;
 
         var distEv = new CheckDashDistanceModifiersEvent(1f);
@@ -129,6 +143,9 @@ public sealed partial class MedievalDashSystem : EntitySystem
         component.NextDash = _timing.CurTime + component.DashReloadTime + TimeSpan.FromSeconds(staminaEv.Modifier);
         component.DashButtonPressedTick = _timing.CurTick;
         component.IsDashing = true;
+
+        var startEv = new DashStartedEvent();
+        RaiseLocalEvent(player, ref startEv);
 
         return false;
     }

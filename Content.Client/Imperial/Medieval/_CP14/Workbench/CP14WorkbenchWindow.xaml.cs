@@ -93,6 +93,12 @@ public sealed partial class CP14WorkbenchWindow : DefaultWindow
         ItemName.Text = result.Name;
         ItemDescription.Text = result.Description;
 
+        if (result.TryGetComponent<SpriteComponent>(out var sprite, _entity.ComponentFactory))
+        {
+            ItemView.ModulateSelfOverride = sprite.Color;
+            ItemView.TextureScale = sprite.Scale;
+        }
+
         ItemRequirements.RemoveAllChildren();
         foreach (var (entProtoId, count) in recipe.Entities)
         {

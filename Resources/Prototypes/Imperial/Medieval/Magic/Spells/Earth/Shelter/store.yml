@@ -1,0 +1,16 @@
+- type: imperialListing
+  id: MedievalSpellShelterSenior
+  name: medieval-store-spells-earth-shelter-senior-name
+  description: medieval-store-spells-earth-shelter-senior-desc
+  productAction: MedievalActionShelterSenior
+  priority: 3
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Shelter/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalEarth: 75
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

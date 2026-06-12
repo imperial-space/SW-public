@@ -1,6 +1,6 @@
 - type: skill
   id: Agility
-  name: Ловкость
+  name: skill-agility-name
   color: "#96fff3"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/agility.rsi
   icons:
@@ -10,8 +10,8 @@
     15: good
     20: best
   modifiers:
-    PositiveAttackRate: 0.02
-    NegativeAttackRate: -0.01
+    PositiveAttackRate: 0.03
+    NegativeAttackRate: -0.04
     PositiveDashCooldownBonus: -0.1
     NegativeDashCooldownBonus: 0.2
     PositiveDashDistanceBonus: 0.04
@@ -30,7 +30,7 @@
 
 - type: skill
   id: Strength
-  name: Сила
+  name: skill-strength-name
   color: "#ff9696"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/strength.rsi
   icons:
@@ -53,7 +53,7 @@
 
 - type: skill
   id: Vitality
-  name: Живучесть
+  name: skill-vitality-name
   color: "#99ff96"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/vitality.rsi
   icons:
@@ -76,7 +76,7 @@
 
 - type: skill
   id: Endurance
-  name: Выносливость
+  name: skill-endurance-name
   color: "#ffec96"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/endurance.rsi
   icons:
@@ -98,7 +98,7 @@
 
 - type: skill
   id: Intelligence
-  name: Интеллект
+  name: skill-intelligence-name
   color: "#ea96ff"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/intelligence.rsi
   icons:
@@ -112,6 +112,6 @@
     NegativeConstructionSpeedModifier: 0.1
     PositiveHealingSpeedModifier: -0.07
     NegativeHealingSpeedModifier: 0.14
-    PositiveManaModifier: 0.02
-    NegativeManaModifier: -0.02
+    PositiveManaModifier: 0.05
+    NegativeManaModifier: -0.09
     LowStupidityChance: 0.2

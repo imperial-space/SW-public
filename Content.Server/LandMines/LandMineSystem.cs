@@ -4,12 +4,12 @@ using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.ShiftFront.Components;
-using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Armable;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.LandMines;
 using Content.Shared.Popups;
 using Content.Shared.StepTrigger.Systems;
+using Content.Shared.Trigger.Systems;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Myrmex.Components; // imperial medieval
 
@@ -46,7 +46,8 @@ public sealed class LandMineSystem : EntitySystem
     private void HandleStepOffTriggered(EntityUid uid, LandMineComponent component, ref StepTriggeredOffEvent args)
     {
         if (component.AntiTank && !HasComp<ShiftTankHullComponent>(args.Tripper)) return;
-        _trigger.Trigger(uid, args.Tripper);
+        // TODO: Adjust to the new trigger system
+        _trigger.Trigger(uid, args.Tripper, TriggerSystem.DefaultTriggerKey);
     }
 
     private static void HandleStepTriggerAttempt(EntityUid uid, LandMineComponent component, ref StepTriggerAttemptEvent args)

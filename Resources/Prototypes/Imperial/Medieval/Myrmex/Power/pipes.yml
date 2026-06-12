@@ -1,0 +1,707 @@
+- type: entity
+  id: BaseMyrmexPipe
+  abstract: true
+  name: труба
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Myrmex/Structures/Pipes/pipes_steam.rsi
+      drawdepth: ThickPipe
+    - type: Transform
+      anchored: true
+      noRot: false
+    - type: InteractionOutline
+    - type: Clickable
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.25,-0.5,0.25,0.5"
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexPipeNode
+          nodeGroupID: HVPower
+    - type: MyrmexPipe
+      pipeType: Straight
+    - type: Physics
+
+- type: entity
+  id: SteamMyrmexPipeStraight
+  name: прямая паровая труба
+  parent: BaseMyrmexPipe
+  components:
+    - type: Sprite
+      state: pipe-s
+      color: "#FFFFFF"
+    - type: MyrmexPipe
+      pipeType: Straight
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexPipeNode
+          nodeGroupID: MVPower
+    - type: Construction
+      graph: SteamMyrmexPipeStraight
+      node: steamMyrmexPipeStraight
+
+- type: entity
+  parent: SteamMyrmexPipeStraight
+  id: SteamMyrmexPipeCorner
+  name: угловая паровая труба
+  components:
+    - type: Sprite
+      state: pipe-c
+    - type: MyrmexPipe
+      pipeType: Corner
+    - type: Construction
+      graph: SteamMyrmexPipeCorner
+      node: steamMyrmexPipeCorner
+
+- type: entity
+  parent: SteamMyrmexPipeStraight
+  id: SteamMyrmexPipeCross
+  name: крестообразная паровая труба
+  components:
+    - type: Sprite
+      state: pipe-cross
+    - type: MyrmexPipe
+      pipeType: Cross
+    - type: Construction
+      graph: SteamMyrmexPipeCross
+      node: steamMyrmexPipeCross
+
+- type: entity
+  parent: SteamMyrmexPipeStraight
+  id: SteamMyrmexPipeTJunction
+  name: т-образная паровая труба
+  components:
+    - type: Sprite
+      state: pipe-t
+    - type: MyrmexPipe
+      pipeType: TJunction
+    - type: Construction
+      graph: SteamMyrmexPipeTJunction
+      node: steamMyrmexPipeTJunction
+
+- type: entity
+  id: AcidMyrmexPipeStraight
+  name: прямая кислотная труба
+  parent: BaseMyrmexPipe
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Myrmex/Structures/Pipes/pipes_acid.rsi
+      drawdepth: ThickPipe
+      state: pipe-s
+    - type: MyrmexPipe
+      pipeType: Straight
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexPipeNode
+          nodeGroupID: Apc
+    - type: Construction
+      graph: AcidMyrmexPipeStraight
+      node: acidMyrmexPipeStraight
+
+- type: entity
+  parent: AcidMyrmexPipeStraight
+  id: AcidMyrmexPipeCorner
+  name: угловая кислотная труба
+  components:
+    - type: Sprite
+      state: pipe-c
+    - type: MyrmexPipe
+      pipeType: Corner
+    - type: Construction
+      graph: AcidMyrmexPipeCorner
+      node: acidMyrmexPipeCorner
+
+- type: entity
+  parent: AcidMyrmexPipeStraight
+  id: AcidMyrmexPipeCross
+  name: крестообразная кислотная труба
+  components:
+    - type: Sprite
+      state: pipe-cross
+    - type: MyrmexPipe
+      pipeType: Cross
+    - type: Construction
+      graph: AcidMyrmexPipeCross
+      node: acidMyrmexPipeCross
+
+- type: entity
+  parent: AcidMyrmexPipeStraight
+  id: AcidMyrmexPipeTJunction
+  name: т-образная кислотная труба
+  components:
+    - type: Sprite
+      state: pipe-t
+    - type: MyrmexPipe
+      pipeType: TJunction
+    - type: Construction
+      graph: AcidMyrmexPipeTJunction
+      node: acidMyrmexPipeTJunction
+
+- type: entity
+  id: ResinMyrmexPipeStraight
+  name: прямая смоляная труба
+  parent: BaseMyrmexPipe
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Myrmex/Structures/Pipes/pipes_resin.rsi
+      drawdepth: ThickPipe
+      state: pipe-s
+    - type: MyrmexPipe
+      pipeType: Straight
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexPipeNode
+          nodeGroupID: HVPower
+    - type: Construction
+      graph: ResinMyrmexPipeStraight
+      node: resinMyrmexPipeStraight
+
+- type: entity
+  parent: ResinMyrmexPipeStraight
+  id: ResinMyrmexPipeCorner
+  name: угловая смоляная труба
+  components:
+    - type: Sprite
+      state: pipe-c
+    - type: MyrmexPipe
+      pipeType: Corner
+    - type: Construction
+      graph: ResinMyrmexPipeCorner
+      node: resinMyrmexPipeCorner
+
+- type: entity
+  parent: ResinMyrmexPipeStraight
+  id: ResinMyrmexPipeCross
+  name: крестообразная смоляная труба
+  components:
+    - type: Sprite
+      state: pipe-cross
+    - type: MyrmexPipe
+      pipeType: Cross
+    - type: Construction
+      graph: ResinMyrmexPipeCross
+      node: resinMyrmexPipeCross
+
+- type: entity
+  parent: ResinMyrmexPipeStraight
+  id: ResinMyrmexPipeTJunction
+  name: т-образная смоляная труба
+  components:
+    - type: Sprite
+      state: pipe-t
+    - type: MyrmexPipe
+      pipeType: TJunction
+    - type: Construction
+      graph: ResinMyrmexPipeTJunction
+      node: resinMyrmexPipeTJunction
+
+- type: entity
+  parent: BaseMyrmexPipe
+  id: MedievalMyrmexPipeValve
+  name: труба с вентилем
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    layers:
+    - map: ["base"]
+      state: pipe-s
+      color: Red
+      visible: true
+    - map: ["closed"]
+      state: pipe-s
+      color: CadetBlue
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.MyrmexValveVisuals.State:
+        base:
+          True:
+            visible: true
+          False:
+            visible: false
+        closed:
+          True:
+            visible: false
+          False:
+            visible: true
+  - type: Appearance
+  - type: MyrmexPipe
+    pipeType: Straight
+  - type: MyrmexValvePipe
+
+- type: constructionGraph
+  id: SteamMyrmexPipeStraight
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: steamMyrmexPipeStraight
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: steamMyrmexPipeStraight
+    entity: SteamMyrmexPipeStraight
+
+- type: constructionGraph
+  id: SteamMyrmexPipeCorner
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: steamMyrmexPipeCorner
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: steamMyrmexPipeCorner
+    entity: SteamMyrmexPipeCorner
+
+- type: constructionGraph
+  id: SteamMyrmexPipeCross
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: steamMyrmexPipeCross
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: steamMyrmexPipeCross
+    entity: SteamMyrmexPipeCross
+
+- type: constructionGraph
+  id: SteamMyrmexPipeTJunction
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: steamMyrmexPipeTJunction
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: steamMyrmexPipeTJunction
+    entity: SteamMyrmexPipeTJunction
+
+- type: construction
+  id: SteamMyrmexPipeStraightConstruction
+  graph: SteamMyrmexPipeStraight
+  startNode: start
+  targetNode: steamMyrmexPipeStraight
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SteamMyrmexPipeCornerConstruction
+  graph: SteamMyrmexPipeCorner
+  startNode: start
+  targetNode: steamMyrmexPipeCorner
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SteamMyrmexPipeCrossConstruction
+  graph: SteamMyrmexPipeCross
+  startNode: start
+  targetNode: steamMyrmexPipeCross
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SteamMyrmexPipeTJunctionConstruction
+  graph: SteamMyrmexPipeTJunction
+  startNode: start
+  targetNode: steamMyrmexPipeTJunction
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: AcidMyrmexPipeStraight
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: acidMyrmexPipeStraight
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: acidMyrmexPipeStraight
+    entity: AcidMyrmexPipeStraight
+
+- type: constructionGraph
+  id: AcidMyrmexPipeCorner
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: acidMyrmexPipeCorner
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: acidMyrmexPipeCorner
+    entity: AcidMyrmexPipeCorner
+
+- type: constructionGraph
+  id: AcidMyrmexPipeCross
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: acidMyrmexPipeCross
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: acidMyrmexPipeCross
+    entity: AcidMyrmexPipeCross
+
+- type: constructionGraph
+  id: AcidMyrmexPipeTJunction
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: acidMyrmexPipeTJunction
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: acidMyrmexPipeTJunction
+    entity: AcidMyrmexPipeTJunction
+
+- type: construction
+  id: AcidMyrmexPipeStraightConstruction
+  graph: AcidMyrmexPipeStraight
+  startNode: start
+  targetNode: acidMyrmexPipeStraight
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AcidMyrmexPipeCornerConstruction
+  graph: AcidMyrmexPipeCorner
+  startNode: start
+  targetNode: acidMyrmexPipeCorner
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AcidMyrmexPipeCrossConstruction
+  graph: AcidMyrmexPipeCross
+  startNode: start
+  targetNode: acidMyrmexPipeCross
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AcidMyrmexPipeTJunctionConstruction
+  graph: AcidMyrmexPipeTJunction
+  startNode: start
+  targetNode: acidMyrmexPipeTJunction
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: ResinMyrmexPipeStraight
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: resinMyrmexPipeStraight
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: resinMyrmexPipeStraight
+    entity: ResinMyrmexPipeStraight
+
+- type: constructionGraph
+  id: ResinMyrmexPipeCorner
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: resinMyrmexPipeCorner
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: resinMyrmexPipeCorner
+    entity: ResinMyrmexPipeCorner
+
+- type: constructionGraph
+  id: ResinMyrmexPipeCross
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: resinMyrmexPipeCross
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: resinMyrmexPipeCross
+    entity: ResinMyrmexPipeCross
+
+- type: constructionGraph
+  id: ResinMyrmexPipeTJunction
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: resinMyrmexPipeTJunction
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: resinMyrmexPipeTJunction
+    entity: ResinMyrmexPipeTJunction
+
+- type: construction
+  id: ResinMyrmexPipeStraightConstruction
+  graph: ResinMyrmexPipeStraight
+  startNode: start
+  targetNode: resinMyrmexPipeStraight
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ResinMyrmexPipeCornerConstruction
+  graph: ResinMyrmexPipeCorner
+  startNode: start
+  targetNode: resinMyrmexPipeCorner
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ResinMyrmexPipeCrossConstruction
+  graph: ResinMyrmexPipeCross
+  startNode: start
+  targetNode: resinMyrmexPipeCross
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ResinMyrmexPipeTJunctionConstruction
+  graph: ResinMyrmexPipeTJunction
+  startNode: start
+  targetNode: resinMyrmexPipeTJunction
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

@@ -2,7 +2,8 @@ using Robust.Shared.GameStates;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState(true, true)]
 public sealed partial class CursedMarkComponent : Component
 {
     [DataField]

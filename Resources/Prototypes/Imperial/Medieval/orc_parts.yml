@@ -1,3 +1,21 @@
+# Blood
+
+- type: reagent
+  id: OrcBlood
+  parent: Blood
+  name: reagent-name-orc-blood
+  slipData: null
+  desc: reagent-desc-orc-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-orc-blood
+  flavor: orcblood
+
+- type: flavor
+  id: orcblood
+  flavorType: Complex
+  description: flavor-complex-orc-blood
+
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
@@ -11,7 +29,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: Blood
+      - ReagentId: OrcBlood
         Quantity: 10
 
 - type: entity
@@ -27,7 +45,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
-      - ReagentId: Blood
+      - ReagentId: OrcBlood
         Quantity: 20
 
 - type: entity
@@ -43,7 +61,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: Blood
+      - ReagentId: OrcBlood
         Quantity: 10
 
 - type: entity

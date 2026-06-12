@@ -123,6 +123,8 @@
   - type: Body
     prototype: Beastmen
     requiredLegs: 2
+  - type: Bloodstream
+    bloodReagent: BeastmenBlood
   - type: LanguageSpeaker
     languages:
       Common: Speak
@@ -187,6 +189,8 @@
   - type: NeedSleep
     sleepLevelPerUpdate: 0.27
   - type: StealRaceChanceIncreaser
+  - type: TypingIndicator
+    proto: wolf
 
 - type: entity
   parent: BaseMobBeastmen
@@ -217,7 +221,6 @@
     damageRecovery:
       types:
         Asphyxiation: -1
-
 
 - type: species
   id: Beastmen

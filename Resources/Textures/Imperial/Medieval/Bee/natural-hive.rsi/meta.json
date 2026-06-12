@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "drawn by @gag08984",
+  "states": [
+    {
+      "name": "icon"
+    }
+  ]
+}

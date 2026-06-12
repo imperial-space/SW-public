@@ -35,6 +35,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
         #region Handler
         private sealed class SprintInputCmdHandler : InputCmdHandler
@@ -50,11 +51,19 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             {
                 if (session?.AttachedEntity is not { Valid: true } player || !entManager.EntityExists(player))
                     return false;
-                _rideable.RaiseNetworkEvent(new ToggleRideSprintEvent(message.State == BoundKeyState.Down));
+                _rideable.ToggleSprint(session, message.State == BoundKeyState.Down);
                 return false;
             }
         }
         #endregion
+
+        private void ToggleSprint(ICommonSession? session, bool sprinting)
+        {
+            if (session == null)
+                return;
+
+            RaiseNetworkEvent(new ToggleRideSprintEvent(session.UserId, sprinting));
+        }
 
         #region Initialization
         public override void Initialize()
@@ -91,10 +100,9 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 if (!TryComp<RideableSprintComponent>(rideable, out var rideableSprintComp))
                     continue;
 
-                if (rideableSprintComp.Sprinting)
-                    rideableSprintComp.CurrentTime = MathF.Min(rideableSprintComp.CurrentTime + frameTime, rideableSprintComp.AccelerationTime);
-                else
-                    rideableSprintComp.CurrentTime = MathF.Max(rideableSprintComp.CurrentTime - frameTime * 2, 0);
+                rideableSprintComp.CurrentTime = rideableSprintComp.Sprinting
+                    ? MathF.Min(rideableSprintComp.CurrentTime + frameTime, rideableSprintComp.AccelerationTime)
+                    : MathF.Max(rideableSprintComp.CurrentTime - frameTime * 2, 0);
                 var progress = rideableSprintComp.CurrentTime / rideableSprintComp.AccelerationTime;
 
                 rideableSprintComp.CurrentSpeedModifier = MathHelper.Lerp(
@@ -185,7 +193,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             var direction = rideablePhysics.LinearVelocity;
 
             _throwing.TryThrow(otherPlayer, direction * 0.6f);
-            _stun.TryStun(otherPlayer, TimeSpan.FromSeconds(2), true);
+            _stun.TryAddStunDuration(otherPlayer, TimeSpan.FromSeconds(2));
             _stun.TryKnockdown(otherPlayer, TimeSpan.FromSeconds(2), true);
             var ev = new GetHorseDamageModifier();
             RaiseLocalEvent(uid, ref ev);
@@ -225,7 +233,10 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         private void OnToggleSprint(ToggleRideSprintEvent ev, EntitySessionEventArgs args)
         {
-            var player = args.SenderSession.AttachedEntity;
+            if (!_playerManager.TryGetSessionById(ev.UserId, out var session))
+                return;
+
+            var player = session.AttachedEntity;
 
             if (!TryComp<BuckleComponent>(player, out var buckle))
                 return;
@@ -259,9 +270,11 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 [NetSerializable, Serializable]
 public sealed class ToggleRideSprintEvent : EntityEventArgs
 {
+    public NetUserId UserId;
     public bool Sprinting;
-    public ToggleRideSprintEvent(bool sprinting)
+    public ToggleRideSprintEvent(NetUserId userId, bool sprinting)
     {
+        UserId = userId;
         Sprinting = sprinting;
     }
 }

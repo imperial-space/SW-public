@@ -67,7 +67,7 @@ public sealed partial class MyrmexSystem : EntitySystem
     private void OnToggleArmor(Entity<MyrmexComponent> ent, ref ActionMyrmexToggleArmorEvent args)
     {
         ent.Comp.ArmorActive = !ent.Comp.ArmorActive;
-        _damageableSystem.SetDamageModifierSetId(ent, ent.Comp.ArmorActive ? ent.Comp.ActiveArmorProto : ent.Comp.StandardArmorProto);
+        _damageable.SetDamageModifierSetId(ent, ent.Comp.ArmorActive ? ent.Comp.ActiveArmorProto : ent.Comp.StandardArmorProto);
         ModifyMoveSpeed(ent, ent.Comp.ArmorActive ? -ent.Comp.ActiveArmorSpeedMultiplier : ent.Comp.ActiveArmorSpeedMultiplier);
 
         args.Handled = true;
@@ -100,7 +100,7 @@ public sealed partial class MyrmexSystem : EntitySystem
 
     private void OnHeal(Entity<MyrmexComponent> ent, ref ActionMyrmexHealEvent args)
     {
-        _damageableSystem.TryChangeDamage(args.Target, args.HealedDamage, true);
+        _damageable.TryChangeDamage(args.Target, args.HealedDamage, true);
         args.Handled = true;
     }
 
@@ -130,7 +130,7 @@ public sealed partial class MyrmexSystem : EntitySystem
 
         foreach (EntityUid hitEnt in args.HitEntities)
         {
-            _stunSys.TryStun(hitEnt, ent.Comp.StunDuration, false);
+            _stunSys.TryAddStunDuration(hitEnt, ent.Comp.StunDuration);
         }
     }
 

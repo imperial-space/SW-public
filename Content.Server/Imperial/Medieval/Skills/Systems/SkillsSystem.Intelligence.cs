@@ -10,6 +10,7 @@ using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.Medical;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Speech;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -25,7 +26,6 @@ public sealed partial class SkillsSystem
         SubscribeLocalEvent<SkillsComponent, GetHealingSpeedModifiersEvent>(OnGetHealingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, CheckWorkbenchCraftSpeedModifiersEvent>(OnGetCraftingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<SkillsComponent, MapInitEvent>(OnCanUseMana);
 
         SubscribeNetworkEvent<GetEnteredChatTextResponseMessage>(OnGetMessage);
     }
@@ -61,13 +61,24 @@ public sealed partial class SkillsSystem
     {
         var (proto, _) = GetSkill(uid, IntelligenceId);
 
-        var diff = level - oldLevel;
+        var diff = Math.Abs(level - oldLevel);
 
-        //if (TryComp<ManaComponent>(uid, out var mana))
-        //{
-        //    mana.MaxMana += (level > 10 ? proto.Modifiers["PositiveManaModifier"] : proto.Modifiers["NegativeManaModifier"]) * diff;
-        //    Dirty(uid, mana);
-        //}
+        var mana = CompOrNull<ManaComponent>(uid);
+        if (mana == null && oldLevel == 1 && level != 1)
+            mana = EnsureComp<ManaComponent>(uid);
+
+        if (mana != null && level == 1)
+        {
+            mana = null;
+            RemComp<ManaComponent>(uid);
+        }
+
+        if (mana != null)
+        {
+            mana.MaxMana *= 1 + ((level > 10 ? proto.Modifiers["PositiveManaModifier"] : proto.Modifiers["NegativeManaModifier"]) * diff);
+            mana.Mana = mana.MaxMana;
+            Dirty(uid, mana);
+        }
 
         var skills = EnsureComp<SkillsComponent>(uid);
         if (skills.LanguagesGain)
@@ -92,14 +103,6 @@ public sealed partial class SkillsSystem
         foreach (var item in _proto.EnumeratePrototypes<LanguagePrototype>().Where(x => x.HighIntelligenceAllowed && !_lang.CanSpeak(uid, x)))
         {
             _lang.AddSpokenLanguage(uid, item.ID, LanguageKnowledge.Speak);
-        }
-    }
-
-    private void OnCanUseMana(Entity<SkillsComponent> ent, ref MapInitEvent args)
-    {
-        if (HasComp<ManaComponent>(ent) && IntelligenceMin(ent))
-        {
-            RemComp<ManaComponent>(ent);
         }
     }
 
