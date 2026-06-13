@@ -78,7 +78,7 @@ public sealed class ShipsCCVars : CVars
     /// угол разброса волн
     /// </summary>
     public static readonly CVarDef<float> WaveSpawnAngle =
-        CVarDef.Create("ships.wavespawnangle", 50f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.wavespawnangle", 10f, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// в каком радиусе ломает волна
     /// </summary>
@@ -88,12 +88,12 @@ public sealed class ShipsCCVars : CVars
     /// какое максимальное количество тайлов может сломать волна
     /// </summary>
     public static readonly CVarDef<int> WaveMaxBreakCount =
-        CVarDef.Create("ships.wavemaxbreakcount", 2, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.wavemaxbreakcount", 3, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// Минимальный уровень для поломки лодки (Шторма если кто не понял)
     /// </summary>
     public static readonly CVarDef<int> WaveMinToBreakLevel =
-        CVarDef.Create("ships.wavemintobreaklevel", 1, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.wavemintobreaklevel", 2, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// размер карты
     /// </summary>
