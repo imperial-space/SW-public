@@ -2,6 +2,8 @@ using Content.Shared.Shuttles.BUIStates;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Client.Imperial.Medieval.CartographerTable;
 
@@ -19,7 +21,16 @@ public sealed class MedievalCartographerTableBoundUserInterface : BoundUserInter
     {
         base.Open();
 
+        EntMan.System<SharedAudioSystem>().PlayGlobal("/Audio/Imperial/Medieval/Plague/menu_open.ogg", Filter.Local(), false);
         _window = this.CreateWindow<MedievalCartographerTableWindow>();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing)
+            EntMan.System<SharedAudioSystem>().PlayGlobal("/Audio/Imperial/Medieval/Plague/menu_close.ogg", Filter.Local(), false);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
