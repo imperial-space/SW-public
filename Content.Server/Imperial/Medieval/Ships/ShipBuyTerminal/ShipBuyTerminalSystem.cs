@@ -80,7 +80,6 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
             _transform.SetWorldRotation(grid.Value, spawnAngle);
 
         component.Balance -= offer.Cost;
-        Dirty(uid, component);
         UpdateUi(uid, component);
     }
 
@@ -118,7 +117,6 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
         }
 
         component.Balance -= msg.Amount;
-        Dirty(uid, component);
         UpdateUi(uid, component);
     }
 

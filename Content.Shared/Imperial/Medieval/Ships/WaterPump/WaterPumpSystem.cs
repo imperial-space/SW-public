@@ -11,6 +11,7 @@ using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Systems;
 
@@ -35,6 +36,7 @@ public sealed class WaterPumpSystem : EntitySystem
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly SharedWaterOnShipSystem _waterOnShip = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly INetManager _net = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -95,7 +97,8 @@ public sealed class WaterPumpSystem : EntitySystem
             return;
 
         _waterOnShip.RemoveWater(args.Target.Value, component.WaterCount);
-        _audio.PlayPvs(MedievalShipSounds.PumpUse, uid);
+        if (_net.IsServer)
+            _audio.PlayPvs(MedievalShipSounds.PumpUse, uid);
         args.Repeat = true;
         args.Handled = true;
     }
