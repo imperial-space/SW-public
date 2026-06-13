@@ -67,3 +67,6 @@ helm-examine-left = Штурвал повёрнут на { $degrees } граду
 helm-examine-center = Вы держите курс вперёд
 helm-examine-sails-efficiency = Эффективность всех парусов: { $efficiency }
 helm-examine-ship-load = Грузоподьёмность судна: { $weight } / { $overloadCeil }
+
+examine-anchor-island-search-range = Расстояние поиска острова:
+examine-anchor-time-to-disable-waves = Время до остановки волн:

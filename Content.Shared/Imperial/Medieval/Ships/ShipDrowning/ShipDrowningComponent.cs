@@ -28,4 +28,7 @@ public sealed partial class ShipDrowningComponent : Component
     public float VisualDrownLevel;
     public Vector2 VisualWaterOffset;
     public bool VisualDataInitialized;
+
+
+    public TimeSpan? AnchorUsedTime = null;
 }

@@ -7,10 +7,13 @@ namespace Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 public sealed partial class PlayerDrowningComponent : Component
 {
     [DataField("drownTime")]
-    public int DrownTime;
+    public float DrownTime;
 
     [DataField("maxDrownTime")]
-    public int MaxDrownTime = 25;
+    public float MaxDrownTime = 25;
+
+    [DataField("damageDrownDelay")]
+    public float DamageDrownDelay = 7;
 
     [DataField("speedModifier")]
     public float SpeedModifier = 0.5f;

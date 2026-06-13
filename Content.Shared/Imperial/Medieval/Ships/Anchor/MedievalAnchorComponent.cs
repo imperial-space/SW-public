@@ -19,4 +19,11 @@ public sealed partial class MedievalAnchorComponent : Component
 
     [DataField("strengthUseTimeModifier")]
     public float StrengthUseTimeModifier = 0.3f;
+
+    [DataField]
+    public TimeSpan? AnchorUsedTime;
+
+
+    [DataField("islandSearchRange")]
+    public float IslandSearchRange = 25f;
 }
