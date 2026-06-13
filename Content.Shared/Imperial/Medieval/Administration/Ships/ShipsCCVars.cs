@@ -49,11 +49,11 @@ public sealed class ShipsCCVars : CVars
     public static readonly CVarDef<float> StormLevel =
         CVarDef.Create("ships.stormlevel", 1f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormChangeTime =
-        CVarDef.Create("ships.stormchangetime", 180f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormchangetime", 45f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormIncreaseChance =
-        CVarDef.Create("ships.stormincreasechance", 0.10f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormincreasechance", 0.12f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormDecreaseChance =
-        CVarDef.Create("ships.stormdecreasechance", 0.15f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormdecreasechance", 0.16f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormMinLevel =
         CVarDef.Create("ships.stormminlevel", 1f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormMaxLevel =
