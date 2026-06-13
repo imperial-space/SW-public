@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Content.Server.Imperial.Medieval.Ships.Wave;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Drowning;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.Medieval.Ships;
@@ -94,7 +95,8 @@ public sealed class PlayerDrowningSystem : EntitySystem
                                 HasComp<WaveComponent>(uid) ||
                                 IsAttachedToGhost(uid, transform) ||
                                 HasComp<UndrowableComponent>(uid) ||
-                                onGrid;
+                                HasComp<GodmodeComponent>(uid) ||
+                                IsOnSolidTile(transform);
 
             if (resetDrowning)
                 resetQueue.Add(uid);
@@ -145,12 +147,6 @@ public sealed class PlayerDrowningSystem : EntitySystem
 
     private void ProcessDrowning(EntityUid uid)
     {
-        if (HasComp<UndrowableComponent>(uid))
-        {
-            ResetDrowning(uid);
-            return;
-        }
-
         var drowner = EnsureComp<PlayerDrowningComponent>(uid);
         drowner.DrownTime += 1;
 
@@ -193,9 +189,7 @@ public sealed class PlayerDrowningSystem : EntitySystem
             return true;
 
         var parent = transform.ParentUid;
-        var depth = 0;
-
-        while (parent.IsValid() && depth < 32)
+        while (parent.IsValid() && !HasComp<MapComponent>(parent))
         {
             if (HasComp<GhostComponent>(parent))
                 return true;
@@ -204,9 +198,19 @@ public sealed class PlayerDrowningSystem : EntitySystem
                 break;
 
             parent = parentTransform.ParentUid;
-            depth++;
         }
 
         return false;
+    }
+
+    private bool IsOnSolidTile(TransformComponent transform)
+    {
+        if (transform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var gridComp))
+            return false;
+
+        var mapCoords = new MapCoordinates(_transform.GetWorldPosition(transform), transform.MapID);
+        var tileIndices = _map.MapToGrid(new Entity<MapGridComponent>(gridUid, gridComp), mapCoords);
+
+        return _map.TryGetTileRef(gridUid, gridComp, tileIndices, out var tile) && !tile.Tile.IsEmpty;
     }
 }
