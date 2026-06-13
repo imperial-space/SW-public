@@ -150,9 +150,15 @@ public sealed class ServerWindSystem : EntitySystem
     private void UpdateStormWeather(float stormLevel)
     {
         var rainLevelReached = stormLevel >= _cfg.GetCVar(ShipsCCVars.StormRainLevel);
-        var rainWeather = new ProtoId<WeatherPrototype>(_cfg.GetCVar(ShipsCCVars.StormRainWeather));
+        var rainWeatherId = new ProtoId<WeatherPrototype>(_cfg.GetCVar(ShipsCCVars.StormRainWeather));
         WeatherPrototype? rain = null;
-        if (rainLevelReached && !_prototype.TryIndex(rainWeather, out rain))
+        if (rainLevelReached && !_prototype.TryIndex(rainWeatherId, out rain))
+            return;
+
+        var stormLevelReached = stormLevel >= _cfg.GetCVar(ShipsCCVars.StormStormLevel);
+        var stormWeatherId = new ProtoId<WeatherPrototype>(_cfg.GetCVar(ShipsCCVars.StormStormWeather));
+        WeatherPrototype? storm = null;
+        if (stormLevelReached && !_prototype.TryIndex(stormWeatherId, out storm))
             return;
 
         var seaMaps = new HashSet<MapId>();
@@ -168,11 +174,16 @@ public sealed class ServerWindSystem : EntitySystem
             if (rainLevelReached)
                 _weather.SetWeather(mapId, rain!, null);
             else
-                DisableRain(mapId, rainWeather);
+                DisableWeather(mapId, rainWeatherId);
+
+            if (stormLevelReached)
+                _weather.SetWeather(mapId, storm!, null);
+            else
+                DisableWeather(mapId, stormWeatherId);
         }
     }
 
-    private void DisableRain(MapId mapId, ProtoId<WeatherPrototype> rainWeather)
+    private void DisableWeather(MapId mapId, ProtoId<WeatherPrototype> weatherId)
     {
         if (!_mapSystem.TryGetMap(mapId, out var mapUid) ||
             !TryComp<WeatherComponent>(mapUid.Value, out var weatherComp))
@@ -180,14 +191,14 @@ public sealed class ServerWindSystem : EntitySystem
             return;
         }
 
-        if (!weatherComp.Weather.TryGetValue(rainWeather, out var rainData))
+        if (!weatherComp.Weather.TryGetValue(weatherId, out var weatherData))
             return;
 
         var endTime = _timing.CurTime + WeatherComponent.ShutdownTime;
-        if (rainData.EndTime != null && rainData.EndTime <= endTime)
+        if (weatherData.EndTime != null && weatherData.EndTime <= endTime)
             return;
 
-        rainData.EndTime = endTime;
+        weatherData.EndTime = endTime;
         Dirty(mapUid.Value, weatherComp);
     }
 

@@ -1,9 +1,11 @@
 using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Imperial.Medieval.Ships.Anchor;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -26,6 +28,7 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -87,6 +90,7 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
 
         component.Enabled = !anchorDown;
         UpdateAnchorVisuals(uid, component);
+        _audio.PlayPvs(MedievalShipSounds.AnchorUse, uid);
         args.Handled = true;
     }
 
