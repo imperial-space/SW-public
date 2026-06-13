@@ -12,6 +12,7 @@ public static class MedievalShipSounds
     public static readonly SoundPathSpecifier SailOpen = new("/Audio/Imperial/Medieval/Ships/sail_open.ogg");
     public static readonly SoundPathSpecifier SailRotate1 = new("/Audio/Imperial/Medieval/Ships/sail_rotate1.ogg");
     public static readonly SoundPathSpecifier SailRotate2 = new("/Audio/Imperial/Medieval/Ships/sail_rotate2.ogg");
+    public static readonly SoundPathSpecifier AnchorUse = new("/Audio/Imperial/Medieval/gates_use.ogg");
 
     public static readonly SoundPathSpecifier[] Drown = { Drown1, Drown2 };
     public static readonly SoundPathSpecifier[] SailRotate = { SailRotate1, SailRotate2 };
