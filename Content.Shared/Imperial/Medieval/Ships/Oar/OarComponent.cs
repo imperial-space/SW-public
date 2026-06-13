@@ -9,7 +9,7 @@ namespace Content.Shared.Imperial.Medieval.Ships.Oar;
 public sealed partial class OarComponent : Component
 {
     [DataField]
-    public int Power = 300;
+    public int Power = 10;
 
     [DataField]
     public int SpeedModifier = 1;
