@@ -14,5 +14,5 @@ public sealed partial class FlashImmunityComponent : Component
     /// Is this component currently enabled?
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool Enabled = true;
+    public bool Enabled = false;
 }

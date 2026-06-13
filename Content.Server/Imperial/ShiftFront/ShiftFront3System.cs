@@ -53,7 +53,6 @@ namespace Content.Server.ShiftFront
     {
         [Dependency] internal readonly IEntityManager _entityManager = default!;
         [Dependency] internal readonly IMapManager _mapManager = default!;
-        [Dependency] protected readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
         [Dependency] private readonly ISharedPlayerManager _sharedPlayerManager = default!;
         [Dependency] private readonly PrayerSystem _prayerSystem = default!;
@@ -207,7 +206,7 @@ namespace Content.Server.ShiftFront
                             if (drone.CurFreq > comp.CurFreq - comp.FreqRadius && drone.CurFreq < comp.CurFreq + comp.FreqRadius)
                             {
                                 _jitter.DoJitter(target, TimeSpan.FromSeconds(1f), true, amplitude: 5f);
-                                _stun.TrySlowdown(target, TimeSpan.FromSeconds(3f), true, 0f, 0f);
+                                _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(3f));
                                 if (_sharedPlayerManager.TryGetSessionByEntity(target, out var session))
                                     _prayerSystem.SendSubtleMessage(session, session, $"Рядом вражеский прибор РЭБ", "ПОМЕХИ");
                             }

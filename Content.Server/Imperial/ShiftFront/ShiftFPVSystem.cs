@@ -104,7 +104,8 @@ namespace Content.Server.ShiftFront
         public void OnStart(EntityUid uid, ShiftFPVDroneComponent comp, ComponentStartup args)
         {
             comp.CurFreq = _random.Next(comp.MinFreq, comp.MaxFreq);
-            _action.AddAction(uid, "StopFPVControll");
+            string stopFPVAction = "StopFPVControll";
+            _action.AddAction(uid, stopFPVAction);
         }
         private bool CheckMaskWearing(EntityUid uid)
         {
