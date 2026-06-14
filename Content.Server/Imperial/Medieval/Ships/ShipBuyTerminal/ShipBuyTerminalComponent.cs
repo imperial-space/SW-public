@@ -1,4 +1,3 @@
-using Content.Shared.Imperial.Medieval.Ships.ShipBuyTerminal;
 using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 
@@ -21,7 +20,4 @@ public sealed partial class ShipBuyTerminalComponent : Component
 
     [DataField]
     public ProtoId<CurrencyPrototype> Currency = "Revent";
-
-    [DataField]
-    public List<ProtoId<ShipGridOfferPrototype>> GridOffers = new();
 }

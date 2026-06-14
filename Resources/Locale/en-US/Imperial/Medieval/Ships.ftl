@@ -1,3 +1,19 @@
+ent-ShipTradeHole = shipyard pit
+    .desc = A terminal for purchasing ships.
+    .suffix = { "Medieval" }
+ent-ShipTradeHoleNorth = { ent-ShipTradeHole }
+    .desc = { ent-ShipTradeHole.desc }
+    .suffix = { "Medieval, North" }
+ent-ShipTradeHoleEast = { ent-ShipTradeHole }
+    .desc = { ent-ShipTradeHole.desc }
+    .suffix = { "Medieval, East" }
+ent-ShipTradeHoleSouth = { ent-ShipTradeHole }
+    .desc = { ent-ShipTradeHole.desc }
+    .suffix = { "Medieval, South" }
+ent-ShipTradeHoleWest = { ent-ShipTradeHole }
+    .desc = { ent-ShipTradeHole.desc }
+    .suffix = { "Medieval, West" }
+
 sail-menu-rotate-left = Rotate left
 sail-menu-toggle-fold = Fold / unfold
 sail-menu-rotate-right = Rotate right

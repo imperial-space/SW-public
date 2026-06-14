@@ -1,8 +1,12 @@
 using System.Linq;
 using Content.Server.Stack;
+using Content.Server.Store.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Ships.ShipBuyTerminal;
+using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Stacks;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
@@ -20,6 +24,7 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -29,6 +34,7 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
         SubscribeLocalEvent<ShipBuyTerminalComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpen);
         SubscribeLocalEvent<ShipBuyTerminalComponent, ShipBuyTerminalBuyMessage>(OnBuyRequest);
         SubscribeLocalEvent<ShipBuyTerminalComponent, ShipBuyTerminalWithdrawMessage>(OnRequestWithdraw);
+        SubscribeLocalEvent<ShipBuyTerminalComponent, InteractUsingEvent>(OnCurrencyInsert);
     }
 
     private void OnOpenAttempt(EntityUid uid, ShipBuyTerminalComponent component, ActivatableUIOpenAttemptEvent args)
@@ -47,18 +53,42 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
         UpdateUi(uid, component);
     }
 
+    private void OnCurrencyInsert(EntityUid uid, ShipBuyTerminalComponent component, ref InteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryComp<CurrencyComponent>(args.Used, out var currency))
+            return;
+
+        var currencyId = (string)component.Currency;
+        if (!currency.Price.TryGetValue(currencyId, out var pricePerUnit))
+            return;
+
+        var amount = TryComp<StackComponent>(args.Used, out var stack) ? stack.Count : 1;
+        component.Balance += (int)(pricePerUnit * amount);
+
+        args.Handled = true;
+        QueueDel(args.Used);
+        UpdateUi(uid, component);
+    }
+
+    private List<ShipGridOfferPrototype> GetAllOffers()
+    {
+        return [.. _prototype.EnumeratePrototypes<ShipGridOfferPrototype>().OrderBy(p => p.ID)];
+    }
+
     private void OnBuyRequest(EntityUid uid, ShipBuyTerminalComponent component, ShipBuyTerminalBuyMessage msg)
     {
         var user = msg.Actor;
         if (!_mobState.IsAlive(user))
             return;
 
-        if (msg.OfferIndex < 0 || msg.OfferIndex >= component.GridOffers.Count)
+        var offers = GetAllOffers();
+        if (msg.OfferIndex < 0 || msg.OfferIndex >= offers.Count)
             return;
 
-        var offerId = component.GridOffers[msg.OfferIndex];
-        if (!_prototype.TryIndex(offerId, out var offer))
-            return;
+        var offer = offers[msg.OfferIndex];
 
         if (component.Balance < offer.Cost)
             return;
@@ -66,8 +96,8 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
         var mapId = _transform.GetMapId(uid);
         var worldPos = _transform.GetWorldPosition(uid);
 
-        var offsetAngle = new Angle(component.GlobalOffsetAngle + offer.LocalOffsetAngle);
-        var gridAngle = new Angle(component.GlobalGridAngle + offer.GridAngle);
+        var offsetAngle = Angle.FromDegrees(component.GlobalOffsetAngle + offer.LocalOffsetAngle);
+        var gridAngle = Angle.FromDegrees(component.GlobalGridAngle + offer.GridAngle);
         var totalOffset = component.GlobalOffset + offer.LocalOffset;
         var spawnPos = worldPos + offsetAngle.ToVec() * totalOffset;
 
@@ -111,7 +141,10 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
             if (amountToSpawn <= 0)
                 continue;
 
-            _stack.SpawnMultiple(cashId, amountToSpawn, coordinates);
+            var ents = _stack.SpawnMultiple(cashId, amountToSpawn, coordinates);
+            if (ents.FirstOrDefault() is { } ent)
+                _hands.PickupOrDrop(user, ent);
+
             amountRemaining -= value * amountToSpawn;
         }
 
@@ -121,7 +154,7 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
 
     private void UpdateUi(EntityUid uid, ShipBuyTerminalComponent component)
     {
-        var offerIds = component.GridOffers.Select(id => (string) id).ToList();
+        var offerIds = GetAllOffers().Select(p => p.ID).ToList();
         var state = new ShipBuyTerminalUpdateState(component.Balance, offerIds, component.Currency);
         _ui.SetUiState(uid, ShipBuyTerminalUiKey.Key, state);
     }
