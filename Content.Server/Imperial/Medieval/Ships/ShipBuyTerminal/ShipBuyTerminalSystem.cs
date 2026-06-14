@@ -3,11 +3,9 @@ using Content.Server.Stack;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Medieval.Ships.ShipBuyTerminal;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Store;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -68,16 +66,17 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
         var mapId = _transform.GetMapId(uid);
         var worldPos = _transform.GetWorldPosition(uid);
 
-        var spawnAngle = new Angle(component.SpawnAngle).Reduced();
+        var offsetAngle = new Angle(component.GlobalOffsetAngle + offer.LocalOffsetAngle);
+        var gridAngle = new Angle(component.GlobalGridAngle + offer.GridAngle);
         var totalOffset = component.GlobalOffset + offer.LocalOffset;
-        var spawnPos = worldPos + spawnAngle.ToVec() * totalOffset;
+        var spawnPos = worldPos + offsetAngle.ToVec() * totalOffset;
 
         var path = new ResPath(offer.GridPath);
         if (!_mapLoader.TryLoadGrid(mapId, path, out var grid, offset: spawnPos))
             return;
 
         if (grid != null)
-            _transform.SetWorldRotation(grid.Value, spawnAngle);
+            _transform.SetWorldRotation(grid.Value, gridAngle);
 
         component.Balance -= offer.Cost;
         UpdateUi(uid, component);

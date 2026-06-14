@@ -22,4 +22,10 @@ public sealed class ShipGridOfferPrototype : IPrototype
 
     [DataField]
     public float LocalOffset;
+
+    [DataField]
+    public float LocalOffsetAngle;
+
+    [DataField]
+    public float GridAngle;
 }

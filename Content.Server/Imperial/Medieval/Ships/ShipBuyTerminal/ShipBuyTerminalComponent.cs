@@ -14,7 +14,10 @@ public sealed partial class ShipBuyTerminalComponent : Component
     public float GlobalOffset = 1f;
 
     [DataField]
-    public float SpawnAngle;
+    public float GlobalOffsetAngle;
+
+    [DataField]
+    public float GlobalGridAngle;
 
     [DataField]
     public ProtoId<CurrencyPrototype> Currency = "Revent";

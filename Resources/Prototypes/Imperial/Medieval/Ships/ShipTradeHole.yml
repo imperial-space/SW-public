@@ -18,7 +18,8 @@
   - type: ShipBuyTerminal
     balance: 10000
     globalOffset: 1
-    spawnAngle: 0
+    globalOffsetAngle: 0
+    globalGridAngle: 0
     gridOffers:
     - VictoriaShip
   - type: Transform
