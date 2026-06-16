@@ -5337,8 +5337,8 @@
   components:
   - type: Sprite
     noRot: true
-    drawdepth: Overdoors
-    offset: 0,1.95
+    drawdepth: Mobs
+    offset: 0, 1.95
     layers:
     - sprite: Imperial/Medieval/Decor/shipsailenclosed.rsi
       state: ready
@@ -5381,7 +5381,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.35,-0.4,0.35,0.4"
+          bounds: "-0.1,-0.1,0.1,0.1"
         density: 1000
         layer:
         - WallLayer
