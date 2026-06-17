@@ -3,6 +3,7 @@ using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
+using Content.Shared.Gravity;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Parallax;
 using Robust.Server.Player;
@@ -33,6 +34,11 @@ public sealed class SpawnIslandMapCommand : IConsoleCommand
 
         mapSys.CreateMap(out var mapId, runMapInit: false);
         var mapUid = mapSys.GetMap(mapId);
+
+        var gravity = _entMan.AddComponent<GravityComponent>(mapUid);
+        gravity.Enabled = true;
+        gravity.Inherent = true;
+        _entMan.Dirty(mapUid, gravity);
 
         var sea = _entMan.AddComponent<SeaComponent>(mapUid);
 
