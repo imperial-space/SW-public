@@ -18,13 +18,13 @@ public sealed partial class IslandRadialGenerationComponent : Component
     public float LowIslandMinRange = 150f;
 
     [DataField]
-    public float MediumIslandMinRange = 250f;
+    public float MediumIslandMinRange = 350f;
 
     [DataField]
-    public float HighIslandMinRange = 350f;
+    public float HighIslandMinRange = 550f;
 
     [DataField]
-    public float HighIslandMaxRange = 550f;
+    public float HighIslandMaxRange = 750f;
 
     [DataField]
     public float InterIslandsThreshold = 16f;

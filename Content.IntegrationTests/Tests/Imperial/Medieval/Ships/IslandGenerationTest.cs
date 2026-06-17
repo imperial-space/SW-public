@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Imperial.Medieval.Ships.Islands;
-using NUnit.Framework.Internal;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Log;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
+using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Tests.Imperial.Medieval.Ships;
 
@@ -36,6 +37,14 @@ public sealed class IslandGenerationTest
             new("/Maps/Imperial/Medieval/Islands/IslandHard10.yml"),
             new("/Maps/Imperial/Medieval/Islands/IslandHard24.yml"),
         };
+        const int targetPerRing = 20;
+        while (lowIslands.Count < targetPerRing)
+            lowIslands.Add(lowIslands[lowIslands.Count % 1]);
+        while (mediumIslands.Count < targetPerRing)
+            mediumIslands.Add(mediumIslands[mediumIslands.Count % 1]);
+        while (highIslands.Count < targetPerRing)
+            highIslands.Add(highIslands[highIslands.Count % 2]);
+
         var expectedCount = lowIslands.Count + mediumIslands.Count + highIslands.Count;
 
         var allPaths = lowIslands.Concat(mediumIslands).Concat(highIslands);
@@ -60,7 +69,9 @@ public sealed class IslandGenerationTest
             comp.MediumIslands = mediumIslands;
             comp.HighIslands = highIslands;
 
+            server.CfgMan.SetCVar(RTCVars.FailureLogLevel, LogLevel.Fatal);
             mapSys.InitializeMap(mapId);
+            server.CfgMan.SetCVar(RTCVars.FailureLogLevel, LogLevel.Error);
         });
 
         await server.WaitAssertion(() =>
