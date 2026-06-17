@@ -14,7 +14,7 @@ public sealed partial class WaterPumpComponent : Component
     public float WaterCount = 250f;
 
     public EntityUid? User;
-    public TimeSpan UsedTime;
+    public TimeSpan? UsedTime;
     public DoAfterId? DoAfter;
 
 }

@@ -14,6 +14,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
@@ -32,6 +33,7 @@ public sealed class WaterPumpSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly INetManager _net = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -44,10 +46,16 @@ public sealed class WaterPumpSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        if (_net.IsClient)
+            return;
+
         var query = EntityQueryEnumerator<WaterPumpComponent>();
         while (query.MoveNext(out var pumpUid, out var pump))
-            if (pump.UsedTime + TimeSpan.FromSeconds(1.25f) < _timing.CurTime && _timing.CurTime < pump.UsedTime + TimeSpan.FromSeconds(2f))
+            if (pump.UsedTime is { } time && time + TimeSpan.FromSeconds(0.4f) < _timing.CurTime)
+            {
                 _appearance.SetData(pumpUid, PumpVisuals.State, PumpState.Idle);
+                pump.UsedTime = null;
+            }
     }
 
     private void OnAfterInteract(EntityUid uid, WaterPumpComponent component, AfterInteractEvent args)
