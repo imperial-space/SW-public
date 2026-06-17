@@ -80,7 +80,7 @@ public sealed class IslandBridsonGenerator
         for (var t = 0; t < 64 && seed == null; t++)
         {
             var pos = RandomInRing(ring, rng);
-            if (FitsInRing(pos, firstRadius, ring) && !grid.Conflicts(pos, firstRadius, _gap))
+            if (FitsInRing(pos, ring) && !grid.Conflicts(pos, firstRadius, _gap))
                 seed = new IslandPlacement(pos, firstPath, firstRadius);
         }
         if (seed == null)
@@ -103,7 +103,7 @@ public sealed class IslandBridsonGenerator
             for (var i = 0; i < _maxCandidatesPerPoint; i++)
             {
                 var cand = SampleAnnulus(origin.Pos, dMin, dMin * 2f, rng);
-                if (!FitsInRing(cand, nextRadius, ring))
+                if (!FitsInRing(cand, ring))
                     continue;
                 if (grid.Conflicts(cand, nextRadius, _gap))
                     continue;
@@ -124,10 +124,10 @@ public sealed class IslandBridsonGenerator
         return result;
     }
 
-    private static bool FitsInRing(Vector2 p, float radius, IslandRing ring)
+    private static bool FitsInRing(Vector2 p, IslandRing ring)
     {
         var d = p.Length();
-        return d - radius >= ring.Inner && d + radius <= ring.Outer;
+        return d >= ring.Inner && d <= ring.Outer;
     }
 
     private static Vector2 RandomInRing(IslandRing ring, Random rng)
