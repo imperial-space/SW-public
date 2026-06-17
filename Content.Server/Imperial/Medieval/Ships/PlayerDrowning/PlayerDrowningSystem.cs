@@ -5,6 +5,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Drowning;
 using Content.Shared.Ghost;
+using Content.Shared.Imperial.Medieval.Additions;
 using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Maps;
@@ -23,6 +24,7 @@ namespace Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 public sealed class PlayerDrowningSystem : EntitySystem
 {
     private const float DefaultReloadTimeSeconds = 1f;
+    private const float SpawnShieldDuration = 45f;
 
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -31,9 +33,10 @@ public sealed class PlayerDrowningSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private TimeSpan _nextCheckTime;
+    private readonly HashSet<Entity<TransformComponent>> _mapCandidates = new();
 
     public override void Initialize()
     {
@@ -78,46 +81,45 @@ public sealed class PlayerDrowningSystem : EntitySystem
             return;
 
         _nextCheckTime = curTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+
         var seaMaps = CollectSeaMaps();
-        var resetQueue = new List<EntityUid>();
-        var processQueue = new List<EntityUid>();
+        if (seaMaps.Count == 0)
+            return;
 
-        var query = EntityQueryEnumerator<TransformComponent>();
-        while (query.MoveNext(out var uid, out var transform))
+        var resetQuery = EntityQueryEnumerator<PlayerDrowningComponent, TransformComponent>();
+        while (resetQuery.MoveNext(out var uid, out _, out var xform))
         {
-            if (_container.IsEntityOrParentInContainer(uid))
-                continue;
-
-            var onGrid = transform.GridUid is { } gridUid && HasComp<MapGridComponent>(gridUid);
-            var resetDrowning = !seaMaps.Contains(transform.MapID) ||
-                                HasComp<MapComponent>(uid) ||
-                                HasComp<MapGridComponent>(uid) ||
-                                HasComp<WaveComponent>(uid) ||
-                                IsAttachedToGhost(uid, transform) ||
-                                HasComp<UndrowableComponent>(uid) ||
-                                HasComp<GodmodeComponent>(uid) ||
-                                IsOnSolidTile(transform);
-
-            if (resetDrowning)
-                resetQueue.Add(uid);
-            else
-                processQueue.Add(uid);
+            if (!seaMaps.Contains(xform.MapID) ||
+                HasComp<UndrowableComponent>(uid) ||
+                IsProtectedFromDrowning(uid, xform) ||
+                IsAttachedToGhost(uid, xform) ||
+                IsOnSolidTile(xform))
+            {
+                ResetDrowning(uid);
+            }
         }
 
-        foreach (var uid in resetQueue)
+        foreach (var seaMapId in seaMaps)
         {
-            if (TerminatingOrDeleted(uid))
-                continue;
+            _mapCandidates.Clear();
+            _lookup.GetEntitiesOnMap(seaMapId, _mapCandidates);
 
-            ResetDrowning(uid);
-        }
+            foreach (var (uid, xform) in _mapCandidates)
+            {
+                if (TerminatingOrDeleted(uid))
+                    continue;
 
-        foreach (var uid in processQueue)
-        {
-            if (TerminatingOrDeleted(uid))
-                continue;
+                if (HasComp<MapComponent>(uid) ||
+                    HasComp<MapGridComponent>(uid) ||
+                    HasComp<WaveComponent>(uid) ||
+                    HasComp<UndrowableComponent>(uid) ||
+                    IsProtectedFromDrowning(uid, xform) ||
+                    IsAttachedToGhost(uid, xform) ||
+                    IsOnSolidTile(xform))
+                    continue;
 
-            ProcessDrowning(uid);
+                ProcessDrowning(uid);
+            }
         }
     }
 
@@ -181,6 +183,36 @@ public sealed class PlayerDrowningSystem : EntitySystem
         QueueDel(uid);
         Spawn(component.SplashEffect, mapCoordinates);
         _audio.PlayPvs(_random.Pick(MedievalShipSounds.Drown), soundCoordinates);
+    }
+
+    private bool IsProtectedFromDrowning(EntityUid uid, TransformComponent xform)
+    {
+        if (IsEntityInvulnerable(uid))
+            return true;
+
+        var parent = xform.ParentUid;
+        while (parent.IsValid() && !HasComp<MapComponent>(parent))
+        {
+            if (IsEntityInvulnerable(parent))
+                return true;
+
+            if (!TryComp<TransformComponent>(parent, out var parentXform))
+                break;
+
+            parent = parentXform.ParentUid;
+        }
+
+        return false;
+    }
+
+    private bool IsEntityInvulnerable(EntityUid uid)
+    {
+        if (HasComp<GodmodeComponent>(uid))
+            return true;
+
+        return TryComp<ShieldOnStartupComponent>(uid, out var shield)
+            && shield.Enabled
+            && shield.Spawned + TimeSpan.FromSeconds(SpawnShieldDuration) >= _timing.CurTime;
     }
 
     private bool IsAttachedToGhost(EntityUid uid, TransformComponent transform)
