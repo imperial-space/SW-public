@@ -1,8 +1,8 @@
 using System.Numerics;
+using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Ships.Islands;
 
@@ -10,8 +10,7 @@ public sealed class IslandRadialGenerationSystem : EntitySystem
 {
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-
-    private const int MaxConsecutiveFails = 10;
+    [Dependency] private readonly IResourceManager _res = default!;
 
     public override void Initialize()
     {
@@ -30,67 +29,45 @@ public sealed class IslandRadialGenerationSystem : EntitySystem
 
     public void SpawnIslands(MapId mapId, IslandRadialGenerationComponent config)
     {
-        var spawnedIslands = new List<(Vector2 Center, float Radius)>();
+        var rng = new Random(_random.Next());
 
-        SpawnTier(mapId, config.LowIslands, config.LowIslandMinRange, config.MediumIslandMinRange, config.InterIslandsThreshold, spawnedIslands);
-        SpawnTier(mapId, config.MediumIslands, config.MediumIslandMinRange, config.HighIslandMinRange, config.InterIslandsThreshold, spawnedIslands);
-        SpawnTier(mapId, config.HighIslands, config.HighIslandMinRange, config.HighIslandMaxRange, config.InterIslandsThreshold, spawnedIslands);
+        var lowPool   = BuildPool(config.LowIslands);
+        var medPool   = BuildPool(config.MediumIslands);
+        var highPool  = BuildPool(config.HighIslands);
+
+        var maxR = 0f;
+        foreach (var (_, r) in lowPool) maxR = MathF.Max(maxR, r);
+        foreach (var (_, r) in medPool) maxR = MathF.Max(maxR, r);
+        foreach (var (_, r) in highPool) maxR = MathF.Max(maxR, r);
+
+        var cellSize = maxR > 0f ? maxR + config.InterIslandsThreshold : config.InterIslandsThreshold;
+        var grid = new IslandSpatialGrid(cellSize);
+        var gen  = new IslandBridsonGenerator(config.InterIslandsThreshold, config.MaxCandidatesPerPoint);
+
+        var placements = new List<IslandPlacement>();
+        placements.AddRange(gen.Generate(new IslandRing(config.LowIslandMinRange,    config.MediumIslandMinRange), lowPool,  grid, rng));
+        placements.AddRange(gen.Generate(new IslandRing(config.MediumIslandMinRange, config.HighIslandMinRange),   medPool,  grid, rng));
+        placements.AddRange(gen.Generate(new IslandRing(config.HighIslandMinRange,   config.HighIslandMaxRange),   highPool, grid, rng));
+
+        foreach (var placement in placements)
+        {
+            _mapLoader.TryLoadGrid(mapId, placement.Path, out _, offset: placement.Pos);
+        }
     }
 
-    private void SpawnTier(
-        MapId mapId,
-        List<ResPath> islands,
-        float innerRadius,
-        float outerRadius,
-        float threshold,
-        List<(Vector2 Center, float Radius)> spawnedIslands)
+    private List<(ResPath Path, float Radius)> BuildPool(List<ResPath> paths)
     {
-        var consecutiveFails = 0;
-
-        foreach (var islandPath in islands)
+        var pool = new List<(ResPath, float)>(paths.Count);
+        foreach (var path in paths)
         {
-            if (consecutiveFails >= MaxConsecutiveFails)
-                return;
-
-            var placed = false;
-            while (!placed)
+            var radius = IslandRadiusParser.TryComputeRadius(path, _res);
+            if (radius == null)
             {
-                if (consecutiveFails >= MaxConsecutiveFails)
-                    return;
-
-                var candidate = PickRandomPoint(innerRadius, outerRadius);
-                if (IsTooClose(candidate, spawnedIslands, threshold))
-                {
-                    consecutiveFails++;
-                    continue;
-                }
-
-                if (!_mapLoader.TryLoadGrid(mapId, islandPath, out var grid, offset: candidate))
-                    break;
-
-                var radius = grid!.Value.Comp.LocalAABB.Extents.Length();
-                spawnedIslands.Add((candidate, radius));
-                consecutiveFails = 0;
-                placed = true;
+                Log.Warning($"Could not compute radius for island {path}, skipping.");
+                continue;
             }
+            pool.Add((path, radius.Value));
         }
-    }
-
-    private Vector2 PickRandomPoint(float innerRadius, float outerRadius)
-    {
-        var angle = _random.NextFloat() * MathF.Tau;
-        var distance = innerRadius + _random.NextFloat() * (outerRadius - innerRadius);
-        return new Vector2(MathF.Cos(angle) * distance, MathF.Sin(angle) * distance);
-    }
-
-    private static bool IsTooClose(Vector2 candidate, List<(Vector2 Center, float Radius)> existing, float threshold)
-    {
-        foreach (var (center, radius) in existing)
-        {
-            if ((candidate - center).Length() < radius + threshold)
-                return true;
-        }
-
-        return false;
+        return pool;
     }
 }
