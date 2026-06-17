@@ -70,7 +70,8 @@ public sealed class WaterPumpSystem : EntitySystem
         {
             MovementThreshold = 0.1f,
             BreakOnMove = true,
-            CancelDuplicate = true,
+            BlockDuplicate = true,
+            DuplicateCondition = DuplicateConditions.SameEvent,
             DistanceThreshold = 2,
             BreakOnDamage = true,
             RequireCanInteract = false,
