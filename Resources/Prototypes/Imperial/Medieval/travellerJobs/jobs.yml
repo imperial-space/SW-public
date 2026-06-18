@@ -1,0 +1,69 @@
+# Странствующий алхимик
+
+
+####
+- type: job
+  id: MedievalWanderingAlchemic
+  parent: MedievalTraveller
+  name: job-name-WanderingAlchemic-medieval
+  description: job-description-WanderingAlchemic-medieval
+  playTimeTracker: JobMedievalWanderingAlchemic
+  startingGear: MedievalWanderingAlchemicGear
+  icon: "JobIconMedievalWanderingAlchemic"
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Orc
+    - Skeleton
+    inverted: true
+  - !type:OverallPlaytimeRequirement
+    time: 14400
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MedievalJobSpawn
+      spawnType: Default
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalWanderingAlchemic
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: alc
+  jobName: job-name-WanderingAlchemic-medieval
+
+- type: playTimeTracker
+  id: JobMedievalWanderingAlchemic
+
+- type: startingGear
+  id: MedievalWanderingAlchemicGear
+  equipment:
+    pocket2: MedievalRevent50
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
+    belt: MedievalAlchemicBeltFull
+    back: MedievalClothingBackpackBox
+  storage:
+    back:
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalRecipeBook
+    - MedievalMortarNew
+    - MedievalMortarTool
+    - Dropper
+
+- type: roleLoadout
+  id: JobMedievalWanderingAlchemic
+  groups:
+  - TravellerHead
+  - MedievalNeck
+  - MedievalShoes
+  - MedievalTrinkets
+  - MedievalGloves

@@ -924,6 +924,21 @@
     damageCoefficient: 0.025
 
 - type: entity
+  parent: MedievalAlchemicBelt
+  id: MedievalAlchemicBeltFull
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalChemistryEmptyBottle01
+    - id: MedievalChemistryEmptyBottle01
+    - id: MedievalChemistryEmptyBottle02
+    - id: MedievalChemistryEmptyBottle02
+    - id: MedievalChemistryEmptyBottle03
+    - id: MedievalChemistryEmptyBottle03
+    - id: MedievalChemistryEmptyBottle04
+    - id: MedievalChemistryEmptyBottle04
+
+- type: entity
   parent: Clothing
   id: MedievalClothingFeetSteel
   components:

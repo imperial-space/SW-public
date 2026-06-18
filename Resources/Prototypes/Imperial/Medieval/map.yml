@@ -21,6 +21,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 7, 7 ]
             MedievalWanderMag: [ 4, 4 ]
+            MedievalWanderingAlchemic: [ 2, 2 ]
             # Legion (29 total)
             MedievalLegionJailed: [ 5, 5 ]
             MedievalLegionJailer: [ 1, 1 ]
@@ -105,6 +106,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 5, 5 ]
             MedievalWanderMag: [ 3, 3 ]
+            MedievalWanderingAlchemic: [ 1, 1 ]
             # Legion (22 total)
             MedievalLegionRecruit: [ 6, 6 ]
             MedievalLegionLegioner: [ 8, 8 ]
@@ -187,6 +189,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 3, 3 ]
             MedievalWanderMag: [ 2, 2 ]
+            MedievalWanderingAlchemic: [ 1, 1 ]
             # Legion (15 total)
             MedievalLegionRecruit: [ 3, 3 ]
             MedievalLegionLegioner: [ 5, 5 ]
@@ -268,6 +271,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 2, 2 ]
             MedievalWanderMag: [ 1, 1 ]
+            MedievalWanderingAlchemic: [ 1, 1 ]
             # Legion (11 total)
             MedievalLegionRecruit: [ 3, 3 ]
             MedievalLegionLegioner: [ 3, 3 ]
@@ -344,6 +348,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 1, 1 ]
             MedievalWanderMag: [ 1, 1 ]
+            MedievalWanderingAlchemic: [ 1, 1 ]
             # Legion (8 total)
             MedievalLegionRecruit: [ 2, 2 ]
             MedievalLegionLegioner: [ 2, 2 ]
