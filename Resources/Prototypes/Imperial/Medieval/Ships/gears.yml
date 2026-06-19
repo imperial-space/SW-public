@@ -55,6 +55,12 @@
     sprite: Imperial/Medieval/Ships/SteeringWheel.rsi
     state: wheel
   - type: Helm
+  - type: UserInterface
+    interfaces:
+      enum.HelmUiKey.Key:
+        type: HelmBoundUserInterface
+  - type: ActivatableUI
+    key: enum.HelmUiKey.Key
 
 - type: entity
   id: MedievalCompass

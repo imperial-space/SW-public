@@ -80,6 +80,11 @@ sail-examine-wind-strength = Сила ветра: { $strength }
 helm-menu-rotate-left = Повернуть влево
 helm-menu-center = Вернуть в центр
 helm-menu-rotate-right = Повернуть вправо
+
+helm-ui-title = Штурвал
+helm-ui-direction-left = налево
+helm-ui-direction-right = направо
+helm-ui-direction-center = центр
 helm-examine-right = Штурвал повёрнут на { $degrees } градусов вправо
 helm-examine-left = Штурвал повёрнут на { $degrees } градусов влево
 helm-examine-center = Вы держите курс вперёд

@@ -23,6 +23,11 @@ helm-menu-rotate-left = Rotate left
 helm-menu-center = Center helm
 helm-menu-rotate-right = Rotate right
 
+helm-ui-title = Helm
+helm-ui-direction-left = To port
+helm-ui-direction-right = To starboard
+helm-ui-direction-center = Center
+
 helm-examine-right = The helm is turned { $degrees } degrees to starboard
 helm-examine-left = The helm is turned { $degrees } degrees to port
 helm-examine-center = You are holding a straight course
