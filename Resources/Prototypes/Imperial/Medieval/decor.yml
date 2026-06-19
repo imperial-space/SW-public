@@ -5494,7 +5494,7 @@
       followEntity: true
     - type: ActivatableUI
       key: enum.RadarConsoleUiKey.Key
-      singleUser: true
+      singleUser: false
     - type: UserInterface
       interfaces:
         enum.RadarConsoleUiKey.Key:
