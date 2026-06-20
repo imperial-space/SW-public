@@ -170,8 +170,11 @@ public sealed class SailSystem : EntitySystem
             if (MathF.Abs(forceFactor) < 0.001f)
                 continue;
 
-            if (!TryComp<MapGridComponent>(boat, out var mapGrid) ||
-                !TryGetOverloadCeil(boat, mapGrid, sailComponent.OverloadCeilPerTile, out var overloadCeil))
+            if (!TryComp<MapGridComponent>(boat, out var mapGrid))
+                continue;
+
+            var overloadCeil = ShipWeightHelper.GetMaxWeight(boat, mapGrid, _map, EntityManager, _cfg);
+            if (overloadCeil < 0)
                 continue;
 
             var weight = _rdWeight.GetTotalOnGrid(boat);
@@ -234,19 +237,6 @@ public sealed class SailSystem : EntitySystem
     private float GetShipSpeed(EntityUid boat)
     {
         return _physics.GetMapLinearVelocity(boat).Length();
-    }
-
-    private bool TryGetOverloadCeil(EntityUid gridUid, MapGridComponent mapGrid, float overloadCeilPerTile, out float overloadCeil)
-    {
-        var totalTiles = 0;
-        var allTiles = _map.GetAllTilesEnumerator(gridUid, mapGrid);
-        while (allTiles.MoveNext(out _))
-        {
-            totalTiles++;
-        }
-
-        overloadCeil = totalTiles * overloadCeilPerTile;
-        return totalTiles > 0;
     }
 
     private static float GetImpulseMagnitude(float power, float overloadCeil, float weight)
