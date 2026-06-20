@@ -145,7 +145,7 @@
     explosionType: Default
     maxIntensity: 2.3
     intensitySlope: 1
-    totalIntensity: 25
+    totalIntensity: 10
     canCreateVacuum: false
   - type: SpawnOnTrigger
     proto: ShockWaveEffect
