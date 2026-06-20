@@ -1,7 +1,10 @@
 using System;
 using Content.Shared.DoAfter;
+using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 
 namespace Content.Shared.Imperial.Medieval.Ships.Anchor;
 
@@ -9,6 +12,8 @@ public sealed class MedievalAnchorSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedSkillsSystem _skills = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -52,6 +57,7 @@ public sealed class MedievalAnchorSystem : EntitySystem
             NeedHand = true,
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
+        if (_doAfter.TryStartDoAfter(doAfter) && _net.IsServer)
+            _audio.PlayPvs(MedievalShipSounds.AnchorUse, target);
     }
 }

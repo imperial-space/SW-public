@@ -9,6 +9,7 @@ using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
@@ -30,16 +31,17 @@ public sealed class HelmSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     private TimeSpan _nextCheckTime;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<HelmComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<HelmComponent, ActivateInWorldEvent>(OnInteractHand);
         SubscribeLocalEvent<HelmComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<HelmComponent, HelmActionDoAfterEvent>(OnHelmActionDoAfter);
-        SubscribeNetworkEvent<HelmMenuActionEvent>(OnMenuOptionSelected);
+        SubscribeLocalEvent<HelmComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpen);
+        SubscribeLocalEvent<HelmComponent, HelmMenuActionMessage>(OnMenuActionMessage);
     }
 
     private void OnStartup(EntityUid uid, HelmComponent component, ComponentStartup args)
@@ -47,13 +49,20 @@ public sealed class HelmSystem : EntitySystem
         component.HelmRotation = NormalizeHelmRotation(component.HelmRotation);
     }
 
-    private void OnInteractHand(EntityUid uid, HelmComponent component, ActivateInWorldEvent args)
+    private void OnBeforeUiOpen(EntityUid uid, HelmComponent component, BeforeActivatableUIOpenEvent args)
     {
-        if (args.Handled || !TryComp(args.User, out ActorComponent? actor))
+        UpdateUi(uid, component);
+    }
+
+    private void OnMenuActionMessage(EntityUid uid, HelmComponent component, HelmMenuActionMessage msg)
+    {
+        var player = msg.Actor;
+        if (!_actionBlocker.CanInteract(player, uid) ||
+            !_actionBlocker.CanComplexInteract(player) ||
+            !_interaction.InRangeAndAccessible(player, uid))
             return;
 
-        args.Handled = true;
-        RaiseNetworkEvent(new OpenHelmMenuEvent(uid.Id), actor.PlayerSession);
+        TryStartHelmActionDoAfter(player, uid, msg.Action);
     }
 
     private void OnExamine(EntityUid uid, HelmComponent component, ExaminedEvent args)
@@ -83,26 +92,6 @@ public sealed class HelmSystem : EntitySystem
                 ("weight", FormatWeight(weight)),
                 ("overloadCeil", FormatWeight(overloadCeil))));
         }
-    }
-
-    private void OnMenuOptionSelected(HelmMenuActionEvent args, EntitySessionEventArgs session)
-    {
-        var player = session.SenderSession.AttachedEntity;
-        if (player == null)
-            return;
-
-        var helm = new EntityUid(args.Target);
-        if (!TryComp<HelmComponent>(helm, out var helmComponent))
-            return;
-
-        if (!_actionBlocker.CanInteract(player.Value, helm) ||
-            !_actionBlocker.CanComplexInteract(player.Value) ||
-            !_interaction.InRangeAndAccessible(player.Value, helm))
-        {
-            return;
-        }
-
-        TryStartHelmActionDoAfter(player.Value, helm, args.Action);
     }
 
     private void TryStartHelmActionDoAfter(EntityUid player, EntityUid helm, HelmMenuAction action)
@@ -148,6 +137,12 @@ public sealed class HelmSystem : EntitySystem
         }
 
         helmComponent.HelmRotation = NormalizeHelmRotation(helmComponent.HelmRotation);
+        UpdateUi(helm, helmComponent);
+    }
+
+    private void UpdateUi(EntityUid uid, HelmComponent component)
+    {
+        _ui.SetUiState(uid, HelmUiKey.Key, new HelmBoundUserInterfaceState(component.HelmRotation));
     }
 
     public override void Update(float frameTime)

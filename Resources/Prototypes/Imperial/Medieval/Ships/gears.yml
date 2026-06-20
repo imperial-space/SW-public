@@ -93,18 +93,12 @@
     state: wheel
     drawdepth: Mobs
   - type: Helm
-  - type: InteractionOutline
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.01
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
-        density: 1000
+  - type: UserInterface
+    interfaces:
+      enum.HelmUiKey.Key:
+        type: HelmBoundUserInterface
+  - type: ActivatableUI
+    key: enum.HelmUiKey.Key
 
 - type: entity
   id: MedievalCompass

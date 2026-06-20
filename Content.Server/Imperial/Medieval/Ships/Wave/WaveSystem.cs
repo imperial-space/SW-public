@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 using Content.Shared.Imperial.Medieval.Additions;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Hull;
@@ -255,7 +256,8 @@ public sealed class WaveSystem : EntitySystem
             if (target == wave ||
                 TerminatingOrDeleted(target) ||
                 HasComp<MapGridComponent>(target) ||
-                HasComp<MapComponent>(target))
+                HasComp<MapComponent>(target) ||
+                HasComp<UndrowableComponent>(target))
             {
                 continue;
             }

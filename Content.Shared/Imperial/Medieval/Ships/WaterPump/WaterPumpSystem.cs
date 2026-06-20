@@ -3,9 +3,6 @@ using System.Threading;
 using Content.Shared._RD.Weight.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Imperial.Medieval.Ships;
-using Content.Shared.Imperial.Medieval.Ships.Repairing;
-using Content.Shared.Imperial.Medieval.Ships.WaterPump.Bucket;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
@@ -21,9 +18,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Medieval.Ships.WaterPump;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class WaterPumpSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -35,11 +29,19 @@ public sealed class WaterPumpSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     /// <inheritdoc/>
+    [Dependency] private readonly SharedSkillsSystem  _skills = default!;
+    [Dependency] private readonly EntityManager _entManager = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly RDWeightSystem  _rdWeight = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<WaterPumpComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<WaterPumpComponent, ActivateInWorldEvent>(OnActivateInWorld);
-        SubscribeLocalEvent<WaterPumpComponent, PumpUseEvent>(OnBucketUse);
     }
 
     public override void Update(float frameTime)
@@ -106,7 +108,8 @@ public sealed class WaterPumpSystem : EntitySystem
         {
             MovementThreshold = 0.1f,
             BreakOnMove = true,
-            CancelDuplicate = true,
+            BlockDuplicate = true,
+            DuplicateCondition = DuplicateConditions.SameEvent,
             DistanceThreshold = 2,
             BreakOnDamage = true,
             RequireCanInteract = false,
@@ -144,6 +147,8 @@ public sealed class WaterPumpSystem : EntitySystem
         component.UsedTime = _timing.CurTime;
         args.Repeat = true;
         args.Handled = true;
+
+        _doAfter.TryStartDoAfter(sdoAfter);
     }
 }
 
