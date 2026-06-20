@@ -5495,6 +5495,7 @@
     - type: ActivatableUI
       key: enum.RadarConsoleUiKey.Key
       singleUser: true
+    - type: MedievalCartographerTable
     - type: UserInterface
       interfaces:
         enum.RadarConsoleUiKey.Key:

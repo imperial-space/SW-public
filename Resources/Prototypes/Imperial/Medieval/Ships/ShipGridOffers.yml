@@ -1,0 +1,9 @@
+- type: shipGridOffer
+  id: VictoriaShip
+  displayName: Victoria
+  displayDescription: Небольшой корабль, подходящий для коротких путешествий
+  gridPath: /Maps/Imperial/Medieval/Ships/Victoria.yml
+  cost: 1000
+  localOffset: 5 # локальный оффсет спавна корабля от ямы
+  localOffsetAngle: 0 # локальная корректировка угла направления спавна
+  gridAngle: 0 # угол поворота грида корабля при спавне

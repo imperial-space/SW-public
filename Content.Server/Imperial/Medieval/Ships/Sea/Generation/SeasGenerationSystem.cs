@@ -28,11 +28,10 @@ public sealed class SeasGenerationSystem : EntitySystem
     private const int MapMin = -75;
     private const int MapMax = 75;
 
-    // РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕС‚РѕС‚РёРїС‹ РІРјРµСЃС‚Рѕ СЃС‚СЂРѕРє
     private static readonly (string PrototypeId, int Count)[] IslandConfig = {
-        ("PirateIslands", 1),   // 1 Р±РѕР»СЊС€РѕР№
-        ("FrendlyIslands", 2),   // 2 СЃСЂРµРґРЅРёС…
-        ("VolcanicIsland", 10)    // 10 РјРµР»РєРёС…
+        ("PirateIslands", 1),
+        ("FrendlyIslands", 2),
+        ("VolcanicIsland", 10)
     };
 
     public override void Initialize()
@@ -55,7 +54,6 @@ public sealed class SeasGenerationSystem : EntitySystem
 
         var seaMatrix = component.SeaMatrix;
 
-        // РЎРѕР·РґР°РµРј 25 РєР°СЂС‚ РјРѕСЂСЏ (5x5)
         for (int x = 0; x < 5; x++)
         {
             for (int y = 0; y < 5; y++)
@@ -90,22 +88,16 @@ public sealed class SeasGenerationSystem : EntitySystem
             }
         }
 
-        // вњ… Р“Р•РќР•Р РР РЈР•Рњ РћРЎРўР РћР’Рђ РЎ РРЎРџРћР›Р¬Р—РћР’РђРќРР•Рњ IPrototypeManager
         GenerateIslandsOnSeaMaps(seaMatrix);
 
         component.SeaInitialized = true;
     }
 
-    /// <summary>
-    /// Р“РµРЅРµСЂРёСЂСѓРµС‚ РѕСЃС‚СЂРѕРІР°, РёСЃРїРѕР»СЊР·СѓСЏ IPrototypeManager Рё РєРѕРЅС„РёРіСѓСЂР°С†РёСЋ РїРѕ ID.
-    /// Р’СЃРµ РѕСЃС‚СЂРѕРІР° СЂР°Р·РјРµС‰Р°СЋС‚СЃСЏ РІ РѕР±С‰РµРј РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ [-75, 75], Р±РµР· РїРµСЂРµСЃРµС‡РµРЅРёР№.
-    /// </summary>
     private void GenerateIslandsOnSeaMaps(SeaMatrix seaMatrix)
     {
         var generatedObjects = new List<EntityUid>();
         var occupiedTiles = new HashSet<(int X, int Y)>();
 
-        // РЎРѕР±РёСЂР°РµРј РІСЃРµ MapId РєР°СЂС‚ РјРѕСЂСЏ
         var seaMapIds = new List<MapId>();
         for (int x = 0; x < 5; x++)
         {
@@ -123,10 +115,8 @@ public sealed class SeasGenerationSystem : EntitySystem
             return;
         }
 
-        // РџСЂРѕС…РѕРґРёРј РїРѕ РєРѕРЅС„РёРіСѓСЂР°С†РёРё РѕСЃС‚СЂРѕРІРѕРІ
         foreach (var (prototypeId, count) in IslandConfig)
         {
-            // РџСЂРѕРІРµСЂСЏРµРј, СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё РїСЂРѕС‚РѕС‚РёРї
             if (!_prototypeManager.TryIndex<IslandPrototype>(prototypeId, out var prototype) || prototype.Path == null)
             {
                 Logger.Warning($"Island prototype '{prototypeId}' not found! Skipping.");
@@ -140,14 +130,11 @@ public sealed class SeasGenerationSystem : EntitySystem
 
                 while (++attempts <= maxAttempts)
                 {
-                    // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅСѓСЋ РєР°СЂС‚Сѓ РјРѕСЂСЏ
                     var targetMapId = seaMapIds[_random.Next(seaMapIds.Count)];
 
-                    // РЎР»СѓС‡Р°Р№РЅР°СЏ РїРѕР·РёС†РёСЏ РЅР° РєР°СЂС‚Рµ
                     int x = _random.Next(MapMin, MapMax - prototype.Size + 1);
                     int y = _random.Next(MapMin, MapMax - prototype.Size + 1);
 
-                    // РџСЂРѕРІРµСЂСЏРµРј РїРµСЂРµСЃРµС‡РµРЅРёСЏ
                     bool overlaps = false;
                     var newTiles = new List<(int X, int Y)>();
 
@@ -175,7 +162,7 @@ public sealed class SeasGenerationSystem : EntitySystem
                             generatedObjects.Add(newObj.Value);
                             foreach (var tile in newTiles)
                                 occupiedTiles.Add(tile);
-                            break; // РЈСЃРїРµС€РЅРѕ
+                            break;
                         }
                     }
                 }
@@ -199,7 +186,5 @@ public sealed class SeasGenerationSystem : EntitySystem
 
     private void OnSeasGeneration(SeasGenerationEvent ev)
     {
-        // РћСЃС‚Р°РІР»РµРЅРѕ РґР»СЏ Р±СѓРґСѓС‰РµРіРѕ СЂР°СЃС€РёСЂРµРЅРёСЏ
     }
 }
-

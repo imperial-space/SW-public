@@ -1,6 +1,5 @@
 using Content.Shared.Shuttles.BUIStates;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Imperial.Medieval.CartographerTable;
@@ -18,7 +17,6 @@ public sealed class MedievalCartographerTableBoundUserInterface : BoundUserInter
     protected override void Open()
     {
         base.Open();
-
         _window = this.CreateWindow<MedievalCartographerTableWindow>();
     }
 
