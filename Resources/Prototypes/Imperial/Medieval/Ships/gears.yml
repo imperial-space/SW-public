@@ -49,12 +49,12 @@
     drawdepth: Mobs
     layers:
     - state: pump_idle
-      map: ["enum.PumpVisuals.Layer"]
+      map: ["enum.WaterPumpVisuals.Layer"]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.PumpVisuals.State:
-        enum.PumpVisuals.Layer:
+      enum.WaterPumpVisuals.State:
+        enum.WaterPumpVisuals.Layer:
           Idle: { state: pump_idle }
           Active: { state: pump_active }
   - type: WaterPump
@@ -97,6 +97,17 @@
     interfaces:
       enum.HelmUiKey.Key:
         type: HelmBoundUserInterface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
   - type: ActivatableUI
     key: enum.HelmUiKey.Key
 

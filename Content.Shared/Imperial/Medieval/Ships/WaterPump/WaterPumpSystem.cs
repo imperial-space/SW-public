@@ -46,7 +46,7 @@ public sealed class WaterPumpSystem : EntitySystem
         while (query.MoveNext(out var pumpUid, out var pump))
             if (pump.UsedTime is { } time && time + TimeSpan.FromSeconds(0.4f) < _timing.CurTime)
             {
-                _appearance.SetData(pumpUid, PumpVisuals.State, PumpState.Idle);
+                _appearance.SetData(pumpUid, WaterPumpVisuals.State, WaterPumpState.Idle);
                 pump.UsedTime = null;
             }
     }
@@ -121,14 +121,14 @@ public sealed class WaterPumpSystem : EntitySystem
 }
 
 [NetSerializable, Serializable]
-public enum PumpVisuals : byte
+public enum WaterPumpVisuals : byte
 {
     Layer,
     State
 }
 
 [NetSerializable, Serializable]
-public enum PumpState : byte
+public enum WaterPumpState : byte
 {
     Idle,
     Active

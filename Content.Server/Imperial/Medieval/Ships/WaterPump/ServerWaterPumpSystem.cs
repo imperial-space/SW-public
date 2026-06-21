@@ -35,7 +35,7 @@ public sealed class ServerWaterPumpSystem : EntitySystem
             Volume = -10f
         };
         _audio.PlayPvs(MedievalShipSounds.PumpUse, uid, audioParams);
-        _appearance.SetData(uid, PumpVisuals.State, PumpState.Active);
+        _appearance.SetData(uid, WaterPumpVisuals.State, WaterPumpState.Active);
         component.UsedTime = _timing.CurTime;
         args.Repeat = true;
         args.Handled = true;
