@@ -13,8 +13,13 @@ public sealed partial class WaterPumpComponent : Component
     [DataField("waterCount")]
     public float WaterCount = 250f;
 
+    [DataField("user")]
     public EntityUid? User;
+
+    [DataField("usedTime")]
     public TimeSpan? UsedTime;
+
+    [DataField("doAfter")]
     public DoAfterId? DoAfter;
 
 }

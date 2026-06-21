@@ -122,6 +122,9 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, MedievalAnchorComponent component, ref ExaminedEvent args)
     {
+        if (!args.IsInDetailsRange)
+            return;
+
         var messageRange = new FormattedMessage();
         messageRange.AddText(Loc.GetString($"examine-anchor-island-search-range") + " ");
         messageRange.PushColor(Color.Aqua);
@@ -141,11 +144,19 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
             }
             else if (!component.Enabled && SearchIslandInRange(uid, component.IslandSearchRange))
             {
-                var messageWavesWillDisable = new FormattedMessage();
-                messageWavesWillDisable.PushColor(Color.Yellow);
-                messageWavesWillDisable.AddText(Loc.GetString($"examine-anchor-waves-will-disable"));
-                messageWavesWillDisable.Pop();
-                args.PushMessage(messageWavesWillDisable);
+                var messageIslandNear = new FormattedMessage();
+                messageIslandNear.PushColor(Color.Yellow);
+                messageIslandNear.AddText(Loc.GetString($"examine-anchor-island-near"));
+                messageIslandNear.Pop();
+                args.PushMessage(messageIslandNear);
+            }
+            else if (!component.Enabled && SearchIslandInRange(uid, component.IslandSearchRange))
+            {
+                var messageIslandFar = new FormattedMessage();
+                messageIslandFar.PushColor(Color.OrangeRed);
+                messageIslandFar.AddText(Loc.GetString($"examine-anchor-island-far"));
+                messageIslandFar.Pop();
+                args.PushMessage(messageIslandFar);
             }
             return;
         }

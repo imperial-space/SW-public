@@ -119,6 +119,6 @@ public sealed class ShipsCCVars : CVars
     ///  Amount of increase in the drowning level per second if the ship is overloaded.
     /// </summary>
     public static readonly CVarDef<float> OverloadDrownRate =
-        CVarDef.Create("ships.overloadCeilPerTile", 500f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("ships.overloadDrownRate", 500f, CVar.SERVER | CVar.REPLICATED);
 }
 

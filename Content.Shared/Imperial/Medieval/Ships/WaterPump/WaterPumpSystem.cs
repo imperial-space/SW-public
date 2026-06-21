@@ -29,18 +29,9 @@ public sealed class WaterPumpSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     /// <inheritdoc/>
-    [Dependency] private readonly SharedSkillsSystem  _skills = default!;
-    [Dependency] private readonly EntityManager _entManager = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly RDWeightSystem  _rdWeight = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<WaterPumpComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<WaterPumpComponent, ActivateInWorldEvent>(OnActivateInWorld);
     }
 
@@ -60,19 +51,16 @@ public sealed class WaterPumpSystem : EntitySystem
             }
     }
 
-    private void OnAfterInteract(EntityUid uid, WaterPumpComponent component, AfterInteractEvent args)
-    {
-        if (args.Handled || !args.CanReach)
-            return;
-        Use(args.User, uid, component);
-    }
-
     private void OnActivateInWorld(EntityUid uid, WaterPumpComponent component, ActivateInWorldEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (args.Handled)
             return;
 
         Use(args.User, uid, component);
+        args.Handled = true;
     }
 
     private void Use(EntityUid playerEntity, EntityUid used, WaterPumpComponent component)
@@ -81,6 +69,7 @@ public sealed class WaterPumpSystem : EntitySystem
             return;
         else if (component.User == playerEntity)
         {
+            component.User = null;
             _doAfter.Cancel(component.DoAfter);
             return;
         }
@@ -124,31 +113,10 @@ public sealed class WaterPumpSystem : EntitySystem
             component.DoAfter = doAfterId;
         }
         else
-            component.User = null;
-    }
-
-    private void OnBucketUse(EntityUid uid, WaterPumpComponent component, PumpUseEvent args)
-    {
-        if (args.Cancelled || args.Target is null || args.Handled)
         {
             component.User = null;
             component.DoAfter = null;
-            return;
         }
-
-        _waterOnShip.RemoveWater(args.Target.Value, component.WaterCount);
-        var audioParams = new Robust.Shared.Audio.AudioParams
-        {
-            Variation = 0.15f,
-            Volume = -10f
-        };
-        _audio.PlayPredicted(MedievalShipSounds.PumpUse, uid, args.User, audioParams);
-        _appearance.SetData(uid, PumpVisuals.State, PumpState.Active);
-        component.UsedTime = _timing.CurTime;
-        args.Repeat = true;
-        args.Handled = true;
-
-        _doAfter.TryStartDoAfter(sdoAfter);
     }
 }
 
