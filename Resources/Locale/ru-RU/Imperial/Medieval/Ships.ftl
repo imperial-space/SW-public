@@ -69,6 +69,9 @@ ent-ShipTradeHoleSouth = { ent-ShipTradeHole }
 ent-ShipTradeHoleWest = { ent-ShipTradeHole }
     .desc = { ent-ShipTradeHole.desc }
     .suffix = { "Средневековье, Запад" }
+ent-CaptainShipMegaphone = Корабельный рупор
+    .desc = Рупор для быстрой отдачи команд. Внимание за слишком частое использование команда может взбунтоваться!
+    .suffix = { "Средневековье" }
 ship-buy-terminal-ui-title = Корабельная верфь
 ship-buy-terminal-currency-name = ревентов
 
@@ -100,3 +103,54 @@ examine-anchor-waves-will-not-disable = Якорь опущен, острова 
 
 examine-carthographer-table-show-speed = Текущая скорость корабля:
 examine-carthographer-table-show-rotation = Текущий поворот корабля:
+
+# Главное меню
+Megaphone-menu-nav-combat = Бой
+Megaphone-menu-nav-movement = Движение
+Megaphone-menu-nav-other = Другое
+
+# --- Подменю БОЙ ---
+Megaphone-menu-nav-combat-fire = Огонь
+Megaphone-menu-nav-combat-artillery = Артиллерия
+Megaphone-menu-nav-combat-boarding = Абордаж
+
+Megaphone-menu-combat-fire-left = Левый борт - ОГОНЬ!
+Megaphone-menu-combat-fire-right = Правый борт - ОГОНЬ!
+Megaphone-menu-combat-fire-forward = По курсу - ОГОНЬ!
+Megaphone-menu-combat-prepare-cannons = Подготовить пушки!
+Megaphone-menu-combat-load-grapeshot = Зарядить КАРТЕЧЬ!
+Megaphone-menu-combat-load-cannonballs = Зарядить ЯДРА!
+Megaphone-menu-combat-board-attack = На АБОРДАЖ!
+Megaphone-menu-combat-board-prepare = Готовьтесь к абордажу!
+
+# --- Подменю ДВИЖЕНИЕ ---
+Megaphone-menu-nav-movement-state = Состояние парусов
+Megaphone-menu-nav-movement-dir = Направление
+Megaphone-menu-nav-movement-anchor = Якорь
+
+Megaphone-menu-movement-sails-lower = СПУСТИТЬ ПАРУСА!
+Megaphone-menu-movement-sails-raise = ПОДНЯТЬ ПАРУСА!
+Megaphone-menu-movement-sails-with-wind = Паруса ПО ветру!
+Megaphone-menu-movement-sails-against-wind = Паруса ПРОТИВ ветра!
+Megaphone-menu-movement-sails-forward = Паруса ВПЕРЕД!
+Megaphone-menu-movement-sails-backward = Паруса НАЗАД!
+Megaphone-menu-movement-sails-leftward = Паруса ВПРАВО!
+Megaphone-menu-movement-sails-rightward = Паруса ВЛЕВО!
+Megaphone-menu-movement-anchor-drop = СПУСТИТЬ ЯКОРЬ!
+Megaphone-menu-movement-anchor-raise = ПОДНЯТЬ ЯКОРЬ!
+
+# --- Подменю ДРУГОЕ ---
+Megaphone-menu-nav-other-emergency = ЧС
+Megaphone-menu-nav-other-crew = Экипаж
+Megaphone-menu-nav-other-general = Общие приказы
+
+Megaphone-menu-other-attention = ВНИМАНИЕ!
+Megaphone-menu-other-repair-ship = ЧИНИТЕ судно!
+Megaphone-menu-other-pump-water = ОТКАЧАЙТЕ воду!
+Megaphone-menu-other-call-assistant = ПОМОЩНИКА ко мне!
+Megaphone-menu-other-call-all = ВСЕ КО МНЕ!
+Megaphone-menu-other-to-positions = ПО МЕСТАМ!
+Megaphone-menu-other-leave-ship = СХОДИТЕ с судна!
+Megaphone-menu-other-stand-down = ОТБОЙ!
+Megaphone-menu-other-good-job = Отличная работа!
+Megaphone-menu-other-do-it = Работайте!

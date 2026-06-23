@@ -7,7 +7,7 @@ public sealed partial class HelmComponent : Component
     public float HelmRotation;
 
     [DataField("rotationStep")]
-    public float RotationStep = 5f;
+    public float RotationStep = 50f;
 
     [DataField("steeringAngleForMaxTurn")]
     public float SteeringAngleForMaxTurn = 45f;

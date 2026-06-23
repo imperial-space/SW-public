@@ -19,9 +19,6 @@ public sealed class HelmBoundUserInterface : BoundUserInterface
         base.Open();
 
         _menu = this.CreateWindow<HelmMenu>();
-        _menu.OnRotateLeft += () => SendMessage(new HelmMenuActionMessage(HelmMenuAction.RotateLeft));
-        _menu.OnRotateRight += () => SendMessage(new HelmMenuActionMessage(HelmMenuAction.RotateRight));
-        _menu.OnCenter += () => SendMessage(new HelmMenuActionMessage(HelmMenuAction.Center));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
