@@ -26,4 +26,7 @@ public sealed partial class MedievalAnchorComponent : Component
 
     [DataField("islandSearchRange")]
     public float IslandSearchRange = 25f;
+
+    [DataField("wavesTimer")]
+    public float WavesTimer = 120f;
 }

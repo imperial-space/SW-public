@@ -10,6 +10,12 @@
         {
             "name": "wheel",
             "directions": 4
+        },
+        {
+            "name": "helm_background"
+        },
+        {
+            "name": "wheel_indecator"
         }
     ]
 }

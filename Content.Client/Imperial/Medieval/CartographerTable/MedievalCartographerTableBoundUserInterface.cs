@@ -1,6 +1,7 @@
 using Content.Shared.Shuttles.BUIStates;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Content.Shared.Imperial.Medieval.CartographerTable;
 
 namespace Content.Client.Imperial.Medieval.CartographerTable;
 
@@ -24,9 +25,9 @@ public sealed class MedievalCartographerTableBoundUserInterface : BoundUserInter
     {
         base.UpdateState(state);
 
-        if (state is not NavBoundUserInterfaceState navState)
+        if (state is not MedievalCartographerBoundUserInterfaceState navState)
             return;
 
-        _window?.UpdateState(navState.State);
+        _window?.UpdateState(navState);
     }
 }

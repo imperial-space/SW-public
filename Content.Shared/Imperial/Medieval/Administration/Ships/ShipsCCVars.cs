@@ -109,5 +109,16 @@ public sealed class ShipsCCVars : CVars
     public static readonly CVarDef<int> TeleportRange =
         CVarDef.Create("ships.teleportrange", 50, CVar.REPLICATED | CVar.SERVER);
 
+    /// <summary>
+    ///  Default weight limit that a single ship tile can sustain before the ship suffers speed and flooding penalties.
+    /// </summary>
+    public static readonly CVarDef<float> OverloadCeilPerTile =
+        CVarDef.Create("ships.overloadCeilPerTile", 20f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///  Amount of increase in the drowning level per second if the ship is overloaded.
+    /// </summary>
+    public static readonly CVarDef<float> OverloadDrownRate =
+        CVarDef.Create("ships.overloadDrownRate", 500f, CVar.SERVER | CVar.REPLICATED);
 }
 

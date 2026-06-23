@@ -17,6 +17,10 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Systems;
+using Robust.Server.Audio;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.Medieval.Ships.Helm;
 
@@ -32,6 +36,7 @@ public sealed class HelmSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -41,7 +46,38 @@ public sealed class HelmSystem : EntitySystem
         SubscribeLocalEvent<HelmComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<HelmComponent, HelmActionDoAfterEvent>(OnHelmActionDoAfter);
         SubscribeLocalEvent<HelmComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpen);
+        SubscribeLocalEvent<HelmComponent, BoundUIClosedEvent>(OnAfterUiClosed);
         SubscribeLocalEvent<HelmComponent, HelmMenuActionMessage>(OnMenuActionMessage);
+
+        SubscribeLocalEvent<MedievalPilotComponent, MoveInputEvent>(OnPilotMoveInput);
+        SubscribeLocalEvent<MedievalPilotComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
+    }
+
+    private void OnPilotMoveInput(EntityUid uid, MedievalPilotComponent component, ref MoveInputEvent args)
+    {
+        var mover = args.Entity.Comp;
+        float newTurning = 0f;
+
+        if ((mover.HeldMoveButtons & MoveButtons.Left) != MoveButtons.None)
+            newTurning = -1f;
+
+        if ((mover.HeldMoveButtons & MoveButtons.Right) != MoveButtons.None)
+            newTurning = 1f;
+
+        component.Turning = newTurning;
+
+        if (component.HelmEntity is { } helmUid && TryComp<HelmComponent>(helmUid, out var helmComponent))
+        {
+            if (newTurning == 0 && helmComponent.HelmRotation < 5f && helmComponent.HelmRotation > -5f)
+                helmComponent.HelmRotation = 0;
+
+            UpdateUi(helmUid, helmComponent);
+        }
+    }
+
+    private void OnUpdateCanMove(EntityUid uid, MedievalPilotComponent component, ref UpdateCanMoveEvent args)
+    {
+        args.Cancel();
     }
 
     private void OnStartup(EntityUid uid, HelmComponent component, ComponentStartup args)
@@ -51,6 +87,18 @@ public sealed class HelmSystem : EntitySystem
 
     private void OnBeforeUiOpen(EntityUid uid, HelmComponent component, BeforeActivatableUIOpenEvent args)
     {
+        var pilotComp = EnsureComp<MedievalPilotComponent>(args.User);
+        pilotComp.HelmEntity = uid;
+        _actionBlocker.UpdateCanMove(args.User);
+
+        UpdateUi(uid, component);
+    }
+
+    private void OnAfterUiClosed(EntityUid uid, HelmComponent component, BoundUIClosedEvent args)
+    {
+        RemComp<MedievalPilotComponent>(args.Actor);
+        _actionBlocker.UpdateCanMove(args.Actor);
+
         UpdateUi(uid, component);
     }
 
@@ -150,6 +198,35 @@ public sealed class HelmSystem : EntitySystem
         base.Update(frameTime);
 
         var curTime = _timing.CurTime;
+
+        var pilotQuery = EntityQueryEnumerator<MedievalPilotComponent>();
+        while (pilotQuery.MoveNext(out var uid, out var pilot))
+        {
+            if (pilot.Turning == 0f || pilot.HelmEntity is not { } helmUid)
+            {
+                if (pilot.UsingSound != null)
+                {
+                    QueueDel(pilot.UsingSound);
+                    pilot.UsingSound = null;
+                }
+                continue;
+            }
+
+            if (!TryComp<HelmComponent>(helmUid, out var helmComponent))
+                continue;
+
+            if (pilot.UsingSound == null)
+            {
+                var audioParams = AudioParams.Default.WithLoop(true);
+                pilot.UsingSound = _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/hitting_wood_4times.ogg"), helmUid, audioParams)?.Entity;
+            }
+
+            helmComponent.HelmRotation += pilot.Turning * helmComponent.RotationStep * frameTime;
+            helmComponent.HelmRotation = Math.Clamp(helmComponent.HelmRotation, -180, 180);
+
+            UpdateUi(helmUid, helmComponent);
+        }
+
         if (curTime <= _nextCheckTime)
             return;
 
@@ -157,9 +234,10 @@ public sealed class HelmSystem : EntitySystem
         if (!_cfg.GetCVar(ShipsCCVars.WindEnabled))
             return;
 
-        foreach (var helmComponent in EntityManager.EntityQuery<HelmComponent>())
+        var query = EntityQueryEnumerator<HelmComponent>();
+        while (query.MoveNext(out var helmUid, out var helmComponent))
         {
-            var helm = helmComponent.Owner;
+            var helm = helmUid;
             var helmXform = Transform(helm);
             if (!TryGetGrid(helm, helmXform, out var boat))
                 continue;

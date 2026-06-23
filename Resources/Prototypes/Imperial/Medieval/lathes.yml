@@ -946,6 +946,7 @@
     - MedievalBeeHoneyBandage
     - MedievalCustomBeeHive
     - MedievalBeeSmoke
+    - CaptainShipMegaphoneCraft
 
 - type: entity
   parent: CP14BaseWorkbench
