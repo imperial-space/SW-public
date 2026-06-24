@@ -168,12 +168,12 @@ public sealed partial class MedievalDashSystem : EntitySystem
         RaiseLocalEvent(player, ref startEv);
 
         component.StartDashPos = _transformSystem.GetWorldPosition(player);
-        component.LegalEndDashPos = _transformSystem.GetWorldPosition(player) + impulse.Normalized() * GetDashDistanceCollision(player, impulse.Normalized(), 15);
+        component.LegalEndDashPos = _transformSystem.GetWorldPosition(player) + impulse.Normalized() * GetDashDistanceCollision(player, impulse.Normalized(), 5);
 
         return false;
     }
 
-    private float GetDashDistanceCollision(EntityUid uid, Vector2 direction, float maxDistance)
+    private float? GetDashDistanceCollision(EntityUid uid, Vector2 direction, float maxDistance)
     {
         var xform = Transform(uid);
         var mask = (int)(CollisionGroup.Impassable | CollisionGroup.LowImpassable);
@@ -195,6 +195,6 @@ public sealed partial class MedievalDashSystem : EntitySystem
                 return Math.Max(0, result.Distance - 0.4f);
         }
 
-        return maxDistance;
+        return null;
     }
 }

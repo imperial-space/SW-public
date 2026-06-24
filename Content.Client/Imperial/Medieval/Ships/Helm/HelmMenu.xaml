@@ -11,12 +11,12 @@
 
                 <TextureRect Name="HelmBackground"
                              Stretch="KeepAspectCentered"
-                             TexturePath="/Textures/Imperial/Medieval/Ships/SteeringWheel.rsi/helm_background.png"
+                             TexturePath="/Textures/Imperial/Medieval/Ships/HelmWheelUI/helm_background.png"
                              TextureScale="20 2"/>
 
                 <TextureRect Name="HelmIndecator"
                              Stretch="KeepAspectCentered"
-                             TexturePath="/Textures/Imperial/Medieval/Ships/SteeringWheel.rsi/wheel_indecator.png"
+                             TexturePath="/Textures/Imperial/Medieval/Ships/HelmWheelUI/wheel_indicator.png"
                              TextureScale="4 4"/>
 
             </LayoutContainer>
