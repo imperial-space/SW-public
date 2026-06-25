@@ -170,7 +170,7 @@ public sealed partial class AchievementTreeMenuWindow : MedievalWindow
     private Dictionary<string, Vector2> ComputePositions(List<AchievementPrototype> protos)
     {
         const float HGap = 160f;
-        const float VGap = 90f;
+        const float VGap = 60f; // Уменьшено для компактности
         const float StartX = 70f;
         const float StartY = 70f;
 
@@ -207,8 +207,22 @@ public sealed partial class AchievementTreeMenuWindow : MedievalWindow
             }
         }
 
+        // Фикс лесенки: сдвиг ALAP, строго игнорируя корневые узлы (у которых нет родителей)
+        var initialMax = layer.Values.DefaultIfEmpty(0).Max();
+        for (int l = initialMax; l >= 0; l--)
+        {
+            foreach (var id in layer.Where(kv => kv.Value == l).Select(kv => kv.Key).ToList())
+            {
+                if (children[id].Count > 0 && parents[id].Count > 0)
+                {
+                    var minChildLayer = children[id].Min(c => layer[c]);
+                    layer[id] = Math.Max(layer[id], minChildLayer - 1);
+                }
+            }
+        }
+
         var byLayer = layer.GroupBy(kv => kv.Value)
-                           .ToDictionary(g => g.Key, g => g.Select(kv => kv.Key).ToList());
+                        .ToDictionary(g => g.Key, g => g.Select(kv => kv.Key).ToList());
 
         var result   = new Dictionary<string, Vector2>();
         var maxLayer = layer.Values.DefaultIfEmpty(0).Max();
@@ -272,6 +286,20 @@ public sealed partial class AchievementTreeMenuWindow : MedievalWindow
 
                 var newY = Math.Clamp(avgChildrenY, minY, maxY);
                 result[id] = new Vector2(result[id].X, newY);
+            }
+        }
+
+        // НОРМАЛИЗАЦИЯ: Жесткая привязка всего графа к верхнему краю
+        if (result.Count > 0)
+        {
+            var currentMinY = result.Values.Min(v => v.Y);
+            if (currentMinY > StartY)
+            {
+                var offset = currentMinY - StartY;
+                foreach (var key in result.Keys.ToList())
+                {
+                    result[key] = new Vector2(result[key].X, result[key].Y - offset);
+                }
             }
         }
 
