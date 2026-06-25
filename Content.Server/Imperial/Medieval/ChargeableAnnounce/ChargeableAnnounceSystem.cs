@@ -1,10 +1,14 @@
 using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
+using Content.Shared.Examine;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.ChargeableAnnounce;
 using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Speech;
+using Robust.Shared.Containers;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Medieval.ChargeableAnnounce;
@@ -15,12 +19,75 @@ public sealed class ChargeableAnnounceSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _sharedPlayerManager = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+
+    private static readonly Dictionary<string, string> FactionCodeToProto = new()
+    {
+        ["leg"] = "Legion",
+        ["ins"] = "Insurgency",
+        ["mine"] = "Miner",
+        ["band"] = "Bandit",
+        ["kayot"] = "Kayot",
+        ["merc"] = "Merc",
+        ["collegium"] = "Collegium",
+        ["cult"] = "Cult",
+    };
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ChargeableAnnounceComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<ChargeableAnnounceComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<ChargeableAnnounceComponent, EntGotInsertedIntoContainerMessage>(OnInsertedIntoContainer);
+        SubscribeLocalEvent<ChargeableAnnounceComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<MedievalFactionMemberComponent, ComponentStartup>(OnFactionMemberStartup);
+    }
+
+    private void OnFactionMemberStartup(EntityUid uid, MedievalFactionMemberComponent comp, ComponentStartup args)
+    {
+        var query = EntityQueryEnumerator<ChargeableAnnounceComponent, CloackRecieverComponent>();
+        while (query.MoveNext(out var crystalUid, out var crystal, out var receiver))
+        {
+            if (crystal.OwnerUid.HasValue)
+                continue;
+
+            TryBindFromContainerHierarchy(crystalUid, crystal, receiver.Faction);
+        }
+    }
+
+    private void OnMapInit(EntityUid uid, ChargeableAnnounceComponent comp, MapInitEvent args)
+    {
+        if (!TryComp<CloackRecieverComponent>(uid, out var receiver))
+            return;
+
+        TryBindFromContainerHierarchy(uid, comp, receiver.Faction);
+    }
+
+    private void OnInsertedIntoContainer(EntityUid uid, ChargeableAnnounceComponent comp, EntGotInsertedIntoContainerMessage args)
+    {
+        if (comp.OwnerUid.HasValue)
+            return;
+
+        if (!TryComp<CloackRecieverComponent>(uid, out var receiver))
+            return;
+
+        TryBindFromContainerHierarchy(uid, comp, receiver.Faction, args.Container.Owner);
+    }
+
+    private void OnExamined(EntityUid uid, ChargeableAnnounceComponent comp, ExaminedEvent args)
+    {
+        if (!comp.OwnerUid.HasValue)
+        {
+            args.PushMarkup("[color=gray]Кристалл бесхозный.[/color]");
+            return;
+        }
+
+        if (Deleted(comp.OwnerUid.Value))
+            return;
+
+        var ownerName = Identity.Name(comp.OwnerUid.Value, EntityManager);
+        args.PushMarkup($"[color=gray]Владелец: {ownerName}[/color]");
     }
 
     private void OnUseInHand(EntityUid uid, ChargeableAnnounceComponent comp, UseInHandEvent args)
@@ -34,6 +101,18 @@ public sealed class ChargeableAnnounceSystem : EntitySystem
         if (!comp.IsCharged)
         {
             _popup.PopupEntity("Кристалл связи разряжен.", uid, args.User);
+            return;
+        }
+
+        if (!comp.OwnerUid.HasValue)
+        {
+            _popup.PopupEntity("Кристалл ни к кому не привязан.", uid, args.User);
+            return;
+        }
+
+        if (comp.OwnerUid.Value != args.User)
+        {
+            _popup.PopupEntity("Это не ваш кристалл связи.", uid, args.User);
             return;
         }
 
@@ -60,5 +139,40 @@ public sealed class ChargeableAnnounceSystem : EntitySystem
             announce.IsCharged = false;
             Dirty(uid, announce);
         });
+    }
+
+    private void TryBindFromContainerHierarchy(EntityUid crystalUid, ChargeableAnnounceComponent comp, string crystalFaction, EntityUid? startEntity = null)
+    {
+        EntityUid current;
+
+        if (startEntity.HasValue)
+        {
+            current = startEntity.Value;
+        }
+        else
+        {
+            if (!_container.TryGetContainingContainer(crystalUid, out var rootContainer))
+                return;
+            current = rootContainer.Owner;
+        }
+
+        while (true)
+        {
+            if (TryComp<MedievalFactionMemberComponent>(current, out var factionMember))
+            {
+                if (FactionCodeToProto.TryGetValue(crystalFaction, out var protoId)
+                    && factionMember.Faction == protoId)
+                {
+                    comp.OwnerUid = current;
+                    Dirty(crystalUid, comp);
+                }
+                return;
+            }
+
+            if (!_container.TryGetContainingContainer(current, out var parentContainer))
+                return;
+
+            current = parentContainer.Owner;
+        }
     }
 }
