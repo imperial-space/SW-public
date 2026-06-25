@@ -190,6 +190,13 @@ public sealed class ForgedAbilitySystem : EntitySystem
             if (_gameTiming.CurTime - comp.LastExplosivePress < TimeSpan.FromSeconds(2))
             {
                 RemComp<ShieldOnStartupComponent>(uid);
+
+                var damage = new DamageSpecifier
+                {
+                    DamageDict = { ["Slash"] = FixedPoint2.New(10000) }
+                };
+                _damageable.TryChangeDamage(uid, damage);
+                
                 _explosionSystem.QueueExplosion(uid, "Default", 250, 5, 200);
                 _actions.RemoveAction(uid, args.Action.Owner);
             }

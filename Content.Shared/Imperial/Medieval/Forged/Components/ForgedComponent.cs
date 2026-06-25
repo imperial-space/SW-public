@@ -1,11 +1,12 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Forged;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ForgedComponent : Component
 {
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public Dictionary<string, EntityUid> FittedModules = new();
 
     public TimeSpan LastExplosivePress = TimeSpan.Zero;

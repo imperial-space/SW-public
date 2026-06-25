@@ -14,6 +14,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Prototypes;
+using Content.Shared.Explosion.Components;
+using Content.Shared.Explosion;
 
 namespace Content.Shared.Forged;
 
@@ -37,6 +39,7 @@ public sealed class ForgedSystem : EntitySystem
 
         SubscribeLocalEvent<ForgedComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<ForgedComponent, DamageModifyEvent>(OnDamageModify);
+        SubscribeLocalEvent<ForgedComponent, GetExplosionResistanceEvent>(OnExplosionResistance);
 
         SubscribeLocalEvent<ForgedComponent, InteractUsingEvent>(OnReloadCrossbow);
     }
@@ -179,6 +182,13 @@ public sealed class ForgedSystem : EntitySystem
         }
 
         return Math.Max(0.01f, damageMod);
+    }
+
+    private void OnExplosionResistance(EntityUid uid, ForgedComponent component, ref GetExplosionResistanceEvent args)
+    {
+        float mod = GetModuleResistanceModifier(component);
+        
+        args.DamageCoefficient *= mod;
     }
 
     private void OnRefreshSpeed(EntityUid uid, ForgedComponent component, RefreshMovementSpeedModifiersEvent args)
