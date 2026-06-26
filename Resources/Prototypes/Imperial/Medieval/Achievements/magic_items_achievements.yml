@@ -1,0 +1,38 @@
+- type: achievement
+  id: AchievementCraftGlowingStone
+  name: Да будет свет!
+  description: Создайте светящийся камень в магической кузне
+  icon:
+    sprite: Imperial/Medieval/Misc/glowstone.rsi
+    state: glowstick_lit
+  visibility: Visible
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: craftGlowingStoneProgression
+    targetItems:
+    - MedievalGlowStone
+  rarity: Common
+  priority: 10 # Тут я поставил от балды, надо перепроверить
+
+
+- type: achievement
+  id: AchievementGetMagicDust
+  name: Ангельская пыль
+  description: Получите волшебную пыль
+  icon:
+    sprite: Imperial/Medieval/Forged/items.rsi
+    state: magicDust
+  visibility: Visible
+  prerequisites:
+  - AchievementGetGlowingStone
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: getMagicDustProgression
+    requiredSpecies:
+    ? []
+    itemPrototypes:
+    - MedievalMagicDust
+  rarity: Common
+  priority: 11 # ХЗ, правильно ли сделано
+
+

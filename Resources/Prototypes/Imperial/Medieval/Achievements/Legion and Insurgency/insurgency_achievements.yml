@@ -7,13 +7,16 @@
   rarity: Common
   name: "Команда красных"
   description: "Начните свой славный (и, вероятно, короткий) путь в рядах мятежников."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  icon:
+    sprite: Imperial/Medieval/Clothing/Cloaks/clan_fox.rsi
+    state: icon
   visibility: Visible
   conditions:
   - !type:LocationCondition
     progressKey: locationRecruitVisitInsurgencyProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyRecruit"]
+    requiredJobs:
+    - "MedievalInsurgencyRecruit"
     locationId: achievement-location-insurgency
 
 - type: achievement
@@ -22,14 +25,17 @@
   rarity: Common
   name: "Пушечное мясо в деле"
   description: "Захватите 3 контрольные точки, будучи простым рекрутом мятежа. Свобода гордится тобой!"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/fox1.rsi
+    state: icon
   visibility: Visible
   prerequisites:
   - AchievementInsurgencyJoin
   conditions:
   - !type:CapturePointCondition
     progressKey: insurgencyRecruitCapturePoint
-    requiredJobs: ["MedievalInsurgencyRecruit"]
+    requiredJobs:
+    - "MedievalInsurgencyRecruit"
     requiredCount: 3
 
 
@@ -40,9 +46,11 @@
   id: AchievementInsurgencyBecomeInsurgencyInsurgencyer
   priority: 12
   rarity: Common
-  name: "Теперь ты в банде"
+  name: Теперь ты в дружине
   description: "Получите звание мятежника. Уже не новобранец."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/fox2.rsi
+    state: icon
   visibility: Visible
   prerequisites:
   - AchievementInsurgencyRecruitCapturePoint
@@ -51,7 +59,8 @@
   - !type:LocationCondition
     progressKey: locationInsurgencyerVisitInsurgencyProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyRecruit"]
+    requiredJobs:
+    - "MedievalInsurgencyRecruit"
     locationId: achievement-location-insurgency
 
 - type: achievement
@@ -59,8 +68,10 @@
   priority: 13
   rarity: Common
   name: "Партизанский блицкриг"
-  description: "Внимание, марш-бросок! Захватите 4` контрольные точки за ОДИН раунд в роли мятежника."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  description: Внимание, марш-бросок! Захватите 4 контрольные точки за ОДИН раунд в роли мятежника.
+  icon:
+    sprite: Imperial/Medieval/Decor/medieval_banner.rsi
+    state: banner_red
   visibility: Visible
   roundOnly: true
   prerequisites:
@@ -68,7 +79,8 @@
   conditions:
   - !type:CapturePointCondition
     progressKey: insurgencyInsurgencyerCapturePointProgression
-    requiredJobs: ["MedievalInsurgencyInsurgencyer"]
+    requiredJobs:
+    - "MedievalInsurgencyInsurgencyer"
     requiredCount: 4
 
 - type: achievement
@@ -77,7 +89,9 @@
   rarity: Common
   name: "Сунуть нос в логово врага"
   description: "Атакуйте базу легиона, играя за мятежника. Главное теперь — вернуться домой."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/factions.rsi
+    state: insurgency
   visibility: Visible
   prerequisites:
   - AchievementInsurgencyBecomeInsurgencyInsurgencyer
@@ -85,7 +99,8 @@
   - !type:LocationCondition
     progressKey: locationInsurgencyerVisitLegionProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyInsurgencyer"]
+    requiredJobs:
+    - "MedievalInsurgencyInsurgencyer"
     locationId: achievement-location-legion
 
 
@@ -97,8 +112,10 @@
   priority: 12
   rarity: Common
   name: "Шаг по карьерной лестнице"
-  description: "Получите звание опциона на базе мятежников. Теперь вы можете командовать рядовыми на законных основаниях."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  description: Получите звание "Варяг" среди мятежников. Теперь вы можете командовать салагами на законных основаниях.
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/fox2_5.rsi
+    state: icon
   visibility: Visible
   prerequisites:
   - AchievementInsurgencyInsurgencyerCapturePoints
@@ -107,7 +124,8 @@
   - !type:LocationCondition
     progressKey: locationInsurgencyOpcioVisitInsurgencyProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyOpcio"]
+    requiredJobs:
+    - "MedievalInsurgencyOpcio"
     locationId: achievement-location-insurgency
 
 - type: achievement
@@ -116,14 +134,17 @@
   rarity: Common
   name: "Блестящая грудь"
   description: "Соберите 10 медалей мятежа. Главное не надорваться под их весом."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: medal_ins
   visibility: Visible
   prerequisites:
   - AchievementInsurgencyBecomeInsurgencyOpcio
   conditions:
   - !type:CollectAllItemsCondition
     progressKey: collectAllInsurgencyProgression
-    requiredJobs: ["MedievalInsurgencyOpcio"]
+    requiredJobs:
+    - "MedievalInsurgencyOpcio"
     itemPrototypes:
       MedievalMedalIns: 10
 
@@ -136,8 +157,10 @@
   priority: 12
   rarity: Common
   name: "Высокое начальство"
-  description: "Получите звание трибуна, посетив базу мятежников. Почти полевой командир, но всё еще приходится пачкать руки."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  description: Получите звание заместителя ярла. Почти повелитель мятежных земель, но всё еще приходится пачкать руки.
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/fox3.rsi
+    state: icon
   visibility: Visible
   prerequisites:
   - AchievementWarGeneralBallistica
@@ -146,7 +169,8 @@
   - !type:LocationCondition
     progressKey: locationInsurgencyTribunVisitInsurgencyProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyTribun"]
+    requiredJobs:
+    - "MedievalInsurgencyTribun"
     locationId: achievement-location-insurgency
 
 - type: achievement
@@ -155,7 +179,9 @@
   rarity: Common
   name: "Смерть синим!"
   description: "Найдите и уничтожьте обелиск легиона в роли трибуна. Оставьте их без новых солдат."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  icon:
+    sprite: Imperial/Medieval/obelisks/layerobelisks.rsi
+    state: state-2
   visibility: Visible
   prerequisites:
   - AchievementInsurgencyBecomeInsurgencyTribun
@@ -163,7 +189,8 @@
   - !type:DestroyFactionObeliskCondition
     progressKey: destroyObeliskLegionProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyTribun"]
+    requiredJobs:
+    - "MedievalInsurgencyTribun"
     targetFaction: Legion
 
 - type: achievement
@@ -171,8 +198,10 @@
   priority: 14
   rarity: Common
   name: "Трофей с Юга"
-  description: "Добудьте шлем легата, играя за трибуна мятежа. Отличный сувенир для вашей коллекции."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  description: Добудьте шлем легата, играя за помощника ярла. Отличный сувенир для вашей коллекции.
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
+    state: equipped-HELMET
   visibility: Visible
   prerequisites:
   - AchievementInsurgencyBecomeInsurgencyTribun
@@ -180,7 +209,8 @@
   - !type:CollectAllItemsCondition
     progressKey: insurgencyTribunGetHelmetProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyTribun"]
+    requiredJobs:
+    - "MedievalInsurgencyTribun"
     itemPrototypes:
       MedievalClothingHeadHelmetLegionLegat: 1
 
@@ -193,8 +223,10 @@
   priority: 12
   rarity: Epic
   name: "Вождь восстания"
-  description: "Дослужитесь до звания легата, посетив базу мятежников. Вы на самой вершине командования, силы сопротивления смотрят на вас."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  description: Дослужитесь до звания ярла. Вы на самой вершине командования, силы сопротивления смотрят на вас.
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
+    state: icon
   visibility: Visible
   prerequisites:
   - AchievementInsurgencyTribunDestroyObelisk
@@ -203,7 +235,8 @@
   - !type:LocationCondition
     progressKey: locationInsurgencyLegatVisitInsurgencyProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyLegat"]
+    requiredJobs:
+    - "MedievalInsurgencyLegat"
     locationId: achievement-location-insurgency
 
 - type: achievement
@@ -211,8 +244,8 @@
   priority: 13
   rarity: Epic
   name: "Пришел, увидел, победил"
-  description: "Триумф! За ОДИН раунд в роли легата выполните всё: захватите 5 точек, уничтожьте обелиск легиона и раздобудьте шлем легата."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  description: "Триумф! За ОДИН раунд в роли ярла выполните всё: захватите 5 точек, уничтожьте обелиск легиона и раздобудьте шлем легата."
+  icon: /Textures/Imperial/Medieval/Interface/faction-leader.png
   visibility: Visible
   roundOnly: true
   prerequisites:
@@ -221,15 +254,18 @@
   - !type:CollectAllItemsCondition
     progressKey: insurgencyLegatWinnerHelmetProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyLegat"]
+    requiredJobs:
+    - "MedievalInsurgencyLegat"
     itemPrototypes:
       MedievalClothingHeadHelmetLegionLegat: 1
   - !type:CapturePointCondition
     progressKey: insurgencyLegatWinnerCapturePointsProgression
     requiredCount: 5
-    requiredJobs: ["MedievalInsurgencyLegat"]
+    requiredJobs:
+    - "MedievalInsurgencyLegat"
   - !type:DestroyFactionObeliskCondition
     progressKey: insurgencyLegatWinnerDestroyObeliskProgression
     requiredCount: 1
-    requiredJobs: ["MedievalInsurgencyLegat"]
+    requiredJobs:
+    - "MedievalInsurgencyLegat"
     targetFaction: Legion

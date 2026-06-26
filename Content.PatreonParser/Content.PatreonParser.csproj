@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
       <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+      <Configurations>Debug;Release;Tools</Configurations>
     </PropertyGroup>
 
     <ItemGroup>
