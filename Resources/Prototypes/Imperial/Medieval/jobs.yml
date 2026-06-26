@@ -5377,23 +5377,9 @@
       personJob: "[color=red]Культист[/color]"
       pasport: no
       jobPrefix: "[Культ]"
-    - type: PassiveDamage # Этот компонент имитирует лечение от связи с культом (CultCursedComponent) + стандартное пассивное лечение
-      allowedStates:
-      - Alive
-      damageCap: 100
-      damage:
-        types:
-          Asphyxiation: -0.11
-          Bloodloss: -0.13
-          Blunt: -0.15
-          Heat: -0.12
-          Piercing: -0.18
-          Poison: -0.08
-          Slash: -0.23
-          Shock: -0.08
-          Radiation: -0.08
-          Cold: -0.08
-          Cellular: -0.08
+    - type: CultCursed
+      giveCrystals: false
+      canLost: false
 
 # MEDIEVAL CultLeader
 
@@ -5470,23 +5456,9 @@
     - type: CloackMessage
       action: CloackMessageActionIns
       faction: "cult"
-    - type: PassiveDamage # Этот компонент имитирует лечение от связи с культом (CultCursedComponent) + стандартное пассивное лечение
-      allowedStates:
-      - Alive
-      damageCap: 100
-      damage:
-        types:
-          Asphyxiation: -0.11
-          Bloodloss: -0.13
-          Blunt: -0.15
-          Heat: -0.12
-          Piercing: -0.18
-          Poison: -0.08
-          Slash: -0.23
-          Shock: -0.08
-          Radiation: -0.08
-          Cold: -0.08
-          Cellular: -0.08
+    - type: CultCursed
+      giveCrystals: false
+      canLost: false
 
 # MEDIEVAL Villager REGULAR
 
