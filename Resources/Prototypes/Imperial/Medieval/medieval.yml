@@ -2630,19 +2630,6 @@
 - type: entity
   name: stamp
   parent: RubberStampMime
-  id: MedievalStampMedievalBlack
-  components:
-  - type: Stamp
-    stampedName: stamp-component-stamped-name-medieval-black
-    stampState: "paper_stamp-trader"
-    stampedColor: black
-  - type: Sprite
-    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
-    state: stamp-chaplain
-
-- type: entity
-  name: stamp
-  parent: RubberStampMime
   id: MedievalStampMedievalBlue
   components:
   - type: Stamp
@@ -2734,19 +2721,6 @@
 - type: entity
   name: stamp
   parent: RubberStampMime
-  id: MedievalStampMedievalWizard
-  components:
-  - type: Stamp
-    stampedName: stamp-component-stamped-name-medieval-wizard
-    stampState: "paper_stamp-rd"
-    stampedColor: purple
-  - type: Sprite
-    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
-    state: stamp-rd
-
-- type: entity
-  name: stamp
-  parent: RubberStampMime
   id: MedievalStampMedievalNecro
   components:
   - type: Stamp
@@ -2768,45 +2742,6 @@
   - type: Sprite
     sprite: Imperial/Medieval/Misc/medieval_paper.rsi
     state: stamp-ce
-
-- type: entity
-  name: stamp
-  parent: RubberStampMime
-  id: MedievalStampMedievalAlch
-  components:
-  - type: Stamp
-    stampedName: stamp-component-stamped-name-medieval-alch
-    stampState: "paper_stamp-alch"
-    stampedColor: brown
-  - type: Sprite
-    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
-    state: stamp-alch
-
-- type: entity
-  name: stamp
-  parent: RubberStampMime
-  id: MedievalStampMedievalTreasurer
-  components:
-  - type: Stamp
-    stampedName: stamp-component-stamped-name-medieval-treasurer
-    stampState: "paper_stamp-treasurer"
-    stampedColor: "#3333ff"
-  - type: Sprite
-    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
-    state: stamp-treasurer
-
-- type: entity
-  name: stamp
-  parent: RubberStampMime
-  id: MedievalStampMedievalVillage
-  components:
-  - type: Stamp
-    stampedName: stamp-component-stamped-name-medieval-village
-    stampState: "paper_stamp-village"
-    stampedColor: "#d49d06"
-  - type: Sprite
-    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
-    state: stamp-village
 
 - type: entity
   id: MedievalWoodenFloor
