@@ -32,7 +32,7 @@
         breakOnWeightlessMove: false
         breakOnMove: false
         needHand: true
-        breakOnDamage: true
+        breakOnDamage: false
         speedModifier: 1
       speechPoints:
         0:
@@ -89,7 +89,7 @@
         breakOnWeightlessMove: false
         breakOnMove: false
         needHand: true
-        breakOnDamage: true
+        breakOnDamage: false
         speedModifier: 1
       speechPoints:
         0:
@@ -140,7 +140,7 @@
         breakOnWeightlessMove: false
         breakOnMove: false
         needHand: true
-        breakOnDamage: true
+        breakOnDamage: false
         speedModifier: 1
       speechPoints:
         0:
