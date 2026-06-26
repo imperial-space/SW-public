@@ -108,7 +108,7 @@
 # Опцион Мятежа
 # ==========================================
 - type: achievement
-  id: AchievementInsurgencyBecomeInsurgencyOpcio
+  id: AchievementInsurgencyBecomeInsurgencyOpcion
   priority: 12
   rarity: Common
   name: "Шаг по карьерной лестнице"
@@ -122,14 +122,14 @@
   - AchievementInsurgencyInsurgencyerVisitLegion
   conditions:
   - !type:LocationCondition
-    progressKey: locationInsurgencyOpcioVisitInsurgencyProgression
+    progressKey: locationInsurgencyOpcionVisitInsurgencyProgression
     requiredCount: 1
     requiredJobs:
-    - "MedievalInsurgencyOpcio"
+    - MedievalInsurgencyOpcion
     locationId: achievement-location-insurgency
 
 - type: achievement
-  id: AchievementInsurgencyOpcioGetMedal
+  id: AchievementInsurgencyOpcionGetMedal
   priority: 13
   rarity: Common
   name: "Блестящая грудь"
@@ -139,12 +139,12 @@
     state: medal_ins
   visibility: Visible
   prerequisites:
-  - AchievementInsurgencyBecomeInsurgencyOpcio
+  - AchievementInsurgencyBecomeInsurgencyOpcion
   conditions:
   - !type:CollectAllItemsCondition
     progressKey: collectAllInsurgencyProgression
     requiredJobs:
-    - "MedievalInsurgencyOpcio"
+    - MedievalInsurgencyOpcion
     itemPrototypes:
       MedievalMedalIns: 10
 
