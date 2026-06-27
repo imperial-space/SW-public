@@ -46,6 +46,7 @@
     - MedievalMobGoblin
     - MedievalMobPlagueSlime
     - MedievalMobPlagueMouse
+    - MedievalMobSkeletonNecroFighter
 
 # ==========================================
 # ВЕТКА 1: СЛАБЫЙ СКЕЛЕТ
@@ -57,7 +58,7 @@
   name: "achievement-name-kill-skelet-weak-1"
   description: "achievement-desc-kill-skelet-weak-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -75,7 +76,7 @@
   name: "achievement-name-kill-skelet-weak-25"
   description: "achievement-desc-kill-skelet-weak-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletWeak1
   conditions:
@@ -93,7 +94,7 @@
   name: "achievement-name-kill-skelet-weak-75"
   description: "achievement-desc-kill-skelet-weak-75"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletWeak25
   conditions:
@@ -111,7 +112,7 @@
   name: "achievement-name-kill-skelet-weak-150"
   description: "achievement-desc-kill-skelet-weak-150"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletWeak75
   conditions:
@@ -129,7 +130,7 @@
   name: "achievement-name-kill-skelet-weak-500"
   description: "achievement-desc-kill-skelet-weak-500"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletWeak150
   conditions:
@@ -150,7 +151,7 @@
   name: "achievement-name-kill-skelet-meat-1"
   description: "achievement-desc-kill-skelet-meat-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -168,7 +169,7 @@
   name: "achievement-name-kill-skelet-meat-25"
   description: "achievement-desc-kill-skelet-meat-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletMeat1
   conditions:
@@ -186,7 +187,7 @@
   name: "achievement-name-kill-skelet-meat-50"
   description: "achievement-desc-kill-skelet-meat-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletMeat25
   conditions:
@@ -204,7 +205,7 @@
   name: "achievement-name-kill-skelet-meat-150"
   description: "achievement-desc-kill-skelet-meat-150"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletMeat50
   conditions:
@@ -225,7 +226,7 @@
   name: "achievement-name-kill-skelet-fighter-1"
   description: "achievement-desc-kill-skelet-fighter-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -243,7 +244,7 @@
   name: "achievement-name-kill-skelet-fighter-25"
   description: "achievement-desc-kill-skelet-fighter-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletFighter1
   conditions:
@@ -261,7 +262,7 @@
   name: "achievement-name-kill-skelet-fighter-50"
   description: "achievement-desc-kill-skelet-fighter-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletFighter25
   conditions:
@@ -279,7 +280,7 @@
   name: "achievement-name-kill-skelet-fighter-150"
   description: "achievement-desc-kill-skelet-fighter-150"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletFighter50
   conditions:
@@ -300,7 +301,7 @@
   name: "achievement-name-kill-skelet-archer-1"
   description: "achievement-desc-kill-skelet-archer-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -317,7 +318,7 @@
   name: "achievement-name-kill-skelet-archer-25"
   description: "achievement-desc-kill-skelet-archer-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletArcher1
   conditions:
@@ -334,7 +335,7 @@
   name: "achievement-name-kill-skelet-archer-50"
   description: "achievement-desc-kill-skelet-archer-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletArcher25
   conditions:
@@ -351,7 +352,7 @@
   name: "achievement-name-kill-skelet-archer-150"
   description: "achievement-desc-kill-skelet-archer-150"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletArcher50
   conditions:
@@ -371,7 +372,7 @@
   name: "achievement-name-kill-skelet-crossbow-1"
   description: "achievement-desc-kill-skelet-crossbow-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -388,7 +389,7 @@
   name: "achievement-name-kill-skelet-crossbow-25"
   description: "achievement-desc-kill-skelet-crossbow-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletCrossbow1
   conditions:
@@ -405,7 +406,7 @@
   name: "achievement-name-kill-skelet-crossbow-50"
   description: "achievement-desc-kill-skelet-crossbow-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletCrossbow25
   conditions:
@@ -422,7 +423,7 @@
   name: "achievement-name-kill-skelet-crossbow-100"
   description: "achievement-desc-kill-skelet-crossbow-100"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletCrossbow50
   conditions:
@@ -442,7 +443,7 @@
   name: "achievement-name-kill-skelet-halberd-1"
   description: "achievement-desc-kill-skelet-halberd-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -460,7 +461,7 @@
   name: "achievement-name-kill-skelet-halberd-25"
   description: "achievement-desc-kill-skelet-halberd-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletHalberd1
   conditions:
@@ -478,7 +479,7 @@
   name: "achievement-name-kill-skelet-halberd-50"
   description: "achievement-desc-kill-skelet-halberd-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletHalberd25
   conditions:
@@ -496,7 +497,7 @@
   name: "achievement-name-kill-skelet-halberd-100"
   description: "achievement-desc-kill-skelet-halberd-100"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletHalberd50
   conditions:
@@ -517,7 +518,7 @@
   name: "achievement-name-kill-skelet-mace-1"
   description: "achievement-desc-kill-skelet-mace-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -535,7 +536,7 @@
   name: "achievement-name-kill-skelet-mace-25"
   description: "achievement-desc-kill-skelet-mace-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletMace1
   conditions:
@@ -553,7 +554,7 @@
   name: "achievement-name-kill-skelet-mace-50"
   description: "achievement-desc-kill-skelet-mace-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletMace25
   conditions:
@@ -571,7 +572,7 @@
   name: "achievement-name-kill-skelet-mace-100"
   description: "achievement-desc-kill-skelet-mace-100"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletMace50
   conditions:
@@ -592,7 +593,7 @@
   name: "achievement-name-kill-skelet-dagger-1"
   description: "achievement-desc-kill-skelet-dagger-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -610,7 +611,7 @@
   name: "achievement-name-kill-skelet-dagger-25"
   description: "achievement-desc-kill-skelet-dagger-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletDagger1
   conditions:
@@ -628,7 +629,7 @@
   name: "achievement-name-kill-skelet-dagger-50"
   description: "achievement-desc-kill-skelet-dagger-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletDagger25
   conditions:
@@ -646,7 +647,7 @@
   name: "achievement-name-kill-skelet-dagger-100"
   description: "achievement-desc-kill-skelet-dagger-100"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletDagger50
   conditions:
@@ -667,7 +668,7 @@
   name: "achievement-name-kill-skelet-spear-1"
   description: "achievement-desc-kill-skelet-spear-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -685,7 +686,7 @@
   name: "achievement-name-kill-skelet-spear-25"
   description: "achievement-desc-kill-skelet-spear-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletSpear1
   conditions:
@@ -703,7 +704,7 @@
   name: "achievement-name-kill-skelet-spear-50"
   description: "achievement-desc-kill-skelet-spear-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletSpear25
   conditions:
@@ -721,7 +722,7 @@
   name: "achievement-name-kill-skelet-spear-100"
   description: "achievement-desc-kill-skelet-spear-100"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillSkeletSpear50
   conditions:
@@ -742,7 +743,7 @@
   name: "achievement-name-kill-wolf-1"
   description: "achievement-desc-kill-wolf-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -760,7 +761,7 @@
   name: "achievement-name-kill-wolf-25"
   description: "achievement-desc-kill-wolf-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillWolf1
   conditions:
@@ -778,7 +779,7 @@
   name: "achievement-name-kill-wolf-75"
   description: "achievement-desc-kill-wolf-75"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillWolf25
   conditions:
@@ -796,7 +797,7 @@
   name: "achievement-name-kill-wolf-150"
   description: "achievement-desc-kill-wolf-150"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillWolf75
   conditions:
@@ -814,7 +815,7 @@
   name: "achievement-name-kill-wolf-300"
   description: "achievement-desc-kill-wolf-300"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillWolf150
   conditions:
@@ -835,7 +836,7 @@
   name: "achievement-name-kill-hog-1"
   description: "achievement-desc-kill-hog-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -852,7 +853,7 @@
   name: "achievement-name-kill-hog-15"
   description: "achievement-desc-kill-hog-15"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillHog1
   conditions:
@@ -869,7 +870,7 @@
   name: "achievement-name-kill-hog-25"
   description: "achievement-desc-kill-hog-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillHog15
   conditions:
@@ -886,7 +887,7 @@
   name: "achievement-name-kill-hog-50"
   description: "achievement-desc-kill-hog-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillHog25
   conditions:
@@ -903,7 +904,7 @@
   name: "achievement-name-kill-hog-75"
   description: "achievement-desc-kill-hog-75"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillHog50
   conditions:
@@ -923,7 +924,7 @@
   name: "achievement-name-kill-bear-1"
   description: "achievement-desc-kill-bear-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -940,7 +941,7 @@
   name: "achievement-name-kill-bear-10"
   description: "achievement-desc-kill-bear-10"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillBear1
   conditions:
@@ -957,7 +958,7 @@
   name: "achievement-name-kill-bear-25"
   description: "achievement-desc-kill-bear-25"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillBear10
   conditions:
@@ -974,7 +975,7 @@
   name: "achievement-name-kill-bear-50"
   description: "achievement-desc-kill-bear-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillBear25
   conditions:
@@ -994,7 +995,7 @@
   name: "achievement-name-kill-ice-dragon"
   description: "achievement-desc-kill-ice-dragon"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1014,7 +1015,7 @@
   name: "achievement-name-kill-fire-dragon"
   description: "achievement-desc-kill-fire-dragon"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1034,7 +1035,7 @@
   name: "achievement-name-kill-acid-dragon"
   description: "achievement-desc-kill-acid-dragon"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1054,7 +1055,7 @@
   name: "achievement-name-kill-thunder-dragon"
   description: "achievement-desc-kill-thunder-dragon"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1074,7 +1075,7 @@
   name: "achievement-name-dragon-slayer"
   description: "achievement-desc-dragon-slayer"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillIceDragon
   - AchievementKillFireDragon
@@ -1112,7 +1113,7 @@
   name: "achievement-name-kill-crab-1"
   description: "achievement-desc-kill-crab-1"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1129,7 +1130,7 @@
   name: "achievement-name-kill-crab-15"
   description: "achievement-desc-kill-crab-15"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillCrab1
   conditions:
@@ -1146,7 +1147,7 @@
   name: "achievement-name-kill-crab-50"
   description: "achievement-desc-kill-crab-50"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillCrab15
   conditions:
@@ -1163,7 +1164,7 @@
   name: "achievement-name-kill-crab-100"
   description: "achievement-desc-kill-crab-100"
   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  visibility: Visible
   prerequisites:
   - AchievementKillCrab50
   conditions:
@@ -1182,8 +1183,10 @@
   rarity: Common
   name: "achievement-name-kill-crab-devil-1"
   description: "achievement-desc-kill-crab-devil-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1199,8 +1202,10 @@
   rarity: Common
   name: "achievement-name-kill-crab-devil-3"
   description: "achievement-desc-kill-crab-devil-3"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillCrabDevil1
   conditions:
@@ -1216,8 +1221,10 @@
   rarity: Common
   name: "achievement-name-kill-crab-devil-7"
   description: "achievement-desc-kill-crab-devil-7"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillCrabDevil3
   conditions:
@@ -1233,8 +1240,10 @@
   rarity: Common
   name: "achievement-name-kill-crab-devil-15"
   description: "achievement-desc-kill-crab-devil-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillCrabDevil7
   conditions:
@@ -1253,8 +1262,10 @@
   rarity: Common
   name: "achievement-name-kill-hunter-ghost-1"
   description: "achievement-desc-kill-hunter-ghost-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1270,8 +1281,10 @@
   rarity: Common
   name: "achievement-name-kill-hunter-ghost-15"
   description: "achievement-desc-kill-hunter-ghost-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillHunterGhost1
   conditions:
@@ -1287,8 +1300,10 @@
   rarity: Common
   name: "achievement-name-kill-hunter-ghost-50"
   description: "achievement-desc-kill-hunter-ghost-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillHunterGhost15
   conditions:
@@ -1307,8 +1322,10 @@
   rarity: Common
   name: "achievement-name-kill-spider-cave-1"
   description: "achievement-desc-kill-spider-cave-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1324,8 +1341,10 @@
   rarity: Common
   name: "achievement-name-kill-spider-cave-15"
   description: "achievement-desc-kill-spider-cave-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillSpiderCave1
   conditions:
@@ -1341,8 +1360,10 @@
   rarity: Common
   name: "achievement-name-kill-spider-cave-25"
   description: "achievement-desc-kill-spider-cave-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillSpiderCave15
   conditions:
@@ -1358,8 +1379,10 @@
   rarity: Common
   name: "achievement-name-kill-spider-cave-50"
   description: "achievement-desc-kill-spider-cave-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillSpiderCave25
   conditions:
@@ -1375,8 +1398,10 @@
   rarity: Common
   name: "achievement-name-equip-spider-boots"
   description: "achievement-desc-equip-spider-boots"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillSpiderCave50
   conditions:
@@ -1395,8 +1420,10 @@
   rarity: Epic
   name: "achievement-name-kill-spider-strong-cave-1"
   description: "achievement-desc-kill-spider-strong-cave-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1412,8 +1439,10 @@
   rarity: Epic
   name: "achievement-name-kill-spider-strong-cave-5"
   description: "achievement-desc-kill-spider-strong-cave-5"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillSpiderStrongCave1
   conditions:
@@ -1429,8 +1458,10 @@
   rarity: Epic
   name: "achievement-name-kill-spider-strong-cave-10"
   description: "achievement-desc-kill-spider-strong-cave-10"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillSpiderStrongCave5
   conditions:
@@ -1449,8 +1480,10 @@
   rarity: Common
   name: "achievement-name-kill-goblin-1"
   description: "achievement-desc-kill-goblin-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1466,8 +1499,10 @@
   rarity: Common
   name: "achievement-name-kill-goblin-5"
   description: "achievement-desc-kill-goblin-5"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillGoblin1
   conditions:
@@ -1483,8 +1518,10 @@
   rarity: Common
   name: "achievement-name-kill-goblin-15"
   description: "achievement-desc-kill-goblin-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillGoblin5
   conditions:
@@ -1500,8 +1537,10 @@
   rarity: Common
   name: "achievement-name-equip-goblin-necklace"
   description: "achievement-desc-equip-goblin-necklace"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Blocking
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillGoblin15
   conditions:
@@ -1520,8 +1559,10 @@
   rarity: Common
   name: "achievement-name-kill-plague-slime-1"
   description: "achievement-desc-kill-plague-slime-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
@@ -1540,8 +1581,10 @@
   rarity: Common
   name: "achievement-name-kill-plague-mouse-1"
   description: "achievement-desc-kill-plague-mouse-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
-  visibility: Hidden
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  visibility: Visible
   prerequisites:
   - AchievementKillFirstMob
   conditions:
