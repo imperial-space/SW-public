@@ -1550,3 +1550,63 @@
     requiredCount: 1
     targetMobPrototypes:
     - MedievalMobPlagueMouse
+
+# # ==========================================
+# # ВЕТКА 26: СЛУГА МЁРБИУСА
+# # ==========================================
+- type: achievement
+  id: AchievementKillNecroFighter1
+  description: achievement-desc-kill-necro-fighter1
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  priority: 1026
+  rarity: Common
+  conditions:
+  - !type:KillMobCondition
+    targetMobPrototypes:
+    - MedievalMobSkeletonNecroFighter
+    progressKey: killNecroFighterProgression
+    requiredCount: 1
+  prerequisites:
+  - AchievementKillFirstMob
+  name: achievement-kill-necro-fighter1
+  visibility: Visible
+
+- type: achievement
+  id: AchievementKillNecroFighter10
+  description: achievement-desc-kill-necro-fighter10
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  priority: 1026
+  rarity: Common
+  conditions:
+  - !type:KillMobCondition
+    targetMobPrototypes:
+    - MedievalMobSkeletonNecroFighter
+    progressKey: killNecroFighterProgression
+    requiredCount: 10
+  prerequisites:
+  - AchievementKillFirstMob
+  name: achievement-kill-necro-fighter10
+  visibility: Visible
+
+- type: achievement
+  id: AchievementKillNecroFighter25
+  description: achievement-desc-kill-necro-fighter25
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+  priority: 1026
+  rarity: Common
+  conditions:
+  - !type:KillMobCondition
+    targetMobPrototypes:
+    - MedievalMobSkeletonNecroFighter
+    progressKey: killNecroFighterProgression
+    requiredCount: 25
+  prerequisites:
+  - AchievementKillFirstMob
+  name: achievement-kill-necro-fighter25
+  visibility: Visible
