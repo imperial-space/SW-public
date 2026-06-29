@@ -536,9 +536,7 @@ public sealed partial class FishingSystem : EntitySystem
             ? Transform(bobberUid).Coordinates
             : Transform(rod.Owner).Coordinates;
 
-        //var fish = Spawn(currentFish, spawnCoordinates);
-        var fish = EntityManager.CreateEntityUninitialized(currentFish, spawnCoordinates);
-        EntityManager.InitializeAndStartEntity(fish);
+        var fish = Spawn(currentFish, spawnCoordinates);
         GetFishRandomSizeRarity(fish);
 
         _audio.PlayPvs(rod.Comp.MinigameFishOutSound, spawnCoordinates);
