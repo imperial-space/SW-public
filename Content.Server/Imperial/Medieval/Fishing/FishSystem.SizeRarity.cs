@@ -1,13 +1,9 @@
 using System.Numerics;
 using Content.Server.Construction;
-using Content.Server.Imperial.Medieval.Farmer;
 using Content.Server.Store.Components;
 using Content.Shared._RD.Weight.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
-using Content.Shared.Imperial.Medieval.Fishing.Components;
 using Content.Shared.Imperial.Medieval.Trading;
 using Content.Shared.Sprite;
-using Content.Shared.Throwing;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Fishing;
@@ -24,14 +20,14 @@ public sealed partial class FishingSystem : EntitySystem
 
     List<FishSizeRatity> _fishSizeRarities = new List<FishSizeRatity>
     {
-        new FishSizeRatity { Name = "крохотная",    Chance = 15f,  PriceMod = 0.4f,  Scale = 0.25f },
-        new FishSizeRatity { Name = "маленькая",    Chance = 20f,  PriceMod = 0.65f, Scale = 0.6f },
-        new FishSizeRatity { Name = "средняя",      Chance = 30f,  PriceMod = 1.0f,  Scale = 1.0f },
-        new FishSizeRatity { Name = "крупная",      Chance = 18f,  PriceMod = 1.4f,  Scale = 1.5f },
-        new FishSizeRatity { Name = "большая",      Chance = 10f,  PriceMod = 1.9f,  Scale = 2.2f },
-        new FishSizeRatity { Name = "огромная",     Chance = 5f,   PriceMod = 2.8f,  Scale = 3.5f },
-        new FishSizeRatity { Name = "исполинская",  Chance = 1.5f, PriceMod = 5.0f,  Scale = 6.0f },
-        new FishSizeRatity { Name = "титаническая", Chance = 0.5f, PriceMod = 10.0f, Scale = 12.0f }
+        new FishSizeRatity { Name = "fish-size-tiny",     Chance = 15f,  PriceMod = 0.4f,  Scale = 0.25f },
+        new FishSizeRatity { Name = "fish-size-small",    Chance = 20f,  PriceMod = 0.65f, Scale = 0.6f },
+        new FishSizeRatity { Name = "fish-size-medium",   Chance = 30f,  PriceMod = 1.0f,  Scale = 1.0f },
+        new FishSizeRatity { Name = "fish-size-large",    Chance = 18f,  PriceMod = 1.4f,  Scale = 1.5f },
+        new FishSizeRatity { Name = "fish-size-huge",     Chance = 10f,  PriceMod = 1.9f,  Scale = 2.2f },
+        new FishSizeRatity { Name = "fish-size-gigantic", Chance = 5f,   PriceMod = 2.8f,  Scale = 3.5f },
+        new FishSizeRatity { Name = "fish-size-colossal", Chance = 1.5f, PriceMod = 5.0f,  Scale = 6.0f },
+        new FishSizeRatity { Name = "fish-size-titanic",  Chance = 0.5f, PriceMod = 10.0f, Scale = 12.0f }
     };
 
     private FishSizeRatity GetRandomSize()
@@ -68,7 +64,7 @@ public sealed partial class FishingSystem : EntitySystem
 
     private void GetFishSizeRarityModificators(Entity<FishSizeRarityComponent> entity)
     {
-        string newName = entity.Comp.Name + " " + Name(entity);
+        string newName = Loc.GetString(entity.Comp.Name) + " " + Name(entity);
         _metaDataSystem.SetEntityName(entity, newName);
 
         var scale = new Vector2(MathF.Sqrt(entity.Comp.Scale), MathF.Sqrt(entity.Comp.Scale));
