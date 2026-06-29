@@ -48,6 +48,7 @@
     thickness: 0.02
     area: 0.02
   - type: LastPickedUpContainer
+  - type: Appearance
 
 - type: entity
   abstract: true
@@ -135,6 +136,7 @@
       Revent: 15
   - type: RDWeight
     value: 0.5
+  - type: FishSizeRarity
 
 - type: entity
   abstract: true
