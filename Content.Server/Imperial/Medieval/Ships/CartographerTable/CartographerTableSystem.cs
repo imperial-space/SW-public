@@ -1,11 +1,13 @@
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Imperial.Medieval;
 using Content.Shared.Imperial.Medieval.CartographerTable;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Maths;
 
 namespace Content.Server.Imperial.Medieval.CartographerTable;
 
@@ -21,7 +23,7 @@ public sealed class CartographerTableSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RadarConsoleComponent, BoundUIOpenedEvent>(OnUiOpened);
+        SubscribeLocalEvent<MedievalCartographerTableComponent, BoundUIOpenedEvent>(OnUiOpened);
     }
 
     public override void Update(float frameTime)
@@ -34,8 +36,8 @@ public sealed class CartographerTableSystem : EntitySystem
 
         _updateTimer -= UpdateInterval;
 
-        var query = EntityQueryEnumerator<RadarConsoleComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var tableComp, out var xform))
+        var query = EntityQueryEnumerator<MedievalCartographerTableComponent, RadarConsoleComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var tableComp, out var xform))
         {
             if (_uiSystem.GetActors(uid, RadarConsoleUiKey.Key).Count() == 0)
                 continue;
@@ -44,13 +46,15 @@ public sealed class CartographerTableSystem : EntitySystem
         }
     }
 
-    private void OnUiOpened(EntityUid uid, RadarConsoleComponent component, BoundUIOpenedEvent args)
+    private void OnUiOpened(EntityUid uid, MedievalCartographerTableComponent component, BoundUIOpenedEvent args)
     {
-        if (args.UiKey.Equals(RadarConsoleUiKey.Key))
-        {
-            var xform = Transform(uid);
-            UpdateTableInterface(uid, component, xform);
-        }
+        if (!args.UiKey.Equals(RadarConsoleUiKey.Key))
+            return;
+
+        if (!TryComp(uid, out RadarConsoleComponent? radarComp))
+            return;
+
+        UpdateTableInterface(uid, radarComp, Transform(uid));
     }
 
     private void UpdateTableInterface(EntityUid uid, RadarConsoleComponent radarComp, TransformComponent xform)
@@ -58,11 +62,22 @@ public sealed class CartographerTableSystem : EntitySystem
         if (xform.MapID == MapId.Nullspace)
             return;
 
-        var coordinates = GetNetCoordinates(_transform.GetMoverCoordinates(uid, xform));
-        var angle = _transform.GetWorldRotation(xform);
+        var onGrid = xform.ParentUid == xform.GridUid;
+        EntityCoordinates? coordinates = onGrid ? xform.Coordinates : null;
+        Angle? angle = onGrid ? xform.LocalRotation : null;
 
-        float maxRange = radarComp.MaxRange;
-        bool rotateWithEntity = true;
+        if (radarComp.FollowEntity)
+        {
+            coordinates = new EntityCoordinates(uid, Vector2.Zero);
+            angle = Angle.Zero;
+        }
+
+        if (coordinates == null || angle == null)
+            return;
+
+        var netCoordinates = GetNetCoordinates(coordinates.Value);
+        var rotateWithEntity = !radarComp.FollowEntity;
+        var maxRange = radarComp.MaxRange;
 
         var markersToSend = new List<CartographerRadarMarkerData>();
         var markerQuery = EntityQueryEnumerator<CartographerRadarMarkerComponent, TransformComponent>();
@@ -88,8 +103,8 @@ public sealed class CartographerTableSystem : EntitySystem
         }
 
         var state = new MedievalCartographerBoundUserInterfaceState(
-            coordinates,
-            angle,
+            netCoordinates,
+            angle.Value,
             maxRange,
             rotateWithEntity,
             markersToSend
