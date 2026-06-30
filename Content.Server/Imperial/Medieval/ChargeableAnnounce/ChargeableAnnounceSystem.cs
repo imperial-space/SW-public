@@ -1,15 +1,22 @@
 using Content.Server.Administration;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
+using Content.Server.Examine;
+using Content.Server.Imperial.Medieval.Language;
 using Content.Server.Popups;
+using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.ChargeableAnnounce;
 using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Speech;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Server.Imperial.Medieval.ChargeableAnnounce;
 
@@ -20,6 +27,9 @@ public sealed class ChargeableAnnounceSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly ExamineSystem _examine = default!;
 
     private static readonly Dictionary<string, string> FactionCodeToProto = new()
     {
@@ -121,10 +131,17 @@ public sealed class ChargeableAnnounceSystem : EntitySystem
 
         args.Handled = true;
 
+        var sender = args.User;
+
         _quickDialog.OpenDialog(session, "Весть", "Сообщение", (string message) =>
         {
             if (string.IsNullOrWhiteSpace(message) || Deleted(uid) || !TryComp<ChargeableAnnounceComponent>(uid, out var announce))
                 return;
+
+            if (Deleted(sender))
+                return;
+
+            var language = _language.GetCurrentLanguage(sender);
 
             var query = EntityQueryEnumerator<CloackRecieverComponent>();
             while (query.MoveNext(out var cloackOwner, out var cloack))
@@ -133,12 +150,138 @@ public sealed class ChargeableAnnounceSystem : EntitySystem
                     continue;
 
                 EnsureComp<SpeechComponent>(cloackOwner);
-                _chat.TrySendInGameICMessage(cloackOwner, message, InGameICChatType.Whisper, false);
+                SendCommsCrystalWhisper(cloackOwner, sender, message, language);
             }
 
             announce.IsCharged = false;
             Dirty(uid, announce);
         });
+    }
+
+    private void SendCommsCrystalWhisper(
+        EntityUid crystal,
+        EntityUid sender,
+        string originalMessage,
+        LanguagePrototype language)
+    {
+        var message = FormattedMessage.RemoveMarkupOrThrow(originalMessage);
+        if (message.Length == 0)
+            return;
+
+        foreach (var item in language.Conditions.Where(x => !x.RaiseOnListener))
+        {
+            if (!item.Condition(sender, null, EntityManager))
+                return;
+        }
+
+        message = _chat.SanitizeInGameICMessage(sender, message, out _);
+        if (string.IsNullOrEmpty(message))
+            return;
+
+        if (language.LanguageType is not Generic generic)
+        {
+            var nameEv = new TransformSpeakerNameEvent(sender, Name(sender));
+            RaiseLocalEvent(sender, nameEv);
+            _chat.TrySendInGameICMessage(
+                crystal,
+                originalMessage,
+                InGameICChatType.Whisper,
+                hideChat: false,
+                nameOverride: nameEv.VoiceName,
+                ignoreActionBlocker: true,
+                language: language);
+            return;
+        }
+
+        message = _chat.TransformSpeech(sender, message);
+
+        var accentMessage = _language.AccentuateMessage(sender, language.ID, message);
+        var languageMessage = _language.ObfuscateMessage(sender, message, generic.Replacement, generic.ObfuscateSyllables);
+        var obfuscatedMessage = _chat.ObfuscateMessageReadability(accentMessage, 0.2f);
+        var obfuscatedLanguageMessage = _chat.ObfuscateMessageReadability(languageMessage, 0.2f);
+
+        var langType = language.LanguageType;
+        if (langType.WhisperColor != null)
+        {
+            var color = langType.WhisperColor.Value.ToHex();
+            accentMessage = $"[color={color}]{accentMessage}[/color]";
+            languageMessage = $"[color={color}]{languageMessage}[/color]";
+            obfuscatedMessage = $"[color={color}]{obfuscatedMessage}[/color]";
+            obfuscatedLanguageMessage = $"[color={color}]{obfuscatedLanguageMessage}[/color]";
+        }
+
+        var font = langType.Font;
+        var fontSize = langType.FontSize;
+
+        foreach (var (session, data) in _chat.GetWhisperRecipients(crystal, ChatSystem.WhisperClearRange, ChatSystem.WhisperMuffledRange))
+        {
+            if (session.AttachedEntity is not { Valid: true } listener)
+                continue;
+
+            var listenerCondition = true;
+            foreach (var item in language.Conditions.Where(x => x.RaiseOnListener))
+            {
+                if (!item.Condition(listener, crystal, EntityManager))
+                    listenerCondition = false;
+            }
+
+            if (!listenerCondition)
+                continue;
+
+            if (_chat.MessageRangeCheck(session, data, ChatTransmitRange.Normal) != ChatSystem.MessageRangeCheckResult.Full)
+                continue;
+
+            var understands = _language.CanUnderstand(listener, language);
+            var entityName = FormattedMessage.EscapeText(Identity.Name(sender, EntityManager, listener, true));
+
+            if (data.Range <= ChatSystem.WhisperClearRange || data.Observer)
+            {
+                var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
+                    ("entityName", entityName),
+                    ("fontType", font ?? "NotoSansDisplayItalic"),
+                    ("fontSize", fontSize ?? 11),
+                    ("defaultFont", "NotoSansDisplayItalic"),
+                    ("defaultSize", 11),
+                    ("message", understands ? accentMessage : languageMessage));
+
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, message, wrappedMessage, crystal, false, session.Channel);
+            }
+            else if (_examine.InRangeUnOccluded(crystal, listener, ChatSystem.WhisperMuffledRange))
+            {
+                var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
+                    ("entityName", entityName),
+                    ("fontType", font ?? "NotoSansDisplayItalic"),
+                    ("fontSize", fontSize ?? 11),
+                    ("defaultFont", "NotoSansDisplayItalic"),
+                    ("defaultSize", 11),
+                    ("message", understands ? obfuscatedMessage : obfuscatedLanguageMessage));
+
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedMessage, crystal, false, session.Channel);
+            }
+            else
+            {
+                var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-unknown-wrap-message",
+                    ("fontType", font ?? "NotoSansDisplayItalic"),
+                    ("fontSize", fontSize ?? 11),
+                    ("defaultFont", "NotoSansDisplayItalic"),
+                    ("defaultSize", 11),
+                    ("message", understands ? obfuscatedMessage : obfuscatedLanguageMessage));
+
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedMessage, crystal, false, session.Channel);
+            }
+        }
+
+        if (langType.RaiseEvent)
+        {
+            var ev = new EntitySpokeEvent(
+                crystal,
+                FormattedMessage.EscapeText(accentMessage),
+                language,
+                null,
+                FormattedMessage.EscapeText(obfuscatedMessage),
+                true);
+            RaiseLocalEvent(crystal, ev, true);
+        }
     }
 
     private void TryBindFromContainerHierarchy(EntityUid crystalUid, ChargeableAnnounceComponent comp, string crystalFaction, EntityUid? startEntity = null)
