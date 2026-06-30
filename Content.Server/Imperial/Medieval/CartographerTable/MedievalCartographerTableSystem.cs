@@ -1,11 +1,18 @@
+using System.Linq;
+using System.Numerics;
 using Content.Shared.Examine;
 using Content.Shared.Imperial.Medieval;
+using Content.Shared.Imperial.Medieval.CartographerTable;
 using Content.Shared.Shuttles.BUIStates;
+using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.CartographerTable;
@@ -13,18 +20,74 @@ namespace Content.Server.Imperial.Medieval.CartographerTable;
 [UsedImplicitly]
 public sealed class MedievalCartographerTableSystem : EntitySystem
 {
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    private float _updateTimer;
 
     public override void Initialize()
     {
         base.Initialize();
+
         Subs.BuiEvents<MedievalCartographerTableComponent>(RadarConsoleUiKey.Key, subs =>
         {
-            subs.Event<BoundUIOpenedEvent>(OnUIOpened);
-            subs.Event<BoundUIClosedEvent>(OnUIClosed);
+            subs.Event<BoundUIOpenedEvent>(OnUiOpened);
+            subs.Event<BoundUIClosedEvent>(OnUiClosed);
         });
 
         SubscribeLocalEvent<MedievalCartographerTableComponent, ExaminedEvent>(OnExamine);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        _updateTimer += frameTime;
+
+        var updateInterval = 0.1f;
+        var intervalQuery = EntityQueryEnumerator<MedievalCartographerTableComponent, RadarConsoleComponent, TransformComponent>();
+        if (intervalQuery.MoveNext(out _, out var tableComp, out _, out _))
+            updateInterval = tableComp.UpdateInterval;
+
+        if (_updateTimer < updateInterval)
+            return;
+
+        _updateTimer -= updateInterval;
+
+        var query = EntityQueryEnumerator<MedievalCartographerTableComponent, RadarConsoleComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var radarComp, out var xform))
+        {
+            if (_uiSystem.GetActors(uid, RadarConsoleUiKey.Key).Count() == 0)
+                continue;
+
+            UpdateTableInterface(uid, radarComp, xform);
+        }
+    }
+
+    private void OnUiOpened(EntityUid uid, MedievalCartographerTableComponent component, BoundUIOpenedEvent args)
+    {
+        if (!component.OpenSoundPlayed)
+        {
+            component.OpenSoundPlayed = true;
+            component.CloseSoundPlayed = false;
+            _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/menu_open.ogg"), args.Actor);
+        }
+
+        if (!TryComp(uid, out RadarConsoleComponent? radarComp))
+            return;
+
+        UpdateTableInterface(uid, radarComp, Transform(uid));
+    }
+
+    private void OnUiClosed(EntityUid uid, MedievalCartographerTableComponent component, BoundUIClosedEvent args)
+    {
+        if (component.CloseSoundPlayed)
+            return;
+
+        component.CloseSoundPlayed = true;
+        component.OpenSoundPlayed = false;
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/menu_close.ogg"), args.Actor);
     }
 
     private void OnExamine(EntityUid uid, MedievalCartographerTableComponent component, ref ExaminedEvent args)
@@ -55,21 +118,59 @@ public sealed class MedievalCartographerTableSystem : EntitySystem
         args.PushMessage(messageRotate);
     }
 
-    private void OnUIOpened(EntityUid uid, MedievalCartographerTableComponent component, BoundUIOpenedEvent args)
+    private void UpdateTableInterface(EntityUid uid, RadarConsoleComponent radarComp, TransformComponent xform)
     {
-        if (component.OpenSoundPlayed)
+        if (xform.MapID == MapId.Nullspace)
             return;
-        component.OpenSoundPlayed = true;
-        component.CloseSoundPlayed = false;
-        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/menu_open.ogg"), args.Actor);
-    }
 
-    private void OnUIClosed(EntityUid uid, MedievalCartographerTableComponent component, BoundUIClosedEvent args)
-    {
-        if (component.CloseSoundPlayed)
+        var onGrid = xform.ParentUid == xform.GridUid;
+        EntityCoordinates? coordinates = onGrid ? xform.Coordinates : null;
+        Angle? angle = onGrid ? xform.LocalRotation : null;
+
+        if (radarComp.FollowEntity)
+        {
+            coordinates = new EntityCoordinates(uid, Vector2.Zero);
+            angle = Angle.Zero;
+        }
+
+        if (coordinates == null || angle == null)
             return;
-        component.CloseSoundPlayed = true;
-        component.OpenSoundPlayed = false;
-        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/menu_close.ogg"), args.Actor);
+
+        var netCoordinates = GetNetCoordinates(coordinates.Value);
+        var rotateWithEntity = !radarComp.FollowEntity;
+        var maxRange = radarComp.MaxRange;
+
+        var markersToSend = new List<CartographerRadarMarkerData>();
+        var markerQuery = EntityQueryEnumerator<CartographerRadarMarkerComponent, TransformComponent>();
+
+        while (markerQuery.MoveNext(out var mUid, out var mComp, out var mXform))
+        {
+            if (mXform.MapID != xform.MapID || mXform.MapID == MapId.Nullspace)
+                continue;
+
+            var worldPos = _transform.GetWorldPosition(mXform);
+
+            var markerData = new CartographerRadarMarkerData
+            {
+                Position = worldPos,
+                Color = mComp.Color,
+                Size = mComp.Size,
+                ZoomScaling = mComp.ZoomScaling,
+                RsiPath = mComp.RsiPath,
+                State = mComp.State
+            };
+
+            markersToSend.Add(markerData);
+        }
+
+        var state = new MedievalCartographerBoundUserInterfaceState(
+            netCoordinates,
+            angle.Value,
+            maxRange,
+            rotateWithEntity,
+            markersToSend
+        );
+
+        _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, state);
     }
 }
