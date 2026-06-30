@@ -32,8 +32,10 @@ public sealed class SailMenuUIController : UIController
 
     private void OpenSailMenu(OpenSailMenuEvent args, EntitySessionEventArgs entArgs)
     {
-        if (_menu != null)
-            return; // Не открывать, если уже открыто
+        if (_menu?.IsOpen == true)
+            return;
+
+        CloseMenu();
 
         var options = new List<RadialMenuOptionBase>
         {
@@ -55,15 +57,29 @@ public sealed class SailMenuUIController : UIController
         };
 
         _menu = new SimpleRadialMenu();
+        _menu.OnClose += OnMenuClosed;
         _menu.SetButtons(options);
         _menu.OpenOverMouseScreenPosition();
-        _menu.OnClose += OnMenuClosed;
     }
 
     private void OnMenuClosed()
     {
-        _menu?.Dispose();
+        CloseMenu();
+    }
+
+    private void CloseMenu()
+    {
+        if (_menu == null)
+            return;
+
+        var menu = _menu;
         _menu = null;
+        menu.OnClose -= OnMenuClosed;
+
+        if (menu.IsOpen)
+            menu.Close();
+
+        menu.Dispose();
     }
 
     private void HandleRotateLeft(int target)

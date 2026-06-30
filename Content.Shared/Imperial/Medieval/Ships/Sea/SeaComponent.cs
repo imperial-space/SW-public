@@ -25,4 +25,7 @@ public sealed partial class SeaComponent : Component
 
     [DataField, AutoNetworkedField]
     public string StormParallax3 = "OceanMedievalStorm3";
+
+    [DataField]
+    public int InitStormLevel = 1;
 }

@@ -32,9 +32,15 @@ public sealed class ServerWindSystem : EntitySystem
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<SeaComponent, ComponentInit>(OnSeaInit);
         SubscribeLocalEvent<StormLevelChangedEvent>(OnStormLevelChanged);
 
         _cfg.OnValueChanged(ShipsCCVars.StormLevel, OnStormLevelCVarChanged, true);
+    }
+
+    private void OnSeaInit(EntityUid uid, SeaComponent component, ComponentInit args)
+    {
+        _cfg.SetCVar(ShipsCCVars.StormLevel, component.InitStormLevel);
     }
 
     public override void Update(float frameTime)
