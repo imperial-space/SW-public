@@ -5,9 +5,11 @@
   id: AchievementKillFirstMob
   priority: 100
   rarity: Common
-  name: "achievement-name-kill-first-mob"
-  description: "achievement-desc-kill-first-mob"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Первая кровь!""
+  description: "Совершите убийство одного из агрессивных существ"
+  icon:
+    sprite: /Textures/Imperial/Medieval/Melee/iron_sword.rsi
+    state: icon
   visibility: Visible
   conditions:
   - !type:KillMobCondition
@@ -54,9 +56,11 @@
   id: AchievementKillSkeletWeak1
   priority: 101
   rarity: Common
-  name: "achievement-name-kill-skelet-weak-1"
-  description: "achievement-desc-kill-skelet-weak-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Ветхие кости"
+  description: "Убейте слабого скелета"
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -72,9 +76,11 @@
   id: AchievementKillSkeletWeak25
   priority: 101
   rarity: Common
-  name: "achievement-name-kill-skelet-weak-25"
-  description: "achievement-desc-kill-skelet-weak-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Ветхие кости (25)""
+  description: "Убейте 25 слабых скелетов"
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletWeak1
@@ -90,9 +96,11 @@
   id: AchievementKillSkeletWeak75
   priority: 101
   rarity: Common
-  name: "achievement-name-kill-skelet-weak-75"
-  description: "achievement-desc-kill-skelet-weak-75"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Ветхие кости (75)""
+  description: "Убейте 75 слабых скелетов"
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletWeak25
@@ -108,9 +116,11 @@
   id: AchievementKillSkeletWeak150
   priority: 101
   rarity: Common
-  name: "achievement-name-kill-skelet-weak-150"
-  description: "achievement-desc-kill-skelet-weak-150"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Ветхие кости (150)""
+  description: "Убейте 150 слабых скелетов"
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletWeak75
@@ -126,9 +136,11 @@
   id: AchievementKillSkeletWeak500
   priority: 101
   rarity: Common
-  name: "achievement-name-kill-skelet-weak-500"
-  description: "achievement-desc-kill-skelet-weak-500"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Ветхие кости (500)"
+  description: "Убейте 500 слабых скелетов!"
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletWeak150
@@ -147,9 +159,11 @@
   id: AchievementKillSkeletMeat1
   priority: 102
   rarity: Common
-  name: "achievement-name-kill-skelet-meat-1"
-  description: "achievement-desc-kill-skelet-meat-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Рагу из мяса на кости"
+  description: "Убейте мясного скелета"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -165,9 +179,11 @@
   id: AchievementKillSkeletMeat25
   priority: 102
   rarity: Common
-  name: "achievement-name-kill-skelet-meat-25"
-  description: "achievement-desc-kill-skelet-meat-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Рагу из мяса на кости (25)"
+  description: "Убейте 25 мясных скелетов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletMeat1
@@ -183,9 +199,11 @@
   id: AchievementKillSkeletMeat50
   priority: 102
   rarity: Common
-  name: "achievement-name-kill-skelet-meat-50"
-  description: "achievement-desc-kill-skelet-meat-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Рагу из мяса на кости (50)"
+  description: "Убейте 50 мясных скелетов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletMeat25
@@ -201,9 +219,11 @@
   id: AchievementKillSkeletMeat150
   priority: 102
   rarity: Common
-  name: "achievement-name-kill-skelet-meat-150"
-  description: "achievement-desc-kill-skelet-meat-150"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Рагу из мяса на кости (150)"
+  description: "Убейте 150 мясных скелетов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletMeat50
@@ -222,9 +242,11 @@
   id: AchievementKillSkeletFighter1
   priority: 103
   rarity: Common
-  name: "achievement-name-kill-skelet-fighter-1"
-  description: "achievement-desc-kill-skelet-fighter-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Костлявый легион"
+  description: "Убейте скелета-легионера"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -240,9 +262,11 @@
   id: AchievementKillSkeletFighter25
   priority: 103
   rarity: Common
-  name: "achievement-name-kill-skelet-fighter-25"
-  description: "achievement-desc-kill-skelet-fighter-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Костлявый легион (25)"
+  description: "Убейте 25 скелетов-легионеров"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletFighter1
@@ -258,9 +282,11 @@
   id: AchievementKillSkeletFighter50
   priority: 103
   rarity: Common
-  name: "achievement-name-kill-skelet-fighter-50"
-  description: "achievement-desc-kill-skelet-fighter-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Костлявый легион (50)"
+  description: "Убейте 50 скелетов-легионеров"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletFighter25
@@ -276,9 +302,11 @@
   id: AchievementKillSkeletFighter150
   priority: 103
   rarity: Common
-  name: "achievement-name-kill-skelet-fighter-150"
-  description: "achievement-desc-kill-skelet-fighter-150"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Костлявый легион (150)"
+  description: "Убейте 150 скелетов-легионеров"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletFighter50
@@ -297,9 +325,11 @@
   id: AchievementKillSkeletArcher1
   priority: 104
   rarity: Common
-  name: "achievement-name-kill-skelet-archer-1"
-  description: "achievement-desc-kill-skelet-archer-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Стрела сквозь черепушку!"
+  description: "Убейте скелета-лучника"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -314,9 +344,11 @@
   id: AchievementKillSkeletArcher25
   priority: 104
   rarity: Common
-  name: "achievement-name-kill-skelet-archer-25"
-  description: "achievement-desc-kill-skelet-archer-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Стрела сквозь черепушку! (25)"
+  description: "Убейте 25 скелетов-лучников"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletArcher1
@@ -331,9 +363,11 @@
   id: AchievementKillSkeletArcher50
   priority: 104
   rarity: Common
-  name: "achievement-name-kill-skelet-archer-50"
-  description: "achievement-desc-kill-skelet-archer-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Стрела сквозь черепушку! (50)"
+  description: "Убейте 50 скелетов-лучников"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletArcher25
@@ -348,9 +382,11 @@
   id: AchievementKillSkeletArcher150
   priority: 104
   rarity: Common
-  name: "achievement-name-kill-skelet-archer-150"
-  description: "achievement-desc-kill-skelet-archer-150"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Стрела сквозь черепушку! (150)"
+  description: "Убейте 150 скелетов-лучников"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletArcher50
@@ -368,9 +404,11 @@
   id: AchievementKillSkeletCrossbow1
   priority: 105
   rarity: Common
-  name: "achievement-name-kill-skelet-crossbow-1"
-  description: "achievement-desc-kill-skelet-crossbow-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Арбалет или скелет?"
+  description: "Убейте скелета-арбалетчика"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -385,9 +423,11 @@
   id: AchievementKillSkeletCrossbow25
   priority: 105
   rarity: Common
-  name: "achievement-name-kill-skelet-crossbow-25"
-  description: "achievement-desc-kill-skelet-crossbow-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Арбалет или скелет? (25)"
+  description: "Убейте 25 скелетов-арбалетчиков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletCrossbow1
@@ -402,9 +442,11 @@
   id: AchievementKillSkeletCrossbow50
   priority: 105
   rarity: Common
-  name: "achievement-name-kill-skelet-crossbow-50"
-  description: "achievement-desc-kill-skelet-crossbow-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Арбалет или скелет? (50)"
+  description: "Убейте 50 скелетов-арбалетчиков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletCrossbow25
@@ -419,9 +461,11 @@
   id: AchievementKillSkeletCrossbow100
   priority: 105
   rarity: Common
-  name: "achievement-name-kill-skelet-crossbow-100"
-  description: "achievement-desc-kill-skelet-crossbow-100"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Арбалет или скелет? (100)"
+  description: "Убейте 100 скелетов-арбалетчиков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletCrossbow50
@@ -439,9 +483,11 @@
   id: AchievementKillSkeletHalberd1
   priority: 106
   rarity: Common
-  name: "achievement-name-kill-skelet-halberd-1"
-  description: "achievement-desc-kill-skelet-halberd-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Алебардой по хребту!"
+  description: "Убейте скелета с алебардой"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -457,9 +503,11 @@
   id: AchievementKillSkeletHalberd25
   priority: 106
   rarity: Common
-  name: "achievement-name-kill-skelet-halberd-25"
-  description: "achievement-desc-kill-skelet-halberd-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Алебардой по хребту! (25)"
+  description: "Убейте 25 скелетов с алебардой"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletHalberd1
@@ -475,9 +523,11 @@
   id: AchievementKillSkeletHalberd50
   priority: 106
   rarity: Common
-  name: "achievement-name-kill-skelet-halberd-50"
-  description: "achievement-desc-kill-skelet-halberd-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Алебардой по хребту! (50)"
+  description: "Убейте 50 скелетов с алебардой"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletHalberd25
@@ -493,9 +543,11 @@
   id: AchievementKillSkeletHalberd100
   priority: 106
   rarity: Common
-  name: "achievement-name-kill-skelet-halberd-100"
-  description: "achievement-desc-kill-skelet-halberd-100"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Алебардой по хребту! (100)"
+  description: "Убейте 100 скелетов с алебардой"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletHalberd50
@@ -514,9 +566,11 @@
   id: AchievementKillSkeletMace1
   priority: 107
   rarity: Common
-  name: "achievement-name-kill-skelet-mace-1"
-  description: "achievement-desc-kill-skelet-mace-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Щит и кость"
+  description: "Убить скелета со щитом и булавой"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_mace.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -532,9 +586,11 @@
   id: AchievementKillSkeletMace25
   priority: 107
   rarity: Common
-  name: "achievement-name-kill-skelet-mace-25"
-  description: "achievement-desc-kill-skelet-mace-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Щит и кость (25)"
+  description: "Убить 25 скелетов со щитом и булавой"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_mace.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletMace1
@@ -550,9 +606,11 @@
   id: AchievementKillSkeletMace50
   priority: 107
   rarity: Common
-  name: "achievement-name-kill-skelet-mace-50"
-  description: "achievement-desc-kill-skelet-mace-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Щит и кость (50)"
+  description: "Убить 50 скелетов со щитом и булавой"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_mace.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletMace25
@@ -568,9 +626,11 @@
   id: AchievementKillSkeletMace100
   priority: 107
   rarity: Common
-  name: "achievement-name-kill-skelet-mace-100"
-  description: "achievement-desc-kill-skelet-mace-100"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Щит и кость (100)"
+  description: "Убить 100 скелетов со щитом и булавой"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_mace.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletMace50
@@ -589,9 +649,11 @@
   id: AchievementKillSkeletDagger1
   priority: 108
   rarity: Common
-  name: "achievement-name-kill-skelet-dagger-1"
-  description: "achievement-desc-kill-skelet-dagger-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Перо под костлявое ребро"
+  description: "Убить скелета с кинжалами"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -607,9 +669,11 @@
   id: AchievementKillSkeletDagger25
   priority: 108
   rarity: Common
-  name: "achievement-name-kill-skelet-dagger-25"
-  description: "achievement-desc-kill-skelet-dagger-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Перо под костлявое ребро (25)"
+  description: "Убить 25 скелетов с кинжалами"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletDagger1
@@ -625,9 +689,11 @@
   id: AchievementKillSkeletDagger50
   priority: 108
   rarity: Common
-  name: "achievement-name-kill-skelet-dagger-50"
-  description: "achievement-desc-kill-skelet-dagger-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Перо под костлявое ребро (50)"
+  description: "Убить 50 скелетов с кинжалами"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletDagger25
@@ -643,9 +709,11 @@
   id: AchievementKillSkeletDagger100
   priority: 108
   rarity: Common
-  name: "achievement-name-kill-skelet-dagger-100"
-  description: "achievement-desc-kill-skelet-dagger-100"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Перо под костлявое ребро (100)"
+  description: "Убить 100 скелетов с кинжалами"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletDagger50
@@ -664,9 +732,11 @@
   id: AchievementKillSkeletSpear1
   priority: 109
   rarity: Common
-  name: "achievement-name-kill-skelet-spear-1"
-  description: "achievement-desc-kill-skelet-spear-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Бить копьем, греметь костями!"
+  description: "Убить скелета-копейщика"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -682,9 +752,11 @@
   id: AchievementKillSkeletSpear25
   priority: 109
   rarity: Common
-  name: "achievement-name-kill-skelet-spear-25"
-  description: "achievement-desc-kill-skelet-spear-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Бить копьем, греметь костями! (25)"
+  description: "Убить 25 скелетов-копейщиков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletSpear1
@@ -700,9 +772,11 @@
   id: AchievementKillSkeletSpear50
   priority: 109
   rarity: Common
-  name: "achievement-name-kill-skelet-spear-50"
-  description: "achievement-desc-kill-skelet-spear-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Бить копьем, греметь костями! (50)"
+  description: "Убить 50 скелетов-копейщиков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletSpear25
@@ -718,9 +792,11 @@
   id: AchievementKillSkeletSpear100
   priority: 109
   rarity: Common
-  name: "achievement-name-kill-skelet-spear-100"
-  description: "achievement-desc-kill-skelet-spear-100"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Бить копьем, греметь костями! (100)"
+  description: "Убить 100 скелетов-копейщиков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSkeletSpear50
@@ -739,9 +815,11 @@
   id: AchievementKillWolf1
   priority: 1010
   rarity: Common
-  name: "achievement-name-kill-wolf-1"
-  description: "achievement-desc-kill-wolf-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Одинокий волк"
+  description: "Убить волка!"
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -757,9 +835,11 @@
   id: AchievementKillWolf25
   priority: 1010
   rarity: Common
-  name: "achievement-name-kill-wolf-25"
-  description: "achievement-desc-kill-wolf-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Волчье семейство"
+  description: "Убить 25 волков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
   visibility: Blocking
   prerequisites:
   - AchievementKillWolf1
@@ -775,9 +855,11 @@
   id: AchievementKillWolf75
   priority: 1010
   rarity: Common
-  name: "achievement-name-kill-wolf-75"
-  description: "achievement-desc-kill-wolf-75"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Волчья стая"
+  description: "Убить 75 волков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
   visibility: Blocking
   prerequisites:
   - AchievementKillWolf25
@@ -793,9 +875,11 @@
   id: AchievementKillWolf150
   priority: 1010
   rarity: Common
-  name: "achievement-name-kill-wolf-150"
-  description: "achievement-desc-kill-wolf-150"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Волчье войско"
+  description: "Убить 150 волков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
   visibility: Blocking
   prerequisites:
   - AchievementKillWolf75
@@ -811,9 +895,11 @@
   id: AchievementKillWolf300
   priority: 1010
   rarity: Common
-  name: "achievement-name-kill-wolf-300"
-  description: "achievement-desc-kill-wolf-300"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Гроза волков"
+  description: "Стать тем, от кого волки будут в ужасе... Убить 300 волков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
   visibility: Blocking
   prerequisites:
   - AchievementKillWolf150
@@ -832,9 +918,11 @@
   id: AchievementKillHog1
   priority: 1011
   rarity: Common
-  name: "achievement-name-kill-hog-1"
-  description: "achievement-desc-kill-hog-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Охота за кабаном"
+  description: "Убить кабана"
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -849,9 +937,11 @@
   id: AchievementKillHog15
   priority: 1011
   rarity: Common
-  name: "achievement-name-kill-hog-15"
-  description: "achievement-desc-kill-hog-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Бегущий за ветчиной"
+  description: "Убить 15 кабанов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
   visibility: Blocking
   prerequisites:
   - AchievementKillHog1
@@ -866,9 +956,11 @@
   id: AchievementKillHog25
   priority: 1011
   rarity: Common
-  name: "achievement-name-kill-hog-25"
-  description: "achievement-desc-kill-hog-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Бекон во снах нам только снится"
+  description: "Убить 25 кабанов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
   visibility: Blocking
   prerequisites:
   - AchievementKillHog15
@@ -883,9 +975,11 @@
   id: AchievementKillHog50
   priority: 1011
   rarity: Common
-  name: "achievement-name-kill-hog-50"
-  description: "achievement-desc-kill-hog-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Гроза свиных ребрышек"
+  description: "Убить 50 кабанов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
   visibility: Blocking
   prerequisites:
   - AchievementKillHog25
@@ -900,9 +994,11 @@
   id: AchievementKillHog75
   priority: 1011
   rarity: Common
-  name: "achievement-name-kill-hog-75"
-  description: "achievement-desc-kill-hog-75"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Потомок Обеликса"
+  description: "Любитель жареных кабанов Обеликс вами бы гордился! Убить 75 кабанов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
   visibility: Blocking
   prerequisites:
   - AchievementKillHog50
@@ -920,9 +1016,11 @@
   id: AchievementKillBear1
   priority: 1012
   rarity: Common
-  name: "achievement-name-kill-bear-1"
-  description: "achievement-desc-kill-bear-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Бурый хозяин леса"
+  description: "Убить медведя"
+  icon:
+    sprite: Imperial/Medieval/Mobs/brown_bear.rsi
+    state: bear
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -937,9 +1035,11 @@
   id: AchievementKillBear10
   priority: 1012
   rarity: Common
-  name: "achievement-name-kill-bear-10"
-  description: "achievement-desc-kill-bear-10"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Сезон охоты на медведя"
+  description: "Убить 10 медведей"
+  icon:
+    sprite: Imperial/Medieval/Mobs/brown_bear.rsi
+    state: bear
   visibility: Blocking
   prerequisites:
   - AchievementKillBear1
@@ -954,9 +1054,11 @@
   id: AchievementKillBear25
   priority: 1012
   rarity: Common
-  name: "achievement-name-kill-bear-25"
-  description: "achievement-desc-kill-bear-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Медвежья услуга"
+  description: "Убить 25 медведей"
+  icon:
+    sprite: Imperial/Medieval/Mobs/brown_bear.rsi
+    state: bear
   visibility: Blocking
   prerequisites:
   - AchievementKillBear10
@@ -971,9 +1073,11 @@
   id: AchievementKillBear50
   priority: 1012
   rarity: Common
-  name: "achievement-name-kill-bear-50"
-  description: "achievement-desc-kill-bear-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Бьорн великий!""
+  description: "Станьте тем, о ком будут слагать легенды среди охотников на медведей! Убить 50 медведей!""
+  icon:
+    sprite: Imperial/Medieval/Mobs/brown_bear.rsi
+    state: bear
   visibility: Blocking
   prerequisites:
   - AchievementKillBear25
@@ -991,9 +1095,11 @@
   id: AchievementKillIceDragon
   priority: 1013
   rarity: Epic
-  name: "achievement-name-kill-ice-dragon"
-  description: "achievement-desc-kill-ice-dragon"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Повелитель льдов"
+  description: "Убить ледяного дракона"
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/icedragon.rsi
+    state: alive
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1011,9 +1117,11 @@
   id: AchievementKillFireDragon
   priority: 1014
   rarity: Epic
-  name: "achievement-name-kill-fire-dragon"
-  description: "achievement-desc-kill-fire-dragon"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Хозяин пламени"
+  description: "Убить огненного дракона"
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
+    state: alive
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1031,9 +1139,11 @@
   id: AchievementKillAcidDragon
   priority: 1015
   rarity: Epic
-  name: "achievement-name-kill-acid-dragon"
-  description: "achievement-desc-kill-acid-dragon"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Кислотный властелин"
+  description: "Убить кислотного дракона"
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/aciddragon.rsi
+    state: alive
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1051,9 +1161,11 @@
   id: AchievementKillThunderDragon
   priority: 1016
   rarity: Epic
-  name: "achievement-name-kill-thunder-dragon"
-  description: "achievement-desc-kill-thunder-dragon"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Гроза небес"
+  description: "Убить грозового дракона"
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/thunderdragon.rsi
+    state: alive
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1071,9 +1183,11 @@
   id: AchievementKillAllDragonsSlayer
   priority: 1017
   rarity: Epic
-  name: "achievement-name-dragon-slayer"
-  description: "achievement-desc-dragon-slayer"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Драконоборец"
+  description: "Убить драконов четырех стихий"
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/necrodragon.rsi
+    state: dead
   visibility: Blocking
   prerequisites:
   - AchievementKillIceDragon
@@ -1109,9 +1223,11 @@
   id: AchievementKillCrab1
   priority: 1018
   rarity: Common
-  name: "achievement-name-kill-crab-1"
-  description: "achievement-desc-kill-crab-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Крабовая палочка"
+  description: "Убить краба"
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1126,9 +1242,11 @@
   id: AchievementKillCrab15
   priority: 1018
   rarity: Common
-  name: "achievement-name-kill-crab-15"
-  description: "achievement-desc-kill-crab-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Коллекция крабсбургеров"
+  description: "Убить 15 крабов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillCrab1
@@ -1143,9 +1261,11 @@
   id: AchievementKillCrab50
   priority: 1018
   rarity: Common
-  name: "achievement-name-kill-crab-50"
-  description: "achievement-desc-kill-crab-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Крабовый салат!"
+  description: "Убить 50 крабов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillCrab15
@@ -1160,9 +1280,11 @@
   id: AchievementKillCrab100
   priority: 1018
   rarity: Common
-  name: "achievement-name-kill-crab-100"
-  description: "achievement-desc-kill-crab-100"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Крабовая аннигиляция"
+  description: "Убить 100 крабов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillCrab50
@@ -1180,9 +1302,11 @@
   id: AchievementKillCrabDevil1
   priority: 1019
   rarity: Common
-  name: "achievement-name-kill-crab-devil-1"
-  description: "achievement-desc-kill-crab-devil-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Дьявольская крабовая палочка"
+  description: "Убить дьявольского краба"
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_devil.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1197,9 +1321,11 @@
   id: AchievementKillCrabDevil3
   priority: 1019
   rarity: Common
-  name: "achievement-name-kill-crab-devil-3"
-  description: "achievement-desc-kill-crab-devil-3"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Дьявольски крабовая тройка!"
+  description: "Убить три дьявольских краба"
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_devil.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillCrabDevil1
@@ -1214,9 +1340,11 @@
   id: AchievementKillCrabDevil7
   priority: 1019
   rarity: Common
-  name: "achievement-name-kill-crab-devil-7"
-  description: "achievement-desc-kill-crab-devil-7"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Счастливый дьявольский краб"
+  description: "Убить 7 дьявольских крабов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_devil.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillCrabDevil3
@@ -1231,9 +1359,11 @@
   id: AchievementKillCrabDevil15
   priority: 1019
   rarity: Common
-  name: "achievement-name-kill-crab-devil-15"
-  description: "achievement-desc-kill-crab-devil-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Смерть дьявольским крабам!"
+  description: "Убить 15 дьявольских крабов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_devil.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillCrabDevil7
@@ -1251,9 +1381,11 @@
   id: AchievementKillHunterGhost1
   priority: 1020
   rarity: Common
-  name: "achievement-name-kill-hunter-ghost-1"
-  description: "achievement-desc-kill-hunter-ghost-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Хозяин болот"
+  description: "Убить хантера"
+  icon:
+    sprite: Imperial/Medieval/Mobs/hunter.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1268,9 +1400,11 @@
   id: AchievementKillHunterGhost15
   priority: 1020
   rarity: Common
-  name: "achievement-name-kill-hunter-ghost-15"
-  description: "achievement-desc-kill-hunter-ghost-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Семейство хантеров"
+  description: "Убить 15 хантеров"
+  icon:
+    sprite: Imperial/Medieval/Mobs/hunter.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillHunterGhost1
@@ -1285,9 +1419,11 @@
   id: AchievementKillHunterGhost50
   priority: 1020
   rarity: Common
-  name: "achievement-name-kill-hunter-ghost-50"
-  description: "achievement-desc-kill-hunter-ghost-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Незримая болотная смерть"
+  description: "Убить 50 хантеров"
+  icon:
+    sprite: Imperial/Medieval/Mobs/hunter.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillHunterGhost15
@@ -1305,9 +1441,11 @@
   id: AchievementKillSpiderCave1
   priority: 1021
   rarity: Common
-  name: "achievement-name-kill-spider-cave-1"
-  description: "achievement-desc-kill-spider-cave-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Паучья пещера"
+  description: "Убить пещерного паука"
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1322,9 +1460,11 @@
   id: AchievementKillSpiderCave15
   priority: 1021
   rarity: Common
-  name: "achievement-name-kill-spider-cave-15"
-  description: "achievement-desc-kill-spider-cave-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Чутье пауков"
+  description: "Убить 15 пауков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSpiderCave1
@@ -1339,9 +1479,11 @@
   id: AchievementKillSpiderCave25
   priority: 1021
   rarity: Common
-  name: "achievement-name-kill-spider-cave-25"
-  description: "achievement-desc-kill-spider-cave-25"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Каждый паук вам не друг..."
+  description: "Убить 25 пауков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSpiderCave15
@@ -1356,9 +1498,11 @@
   id: AchievementKillSpiderCave50
   priority: 1021
   rarity: Common
-  name: "achievement-name-kill-spider-cave-50"
-  description: "achievement-desc-kill-spider-cave-50"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Всемирная паутина"
+  description: "Убить 50 пауков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSpiderCave25
@@ -1373,9 +1517,11 @@
   id: AchievementEquipSpiderBoots
   priority: 1021
   rarity: Common
-  name: "achievement-name-equip-spider-boots"
-  description: "achievement-desc-equip-spider-boots"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Паучьи лапки"
+  description: "Станьте тихим и ловким! Обуться в обувь из паучьих волосков"
+  icon:
+    sprite: Imperial/Medieval/Clothing/Shoes/spider_shoes.rsi
+    state: icon
   visibility: Blocking
   prerequisites:
   - AchievementKillSpiderCave50
@@ -1393,9 +1539,11 @@
   id: AchievementKillSpiderStrongCave1
   priority: 1022
   rarity: Epic
-  name: "achievement-name-kill-spider-strong-cave-1"
-  description: "achievement-desc-kill-spider-strong-cave-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Смертельный кокон"
+  description: "Убить сильного пещерного паука"
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider_strong.rsi
+    state: base
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1410,9 +1558,11 @@
   id: AchievementKillSpiderStrongCave5
   priority: 1022
   rarity: Epic
-  name: "achievement-name-kill-spider-strong-cave-5"
-  description: "achievement-desc-kill-spider-strong-cave-5"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Пасьянс-Паук"
+  description: "Убить 5 сильных пауков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider_strong.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSpiderStrongCave1
@@ -1427,9 +1577,11 @@
   id: AchievementKillSpiderStrongCave10
   priority: 1022
   rarity: Epic
-  name: "achievement-name-kill-spider-strong-cave-10"
-  description: "achievement-desc-kill-spider-strong-cave-10"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Ядовитая десятина, липкая паутина"
+  description: "Убить 10 сильных пауков"
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider_strong.rsi
+    state: base
   visibility: Blocking
   prerequisites:
   - AchievementKillSpiderStrongCave5
@@ -1447,9 +1599,11 @@
   id: AchievementKillGoblin1
   priority: 1023
   rarity: Common
-  name: "achievement-name-kill-goblin-1"
-  description: "achievement-desc-kill-goblin-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Зеленое недоразумение"
+  description: "Убить гоблина"
+  icon:
+    sprite: Imperial/Medieval/Mobs/goblin.rsi
+    state: monkey
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1464,9 +1618,11 @@
   id: AchievementKillGoblin5
   priority: 1023
   rarity: Common
-  name: "achievement-name-kill-goblin-5"
-  description: "achievement-desc-kill-goblin-5"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Охота на гоблинов"
+  description: "Убить 5 гоблинов"
+  icon:
+    sprite: Imperial/Medieval/Mobs/goblin.rsi
+    state: monkey
   visibility: Blocking
   prerequisites:
   - AchievementKillGoblin1
@@ -1481,9 +1637,11 @@
   id: AchievementKillGoblin15
   priority: 1023
   rarity: Common
-  name: "achievement-name-kill-goblin-15"
-  description: "achievement-desc-kill-goblin-15"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Легенда об убийце гоблинов"
+  description: "Станьте той самой легендой об убийце гоблинов! Убейте 15 гоблинов!"
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/goblin_slayer_helmet.rsi
+    state: icon
   visibility: Blocking
   prerequisites:
   - AchievementKillGoblin5
@@ -1498,9 +1656,11 @@
   id: AchievementEquipGoblinNecklace
   priority: 1023
   rarity: Common
-  name: "achievement-name-equip-goblin-necklace"
-  description: "achievement-desc-equip-goblin-necklace"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Зеленые ушки на макушке!"
+  description: "Ого, вот это трофей! Наденьте на себя ожерелье из ушей гоблинов"
+  icon:
+    sprite: Imperial/Medieval/Clothing/Cloaks/goblin.rsi
+    state: icon
   visibility: Blocking
   prerequisites:
   - AchievementKillGoblin15
@@ -1518,9 +1678,11 @@
   id: AchievementKillPlagueSlime1
   priority: 1024
   rarity: Common
-  name: "achievement-name-kill-plague-slime-1"
-  description: "achievement-desc-kill-plague-slime-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Булькающая чума"
+  description: "Убейте чумного слизня"
+  icon:
+    sprite: Imperial/Medieval/Mobs/plague_slime.rsi
+    state: slime
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
@@ -1538,9 +1700,11 @@
   id: AchievementKillPlagueMouse1
   priority: 1025
   rarity: Common
-  name: "achievement-name-kill-plague-mouse-1"
-  description: "achievement-desc-kill-plague-mouse-1"
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  name: "Хвостатая хворь"
+  description: "Убить чумную крысу"
+  icon:
+    sprite: Imperial/Medieval/Mobs/plague_rat.rsi
+    state: mouse
   visibility: Hidden
   prerequisites:
   - AchievementKillFirstMob
