@@ -168,7 +168,7 @@
 
 - type: construction
   id: WoodRailingScarlatto
-  name: Деревянный забор
+  name: деревянный забор
   description: Деревянный забор
   graph: RailingScarlattoGraph
   startNode: start
@@ -179,7 +179,7 @@
 
 - type: construction
   id: WoodRailingSideScarlatto
-  name: Деревянный забор (низкий)
+  name: деревянный забор (низкий)
   description: Деревянный забор (низкий)
   graph: RailingScarlattoGraph
   startNode: start
@@ -190,7 +190,7 @@
 
 - type: construction
   id: WoodRailingCornerScarlatto
-  name: Деревянный забор угол
+  name: деревянный забор угол
   description: Деревянный забор угол
   graph: RailingScarlattoGraph
   startNode: start
@@ -201,7 +201,7 @@
 
 - type: construction
   id: WoodRailingCornerSmallScarlatto
-  name: Деревянный забор уголок
+  name: деревянный забор уголок
   description: Деревянный забор уголок
   graph: RailingScarlattoGraph
   startNode: start
@@ -215,7 +215,7 @@
   #Stone
 - type: construction
   id: StoneRailingScarlatto
-  name: Каменный забор
+  name: каменный забор
   description: Каменный забор
   graph: RailingScarlattoGraph
   startNode: start
@@ -226,7 +226,7 @@
 
 - type: construction
   id: StoneRailingSideScarlatto
-  name: Каменный забор (низкий)
+  name: каменный забор (низкий)
   description: Каменный забор (низкий)
   graph: RailingScarlattoGraph
   startNode: start
@@ -237,7 +237,7 @@
 
 - type: construction
   id: StoneRailingCornerScarlatto
-  name: Каменный забор угол
+  name: каменный забор угол
   description: Каменный забор угол
   graph: RailingScarlattoGraph
   startNode: start
@@ -248,7 +248,7 @@
 
 - type: construction
   id: StoneRailingCornerSmallScarlatto
-  name: Каменный забор уголок
+  name: каменный забор уголок
   description: Каменный забор уголок
   graph: RailingScarlattoGraph
   startNode: start
@@ -366,7 +366,7 @@
 - type: construction
   id: MedievalShipWindow
   name: Окно
-  description: Корабельное окно
+  description: корабельное окно
   graph: MedievalWindowGraph
   startNode: start
   targetNode: MedievalShipWindow
@@ -376,7 +376,7 @@
 
 - type: construction
   id: MedievalVintageWindow
-  name: Деревянное винтажное окно
+  name: деревянное винтажное окно
   description: Деревянное винтажное окно
   graph: MedievalWindowGraph
   startNode: start
