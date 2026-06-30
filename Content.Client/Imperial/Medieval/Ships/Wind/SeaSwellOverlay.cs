@@ -8,6 +8,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -15,9 +16,12 @@ namespace Content.Client.Imperial.Medieval.Ships.Wind;
 
 public sealed class SeaSwellOverlay : Overlay
 {
+    private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
+
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private const float TileQueryPadding = 4f;
@@ -48,6 +52,7 @@ public sealed class SeaSwellOverlay : Overlay
 
     private readonly Dictionary<MapId, List<SwellParticle>> _particlesByMap = new();
     private readonly List<MapId> _staleMaps = new();
+    private readonly ShaderInstance _unshadedShader;
     private float _stormStrength;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
@@ -55,6 +60,7 @@ public sealed class SeaSwellOverlay : Overlay
     public SeaSwellOverlay()
     {
         IoCManager.InjectDependencies(this);
+        _unshadedShader = _prototypeManager.Index(UnshadedShader).Instance();
         ZIndex = 13;
     }
 
@@ -114,7 +120,9 @@ public sealed class SeaSwellOverlay : Overlay
         if (_configuration.GetCVar(ShipsCCVars.WindEnabled))
             SpawnParticles(args.MapId, particles, visibleBounds);
         var eyeRotation = args.Viewport.Eye?.Rotation ?? Angle.Zero;
+        args.WorldHandle.UseShader(_unshadedShader);
         DrawParticles(args.WorldHandle, args.MapId, particles, args.WorldAABB.Enlarged(ParticleSpawnPadding + _stormStrength * 0.35f), eyeRotation);
+        args.WorldHandle.UseShader(null);
     }
 
     private List<SwellParticle> AllParticles(MapId mapId)
