@@ -477,6 +477,7 @@
     bodyType: Static
   - type: Sprite
     sprite: Imperial/Medieval/Decor/pit2.rsi
+    drawdepth: Mobs
     layers:
         - state: watertank
         - state: pit-content-4
@@ -506,7 +507,7 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 100
+          Quantity: 900
   - type: Fixtures
     fixtures:
       fix1:
@@ -562,7 +563,7 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 450
+          Quantity: 900
   - type: Destructible
     thresholds:
     - trigger:
@@ -581,6 +582,7 @@
             max: 5
   - type: Sprite
     sprite: Imperial/Medieval/Decor/pit.rsi
+    drawdepth: Mobs
     layers:
         - state: barrel
         - state: barrel-content-1
@@ -590,6 +592,17 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: barrel-content-
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.42
+        density: 135
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: MedievalBarrelBase
@@ -600,7 +613,7 @@
       tank:
         reagents:
         - ReagentId: Wine
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -611,7 +624,7 @@
       tank:
         reagents:
         - ReagentId: Mead
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -622,7 +635,7 @@
       tank:
         reagents:
         - ReagentId: RedMead
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -633,7 +646,7 @@
       tank:
         reagents:
         - ReagentId: Beer
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -644,7 +657,7 @@
       tank:
         reagents:
         - ReagentId: Moonshine
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -655,7 +668,7 @@
       tank:
         reagents:
         - ReagentId: Rum
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -666,7 +679,7 @@
       tank:
         reagents:
         - ReagentId: Vodka
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -677,7 +690,7 @@
       tank:
         reagents:
         - ReagentId: Ale
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   id: MedievalDecorOhapka

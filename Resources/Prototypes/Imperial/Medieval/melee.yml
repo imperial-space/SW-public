@@ -1,6 +1,8 @@
 - type: entity
   name: bone spear
-  parent: [ BaseItem, BaseSpearCharged ]
+  parent:
+  - BaseItem
+  - BaseSpearCharged
   id: SpearBone
   description: A spear made of bones.
   components:
@@ -12,7 +14,8 @@
     layers:
     - state: spear
     - state: spear1
-      map: ["enum.SolutionContainerLayers.Fill"]
+      map:
+      - "enum.SolutionContainerLayers.Fill"
       visible: false
   - type: Construction
     node: spear
@@ -47,7 +50,7 @@
     damage:
       types:
         Piercing: 21
-  #- type: EmbeddableProjectile
+    #- type: EmbeddableProjectile
     #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
@@ -60,10 +63,10 @@
       fix1:
         shape: !type:PolygonShape
           vertices:
-            - -0.40,-0.30
-            - -0.30,-0.40
-            - 0.40,0.30
-            - 0.30,0.40
+          - -0.40,-0.30
+          - -0.30,-0.40
+          - 0.40,0.30
+          - 0.30,0.40
         density: 20
         mask:
         - ItemMask
@@ -1427,6 +1430,7 @@
     cPSwingBeverage: true
     cPAnimationOffset: 1
     attackRate: 0.7
+    wideAnimationRotation: -135
   - type: MeleeThrowOnHit
     distance: 0.2
     speed: 5
