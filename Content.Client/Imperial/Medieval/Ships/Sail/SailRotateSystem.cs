@@ -68,7 +68,7 @@ public sealed class SailMenuUIController : UIController
 
     private void HandleRotateLeft(int target)
     {
-        var msg = new RotateSailEvent(1, target);
+        var msg = new RotateSailEvent(-1, target);
         _net.SendSystemNetworkMessage(msg);
     }
 
@@ -80,7 +80,7 @@ public sealed class SailMenuUIController : UIController
 
     private void HandleRotateRight(int target)
     {
-        var msg = new RotateSailEvent(-1, target);
+        var msg = new RotateSailEvent(1, target);
         _net.SendSystemNetworkMessage(msg);
     }
 

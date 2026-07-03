@@ -1,0 +1,17 @@
+ent-MedievalFactionCommsObelisk = фракционный обелиск
+    .desc = Магический источник связи фракции с внешним миром и между её членами.
+ent-MedievalFactionCommsObeliskLegion = обелиск легиона
+    .desc = Магический источник связи легиона с внешним миром и между его членами.
+ent-MedievalFactionCommsObeliskInsurgency = обелиск мятежников
+    .desc = Магический источник связи мятежников с внешним миром и между их членами.
+ent-MedievalFactionCommsObeliskBandit = обелиск бандитов
+    .desc = Магический источник связи бандитов с внешним миром и между их членами.
+ent-MedievalFactionCommsObeliskMerc = обелиск наёмников
+    .desc = Магический источник связи наёмников с внешним миром и между их членами.
+ent-MedievalFactionCommsObeliskCollegium = обелиск коллегии
+    .desc = Магический источник связи коллегии с внешним миром и между её членами.
+ent-MedievalFactionCommsObeliskMiner = обелиск шахтёров
+    .desc = Магический источник связи шахтёров с внешним миром и между их членами.
+ent-MedievalFactionCommsObeliskTribe = обелиск племени
+    .desc = Магический источник связи племени с внешним миром и между его членами.
+medieval-faction-obelisk-destroyed-desc = Кучка побитого камня, непригодно для починки.

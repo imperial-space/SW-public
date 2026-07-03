@@ -2,6 +2,7 @@
     xmlns="https://spacestation14.io"
     xmlns:inventory="clr-namespace:Content.Client.UserInterface.Systems.Inventory.Controls"
     xmlns:hands="clr-namespace:Content.Client.UserInterface.Systems.Hands.Controls"
+    xmlns:medieval="clr-namespace:Content.Client.Imperial.Medieval.UserInterface.Elements"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Hotbar.Widgets"
     Name="HotbarInterface"
     VerticalExpand="True"
@@ -35,6 +36,12 @@
                           Margin="10">
             </BoxContainer>
         </BoxContainer>
+        <!-- imperial medieval statusbars start -->
+        <medieval:HotbarVitalsControl Name="VitalsControl"
+                                      HorizontalAlignment="Center"
+                                      HorizontalExpand="True"
+                                      Margin="10 0 10 6" />
+        <!-- imperial medieval statusbars end -->
         <BoxContainer Orientation="Horizontal" Name="Hotbar" HorizontalAlignment="Center">
             <inventory:ItemSlotButtonContainer
                 Name="SecondHotbar"

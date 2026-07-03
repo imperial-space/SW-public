@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Fishing.Bui;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -33,13 +34,18 @@ public sealed class FishingMinigameControl : PanelContainer
 
     private readonly TextureRect _floatIcon;
     private readonly TextureRect _fishIcon;
+    private float _baseAsyncTimeStep = 1f;
+    private float _tensionAcceleration;
+    private float _tensionAccelerationDelta;
+    private float _tensionAccelerationDeltaPressed;
+    private float _progressPerTick;
+    private bool _active;
     private bool _holdingLmb;
+    private bool _resultSent;
     private float _tension;
     private float _progress;
 
-    public event Action<bool>? LmbStateChanged;
-
-    public bool HoldingLmb => _holdingLmb;
+    public event Action<FishingMinigameResult>? MinigameFinished;
 
     public FishingMinigameControl()
     {
@@ -106,14 +112,35 @@ public sealed class FishingMinigameControl : PanelContainer
         SetValues(50f, 0f);
     }
 
+    public void StartMinigame(FishingMinigameBoundUserInterfaceState state)
+    {
+        _baseAsyncTimeStep = Math.Max(0.001f, state.BaseAsyncTimeStep);
+        _tensionAccelerationDelta = state.TensionAccelerationDelta;
+        _tensionAccelerationDeltaPressed = state.TensionAccelerationDeltaPressed;
+        _progressPerTick = state.ProgressPerTick;
+        _tension = state.Tension;
+        _progress = state.Progress;
+        _tensionAcceleration = state.TensionAcceleration;
+        _active = true;
+        _resultSent = false;
+
+        SetValues(_tension, _progress);
+    }
+
+    public void StopMinigameFromServer()
+    {
+        _active = false;
+        _resultSent = true;
+    }
+
     public void SetValues(float tension, float progress)
     {
-        _tension = Math.Clamp(tension, 0f, 100f);
-        _progress = Math.Clamp(progress, 0f, 100f);
+        var clampedTension = Math.Clamp(tension, 0f, 100f);
+        var clampedProgress = Math.Clamp(progress, 0f, 100f);
 
         // Float tracks tension in the upper rectangle, fish tracks progress in the lower one.
-        SetIndicatorPosition(_floatIcon, _tension, FloatTrackCenterY);
-        SetIndicatorPosition(_fishIcon, _progress, FishTrackCenterY);
+        SetIndicatorPosition(_floatIcon, clampedTension, FloatTrackCenterY);
+        SetIndicatorPosition(_fishIcon, clampedProgress, FishTrackCenterY);
     }
 
     private void SetIndicatorPosition(TextureRect icon, float value, float trackCenterY)
@@ -137,6 +164,39 @@ public sealed class FishingMinigameControl : PanelContainer
     {
         base.FrameUpdate(args);
 
+        UpdateHoldingState();
+
+        if (!_active || _resultSent)
+            return;
+
+        var scale = args.DeltaSeconds / _baseAsyncTimeStep;
+        if (scale <= 0f)
+            return;
+
+        var accelerationDelta = _holdingLmb
+            ? _tensionAccelerationDeltaPressed
+            : _tensionAccelerationDelta;
+
+        _tensionAcceleration += accelerationDelta * scale;
+        _tension += _tensionAcceleration * scale;
+
+        if (_holdingLmb)
+            _progress += _progressPerTick * scale;
+
+        SetValues(_tension, _progress);
+
+        if (_tension is <= 0f or >= 100f)
+        {
+            FinishMinigame(FishingMinigameResult.Exit);
+            return;
+        }
+
+        if (_progress > 100f)
+            FinishMinigame(FishingMinigameResult.Complete);
+    }
+
+    private void UpdateHoldingState()
+    {
         var holding = false;
         foreach (var function in _input.DownKeyFunctions)
         {
@@ -151,6 +211,12 @@ public sealed class FishingMinigameControl : PanelContainer
             return;
 
         _holdingLmb = holding;
-        LmbStateChanged?.Invoke(_holdingLmb);
+    }
+
+    private void FinishMinigame(FishingMinigameResult result)
+    {
+        _active = false;
+        _resultSent = true;
+        MinigameFinished?.Invoke(result);
     }
 }

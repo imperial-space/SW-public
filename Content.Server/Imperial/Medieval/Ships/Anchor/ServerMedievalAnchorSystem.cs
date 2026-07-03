@@ -1,21 +1,42 @@
+using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Imperial.Medieval.Ships.Anchor;
 using Robust.Server.GameObjects;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
+using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
+using Robust.Shared.Timing;
+using Content.Shared.Imperial.Medieval.Ships.Islands;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Content.Shared.Examine;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Ships.Anchor;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class ServerMedievalAnchorSystem : EntitySystem
 {
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    /// <inheritdoc/>
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+
     public override void Initialize()
     {
+        SubscribeLocalEvent<MedievalAnchorComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MedievalAnchorComponent, UseAnchorEvent>(OnUseAnchor);
+        SubscribeLocalEvent<MedievalAnchorComponent, ExaminedEvent>(OnExamine);
+    }
+
+    private void OnStartup(EntityUid uid, MedievalAnchorComponent component, ComponentStartup args)
+    {
+        UpdateAnchorVisuals(uid, component);
     }
 
     private void OnUseAnchor(EntityUid uid, MedievalAnchorComponent component, UseAnchorEvent args)
@@ -23,39 +44,95 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
         if (args.Target == null || args.Cancelled)
             return;
 
-        var target = component.Owner;
-
-        var enabled = component.Enabled;
-
-        ShuttleComponent? shuttleComponent = default;
-
-        var transform = Transform(target);
-        var grid = transform.GridUid;
-        if (!grid.HasValue || !transform.Anchored || !Resolve(grid.Value, ref shuttleComponent))
+        if (!_skills.HasSkill(args.User, SharedSkillsSystem.StrengthId))
             return;
 
-        if (!enabled)
+        var anchorDown = component.Enabled;
+        var anchorTransform = Transform(uid);
+        var grid = anchorTransform.GridUid;
+
+        ShuttleComponent? shuttleComponent = null;
+        if (!grid.HasValue || !anchorTransform.Anchored || !Resolve(grid.Value, ref shuttleComponent) ||
+            !TryComp<ShipDrowningComponent>(grid.Value, out var shipDrowningComponent))
+            return;
+
+        if (!anchorDown)
         {
-            _shuttleSystem.Disable(grid.Value);
+            shuttleComponent.Enabled = false;
+
+            if (TryComp<PhysicsComponent>(grid.Value, out var body))
+            {
+                // Keep the ship dynamic so sea waves and other ambient physics continue updating while anchored.
+                _physics.SetBodyType(grid.Value, BodyType.Dynamic, body: body);
+                _physics.SetBodyStatus(grid.Value, body, BodyStatus.InAir);
+                _physics.SetFixedRotation(grid.Value, true, body: body); // Считаю нужно это убрать
+                _physics.SetLinearVelocity(grid.Value, Vector2.Zero, body: body);
+                _physics.SetAngularVelocity(grid.Value, 0f, body: body);
+            }
+
+            if (SearchIslandInRange(uid, component.IslandSearchRange))
+                component.AnchorUsedTime = _timing.CurTime;
+            else
+                component.AnchorUsedTime = null;
         }
         else
         {
+            shuttleComponent.Enabled = true;
             _shuttleSystem.Enable(grid.Value);
+
+            component.AnchorUsedTime = null;
         }
 
-        shuttleComponent.Enabled = !enabled;
-        var spawnname = "";
-        if (enabled)
+        shipDrowningComponent.AnchorUsedTime = component.AnchorUsedTime;
+
+        component.Enabled = !anchorDown;
+        UpdateAnchorVisuals(uid, component);
+        args.Handled = true;
+    }
+
+    private void UpdateAnchorVisuals(EntityUid uid, MedievalAnchorComponent component)
+    {
+        _appearance.SetData(uid, MedievalAnchorVisuals.Enabled, component.Enabled);
+    }
+
+    private bool SearchIslandInRange(EntityUid uid, float range)
+    {
+        var searchBox = Box2.CenteredAround(_transform.GetWorldPosition(uid), new Vector2(range, range));
+
+        var mapManager = IoCManager.Resolve<IMapManager>();
+
+        var worldPos = _transform.GetWorldPosition(uid);
+        var gridRange = new Vector2(range, range);
+
+        List<Entity<MapGridComponent>> grids = [];
+        mapManager.FindGridsIntersecting(Transform(uid).MapID, new Box2(worldPos - gridRange, worldPos + gridRange), ref grids);
+
+        foreach (var grid in grids)
         {
-            spawnname = "MedievalAnchorUp";
+            if (HasComp<IslandComponent>(grid))
+                return true;
         }
-        else
-        {
-            spawnname = "MedievalAnchorDown";
-        }
-        var newEnt = Spawn(spawnname);
-        var coords = _transform.GetMoverCoordinates(target);
-        _transform.SetCoordinates(newEnt, coords);
-        Del(target);
+
+        return false;
+    }
+
+    private void OnExamine(EntityUid uid, MedievalAnchorComponent component, ref ExaminedEvent args)
+    {
+        var messageRange = new FormattedMessage();
+        messageRange.AddText(Loc.GetString($"examine-anchor-island-search-range") + " ");
+        messageRange.PushColor(Color.Aqua);
+        messageRange.AddText($"{component.IslandSearchRange}\n");
+        messageRange.Pop();
+        args.PushMessage(messageRange);
+
+        if (component.AnchorUsedTime is not { } timeUsed || timeUsed + TimeSpan.FromMinutes(2) <= _timing.CurTime)
+            return;
+
+        var message = new FormattedMessage();
+        message.AddText(Loc.GetString($"examine-anchor-time-to-disable-waves") + " ");
+        message.PushColor(Color.Aquamarine);
+        message.AddText($"{(int)(timeUsed + TimeSpan.FromMinutes(2) - _timing.CurTime).TotalSeconds}");
+        message.Pop();
+        args.PushMessage(message);
     }
 }

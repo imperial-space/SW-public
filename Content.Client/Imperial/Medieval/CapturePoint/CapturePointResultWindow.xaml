@@ -1,0 +1,25 @@
+<ui:MedievalWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                xmlns:ui="clr-namespace:Content.Client.Imperial.Medieval.CapturePoint.UI.MedievalWindow"
+               Title="{Loc medieval-capture-point-result-title}"
+               MinWidth="380"
+               Resizable="False">
+    <PanelContainer Margin="4">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#1e1611" />
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical" Margin="0">
+            <PanelContainer>
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#2a1f18" BorderColor="#5c4a3d" BorderThickness="2" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" Margin="16">
+                    <Label Name="ResultLabel"
+                           HorizontalAlignment="Center"
+                           Margin="0" />
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </PanelContainer>
+</ui:MedievalWindow>

@@ -14,25 +14,54 @@ public sealed class FishingMinigameBoundUserInterfaceState : BoundUserInterfaceS
 {
     public float Tension { get; }
     public float Progress { get; }
+    public float TensionAcceleration { get; }
+    public float BaseAsyncTimeStep { get; }
+    public float TensionAccelerationDelta { get; }
+    public float TensionAccelerationDeltaPressed { get; }
+    public float ProgressPerTick { get; }
     public NetEntity? Bobber { get; }
     public bool Biting { get; }
 
-    public FishingMinigameBoundUserInterfaceState(float tension, float progress, NetEntity? bobber = null, bool biting = false)
+    public FishingMinigameBoundUserInterfaceState(
+        float tension,
+        float progress,
+        float tensionAcceleration,
+        float baseAsyncTimeStep,
+        float tensionAccelerationDelta,
+        float tensionAccelerationDeltaPressed,
+        float progressPerTick,
+        NetEntity? bobber = null,
+        bool biting = false)
     {
         Tension = tension;
         Progress = progress;
+        TensionAcceleration = tensionAcceleration;
+        BaseAsyncTimeStep = baseAsyncTimeStep;
+        TensionAccelerationDelta = tensionAccelerationDelta;
+        TensionAccelerationDeltaPressed = tensionAccelerationDeltaPressed;
+        ProgressPerTick = progressPerTick;
         Bobber = bobber;
         Biting = biting;
     }
 }
 
 [Serializable, NetSerializable]
-public sealed class FishingMinigameInputMessage : BoundUserInterfaceMessage
+public enum FishingMinigameResult : byte
 {
-    public bool HoldingLmb { get; }
+    Exit,
+    Complete,
+}
 
-    public FishingMinigameInputMessage(bool holdingLmb)
+[Serializable, NetSerializable]
+public sealed class FishingMinigameResultMessage : BoundUserInterfaceMessage
+{
+    public FishingMinigameResult Result { get; }
+
+    public FishingMinigameResultMessage(FishingMinigameResult result)
     {
-        HoldingLmb = holdingLmb;
+        Result = result;
     }
 }
+
+[Serializable, NetSerializable]
+public sealed class FishingMinigameStopMessage : BoundUserInterfaceMessage;

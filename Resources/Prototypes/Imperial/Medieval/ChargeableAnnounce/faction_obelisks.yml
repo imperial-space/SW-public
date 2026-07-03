@@ -1,0 +1,147 @@
+- type: entity
+  id: MedievalFactionCommsObelisk
+  parent: BaseStructure
+  abstract: true
+  suffix: medieval
+  components:
+  - type: SpriteFade
+  - type: Sprite
+    sprite: Imperial/Medieval/obelisks/layerobelisks.rsi
+    drawdepth: Overdoors
+    offset: 0,0.9
+    layers:
+    - state: state-0
+      map: ["base"]
+  - type: CommsCharger
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - Impassable
+        - HighImpassable
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+        - InteractImpassable
+  - type: ObeliskDestroyable
+    baseLayerStates:
+    - state-0
+    - state-1
+    - state-2
+    outerLayerState: legion
+    destroyedEffect: MedievalSkeletDespawnEffect
+    phases:
+    - threshold: 2000
+      announcement: damaged
+    - threshold: 2000
+      announcement: critical
+    - threshold: 2000
+      announcement: destroyed
+      destroyOnReached: true
+
+- type: entity
+  id: MedievalFactionCommsObeliskLegion
+  parent: MedievalFactionCommsObelisk
+  suffix: medieval
+  components:
+  - type: CommsCharger
+    faction: "leg"
+  - type: ObeliskDestroyable
+    faction: Legion
+    lockedDepartment: Legion
+    announcementLocPrefix: obelisk-destructable-legion-phase
+    announcementColor: "#4F8FBA"
+    outerLayerState: legion
+
+- type: entity
+  id: MedievalFactionCommsObeliskInsurgency
+  parent: MedievalFactionCommsObelisk
+  suffix: medieval
+  components:
+  - type: CommsCharger
+    faction: "ins"
+  - type: ObeliskDestroyable
+    faction: Insurgency
+    lockedDepartment: Insurgency
+    announcementLocPrefix: obelisk-destructable-insurgency-phase
+    announcementColor: "#A53030"
+    outerLayerState: ins
+
+- type: entity
+  id: MedievalFactionCommsObeliskBandit
+  parent: MedievalFactionCommsObelisk
+  suffix: medieval
+  components:
+  - type: CommsCharger
+    faction: "band"
+  - type: ObeliskDestroyable
+    faction: Bandit
+    lockedDepartment: Band
+    announcementLocPrefix: obelisk-destructable-bandit-phase
+    announcementColor: "#819796"
+    outerLayerState: bandit
+
+- type: entity
+  id: MedievalFactionCommsObeliskMerc
+  parent: MedievalFactionCommsObelisk
+  suffix: medieval
+  components:
+  - type: CommsCharger
+    faction: "merc"
+  - type: ObeliskDestroyable
+    faction: Merc
+    lockedDepartment: Merc
+    announcementLocPrefix: obelisk-destructable-merc-phase
+    announcementColor: "#BE772B"
+    outerLayerState: merc
+
+- type: entity
+  id: MedievalFactionCommsObeliskCollegium
+  parent: MedievalFactionCommsObelisk
+  suffix: medieval
+  components:
+  - type: CommsCharger
+    faction: "collegium"
+  - type: ObeliskDestroyable
+    faction: Collegium
+    lockedDepartment: Collegium
+    announcementLocPrefix: obelisk-destructable-collegium-phase
+    announcementColor: "#A23E8C"
+    outerLayerState: collegia
+
+- type: entity
+  id: MedievalFactionCommsObeliskMiner
+  parent: MedievalFactionCommsObelisk
+  suffix: medieval
+  components:
+  - type: CommsCharger
+    faction: "mine"
+  - type: ObeliskDestroyable
+    faction: Miner
+    lockedDepartment: Mine
+    announcementLocPrefix: obelisk-destructable-miner-phase
+    announcementColor: "#75A743"
+    outerLayerState: miner
+
+- type: entity
+  id: MedievalFactionCommsObeliskTribe
+  parent: MedievalFactionCommsObelisk
+  suffix: medieval
+  components:
+  - type: CommsCharger
+    faction: "tribe"
+  - type: ObeliskDestroyable
+    faction: Tribe
+    lockedDepartment: Tribe
+    announcementLocPrefix: obelisk-destructable-tribe-phase
+    announcementColor: "#A26B43"
+    outerLayerState: tribe

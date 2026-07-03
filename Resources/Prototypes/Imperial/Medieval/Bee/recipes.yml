@@ -1,0 +1,24 @@
+- type: CP14Recipe
+  id: MedievalBeeHoneyBandage
+  craftTime: 1
+  stacks:
+    Gauze: 10
+    MedievalBeeHoneyPiece: 3
+  result: MedievalBeeHoneyBandage
+
+- type: CP14Recipe
+  id: MedievalCustomBeeHive
+  craftTime: 1
+  stacks:
+    WoodPlank: 10
+    MedievalBeeHoneyComb: 15
+  result: MedievalCustomBeeHive
+
+- type: CP14Recipe
+  id: MedievalBeeSmoke
+  craftTime: 1
+  stacks:
+    MedievalFireSerdolick: 1
+    MedievalTopaz: 1
+    MedievalSteelIngot: 5
+  result: MedievalBeeSmoke

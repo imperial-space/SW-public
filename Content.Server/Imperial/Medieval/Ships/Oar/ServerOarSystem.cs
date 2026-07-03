@@ -1,35 +1,28 @@
+using System;
 using System.Numerics;
-using Content.Shared._RD.Weight.Components;
+using Content.Server.Shuttles.Components;
 using Content.Shared._RD.Weight.Systems;
-using Content.Shared.Coordinates;
-using Content.Shared.DoAfter;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Ships;
+using Content.Shared.Imperial.Medieval.Ships.Oar;
 using Content.Shared.Imperial.Medieval.Skills;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Popups;
-using Robust.Shared.Physics;
+using Content.Shared.Maps;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-
-using Content.Shared.Database;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Imperial.Medieval.Ships.Oar;
-using Content.Shared.Interaction.Components;
-using Content.Shared.Movement.Components;
 
 namespace Content.Server.Imperial.Medieval.Ships.Oar;
 
 public sealed class OarSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedSkillsSystem _skills = default!;
-    [Dependency] private readonly EntityManager _entManager = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly RDWeightSystem _rdWeight = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -42,66 +35,75 @@ public sealed class OarSystem : EntitySystem
         if (args.Cancelled || args.Handled || item == null)
             return;
 
-        if (!TryComp<OarComponent>(item, out var comp))
+        if (!_skills.HasSkill(args.User, SharedSkillsSystem.StrengthId))
             return;
 
-        Push(item.Value, comp.Direction, comp.Power, args.User);
+        if (!TryComp<OarComponent>(item, out var oarComp))
+            return;
+
+        if (!Push(oarComp.Direction, oarComp.Power, oarComp.OverloadCeilPerTile, args.User))
+            return;
+
+        _audio.PlayPvs(MedievalShipSounds.OarUse, args.User);
         args.Handled = true;
         args.Repeat = true;
     }
 
-    private void Push(EntityUid item, Angle direction, float power, EntityUid player)
+    private bool Push(Angle direction, float power, float overloadCeilPerTile, EntityUid player)
     {
-        // Учитываем силу гребца
-        power += power * (10 - _skills.GetSkillLevel(player, "Strength")) * 0.1f;
+        power += power * (_skills.GetSkillLevel(player, "Strength") - 10) * 0.03f;
 
-        // Получаем лодку
-        var boat = _transform.GetParentUid(player);
-        if (!TryComp<TransformComponent>(boat, out var boatTransform))
-            return;
+        if (!TryGetGrid(player, out var boat))
+            return false;
 
-        // Получаем угол поворота лодки
-        var boatAngle = boatTransform.LocalRotation;
+        if (TryComp<ShuttleComponent>(boat, out var shuttle) && !shuttle.Enabled)
+            return false;
 
-        // Вычисляем общий вес лодки и груза
-        var weight = _rdWeight.GetTotal(boat);
-        if (weight == 0) weight = 10; // Минимальный вес
+        if (!TryComp<MapGridComponent>(boat, out var mapGrid) ||
+            !TryGetOverloadCeil(boat, mapGrid, overloadCeilPerTile, out var overloadCeil))
+            return false;
 
-        // Проверяем объекты в лодке
-        var entities = _lookup.GetEntitiesIntersecting(boat);
-        if (entities.Count > 1000) return;
+        var weight = _rdWeight.GetTotalOnGrid(boat);
 
-        foreach (var entity in entities)
-        {
-            if (HasComp<RDWeightComponent>(entity))
-                weight += _rdWeight.GetTotal(entity);
-        }
-
-        // Нормализуем угол (0-2π)
-        var normalizedAngle = (float)direction.Theta % (2 * MathF.PI);
+        var normalizedAngle = (float) direction.Theta % (2 * MathF.PI);
         if (normalizedAngle < 0)
             normalizedAngle += 2 * MathF.PI;
 
-        // Преобразуем угол в вектор направления
-        var directionVec = new Vector2(
-            MathF.Cos(normalizedAngle),
-            MathF.Sin(normalizedAngle)
-        );
+        var directionVec = new Vector2(MathF.Cos(normalizedAngle), MathF.Sin(normalizedAngle));
+        var impulse = directionVec * GetImpulsePower(power, overloadCeil, weight);
+        if (!TryComp<PhysicsComponent>(boat, out var body))
+            return false;
 
-        // Учитываем поворот игрока
-        if (TryComp<TransformComponent>(player, out var playerTransform))
-        {
-            directionVec = playerTransform.LocalRotation.RotateVec(directionVec);
-        }
-
-        // Применяем импульс
-        var impulse = directionVec * (power / weight);
-
-        if (TryComp<PhysicsComponent>(boat, out var body))
-        {
-            _physics.WakeBody(boat);
-            _physics.ApplyLinearImpulse(boat, impulse, body: body);
-        }
+        _physics.WakeBody(boat);
+        _physics.ApplyLinearImpulse(boat, impulse, body: body);
+        return true;
     }
 
+    private bool TryGetOverloadCeil(EntityUid gridUid, MapGridComponent mapGrid, float overloadCeilPerTile, out float overloadCeil)
+    {
+        var totalTiles = 0;
+        var allTiles = _map.GetAllTilesEnumerator(gridUid, mapGrid);
+        while (allTiles.MoveNext(out _))
+        {
+            totalTiles++;
+        }
+
+        overloadCeil = totalTiles * overloadCeilPerTile;
+        return totalTiles > 0;
+    }
+
+    private bool TryGetGrid(EntityUid uid, out EntityUid grid)
+    {
+        var xform = Transform(uid);
+        grid = _transform.GetMoverCoordinates(uid, xform).EntityId;
+        return HasComp<MapGridComponent>(grid);
+    }
+
+    private static float GetImpulsePower(float power, float overloadCeil, float weight)
+    {
+        if (weight <= 0f || weight <= overloadCeil)
+            return power;
+
+        return power * overloadCeil / weight;
+    }
 }

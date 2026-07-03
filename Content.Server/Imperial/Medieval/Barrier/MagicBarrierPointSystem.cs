@@ -10,6 +10,8 @@ using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
+using Content.Shared.Imperial.Medieval.Achievements;
+using Content.Server.Imperial.Medieval.Achievements;
 using Content.Server.MagicSpellcraft.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
@@ -35,8 +37,16 @@ namespace Content.Server.MagicBarrier
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
         [Dependency] private readonly MagicRuneSystem _rune = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly AchievementSystem _achievement = default!;
 
         public static bool IsBarrierActive = true;
+        private static readonly string[] ElementalRiftPrototypes =
+        [
+            "MedievalBarrierRiftEarth",
+            "MedievalBarrierRiftFire",
+            "MedievalBarrierRiftWater",
+            "MedievalBarrierRiftLight",
+        ];
 
         public override void Initialize()
         {
@@ -48,6 +58,7 @@ namespace Content.Server.MagicBarrier
             SubscribeLocalEvent<MagicBarrierComponent, ComponentStartup>(OnStart);
             SubscribeLocalEvent<MagicBarrierComponent, GetVerbsEvent<AlternativeVerb>>(AddSuicideVerb);
             SubscribeLocalEvent<MagicRuneKnowledgeComponent, BarrierSuicideDoAfterEvent>(OnBarrierSuicideDoAfterEvent);
+            SubscribeLocalEvent<MagicBarrierRiftComponent, EntityTerminatingEvent>(OnRiftTerminating);
         }
 
         private void OnRoundStarted(RoundStartedEvent args)
@@ -114,6 +125,9 @@ namespace Content.Server.MagicBarrier
                 barrier.Stability += comp.Power;
                 _audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), target.Value);
                 QueueDel(used);
+
+                _achievement.TryUpdateProgressAndGrant(user, new BarrierRefilledContext(),
+                    ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
                 return;
             }
 
@@ -129,6 +143,9 @@ namespace Content.Server.MagicBarrier
         public void OnStart(EntityUid uid, MagicBarrierComponent component, ComponentStartup args)
         {
             var necrobookspawners = EntityManager.AllEntities<NecroBookSpawnComponent>().ToArray();
+            if (component.ElementalRiftNextSpawnTime == TimeSpan.Zero)
+                component.ElementalRiftNextSpawnTime = _timing.CurTime + GetNextRiftSpawnDelay(component);
+
             if (!necrobookspawners.Any())
                 return;
 
@@ -138,6 +155,7 @@ namespace Content.Server.MagicBarrier
 
             for (var i = 0; i < 5; i++)
                 Spawn("MedievalDungeonKey", Transform(_random.Pick(necrobookspawners)).Coordinates);
+
         }
 
         private void OnCurseDamage(EntityUid uid, MagicBarrierCurseComponent component, ref BeforeDamageChangedEvent args)
@@ -164,9 +182,78 @@ namespace Content.Server.MagicBarrier
         {
             var min = Math.Round(component.Stability, 2);
             var max = component.MaxStability;
-            var cur = Math.Round(component.Lose, 2);
+            var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
+            var riftLoss = component.ElementalRiftStabilityLossPerMinute * riftCount;
+            var cur = Math.Round(component.Lose + riftLoss, 2);
             args.PushMarkup(Loc.GetString("medieval-hm-barrier-stability", ("min", $"{min}"), ("max", $"{max}")));
             args.PushMarkup(Loc.GetString("medieval-hm-barrier-decrease", ("number", $"{cur}")));
+
+            int riftSector1 = 0;
+            int riftSector2 = 0;
+            int riftSector3 = 0;
+            int riftSector4 = 0;
+            int riftSector5 = 0;
+            int riftSector6 = 0;
+            int riftSector7 = 0;
+            int riftSector8 = 0;
+            int riftSector9 = 0;
+            int riftSector0 = 0;
+
+            foreach (var rift in EntityManager.EntityQuery<MagicBarrierRiftComponent>())
+            {
+                var riftTransform = Transform(rift.Owner);
+                if (TryComp<CultMapBlockerComponent>(riftTransform.ParentUid, out var riftBlocker))
+                {
+                    switch (riftBlocker.Sector)
+                    {
+                        case "sector9":
+                            riftSector9++;
+                            break;
+                        case "sector8":
+                            riftSector8++;
+                            break;
+                        case "sector7":
+                            riftSector7++;
+                            break;
+                        case "sector6":
+                            riftSector6++;
+                            break;
+                        case "sector5":
+                            riftSector5++;
+                            break;
+                        case "sector4":
+                            riftSector4++;
+                            break;
+                        case "sector3":
+                            riftSector3++;
+                            break;
+                        case "sector2":
+                            riftSector2++;
+                            break;
+                        case "sector1":
+                            riftSector1++;
+                            break;
+                        default:
+                            riftSector0++;
+                            break;
+                    }
+                }
+                else
+                {
+                    riftSector0++;
+                }
+            }
+
+            args.PushMarkup(riftSector1 + "  разломов в секторе 1 (Некрополь)", -11);
+            args.PushMarkup(riftSector2 + "  разломов в секторе 2 (Мятеж)", -12);
+            args.PushMarkup(riftSector3 + "  разломов в секторе 3 (Церковь)", -13);
+            args.PushMarkup(riftSector4 + "  разломов в секторе 4 (Пустыня)", -14);
+            args.PushMarkup(riftSector5 + "  разломов в секторе 5 (Коллегия)", -15);
+            args.PushMarkup(riftSector6 + "  разломов в секторе 6 (Шахта)", -16);
+            args.PushMarkup(riftSector7 + "  разломов в секторе 7 (Гоблины)", -17);
+            args.PushMarkup(riftSector8 + "  разломов в секторе 8 (Легион)", -18);
+            args.PushMarkup(riftSector9 + "  разломов в секторе 9 (Племя)", -19);
+            args.PushMarkup(riftSector0 + "  разломов скрыты в неизвестном месте под землей", -20);
         }
 
         public override void Update(float frameTime)
@@ -194,6 +281,9 @@ namespace Content.Server.MagicBarrier
                     if (comp.Stability > 0f)
                     {
                         comp.Stability -= comp.Lose;
+                        var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
+                        if (riftCount > 0)
+                            comp.Stability -= comp.ElementalRiftStabilityLossPerMinute * riftCount;
                     }
                     else
                     {
@@ -213,13 +303,25 @@ namespace Content.Server.MagicBarrier
                     {
                         comp.Lose = comp.Lose * comp.Rate;
                         var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
-                        var choosenSpawner = _random.Pick(cursespawners);
-                        var cursexform = Transform(choosenSpawner.Owner);
-                        var cursecoords = cursexform.Coordinates;
-                        Spawn("MedievalBarrierCurse", cursecoords);
-                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-decreaserateincreased"), playSound: false, colorOverride: Color.DeepPink, sender: Loc.GetString("medieval-hm-barrier-barrier"));
-                        Spawn("ShockWaveEffect", cursecoords);
-                        Spawn("ShockWaveEffect", coords);
+                        if (cursespawners.Length > 0)
+                        {
+                            var choosenSpawner = _random.Pick(cursespawners);
+                            var cursexform = Transform(choosenSpawner.Owner);
+                            var cursecoords = cursexform.Coordinates;
+                            Spawn("MedievalBarrierCurse", cursecoords);
+                            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-decreaserateincreased"), playSound: false, colorOverride: Color.DeepPink, sender: Loc.GetString("medieval-hm-barrier-barrier"));
+                            Spawn("ShockWaveEffect", cursecoords);
+                            Spawn("ShockWaveEffect", coords);
+                        }
+                    }
+
+                    if (comp.ElementalRiftNextSpawnTime == TimeSpan.Zero)
+                        comp.ElementalRiftNextSpawnTime = _timing.CurTime + GetNextRiftSpawnDelay(comp);
+
+                    if (_timing.CurTime > comp.ElementalRiftNextSpawnTime)
+                    {
+                        comp.ElementalRiftNextSpawnTime = _timing.CurTime + GetNextRiftSpawnDelay(comp);
+                        SpawnRandomElementalRift();
                     }
 
                     comp.StarfallCurrentPoints++;
@@ -289,6 +391,52 @@ namespace Content.Server.MagicBarrier
                     }
                 }
             }
+        }
+
+        private void SpawnRandomElementalRift()
+        {
+            var riftSpawners = EntityManager.EntityQuery<MagicBarrierRiftSpawnComponent>().ToList();
+            while (riftSpawners.Count > 0)
+            {
+                var chosenSpawner = _random.Pick(riftSpawners);
+                if (chosenSpawner.Occupied)
+                {
+                    riftSpawners.Remove(chosenSpawner);
+                    continue;
+                }
+
+                var riftTransform = Transform(chosenSpawner.Owner);
+                var riftCoords = riftTransform.Coordinates;
+                var riftPrototype = _random.Pick(ElementalRiftPrototypes);
+                var rift = Spawn(riftPrototype, riftCoords);
+                if (TryComp<MagicBarrierRiftComponent>(rift, out var riftComponent))
+                    riftComponent.Spawner = chosenSpawner.Owner;
+                chosenSpawner.Occupied = true;
+                _chat.DispatchGlobalAnnouncement("Элементальный разлом открылся!", playSound: false, colorOverride: Color.DeepSkyBlue, sender: "Барьер");
+                Spawn("ShockWaveEffect", riftCoords);
+                return;
+            }
+
+            return;
+        }
+
+        private TimeSpan GetNextRiftSpawnDelay(MagicBarrierComponent component)
+        {
+            var delayMinutes = _random.NextFloat(component.ElementalRiftMinSpawnMinutes, component.ElementalRiftMaxSpawnMinutes);
+            return TimeSpan.FromMinutes(delayMinutes);
+        }
+
+        private void OnRiftTerminating(EntityUid uid, MagicBarrierRiftComponent component, ref EntityTerminatingEvent args)
+        {
+            foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+            {
+                barrier.Stability += 4f;
+                barrier.Lose *= 0.72f;
+            }
+
+            if (component.Spawner.HasValue && TryComp<MagicBarrierRiftSpawnComponent>(component.Spawner.Value, out var spawner))
+                spawner.Occupied = false;
+            _chat.DispatchGlobalAnnouncement("Элементальный разлом уничтожен, стабильность барьера восстановлена.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
         }
     }
 

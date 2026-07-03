@@ -1,4 +1,4 @@
-using Content.Server.MagicBarrier.Components;
+using Content.Server.Imperial.Medieval.Ships.Sea.Generation;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
@@ -45,11 +45,11 @@ public sealed class SeaMatrixInitSystem : EntitySystem
     public void SetMapPos(EntityUid uid, int x, int y)
     {
         var mapId = _transform.GetMapId(uid);
-        foreach (var magicBarrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+        foreach (var seasGenerationState in EntityManager.EntityQuery<SeasGenerationStateComponent>())
         {
-            if (magicBarrier.SeaMatrix is null)
+            if (seasGenerationState.SeaMatrix is null)
                 continue;
-            magicBarrier.SeaMatrix.SetSeaId(x,y,mapId);
+            seasGenerationState.SeaMatrix.SetSeaId(x, y, mapId);
         }
     }
     /// <summary>

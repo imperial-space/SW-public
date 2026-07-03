@@ -1,3 +1,6 @@
+ent-MedievalCompass = компас
+    .desc = Стрелка всегда указывает на север.
+    .suffix = { "Средневековье"}
 ent-MedievalSteeringWheel = штурвал
     .desc = Держитесь крепко, матросы! Сейчас будет крутой разворот! Гаррр!
     .suffix = { "Средневековье"}
@@ -54,3 +57,16 @@ ent-MedievalSteeringMap = стол с картой
 sail-menu-rotate-left = Повернуть влево
 sail-menu-toggle-fold = Свернуть/развернуть
 sail-menu-rotate-right = Повернуть вправо
+sail-examine-efficiency = Эффективность паруса: { $efficiency }
+sail-examine-wind-strength = Сила ветра: { $strength }
+helm-menu-rotate-left = Повернуть влево
+helm-menu-center = Вернуть в центр
+helm-menu-rotate-right = Повернуть вправо
+helm-examine-right = Штурвал повёрнут на { $degrees } градусов вправо
+helm-examine-left = Штурвал повёрнут на { $degrees } градусов влево
+helm-examine-center = Вы держите курс вперёд
+helm-examine-sails-efficiency = Эффективность всех парусов: { $efficiency }
+helm-examine-ship-load = Грузоподьёмность судна: { $weight } / { $overloadCeil }
+
+examine-anchor-island-search-range = Расстояние поиска острова:
+examine-anchor-time-to-disable-waves = Время до остановки волн:

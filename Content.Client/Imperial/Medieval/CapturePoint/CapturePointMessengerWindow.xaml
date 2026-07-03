@@ -1,0 +1,38 @@
+<ui:MedievalWindow xmlns="https://spacestation14.io"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                xmlns:ui="clr-namespace:Content.Client.Imperial.Medieval.CapturePoint.UI.MedievalWindow"
+                Title="{Loc medieval-capture-point-messenger-title}"
+                MinWidth="380"
+                Resizable="False"> 
+    <PanelContainer Margin="4">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#2b1111" /> 
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical" Margin="12">
+            <PanelContainer Margin="0 0 0 16">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1a0a0a" BorderColor="#8a0303" BorderThickness="2" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" Margin="12">
+                    <Label Name="CaptureInfoLabel"
+                           HorizontalAlignment="Center"
+                           FontColorOverride="#d4af37"
+                           Margin="0 0 0 12" />
+                    <BoxContainer Orientation="Horizontal"
+                                  HorizontalAlignment="Center"
+                                  Margin="0 0 0 12">
+                        <Label Text="{Loc medieval-capture-point-messenger-enemy-label}" FontColorOverride="#a89f91" />
+                        <Label Name="AttackingFactionLabel" />
+                    </BoxContainer>
+                    <Label Text="{Loc medieval-capture-point-messenger-react-now}"
+                           HorizontalAlignment="Center"
+                           FontColorOverride="#a89f91" />
+                </BoxContainer>
+            </PanelContainer>
+            <ui:MedievalButton Name="AcknowledgeButton"
+                    Text="{Loc medieval-capture-point-messenger-acknowledge}"
+                    HorizontalAlignment="Stretch" />
+        </BoxContainer>
+    </PanelContainer>
+</ui:MedievalWindow>

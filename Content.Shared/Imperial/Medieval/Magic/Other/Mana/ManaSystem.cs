@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared.Alert;
+// using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
@@ -11,7 +11,7 @@ namespace Content.Shared.Imperial.Medieval.Magic.Mana;
 
 public sealed partial class ManaSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+    // [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -58,8 +58,8 @@ public sealed partial class ManaSystem : EntitySystem
 
             TryChargeMana(uid, component.Regen, component);
 
-            if (_net.IsServer)
-                _alertsSystem.ShowAlert(uid, component.ManaAlert, (short)Math.Clamp(Math.Round(component.Mana / component.MaxMana * 5.05f), 0, 5));
+            // if (_net.IsServer)
+            //     _alertsSystem.ShowAlert(uid, component.ManaAlert, (short)Math.Clamp(Math.Round(component.Mana / component.MaxMana * 5.05f), 0, 5));
         }
     }
 
@@ -88,8 +88,7 @@ public sealed partial class ManaSystem : EntitySystem
 
     private void OnRejuvenate(EntityUid uid, ManaComponent component, RejuvenateEvent args)
     {
-        _alertsSystem.ShowAlert(uid, component.ManaAlert, (short)Math.Clamp(Math.Round(component.Mana / component.MaxMana * 5.05f), 0, 5));
-
+        // _alertsSystem.ShowAlert(uid, component.ManaAlert, (short)Math.Clamp(Math.Round(component.Mana / component.MaxMana * 5.05f), 0, 5));
         TryChangeMana(uid, component.MaxMana);
     }
 

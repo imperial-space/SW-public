@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Alert;
+// imperial medieval statusbars start
+// using Content.Shared.Alert;
+// imperial medieval statusbars end
 using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Components;
@@ -40,7 +42,9 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
+    // imperial medieval statusbars start
+    // [Dependency] private readonly AlertsSystem _alerts = default!;
+    // imperial medieval statusbars end
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -97,7 +101,9 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         {
             RemCompDeferred<ActiveStaminaComponent>(entity);
         }
-        _alerts.ClearAlert(entity.Owner, entity.Comp.StaminaAlert);
+        // imperial medieval statusbars start
+        // _alerts.ClearAlert(entity.Owner, entity.Comp.StaminaAlert);
+        // imperial medieval statusbars end
     }
 
     private void OnStartup(Entity<StaminaComponent> entity, ref ComponentStartup args)
@@ -227,21 +233,25 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
     private void UpdateStaminaVisuals(Entity<StaminaComponent> entity)
     {
-        SetStaminaAlert(entity, entity.Comp);
+        // imperial medieval statusbars start
+        // SetStaminaAlert(entity, entity.Comp);
+        // imperial medieval statusbars end
         SetStaminaAnimation(entity);
     }
 
     // Here so server can properly tell all clients in PVS range to start the animation
     protected virtual void SetStaminaAnimation(Entity<StaminaComponent> entity){}
 
-    private void SetStaminaAlert(EntityUid uid, StaminaComponent? component = null)
-    {
-        if (!Resolve(uid, ref component, false) || component.Deleted)
-            return;
-
-        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.StaminaDamage), component.CritThreshold, 7);
-        _alerts.ShowAlert(uid, component.StaminaAlert, (short) severity);
-    }
+    // imperial medieval statusbars start
+    // private void SetStaminaAlert(EntityUid uid, StaminaComponent? component = null)
+    // {
+    //     if (!Resolve(uid, ref component, false) || component.Deleted)
+    //         return;
+    //
+    //     var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.StaminaDamage), component.CritThreshold, 7);
+    //     _alerts.ShowAlert(uid, component.StaminaAlert, (short) severity);
+    // }
+    // imperial medieval statusbars end
 
     /// <summary>
     /// Tries to take stamina damage without raising the entity over the crit threshold.
@@ -269,7 +279,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (!Resolve(uid, ref component, false))
             return;
 
-        var ev = new BeforeStaminaDamageEvent(value);
+        var ev = new BeforeStaminaDamageEvent(value, Origin: source); // Добавлен источник урона, нужен для системы парирования
         RaiseLocalEvent(uid, ref ev);
         if (ev.Cancelled)
             return;

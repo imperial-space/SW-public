@@ -27,3 +27,13 @@
       Glass: 50
   - type: StaticPrice
     price: 100
+
+- type: entity
+  name: spying glass
+  parent: Binoculars
+  id: SpyingGlass
+  components:
+  - type: EyeCursorOffset
+    maxOffset: 40
+    pvsIncrease: 1
+  - type: EyeCursorOffsetShipResrtict

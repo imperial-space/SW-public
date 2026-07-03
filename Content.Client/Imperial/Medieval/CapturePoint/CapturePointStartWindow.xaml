@@ -1,0 +1,68 @@
+<ui:MedievalWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               xmlns:ui="clr-namespace:Content.Client.Imperial.Medieval.CapturePoint.UI.MedievalWindow"
+               Title="{Loc medieval-capture-point-start-title}"
+               MinWidth="400"
+               Resizable="False">
+    <PanelContainer Margin="4">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#1e1611" />
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical">
+            <PanelContainer Margin="0 0 0 10" HorizontalAlignment="Center">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#3a2a1a" BorderColor="#C9A23A" BorderThickness="1" />
+                </PanelContainer.PanelOverride>
+                <Label Name="PointNameLabel"
+                       Access="Public"
+                       StyleClasses="LabelHeading"
+                       HorizontalAlignment="Center"
+                       FontColorOverride="#C9A23A"
+                       Margin="12 4" />
+            </PanelContainer>
+            <PanelContainer Margin="0 0 0 12">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#2a1f18" BorderColor="#5c4a3d" BorderThickness="2" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" Margin="12">
+                    <BoxContainer Orientation="Horizontal" Margin="0 0 0 8">
+                        <Label Text="{Loc medieval-capture-point-start-faction-label}" FontColorOverride="#a89f91" />
+                        <Label Name="FactionLabel" Access="Public" FontColorOverride="#d4c8a0" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
+                        <Label Text="{Loc medieval-capture-point-start-allies-label}" FontColorOverride="#a89f91" />
+                        <Label Name="AlliesCountLabel" Access="Public" FontColorOverride="#d4c8a0" />
+                    </BoxContainer>
+                    <PanelContainer Margin="0 4 0 12">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#150f0c" />
+                        </PanelContainer.PanelOverride>
+                        <ScrollContainer MinHeight="112"
+                                         MaxHeight="112"
+                                         HScrollEnabled="False">
+                            <BoxContainer Name="AlliesListContainer"
+                                          Access="Public"
+                                          Orientation="Vertical"
+                                          Margin="6" />
+                        </ScrollContainer>
+                    </PanelContainer>
+                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
+                        <Label Text="{Loc medieval-capture-point-start-time-label}" FontColorOverride="#a89f91" />
+                        <Label Name="EstimatedTimeLabel" Access="Public" FontColorOverride="#d4c8a0" />
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+            <Label Name="CannotStartLabel"
+                   Access="Public"
+                   Visible="False"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 8" />
+            <ui:MedievalButton Name="StartButton"
+                    Access="Public"
+                    Text="{Loc medieval-capture-point-start-button}"
+                    HorizontalAlignment="Stretch"
+                    Margin="0" />
+        </BoxContainer>
+    </PanelContainer>
+</ui:MedievalWindow>

@@ -55,6 +55,6 @@ public sealed partial class RotateEvent : DoAfterEvent
         Direction = dir;
     }
 
-    public override DoAfterEvent Clone() => this;
+    public override DoAfterEvent Clone() => new RotateEvent(Direction);
 }
 

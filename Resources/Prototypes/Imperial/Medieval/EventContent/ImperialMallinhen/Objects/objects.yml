@@ -1,0 +1,208 @@
+- type: entity
+  parent: FlaskBase
+  id: MedievalFlaskImperial
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Water
+          Quantity: 50
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/flask_imperial.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: MedievalFlaskMallin
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Water
+          Quantity: 50
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/flask_mallin.rsi
+
+- type: entity
+  parent: BaseItem
+  id: MedievalTrumpet
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/trumpet.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Imperial/Medieval/Misk/cavalry_charge.ogg
+      params:
+        volume: 1
+        maxDistance: 50
+  - type: UseDelay
+    delay: 10
+
+- type: entity
+  id: MedievalFlagpoleEmpty
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/flagpole_imp_mall.rsi
+    state: empty
+    offset: 0, 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.05,-0.05,0.05,0.05"
+        density: 1000
+        layer:
+        - WallLayer
+
+- type: entity
+  id: MedievalFlagpoleImperial
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/flagpole_imp_mall.rsi
+    state: imperial
+    offset: 0, 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.05,-0.05,0.05,0.05"
+        density: 1000
+        layer:
+        - WallLayer
+
+- type: entity
+  id: MedievalFlagpoleMallin
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/flagpole_imp_mall.rsi
+    state: mallin
+    offset: 0, 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.05,-0.05,0.05,0.05"
+        density: 1000
+        layer:
+        - WallLayer
+
+- type: entity
+  id: MedievalFlagImperial
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/flag_imp_mall.rsi
+    state: flag_imperial
+    offset: 0, 0.2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.05,-0.05,0.05,0.05"
+        density: 1000
+        layer:
+        - WallLayer
+
+- type: entity
+  id: MedievalFlagMallinhen
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/flag_imp_mall.rsi
+    state: flag_mallin
+    offset: 0, 0.2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.05,-0.05,0.05,0.05"
+        density: 1000
+        layer:
+        - WallLayer
+
+- type: entity
+  id: MedievalTent
+  name: Tent
+  parent: BaseStructure
+  description: A small tent made of thick fabric
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/tent.rsi
+    state: tent
+    drawdepth: Overdoors
+    offset: 0, 0.4
+  - type: SpriteFade
+
+- type: entity
+  parent: BaseItem
+  id: SurgicalKit
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Objects/surgical_kit.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Medieval/Event/Objects/surgical_kit.rsi
+    size: Normal
+  - type: Healing
+    damage:
+      types:
+        Blunt: -200
+        Slash: -200
+        Piercing: -200
+        Heat: -200
+        Shock: -200
+        Cold: -200
+        Poison: -200
+        Asphyxiation: -200
+        Bloodloss: -200
+    damageContainers:
+      - Biological
+    delay: 25.0
+    bloodlossModifier: -15
+    consumeOnUse: false
+  - type: UseDelay
+    delay: 5.0
+
+- type: entity
+  parent: MedievalDecorBoxEmpty
+  id: MedievalDecorBoxRifleAmmo
+  name: ящик винтовочных патронов
+  description: Ящик, наполенный патронами для винтовок.
+  suffix: Ивент, Маллинхен, Империя
+  components:
+  - type: Storage
+    grid:
+    - 0,0,9,9
+    maxItemSize: Small
+  - type: StorageFill
+    contents:
+      - id: MedievalPowderCartridge
+        amount: 100
+
+- type: entity
+  parent: MedievalDecorBoxEmpty
+  id: MedievalDecorBoxPistolAmmo
+  name: ящик пистолетных патронов
+  description: Ящик, наполенный патронами для пистоля.
+  suffix: Ивент, Маллинхен, Империя
+  components:
+  - type: Storage
+    grid:
+    - 0,0,9,9
+    maxItemSize: Small
+  - type: StorageFill
+    contents:
+      - id: MedievalPowderCartridgePistole
+        amount: 100

@@ -19,6 +19,9 @@ public sealed class MedievalFactionPrototype : IPrototype
     public bool AllowHeadhunt = true;
 
     [DataField]
+    public Color Color = Color.White;
+
+    [DataField]
     public SpriteSpecifier? Icon = null;
 
     [DataField]

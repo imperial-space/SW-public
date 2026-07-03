@@ -1,32 +1,23 @@
-using System.Linq;
+using System;
+using System.Collections.Generic;
 using System.Numerics;
-using Content.Server.Administration.Logs;
-using Content.Server.Destructible;
-using Content.Shared.Construction.Conditions;
-using Content.Shared.Damage;
-using Content.Shared.Database;
 using Content.Shared.Imperial.Medieval.Additions;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
+using Content.Shared.Imperial.Medieval.Ships.Hull;
+using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Maps;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Physics;
-using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
-using Content.Shared.Trigger.Components;
+using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Timing;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
+using Robust.Shared.Spawners;
 
 namespace Content.Server.Imperial.Medieval.Ships.Wave;
 
@@ -34,173 +25,288 @@ public sealed class WaveSystem : EntitySystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly FloorTileSystem _floorTileSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IAdminLogManager _adminlogs = default!;
+    [Dependency] private readonly SharedShipHullSystem _shipHull = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
 
-
-    private readonly Random _random = new();
-    public (string, ushort)[] Stages =
-    {
-        ("woodbroken", (ushort)1),
-        ("woodbroken2", (ushort)2),
-        ("woodbroken3", (ushort)3)
-    };
-    private bool _initialized;
+    private readonly List<Vector2i> _nearbyTiles = new();
+    private readonly HashSet<EntityUid> _tileContents = new();
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<WaveComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<WaveComponent, StartCollideEvent>(OnCollide);
-
     }
-    private void Startup()
+
+    private void OnStartup(EntityUid uid, WaveComponent component, ComponentStartup args)
     {
-        if (_initialized)
-            return;
-        if (Stages == null || Stages.Length == 0)
+        if (!TryGetShipGridAt(_transform.GetMapCoordinates(uid), out _, out _))
             return;
 
-        for (int i = 0; i < Stages.Length; i++)
+        EntityManager.QueueDeleteEntity(uid);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var enumerator = EntityQueryEnumerator<WaveComponent>();
+        while (enumerator.MoveNext(out var uid, out var component))
         {
-            var stage = Stages[i];
-            if (!_tileDefinitionManager.TryGetDefinition(stage.Item1, out var tileDefinition))
+            if (TerminatingOrDeleted(uid))
                 continue;
 
-            Stages[i] = (stage.Item1, tileDefinition.TileId);
+            var collisionPos = _transform.GetMapCoordinates(uid);
+            if (!_mapManager.TryFindGridAt(collisionPos, out var gridUid, out var mapGridComp))
+                continue;
+
+            HandleWaveImpact(uid, component, gridUid, mapGridComp, collisionPos);
         }
-        _initialized = true;
     }
 
     private void OnCollide(EntityUid uid, WaveComponent component, ref StartCollideEvent args)
     {
-        if (!_initialized)
-            Startup();
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OtherEntity))
             return;
-        if (component.HitList.Contains(args.OtherEntity))
+
+        if (!TryResolveCollisionGrid(args.OtherEntity, out var targetEntity, out var mapGridComp))
+        {
+            if (component.DeleteOnCollide)
+                EntityManager.DeleteEntity(args.OurEntity);
+
             return;
-        if (_cfg.GetCVar(ShipsCCVars.WaveMinToBreakLevel) > _cfg.GetCVar(ShipsCCVars.StormLevel))
-            _entityManager.DeleteEntity(args.OurEntity);
-        EnsureComp<TransformComponent>(args.OurEntity);
+        }
+
         var collisionPos = _transform.GetMapCoordinates(args.OurEntity);
-        var gridEntity = args.OtherEntity;
-        if (!_entityManager.TryGetComponent<MapGridComponent>(gridEntity, out var mapGridComp))
-            return;
-
-        var grid = new Entity<MapGridComponent>(gridEntity, mapGridComp);
-
-        var tileRef = _map.GetTileRef(grid, collisionPos);
-
-        var centerTilePos = _map.MapToGrid(grid, collisionPos);
-
-        var radiusTiles = _cfg.GetCVar(ShipsCCVars.WaveRadiusTiles) + _cfg.GetCVar(ShipsCCVars.StormLevel);
-
-        var antiradius = (int)radiusTiles*-1;
-
-        var nearbyTiles = new List<Vector2i>();
-
-
-        for (int dx = antiradius; dx <= radiusTiles; dx++)
-        {
-            for (int dy = antiradius; dy <= radiusTiles; dy++)
-            {
-                var tilePos = centerTilePos + new EntityCoordinates(gridEntity, new Vector2(dx, dy)) ;
-                var tile = _map.GetTileRef(grid, tilePos);
-
-                if (tile.Tile.IsEmpty)
-                    continue;
-                var wallcheck = new HashSet<EntityUid>();
-                _lookup.GetEntitiesInTile(tile, wallcheck);
-                var stop = false;
-                foreach (var wall in wallcheck)
-                {
-                    if (_tags.HasTag(wall, "Wall"))
-                    {
-                        stop = true;
-                    }
-
-                }
-                if (stop)
-                    continue;
-
-                var distance = Vector2.Distance(centerTilePos.Position, tilePos.Position);
-                if (distance <= radiusTiles)
-                    nearbyTiles.Add(((int)tilePos.X, (int)tilePos.Y));
-            }
-        }
-
-        _random.Shuffle(nearbyTiles);
-
-        int tilesToReplace = Math.Min(_random.Next(0,_cfg.GetCVar(ShipsCCVars.WaveMaxBreakCount)), nearbyTiles.Count);
-        for (int i = 0; i < tilesToReplace; i++)
-        {
-            var tilePos = nearbyTiles[i];
-            if (!_map.TryGetTile(grid, tilePos, out var tile) || tile.IsEmpty)
-                continue;
-            var stagelast = Stages.Length-1;
-
-            if (tile.TypeId == Stages[stagelast].Item2 || tile.IsEmpty)
-                continue;
-            var index = 0;
-            foreach (var stage in Stages)
-            {
-                if (stage.Item2 == tile.TypeId)
-                    break;
-                index++;
-            }
-            if (index == stagelast+1)
-                index = 0;
-            _map.SetTile(grid.Owner, grid , tilePos, new Tile(Stages[index+1].Item2, 0, 0));
-        }
-        if (!TerminatingOrDeleted(args.OtherEntity))
-            component.HitList.Add(args.OtherEntity);
-        if (component.DeleteOnCollide)
-            _entityManager.DeleteEntity(args.OurEntity);
+        HandleWaveImpact(args.OurEntity, component, targetEntity, mapGridComp, collisionPos);
     }
-    /// <summary>
-    /// призывает грид на куазанных координатах относительно какой то сущности и даёт ей силу
-    /// coords кординаты это сущность от которой считать и вектор смещения
-    /// mapId айди мапы
-    /// force вектор силы который мы прикладываем если надо
-    /// deleteOnCollide при столкновении удаляем
-    /// lifetime = 0 не будет удалять сущность по истечению таймера
-    /// </summary>
-    public void SpawnWave(EntityCoordinates coords, MapId mapId, Vector2 force = new Vector2(), bool deleteOnCollide = true, float lifetime = 60)
+
+    private bool TryResolveCollisionGrid(EntityUid targetEntity, out EntityUid gridUid, out MapGridComponent mapGridComp)
     {
-        if (!_map.TryGetMap(mapId, out var mapEntity))
+        if (TryComp<MapGridComponent>(targetEntity, out var directGridComp) && directGridComp != null)
+        {
+            mapGridComp = directGridComp;
+            gridUid = targetEntity;
+            return true;
+        }
+
+        var resolvedGridUid = _transform.GetGrid(targetEntity);
+        if (resolvedGridUid.HasValue &&
+            TryComp<MapGridComponent>(resolvedGridUid.Value, out var parentGridComp) &&
+            parentGridComp != null)
+        {
+            mapGridComp = parentGridComp;
+            gridUid = resolvedGridUid.Value;
+            return true;
+        }
+
+        gridUid = EntityUid.Invalid;
+        mapGridComp = default!;
+        return false;
+    }
+
+    private bool TryGetShipGridAt(MapCoordinates coords, out EntityUid gridUid, out MapGridComponent mapGridComp)
+    {
+        if (_mapManager.TryFindGridAt(coords, out gridUid, out var foundGridComp) &&
+            HasComp<ShipDrowningComponent>(gridUid))
+        {
+            mapGridComp = foundGridComp;
+            return true;
+        }
+
+        gridUid = EntityUid.Invalid;
+        mapGridComp = default!;
+        return false;
+    }
+
+    private void HandleWaveImpact(
+        EntityUid wave,
+        WaveComponent component,
+        EntityUid targetEntity,
+        MapGridComponent mapGridComp,
+        MapCoordinates collisionPos)
+    {
+        if (TerminatingOrDeleted(wave) || TerminatingOrDeleted(targetEntity))
             return;
 
-        var grid = _mapManager.CreateGridEntity(mapId);
-        _transform.SetParent(grid, mapEntity.Value);
-        var waveComponent = EnsureComp<WaveComponent>(grid);
-        waveComponent.DeleteOnCollide = deleteOnCollide;
-        _tileDefinitionManager.TryGetDefinition("FloorWood", out var tileDefinition);// сюда поставить воду
-        if (tileDefinition == null)
+        if (component.HitList.Contains(targetEntity))
             return;
-        _map.SetTile(grid, new Vector2i(0,0), new Tile(tileDefinition.TileId, 0, 0));// создаёт тайлик воды надо поставить воду вон туда
-        if (HasComp<TransformComponent>(grid))
+
+        if (!HasComp<ShipDrowningComponent>(targetEntity))
         {
-            _transform.SetCoordinates(grid, coords);
-            _physics.WakeBody(grid);
-            _physics.ApplyLinearImpulse(grid, force);
-            if (lifetime > 0)
+            if (component.DeleteOnCollide)
+                DeleteWaveOnGridImpact(wave, component, collisionPos);
+
+            return;
+        }
+
+        if (_cfg.GetCVar(ShipsCCVars.WaveMinToBreakLevel) > _cfg.GetCVar(ShipsCCVars.StormLevel))
+        {
+            if (component.DeleteOnCollide)
+                DeleteWaveOnGridImpact(wave, component, collisionPos);
+
+            return;
+        }
+
+        var grid = new Entity<MapGridComponent>(targetEntity, mapGridComp);
+        var centerTilePos = _map.MapToGrid(grid, collisionPos);
+        var radiusTiles = _cfg.GetCVar(ShipsCCVars.WaveRadiusTiles) + _cfg.GetCVar(ShipsCCVars.StormLevel);
+        var radiusLimit = (int) MathF.Ceiling(radiusTiles);
+        var radiusSquared = radiusTiles * radiusTiles;
+
+        _nearbyTiles.Clear();
+
+        for (var dx = -radiusLimit; dx <= radiusLimit; dx++)
+        {
+            for (var dy = -radiusLimit; dy <= radiusLimit; dy++)
             {
-                var despawnComponent = EnsureComp<MedievalTimedDespawnComponent>(grid);
-                despawnComponent.Lifetime = lifetime;
-                despawnComponent.OriginalLifeTime = lifetime;
+                var tileCoordinates = centerTilePos.Offset(new Vector2(dx, dy));
+                if (!_map.TryGetTileRef(grid.Owner, grid.Comp, tileCoordinates, out var tile))
+                    continue;
+
+                if (tile.Tile.IsEmpty || !_shipHull.TryGetDamageStage(tile.Tile.TypeId, out _))
+                    continue;
+
+                _tileContents.Clear();
+                _lookup.GetEntitiesInTile(tile, _tileContents);
+
+                var blockedByWall = false;
+                foreach (var tileEntity in _tileContents)
+                {
+                    if (!_tags.HasTag(tileEntity, "Wall"))
+                        continue;
+
+                    blockedByWall = true;
+                    break;
+                }
+
+                if (blockedByWall)
+                    continue;
+
+                var delta = tileCoordinates.Position - centerTilePos.Position;
+                if (delta.LengthSquared() <= radiusSquared)
+                    _nearbyTiles.Add(tile.GridIndices);
             }
         }
+
+        if (_nearbyTiles.Count == 0)
+        {
+            if (component.DeleteOnCollide)
+                DeleteWaveOnGridImpact(wave, component, collisionPos);
+
+            return;
+        }
+
+        var maxBreakCount = Math.Max(0, _cfg.GetCVar(ShipsCCVars.WaveMaxBreakCount));
+        if (maxBreakCount > 0)
+        {
+            _random.Shuffle(_nearbyTiles);
+
+            var tilesToReplace = Math.Min(_random.Next(1, maxBreakCount + 1), _nearbyTiles.Count);
+            for (var i = 0; i < tilesToReplace; i++)
+            {
+                var tilePos = _nearbyTiles[i];
+                if (!_map.TryGetTileRef(grid.Owner, grid.Comp, tilePos, out var tile) || tile.Tile.IsEmpty)
+                    continue;
+
+                if (!_shipHull.TryGetNextDamageTile(tile.Tile.TypeId, out var damagedTileType))
+                    continue;
+
+                _map.SetTile(grid.Owner, grid, tilePos, _shipHull.WithTileType(tile.Tile, damagedTileType));
+            }
+        }
+
+        if (!TerminatingOrDeleted(targetEntity))
+            component.HitList.Add(targetEntity);
+
+        if (component.DeleteOnCollide)
+            DeleteWaveOnGridImpact(wave, component, collisionPos);
+    }
+
+    private void DeleteWaveOnGridImpact(EntityUid wave, WaveComponent component, MapCoordinates collisionPos)
+    {
+        RepulseEntitiesFromWaveImpact(wave, component, collisionPos);
+        EntityManager.DeleteEntity(wave);
+    }
+
+    private void RepulseEntitiesFromWaveImpact(EntityUid wave, WaveComponent component, MapCoordinates collisionPos)
+    {
+        var stormLevel = MathF.Max(0f, _cfg.GetCVar(ShipsCCVars.StormLevel));
+        var range = component.RepulseRangePerStormLevel * stormLevel;
+        var distance = component.RepulseDistancePerStormLevel * stormLevel;
+        if (range <= 0f || distance <= 0f)
+            return;
+
+        var repulseTargets = new HashSet<EntityUid>();
+        _lookup.GetEntitiesInRange(
+            collisionPos.MapId,
+            collisionPos.Position,
+            range,
+            repulseTargets,
+            flags: LookupFlags.Dynamic | LookupFlags.Sundries);
+
+        foreach (var target in repulseTargets)
+        {
+            if (target == wave ||
+                TerminatingOrDeleted(target) ||
+                HasComp<MapGridComponent>(target) ||
+                HasComp<MapComponent>(target))
+            {
+                continue;
+            }
+
+            var targetPos = _transform.GetMapCoordinates(target);
+            if (targetPos.MapId != collisionPos.MapId)
+                continue;
+
+            var direction = targetPos.Position - collisionPos.Position;
+            var directionLength = direction.Length();
+            if (directionLength <= 0f)
+                continue;
+
+            _throwing.TryThrow(
+                target,
+                direction / directionLength * distance,
+                baseThrowSpeed: MathF.Max(distance, 0.1f),
+                recoil: false,
+                compensateFriction: true);
+        }
+    }
+
+    public EntityUid? SpawnWave(MapCoordinates coords, Vector2 velocity = default, bool deleteOnCollide = true, float lifetime = 60)
+    {
+        if (!_map.TryGetMap(coords.MapId, out _))
+            return null;
+
+        if (TryGetShipGridAt(coords, out _, out _))
+            return null;
+
+        var wave = Spawn("WaveLarge", coords);
+        if (TerminatingOrDeleted(wave))
+            return null;
+
+        var waveComponent = EnsureComp<WaveComponent>(wave);
+        waveComponent.DeleteOnCollide = deleteOnCollide;
+
+        if (TryComp<PhysicsComponent>(wave, out var body))
+        {
+            _physics.WakeBody(wave, body: body);
+            _physics.ApplyLinearImpulse(wave, velocity * body.Mass, body: body);
+        }
+
+        RemComp<TimedDespawnComponent>(wave);
+        RemComp<MedievalTimedDespawnComponent>(wave);
+        if (lifetime <= 0)
+            return wave;
+
+        var despawnComponent = EnsureComp<MedievalTimedDespawnComponent>(wave);
+        despawnComponent.Lifetime = lifetime;
+        despawnComponent.OriginalLifeTime = lifetime;
+        return wave;
     }
 }

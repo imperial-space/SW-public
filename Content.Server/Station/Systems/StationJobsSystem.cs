@@ -161,6 +161,15 @@ public sealed partial class StationJobsSystem : EntitySystem
         if (amount == 0)
             return true;
 
+        var attempt = new StationJobSlotModifyAttemptEvent(jobPrototypeId,
+            StationJobSlotModifyType.Adjust,
+            amount,
+            createSlot,
+            clamp);
+        RaiseLocalEvent(station, attempt);
+        if (attempt.Cancelled)
+            return false;
+
         switch (jobList.TryGetValue(jobPrototypeId, out var available))
         {
             case false when amount < 0:
@@ -244,6 +253,14 @@ public sealed partial class StationJobsSystem : EntitySystem
         if (amount < 0)
             throw new ArgumentException("Tried to set a job to have a negative number of slots!", nameof(amount));
 
+        var attempt = new StationJobSlotModifyAttemptEvent(jobPrototypeId,
+            StationJobSlotModifyType.Set,
+            amount,
+            createSlot);
+        RaiseLocalEvent(station, attempt);
+        if (attempt.Cancelled)
+            return false;
+
         var jobList = stationJobs.JobList;
 
         switch (jobList.ContainsKey(jobPrototypeId))
@@ -284,6 +301,11 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         if (!Resolve(station, ref stationJobs))
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
+
+        var attempt = new StationJobSlotModifyAttemptEvent(jobPrototypeId, StationJobSlotModifyType.MakeUnlimited);
+        RaiseLocalEvent(station, attempt);
+        if (attempt.Cancelled)
+            return;
 
         // Subtract out the job we're fixing to make have unlimited slots.
         if (stationJobs.JobList.TryGetValue(jobPrototypeId, out var existing))
@@ -477,7 +499,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private bool _availableJobsDirty;
 
-    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new());
+    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new(), new());
 
     /// <summary>
     /// Assembles an event from the current available-to-play jobs.
@@ -488,10 +510,11 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         // If late join is disallowed, return no available jobs.
         if (_gameTicker.DisallowLateJoin)
-            return new TickerJobsAvailableEvent(new(), new());
+            return new TickerJobsAvailableEvent(new(), new(), new());
 
         var jobs = new Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>();
         var stationNames = new Dictionary<NetEntity, string>();
+        var collectLockedDepartments = new CollectLateJoinBlockedDepartmentsEvent();
 
         var query = EntityQueryEnumerator<StationJobsComponent>();
 
@@ -502,7 +525,9 @@ public sealed partial class StationJobsSystem : EntitySystem
             jobs.Add(netStation, list);
             stationNames.Add(netStation, Name(station));
         }
-        return new TickerJobsAvailableEvent(stationNames, jobs);
+
+        RaiseLocalEvent(collectLockedDepartments);
+        return new TickerJobsAvailableEvent(stationNames, jobs, collectLockedDepartments.LockedDepartments.ToList());
     }
 
     /// <summary>

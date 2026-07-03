@@ -36,11 +36,6 @@ namespace Content.Server.MeleeBetterExaminable
                 else
                     args.PushMarkup(Loc.GetString("medieval-hm-mbe-npair"));
             }
-            if (TryComp<MeleeParryComponent>(uid, out var parry) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
-            {
-                var prry = Math.Round(parry.ParryChanse * 100, 2);
-                args.PushMarkup(Loc.GetString("medieval-hm-mbe-parrychance", ("amount", $"{prry}")));
-            }
             if (!HasComp<MeleeParryComponent>(uid) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
                 args.PushMarkup(Loc.GetString("medieval-hm-mbe-noparry"));
             if (TryComp<MedievalMeleeResourceComponent>(uid, out var resource) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))

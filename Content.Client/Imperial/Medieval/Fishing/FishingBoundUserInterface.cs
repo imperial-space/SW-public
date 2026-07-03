@@ -10,6 +10,7 @@ public sealed class FishingBoundUserInterface : BoundUserInterface
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
 
     private FishingMinigameControl? _control;
+    private FishingMinigameBoundUserInterfaceState? _pendingState;
 
     public FishingBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -21,7 +22,7 @@ public sealed class FishingBoundUserInterface : BoundUserInterface
         base.Open();
 
         _control = this.CreateDisposableControl<FishingMinigameControl>();
-        _control.LmbStateChanged += OnLmbStateChanged;
+        _control.MinigameFinished += OnMinigameFinished;
 
         Control parent = _uiManager.WindowRoot;
         if (_uiManager.ActiveScreen != null)
@@ -39,29 +40,45 @@ public sealed class FishingBoundUserInterface : BoundUserInterface
         parent.AddChild(_control);
         EntMan.System<UserInterfaceSystem>().RegisterControl(this, _control);
 
-        SendMessage(new FishingMinigameInputMessage(_control.HoldingLmb));
+        if (_pendingState != null)
+            _control.StartMinigame(_pendingState);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
 
-        if (_control == null || state is not FishingMinigameBoundUserInterfaceState cast)
+        if (state is not FishingMinigameBoundUserInterfaceState cast)
             return;
 
-        _control.SetValues(cast.Tension, cast.Progress);
+        _pendingState = cast;
+
+        if (_control == null)
+            return;
+
+        _control.StartMinigame(cast);
+    }
+
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+
+        if (message is not FishingMinigameStopMessage)
+            return;
+
+        _control?.StopMinigameFromServer();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing && _control != null)
-            _control.LmbStateChanged -= OnLmbStateChanged;
+            _control.MinigameFinished -= OnMinigameFinished;
 
         base.Dispose(disposing);
     }
 
-    private void OnLmbStateChanged(bool held)
+    private void OnMinigameFinished(FishingMinigameResult result)
     {
-        SendMessage(new FishingMinigameInputMessage(held));
+        SendMessage(new FishingMinigameResultMessage(result));
     }
 }

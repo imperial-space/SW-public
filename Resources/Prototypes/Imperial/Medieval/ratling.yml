@@ -1,0 +1,532 @@
+- type: entity
+  id: OrganRatlingHeart
+  parent: OrganHumanHeart
+  name: Ratling heart
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Ratling]
+
+- type: entity
+  id: OrganRatlingLiver
+  parent: OrganHumanLiver
+  name: Ratling liver
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Ratling]
+
+- type: entity
+  id: OrganRatlingStomach
+  parent: OrganHumanStomach
+  name: Ratling stomach
+  components:
+  - type: Sprite
+    state: stomach
+  - type: Organ
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 75
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+  - type: Metabolizer
+    # mm very yummy
+    maxReagents: 5
+    metabolizerTypes: [Ratling]
+
+- type: body
+  id: Ratling
+  name: "Ratling"
+  root: torso
+  slots:
+    head:
+      part: HeadRatling
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoRatling
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganRatlingHeart
+        lungs: OrganHumanLungs
+        stomach: OrganReptilianStomach
+        liver: OrganRatlingLiver
+        kidneys: OrganHumanKidneys
+    right arm:
+      part: RightArmRatling
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmRatling
+      connections:
+      - left hand
+    right hand:
+      part: RightHandRatling
+    left hand:
+      part: LeftHandRatling
+    right leg:
+      part: RightLegRatling
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegRatling
+      connections:
+      - left foot
+    right foot:
+      part: RightFootRatling
+    left foot:
+      part: LeftFootRatling
+
+- type: metabolizerType
+  id: Ratling
+  name: Ratling
+
+- type: entity
+  save: false
+  name: Урист МакРатлинг
+  parent: BaseMobRatling
+  id: MobRatling
+
+- type: entity
+  save: false
+  name: Urist McHands The Ratling
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobRatling
+  abstract: true
+  components:
+  - type: CanSmellFood
+  - type: Hunger
+  - type: Thirst
+  - type: Icon
+    sprite: Mobs/Species/Slime/parts.rsi # It was like this beforehand, no idea why.
+    state: full
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.7
+    damageRecovery:
+      types:
+        Asphyxiation: -1.3
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+  - type: Body
+    prototype: Ratling
+    requiredLegs: 2
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+  - type: Mana
+    maxManaRaceModifier: 1
+    regenRaceModifier: 1
+  - type: Inventory
+    templateId: ratling
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Imperial/Medieval/Species/displacement.rsi
+            state: jumpsuit-female
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      95: Critical
+      190: Dead
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+  - type: NeedSleep
+    sleepLevelPerUpdate: 0.36
+  - type: BadSmellRaceModifier
+    modifier: 100
+  - type: Damageable
+    damageModifierSet: Ratling
+  - type: LocalLight
+    energy: 0.2
+    radius: 4.2
+  - type: TypingIndicator
+    proto: wolf
+  - type: Bloodstream
+    bloodReagent: RatlingBlood
+  - type: Puller
+    needsHands: false
+  - type: HumanoidAppearance
+    species: Ratling
+  - type: BadSmellVision
+    smellThreshold: 80.0
+    radius: 8
+  - type: Speech
+    speechSounds: Alto
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+  - type: ReplacementAccent
+    accent: ratling
+
+- type: damageModifierSet
+  id: Ratling
+  coefficients:
+    Heat: 1.2
+
+- type: entity
+  parent: BaseMobRatling
+  id: MobRatlingDummy
+  noSpawn: true
+
+- type: species
+  id: Ratling
+  name: Ратлинг
+  roundStart: true
+  prototype: MobRatling
+  sprites: MobRatlingSprites
+  markingLimits: MobRatlingMarkingLimits
+  dollPrototype: MobRatlingDummy
+  skinColoration: MoonwolfColors
+  defaultSkinTone: "#5f5f5f"
+
+- type: speciesBaseSprites
+  id: MobRatlingSprites
+  sprites:
+    Head: MobRatlingHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    Chest: MobRatlingTorso
+    Eyes: MobHumanoidEyes
+    LArm: MobRatlingLArm
+    RArm: MobRatlingRArm
+    LHand: MobRatlingLHand
+    RHand: MobRatlingRHand
+    LLeg: MobRatlingLLeg
+    RLeg: MobRatlingRLeg
+    LFoot: MobRatlingLFoot
+    RFoot: MobRatlingRFoot
+    Tail: MobHumanoidAnyMarking # imperial HairAndTail
+    HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
+    HeadSide: MobHumanoidAnyMarking
+
+- type: humanoidBaseSprite
+  id: MobRatlingHead
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobRatlingHeadMale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobRatlingHeadFemale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobRatlingTorso
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobRatlingTorsoMale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobRatlingTorsoFemale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobRatlingLLeg
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobRatlingLArm
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobRatlingLHand
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobRatlingLFoot
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobRatlingRLeg
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobRatlingRArm
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobRatlingRHand
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobRatlingRFoot
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: r_foot
+
+- type: markingPoints
+  id: MobRatlingMarkingLimits
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ RatlingTailDefault ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ RatlingEarsDefault ]
+
+- type: marking
+  id: RatlingTailDefault
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: false
+  speciesRestriction: [Ratling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
+    state: default
+
+- type: marking
+  id: RatlingTailBig
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: false
+  speciesRestriction: [Ratling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
+    state: big
+
+- type: marking
+  id: RatlingTailDown
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: false
+  speciesRestriction: [Ratling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
+    state: down
+
+- type: marking
+  id: RatlingEarsDefault
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: false
+  speciesRestriction: [Ratling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
+    state: b0
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
+    state: b1
+
+- type: marking
+  id: RatlingEarsDown
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: false
+  speciesRestriction: [Ratling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
+    state: d0
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
+    state: d1
+
+- type: marking
+  id: RatlingSnoutLong
+  bodyPart: Snout
+  markingCategory: Snout
+  forcedColoring: true
+  speciesRestriction: [Ratling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/face.rsi
+    state: long
+
+- type: inventoryTemplate
+  id: ratling
+  slots:
+    - name: jumpsuit
+      slotTexture: uniform
+      slotFlags: INNERCLOTHING
+      stripTime: 6
+      uiWindowPos: 0,1
+      strippingWindowPos: 0,2
+      displayName: Jumpsuit
+    - name: outerClothing
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 6
+      uiWindowPos: 1,1
+      strippingWindowPos: 1,2
+      displayName: Suit
+    - name: gloves
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
+    - name: neck
+      slotTexture: neck
+      slotFlags: NECK
+      uiWindowPos: 0,2
+      strippingWindowPos: 0,1
+      displayName: Neck
+    - name: eyes
+      slotTexture: glasses
+      slotFlags: EYES
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,0
+      displayName: Eyes
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 3
+      uiWindowPos: 2,2
+      strippingWindowPos: 2,0
+      displayName: Ears
+    - name: pocket1
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,4
+      dependsOn: jumpsuit
+      displayName: Pocket 1
+      stripHidden: true
+    - name: pocket2
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,4
+      dependsOn: jumpsuit
+      displayName: Pocket 2
+      stripHidden: true
+    - name: suitstorage
+      slotTexture: suit_storage
+      slotFlags:   SUITSTORAGE
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,0
+      strippingWindowPos: 2,5
+      dependsOn: outerClothing
+      dependsOnComponents:
+      - type: AllowSuitStorage
+      displayName: Suit Storage
+    - name: id
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      dependsOn: jumpsuit
+      displayName: ID
+    - name: belt
+      slotTexture: belt
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,5
+      displayName: Belt
+    - name: back
+      slotTexture: back
+      fullTextureName: template_small
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,0
+      strippingWindowPos: 0,5
+      displayName: Back
+      blacklist:
+        tags:
+        - PetOnly
+
+- type: accent
+  id: ratling
+  wordReplacements:
+    еда: сыр
+    еды: сыра
+    едой: сыром
+    украсть: свиснуть
+    ревент: серебряшка
+    ревенты: серебряшки
+    ревентов: серебряшек
+    ярл: важный шишка
+    легат: важный шишка
+    архимаг: важный шишка
+    дракон: крылатая крыса
+    оборотень: вонючий
+    оборотни: вонючие
+    крыса: браток
+    мышь: братишка
+    корова: богиня
+    копье: зубочистка
+    воняешь: вкусно пахнешь

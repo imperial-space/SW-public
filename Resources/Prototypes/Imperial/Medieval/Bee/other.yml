@@ -1,0 +1,57 @@
+- type: entity
+  name: Bee spawner
+  id: MedievalSpawnMobBee
+  parent: MarkerBase
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Bee/npc.rsi
+      state: worker
+  - type: MedievalBeeLinkedSpawner
+    mobs:
+      MedievalMobBeeKiller: 30
+      MedievalMobBeeWorker: 70
+
+
+- type: entity
+  name: Hive trap spawner
+  id: MedievalSpawnBeeTrap
+  parent: MarkerBase
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Bee/hive-trap.rsi
+      state: icon
+  - type: MedievalBeeChanceSpawn
+    entities:
+      MedievalBeeTrap: 1
+
+- type: entity
+  name: bee exit
+  id: MedievalSpawnPlayerHive
+  suffix: Beekeeping
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Tag
+    tags:
+    - ForceFixRotations
+  - type: Sprite
+    sprite: Imperial/Medieval/Bee/exit.rsi
+    state: exit
+  - type: MedievalBeePlayerSpawn
+
+- type: material
+  id: Gauze
+  stackEntity: Gauze
+  name: Gauze
+  icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: gauze }
+  price: 0.15

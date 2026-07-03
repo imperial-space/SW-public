@@ -1,18 +1,22 @@
 using Content.Server.Administration.Managers;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
 using Content.Shared.Administration;
+using Content.Shared.Chat;
+using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Robust.Server.GameObjects;
+using Content.Shared.Verbs;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Skills;
 
@@ -23,6 +27,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly MobThresholdSystem _threshold = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StunSystem _stun = default!;
@@ -43,6 +48,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
 
         SubscribeNetworkEvent<SetSkillLevelMessage>(OnSetSkillLevel);
+
+        SubscribeLocalEvent<SkillsComponent, GetVerbsEvent<Verb>>(OnGetAltVerbs);
     }
     public bool TryGetSkill(EntityUid uid, string skillId, out int level)
     {
@@ -137,5 +144,58 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         UpdateAgility(frameTime);
         UpdateVitality(frameTime);
+    }
+
+    private void OnGetAltVerbs(Entity<SkillsComponent> entity, ref GetVerbsEvent<Verb> args)
+    {
+        if (!args.CanInteract)
+            return;
+
+        var user = args.User;
+
+        Verb verb = new()
+        {
+            Text = Loc.GetString("examine-skills-differance"),
+
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")),
+
+            Priority = 9,
+            Act = () =>
+            {
+                var message = new FormattedMessage();
+
+                foreach (var level in entity.Comp.Levels)
+                {
+                    message.AddText($"{Loc.GetString($"skill-{level.Key.ToLower()}-name")}: ");
+
+                    string hex = GetColorForDiff(0);
+                    if (TryComp<SkillsComponent>(user, out var examinerComp))
+                        hex = GetColorForDiff(entity.Comp.Levels[level.Key] - examinerComp.Levels[level.Key]);
+
+                    message.PushColor(Color.FromHex(hex));
+                    message.AddText($"{entity.Comp.Levels[level.Key]}");
+                    message.Pop();
+                    message.AddText($"\n");
+                }
+
+                _examineSystem.SendExamineTooltip(user, entity, message, false, false);
+            }
+        };
+
+        args.Verbs.Add(verb);
+    }
+
+    private string GetColorForDiff(int diff)
+    {
+        return diff switch
+        {
+            <= -10 => "#0dff00",
+            <= -7 => "#42c0fe",
+            <= -3 => "#7afcd5",
+            <= 2 => "#d1d1d1",
+            >= 10 => "#ff0000",
+            >= 7 => "#ff9100",
+            >= 3 => "#ffea00"
+        };
     }
 }
