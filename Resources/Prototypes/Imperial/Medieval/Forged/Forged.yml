@@ -11,6 +11,8 @@
   id: MedievalForgedMob
   components:
   - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: blank
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "core" ]
@@ -173,7 +175,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 10
+        Blunt: 17
   - type: SSDIndicator
   - type: StandingState
   - type: Crawler
@@ -287,6 +289,11 @@
   - type: Damageable
     damageContainer: Forged
     damageModifierSet: Forged
+  - type: ExplosionResistance
+    damageCoefficient: 1
+  - type: MeleeParryStorage
+  - type: MedievalDash
+    force: 200
   - type: MobState
   - type: MobThresholds
     thresholds:

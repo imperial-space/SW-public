@@ -30,5 +30,5 @@ public sealed partial class ShipDrowningComponent : Component
     public bool VisualDataInitialized;
 
 
-    public TimeSpan? AnchorUsedTime = null;
+    public TimeSpan? DisableWavesTime = null;
 }

@@ -1,10 +1,11 @@
 
-- type: achievement
-  id: AchievementJoinSpellward
-  priority: 0
-  name: "Первый шаг"
-  description: "Добро пожаловать в Spellward."
-  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+ - type: achievement
+   id: AchievementJoinSpellward
+   priority: 0 # Не удаляйте это пожалуйста. Оно нужно для корректной работы достижений.
+   name: "Первый шаг"
+   tab: AchievementTabDefault
+   description: "Добро пожаловать в Spellward."
+   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
 
 # # AchievementStayInWorld — видно, но за ним скрыто AchievementVisitBarrier пока не открыто
 # - type: achievement

@@ -30,6 +30,7 @@
   id: MedievalStockade
   name: MedievalStockade
   components:
+  - type: AchievementTarget #Imperial medieval achievement
   - type: Tag
     tags:
       - Wall
@@ -452,7 +453,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-0.5,-0.5,0.5,0.5"
         density: 55
         mask:
         - TableMask
@@ -7574,6 +7575,7 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: AchievementTarget #Imperial medieval achievement
   - type: Sprite
     sprite: Imperial/Medieval/Walls/gates.rsi
     drawdepth: BlastDoors

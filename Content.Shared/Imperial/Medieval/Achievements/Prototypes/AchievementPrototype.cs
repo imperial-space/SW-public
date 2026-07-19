@@ -43,6 +43,9 @@ public sealed partial class AchievementPrototype : IPrototype
 
     [DataField]
     public int Priority = 0;
+
+    [DataField]
+    public ProtoId<AchievementTabPrototype>? Tab;
 }
 
 /// <summary>

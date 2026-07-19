@@ -477,6 +477,7 @@
     bodyType: Static
   - type: Sprite
     sprite: Imperial/Medieval/Decor/pit2.rsi
+    drawdepth: Mobs
     layers:
         - state: watertank
         - state: pit-content-4
@@ -506,7 +507,7 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 100
+          Quantity: 900
   - type: Fixtures
     fixtures:
       fix1:
@@ -562,7 +563,7 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 450
+          Quantity: 900
   - type: Destructible
     thresholds:
     - trigger:
@@ -581,6 +582,7 @@
             max: 5
   - type: Sprite
     sprite: Imperial/Medieval/Decor/pit.rsi
+    drawdepth: Mobs
     layers:
         - state: barrel
         - state: barrel-content-1
@@ -590,6 +592,17 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: barrel-content-
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.42
+        density: 135
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: MedievalBarrelBase
@@ -600,7 +613,7 @@
       tank:
         reagents:
         - ReagentId: Wine
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -611,7 +624,7 @@
       tank:
         reagents:
         - ReagentId: Mead
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -622,7 +635,7 @@
       tank:
         reagents:
         - ReagentId: RedMead
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -633,7 +646,7 @@
       tank:
         reagents:
         - ReagentId: Beer
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -644,7 +657,7 @@
       tank:
         reagents:
         - ReagentId: Moonshine
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -655,7 +668,7 @@
       tank:
         reagents:
         - ReagentId: Rum
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -666,7 +679,7 @@
       tank:
         reagents:
         - ReagentId: Vodka
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -677,7 +690,7 @@
       tank:
         reagents:
         - ReagentId: Ale
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   id: MedievalDecorOhapka
@@ -4768,6 +4781,8 @@
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
+  - type: AchievementLocation #Imperial medieval achievement
+    locationId: AreaMarkerCultAltar
   - type: Sprite
     sprite: Imperial/Medieval/Misc/cult.rsi
     state: cutlaltar2
@@ -5337,8 +5352,8 @@
   components:
   - type: Sprite
     noRot: true
-    drawdepth: Overdoors
-    offset: 0,1.95
+    drawdepth: Mobs
+    offset: 0, 1.95
     layers:
     - sprite: Imperial/Medieval/Decor/shipsailenclosed.rsi
       state: ready
@@ -5381,12 +5396,18 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.35,-0.4,0.35,0.4"
+          bounds: "-0.1,-0.1,0.1,0.1"
         density: 1000
         layer:
         - WallLayer
   - type: InteractionOutline
   - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.SailUiKey.Key:
+        type: SailMenuBoundUserInterface
+  - type: ActivatableUI
+    key: enum.SailUiKey.Key
   - type: Sail
     SailSize: 10
 
@@ -5495,6 +5516,7 @@
     - type: ActivatableUI
       key: enum.RadarConsoleUiKey.Key
       singleUser: true
+    - type: MedievalCartographerTable
     - type: UserInterface
       interfaces:
         enum.RadarConsoleUiKey.Key:

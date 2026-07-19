@@ -37,7 +37,7 @@ public sealed partial class AchievementWidget : BoxContainer
         AchievementNameLabel.FontOverride = new VectorFont(fontRes, 14);
 
         AchievementIcon.Texture = spriteSystem.Frame0(proto.Icon);
-        AchievementNameLabel.Text = proto.Name ?? "Achievement";
+        AchievementNameLabel.Text = Loc.GetString(proto.Name ?? "Achievement");
 
         var descMessage = new FormattedMessage();
         descMessage.PushColor(Color.FromHex("#c2b4a3"));
@@ -56,7 +56,7 @@ public sealed partial class AchievementWidget : BoxContainer
         var style = new StyleBoxFlat
         {
             BackgroundColor = Color.FromHex("#1e1611"),
-            BorderColor     = accentColor,
+            BorderColor = accentColor,
             BorderThickness = new Thickness(3, 0, 0, 0),
         };
         style.SetContentMarginOverride(StyleBox.Margin.Left, 12);
@@ -69,7 +69,7 @@ public sealed partial class AchievementWidget : BoxContainer
     public void UpdateAnimation(float deltaSeconds, float uiScale)
     {
         Timer += deltaSeconds;
-        var scaledStart  = StartOffset * uiScale;
+        var scaledStart = StartOffset * uiScale;
         var scaledTarget = TargetMargin * uiScale;
 
         if (Timer < _animTime)

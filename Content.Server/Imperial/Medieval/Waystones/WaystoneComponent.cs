@@ -36,6 +36,8 @@ public sealed partial class WaystoneComponent : Component
 
     [DataField]
     public TimeSpan BookedTime = TimeSpan.Zero;
+    [DataField]
+    public float BookedSeconds = 10f;
 
     public EntityUid? BookedAudioStream;
 

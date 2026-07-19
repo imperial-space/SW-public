@@ -1031,3 +1031,39 @@
     Cloth: 8
     MedievalAdam: 2
   result: MedievalClothingHeadHelmetCharmerNeutral
+
+- type: CP14Recipe
+  id: MedievalDrinkJarCraft
+  craftTime: 3
+  stacks:
+    MedievalGlina: 2
+  result: DrinkJar
+
+- type: CP14Recipe
+  id: DrinkBottleAlcoClearCraft
+  craftTime: 3
+  stacks:
+    MedievalGlina: 2
+  result: DrinkBottleAlcoClear
+
+- type: CP14Recipe
+  id: FoodPlateTinCraft
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 1
+  result: FoodPlateTin
+
+- type: CP14Recipe
+  id: FoodPlateMuffinTinCraft
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 1
+  result: FoodPlateMuffinTin
+
+- type: CP14Recipe
+  id: FoodKebabSkewerCraft
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 1
+  result: FoodKebabSkewer
+

@@ -48,8 +48,6 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
 
         SubscribeNetworkEvent<SetSkillLevelMessage>(OnSetSkillLevel);
-
-        SubscribeLocalEvent<SkillsComponent, GetVerbsEvent<Verb>>(OnGetAltVerbs);
     }
     public bool TryGetSkill(EntityUid uid, string skillId, out int level)
     {
@@ -144,58 +142,5 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         UpdateAgility(frameTime);
         UpdateVitality(frameTime);
-    }
-
-    private void OnGetAltVerbs(Entity<SkillsComponent> entity, ref GetVerbsEvent<Verb> args)
-    {
-        if (!args.CanInteract)
-            return;
-
-        var user = args.User;
-
-        Verb verb = new()
-        {
-            Text = Loc.GetString("examine-skills-differance"),
-
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")),
-
-            Priority = 9,
-            Act = () =>
-            {
-                var message = new FormattedMessage();
-
-                foreach (var level in entity.Comp.Levels)
-                {
-                    message.AddText($"{Loc.GetString($"skill-{level.Key.ToLower()}-name")}: ");
-
-                    string hex = GetColorForDiff(0);
-                    if (TryComp<SkillsComponent>(user, out var examinerComp))
-                        hex = GetColorForDiff(entity.Comp.Levels[level.Key] - examinerComp.Levels[level.Key]);
-
-                    message.PushColor(Color.FromHex(hex));
-                    message.AddText($"{entity.Comp.Levels[level.Key]}");
-                    message.Pop();
-                    message.AddText($"\n");
-                }
-
-                _examineSystem.SendExamineTooltip(user, entity, message, false, false);
-            }
-        };
-
-        args.Verbs.Add(verb);
-    }
-
-    private string GetColorForDiff(int diff)
-    {
-        return diff switch
-        {
-            <= -10 => "#0dff00",
-            <= -7 => "#42c0fe",
-            <= -3 => "#7afcd5",
-            <= 2 => "#d1d1d1",
-            >= 10 => "#ff0000",
-            >= 7 => "#ff9100",
-            >= 3 => "#ffea00"
-        };
     }
 }

@@ -9,6 +9,7 @@ using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
@@ -16,6 +17,10 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Systems;
+using Robust.Server.Audio;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.Medieval.Ships.Helm;
 
@@ -30,16 +35,49 @@ public sealed class HelmSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     private TimeSpan _nextCheckTime;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<HelmComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<HelmComponent, ActivateInWorldEvent>(OnInteractHand);
         SubscribeLocalEvent<HelmComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<HelmComponent, HelmActionDoAfterEvent>(OnHelmActionDoAfter);
-        SubscribeNetworkEvent<HelmMenuActionEvent>(OnMenuOptionSelected);
+        SubscribeLocalEvent<HelmComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpen);
+        SubscribeLocalEvent<HelmComponent, BoundUIClosedEvent>(OnAfterUiClosed);
+        SubscribeLocalEvent<HelmComponent, HelmMenuActionMessage>(OnMenuActionMessage);
+
+        SubscribeLocalEvent<MedievalPilotComponent, MoveInputEvent>(OnPilotMoveInput);
+        SubscribeLocalEvent<MedievalPilotComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
+    }
+
+    private void OnPilotMoveInput(EntityUid uid, MedievalPilotComponent component, ref MoveInputEvent args)
+    {
+        var mover = args.Entity.Comp;
+        float newTurning = 0f;
+
+        if ((mover.HeldMoveButtons & MoveButtons.Left) != MoveButtons.None)
+            newTurning = -1f;
+
+        if ((mover.HeldMoveButtons & MoveButtons.Right) != MoveButtons.None)
+            newTurning = 1f;
+
+        component.Turning = newTurning;
+
+        if (component.HelmEntity is { } helmUid && TryComp<HelmComponent>(helmUid, out var helmComponent))
+        {
+            if (newTurning == 0 && helmComponent.HelmRotation < 5f && helmComponent.HelmRotation > -5f)
+                helmComponent.HelmRotation = 0;
+
+            UpdateUi(helmUid, helmComponent);
+        }
+    }
+
+    private void OnUpdateCanMove(EntityUid uid, MedievalPilotComponent component, ref UpdateCanMoveEvent args)
+    {
+        args.Cancel();
     }
 
     private void OnStartup(EntityUid uid, HelmComponent component, ComponentStartup args)
@@ -47,13 +85,32 @@ public sealed class HelmSystem : EntitySystem
         component.HelmRotation = NormalizeHelmRotation(component.HelmRotation);
     }
 
-    private void OnInteractHand(EntityUid uid, HelmComponent component, ActivateInWorldEvent args)
+    private void OnBeforeUiOpen(EntityUid uid, HelmComponent component, BeforeActivatableUIOpenEvent args)
     {
-        if (args.Handled || !TryComp(args.User, out ActorComponent? actor))
+        var pilotComp = EnsureComp<MedievalPilotComponent>(args.User);
+        pilotComp.HelmEntity = uid;
+        _actionBlocker.UpdateCanMove(args.User);
+
+        UpdateUi(uid, component);
+    }
+
+    private void OnAfterUiClosed(EntityUid uid, HelmComponent component, BoundUIClosedEvent args)
+    {
+        RemComp<MedievalPilotComponent>(args.Actor);
+        _actionBlocker.UpdateCanMove(args.Actor);
+
+        UpdateUi(uid, component);
+    }
+
+    private void OnMenuActionMessage(EntityUid uid, HelmComponent component, HelmMenuActionMessage msg)
+    {
+        var player = msg.Actor;
+        if (!_actionBlocker.CanInteract(player, uid) ||
+            !_actionBlocker.CanComplexInteract(player) ||
+            !_interaction.InRangeAndAccessible(player, uid))
             return;
 
-        args.Handled = true;
-        RaiseNetworkEvent(new OpenHelmMenuEvent(uid.Id), actor.PlayerSession);
+        TryStartHelmActionDoAfter(player, uid, msg.Action);
     }
 
     private void OnExamine(EntityUid uid, HelmComponent component, ExaminedEvent args)
@@ -83,26 +140,6 @@ public sealed class HelmSystem : EntitySystem
                 ("weight", FormatWeight(weight)),
                 ("overloadCeil", FormatWeight(overloadCeil))));
         }
-    }
-
-    private void OnMenuOptionSelected(HelmMenuActionEvent args, EntitySessionEventArgs session)
-    {
-        var player = session.SenderSession.AttachedEntity;
-        if (player == null)
-            return;
-
-        var helm = new EntityUid(args.Target);
-        if (!TryComp<HelmComponent>(helm, out var helmComponent))
-            return;
-
-        if (!_actionBlocker.CanInteract(player.Value, helm) ||
-            !_actionBlocker.CanComplexInteract(player.Value) ||
-            !_interaction.InRangeAndAccessible(player.Value, helm))
-        {
-            return;
-        }
-
-        TryStartHelmActionDoAfter(player.Value, helm, args.Action);
     }
 
     private void TryStartHelmActionDoAfter(EntityUid player, EntityUid helm, HelmMenuAction action)
@@ -148,6 +185,12 @@ public sealed class HelmSystem : EntitySystem
         }
 
         helmComponent.HelmRotation = NormalizeHelmRotation(helmComponent.HelmRotation);
+        UpdateUi(helm, helmComponent);
+    }
+
+    private void UpdateUi(EntityUid uid, HelmComponent component)
+    {
+        _ui.SetUiState(uid, HelmUiKey.Key, new HelmBoundUserInterfaceState(component.HelmRotation));
     }
 
     public override void Update(float frameTime)
@@ -155,6 +198,35 @@ public sealed class HelmSystem : EntitySystem
         base.Update(frameTime);
 
         var curTime = _timing.CurTime;
+
+        var pilotQuery = EntityQueryEnumerator<MedievalPilotComponent>();
+        while (pilotQuery.MoveNext(out var uid, out var pilot))
+        {
+            if (pilot.Turning == 0f || pilot.HelmEntity is not { } helmUid)
+            {
+                if (pilot.UsingSound != null)
+                {
+                    QueueDel(pilot.UsingSound);
+                    pilot.UsingSound = null;
+                }
+                continue;
+            }
+
+            if (!TryComp<HelmComponent>(helmUid, out var helmComponent))
+                continue;
+
+            if (pilot.UsingSound == null)
+            {
+                var audioParams = AudioParams.Default.WithLoop(true);
+                pilot.UsingSound = _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/hitting_wood_4times.ogg"), helmUid, audioParams)?.Entity;
+            }
+
+            helmComponent.HelmRotation += pilot.Turning * helmComponent.RotationStep * frameTime;
+            helmComponent.HelmRotation = Math.Clamp(helmComponent.HelmRotation, -180, 180);
+
+            UpdateUi(helmUid, helmComponent);
+        }
+
         if (curTime <= _nextCheckTime)
             return;
 
@@ -162,9 +234,10 @@ public sealed class HelmSystem : EntitySystem
         if (!_cfg.GetCVar(ShipsCCVars.WindEnabled))
             return;
 
-        foreach (var helmComponent in EntityManager.EntityQuery<HelmComponent>())
+        var query = EntityQueryEnumerator<HelmComponent>();
+        while (query.MoveNext(out var helmUid, out var helmComponent))
         {
-            var helm = helmComponent.Owner;
+            var helm = helmUid;
             var helmXform = Transform(helm);
             if (!TryGetGrid(helm, helmXform, out var boat))
                 continue;
@@ -275,8 +348,7 @@ public sealed class HelmSystem : EntitySystem
         if (!TryGetGrid(helm, helmXform, out var boat) || !TryComp<MapGridComponent>(boat, out var mapGrid))
             return false;
 
-        if (!TryGetOverloadCeil(boat, mapGrid, helmComponent.OverloadCeilPerTile, out overloadCeil))
-            return false;
+        overloadCeil = ShipWeightHelper.GetMaxWeight(boat, mapGrid, _map, EntityManager, _cfg);
 
         weight = _rdWeight.GetTotalOnGrid(boat);
         return true;

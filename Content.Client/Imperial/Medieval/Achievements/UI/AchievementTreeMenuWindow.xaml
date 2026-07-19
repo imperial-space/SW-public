@@ -49,6 +49,10 @@
                 </PanelContainer>
             </BoxContainer>
         </PanelContainer>
+        <BoxContainer Name="TabBar"
+                      Orientation="Horizontal"
+                      SeparationOverride="6"
+                      Margin="12,6,12,6"/>
         <PanelContainer
             Name="TreePanel"
             HorizontalExpand="True"

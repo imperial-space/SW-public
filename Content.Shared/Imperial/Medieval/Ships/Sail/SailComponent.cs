@@ -32,9 +32,6 @@ public sealed partial class SailComponent : Component
     [DataField("Push")]
     public bool Push = true;
 
-    [DataField("OverloadCeilPerTile")]
-    public float OverloadCeilPerTile = 20f;
-
     [ViewVariables]
     public float LastSailEfficencyMod;
 }

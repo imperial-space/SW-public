@@ -35,6 +35,8 @@ public sealed class AchievementUIController : UIController,
 
     private AchievementTreeMenuWindow? _menuWindow;
 
+    private readonly AchievementTreeViewState _treeViewState = new();
+
     private HashSet<string> _cachedUnlocked = new();
     private Dictionary<string, float> _cachedPercents = new();
     private Dictionary<string, Dictionary<string, int>> _cachedProgress = new();
@@ -110,7 +112,7 @@ public sealed class AchievementUIController : UIController,
         }
 
         var spriteSystem = EntityManager.System<SpriteSystem>();
-        _menuWindow = new AchievementTreeMenuWindow(_proto, _cache, spriteSystem);
+        _menuWindow = new AchievementTreeMenuWindow(_proto, _cache, spriteSystem, _treeViewState);
         _menuWindow.OnClose += OnWindowClosed;
         _menuWindow.OpenCentered();
 

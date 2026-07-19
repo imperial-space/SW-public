@@ -63,6 +63,14 @@ public sealed partial class AchievementTreeNode : PanelContainer
     private static readonly Color LockedIconTint   = Color.FromHex("#55443388");
     private static readonly Color QuestionIconTint = Color.FromHex("#7a6040cc");
 
+    private const float BaseBorderThickness = 2f;
+    private const float BaseContentMargin   = 4f;
+    private const float MinBorderThickness  = 1f;
+    private const float MinContentMargin    = 1f;
+
+    private float _zoom = 1f;
+    private float _appliedUiScale;
+
     public AchievementTreeNode(
         AchievementPrototype proto,
         bool unlocked,
@@ -80,7 +88,7 @@ public sealed partial class AchievementTreeNode : PanelContainer
         var inert = proto.Visibility == AchievementVisibility.Hidden && !unlocked && !questionMark;
         MouseFilter = inert ? MouseFilterMode.Ignore : MouseFilterMode.Stop;
 
-        TooltipSupplier = _ => new AchievementTooltipPopup(Proto, Unlocked, spriteSystem, IsQuestionMark);
+        TooltipSupplier = _ => new AchievementTooltipPopup(Proto, Unlocked, spriteSystem, IsQuestionMark, _rarity);
         ApplyVisuals(spriteSystem);
     }
 
@@ -114,18 +122,31 @@ public sealed partial class AchievementTreeNode : PanelContainer
     private void ApplyVisuals(SpriteSystem spriteSystem)
     {
         ApplyIcon(spriteSystem);
+        ApplyStyle();
+    }
 
+    private void ApplyStyle()
+    {
         var palette = GetPalette();
+
+        var ui = UIScale;
+        var borderPhys = Math.Clamp(MathF.Round(BaseBorderThickness * _zoom * ui),
+            MinBorderThickness, MathF.Round(BaseBorderThickness * 2f * ui));
+        var marginPhys = Math.Clamp(MathF.Round(BaseContentMargin * _zoom * ui),
+            MinContentMargin, MathF.Round(BaseContentMargin * 2f * ui));
+
+        var border = borderPhys / ui;
+        var margin = marginPhys / ui;
 
         BorderPanel.PanelOverride = new StyleBoxFlat
         {
             BackgroundColor             = palette.Background,
             BorderColor                 = palette.Border,
-            BorderThickness             = new Thickness(2),
-            ContentMarginLeftOverride   = 4,
-            ContentMarginRightOverride  = 4,
-            ContentMarginTopOverride    = 4,
-            ContentMarginBottomOverride = 4,
+            BorderThickness             = new Thickness(border),
+            ContentMarginLeftOverride   = margin,
+            ContentMarginRightOverride  = margin,
+            ContentMarginTopOverride    = margin,
+            ContentMarginBottomOverride = margin,
         };
     }
 
@@ -178,6 +199,13 @@ public sealed partial class AchievementTreeNode : PanelContainer
 
     public void ApplyZoom(float zoom)
     {
+        var ui = UIScale;
+        if (MathF.Abs(zoom - _zoom) < 0.001f && MathF.Abs(ui - _appliedUiScale) < 0.001f)
+            return;
+
+        _zoom = zoom;
+        _appliedUiScale = ui;
+        ApplyStyle();
     }
 
     private bool _attemptingSelect;

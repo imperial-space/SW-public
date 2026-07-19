@@ -192,7 +192,7 @@ public sealed class WaystoneSystem : EntitySystem
 
         var randomIndex = _random.Next(1, 21);
 
-        entity.Comp.BookedTime = _timing.CurTime + TimeSpan.FromSeconds(10);
+        entity.Comp.BookedTime = _timing.CurTime + TimeSpan.FromSeconds(entity.Comp.BookedSeconds);
         entity.Comp.User = args.Actor;
 
         int total = CountDeparturePrice(entity, args.Actor) + CountArrivalPrice(new(targetUid, targetComp), args.Actor);
@@ -241,7 +241,7 @@ public sealed class WaystoneSystem : EntitySystem
     private void PrepareToTeleport(Entity<WaystoneComponent> entity, EntityUid user)
     {
         _chat.TrySendInGameICMessage(entity, Loc.GetString("waystone-message-ritual-started"), InGameICChatType.Speak, true);
-        entity.Comp.BookedTime += TimeSpan.FromSeconds(5);
+        entity.Comp.BookedTime += TimeSpan.FromSeconds(entity.Comp.TimeToTeleport + 1);
 
         _audioSystem.Stop(entity.Comp.BookedAudioStream);
         entity.Comp.BookedAudioStream = _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/cat_purring2.ogg"), Transform(entity).Coordinates)?.Entity;

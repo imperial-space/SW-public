@@ -138,4 +138,16 @@ public sealed class RDWeightSystem : RDEntitySystem
 
         return total;
     }
+
+
+    public void ChangeWeightWithMod(Entity<RDWeightComponent?> entity, float mod)
+    {
+        if (!_weightQuery.Resolve(entity, ref entity.Comp, logMissing: false))
+            return;
+
+        entity.Comp.Value *= mod;
+
+        Dirty(entity, entity.Comp);
+        Refresh(entity);
+    }
 }

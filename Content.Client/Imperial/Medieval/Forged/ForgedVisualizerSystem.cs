@@ -46,8 +46,12 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
                 _ => null
             };
 
-            if (targetLayer == null) return;
+            if (targetLayer == null)
+                return;
 
+            if (packet.State == "blank" || string.IsNullOrEmpty(packet.State))
+                return;
+    
             if (_sprite.LayerMapTryGet((uid, sprite), targetLayer.Value, out var index, false))
             {
                 _sprite.LayerSetRsi((uid, sprite), index, packet.RsiPath);

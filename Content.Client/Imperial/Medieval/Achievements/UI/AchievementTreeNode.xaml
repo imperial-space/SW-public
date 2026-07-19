@@ -18,9 +18,8 @@
                 ContentMarginBottomOverride="4"/>
         </PanelContainer.PanelOverride>
         <TextureRect Name="AchievementIcon"
-                     Stretch="KeepAspect"
-                     HorizontalAlignment="Center"
-                     VerticalAlignment="Center"
+                     Stretch="KeepAspectCentered"
+                     CanShrink="True"
                      HorizontalExpand="True"
                      VerticalExpand="True"/>
     </PanelContainer>
