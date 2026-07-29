@@ -5341,6 +5341,8 @@
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
+  - type: RDWeight
+    value: 100
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: storage_pallet
