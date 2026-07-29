@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by discord: id ungabunga0464_99904",
+  "size": {
+    "x": 128,
+    "y": 160
+  },
+  "states": [
+    {
+      "name": "tree_birch_1"
+    },
+    {
+      "name": "tree_birch_2"
+    },
+    {
+      "name": "tree_birch_3"
+    },
+    {
+      "name": "tree_birch_4"
+    },
+    {
+      "name": "tree_birch_stump_1"
+    },
+    {
+      "name": "tree_birch_stump_2"
+    }
+  ]
+}
