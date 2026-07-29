@@ -222,3 +222,50 @@
 ### SPOTS END
 
 ### Zveres
+
+### Skeleton
+
+- type: marking
+  id: SkeletonHorns
+  bodyPart: Head
+  markingCategory: Head
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Skeleton]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Skeleton/face.rsi
+    state: horns
+
+- type: marking
+  id: SkeletonWideJaw
+  bodyPart: Head
+  markingCategory: Head
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Skeleton]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Skeleton/face.rsi
+    state: wide_jaw
+
+- type: marking
+  id: SkeletonBigForehead
+  bodyPart: Head
+  markingCategory: Head
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Skeleton]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Skeleton/face.rsi
+    state: big_forehead
+
+- type: marking
+  id: SkeletonArrow
+  bodyPart: Head
+  markingCategory: Head
+  forcedColoring: true
+  speciesRestriction: [Skeleton]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Skeleton/face.rsi
+    state: arrow
+
+### Skeleton
