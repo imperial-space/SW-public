@@ -6,8 +6,8 @@
   priority: 30
   rarity: Common
   tab: AchievementTabLegionInsurgency
-  name: "Команда красных"
-  description: "Начните свой славный (и, вероятно, короткий) путь в рядах мятежников."
+  name: achievement-insurgency-becomefelag-name
+  description: achievement-insurgency-becomefelag-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Cloaks/clan_fox.rsi
     state: icon
@@ -24,8 +24,8 @@
   id: AchievementInsurgencyRecruitCapturePoint
   priority: 13
   rarity: Common
-  name: "Пушечное мясо в деле"
-  description: "Захватите 3 контрольные точки, будучи простым рекрутом мятежа. Свобода гордится тобой!"
+  name: achievement-insurgency-capture1-name
+  description: achievement-insurgency-capture1-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/fox1.rsi
     state: icon
@@ -37,7 +37,7 @@
     progressKey: insurgencyRecruitCapturePoint
     requiredJobs:
     - "MedievalInsurgencyRecruit"
-    requiredCount: 3
+    requiredCount: 2
 
 
 # ==========================================
@@ -47,8 +47,8 @@
   id: AchievementInsurgencyBecomeInsurgencyInsurgencyer
   priority: 12
   rarity: Common
-  name: "Теперь ты в дружине"
-  description: "Получите звание мятежника. Уже не новобранец."
+  name: achievement-insurgency-becomerebel-name
+  description: achievement-insurgency-becomerebel-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/fox2.rsi
     state: icon
@@ -68,8 +68,8 @@
   id: AchievementInsurgencyInsurgencyerCapturePoints
   priority: 13
   rarity: Common
-  name: "Партизанский блицкриг"
-  description: "Внимание, марш-бросок! Захватите 4 контрольные точки за ОДИН раунд в роли мятежника."
+  name: achievement-insurgency-capture2-name
+  description: achievement-insurgency-capture2-desc
   icon:
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red
@@ -82,14 +82,14 @@
     progressKey: insurgencyInsurgencyerCapturePointProgression
     requiredJobs:
     - "MedievalInsurgencyInsurgencyer"
-    requiredCount: 4
+    requiredCount: 3
 
 - type: achievement
   id: AchievementInsurgencyInsurgencyerVisitLegion
   priority: 14
   rarity: Common
-  name: "Сунуть нос в логово врага"
-  description: "Атакуйте базу легиона, играя за мятежника. Главное теперь — вернуться домой."
+  name: achievement-insurgency-attackbase-name
+  description: achievement-insurgency-attackbase-desc
   icon:
     sprite: /Textures/Imperial/Medieval/Interface/factions.rsi
     state: insurgency
@@ -112,8 +112,8 @@
   id: AchievementInsurgencyBecomeInsurgencyOpcion
   priority: 12
   rarity: Common
-  name: "Шаг по карьерной лестнице"
-  description: "Получите звание 'Варяг' среди мятежников. Теперь вы можете командовать салагами на законных основаниях."
+  name: achievement-insurgency-becomevaryag-name
+  description: achievement-insurgency-becomevaryag-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/fox2_5.rsi
     state: icon
@@ -133,8 +133,8 @@
   id: AchievementInsurgencyOpcionGetMedal
   priority: 13
   rarity: Common
-  name: "Блестящая грудь"
-  description: "Соберите 10 медалей мятежа. Главное не надорваться под их весом."
+  name: achievement-insurgency-get10medals-name
+  description: achievement-insurgency-get10medals-desc
   icon:
     sprite: Imperial/Medieval/Materials/mdv.rsi
     state: medal_ins
@@ -157,8 +157,8 @@
   id: AchievementInsurgencyBecomeInsurgencyTribun
   priority: 12
   rarity: Common
-  name: "Высокое начальство"
-  description: "Получите звание заместителя ярла. Почти повелитель мятежных земель, но всё еще приходится пачкать руки."
+  name: achievement-insurgency-becomeforing-name
+  description: achievement-insurgency-becomeforing-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/fox3.rsi
     state: icon
@@ -178,8 +178,8 @@
   id: AchievementInsurgencyTribunDestroyObelisk
   priority: 13
   rarity: Common
-  name: "Смерть синим!"
-  description: "Найдите и уничтожьте обелиск легиона в роли трибуна. Оставьте их без новых солдат."
+  name: achievement-insurgency-baselegiondestroy-name
+  description: achievement-insurgency-baselegiondestroy-desc
   icon:
     sprite: Imperial/Medieval/obelisks/layerobelisks.rsi
     state: state-2
@@ -198,8 +198,8 @@
   id: AchievementInsurgencyTribunGetHelmet
   priority: 14
   rarity: Common
-  name: "Трофей с Юга"
-  description: "Добудьте шлем легата, играя за помощника ярла. Отличный сувенир для вашей коллекции."
+  name: achievement-insurgency-foringgetaquila-name
+  description: achievement-insurgency-foringgetaquila-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
     state: equipped-HELMET
@@ -223,8 +223,8 @@
   id: AchievementInsurgencyBecomeInsurgencyLegat
   priority: 12
   rarity: Epic
-  name: "Вождь восстания"
-  description: "Дослужитесь до звания ярла. Вы на самой вершине командования, силы сопротивления смотрят на вас."
+  name: achievement-insurgency-becomeyarl-name
+  description: achievement-insurgency-becomeyarl-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
     state: icon
@@ -244,8 +244,8 @@
   id: AchievementInsurgencyLegatWinner
   priority: 13
   rarity: Epic
-  name: "Пришел, увидел, победил"
-  description: "Триумф! За ОДИН раунд в роли ярла выполните всё: захватите 5 точек, уничтожьте обелиск легиона и раздобудьте шлем легата."
+  name: achievement-insurgency-winner-name
+  description: achievement-insurgency-winner-desc
   icon: /Textures/Imperial/Medieval/Interface/faction-leader.png
   visibility: Visible
   roundOnly: true
@@ -261,7 +261,7 @@
       MedievalClothingHeadHelmetLegionLegat: 1
   - !type:CapturePointCondition
     progressKey: insurgencyLegatWinnerCapturePointsProgression
-    requiredCount: 5
+    requiredCount: 4
     requiredJobs:
     - "MedievalInsurgencyLegat"
   - !type:DestroyFactionObeliskCondition

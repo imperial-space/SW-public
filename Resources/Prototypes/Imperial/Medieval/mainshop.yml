@@ -600,7 +600,7 @@
     Revent: 50
   categories:
   - MedievalBuild
-  
+
 - type: listing
   id: MdvShopMedievalalchem_dispenserCraft
   productEntity: Medievalalchem_dispenserCraft
@@ -856,6 +856,14 @@
 - type: listing
   id: MdvShopMedievalSign9Craft
   productEntity: MedievalSign9Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign10Craft
+  productEntity: MedievalSign10Craft
   cost:
     Revent: 80
   categories:
@@ -1386,7 +1394,7 @@
   id: MdvShopMedievalHatchet
   productEntity: MedievalHatchet
   cost:
-    Revent: 13
+    Revent: 20
   categories:
   - MedievalWeapon
 
@@ -1394,7 +1402,7 @@
   id: MdvShopMedievalWoodenShield
   productEntity: MedievalWoodenShield
   cost:
-    Revent: 15
+    Revent: 25
   categories:
   - MedievalWeapon
 
@@ -1402,7 +1410,7 @@
   id: MdvShopMedievalWoodenShieldKnight
   productEntity: MedievalWoodenShieldKnight
   cost:
-    Revent: 27
+    Revent: 37
   categories:
   - MedievalWeapon
 
@@ -1410,7 +1418,7 @@
   id: MdvShopMedievalWoodenShieldBuckler
   productEntity: MedievalWoodenShieldBuckler
   cost:
-    Revent: 12
+    Revent: 18
   categories:
   - MedievalWeapon
 
@@ -2418,10 +2426,34 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopMedievalGunpowderCharge
+  productEntity: MedievalGunpowderCharge
+  cost:
+    Revent: 12
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalGrapeshot
+  productEntity: MedievalGrapeshot
+  cost:
+    Revent: 12
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalRamrod
+  productEntity: MedievalRamrod
+  cost:
+    Revent: 24
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalHammerBlacksmith
   productEntity: MedievalHammerBlacksmith
   cost:
-    Revent: 20
+    Revent: 15
   categories:
   - MedievalMisc
 
@@ -2529,6 +2561,47 @@
     Revent: 3
   categories:
   - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalSewingNeedle
+  productEntity: MedievalSewingNeedle
+  cost:
+    Revent: 6
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalSewingKit
+  productEntity: MedievalSewingKit
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalBlacksmithKit
+  productEntity: MedievalBlacksmithKit
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalSewingPatches
+  productEntity: MedievalSewingPatches
+  cost:
+    Revent: 30
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalBlacksmithPatches
+  productEntity: MedievalBlacksmithPatches
+  cost:
+    Revent: 30
+  categories:
+  - MedievalMisc
+
 
 #- type: listing
 #  id: MdvShopSoap
@@ -3754,3 +3827,27 @@
     Revent: 80
   categories:
   - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalDoorLockT1
+  productEntity: MedievalDoorLockT1
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalDoorLockT2
+  productEntity: MedievalDoorLockT2
+  cost:
+    Revent: 150
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalDoorKeyCheck
+  productEntity: MedievalDoorKeyCheck
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc

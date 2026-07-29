@@ -100,6 +100,7 @@ public sealed partial class TradeTerminalSystem
                 meta.EntityName,
                 meta.EntityDescription,
                 stackCount,
+                meta.EntityPrototype?.ID,
                 location,
                 size.X,
                 size.Y));

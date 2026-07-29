@@ -104,7 +104,6 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.25
-    - type: ImplicitRoof
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3209,56 +3208,56 @@ entities:
       pos: -4.8583975,-14.675022
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 546
     components:
     - type: Transform
       pos: 13.03003,-12.521986
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 549
     components:
     - type: Transform
       pos: 15.569197,12.443514
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 551
     components:
     - type: Transform
       pos: 5.173285,10.713118
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 553
     components:
     - type: Transform
       pos: -5.754295,13.520018
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 554
     components:
     - type: Transform
       pos: -9.330598,3.8612905
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 580
     components:
     - type: Transform
       pos: -17.816174,-0.9421741
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 582
     components:
     - type: Transform
       pos: 15.68628,0.48357034
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
 - proto: MedievalTimedSpawnerMedievalMobCrabDevil
   entities:
   - uid: 602

@@ -13,6 +13,21 @@
             "name": "icon"
         },
         {
+            "name": "needle"
+        },
+        {
+            "name": "metal_patch"
+        },
+        {
+            "name": "patch"
+        },
+        {
+            "name": "sewing_kit"
+        },
+        {
+            "name": "blacksmith_kit"
+        },
+        {
             "name": "inhand-left",
             "directions": 4
         },

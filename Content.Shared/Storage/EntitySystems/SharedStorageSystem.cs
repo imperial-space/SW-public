@@ -44,33 +44,34 @@ using Robust.Shared.Utility;
 using Content.Shared.Rounding;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Enumerators;
+using Content.Shared.Imperial.Medieval.SoundOnInteract;
 
 namespace Content.Shared.Storage.EntitySystems;
 
 public abstract class SharedStorageSystem : EntitySystem
 {
-    [Dependency] private   readonly IConfigurationManager _cfg = default!;
-    [Dependency] private   readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] private   readonly ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
 
     [Dependency] protected readonly ActionBlockerSystem ActionBlocker = default!;
-    [Dependency] private   readonly EntityLookupSystem _entityLookupSystem = default!;
-    [Dependency] private   readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private   readonly InventorySystem _inventory = default!;
-    [Dependency] private   readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
-    [Dependency] private   readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] protected readonly SharedEntityStorageSystem EntityStorage = default!;
-    [Dependency] private   readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] protected readonly SharedItemSystem ItemSystem = default!;
-    [Dependency] private   readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private   readonly SharedHandsSystem _sharedHandsSystem = default!;
-    [Dependency] private   readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private readonly SharedStackSystem _stack = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
-    [Dependency] private   readonly TagSystem _tag = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] protected readonly UseDelaySystem UseDelay = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
@@ -235,6 +236,7 @@ public abstract class SharedStorageSystem : EntitySystem
             Blacklist = component.Blacklist,
             QuickInsert = component.QuickInsert,
             AreaInsert = component.AreaInsert,
+            ShowVerb = component.ShowVerb, // Imperial Medieval
             StorageInsertSound = component.StorageInsertSound,
             StorageRemoveSound = component.StorageRemoveSound,
             StorageOpenSound = component.StorageOpenSound,
@@ -461,7 +463,7 @@ public abstract class SharedStorageSystem : EntitySystem
         }
     }
 
-    public virtual void UpdateUI(Entity<StorageComponent?> entity) {}
+    public virtual void UpdateUI(Entity<StorageComponent?> entity) { }
 
     private void AddTransferVerbs(EntityUid uid, StorageComponent component, GetVerbsEvent<UtilityVerb> args)
     {
@@ -1210,7 +1212,7 @@ public abstract class SharedStorageSystem : EntitySystem
         // If there is an user, the sound will not play if they have the SilentStorageUserTag
         // If there is no user, only playSound is checked.
         var canPlaySound = playSound && (user == null || !_tag.HasTag(user.Value, storageComp.SilentStorageUserTag));
-
+        if (TryComp<MedievalSoundOnInteractComponent>(insertEnt, out var medieval) && medieval.OnPut != null) canPlaySound = false; // imperial medieval sounds
         if (!stackAutomatically || !_stackQuery.TryGetComponent(insertEnt, out var insertStack))
         {
             if (!ContainerSystem.Insert(insertEnt, storageComp.Container))
@@ -2019,6 +2021,7 @@ public abstract class SharedStorageSystem : EntitySystem
         public EntityWhitelist? Blacklist;
         public bool QuickInsert;
         public bool AreaInsert;
+        public bool ShowVerb; // Imperial Medieval for UniversableLockableServerSystem
         public SoundSpecifier? StorageInsertSound;
         public SoundSpecifier? StorageRemoveSound;
         public SoundSpecifier? StorageOpenSound;

@@ -1,0 +1,148 @@
+- type: entity
+  parent: BaseItem
+  id: MedievalSewingNeedle
+  name: sewing needle
+  description: Sewing needle for leather armor repairs
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: needle
+  - type: Item
+    size: Tiny
+  - type: MedievalRepairArmor
+    repairType: Sewing
+    repairAmount: 20
+    isSpendable: false
+    repairTime: 5
+    maxArmorRemove: 1
+    skilledCrafterMaxArmorRemovalModifier: 0.5
+    useSound:
+      path: /Audio/Imperial/Medieval/craft_cloth.ogg
+
+- type: entity
+  parent: BaseItem
+  id: MedievalSewingKit
+  name: sewing needle
+  description: Sewing needle for leather armor repairs
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: sewing_kit
+  - type: Item
+    size: Tiny
+  - type: MedievalRepairArmor
+    repairType: Sewing
+    repairAmount: 60
+    isSpendable: true
+    repairTime: 14
+    maxArmorRemove: 0
+    skilledCrafterMaxArmorRemovalModifier: 0.5
+    useSound:
+      path: /Audio/Imperial/Medieval/craft_cloth.ogg
+  - type: Stack
+    stackType: MedievalSewingKit
+    count: 10
+
+- type: stack
+  id: MedievalSewingKit
+  name: materials-sewing-kit
+  icon: { sprite: Imperial/Medieval/Misc/repairkit.rsi, state: sewing_kit }
+  spawn: MedievalSewingKit
+  maxCount: 10
+
+- type: entity
+  parent: BaseItem
+  id: MedievalBlacksmithKit
+  name: sewing needle
+  description: Sewing needle for leather armor repairs
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: blacksmith_kit
+  - type: Item
+    size: Tiny
+  - type: MedievalRepairArmor
+    repairType: Smithing
+    repairAmount: 100
+    isSpendable: true
+    repairTime: 14
+    maxArmorRemove: 0
+    skilledCrafterMaxArmorRemovalModifier: 0.5
+    useSound:
+      path: /Audio/Imperial/Medieval/craft_iron.ogg
+  - type: Stack
+    stackType: MedievalBlacksmithKit
+    count: 10
+
+- type: stack
+  id: MedievalBlacksmithKit
+  name: materials-blacksmith-kit
+  icon: { sprite: Imperial/Medieval/Misc/repairkit.rsi, state: blacksmith_kit }
+  spawn: MedievalBlacksmithKit
+  maxCount: 10
+
+- type: entity
+  parent: BaseItem
+  id: MedievalSewingPatches
+  name: sewing needle
+  description: Sewing needle for leather armor repairs
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: patch
+  - type: Item
+    size: Tiny
+  - type: MedievalRepairArmor
+    repairType: Sewing
+    repairAmount: 45
+    isSpendable: true
+    repairTime: 4
+    maxArmorRemove: 4
+    skilledCrafterMaxArmorRemovalModifier: 0.5
+    useSound:
+      path: /Audio/Imperial/Medieval/craft_cloth.ogg
+  - type: Stack
+    stackType: MedievalSewingPatches
+    count: 10
+
+- type: stack
+  id: MedievalSewingPatches
+  name: materials-sewing-patches
+  icon: { sprite: Imperial/Medieval/Misc/repairkit.rsi, state: patch }
+  spawn: MedievalSewingPatches
+  maxCount: 10
+
+- type: entity
+  parent: BaseItem
+  id: MedievalBlacksmithPatches
+  name: sewing needle
+  description: Sewing needle for leather armor repairs
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: metal_patch
+  - type: Item
+    size: Tiny
+  - type: MedievalRepairArmor
+    repairType: Smithing
+    repairAmount: 60
+    isSpendable: true
+    repairTime: 5
+    maxArmorRemove: 5
+    skilledCrafterMaxArmorRemovalModifier: 0.5
+    useSound:
+      path: /Audio/Imperial/Medieval/craft_iron.ogg
+  - type: Stack
+    stackType: BlacksmithPatches
+    count: 10
+
+- type: stack
+  id: BlacksmithPatches
+  name: materials-blacksmith-patches
+  icon: { sprite: Imperial/Medieval/Misc/repairkit.rsi, state: metal_patch }
+  spawn: BlacksmithPatches
+  maxCount: 10

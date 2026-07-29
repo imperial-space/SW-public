@@ -1,6 +1,6 @@
 - type: soundCollection
   id: eating
   files:
-  - /Audio/Items/eating_1.ogg
-  - /Audio/Items/eating_2.ogg
+  - /Audio/Imperial/Medieval/Food/eat_1.ogg
+  - /Audio/Imperial/Medieval/Food/eat_2.ogg
   - /Audio/Items/eating_3.ogg

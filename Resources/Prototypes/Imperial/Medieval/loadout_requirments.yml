@@ -5,7 +5,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalTraveller
-      time: 144 # 00 RETURN AFTER STRESSTEST
+      time: 14400
 
 - type: loadoutEffectGroup
   id: TravellerTimer10hours
@@ -14,7 +14,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalTraveller
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: BardTimer4hours
@@ -23,7 +23,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalBard
-      time: 144 # 00 RETURN AFTER STRESSTEST
+      time: 14400
 
 - type: loadoutEffectGroup
   id: BardTimer10hours
@@ -32,7 +32,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalBard
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: BardTimer30hours
@@ -41,7 +41,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalBard
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
 
 - type: loadoutEffectGroup
   id: BumTimer4hours
@@ -50,7 +50,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalBum
-      time: 144 # 00 RETURN AFTER STRESSTEST
+      time: 14400
 
 - type: loadoutEffectGroup
   id: BumTimer10hours
@@ -59,7 +59,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalBum
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: BumTimer30hours
@@ -68,7 +68,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalBum
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
 
 - type: loadoutEffectGroup
   id: InnkeeperTimer4hours
@@ -77,7 +77,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalInnkeeper
-      time: 144 # 00 RETURN AFTER STRESSTEST
+      time: 14400
 
 - type: loadoutEffectGroup
   id: InnkeeperTimer10hours
@@ -86,7 +86,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalInnkeeper
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: InnkeeperTimer30hours
@@ -95,7 +95,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalInnkeeper
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
 
 - type: loadoutEffectGroup
   id: ChaplainTimer4hours
@@ -104,7 +104,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalChaplain
-      time: 144 # 00 RETURN AFTER STRESSTEST
+      time: 14400
 
 - type: loadoutEffectGroup
   id: ChaplainTimer10hours
@@ -113,7 +113,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalChaplain
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: ChaplainTimer30hours
@@ -122,7 +122,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalChaplain
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
 
 - type: loadoutEffectGroup
   id: LegionAndInsurgencyTimer5hours
@@ -131,12 +131,12 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Legion
-      time: 18 # 00 RETURN AFTER STRESSTEST0
+      time: 1800
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:DepartmentTimeRequirement
       department: Insurgency
-      time: 18 # 00 RETURN AFTER STRESSTEST0
+      time: 1800
 
 - type: loadoutEffectGroup
   id: TravellerTimer30hours
@@ -145,7 +145,16 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedievalTraveller
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
+
+- type: loadoutEffectGroup
+  id: LegionTimer4hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Legion
+      time: 14400
 
 - type: loadoutEffectGroup
   id: LegionTimer10hours
@@ -154,7 +163,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Legion
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: LegionTimer30hours
@@ -163,7 +172,16 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Legion
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
+
+- type: loadoutEffectGroup
+  id: InsurgencyTimer4hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Insurgency
+      time: 14400
 
 - type: loadoutEffectGroup
   id: InsurgencyTimer10hours
@@ -172,7 +190,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Insurgency
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: InsurgencyTimer30hours
@@ -181,7 +199,16 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Insurgency
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
+
+- type: loadoutEffectGroup
+  id: BandTimer4hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Band
+      time: 14400
 
 - type: loadoutEffectGroup
   id: BandTimer10hours
@@ -190,7 +217,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Band
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: BandTimer30hours
@@ -199,7 +226,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Band
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
 
 - type: loadoutEffectGroup
   id: CollegiumTimer10hours
@@ -208,7 +235,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Collegium
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: CollegiumTimer30hours
@@ -217,7 +244,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Collegium
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
 
 - type: loadoutEffectGroup
   id: TribeTimer10hours
@@ -226,7 +253,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Tribe
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: TribeTimer30hours
@@ -235,7 +262,16 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Tribe
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
+
+- type: loadoutEffectGroup
+  id: MercTimer4hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Merc
+      time: 14400
 
 - type: loadoutEffectGroup
   id: MercTimer10hours
@@ -244,7 +280,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Merc
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: CraftersTimer10hours
@@ -253,7 +289,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Crafters
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: MercTimer30hours
@@ -262,7 +298,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Merc
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
 
 - type: loadoutEffectGroup
   id: TradersTimer5hours
@@ -271,7 +307,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Traders
-      time: 18 # 00 RETURN AFTER STRESSTEST0
+      time: 1800
 
 - type: loadoutEffectGroup
   id: TradersTimer10hours
@@ -280,7 +316,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Traders
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: TradersTimer30hours
@@ -289,7 +325,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Traders
-      time: 108 # 00 RETURN AFTER STRESSTEST0
+      time: 108000
 
 - type: loadoutEffectGroup
   id: TradersTimer50hours
@@ -298,7 +334,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Traders
-      time: 180 # 00 RETURN AFTER STRESSTEST0
+      time: 18000
 
 - type: loadoutEffectGroup
   id: MedievalTimer10hours
@@ -306,7 +342,7 @@
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:OverallPlaytimeRequirement
-      time: 36 # 00 RETURN AFTER STRESSTEST0
+      time: 36000
 
 - type: loadoutEffectGroup
   id: MedievalTimer4hours
@@ -314,4 +350,13 @@
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:OverallPlaytimeRequirement
-      time: 144 # 00 RETURN AFTER STRESSTEST
+      time: 14400
+
+
+- type: loadoutEffectGroup
+  id: MedievalTimer30hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 108000

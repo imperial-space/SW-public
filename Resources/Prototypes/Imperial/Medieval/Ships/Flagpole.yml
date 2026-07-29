@@ -1,0 +1,92 @@
+- type: entity
+  id: MedievalFlagpoleShip
+  parent: BaseStructure
+  components:
+  - type: MedievalShipFlagpole
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/flagpole.rsi
+    drawdepth: Mobs
+    offset: 0.5, 1
+    layers:
+    - state: flagpole
+      map: [ "base" ]
+    - state: null
+      map: [ "flag-color" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.1
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          - !type:SpawnEntitiesBehavior
+            offset: 0.3
+            spawn:
+              MaterialWoodPlank1:
+                min: 6
+                max: 12
+  - type: InteractionOutline
+  - type: GenericVisualizer
+    visuals:
+      enum.MedievalShipFlagpoleVisuals.State:
+        flag-color:
+          Black: { state: blackflag }
+          Red: { state: redflag }
+          White: { state: whiteflag }
+          Brown: { state: brownflag }
+          Cyan: { state: cyanflag }
+          DarkRed: { state: darkredflag }
+          Gray: { state: grayflag }
+          Green: { state: greenflag }
+          Orange: { state: orangeflag }
+          Pink: { state: pinkflag }
+          Purple: { state: purpleflag }
+          Yellow: { state: yellowflag }
+          Blue: { state: blueflag }
+          None: { state: transparent }
+  - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.MedievalShipFlagpoleUiKey.Key:
+        type: MedievalShipFlagpoleBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.MedievalShipFlagpoleUiKey.Key
+
+- type: entity
+  id: MedievalFlagpoleShipCraft
+  parent: BaseItem
+  components:
+  - type: RDWeight
+    value: 30
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: MedievalFlagpoleShip
+    doAfter: 10
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stockade.rsi
+    state: icon
+
+- type: CP14Recipe
+  id: MedievalFlagpoleShipRecipe
+  craftTime: 15
+  stacks:
+    Cloth: 4
+    WoodPlank: 12
+    MedievalRope: 3
+  result: MedievalFlagpoleShipCraft

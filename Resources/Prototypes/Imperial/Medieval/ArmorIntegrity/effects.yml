@@ -1,0 +1,77 @@
+- type: entity
+  id: MedievalArmorCrushEffectBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 3
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+
+- type: entity
+  id: MedievalArmorCrushEffect1
+  parent: MedievalArmorCrushEffectBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/ArmorIntegrity/armor_crush_1.rsi
+    state: armor_crush
+
+- type: entity
+  id: MedievalArmorCrushEffect2
+  parent: MedievalArmorCrushEffectBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/ArmorIntegrity/armor_crush_2.rsi
+    state: armor_crush
+
+- type: entity
+  id: MedievalArmorCrushEffect3
+  parent: MedievalArmorCrushEffectBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/ArmorIntegrity/armor_crush_3.rsi
+    state: armor_crush
+
+- type: entity
+  id: MedievalBloodSplatterEffectBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+
+- type: entity
+  id: MedievalBloodSplatterEffect1
+  parent: MedievalBloodSplatterEffectBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/BloodSplatter/blood_splatter_1.rsi
+    state: blood_splatter
+
+- type: entity
+  id: MedievalBloodSplatterEffect2
+  parent: MedievalBloodSplatterEffectBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/BloodSplatter/blood_splatter_2.rsi
+    state: blood_splatter
+
+- type: entity
+  id: MedievalBloodSplatterEffect3
+  parent: MedievalBloodSplatterEffectBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/BloodSplatter/blood_splatter_3.rsi
+    state: blood_splatter
+
+- type: entity
+  id: MedievalBloodSplatterEffect4
+  parent: MedievalBloodSplatterEffectBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/BloodSplatter/blood_splatter_4.rsi
+    state: blood_splatter

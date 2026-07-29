@@ -15,6 +15,9 @@
   sprite: /Textures/Imperial/Medieval/Tiles/Planet/water-fake2/full.png
   baseTurf: Space
   isSubfloor: true
+  weather: true
+  barestepSounds:
+    collection: FootstepWater
   footstepSounds:
     collection: FootstepWater
   heatCapacity: 7000000

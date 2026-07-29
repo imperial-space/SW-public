@@ -1,0 +1,43 @@
+- type: entity
+  id: MedievalStatueHero
+  parent: BaseStructure
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/statues.rsi
+      state: hero
+      drawdepth: Mobs
+      noRot: true
+      offset: "0.0,0.5"
+
+- type: entity
+  id: MedievalStatueHeroBroken
+  parent: BaseStructure
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/statues.rsi
+      state: hero_broken
+      drawdepth: Mobs
+      noRot: true
+      offset: "0.0,0.5"
+
+- type: entity
+  id: MedievalStatueWizard
+  parent: BaseStructure
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/statues.rsi
+      state: wizard
+      drawdepth: Mobs
+      noRot: true
+      offset: "0.0,0.5"
+
+- type: entity
+  id: MedievalStatueWizardBroken
+  parent: BaseStructure
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/statues.rsi
+      state: wizard_broken
+      drawdepth: Mobs
+      noRot: true
+      offset: "0.0,0.5"

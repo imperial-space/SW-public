@@ -183,7 +183,7 @@
         - ClothingUniformJumpsuitChiefEngineer
         - ClothingUniformJumpskirtChiefEngineer
         - ClothingUniformJumpskirtChiefEngineerTurtle
-        - ClothingUniformJumpsuitChiefEngineerNT
+        #- ClothingUniformJumpsuitChiefEngineerNT
         - ClothingUniformJumpsuitChiefEngineerTurtle
         # Security
         - ClothingUniformJumpsuitSeniorOfficer

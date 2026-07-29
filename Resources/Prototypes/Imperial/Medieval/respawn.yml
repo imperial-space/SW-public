@@ -161,7 +161,7 @@
     - type: Loadout
       prototypes: [MedievalRespawnPlayer]
     - type: Mana
-      maxMana: 150
+      maxMana: 220
       regen: 8
     - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
       allowedStates:

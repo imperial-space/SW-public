@@ -27,13 +27,13 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Brute: -0.1
-        Burn: -0.1
-        Airloss: -0.1
+        Brute: -0.02
+        Burn: -0.02
+        Airloss: -0.02
       types:
-        Poison: -0.1
-        Caustic: -0.1
-        Radiation: -0.1
+        Poison: -0.02
+        Caustic: -0.02
+        Radiation: -0.02
   - type: MedievalPlagueHealStrapped
 
 # Beginner

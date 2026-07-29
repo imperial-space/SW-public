@@ -1,9 +1,8 @@
 ﻿using System.Linq;
 using Content.Server.Damage.Components;
 using Content.Server.MedievalMeleeResource;
-using Content.Shared.Armor;
-using Content.Shared.Damage;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.ArmorIntegrity;
 using Content.Shared.Imperial.Medieval.SmithingSystem;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
@@ -18,6 +17,7 @@ public sealed partial class SmithingSystem
     {};
 
     [Dependency] private readonly MedievalMeleeResourceSystem _meleeResource = default!;
+    [Dependency] private readonly MedievalArmorIntegritySystem _armorIntegrity = default!;
 
     private void InitializeBehaviors()
     {
@@ -34,7 +34,7 @@ public sealed partial class SmithingSystem
         SubscribeLocalEvent<DeleteOnLowScoreOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(DeleteOnLowScore);
     }
 
-    private static DamageModifierSet CopySet(DamageModifierSet src)
+    /*private static DamageModifierSet CopySet(DamageModifierSet src)
     {
         var copy = new DamageModifierSet();
 
@@ -109,13 +109,13 @@ public sealed partial class SmithingSystem
 
         armor.Modifiers = result;
         Dirty(item, armor);
-    }
+    }*/
 
 
     private void UpgradeArmor(Entity<UpgradeArmorOnSmithCompleteComponent> ent,
         ref SmithingApplyBehaviorsEvent args)
     {
-        if (!TryComp<ArmorComponent>(args.Item, out _))
+        if (!TryComp<MedievalArmorIntegrityComponent>(args.Item, out var armorIntegrity))
             return;
 
         if (TryComp(args.Item, out SmithQualityComponent? existing) && existing.Applied)
@@ -129,7 +129,8 @@ public sealed partial class SmithingSystem
         qualityComp.Applied = true;
         Dirty(args.Item, qualityComp);
 
-        ApplyQualityToArmor(args.Item, qualityComp.Modifier);
+        // ApplyQualityToArmor(args.Item, qualityComp.Modifier);
+        _armorIntegrity.ApplyQualityMultiplier((args.Item, armorIntegrity), qualityComp.Quality);
 
         SetName(args.Item, modifier.Quality);
     }

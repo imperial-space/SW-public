@@ -25,16 +25,16 @@ achievement-collegium-cult-altars-barrier-desc = За один раунд пос
 achievement-collegium-become-archmage-name = Архимаг коллегии
 achievement-collegium-become-archmage-desc = Появитесь за роль архимага коллегии. Вершина магического пути.
 
-achievement-collegium-legion-letter-name = Тайны империи
+achievement-collegium-legion-letter-name = Слово легиона
 achievement-collegium-legion-letter-desc = Заполучите письмо легиона, будучи архимагом коллегии.
 
-achievement-collegium-rebel-letter-name = Тайны мятежа
+achievement-collegium-rebel-letter-name = Союз с севером
 achievement-collegium-rebel-letter-desc = Заполучите письмо мятежников, будучи архимагом коллегии.
 
 achievement-collegium-both-letters-name = Двойная игра
 achievement-collegium-both-letters-desc = За один раунд заполучите и письмо легиона, и письмо мятежников, будучи архимагом коллегии.
 
-achievement-collegium-swag-name = Лютая свага
+achievement-collegium-swag-name = Помазаник Магнуса
 achievement-collegium-swag-desc = За один раунд, будучи архимагом: экипируйте робу и капюшон архимага, сапоги-скороходы, любой медальон, форстоуновые или эбонитовые перчатки, имейте позолоченный фальшион и 1000 ревентов.
 
 achievement-cult-initiation-name = Ave The Truth!

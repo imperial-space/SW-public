@@ -7,6 +7,7 @@ namespace Content.Shared.Imperial.Medieval.Lycantropy;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class LycantropyComponent : Component
 {
+    [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public int Points = 0;
 

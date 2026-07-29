@@ -7,3 +7,8 @@ waystone-examine-headerCollector = [color=gray]Вы можете собрать 
 
 ent-Waystone = путеводный камень
     .desc = Древнее устройство, позволяющее перемещаться на большие расстояния. С помощью магов получилось коммерциализировать их.
+
+waystone-legion-name = путеводный камень южных земель
+waystone-insurgency-name = путеводный камень северных земель
+waystone-swamp-name = путеводный камень болотного леса
+waystone-island-name = путеводный камень пепельной крепости

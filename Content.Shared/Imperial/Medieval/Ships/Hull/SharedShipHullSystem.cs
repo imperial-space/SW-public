@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Content.Shared.Maps;
+using Content.Shared.Tag;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Ships.Hull;
 
@@ -10,8 +13,13 @@ namespace Content.Shared.Imperial.Medieval.Ships.Hull;
 public sealed class SharedShipHullSystem : EntitySystem
 {
     [Dependency] private readonly ITileDefinitionManager _tileDefinitions = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
 
-    private const string IntactHullTile = "FloorWood";
+    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
+    private static readonly ProtoId<TagPrototype> PreventShipFloorBreakageTag = "PreventShipFloorBreakage";
+
+    private const string IntactHullTile = "woodenfloor";
 
     private static readonly string[] DamagedHullTiles =
     {
@@ -103,6 +111,23 @@ public sealed class SharedShipHullSystem : EntitySystem
     public int GetFloodContribution(int tileTypeId)
     {
         return TryGetDamageStage(tileTypeId, out var stage) ? stage : 0;
+    }
+
+    public bool IsBreakagePrevented(TileRef tile, HashSet<EntityUid> tileContents)
+    {
+        tileContents.Clear();
+        _lookup.GetEntitiesInTile(tile, tileContents);
+
+        foreach (var tileEntity in tileContents)
+        {
+            if (_tags.HasTag(tileEntity, WallTag) ||
+                _tags.HasTag(tileEntity, PreventShipFloorBreakageTag))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void EnsureInitialized()

@@ -1,9 +1,6 @@
-using System;
 using Content.Shared.DoAfter;
-using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
 namespace Content.Shared.Imperial.Medieval.Ships.Anchor;
@@ -12,7 +9,6 @@ public sealed class MedievalAnchorSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedSkillsSystem _skills = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
@@ -22,29 +18,26 @@ public sealed class MedievalAnchorSystem : EntitySystem
 
     private void OnActivate(EntityUid uid, MedievalAnchorComponent component, ActivateInWorldEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || !TryStartUse(uid, component, args.User))
             return;
 
-        Use(args.User, args.Target, component);
+        args.Handled = true;
     }
 
-    private void Use(EntityUid playerEntity, EntityUid target, MedievalAnchorComponent component)
+    private bool TryStartUse(EntityUid uid, MedievalAnchorComponent component, EntityUid user)
     {
-        if (!_skills.HasSkill(playerEntity, SharedSkillsSystem.StrengthId))
-            return;
+        if (component.ActiveUser != null || !_skills.HasSkill(user, SharedSkillsSystem.StrengthId))
+            return false;
 
-        var time = component.BaseUseTime - _skills.GetSkillLevel(playerEntity, "Strength") * component.StrengthUseTimeModifier;
-        time = Math.Max(1.0f, time);
-
-        if (!component.Enabled)
-            time = time / 10;
+        if (_net.IsServer)
+            SetActiveUser(uid, component, user);
 
         var doAfter = new DoAfterArgs(EntityManager,
-            playerEntity,
-            time,
-            new UseAnchorEvent(),
-            target,
-            target: target)
+            user,
+            GetUseTime(user, component),
+            new ToggleAnchorEvent(),
+            uid,
+            target: uid)
         {
             MovementThreshold = 0.5f,
             BreakOnMove = true,
@@ -57,16 +50,25 @@ public sealed class MedievalAnchorSystem : EntitySystem
             NeedHand = true,
         };
 
-        if (component.User is not null)
-            return;
+        if (_doAfter.TryStartDoAfter(doAfter))
+            return true;
 
-        if (_doAfter.TryStartDoAfter(doAfter) && _net.IsServer)
-        {
-            _audio.PlayPvs(MedievalShipSounds.AnchorUse, target);
-            component.User = playerEntity;
-            Dirty(target, component);
-        }
-        else
-            component.User = null;
+        if (_net.IsServer)
+            SetActiveUser(uid, component, null);
+
+        return false;
+    }
+
+    private float GetUseTime(EntityUid user, MedievalAnchorComponent component)
+    {
+        var strength = _skills.GetSkillLevel(user, SharedSkillsSystem.StrengthId);
+        var useTime = MathF.Max(1f, component.BaseUseTime - strength * component.StrengthUseTimeModifier);
+        return component.Lowered ? useTime : useTime * component.LoweringTimeMultiplier;
+    }
+
+    private void SetActiveUser(EntityUid uid, MedievalAnchorComponent component, EntityUid? user)
+    {
+        component.ActiveUser = user;
+        Dirty(uid, component);
     }
 }

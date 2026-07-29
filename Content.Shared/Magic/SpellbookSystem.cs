@@ -31,7 +31,7 @@ public sealed class SpellbookSystem : EntitySystem
         foreach (var (id, charges) in ent.Comp.SpellActions)
         {
             var action = _actionContainer.AddAction(ent, id);
-            if (action is not { } spell)
+            if (action is not { } spell || !Exists(spell) || Terminating(spell)) // Imperial Medieval fix for prevent server crash on debuging
                 continue;
 
             // Null means infinite charges.

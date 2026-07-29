@@ -1,0 +1,104 @@
+- type: entity
+  id: MedievalCart
+  components:
+  - type: Sprite
+    noRot: false
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Decor/telega.rsi
+    layers:
+    - map:
+      - base
+      state: cart_close
+  - type: Clickable
+  - type: Pullable
+  - type: Rotatable
+  - type: InteractionOutline
+  - type: Storage
+    grid:
+    - 0,0,14,5
+    maxItemSize: Ginormous
+    storageOpenSound: /Audio/Imperial/Medieval/wood_open.ogg
+    storageCloseSound: /Audio/Imperial/Medieval/wood_closed.ogg
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Physics
+    bodyType: Dynamic
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 10
+            max: 20
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+      - !type:DoActsBehavior
+        acts:
+        - "Destruction"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.9"
+        density: 25
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True:
+            state: cart_open
+          False:
+            state: cart_close
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: UniversalLockable
+  - type: ItemSlots
+    slots:
+      lockSlot:
+        ejectOnBreak: true
+        name: Lock
+        insertSound: /Audio/Effects/buckle.ogg
+        ejectSound: /Audio/Effects/unbuckle.ogg
+        whitelist:
+          components:
+          - UniversalLock
+
+- type: entity
+  id: MedievalCartCraft
+  parent: BaseItem
+  components:
+  - type: RDWeight
+    value: 100
+  - type: Item
+    size: Ginormous
+  - type: SpawnAfterInteract
+    prototype: MedievalCart
+    doAfter: 15
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stockade.rsi
+    state: icon
+
+- type: CP14Recipe
+  id: MedievalCartRecipe
+  craftTime: 10
+  stacks:
+    Cloth: 5
+    WoodPlank: 30
+    MedievalRope: 1
+  result: MedievalCartCraft

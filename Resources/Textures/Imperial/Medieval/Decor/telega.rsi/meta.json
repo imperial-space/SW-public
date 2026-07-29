@@ -9,6 +9,14 @@
     "states": [
         {
             "name": "telega"
+        },
+        {
+            "name": "cart_close",
+            "directions": 4
+        },
+        {
+            "name": "cart_open",
+            "directions": 4
         }
     ]
 }

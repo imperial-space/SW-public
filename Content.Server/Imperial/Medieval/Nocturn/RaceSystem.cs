@@ -77,12 +77,12 @@ namespace Content.Server.Nocturn
         {
             args.Handled = true;
 
-
-            if (!_skills.TryGetSkill(uid, "Vitality", out var vitalityLevel) || vitalityLevel < 10)
-                return;
-
-            var heal = 2f + 0.15f * (vitalityLevel - 9);
-
+            var heal = 2f;
+            if (_skills.TryGetSkill(uid, "Vitality", out var vitalityLevel))
+                if (vitalityLevel < 10)
+                    heal += 0.15f * (vitalityLevel - 9);
+                else
+                    heal += 0.3f * (vitalityLevel - 9);
             _damageableSystem.TryChangeDamage(uid, -comp.Damage * heal, true, false);
         }
 

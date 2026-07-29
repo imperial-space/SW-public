@@ -4474,6 +4474,11 @@
         behaviors:
           - !type:DoActsBehavior
             acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MagicMedievalLight1:
+                min: 3
+                max: 8
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -4581,6 +4586,11 @@
         behaviors:
           - !type:DoActsBehavior
             acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MagicMedievalFire1:
+                min: 3
+                max: 8
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -4670,6 +4680,11 @@
         behaviors:
           - !type:DoActsBehavior
             acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MagicMedievalEarth1:
+                min: 12
+                max: 32
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -4748,6 +4763,11 @@
         behaviors:
           - !type:DoActsBehavior
             acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MagicMedievalVodka1:
+                min: 3
+                max: 8
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound

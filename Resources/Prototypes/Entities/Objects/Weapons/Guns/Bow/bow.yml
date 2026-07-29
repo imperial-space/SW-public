@@ -55,6 +55,8 @@
   parent: BaseBow
   name: improvised shortbow
   components:
+  - type: Gun
+    defaultSpread: 10
   - type: Sprite
     layers:
     - state: unwielded

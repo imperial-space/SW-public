@@ -94,34 +94,41 @@ namespace Content.Client.Stylesheets
         public const string StyleClassPopupMessageLarge = "PopupMessageLarge";
         public const string StyleClassPopupMessageLargeCaution = "PopupMessageLargeCaution";
 
-        public static readonly Color PanelDark = Color.FromHex("#1E1E22");
+        // Основа
+        public static readonly Color PanelDark = Color.FromHex("#3A2E29"); // Ваш тёмный
 
-        public static readonly Color NanoGold = Color.FromHex("#A88B5E");
-        public static readonly Color GoodGreenFore = Color.FromHex("#31843E");
-        public static readonly Color ConcerningOrangeFore = Color.FromHex("#A5762F");
-        public static readonly Color DangerousRedFore = Color.FromHex("#BB3232");
-        public static readonly Color DisabledFore = Color.FromHex("#5A5A5A");
+        // Статусные цвета
+        public static readonly Color NanoGold = Color.FromHex("#B89B74"); // Более тёплое, матовое золото/светлое дерево
+        public static readonly Color GoodGreenFore = Color.FromHex("#577A4A"); // Приглушённый лесной зелёный
+        public static readonly Color ConcerningOrangeFore = Color.FromHex("#C28C4A"); // Медовый/янтарный
+        public static readonly Color DangerousRedFore = Color.FromHex("#B14A3C"); // Терракотовый
+        public static readonly Color DisabledFore = Color.FromHex("#6B5D57"); // Серо-коричневый, замша
 
-        public static readonly Color ButtonColorDefault = Color.FromHex("#464966");
-        public static readonly Color ButtonColorDefaultRed = Color.FromHex("#D43B3B");
-        public static readonly Color ButtonColorHovered = Color.FromHex("#575b7f");
-        public static readonly Color ButtonColorHoveredRed = Color.FromHex("#DF6B6B");
-        public static readonly Color ButtonColorPressed = Color.FromHex("#3e6c45");
-        public static readonly Color ButtonColorDisabled = Color.FromHex("#30313c");
+        // Основные кнопки (из коры/старого дерева)
+        public static readonly Color ButtonColorDefault = Color.FromHex("#4E3F3A"); // Ваш светлый
+        public static readonly Color ButtonColorDefaultRed = Color.FromHex("#B14A3C"); // Терракотовый (опасное действие)
+        public static readonly Color ButtonColorHovered = Color.FromHex("#5A4A44"); // Высветленная кора
+        public static readonly Color ButtonColorHoveredRed = Color.FromHex("#C96B5D"); // Светлая терракота
+        public static readonly Color ButtonColorPressed = Color.FromHex("#577A4A"); // Лесной зелёный (успех)
+        public static readonly Color ButtonColorDisabled = Color.FromHex("#3A2E29"); // Затенённое дерево
+
+        // Осторожные кнопки (красное дерево/махагон)
+        public static readonly Color ButtonColorCautionDefault = Color.FromHex("#8B4A3D"); // Тёмный махагон
+        public static readonly Color ButtonColorCautionHovered = Color.FromHex("#A85B4A"); // Высветленный махагон
+        public static readonly Color ButtonColorCautionPressed = Color.FromHex("#577A4A"); // Лесной зелёный (успех)
+        public static readonly Color ButtonColorCautionDisabled = Color.FromHex("#51332D"); // Тусклое тёмное дерево
+
+        // Позитивные кнопки (тёмный мох/травертин)
+        public static readonly Color ButtonColorGoodDefault = Color.FromHex("#4A5E43"); // Моховой
+        public static readonly Color ButtonColorGoodHovered = Color.FromHex("#577A4A"); // Лесной зелёный
+        public static readonly Color ButtonColorGoodDisabled = Color.FromHex("#2B3626"); // Глухой тёмный мох
         // Imperial Pass Begin
-        public static readonly Color ButtonColorDefaultPass = Color.FromHex("#464966");
+        public static readonly Color ButtonColorDefaultPass = Color.FromHex("#4E3F3A");
         public static readonly Color ButtonColorHoveredPass = Color.FromHex("#575b7f");
         public static readonly Color ButtonColorPressedPass = Color.FromHex("#3e6c45");
         // Imperial Pass End
 
-        public static readonly Color ButtonColorCautionDefault = Color.FromHex("#ab3232");
-        public static readonly Color ButtonColorCautionHovered = Color.FromHex("#cf2f2f");
-        public static readonly Color ButtonColorCautionPressed = Color.FromHex("#3e6c45");
-        public static readonly Color ButtonColorCautionDisabled = Color.FromHex("#602a2a");
 
-        public static readonly Color ButtonColorGoodDefault = Color.FromHex("#3E6C45");
-        public static readonly Color ButtonColorGoodHovered = Color.FromHex("#31843E");
-        public static readonly Color ButtonColorGoodDisabled = Color.FromHex("#164420");
 
         //NavMap
         public static readonly Color PointRed = Color.FromHex("#B02E26");
@@ -141,7 +148,7 @@ namespace Content.Client.Stylesheets
         public static readonly Color ExamineButtonColorContextDisabled = Color.FromHex("#5A5A5A");
 
         // Fancy Tree elements
-        public static readonly Color FancyTreeEvenRowColor = Color.FromHex("#25252A");
+        public static readonly Color FancyTreeEvenRowColor = Color.FromHex("#2B211D");
         public static readonly Color FancyTreeOddRowColor = FancyTreeEvenRowColor * new Color(0.8f, 0.8f, 0.8f);
         public static readonly Color FancyTreeSelectedRowColor = new Color(55, 55, 68);
 
@@ -162,7 +169,7 @@ namespace Content.Client.Stylesheets
         public const string StyleClassButtonColorRed = "ButtonColorRed";
         public const string StyleClassButtonColorGreen = "ButtonColorGreen";
 
-        public static readonly Color ChatBackgroundColor = Color.FromHex("#25252ADD");
+        public static readonly Color ChatBackgroundColor = Color.FromHex("#2B211DDD");
 
         //Bwoink
         public const string StyleClassPinButtonPinned = "pinButtonPinned";
@@ -618,7 +625,7 @@ namespace Content.Client.Stylesheets
             var sliderForeBox = new StyleBoxTexture
             {
                 Texture = sliderOutlineTex,
-                Modulate = Color.FromHex("#494949")
+                Modulate = Color.FromHex("#5A4A44")
             };
 
             var sliderGrabBox = new StyleBoxTexture
@@ -641,7 +648,7 @@ namespace Content.Client.Stylesheets
             var insetBack = new StyleBoxTexture
             {
                 Texture = buttonTex,
-                Modulate = Color.FromHex("#202023"),
+                Modulate = Color.FromHex("#241C18"),
             };
             insetBack.SetPatchMargin(StyleBox.Margin.All, 10);
 
@@ -1774,7 +1781,7 @@ namespace Content.Client.Stylesheets
                 }),
 
                 Element<PanelContainer>().Class(OptionButton.StyleClassOptionsBackground)
-                    .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat(Color.FromHex("#25252A"))),
+                    .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat(Color.FromHex("#2B211D"))),
 
                 new StyleRule(new SelectorElement(typeof(PanelContainer), new []{ ClassHighDivider}, null, null), new []
                 {
@@ -1796,7 +1803,7 @@ namespace Content.Client.Stylesheets
                 // Different Background shapes ---
                 Element<PanelContainer>().Class(ClassAngleRect)
                     .Prop(PanelContainer.StylePropertyPanel, BaseAngleRect)
-                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#25252A")),
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#2B211D")),
                 // Imperial Pass Begin
                 Element<PanelContainer>().Class("AngleRectPass")
                     .Prop(PanelContainer.StylePropertyPanel, passrect)
@@ -1805,11 +1812,11 @@ namespace Content.Client.Stylesheets
 
                 Element<PanelContainer>().Class("BackgroundOpenRight")
                     .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenRight)
-                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#25252A")),
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#2B211D")),
 
                 Element<PanelContainer>().Class("BackgroundOpenLeft")
                     .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenLeft)
-                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#25252A")),
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#2B211D")),
                 // ---
 
                 // Dividers
@@ -1873,7 +1880,7 @@ namespace Content.Client.Stylesheets
 
                 Element<PanelContainer>().Class("PanelBackgroundLight")
                     .Prop("panel", new StyleBoxTexture(BaseButtonOpenBoth) { Padding = default })
-                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#2F2F3B")),
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#3A2E29")),
 
                 // Window Footer
                 Element<TextureRect>().Class("NTLogoDark")
@@ -2033,7 +2040,7 @@ namespace Content.Client.Stylesheets
                 //PDA - Backgrounds
                 Element<PanelContainer>().Class("PdaContentBackground")
                     .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenBoth)
-                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#25252a")),
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#2B211D")),
 
                 Element<PanelContainer>().Class("PdaBackground")
                     .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenBoth)
@@ -2047,7 +2054,7 @@ namespace Content.Client.Stylesheets
                     .Prop(PanelContainer.StylePropertyPanel, AngleBorderRect),
 
                 Element<PanelContainer>().Class("BackgroundDark")
-                    .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat(Color.FromHex("#25252A"))),
+                    .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat(Color.FromHex("#2B211D"))),
 
                 //PDA - Buttons
                 Element<PdaSettingsButton>().Pseudo(ContainerButton.StylePseudoClassNormal)

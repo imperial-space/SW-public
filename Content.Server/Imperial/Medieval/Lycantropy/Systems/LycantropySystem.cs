@@ -15,6 +15,7 @@ using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Server.Stunnable;
+using Content.Shared.Actions.Components;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
@@ -99,6 +100,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         SubscribeLocalEvent<WerewolfComponent, WerewolfHowlActionEvent>(OnWerewolfHowl);
         SubscribeLocalEvent<WerewolfComponent, ToggleLycantropyInfectActionEvent>(OnWerewolfInfect);
         SubscribeLocalEvent<WerewolfComponent, MeleeHitEvent>(OnWerewolfHit);
+        SubscribeLocalEvent<WerewolfComponent, MeleeAttackEvent>(OnWerewolfAttack);
         SubscribeLocalEvent<WerewolfComponent, MeleeDamageDealtEvent>(OnWerewolfDamageDealt);
         SubscribeLocalEvent<WerewolfComponent, WerewolfHealAlliesActionEvent>(OnHealAllies);
         SubscribeLocalEvent<WerewolfComponent, WerewolfRegenActionEvent>(OnRegen);
@@ -229,14 +231,17 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         _actions.SetToggled(comp.InfectAction, comp.InfectOn);
     }
 
-    private void OnWerewolfHit(EntityUid uid, WerewolfComponent comp, MeleeHitEvent args)
+    private void OnWerewolfAttack(EntityUid uid, WerewolfComponent comp, MeleeAttackEvent args)
     {
         if (_inner.TryGetInnerWeapon(uid, out var _, out var id) && id == "tearing_weapon")
         {
             _inner.SetWeapon(uid, "");
             _actions.SetToggled(comp.Actions["WerewolfTearingAction"], false);
         }
+    }
 
+    private void OnWerewolfHit(EntityUid uid, WerewolfComponent comp, MeleeHitEvent args)
+    {
         if (comp.InfectOn)
         {
             foreach (var item in args.HitEntities)

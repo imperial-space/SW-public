@@ -103,7 +103,7 @@ public sealed class ShipDrowningSystem : EntitySystem
     private void RescueGridChildrenToMap(EntityUid uid)
     {
         var shipXform = Transform(uid);
-        if (!_map.TryGetMap(shipXform.MapID, out var mapUid))
+        if (!_map.TryGetMap(shipXform.MapID, out var mapUid) || TerminatingOrDeleted(mapUid.Value))
             return;
 
         _gridChildren.Clear();

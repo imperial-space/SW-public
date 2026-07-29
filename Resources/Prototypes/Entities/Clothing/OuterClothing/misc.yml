@@ -267,6 +267,50 @@
     sprite: Clothing/OuterClothing/Misc/nunrobe.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/nunrobe.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.6
+        Cold: 0.4
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 55
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.46
+      Slash:
+        coefficient: 0.46
+      Piercing:
+        coefficient: 0.65
+      Heat:
+        coefficient: 0.55
+    brokenResistances:
+      Blunt:
+        coefficient: 0.9
+      Slash:
+        coefficient: 0.9
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.95
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 0.8
+      Slash: 1.35
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
+  - type: StaminaResistance
+    damageCoefficient: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  - type: ManaRegen
+    regen: 0.25
 
 - type: entity
   parent: ClothingOuterBase

@@ -1,0 +1,399 @@
+- type: loadoutGroup
+  id: MedievalArmorTraveller
+  name: loadout-group-armor-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalClothingOuterArmorFurTraveller
+  - MedievalClothingOuterArmorGambesonTraveller
+  - MedievalClothingOuterArmorStuddedTraveller
+  - MedievalClothingOuterArmorChainMailLightTraveller
+
+- type: loadout
+  id: MedievalClothingOuterArmorFurTraveller
+  #effects:
+  #- !type:GroupLoadoutEffect
+  #  proto: TravellerTimer10hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorFur
+
+- type: loadout
+  id: MedievalClothingOuterArmorGambesonTraveller
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer4hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorGambeson
+
+- type: loadout
+  id: MedievalClothingOuterArmorStuddedTraveller
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer10hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorStudded
+
+- type: loadout
+  id: MedievalClothingOuterArmorChainMailLightTraveller
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer30hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorChainMailLight
+
+
+
+
+
+
+
+############################# LEGION
+
+- type: loadoutGroup
+  id: MedievalArmorLegionRecruit
+  name: loadout-group-armor-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalClothingOuterArmorGambesonLegionRecruit
+  - MedievalClothingOuterArmorStuddedLegionRecruit
+  - MedievalClothingOuterArmorChainMailLightLegionRecruit
+
+- type: loadout
+  id: MedievalClothingOuterArmorGambesonLegionRecruit
+  equipment:
+    outerClothing: MedievalClothingOuterArmorGambeson
+
+- type: loadout
+  id: MedievalClothingOuterArmorStuddedLegionRecruit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LegionTimer4hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorStudded
+
+- type: loadout
+  id: MedievalClothingOuterArmorChainMailLightLegionRecruit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LegionTimer10hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorChainMailLight
+
+
+- type: loadoutGroup
+  id: MedievalArmorLegion
+  name: loadout-group-armor-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalClothingOuterArmorGambesonLegionRecruit
+  - MedievalClothingOuterArmorStuddedLegionRecruit
+  - MedievalClothingOuterArmorChainMailLightLegionRecruit
+  - MedievalClothingOuterArmorIronCuirassLightLegion
+
+
+- type: loadout
+  id: MedievalClothingOuterArmorIronCuirassLightLegion
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LegionTimer30hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorIronCuirassLight
+
+
+
+
+
+
+################# INSURGENCY
+
+- type: loadoutGroup
+  id: MedievalArmorInsurgencyRecruit
+  name: loadout-group-armor-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalClothingOuterArmorGambesonInsurgencyRecruit
+  - MedievalClothingOuterArmorStuddedInsurgencyRecruit
+  - MedievalClothingOuterArmorChainMailLightInsurgencyRecruit
+
+- type: loadout
+  id: MedievalClothingOuterArmorGambesonInsurgencyRecruit
+  equipment:
+    outerClothing: MedievalClothingOuterArmorGambeson
+
+- type: loadout
+  id: MedievalClothingOuterArmorStuddedInsurgencyRecruit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: InsurgencyTimer4hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorStudded
+
+- type: loadout
+  id: MedievalClothingOuterArmorChainMailLightInsurgencyRecruit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: InsurgencyTimer10hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorChainMailLight
+
+
+- type: loadoutGroup
+  id: MedievalArmorInsurgency
+  name: loadout-group-armor-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalClothingOuterArmorGambesonInsurgencyRecruit
+  - MedievalClothingOuterArmorStuddedInsurgencyRecruit
+  - MedievalClothingOuterArmorChainMailLightInsurgencyRecruit
+  - MedievalClothingOuterArmorIronCuirassLightInsurgency
+
+
+- type: loadout
+  id: MedievalClothingOuterArmorIronCuirassLightInsurgency
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: InsurgencyTimer30hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorIronCuirassLight
+
+
+
+
+
+
+################ TRADER
+
+- type: loadoutGroup
+  id: MedievalTraderLock
+  name: loadout-group-lock-mdv
+  minLimit: 1
+  maxLimit: 2
+  loadouts:
+  - MedievalDoorLockT1
+  - MedievalDoorLockT2
+  - MedievalDoorLockT3
+
+- type: loadoutGroup
+  id: MedievalTraderKey
+  name: loadout-group-key-mdv
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - MedievalDoorKeyCheck
+
+- type: loadout
+  id: MedievalDoorKeyCheck
+  storage:
+    back:
+    - MedievalDoorKeyCheck
+
+- type: loadout
+  id: MedievalDoorLockT1
+  #effects:
+  #- !type:GroupLoadoutEffect
+  #  proto: InsurgencyTimer30hours
+  storage:
+    back:
+    - MedievalDoorLockT1
+
+- type: loadout
+  id: MedievalDoorLockT2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer10hours
+  storage:
+    back:
+    - MedievalDoorLockT2
+
+- type: loadout
+  id: MedievalDoorLockT3
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer30hours
+  storage:
+    back:
+    - MedievalDoorLockT3
+
+
+
+
+
+
+############ MERCENARY
+
+- type: loadoutGroup
+  id: MedievalArmorMerc
+  name: loadout-group-armor-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalClothingOuterArmorGambesonMerc
+  - MedievalClothingOuterArmorStuddedMerc
+  - MedievalClothingOuterArmorChainMailLightMerc
+
+- type: loadout
+  id: MedievalClothingOuterArmorGambesonMerc
+  equipment:
+    outerClothing: MedievalClothingOuterArmorGambeson
+
+- type: loadout
+  id: MedievalClothingOuterArmorStuddedMerc
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MercTimer10hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorStudded
+
+- type: loadout
+  id: MedievalClothingOuterArmorChainMailLightMerc
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MercTimer30hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorChainMailLight
+
+
+############ Bandit
+
+- type: loadoutGroup
+  id: MedievalArmorBand
+  name: loadout-group-armor-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalClothingOuterArmorGambesonBand
+  - MedievalClothingOuterArmorStuddedBand
+  - MedievalClothingOuterArmorChainMailLightBand
+
+- type: loadout
+  id: MedievalClothingOuterArmorGambesonBand
+  equipment:
+    outerClothing: MedievalClothingOuterArmorGambeson
+
+- type: loadout
+  id: MedievalClothingOuterArmorStuddedBand
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BandTimer10hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorStudded
+
+- type: loadout
+  id: MedievalClothingOuterArmorChainMailLightBand
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BandTimer30hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorChainMailLight
+
+
+############ Vilage
+
+- type: loadoutGroup
+  id: MedievalArmorVilage
+  name: loadout-group-armor-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalClothingOuterArmorGambesonVilage
+  - MedievalClothingOuterArmorStuddedVilage
+  - MedievalClothingOuterArmorChainMailLightVilage
+
+- type: loadout
+  id: MedievalClothingOuterArmorGambesonVilage
+  equipment:
+    outerClothing: MedievalClothingOuterArmorGambeson
+
+- type: loadout
+  id: MedievalClothingOuterArmorStuddedVilage
+  #effects:
+  #- !type:GroupLoadoutEffect
+  #  proto: BandTimer10hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorStudded
+
+- type: loadout
+  id: MedievalClothingOuterArmorChainMailLightVilage
+  #effects:
+  #- !type:GroupLoadoutEffect
+  #  proto: BandTimer30hours
+  equipment:
+    outerClothing: MedievalClothingOuterArmorChainMailLight
+
+########## RUSTED WEAPONS
+
+
+- type: loadoutGroup
+  id: MedievalRustyWeapons
+  name: loadout-group-weapons-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalFalshionRusty
+  - MedievalShortSwordRusty
+  - MedievalSaberRusty
+  - MedievalMaceRusty
+  - MedievalSpearRusty
+
+- type: loadout
+  id: MedievalFalshionRusty
+  storage:
+    back:
+    - MedievalFalshionRusty
+
+- type: loadout
+  id: MedievalShortSwordRusty
+  storage:
+    back:
+    - MedievalShortSwordRusty
+
+- type: loadout
+  id: MedievalMaceRusty
+  storage:
+    back:
+    - MedievalMaceRusty
+
+- type: loadout
+  id: MedievalSpearRusty
+  storage:
+    back:
+    - MedievalSpearRusty
+
+- type: loadout
+  id: MedievalSaberRusty
+  storage:
+    back:
+    - MedievalSaberRusty
+
+
+
+############ ARMOR REPAIR
+
+
+- type: loadoutGroup
+  id: MedievalRepair
+  name: loadout-group-repair-mdv
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MedievalSewingNeedle
+  - MedievalHammerBlacksmith
+
+- type: loadout
+  id: MedievalSewingNeedle
+  storage:
+    back:
+    - MedievalSewingNeedle
+
+- type: loadout
+  id: MedievalHammerBlacksmith
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MedievalTimer30hours
+  storage:
+    back:
+    - MedievalHammerBlacksmith

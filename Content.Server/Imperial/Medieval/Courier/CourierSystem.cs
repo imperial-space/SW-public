@@ -86,7 +86,6 @@ public sealed class CourierSystem : EntitySystem
 
             AddFreeMailToAllCouriers();
             pit.NextRewardTime = GetNextRewardTime(pit);
-            Dirty(uid, pit);
         }
     }
 
@@ -356,7 +355,6 @@ public sealed class CourierSystem : EntitySystem
             return;
 
         component.LastCourierHeld = courierUid;
-        Dirty(uid, component);
     }
 
     public void ReturnBuyBack(LetterComponent component)
@@ -465,8 +463,6 @@ public sealed class CourierSystem : EntitySystem
             if (spawns.Count > 0)
                 letter.LetterContents = _random.Pick(spawns);
         }
-
-        Dirty(letterUid, letter);
     }
 
     private int GetRandomInRangeInclusive(int min, int max)
@@ -494,7 +490,6 @@ public sealed class CourierSystem : EntitySystem
 
             letter.IsUrgent = false;
             _popup.PopupEntity(Loc.GetString("courier-letter-expired-popup"), letterUid, Filter.Pvs(letterUid), true, PopupType.MediumCaution);
-            Dirty(letterUid, letter);
         }
     }
 
@@ -656,7 +651,6 @@ public sealed class CourierSystem : EntitySystem
             return;
 
         pit.NextRewardTime = GetNextRewardTime(pit);
-        Dirty(uid, pit);
     }
 
     private TimeSpan GetNextRewardTime(CourierPitComponent pit)

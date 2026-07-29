@@ -20,6 +20,7 @@
     soundInsert:
       path: /Audio/Imperial/Medieval/ES_Crossbow_Fire_10_-_SFX_Producer.ogg
   - type: Gun
+    defaultSpread: 10
     resetOnHandSelected: false
     fireRate: 0.12
     selectedMode: FullAuto
@@ -479,6 +480,15 @@
     damage:
       types:
         Piercing: 23
+  - type: MedievalSoundOnInteract
+    onPick:
+      path: /Audio/Imperial/Medieval/Items/Arrows/arrow_pickup1.ogg
+      params:
+        variation: 0.2
+    onPut:
+      path: /Audio/Imperial/Medieval/Items/Arrows/arrow_put1.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent: BaseArrow

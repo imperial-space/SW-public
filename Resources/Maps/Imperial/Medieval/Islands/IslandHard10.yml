@@ -113,7 +113,6 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.25
-    - type: ImplicitRoof
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -738,7 +737,7 @@ entities:
           startTime: 0
           length: 0.6666666
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
     - type: MedievalMeleeResource
       effectSoundOnRepair: !type:SoundPathSpecifier
         path: /Audio/Imperial/Medieval/repair_stone_use.ogg
@@ -798,7 +797,7 @@ entities:
           startTime: 0
           length: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
     - type: MedievalMeleeResource
       effectSoundOnRepair: !type:SoundPathSpecifier
         path: /Audio/Imperial/Medieval/repair_stone_use.ogg
@@ -1408,14 +1407,14 @@ entities:
       pos: -27.875118,7.71618
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 48
     components:
     - type: Transform
       pos: -27.609493,7.12243
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 49
     components:
     - type: Transform
@@ -1423,7 +1422,7 @@ entities:
       pos: -27.937618,6.71618
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
 - proto: MedievalAmbientLegion
   entities:
   - uid: 513
@@ -1558,7 +1557,7 @@ entities:
       pos: -29.87544,-1.1386514
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#D4FF33]Ð¾ÑÑÑÐ¸Ð¼ÑÐ¹ (<2ÐºÐ³)[/color]'
+      current: 'Вес: [color=#D4FF33]ощутимый (<2кг)[/color]'
   - uid: 76
     components:
     - type: Transform
@@ -1566,14 +1565,14 @@ entities:
       pos: -23.095623,-0.49281788
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#D4FF33]Ð¾ÑÑÑÐ¸Ð¼ÑÐ¹ (<2ÐºÐ³)[/color]'
+      current: 'Вес: [color=#D4FF33]ощутимый (<2кг)[/color]'
   - uid: 77
     components:
     - type: Transform
       pos: -20.460205,1.2002916
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#D4FF33]Ð¾ÑÑÑÐ¸Ð¼ÑÐ¹ (<2ÐºÐ³)[/color]'
+      current: 'Вес: [color=#D4FF33]ощутимый (<2кг)[/color]'
 - proto: MedievalChestWithLootSpawner
   entities:
   - uid: 509

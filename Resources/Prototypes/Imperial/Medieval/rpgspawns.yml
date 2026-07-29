@@ -1511,6 +1511,7 @@
     - MedievalOreTopaz
     - MedievalOreSerd
     - MedievalOreAdam
+    - MedievalOreAstrolit
     chance: 1
     offset: 0
 
@@ -1713,6 +1714,144 @@
   - type: MedievalMeleeBadTarget # imperial medieval
     safeToHitGroup: ore # imperial medieval
     breakMultiplier: 10
+
+- type: entity
+  id: MedievalOreAstrolit
+  parent: BannerBase
+  name: astrolit ore vein
+  description: A rare ore
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: ore_astrolit
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 310
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.3
+        spawn:
+          MedievalAstrolitPiece:
+            min: 6
+            max: 12
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: TimedDespawn
+    lifetime: 500
+  - type: MedievalDiggAble
+  - type: MedievalMeleeBadTarget # imperial medieval
+    safeToHitGroup: ore # imperial medieval
+    breakMultiplier: 10
+
+
+- type: entity
+  name: astrolit
+  parent: BaseItem
+  id: MedievalAstrolit
+  description: rare crystall ore
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: astrolit
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Sheet
+    - Ore
+  - type: Stack
+    stackType: MedievalAstrolit
+    count: 1
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 6
+  - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
+    price:
+      Revent: 12
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 4
+        canReact: false
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 4
+  - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 4
+
+- type: stack
+  id: MedievalAstrolit
+  name: materials-astrolit
+  icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: astrolit }
+  spawn: MedievalAstrolit
+  maxCount: 30
+
+
+
+- type: entity
+  name: astrolit piece
+  parent: BaseItem
+  id: MedievalAstrolitPiece
+  description: rare crystall ore
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: astrolit_piece
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Sheet
+    - Ore
+  - type: Stack
+    stackType: MedievalAstrolitPiece
+    count: 1
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: Currency
+    price:
+      Revent: 2
+  - type: MedievalCurrency
+    price:
+      Revent: 2
+
+- type: stack
+  id: MedievalAstrolitPiece
+  name: materials-astrolit-piece
+  icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: astrolit_piece }
+  spawn: MedievalAstrolitPiece
+  maxCount: 30
 
 - type: entity
   id: MedievalOreSerd

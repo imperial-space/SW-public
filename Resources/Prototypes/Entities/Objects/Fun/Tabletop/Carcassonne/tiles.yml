@@ -24,9 +24,9 @@
   - type: Rotatable
   - type: Item
     size: Tiny
-  - type: Tag
-    tags:
-    - CarcTile
+  # - type: Tag
+  #   tags:
+  #   - CarcTile
 
 - type: entity
   parent: CarcTileBase

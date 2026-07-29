@@ -10,23 +10,23 @@
     15: good
     20: best
   modifiers:
-    PositiveAttackRate: 0.03
-    NegativeAttackRate: -0.04
+    PositiveAttackRate: 0.025
+    NegativeAttackRate: -0.055
     PositiveDashCooldownBonus: -0.1
-    NegativeDashCooldownBonus: 0.2
-    PositiveDashDistanceBonus: 0.04
-    NegativeDashDistanceBonus: -0.03
+    NegativeDashCooldownBonus: 0.5
+    PositiveDashDistanceBonus: 0.05
+    NegativeDashDistanceBonus: -0.09
     PositiveClimbDelayModifier: -0.1
     NegativeClimbDelayModifier: 0.1
     PositiveLockpickChanceModifier: 0.1
     NegativeLockpickChanceModifier: 0
     PositiveEquipDelayModifier: -0.07
     NegativeEquipDelayModifier: 0.07
-    PositiveSpreadModifier: -0.08
-    NegativeSpreadModifier: 0.05
-    PositiveStealChanceModifier: 1.5
-    NegativeStealChanceModifier: -1.5
-    PositiveLockpickLossModifier: -0.05
+    PositiveSpreadModifier: -0.25
+    NegativeSpreadModifier: 0.1
+    PositiveStealChanceModifier: 0.04
+    NegativeStealChanceModifier: -0.15
+    PositiveLockpickLossModifier: -0.09
 
 - type: skill
   id: Strength
@@ -63,16 +63,16 @@
     15: good
     20: best
   modifiers:
-    AliveHealthPerLevel: 1.5
-    WoundedHealthPerLevel: 1.5
-    MaxHealthBonus: 25
-    PositiveSlowdownModifier: 0.01
+    AliveHealthPerLevel: 3
+    WoundedHealthPerLevel: 4
+    MaxHealthBonus: 12
+    PositiveSlowdownModifier: 0.03
     PositiveSleepEffeciencyModifier: -0.03
     NegativeSleepEffeciencyModifier: 0.03
     PositiveSuffocationDamageModifier: -0.03
     NegativeSuffocationDamageModifier: 0.02
-    PositiveBloodRegenModifier: 0.03
-    NegativeBloodRegenModifier: -0.02
+    PositiveBloodRegenModifier: 0.06
+    NegativeBloodRegenModifier: -0.06
 
 - type: skill
   id: Endurance

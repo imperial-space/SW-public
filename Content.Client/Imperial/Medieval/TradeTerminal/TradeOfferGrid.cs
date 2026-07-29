@@ -233,7 +233,7 @@ public sealed class TradeOfferGrid : PanelContainer
             return;
         }
 
-        cell.AddChild(new TradeFallbackItemControl(item, GetCellSize()));
+        cell.AddChild(new TradeFallbackItemControl(item, GetCellSize(), _entityManager));
     }
 
     private void RegisterOccupiedCells(TradeItemDto item, bool canRemove)
@@ -692,10 +692,17 @@ public sealed class TradeOfferGrid : PanelContainer
 
     private sealed class TradeFallbackItemControl : TradePieceOverlay
     {
-        public TradeFallbackItemControl(TradeItemDto item, Vector2 cellSize)
+        public TradeFallbackItemControl(TradeItemDto item, Vector2 cellSize, IEntityManager entityManager)
             : base(cellSize)
         {
             var itemPixelSize = new Vector2(cellSize.X * item.GridWidth, cellSize.Y * item.GridHeight);
+
+            var layout = new LayoutContainer
+            {
+                MinSize = itemPixelSize,
+                MouseFilter = MouseFilterMode.Ignore,
+            };
+
             var panel = new PanelContainer
             {
                 MinSize = itemPixelSize,
@@ -706,23 +713,74 @@ public sealed class TradeOfferGrid : PanelContainer
                     BorderThickness = new Thickness(1),
                 },
             };
+            layout.AddChild(panel);
 
-            var label = new Label
+            var protoManager = IoCManager.Resolve<Robust.Shared.Prototypes.IPrototypeManager>();
+            var spriteSystem = entityManager.System<Robust.Client.GameObjects.SpriteSystem>();
+
+            if (!string.IsNullOrEmpty(item.PrototypeId) &&
+                protoManager.TryIndex<Robust.Shared.Prototypes.EntityPrototype>(item.PrototypeId, out var proto))
             {
-                Text = item.StackCount is > 1
-                    ? $"{item.Name} x{item.StackCount.Value}"
-                    : item.Name,
-                ClipText = true,
-                HorizontalExpand = true,
-                VerticalExpand = true,
-                HorizontalAlignment = HAlignment.Center,
-                VerticalAlignment = VAlignment.Center,
-                Margin = new Thickness(4),
-                ModulateSelfOverride = Color.FromHex("#f1e0bb"),
-            };
+                var textureRect = new TextureRect
+                {
+                    Texture = spriteSystem.Frame0(proto),
+                    TextureScale = new Vector2(2, 2),
+                    HorizontalAlignment = HAlignment.Center,
+                    VerticalAlignment = VAlignment.Center,
+                };
+                panel.AddChild(textureRect);
+            }
+            else
+            {
+                var label = new Label
+                {
+                    Text = item.Name,
+                    ClipText = true,
+                    HorizontalExpand = true,
+                    VerticalExpand = true,
+                    HorizontalAlignment = HAlignment.Center,
+                    VerticalAlignment = VAlignment.Center,
+                    Margin = new Thickness(4),
+                    ModulateSelfOverride = Color.FromHex("#f1e0bb"),
+                };
+                panel.AddChild(label);
+            }
 
-            panel.AddChild(label);
-            AddChild(panel);
+            if (item.StackCount is > 1)
+            {
+                var badge = new PanelContainer
+                {
+                    MouseFilter = MouseFilterMode.Ignore,
+                    PanelOverride = new StyleBoxFlat
+                    {
+                        BackgroundColor = Color.FromHex("#25160ccc"),
+                        BorderColor = Color.FromHex("#f0cf89"),
+                        BorderThickness = new Thickness(1),
+                        ContentMarginLeftOverride = 2,
+                        ContentMarginTopOverride = 0,
+                        ContentMarginRightOverride = 2,
+                        ContentMarginBottomOverride = 0,
+                    },
+                    Children =
+                    {
+                        new Label
+                        {
+                            Text = item.StackCount.Value.ToString(),
+                            StyleClasses = { "LabelSubText" },
+                            HorizontalAlignment = HAlignment.Center,
+                            VerticalAlignment = VAlignment.Center,
+                            ModulateSelfOverride = Color.FromHex("#fff0c8"),
+                        },
+                    },
+                };
+
+                LayoutContainer.SetAnchorAndMarginPreset(badge, LayoutContainer.LayoutPreset.TopRight, margin: 2);
+                LayoutContainer.SetGrowHorizontal(badge, LayoutContainer.GrowDirection.Begin);
+                LayoutContainer.SetGrowVertical(badge, LayoutContainer.GrowDirection.Begin);
+                layout.AddChild(badge);
+            }
+
+            AddChild(layout);
         }
     }
 

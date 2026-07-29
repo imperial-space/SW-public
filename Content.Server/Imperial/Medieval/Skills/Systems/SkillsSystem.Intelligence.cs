@@ -8,6 +8,7 @@ using Content.Server.Speech.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
+using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Content.Shared.Imperial.Medieval.Medical;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Speech;

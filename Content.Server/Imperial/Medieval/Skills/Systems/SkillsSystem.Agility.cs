@@ -19,7 +19,6 @@ public sealed partial class SkillsSystem
         SubscribeLocalEvent<SkillsComponent, TryGetAdditionalStealTargetEvent>(OnTryGetAdditionalStealTarget);
         SubscribeLocalEvent<SkillsComponent, ModifyLockpickLossChanceEvent>(OnModifyLockpickLossChance);
     }
-
     private void OnGetSpreadMod(EntityUid uid, SkillsComponent component, ref GetGunSpreadModifiersEvent args)
     {
         var (proto, level) = GetSkill(uid, AgilityId);
@@ -29,7 +28,15 @@ public sealed partial class SkillsSystem
 
         var diff = Math.Abs(level - 10);
 
-        args.Modifier = Math.Max(args.Modifier * (level > 10 ? proto.Modifiers["PositiveSpreadModifier"] : proto.Modifiers["NegativeSpreadModifier"]) * diff, 0);
+        // level > 10 — навык высокий, разброс уменьшается (PositiveSpreadModifier: -0.2)
+        // level < 10 — навык низкий, разброс увеличивается (NegativeSpreadModifier: 0.15)
+        float modifier = level > 10
+            ? proto.Modifiers["PositiveSpreadModifier"]  // -0.2
+            : proto.Modifiers["NegativeSpreadModifier"];  // 0.15
+
+        // Формула: args.Modifier * (1 + modifier * diff)
+        args.Modifier *= (1f + modifier * diff);
+        args.Modifier = Math.Max(args.Modifier, 0f);
     }
 
     private void OnGetStealChanceMod(EntityUid uid, SkillsComponent component, ref GetStealChanceModifiersEvent args)

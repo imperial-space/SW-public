@@ -52,6 +52,22 @@
   name: ship cannon
   description: A heavy naval cannon mounted on a carriage.
   components:
+  - type: Tag
+    tags:
+    - PreventShipFloorBreakage
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 400
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - LowImpassable
   - type: Sprite
     sprite: Imperial/Medieval/Cannon/ship_cannon.rsi
     state: icon
@@ -62,6 +78,9 @@
   name: field cannon
   description: A mobile artillery cannon on a carriage.
   components:
+  - type: Tag
+    tags:
+    - PreventShipFloorBreakage
   - type: Sprite
     sprite: Imperial/Medieval/Cannon/field_cannon.rsi
     state: icon

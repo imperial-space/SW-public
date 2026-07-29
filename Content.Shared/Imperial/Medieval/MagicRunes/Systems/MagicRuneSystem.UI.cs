@@ -1,5 +1,7 @@
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Content.Shared.Imperial.Medieval.MagicRunes.Data;
+using Content.Shared.Stacks;
 using Content.Shared.UserInterface;
 
 //=========================================================================
@@ -13,6 +15,10 @@ namespace Content.Shared.Imperial.Medieval.MagicRunes.Systems;
 
 public partial class MagicRuneSystem
 {
+    private List<string> _essences = new List<string> { "MagicMedievalLight", "MagicMedievalFire", "MagicMedievalEarth", "MagicMedievalVodka", "MagicMedievalDarkness" };
+    private List<string> _effectes = new List<string> { "SunstrikeSpellCastEffectMiddle", "FireWallSpellCastEffectMiddle", "SpikesSpellCastEffectBeginner", "IceDaggerSpellCastEffectBeginner", "TentaclesSpellCastEffectBeginner" };
+
+    [Dependency] private readonly SharedStackSystem _stacks = default!;
     public void InitializeUI()
     {
         SubscribeLocalEvent<MagicScrollComponent, ActivatableUIOpenAttemptEvent>(UIOpenAttempt);
@@ -51,6 +57,8 @@ public partial class MagicRuneSystem
         RecalculateScrollPower(uid, component);
         SendScrollState(uid, component, knowledge, args.Actor);
         Dirty(uid, component);
+
+        GetPlayerEssence(args.Actor);
     }
 
     private void OnScrollExplosion(EntityUid uid, MagicScrollComponent component, MagicScrollExplosionMessage args)
@@ -72,5 +80,20 @@ public partial class MagicRuneSystem
         );
 
         _uiSystem.SetUiState(scrollUid, MagicScrollUiKey.Key, state);
+    }
+
+    private void GetPlayerEssence(EntityUid user)
+    {
+        if (_net.IsClient)
+            return;
+        if (_essences.Count == 0 || _effectes.Count != _essences.Count)
+            return;
+
+        int index = _random.Next(0, _essences.Count);
+        int count = _random.Next(8, 12);
+        var essence = Spawn(_essences[index], Transform(user).Coordinates);
+        _stacks.SetCount(essence, count);
+
+        Spawn(_effectes[index], Transform(user).Coordinates);
     }
 }

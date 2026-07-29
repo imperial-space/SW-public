@@ -7,6 +7,9 @@
   components:
   - type: Transform
     anchored: true
+  - type: Tag
+    tags:
+    - PreventShipFloorBreakage
   - type: Clickable
   - type: InteractionOutline
   - type: Sprite
@@ -26,17 +29,37 @@
         mask:
         - FullTileMask
         layer:
-        - WallLayer
+        - FlimsyLayer
         density: 1000
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.MedievalAnchorVisuals.Enabled:
+      enum.MedievalAnchorVisuals.Lowered:
         base:
           True: {state: down}
           False: {state: up}
   - type: MedievalAnchor
-    Enabled: false
+  - type: Lock
+    locked: false
+    showLockVerbs: false
+    showExamine: false
+    lockOnClick: false
+    unlockOnClick: false
+    useAccess: false
+    unlockingSound: null
+    lockingSound: null
+    breakOnAccessBreaker: false
+  - type: UniversalLockable
+  - type: ItemSlots
+    slots:
+      lockSlot:
+        name: Lock
+        ejectOnBreak: true
+        insertSound: /Audio/Effects/buckle.ogg
+        ejectSound: /Audio/Effects/unbuckle.ogg
+        whitelist:
+          components:
+          - UniversalLock
 
 - type: entity
   id: WaterPump
@@ -68,7 +91,7 @@
         mask:
         - FullTileMask
         layer:
-        - WallLayer
+        - FlimsyLayer
         density: 1000
 
 - type: entity

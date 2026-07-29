@@ -22,7 +22,7 @@ namespace Content.Shared.MeleeParry.Components
         public string ParryEffectWindow = "MedievalEffectWindowParry";
 
         [ViewVariables(VVAccess.ReadWrite)]
-        public float ParryWindow = 0.5f;
+        public float ParryWindow = 0.8f;
 
         [DataField, AutoNetworkedField]
         [ViewVariables(VVAccess.ReadWrite)]

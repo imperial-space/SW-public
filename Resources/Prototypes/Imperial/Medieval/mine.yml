@@ -315,7 +315,8 @@
         - MedievalOreTopaz
         - MedievalOreSerd
         - MedievalOreAdam
-      chance: 0.34
+        - MedievalOreAstrolit
+      chance: 0.45
       offset: 0
 
 - type: entity

@@ -11,23 +11,41 @@ using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
-using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Medieval.Ships.Islands;
 
 [AdminCommand(AdminFlags.Host)]
 public sealed class SpawnIslandMapCommand : IConsoleCommand
 {
+    private static readonly EntProtoId IslandGenerationPrototypeId = "IslandRadialGenerationBase";
+
     public string Command => "spawnislandmap";
     public string Description => string.Empty;
     public string Help => string.Empty;
 
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (shell.Player is not { AttachedEntity: { } playerEntity })
             return;
+
+        if (!_prototypeManager.TryIndex<EntityPrototype>(IslandGenerationPrototypeId, out var prototype))
+        {
+            shell.WriteError($"Prototype '{IslandGenerationPrototypeId}' was not found.");
+            return;
+        }
+
+        var componentName = _componentFactory.GetComponentName<IslandRadialGenerationComponent>();
+        if (!prototype.Components.TryGetValue(componentName, out var componentEntry) ||
+            _componentFactory.GetComponent(componentEntry) is not IslandRadialGenerationComponent generation)
+        {
+            shell.WriteError($"Prototype '{IslandGenerationPrototypeId}' has no {componentName} component.");
+            return;
+        }
 
         var mapSys = _entMan.System<SharedMapSystem>();
         var transform = _entMan.System<SharedTransformSystem>();
@@ -55,20 +73,7 @@ public sealed class SpawnIslandMapCommand : IConsoleCommand
         moles[(int)Gas.Nitrogen] = 82.10312f;
         atmos.SetMapAtmosphere(mapUid, false, new GasMixture(moles, Atmospherics.T20C));
 
-        var gen = _entMan.AddComponent<IslandRadialGenerationComponent>(mapUid);
-        gen.LowIslands = new List<ResPath>
-        {
-            new("/Maps/Imperial/Medieval/Islands/IslandLow52.yml"),
-        };
-        gen.MediumIslands = new List<ResPath>
-        {
-            new("/Maps/Imperial/Medieval/Islands/IslandMedium56.yml"),
-        };
-        gen.HighIslands = new List<ResPath>
-        {
-            new("/Maps/Imperial/Medieval/Islands/IslandHard10.yml"),
-            new("/Maps/Imperial/Medieval/Islands/IslandHard24.yml"),
-        };
+        _entMan.AddComponent(mapUid, generation);
 
         mapSys.InitializeMap(mapId);
 

@@ -18,6 +18,9 @@ public sealed partial class PlayerDrowningComponent : Component
     [DataField("speedModifier")]
     public float SpeedModifier = 0.5f;
 
+    [DataField]
+    public float AppliedResistanceModifier = 1f;
+
     [DataField("drowningDamage")]
     public DamageSpecifier DrowningDamage = new()
     {

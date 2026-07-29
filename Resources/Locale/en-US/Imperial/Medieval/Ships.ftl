@@ -33,3 +33,26 @@ helm-examine-left = The helm is turned { $degrees } degrees to port
 helm-examine-center = You are holding a straight course
 helm-examine-sails-efficiency = Total sail efficiency: { $efficiency }
 helm-examine-ship-load = Ship carrying capacity: { $weight } / { $overloadCeil }
+
+ent-MedievalFlagpoleShip = корабельный флагшток
+    .desc = Позволяет выбрать флаг, что будет отображаться на столе с картой. Поднять веселого Роджера?
+    .suffix = { "Средневековье" }
+
+ent-MedievalFlagpoleShipCraft = заготовка корабельного флагштока
+    .desc = Позволяет выбрать флаг, что будет отображаться на столе с картой
+    .suffix = { "Средневековье" }
+
+ship-flagpole-color-black = Черный
+ship-flagpole-color-red = Красный
+ship-flagpole-color-white = Белый
+ship-flagpole-color-brown = Коричневый
+ship-flagpole-color-cyan = Голубой
+ship-flagpole-color-darkred = Темно-красный
+ship-flagpole-color-gray = Серый
+ship-flagpole-color-green = Зеленый
+ship-flagpole-color-orange = Оранжевый
+ship-flagpole-color-pink = Розовый
+ship-flagpole-color-purple = Фиолетовый
+ship-flagpole-color-yellow = Желтый
+ship-flagpole-color-blue = Синий
+ship-flagpole-color-none = Снять

@@ -819,6 +819,8 @@
   name: LeatherWorkingPlace
   description: It produces armor and weapon using leather wood and steel.
   components:
+  - type: MedievalRepairStation
+    repairType: Sewing
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/leather.rsi
     state: icon
@@ -851,6 +853,9 @@
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
     recipes:
+    - MedievalSewingNeedle
+    - MedievalSewingPatches
+    - MedievalSewingKit
     - MedievalClothingHeadHelmetCap
     - MedievalClothingHeadFurHat
     - MedievalCoinBag
@@ -952,6 +957,29 @@
     - MedievalOarCraft
     - SmokingPipeCraft
     - RollingPinCraft
+    - MedievalWoodenFloorRoofItem
+    - MedievalCartRecipe
+    - MedievalDecorBoxEmptyRecipe
+    - MedievalFlagpoleShipRecipe
+
+- type: entity
+  parent: MedievalFoundry
+  id: MedievalFoundryMines
+  name: foundry
+  description: It produces sheets and ingots using ores.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Lathe/foundry_mines.rsi
+    state: icon
+  - type: CP14Workbench
+    craftSpeed: 3
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 880
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -989,6 +1017,7 @@
     craftSpeed: 1
     craftSound: "/Audio/Imperial/Medieval/craft_foundry.ogg"
     recipes:
+    - MedievalAstrolitPiece
     - MedievalGlinaFormaReady
     - FoodBowlBig
     - SheetSteelMedieval
@@ -1042,6 +1071,11 @@
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
+    - RecycleCrystalToEssenceVodka
+    - RecycleCrystalToEssenceFire
+    - RecycleCrystalToEssenceLight
+    - RecycleCrystalToEssenceEarth
+    - MedievalScrollBarrier
     - MedievalManaBurnGrenade
     - MedievalGlowStone
     - MedievalCompactDefibrillator
@@ -1135,6 +1169,7 @@
   name: BlackSmith
   description: It produces armor and weapon using steel and wood.
   components:
+  - type: MedievalRepairStation
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/wood_worker.rsi
     state: icon
@@ -1172,6 +1207,9 @@
     - MedievalRivets
     - MedievalShoulder
     - ClothingEyesGlasses
+    - MedievalDoorLockT1
+    - MedievalDoorLockT2
+    - MedievalDoorLockT3
     - MedievalCatapultCraft
     - MedievalCatapultAmmoBarrel
     - MedievalCatapultAmmoBarrelGunpowder
@@ -1215,6 +1253,9 @@
     - MedievalClothingFeetForstone
     #- MedievalClothingOuterArmorUpIron2
     - MedievalHammerBlacksmith
+    - MedievalSewingNeedle
+    - MedievalBlacksmithPatches
+    - MedievalBlacksmithKit
     - MedievalIronShieldBuckler
     - MedievalSpear
     - MedievalSpearT3Steel
@@ -1264,6 +1305,7 @@
     - BarberScissors
     - MedievalGrenade
     - MedievalLintstock
+    - MedievalRamrod
     - MedievalGunpowderCharge
     - MedievalCannonballShip
     - MedievalCannonballExplosive
@@ -1356,6 +1398,9 @@
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
     recipes:
+      - MedievalSewingNeedle
+      - MedievalSewingPatches
+      - MedievalSewingKit
       - MedievalClothFromGrass
       - MedievalPaper
       - MedievalMaskFace

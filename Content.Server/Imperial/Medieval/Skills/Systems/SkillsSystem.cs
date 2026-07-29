@@ -8,6 +8,7 @@ using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
+using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Roles;
@@ -99,6 +100,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         }
 
         SetSkills(args.Mob, args.Profile.Skills);
+
+        TryGetMagicRuneComp(args.Mob);
     }
 
     private void OnSetSkillLevel(SetSkillLevelMessage msg, EntitySessionEventArgs args)
@@ -142,5 +145,14 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         UpdateAgility(frameTime);
         UpdateVitality(frameTime);
+    }
+
+    private void TryGetMagicRuneComp(EntityUid uid)
+    {
+        if (!TryComp<SkillsComponent>(uid, out var comp))
+            return;
+
+        if (comp.Levels["Intelligence"] >= 15)
+            EnsureComp<MagicRuneKnowledgeComponent>(uid);
     }
 }

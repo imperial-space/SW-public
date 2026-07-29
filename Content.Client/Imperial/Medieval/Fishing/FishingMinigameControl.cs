@@ -191,7 +191,7 @@ public sealed class FishingMinigameControl : PanelContainer
             return;
         }
 
-        if (_progress > 100f)
+        if (_progress >= 100f)
             FinishMinigame(FishingMinigameResult.Complete);
     }
 

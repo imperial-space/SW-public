@@ -5,9 +5,9 @@
   id: AchievementLegionJoin
   priority: 10
   rarity: Common
-  name: "Команда синих"
+  name: achievement-legion-becomerecruit-name
   tab: AchievementTabLegionInsurgency
-  description: "Начните свой славный (и, вероятно, короткий) путь."
+  description: achievement-legion-becomerecruit-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Cloaks/clan_eagle.rsi
     state: icon
@@ -24,8 +24,8 @@
   id: AchievementLegionRecruitCapturePoint
   priority: 10
   rarity: Common
-  name: "Пушечное мясо в деле"
-  description: "Захватите 3 контрольные точки, будучи простым рекрутом. Империя гордится тобой!"
+  name: achievement-legion-capture1-name
+  description: achievement-legion-capture1-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/leg1.rsi
     state: icon
@@ -37,7 +37,7 @@
     progressKey: legionRecruitCapturePoint
     requiredJobs:
     - "MedievalLegionRecruit"
-    requiredCount: 3
+    requiredCount: 2
 
 
 # ==========================================
@@ -48,8 +48,8 @@
   id: AchievementLegionBecomeLegionLegioner
   priority: 10
   rarity: Common
-  name: "Теперь ты в армии"
-  description: "Получите звание легионера. Уже не срочник."
+  name: achievement-legion-becomesoldier-name
+  description: achievement-legion-becomesoldier-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/leg2.rsi
     state: icon
@@ -69,8 +69,8 @@
   id: AchievementLegionLegionerCapturePoints
   priority: 11
   rarity: Common
-  name: "Имперский блицкриг"
-  description: "Внимание, марш-бросок! Захватите 4 контрольные точки за ОДИН раунд в роли легионера."
+  name: achievement-legion-capture2-name
+  description: achievement-legion-capture2-desc
   icon:
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul
@@ -83,14 +83,14 @@
     progressKey: legionLegionerCapturePointProgressiong
     requiredJobs:
     - "MedievalLegionLegioner"
-    requiredCount: 4
+    requiredCount: 3
 
 - type: achievement
   id: AchievementLegionLegionerVisiInsurgency
   priority: 12
   rarity: Common
-  name: "Сунуть нос в логово врага"
-  description: "Атакуйте базу мятежников, играя за легионера. Главное теперь — вернутся домой."
+  name: achievement-legion-attackbase-name
+  description: achievement-legion-attackbase-desc
   icon:
     sprite: /Textures/Imperial/Medieval/Interface/factions.rsi
     state: legion
@@ -113,8 +113,8 @@
   id: AchievementLegionBecomeLegionOpcion
   priority: 10
   rarity: Common
-  name: "Шаг по карьерной лестнице"
-  description: "Получите звание опциона на базе легиона. Теперь вы можете кричать на легионеров на законных основаниях."
+  name: achievement-legion-becomeopcion-name
+  description: achievement-legion-becomeopcion-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/leg2_5.rsi
     state: icon
@@ -134,8 +134,8 @@
   id: AchievementLegionOpcionGetMedal
   priority: 11
   rarity: Common
-  name: "Блестящая грудь"
-  description: "Соберите 10 медалей легиона. Главное не надорваться под их весом."
+  name: achievement-legion-get10medals-name
+  description: achievement-legion-get10medals-desc
   icon:
     sprite: Imperial/Medieval/Materials/mdv.rsi
     state: medal_legion
@@ -158,8 +158,8 @@
   id: AchievementLegionBecomeLegionTribun
   priority: 10
   rarity: Common
-  name: "Высокое начальство"
-  description: "Получите звание трибуна, посетив базу легиона. Почти сенатор, но всё еще приходится пачкать руки."
+  name: achievement-legion-becometribun-name
+  description: achievement-legion-becometribun-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/leg3.rsi
     state: icon
@@ -179,8 +179,8 @@
   id: AchievementLegionTribunDestroyObelisk
   priority: 11
   rarity: Common
-  name: "Смерть красным!"
-  description: "Найдите и уничтожьте обелиск мятежников в роли трибуна. Оставьте их без новых солдат."
+  name: achievement-legion-obeliskdestroy-name
+  description: achievement-legion-obeliskdestroy-desc
   icon:
     sprite: Imperial/Medieval/obelisks/layerobelisks.rsi
     state: state-2
@@ -199,8 +199,8 @@
   id: AchievementLegionTribunGetHelmet
   priority: 12
   rarity: Common
-  name: "Трофей с Севера"
-  description: "Добудьте шлем ярла, играя за трибуна. Отличный сувенир для вашей коллекции."
+  name: achievement-legion-tribungethelmet-name
+  description: achievement-legion-tribungethelmet-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
     state: equipped-HELMET
@@ -224,8 +224,8 @@
   id: AchievementLegionBecomeLegionLegat
   priority: 10
   rarity: Epic
-  name: "Аве мне!"
-  description: "Дослужитесь до звания легата, посетив базу легиона. Вы на самой вершине командования, Империя смотрит на вас."
+  name: achievement-legion-becomelegat-name
+  description: achievement-legion-becomelegat-desc
   icon:
     sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
     state: icon
@@ -245,8 +245,8 @@
   id: AchievementLegionLegatWinner
   priority: 11
   rarity: Epic
-  name: "Пришел, увидел, победил"
-  description: "Триумф! За ОДИН раунд в роли легата выполните всё: захватите 5 точек, уничтожьте обелиск и раздобудьте шлем ярла."
+  name: achievement-legion-winner-name
+  description: achievement-legion-winner-desc
   icon: /Textures/Imperial/Medieval/Interface/faction-leader.png
   visibility: Visible
   roundOnly: true
@@ -262,7 +262,7 @@
       MedievalClothingHeadHelmetFox4: 1
   - !type:CapturePointCondition
     progressKey: legatWinnerCapturePointsProgression
-    requiredCount: 5
+    requiredCount: 4
     requiredJobs:
     - "MedievalLegionLegat"
   - !type:DestroyFactionObeliskCondition

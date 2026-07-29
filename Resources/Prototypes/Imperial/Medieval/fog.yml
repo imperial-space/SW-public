@@ -1,0 +1,59 @@
+- type: entity
+  id: FogHeavyUnpassable
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/fog.rsi
+    state: fog_heavy
+    norot: true
+    drawdepth: OverMobs
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 1500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts:
+        - "Destruction"
+  - type: Occluder
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+- type: entity
+  id: FogHeavyPassable
+  parent: FogHeavyUnpassable
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - Opaque
+
+- type: entity
+  id: FogLitePassable
+  parent: FogHeavyPassable
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/fog.rsi
+    state: fog_lite
+    drawdepth: OverMobs
+    norot: true
+  - type: Occluder
+    enabled: false

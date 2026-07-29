@@ -573,6 +573,14 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalSign10Craft
+  productEntity: MdvShopMedievalSign10Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalPrisonGrilleCraft
   productEntity: MedievalPrisonGrilleCraft
   cost:

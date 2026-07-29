@@ -1,0 +1,9 @@
+
+- type: entity
+  id: MedievalWeakKudzu
+  parent: Kudzu
+  suffix: No growth
+  components:
+    - type: Kudzu
+      spreadChance: 0
+    - type: Occluder

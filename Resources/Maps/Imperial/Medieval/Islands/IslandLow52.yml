@@ -92,7 +92,6 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.25
-    - type: ImplicitRoof
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -2077,49 +2076,49 @@ entities:
       pos: -5.062166,12.260359
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 369
     components:
     - type: Transform
       pos: 1.7050772,16.983173
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 370
     components:
     - type: Transform
       pos: 1.9286368,16.411177
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 371
     components:
     - type: Transform
       pos: -10.977495,-8.370447
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 372
     components:
     - type: Transform
       pos: -16.775818,2.2529874
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 373
     components:
     - type: Transform
       pos: -12.606625,5.216158
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
   - uid: 374
     components:
     - type: Transform
       pos: -12.783709,9.618158
       parent: 1
     - type: RDWeightExamine
-      current: 'ÐÐµÑ: [color=#7DFF66]Ð»ÐµÐ³ÐºÐ¸Ð¹ (<200Ð³)[/color]'
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
 - proto: MedievalTimedSpawnerMedievalMobCrabDevil
   entities:
   - uid: 24

@@ -45,6 +45,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -58,6 +88,14 @@
   - type: RDWeight
     value: 1.5
   - type: Tag
+  - type: Clothing
+    equipDelay: 0.05
+    unequipDelay: 0.05
+    stripDelay: 0.05
+    equipSound:
+      path: /Audio/Imperial/Medieval/clothing_equip.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/clothing_unequip.ogg
 
 
 # Heavy helmets
@@ -282,6 +320,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -325,6 +393,36 @@
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.93
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 80
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -343,6 +441,36 @@
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.93
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 80
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -360,6 +488,36 @@
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.93
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 80
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -467,6 +625,36 @@
         Blunt: 0.97
         Slash: 0.97
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.7
+      Slash:
+        coefficient: 0.8
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -490,6 +678,36 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 70
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -522,6 +740,32 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
   - type: Meltable
     resourceCount: 2
   - type: Tag
@@ -549,6 +793,32 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 160
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
   - type: Meltable
     resourceCount: 2
   - type: Tag
@@ -575,6 +845,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: Tag
@@ -605,6 +905,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -680,6 +1010,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -1105,6 +1465,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -1209,6 +1599,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -1557,6 +1977,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -1657,6 +2107,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -1710,6 +2190,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -1763,6 +2273,32 @@
         Blunt: 0.75
         Slash: 0.75
         Piercing: 0.8
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 200
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
   - type: ExplosionResistance
     damageCoefficient: 0.8
   - type: Tag
@@ -1801,6 +2337,32 @@
         Blunt: 0.82
         Slash: 0.82
         Piercing: 0.82
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 200
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
   - type: ExplosionResistance
     damageCoefficient: 0.8
   - type: Tag
@@ -1846,6 +2408,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
@@ -1899,6 +2491,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader

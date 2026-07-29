@@ -1,4 +1,4 @@
-role-type-crew-aligned-name = Член экипажа
+role-type-crew-aligned-name = Житель
 role-type-solo-antagonist-name = Одиночный Антагонист
 role-type-team-antagonist-name = Командный Антагонист
 role-type-free-agent-name = Свободный агент

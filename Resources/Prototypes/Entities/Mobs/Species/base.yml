@@ -267,8 +267,8 @@
   - type: MedievalMobTrigger
     fixtureId: "medieval-spawner"
   - type: Mana
-    maxMana: 100
-    regen: 0.25
+    maxMana: 60
+    regen: 0.1
   - type: SSDFree
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames

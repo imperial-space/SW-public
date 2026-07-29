@@ -26,6 +26,54 @@
             ]
         },
         {
+            "name": "brownflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "cyanflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "darkredflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "grayflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "greenflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "orangeflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "pinkflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "purpleflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
             "name": "yellowflag",
             "delays": [
                 [0.1, 0.1, 0.1, 0.1]

@@ -18,5 +18,5 @@ public sealed partial class CartographerRadarMarkerComponent : Component
     public string? RsiPath = "/Textures/Imperial/Medieval/Ships/CartographerTableMarkers.rsi";
 
     [DataField]
-    public string? State { get; private set; } = "circle32x32";
+    public string? State { get; set; } = "circle32x32";
 }

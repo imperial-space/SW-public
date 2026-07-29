@@ -29,9 +29,9 @@
     quickInsert: true
     areaInsert: true
     maxItemSize: Tiny
-    whitelist:
-      tags:
-        - CarcTile
+    # whitelist:
+    #   tags:
+    #     - CarcTile
   - type: Dumpable
  
 - type: entity

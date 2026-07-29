@@ -50,6 +50,36 @@
         Piercing: 0.7
         Heat: 0.75
         Cold: 0.45
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 135
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.15
+      Slash:
+        coefficient: 0.125
+      Piercing:
+        coefficient: 0.275
+      Heat:
+        coefficient: 0.2
+    brokenResistances:
+      Blunt:
+        coefficient: 0.9
+      Slash:
+        coefficient: 0.9
+      Piercing:
+        coefficient: 0.9
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 0.8
+      Slash: 1.25
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.7
   - type: Item
@@ -92,6 +122,36 @@
         Piercing: 0.77
         Heat: 0.75
         Cold: 0.72
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 185
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.15
+      Slash:
+        coefficient: 0.125
+      Piercing:
+        coefficient: 0.275
+      Heat:
+        coefficient: 0.4
+    brokenResistances:
+      Blunt:
+        coefficient: 0.9
+      Slash:
+        coefficient: 0.9
+      Piercing:
+        coefficient: 0.9
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 0.8
+      Slash: 1.25
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.85
   - type: Item
@@ -137,6 +197,32 @@
         Piercing: 0.36
         Heat: 0.45
         Cold: 0.75
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 480
+    repairType: Smithing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.095
+      Slash:
+        coefficient: 0.06
+      Piercing:
+        coefficient: 0.095
+      Heat:
+        coefficient: 0.3
+    brokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.8
+      Piercing:
+        coefficient: 0.8
+      Heat:
+        coefficient: 0.8
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 0.8
+      Heat: 1
   - type: StaminaResistance
     damageCoefficient: 0.45
   - type: ClothingSpeedModifier
@@ -181,6 +267,36 @@
         Piercing: 0.73
         Heat: 0.78
         Cold: 0.85
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 215
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.125
+      Slash:
+        coefficient: 0.085
+      Piercing:
+        coefficient: 0.22
+      Heat:
+        coefficient: 0.2
+    brokenResistances:
+      Blunt:
+        coefficient: 0.9
+      Slash:
+        coefficient: 0.9
+      Piercing:
+        coefficient: 0.9
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 0.8
+      Slash: 1.25
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.87
   - type: ClothingSpeedModifier
@@ -279,6 +395,36 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 100
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.75
+      Piercing:
+        coefficient: 0.85
+      Heat:
+        coefficient: 0.6
+    brokenResistances:
+      Blunt:
+        coefficient: 0.95
+      Slash:
+        coefficient: 0.95
+      Piercing:
+        coefficient: 0.95
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 1.1
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: Item
     size: Normal
   - type: ExplosionResistance

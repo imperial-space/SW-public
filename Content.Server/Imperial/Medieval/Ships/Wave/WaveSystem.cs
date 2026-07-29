@@ -7,7 +7,6 @@ using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Hull;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Maps;
-using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
@@ -31,7 +30,6 @@ public sealed class WaveSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedShipHullSystem _shipHull = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
 
@@ -125,7 +123,7 @@ public sealed class WaveSystem : EntitySystem
         return false;
     }
 
-    private void HandleWaveImpact(
+    internal void HandleWaveImpact(
         EntityUid wave,
         WaveComponent component,
         EntityUid targetEntity,
@@ -173,20 +171,7 @@ public sealed class WaveSystem : EntitySystem
                 if (tile.Tile.IsEmpty || !_shipHull.TryGetDamageStage(tile.Tile.TypeId, out _))
                     continue;
 
-                _tileContents.Clear();
-                _lookup.GetEntitiesInTile(tile, _tileContents);
-
-                var blockedByWall = false;
-                foreach (var tileEntity in _tileContents)
-                {
-                    if (!_tags.HasTag(tileEntity, "Wall"))
-                        continue;
-
-                    blockedByWall = true;
-                    break;
-                }
-
-                if (blockedByWall)
+                if (_shipHull.IsBreakagePrevented(tile, _tileContents))
                     continue;
 
                 var delta = tileCoordinates.Position - centerTilePos.Position;

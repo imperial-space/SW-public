@@ -1060,6 +1060,9 @@
     intensitySlope: 10
     maxIntensity: 50
     canCreateVacuum: false
+  - type: CartographerRadarMarker
+    zoomScaling: true
+    radius: 0.05
 
 - type: entity
   id: BulletCannonBallExplosive
@@ -1074,6 +1077,10 @@
     triggerKey: trigger
     fillPrototype: PelletClusterLethal
     capacity: 5
+  - type: CartographerRadarMarker
+    zoomScaling: true
+    radius: 0.05
+    color: red
 
 - type: entity
   id: GrapplingHook

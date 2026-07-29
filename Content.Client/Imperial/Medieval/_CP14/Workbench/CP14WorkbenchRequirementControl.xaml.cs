@@ -48,7 +48,7 @@ public sealed partial class CP14WorkbenchRequirementControl : Control
         if (_craftable)
             return;
 
-        Button.ModulateSelfOverride = Color.FromHex("#302622");
+        Button.ModulateSelfOverride = Color.FromHex("#3A2E29");
     }
 
     private void UpdateName()

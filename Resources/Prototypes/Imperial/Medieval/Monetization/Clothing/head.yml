@@ -49,3 +49,55 @@
     sprite: Imperial/Medieval/Monetization/Clothing/Head/hat4.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalPassHat5
+  name: MedievalPassHat
+  description: MedievalPassHat
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/hat5.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/hat5.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalPassHat6
+  name: MedievalPassHat
+  description: MedievalPassHat
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/hat6.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/hat6.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalPassHat7
+  name: MedievalPassHat
+  description: MedievalPassHat
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/hat7.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/hat7.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalPassHat8
+  name: MedievalPassHat
+  description: MedievalPassHat
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/hat8.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/hat8.rsi
+  - type: Item
+    size: Normal

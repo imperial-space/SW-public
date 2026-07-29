@@ -45,6 +45,7 @@ public sealed class StorageSystem : SharedStorageSystem
         component.StorageOpenSound = state.StorageOpenSound;
         component.StorageCloseSound = state.StorageCloseSound;
         component.DefaultStorageOrientation = state.DefaultStorageOrientation;
+        component.ShowVerb = state.ShowVerb; // Imperial Medieval
 
         _oldStoredItems.Clear();
 

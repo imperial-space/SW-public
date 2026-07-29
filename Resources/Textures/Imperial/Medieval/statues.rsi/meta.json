@@ -1,0 +1,24 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by discord: Prazatus Spritus",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+  "states":
+  [
+    {
+      "name": "hero"
+    },
+    {
+      "name": "hero_broken"
+    },
+    {
+      "name": "wizard"
+    },
+    {
+      "name": "wizard_broken"
+    }
+  ]
+}

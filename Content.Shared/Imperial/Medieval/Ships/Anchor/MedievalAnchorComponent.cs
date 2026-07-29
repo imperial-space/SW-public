@@ -6,31 +6,32 @@ namespace Content.Shared.Imperial.Medieval.Ships.Anchor;
 [Serializable, NetSerializable]
 public enum MedievalAnchorVisuals : byte
 {
-    Enabled
+    Lowered
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MedievalAnchorComponent : Component
 {
-    [DataField("Enabled"), AutoNetworkedField]
-    public bool Enabled;
+    [DataField, AutoNetworkedField]
+    public bool Lowered;
 
-    [DataField("baseUseTime")]
+    [DataField]
     public float BaseUseTime = 11f;
 
-    [DataField("strengthUseTimeModifier")]
+    [DataField]
     public float StrengthUseTimeModifier = 0.3f;
 
     [DataField]
-    public TimeSpan? AnchorUsedTime;
+    public float LoweringTimeMultiplier = 0.1f;
 
-
-    [DataField("islandSearchRange")]
+    [DataField]
     public float IslandSearchRange = 25f;
 
-    [DataField("wavesTimer")]
-    public float WavesTimer = 120f;
+    [DataField]
+    public float WaveDisableDelay = 120f;
 
-    [DataField, AutoNetworkedField]
-    public EntityUid? User;
+    public TimeSpan? WavesDisabledAt;
+
+    [AutoNetworkedField]
+    public EntityUid? ActiveUser;
 }

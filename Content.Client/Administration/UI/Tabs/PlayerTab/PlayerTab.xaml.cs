@@ -23,8 +23,8 @@ public sealed partial class PlayerTab : Control
 
     private const string ArrowUp = "↑";
     private const string ArrowDown = "↓";
-    private readonly Color _altColor = Color.FromHex("#292B38");
-    private readonly Color _defaultColor = Color.FromHex("#2F2F3B");
+    private readonly Color _altColor = Color.FromHex("#302622");
+    private readonly Color _defaultColor = Color.FromHex("#3A2E29");
     private readonly AdminSystem _adminSystem;
     private IReadOnlyList<PlayerInfo> _players = new List<PlayerInfo>();
 

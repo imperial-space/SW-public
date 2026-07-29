@@ -75,7 +75,7 @@
 
 - type: entity
   id: MedievalMyrmexTerraAltar
-  name: Алтарь Терры
+  name: алтарь Терры
   description: Алтарь богини Терры, который позволяет мирмексам становится сильнее, потребляя больше блюд
   parent: MedievalBaseMyrmexPowerReceiverStructure
   placement:
@@ -104,12 +104,12 @@
         - HighImpassable
         - BulletImpassable
   - type: Construction
-    graph: MedievalMyrmexTerraAltar
+    graph: MTerraAltar
     node: medievalMyrmexTerraAltar
 
 - type: entity
   id: MedievalMyrmexRadar
-  name: Подземный радар
+  name: подземный радар
   description: Радар, который оповещает мирмексов о вторжении чужаков в их пещеру
   parent: MedievalBaseMyrmexPowerReceiverStructure
   placement:
@@ -153,12 +153,12 @@
         - HighImpassable
         - BulletImpassable
   - type: Construction
-    graph: MedievalMyrmexRadar
+    graph: MRadar
     node: medievalMyrmexRadar
 
 - type: entity
   id: MedievalMyrmexLifeSource
-  name: Источник Жизни
+  name: источник Жизни
   description: Фонтан с живым существом в центре, извергающим кровь при подаче энергии, увеличивая здоровье мирмексов
   parent: MedievalBaseMyrmexPowerReceiverStructure
   placement:
@@ -185,5 +185,5 @@
     drawRate: 550
     voltage: High
   - type: Construction
-    graph: MedievalMyrmexLifeSource
+    graph: MLifeSource
     node: medievalMyrmexLifeSource

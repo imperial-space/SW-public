@@ -1,0 +1,6055 @@
+meta:
+  format: 7
+  category: Map
+  engineVersion: 267.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 06/28/2026 23:37:55
+  entityCount: 474
+maps:
+- 1
+grids:
+- 2
+orphans: []
+nullspace: []
+tilemap:
+  1: Space
+  0: woodenfloor
+entities:
+- proto: ""
+  entities:
+  - uid: 1
+    components:
+    - type: MetaData
+      name: Map Entity
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: GridTree
+    - type: Broadphase
+    - type: OccluderTree
+  - uid: 2
+    components:
+    - type: MetaData
+      name: grid
+    - type: Transform
+      pos: -0.5,-0.4375
+      parent: 1
+    - type: MapGrid
+      chunks:
+        0,0:
+          ind: 0,0
+          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
+          version: 7
+        -1,0:
+          ind: -1,0
+          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+          version: 7
+        -1,-1:
+          ind: -1,-1
+          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+          version: 7
+        0,-1:
+          ind: 0,-1
+          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
+          version: 7
+        -1,1:
+          ind: -1,1
+          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
+          version: 7
+        0,1:
+          ind: 0,1
+          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
+          version: 7
+    - type: Broadphase
+    - type: Physics
+      bodyStatus: InAir
+      fixedRotation: False
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures: {}
+    - type: OccluderTree
+    - type: SpreaderGrid
+    - type: Shuttle
+      dampingModifier: 0.25
+    - type: GridPathfinding
+    - type: Gravity
+      gravityShakeSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/alert.ogg
+    - type: DecalGrid
+      chunkCollection:
+        version: 2
+        nodes:
+        - node:
+            color: '#FFFFFFFF'
+            id: WoodTrimThinBox
+          decals:
+            1: -1,4
+            2: 0,4
+            3: 1,4
+            4: 1,3
+            5: 0,3
+            6: -1,3
+            19: -4,3
+            20: -2,4
+            21: 2,4
+            22: 4,3
+            23: 0,15
+            24: -2,0
+            25: -2,0
+            28: -1,1
+            29: 0,1
+            30: 1,1
+            31: -1,0
+            33: 1,0
+            46: 5,13
+            47: 5,14
+            48: 4,14
+            49: 4,13
+            50: 3,13
+            51: 3,14
+            52: -5,14
+            53: -4,14
+            54: -3,14
+            56: -4,13
+            57: -5,13
+            74: -3.015008,13.021377
+            87: 0,16
+            88: -2,14
+            89: -2,13
+            90: 2,14
+            91: 2,13
+            112: 6,-2
+            113: 6,-3
+            114: -6,-2
+            115: -6,-3
+            116: -6,1
+            117: -6,0
+            120: -6,6
+            121: -6,5
+            122: 6,6
+            123: 6,5
+            124: 4,-7
+            125: 6,0
+            126: 6,1
+            127: -3,17
+            128: -2,18
+            129: 2,18
+            130: 3,17
+            131: 0,14
+            132: -3,0
+            134: 4,4
+            135: -4,4
+            136: -4,16
+            137: 4,16
+            139: -6,-1
+            140: -6,7
+            141: 6,7
+            142: 6,-1
+            143: 2,0
+            144: 3,0
+            145: -4,-10
+            146: -4,-11
+            147: 4,-10
+            148: 4,-11
+        - node:
+            color: '#FFFFFFFF'
+            id: WoodTrimThinLineE
+          decals:
+            7: -1.5894823,4.001205
+            8: -1.2978157,3.9907885
+            9: -0.56864893,3.9907885
+            10: -0.28739893,3.9907885
+            11: 0.4105177,4.001205
+            12: 0.68135107,3.9907885
+            13: 0.42093444,3.001205
+            14: 0.68135107,3.001205
+            15: -0.28739893,3.0220385
+            16: -0.5582323,3.0220385
+            17: -1.2873989,2.9907885
+            18: -1.5894823,3.0116217
+            75: 4.667822,14.000544
+            76: 4.417822,13.990127
+            77: 4.667822,13.000544
+            78: 4.417822,13.010961
+            79: 3.730322,13.000544
+            80: 3.4490716,13.010961
+            81: 3.7407384,13.979711
+            82: 3.4490716,14.000544
+            83: 2.7329357,14.000544
+            84: 2.7329357,13.021377
+            85: 2.4516857,13.010961
+            86: 2.4516857,13.979711
+        - node:
+            color: '#FFFFFFFF'
+            id: WoodTrimThinLineW
+          decals:
+            59: -4.720453,13.979711
+            61: -4.4600363,13.979711
+            63: -4.4600363,13.010961
+            64: -4.720453,13.000544
+            65: -3.712875,13.010961
+            67: -3.4524581,12.990127
+            68: -3.712875,13.979711
+            69: -3.4420414,13.979711
+            70: -2.7441745,14.010961
+            71: -2.4629245,14.010961
+            72: -2.4629245,13.021377
+            73: -2.7545912,13.031794
+            92: -1.7192899,14.013236
+            93: -1.4172065,14.013236
+            94: -1.4172065,13.023652
+            95: -1.7192899,13.023652
+            96: 2.2702937,13.023652
+            97: 2.5307102,13.002819
+            98: 2.5307102,13.981986
+            99: 2.2598767,13.992402
+    - type: GridAtmosphere
+      version: 2
+      data:
+        chunkSize: 4
+    - type: GasTileOverlay
+    - type: RadiationGridResistance
+- proto: Bookshelf
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: 4.5,-4.5
+      parent: 2
+- proto: CandleGreenInfinite
+  entities:
+  - uid: 7
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.2761936,-4.244599
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 8
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.2226605,-5.281942
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 9
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.764327,-5.500692
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: CandleInfinite
+  entities:
+  - uid: 10
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.765777,-4.244599
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: CandlePurpleInfinite
+  entities:
+  - uid: 11
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.6616101,-4.4737654
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: CandleWall
+  entities:
+  - uid: 12
+    components:
+    - type: Transform
+      pos: 1.5,-9.5
+      parent: 2
+  - uid: 13
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,-6.5
+      parent: 2
+  - uid: 14
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-7.5
+      parent: 2
+  - uid: 15
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-6.5
+      parent: 2
+  - uid: 16
+    components:
+    - type: Transform
+      pos: 4.5,11.5
+      parent: 2
+  - uid: 17
+    components:
+    - type: Transform
+      pos: -3.5,11.5
+      parent: 2
+- proto: CaptainShipMegaphone
+  entities:
+  - uid: 18
+    components:
+    - type: Transform
+      pos: -0.509387,0.68976843
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: ChairWood
+  entities:
+  - uid: 19
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.6139274,-5.361271
+      parent: 2
+- proto: ChemistryEmptyBottle01
+  entities:
+  - uid: 27
+    components:
+    - type: Transform
+      parent: 20
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138048.5628513
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+    - type: InsideEntityStorage
+- proto: ChemistryEmptyBottle02
+  entities:
+  - uid: 21
+    components:
+    - type: Transform
+      parent: 20
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138048.5628513
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+    - type: InsideEntityStorage
+- proto: ChemistryEmptyBottle03
+  entities:
+  - uid: 22
+    components:
+    - type: Transform
+      parent: 20
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138048.5628513
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+    - type: InsideEntityStorage
+- proto: ChemistryEmptyBottle04
+  entities:
+  - uid: 24
+    components:
+    - type: Transform
+      parent: 20
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138048.5628513
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+    - type: InsideEntityStorage
+- proto: ChurchBell
+  entities:
+  - uid: 238
+    components:
+    - type: MetaData
+      name: морской колокол
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-2.5
+      parent: 2
+- proto: CoffeeTableWood
+  entities:
+  - uid: 37
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-4.5
+      parent: 2
+  - uid: 38
+    components:
+    - type: Transform
+      pos: 1.5,-4.5
+      parent: 2
+  - uid: 39
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,10.5
+      parent: 2
+- proto: CurtainsBlueOpen
+  entities:
+  - uid: 229
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-7.5
+      parent: 2
+- proto: DrinkAleBottleFullGrowler
+  entities:
+  - uid: 363
+    components:
+    - type: Transform
+      parent: 360
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138392.6958405
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: DrinkRumBottleFull
+  entities:
+  - uid: 362
+    components:
+    - type: Transform
+      parent: 360
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138377.6291889
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: DrinkWineBottleFull
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      parent: 360
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138371.7958614
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: FishingRodT1
+  entities:
+  - uid: 45
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 46
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 47
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 48
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+- proto: FoodCheese
+  entities:
+  - uid: 445
+    components:
+    - type: Transform
+      pos: -1.4822557,-9.204533
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: FoodCheeseSlice
+  entities:
+  - uid: 461
+    components:
+    - type: Transform
+      pos: -1.659339,-9.479796
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: FoodCondimentBottleBBQ
+  entities:
+  - uid: 376
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138281.4959517
+      enabled: True
+- proto: FoodCondimentBottleEnzyme
+  entities:
+  - uid: 375
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138273.5959596
+      enabled: True
+  - uid: 379
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138301.529265
+      enabled: True
+- proto: FoodCondimentBottleVinegar
+  entities:
+  - uid: 378
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.4959407
+      enabled: True
+- proto: FoodKebabSkewer
+  entities:
+  - uid: 55
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.52254605,-6.7852087
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Piercing: 8
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 56
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.38712937,-6.8581257
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Piercing: 8
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 382
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.22046268,-6.941459
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Piercing: 8
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: FoodMeatSalami
+  entities:
+  - uid: 462
+    components:
+    - type: Transform
+      pos: -2.4096584,-9.229649
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 6
+      baseWieldBonus:
+        types:
+          Blunt: 2
+      brokenWieldDamage: {}
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+      upWieldDamage: {}
+      fullWieldDamage: {}
+      almostFullWieldDamage: {}
+      damagedWieldDamage: {}
+      badlyDamagedWieldDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 463
+    components:
+    - type: Transform
+      pos: -2.4513254,-9.625482
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 6
+      baseWieldBonus:
+        types:
+          Blunt: 2
+      brokenWieldDamage: {}
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+      upWieldDamage: {}
+      fullWieldDamage: {}
+      almostFullWieldDamage: {}
+      damagedWieldDamage: {}
+      badlyDamagedWieldDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: FoodPlateMuffinTin
+  entities:
+  - uid: 49
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 54
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+- proto: FoodPlateTin
+  entities:
+  - uid: 50
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 53
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+- proto: Gauze
+  entities:
+  - uid: 57
+    components:
+    - type: Transform
+      pos: 3.5722742,10.744079
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#ADFF2F]небольшой (<700г)[/color]'
+- proto: GroundTobacco
+  entities:
+  - uid: 113
+    components:
+    - type: Transform
+      parent: 112
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138590.7289758
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 114
+    components:
+    - type: Transform
+      parent: 112
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138590.7289758
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 115
+    components:
+    - type: Transform
+      parent: 112
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138590.7289758
+      enabled: True
+    - type: InsideEntityStorage
+- proto: HideHairAction
+  entities:
+  - uid: 30
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 28
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 28
+      entIcon: invalid
+      attachedEntity: 28
+      icon:
+        entity: ClothingHeadHelmetBone
+  - uid: 31
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 28
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 28
+      entIcon: 29
+      attachedEntity: 28
+      icon:
+        entity: MedievalClothingHeadHelmetLegionRecruit
+  - uid: 61
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 60
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 60
+      entIcon: invalid
+      attachedEntity: 60
+      icon:
+        entity: MedievalClothingHeadHelmetSaladLight
+  - uid: 63
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 60
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 60
+      entIcon: 62
+      attachedEntity: 60
+      icon:
+        entity: MedievalClothingHeadHelmetLegionLegioner
+- proto: KitchenKnife
+  entities:
+  - uid: 67
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5303576,-7.1882114
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Slash: 8
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: Mannequin
+  entities:
+  - uid: 28
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,11.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        jumpsuit: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 32
+        outerClothing: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 33
+        neck: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 34
+        mask: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        eyes: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        head: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 29
+        suitstorage: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        back: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        actions: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 30
+          - 31
+    - type: ActionsContainer
+    - type: Actions
+      actions:
+      - 30
+      - 31
+  - uid: 60
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,10.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        jumpsuit: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 64
+        outerClothing: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 65
+        neck: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 66
+        mask: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        eyes: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        head: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 62
+        suitstorage: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        back: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        actions: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 61
+          - 63
+    - type: ActionsContainer
+    - type: Actions
+      actions:
+      - 61
+      - 63
+- proto: MaterialWoodPlank
+  entities:
+  - uid: 465
+    components:
+    - type: Transform
+      parent: 464
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFBF00]довольно тяжелый (<20кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138638.9289276
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 466
+    components:
+    - type: Transform
+      parent: 464
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFBF00]довольно тяжелый (<20кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138638.9289276
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 467
+    components:
+    - type: Transform
+      parent: 464
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFBF00]довольно тяжелый (<20кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138638.9289276
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 468
+    components:
+    - type: Transform
+      parent: 464
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFBF00]довольно тяжелый (<20кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138638.9289276
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 469
+    components:
+    - type: Transform
+      parent: 464
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFBF00]довольно тяжелый (<20кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138638.9289276
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 470
+    components:
+    - type: Transform
+      parent: 464
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFBF00]довольно тяжелый (<20кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138638.9289276
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 471
+    components:
+    - type: Transform
+      parent: 464
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFBF00]довольно тяжелый (<20кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138638.9289276
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 472
+    components:
+    - type: Transform
+      parent: 464
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFBF00]довольно тяжелый (<20кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138638.9289276
+      enabled: True
+    - type: InsideEntityStorage
+- proto: MedievalAirlockAtmosLocked
+  entities:
+  - uid: 103
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-5.5
+      parent: 2
+    - type: DoorHackable
+      numbers:
+      - 2
+      - 0
+      - 2
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+  - uid: 104
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-3.5
+      parent: 2
+    - type: DoorHackable
+      numbers:
+      - 4
+      - 5
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+  - uid: 105
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-5.5
+      parent: 2
+    - type: DoorHackable
+      numbers:
+      - 2
+      - 2
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+  - uid: 106
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-8.5
+      parent: 2
+  - uid: 117
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,8.5
+      parent: 2
+    - type: DoorHackable
+      numbers:
+      - 0
+      - 4
+      - 4
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+  - uid: 358
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,8.5
+      parent: 2
+    - type: DoorHackable
+      numbers:
+      - 2
+      - 4
+      - 1
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+- proto: Medievalalchem_dispenser
+  entities:
+  - uid: 107
+    components:
+    - type: Transform
+      pos: 5.5,11.5
+      parent: 2
+- proto: MedievalAnchorUp
+  entities:
+  - uid: 108
+    components:
+    - type: Transform
+      pos: 0.5,14.5
+      parent: 2
+- proto: MedievalAncientOakCloset
+  entities:
+  - uid: 20
+    components:
+    - type: Transform
+      pos: 5.5,9.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 26
+          - 23
+          - 22
+          - 21
+          - 27
+          - 25
+          - 24
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 109
+    components:
+    - type: Transform
+      pos: -2.5,-7.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 111
+          - 110
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 112
+    components:
+    - type: Transform
+      pos: 3.5,-4.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 113
+          - 114
+          - 115
+          - 116
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: MedievalBannerBlue
+  entities:
+  - uid: 41
+    components:
+    - type: Transform
+      pos: 1.5,19.5
+      parent: 2
+  - uid: 101
+    components:
+    - type: Transform
+      pos: -0.5,19.5
+      parent: 2
+  - uid: 211
+    components:
+    - type: Transform
+      pos: -2.5,1.5
+      parent: 2
+  - uid: 215
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 2
+- proto: MedievalBarrelAle
+  entities:
+  - uid: 119
+    components:
+    - type: Transform
+      pos: 1.5,-11.5
+      parent: 2
+- proto: MedievalBarrelNoth
+  entities:
+  - uid: 120
+    components:
+    - type: Transform
+      pos: 1.5,-7.5
+      parent: 2
+  - uid: 128
+    components:
+    - type: Transform
+      pos: 0.5,-11.5
+      parent: 2
+- proto: MedievalBarrelRum
+  entities:
+  - uid: 121
+    components:
+    - type: Transform
+      pos: -0.5,-11.5
+      parent: 2
+- proto: MedievalBeaker
+  entities:
+  - uid: 122
+    components:
+    - type: Transform
+      pos: -0.7531878,-6.072785
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 123
+    components:
+    - type: Transform
+      pos: -0.44068778,-6.010285
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: MedievalBloodChemistryBottle
+  entities:
+  - uid: 26
+    components:
+    - type: Transform
+      parent: 20
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138048.5628513
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+    - type: InsideEntityStorage
+- proto: MedievalBolt
+  entities:
+  - uid: 212
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.4034607,10.235941
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 213
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.3201275,10.329691
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 216
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.4972107,10.142191
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 217
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.6534607,10.058857
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: MedievalBrutepack
+  entities:
+  - uid: 124
+    components:
+    - type: Transform
+      pos: 3.2910242,10.697204
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#ADFF2F]небольшой (<700г)[/color]'
+- proto: MedievalCampfire
+  entities:
+  - uid: 125
+    components:
+    - type: Transform
+      pos: -0.5,-4.5
+      parent: 2
+- proto: MedievalCannonballShip
+  entities:
+  - uid: 199
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 200
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 201
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 202
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 203
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+- proto: MedievalChest
+  entities:
+  - uid: 70
+    components:
+    - type: Transform
+      pos: -3.5,11.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 100
+          - 99
+          - 98
+          - 97
+          - 96
+          - 95
+          - 94
+          - 93
+          - 92
+          - 91
+          - 90
+          - 89
+          - 88
+          - 87
+          - 86
+          - 85
+          - 84
+          - 83
+          - 82
+          - 81
+          - 80
+          - 79
+          - 78
+          - 77
+          - 76
+          - 75
+          - 74
+          - 73
+          - 72
+          - 71
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 129
+    components:
+    - type: Transform
+      pos: -2.5,11.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 159
+          - 158
+          - 157
+          - 156
+          - 155
+          - 154
+          - 153
+          - 152
+          - 151
+          - 150
+          - 149
+          - 148
+          - 147
+          - 146
+          - 145
+          - 144
+          - 143
+          - 142
+          - 141
+          - 140
+          - 139
+          - 138
+          - 137
+          - 136
+          - 135
+          - 134
+          - 133
+          - 132
+          - 131
+          - 130
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 174
+    components:
+    - type: Transform
+      pos: 3.5,-10.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 204
+          - 203
+          - 202
+          - 201
+          - 200
+          - 199
+          - 198
+          - 197
+          - 196
+          - 195
+          - 194
+          - 193
+          - 192
+          - 191
+          - 190
+          - 189
+          - 188
+          - 187
+          - 186
+          - 185
+          - 184
+          - 183
+          - 182
+          - 181
+          - 180
+          - 179
+          - 178
+          - 177
+          - 176
+          - 175
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: MedievalChest4
+  entities:
+  - uid: 42
+    components:
+    - type: Transform
+      pos: 1.5,-6.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 50
+          - 49
+          - 45
+          - 46
+          - 47
+          - 48
+          - 43
+          - 44
+          - 51
+          - 52
+          - 53
+          - 54
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 464
+    components:
+    - type: Transform
+      pos: 2.5,-10.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 472
+          - 471
+          - 465
+          - 466
+          - 467
+          - 468
+          - 469
+          - 470
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: MedievalClothingHeadHelmetLegionLegioner
+  entities:
+  - uid: 62
+    components:
+    - type: Transform
+      parent: 60
+    - type: Clothing
+      inSlotFlag: HEAD
+      inSlot: head
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<3кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 137855.6297109
+      enabled: True
+- proto: MedievalClothingHeadHelmetLegionRecruit
+  entities:
+  - uid: 29
+    components:
+    - type: Transform
+      parent: 28
+    - type: Clothing
+      inSlotFlag: HEAD
+      inSlot: head
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 137876.6963565
+      enabled: True
+- proto: MedievalClothingNeckCloakClanEagle
+  entities:
+  - uid: 34
+    components:
+    - type: Transform
+      parent: 28
+    - type: Clothing
+      inSlotFlag: NECK
+      inSlot: neck
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 137998.9295676
+      enabled: True
+  - uid: 66
+    components:
+    - type: Transform
+      parent: 60
+    - type: Clothing
+      inSlotFlag: NECK
+      inSlot: neck
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138002.7628971
+      enabled: True
+- proto: MedievalClothingOuterArmorBrigantin
+  entities:
+  - uid: 33
+    components:
+    - type: Transform
+      parent: 28
+    - type: Clothing
+      inSlotFlag: OUTERCLOTHING
+      inSlot: outerClothing
+    - type: ManaRegen
+      equipee: 28
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFD700]увесистый (<12кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 137909.3629905
+      enabled: True
+- proto: MedievalClothingOuterArmorIronCuirassLight
+  entities:
+  - uid: 65
+    components:
+    - type: Transform
+      parent: 60
+    - type: Clothing
+      inSlotFlag: OUTERCLOTHING
+      inSlot: outerClothing
+    - type: ManaRegen
+      equipee: 60
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFD700]увесистый (<10кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 137917.8963153
+      enabled: True
+- proto: MedievalClothingUniformJumpsuitShitCloth26
+  entities:
+  - uid: 32
+    components:
+    - type: Transform
+      parent: 28
+    - type: Clothing
+      inSlotFlag: INNERCLOTHING
+      inSlot: jumpsuit
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 137892.8963403
+      enabled: True
+  - uid: 64
+    components:
+    - type: Transform
+      parent: 60
+    - type: Clothing
+      inSlotFlag: INNERCLOTHING
+      inSlot: jumpsuit
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 137888.2630116
+      enabled: True
+- proto: MedievalCompass
+  entities:
+  - uid: 160
+    components:
+    - type: Transform
+      pos: 1.6717298,1.2536993
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: MedievalDecorBox
+  entities:
+  - uid: 162
+    components:
+    - type: Transform
+      pos: -1.5,-9.5
+      parent: 2
+  - uid: 164
+    components:
+    - type: Transform
+      pos: -2.5,-9.5
+      parent: 2
+  - uid: 165
+    components:
+    - type: Transform
+      pos: -4.5,9.5
+      parent: 2
+- proto: MedievalDecorShipSailShipup
+  entities:
+  - uid: 166
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,3.5
+      parent: 2
+  - uid: 167
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,4.5
+      parent: 2
+  - uid: 168
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,4.5
+      parent: 2
+  - uid: 169
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,3.5
+      parent: 2
+  - uid: 170
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,15.5
+      parent: 2
+- proto: MedievalDecorTorchColone
+  entities:
+  - uid: 171
+    components:
+    - type: Transform
+      pos: -0.5,20.5
+      parent: 2
+  - uid: 172
+    components:
+    - type: Transform
+      pos: 1.5,20.5
+      parent: 2
+- proto: MedievalFalshionT3Legion
+  entities:
+  - uid: 40
+    components:
+    - type: Transform
+      pos: -2.3097107,9.569274
+      parent: 2
+    - type: MedievalMeleeResource
+      baseDamage:
+        groups: null
+        types:
+          Slash: 18
+          ParryAble: 1
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 0.9090908
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 173
+    components:
+    - type: Transform
+      pos: -2.580544,9.663024
+      parent: 2
+    - type: MedievalMeleeResource
+      baseDamage:
+        groups: null
+        types:
+          Slash: 18
+          ParryAble: 1
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 0.9090908
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: MedievalFlinter
+  entities:
+  - uid: 69
+    components:
+    - type: Transform
+      pos: -4.7576275,9.64219
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 205
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.6034608,-2.2165635
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 206
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.2507062,-2.0811467
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 207
+    components:
+    - type: Transform
+      pos: -1.7090392,-2.2998967
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 220
+    components:
+    - type: Transform
+      pos: -4.6742945,9.79844
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: MedievalGhostWind
+  entities:
+  - uid: 209
+    components:
+    - type: Transform
+      pos: -1.0052925,12.474396
+      parent: 2
+- proto: MedievalGrapeshot
+  entities:
+  - uid: 71
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 72
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 73
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 74
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 75
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 76
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 77
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 78
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 79
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 80
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 81
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 82
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 83
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 84
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 85
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 86
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 87
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 88
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 89
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 90
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 91
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 92
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 93
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 94
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 95
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 96
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 97
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 98
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 99
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 100
+    components:
+    - type: Transform
+      parent: 70
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138292.529274
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 175
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 176
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 177
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 178
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 179
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 180
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 181
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 182
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 183
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 204
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#D4FF33]ощутимый (<2.5кг)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+- proto: MedievalGunpowderCharge
+  entities:
+  - uid: 130
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 131
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 132
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 133
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 134
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 135
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 136
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 137
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 138
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 139
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 140
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 141
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 142
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 143
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 144
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 145
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 146
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 147
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 148
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 149
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 150
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 151
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 152
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 153
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 154
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 155
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 156
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 157
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: InsideEntityStorage
+  - uid: 158
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 159
+    components:
+    - type: Transform
+      parent: 129
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138291.0626088
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 184
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 185
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 186
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 187
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 188
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 189
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 190
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 191
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 192
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 193
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 194
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 195
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 196
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 197
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 198
+    components:
+    - type: Transform
+      parent: 174
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138641.4955917
+      enabled: True
+    - type: InsideEntityStorage
+- proto: MedievalHandheldGPSBasic
+  entities:
+  - uid: 222
+    components:
+    - type: Transform
+      pos: 1.3800632,0.73286605
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: MedievalHealthChemistryBottle
+  entities:
+  - uid: 23
+    components:
+    - type: Transform
+      parent: 20
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138048.5628513
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+    - type: InsideEntityStorage
+- proto: MedievalKotel
+  entities:
+  - uid: 214
+    components:
+    - type: Transform
+      pos: 5.7072344,10.633723
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFFF00]умеренный (<5кг)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 224
+    components:
+    - type: Transform
+      pos: 1.5280623,-4.2811184
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFFF00]умеренный (<5кг)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: MedievalMedicalBed
+  entities:
+  - uid: 226
+    components:
+    - type: Transform
+      pos: -3.5,-5.5
+      parent: 2
+  - uid: 227
+    components:
+    - type: Transform
+      pos: -2.5,-4.5
+      parent: 2
+  - uid: 228
+    components:
+    - type: Transform
+      pos: -3.5,-6.5
+      parent: 2
+  - uid: 230
+    components:
+    - type: Transform
+      pos: 3.5,11.5
+      parent: 2
+  - uid: 231
+    components:
+    - type: Transform
+      pos: 3.5,9.5
+      parent: 2
+- proto: MedievalMedicalBed2
+  entities:
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 3.5,-7.5
+      parent: 2
+- proto: MedievalMopBucket
+  entities:
+  - uid: 110
+    components:
+    - type: Transform
+      parent: 109
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MedievalMopItem
+  entities:
+  - uid: 111
+    components:
+    - type: Transform
+      parent: 109
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138947.5619523
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 10
+      baseWieldBonus:
+        types:
+          Blunt: 5
+      brokenWieldDamage: {}
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+      upWieldDamage: {}
+      fullWieldDamage: {}
+      almostFullWieldDamage: {}
+      damagedWieldDamage: {}
+      badlyDamagedWieldDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+    - type: InsideEntityStorage
+- proto: MedievalOar
+  entities:
+  - uid: 232
+    components:
+    - type: Transform
+      pos: -0.5919857,-2.2734947
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1.5384615
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Piercing: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 233
+    components:
+    - type: Transform
+      pos: -0.4774022,-2.0859947
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1.5384615
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Piercing: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 234
+    components:
+    - type: Transform
+      pos: -0.64406896,-2.450578
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1.5384615
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Piercing: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: MedievalPosterTeamBasedBlul
+  entities:
+  - uid: 3
+    components:
+    - type: Transform
+      pos: -5.5,12.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 4
+    components:
+    - type: Transform
+      pos: 4.5,-11.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 35
+    components:
+    - type: Transform
+      pos: 6.5,12.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 36
+    components:
+    - type: Transform
+      pos: 2.5,-8.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 68
+    components:
+    - type: Transform
+      pos: -3.5,-11.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 102
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,8.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 126
+    components:
+    - type: Transform
+      pos: -4.5,-3.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 127
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,8.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 223
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 225
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 235
+    components:
+    - type: Transform
+      pos: 5.5,-3.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 236
+    components:
+    - type: Transform
+      pos: -1.5,-8.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+- proto: MedievalPosterWallShield2
+  entities:
+  - uid: 6
+    components:
+    - type: Transform
+      pos: -4.5,12.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 474
+    components:
+    - type: Transform
+      pos: -2.5,12.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+- proto: MedievalRadChemistryBottle
+  entities:
+  - uid: 25
+    components:
+    - type: Transform
+      parent: 20
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138048.5628513
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+    - type: InsideEntityStorage
+- proto: MedievalRamrod
+  entities:
+  - uid: 58
+    components:
+    - type: Transform
+      pos: 2.0218391,-2.3183615
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 219
+    components:
+    - type: Transform
+      pos: 2.282256,-2.4016948
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 237
+    components:
+    - type: Transform
+      pos: 2.1780891,-2.266278
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 239
+    components:
+    - type: Transform
+      pos: 2.1034608,-2.3623967
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: MedievalShipCannon
+  entities:
+  - uid: 118
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,7.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 161
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,7.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 208
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-0.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 240
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-0.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 241
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,17.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 242
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,6.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 243
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,18.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 244
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,18.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 245
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,17.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 246
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,1.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 247
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,0.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 248
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,0.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 249
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,1.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 250
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,5.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 251
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,6.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 252
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,5.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 383
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,16.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+  - uid: 444
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,16.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+    - type: ContainerContainer
+      containers:
+        cannon-ammo: !type:ContainerSlot {}
+- proto: MedievalShipWindow
+  entities:
+  - uid: 253
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-12.5
+      parent: 2
+  - uid: 254
+    components:
+    - type: Transform
+      pos: -4.5,-5.5
+      parent: 2
+  - uid: 255
+    components:
+    - type: Transform
+      pos: 5.5,-5.5
+      parent: 2
+  - uid: 256
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,10.5
+      parent: 2
+  - uid: 257
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,10.5
+      parent: 2
+- proto: MedievalSilverCup
+  entities:
+  - uid: 364
+    components:
+    - type: Transform
+      parent: 360
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138407.4958257
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 365
+    components:
+    - type: Transform
+      parent: 360
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138407.8958253
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 366
+    components:
+    - type: Transform
+      parent: 360
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138408.9958242
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 367
+    components:
+    - type: Transform
+      parent: 360
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138412.0958211
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: MedievalSteeringMapt2
+  entities:
+  - uid: 258
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-6.5
+      parent: 2
+  - uid: 259
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,0.5
+      parent: 2
+  - uid: 260
+    components:
+    - type: Transform
+      pos: 0.5,16.5
+      parent: 2
+  - uid: 261
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,0.5
+      parent: 2
+  - uid: 262
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,4.5
+      parent: 2
+  - uid: 263
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,4.5
+      parent: 2
+- proto: MedievalSteeringMapt4
+  entities:
+  - uid: 264
+    components:
+    - type: Transform
+      pos: -0.5,1.5
+      parent: 2
+- proto: MedievalSteeringWheel
+  entities:
+  - uid: 265
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 2
+- proto: MedievalStockadeHighBlek
+  entities:
+  - uid: 266
+    components:
+    - type: Transform
+      pos: -2.5,-8.5
+      parent: 2
+  - uid: 267
+    components:
+    - type: Transform
+      pos: -1.5,-12.5
+      parent: 2
+  - uid: 268
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-12.5
+      parent: 2
+  - uid: 269
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-12.5
+      parent: 2
+  - uid: 270
+    components:
+    - type: Transform
+      pos: 2.5,-12.5
+      parent: 2
+  - uid: 271
+    components:
+    - type: Transform
+      pos: -1.5,-11.5
+      parent: 2
+  - uid: 272
+    components:
+    - type: Transform
+      pos: -2.5,-11.5
+      parent: 2
+  - uid: 273
+    components:
+    - type: Transform
+      pos: 2.5,-11.5
+      parent: 2
+  - uid: 274
+    components:
+    - type: Transform
+      pos: 3.5,-11.5
+      parent: 2
+  - uid: 275
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-6.5
+      parent: 2
+  - uid: 276
+    components:
+    - type: Transform
+      pos: -1.5,-8.5
+      parent: 2
+  - uid: 277
+    components:
+    - type: Transform
+      pos: 3.5,-8.5
+      parent: 2
+  - uid: 278
+    components:
+    - type: Transform
+      pos: -3.5,-8.5
+      parent: 2
+  - uid: 279
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,12.5
+      parent: 2
+  - uid: 280
+    components:
+    - type: Transform
+      pos: 4.5,-8.5
+      parent: 2
+  - uid: 281
+    components:
+    - type: Transform
+      pos: 4.5,-7.5
+      parent: 2
+  - uid: 282
+    components:
+    - type: Transform
+      pos: 5.5,-7.5
+      parent: 2
+  - uid: 283
+    components:
+    - type: Transform
+      pos: -3.5,-7.5
+      parent: 2
+  - uid: 284
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-7.5
+      parent: 2
+  - uid: 285
+    components:
+    - type: Transform
+      pos: -3.5,-11.5
+      parent: 2
+  - uid: 286
+    components:
+    - type: Transform
+      pos: 4.5,-11.5
+      parent: 2
+  - uid: 287
+    components:
+    - type: Transform
+      pos: -4.5,-7.5
+      parent: 2
+  - uid: 288
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-8.5
+      parent: 2
+  - uid: 289
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-7.5
+      parent: 2
+  - uid: 290
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-4.5
+      parent: 2
+  - uid: 291
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-3.5
+      parent: 2
+  - uid: 292
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-3.5
+      parent: 2
+  - uid: 293
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-6.5
+      parent: 2
+  - uid: 294
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-4.5
+      parent: 2
+  - uid: 295
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-3.5
+      parent: 2
+  - uid: 296
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-3.5
+      parent: 2
+  - uid: 297
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-3.5
+      parent: 2
+  - uid: 298
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-3.5
+      parent: 2
+  - uid: 299
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-6.5
+      parent: 2
+  - uid: 300
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-3.5
+      parent: 2
+  - uid: 301
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-4.5
+      parent: 2
+  - uid: 302
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-4.5
+      parent: 2
+  - uid: 303
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-8.5
+      parent: 2
+  - uid: 304
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,9.5
+      parent: 2
+  - uid: 305
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-3.5
+      parent: 2
+  - uid: 306
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-3.5
+      parent: 2
+  - uid: 307
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,12.5
+      parent: 2
+  - uid: 308
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-3.5
+      parent: 2
+  - uid: 309
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,12.5
+      parent: 2
+  - uid: 310
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,9.5
+      parent: 2
+  - uid: 311
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,11.5
+      parent: 2
+  - uid: 312
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,12.5
+      parent: 2
+  - uid: 313
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,10.5
+      parent: 2
+  - uid: 314
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,11.5
+      parent: 2
+  - uid: 315
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,8.5
+      parent: 2
+  - uid: 316
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,12.5
+      parent: 2
+  - uid: 317
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,12.5
+      parent: 2
+  - uid: 318
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,8.5
+      parent: 2
+  - uid: 319
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-6.5
+      parent: 2
+  - uid: 320
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,8.5
+      parent: 2
+  - uid: 321
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,9.5
+      parent: 2
+  - uid: 322
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,11.5
+      parent: 2
+  - uid: 323
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,9.5
+      parent: 2
+  - uid: 324
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,10.5
+      parent: 2
+  - uid: 325
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,11.5
+      parent: 2
+  - uid: 326
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,8.5
+      parent: 2
+  - uid: 327
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,12.5
+      parent: 2
+  - uid: 328
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-8.5
+      parent: 2
+  - uid: 329
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,12.5
+      parent: 2
+  - uid: 330
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,8.5
+      parent: 2
+  - uid: 331
+    components:
+    - type: Transform
+      pos: -4.5,8.5
+      parent: 2
+- proto: MedievalWalllamp
+  entities:
+  - uid: 332
+    components:
+    - type: Transform
+      pos: -2.5,7.5
+      parent: 2
+  - uid: 333
+    components:
+    - type: Transform
+      pos: 3.5,7.5
+      parent: 2
+  - uid: 334
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-2.5
+      parent: 2
+  - uid: 335
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-2.5
+      parent: 2
+  - uid: 336
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,13.5
+      parent: 2
+  - uid: 337
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,13.5
+      parent: 2
+- proto: MedievalWeaponCrossbow
+  entities:
+  - uid: 359
+    components:
+    - type: Transform
+      pos: -2.518044,10.569274
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#FFD700]увесистый (<15кг)[/color]'
+- proto: MedievalWeaponTurretNanoTrasenCraft
+  entities:
+  - uid: 59
+    components:
+    - type: Transform
+      pos: 2.475172,-9.395359
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 381
+    components:
+    - type: Transform
+      pos: 1.5585055,-9.374525
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+  - uid: 473
+    components:
+    - type: Transform
+      pos: 3.3814223,-9.374525
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: Ointment
+  entities:
+  - uid: 338
+    components:
+    - type: Transform
+      pos: 3.6816492,10.478454
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#ADFF2F]небольшой (<700г)[/color]'
+- proto: PosterUSSP
+  entities:
+  - uid: 218
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-7.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+- proto: ReagentContainerFlour
+  entities:
+  - uid: 373
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138262.3959708
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 374
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138266.3959668
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: ReagentContainerOliveoil
+  entities:
+  - uid: 377
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138286.52928
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: ReagentContainerRice
+  entities:
+  - uid: 371
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138259.7626401
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 372
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138260.0959731
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: ReagentContainerSugar
+  entities:
+  - uid: 369
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138255.9626439
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+  - uid: 370
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138257.1293094
+      enabled: True
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 0
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: RollingPin
+  entities:
+  - uid: 339
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.6241076,-7.5007114
+      parent: 2
+    - type: UseDelay
+      delays:
+        default:
+          endTime: 0
+          startTime: 0
+          length: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
+      baseDamage:
+        types:
+          Blunt: 7
+      upDamage: {}
+      fullDamage: {}
+      almostFullDamage: {}
+      damagedDamage: {}
+      badlyDamagedDamage: {}
+      brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
+- proto: ScarlattoPlatform
+  entities:
+  - uid: 340
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,1.5
+      parent: 2
+  - uid: 341
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,1.5
+      parent: 2
+  - uid: 342
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 2
+  - uid: 343
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 2
+  - uid: 344
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 2
+  - uid: 345
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,5.5
+      parent: 2
+  - uid: 346
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,5.5
+      parent: 2
+  - uid: 347
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,5.5
+      parent: 2
+  - uid: 348
+    components:
+    - type: Transform
+      pos: -2.5,0.5
+      parent: 2
+  - uid: 349
+    components:
+    - type: Transform
+      pos: 3.5,0.5
+      parent: 2
+  - uid: 350
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,5.5
+      parent: 2
+  - uid: 351
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,5.5
+      parent: 2
+- proto: ScarlattoPlatformCorner
+  entities:
+  - uid: 352
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-2.5
+      parent: 2
+  - uid: 353
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-2.5
+      parent: 2
+  - uid: 354
+    components:
+    - type: Transform
+      pos: -1.5,0.5
+      parent: 2
+  - uid: 355
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,0.5
+      parent: 2
+- proto: ScarlattoPlatformCornerSmall
+  entities:
+  - uid: 356
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,2.5
+      parent: 2
+  - uid: 357
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,2.5
+      parent: 2
+- proto: ShelfBar
+  entities:
+  - uid: 360
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-6.5
+      parent: 2
+    - type: Storage
+      storedItems:
+        361:
+          position: 0,0
+          _rotation: South
+        362:
+          position: 2,0
+          _rotation: South
+        363:
+          position: 4,0
+          _rotation: South
+        364:
+          position: 0,3
+          _rotation: South
+        365:
+          position: 1,3
+          _rotation: South
+        366:
+          position: 2,3
+          _rotation: South
+        367:
+          position: 3,3
+          _rotation: South
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 361
+          - 362
+          - 363
+          - 364
+          - 365
+          - 366
+          - 367
+    - type: Fixtures
+      fixtures: {}
+- proto: ShelfKitchen
+  entities:
+  - uid: 368
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-4.5
+      parent: 2
+    - type: Storage
+      storedItems:
+        369:
+          position: 0,0
+          _rotation: South
+        370:
+          position: 1,0
+          _rotation: South
+        371:
+          position: 2,0
+          _rotation: South
+        372:
+          position: 3,0
+          _rotation: South
+        373:
+          position: 4,0
+          _rotation: South
+        374:
+          position: 5,0
+          _rotation: South
+        375:
+          position: 0,3
+          _rotation: South
+        376:
+          position: 1,3
+          _rotation: South
+        377:
+          position: 2,3
+          _rotation: South
+        378:
+          position: 3,3
+          _rotation: South
+        379:
+          position: 4,3
+          _rotation: South
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 369
+          - 370
+          - 371
+          - 372
+          - 373
+          - 374
+          - 375
+          - 376
+          - 377
+          - 378
+          - 379
+    - type: Fixtures
+      fixtures: {}
+- proto: ShelfWood
+  entities:
+  - uid: 210
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,9.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 221
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,11.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 380
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-8.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+- proto: SmokingPipeFilledTobacco
+  entities:
+  - uid: 116
+    components:
+    - type: Transform
+      parent: 112
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138590.7289758
+      enabled: True
+    - type: InsideEntityStorage
+- proto: StairWood
+  entities:
+  - uid: 384
+    components:
+    - type: Transform
+      pos: 0.5,23.5
+      parent: 2
+  - uid: 385
+    components:
+    - type: Transform
+      pos: 0.5,22.5
+      parent: 2
+  - uid: 386
+    components:
+    - type: Transform
+      pos: 0.5,21.5
+      parent: 2
+  - uid: 387
+    components:
+    - type: Transform
+      pos: 0.5,20.5
+      parent: 2
+  - uid: 388
+    components:
+    - type: Transform
+      pos: 0.5,9.5
+      parent: 2
+  - uid: 389
+    components:
+    - type: Transform
+      pos: 1.5,10.5
+      parent: 2
+  - uid: 390
+    components:
+    - type: Transform
+      pos: -0.5,9.5
+      parent: 2
+  - uid: 391
+    components:
+    - type: Transform
+      pos: 1.5,11.5
+      parent: 2
+  - uid: 392
+    components:
+    - type: Transform
+      pos: 0.5,10.5
+      parent: 2
+  - uid: 393
+    components:
+    - type: Transform
+      pos: 1.5,9.5
+      parent: 2
+  - uid: 394
+    components:
+    - type: Transform
+      pos: -0.5,10.5
+      parent: 2
+  - uid: 395
+    components:
+    - type: Transform
+      pos: 0.5,11.5
+      parent: 2
+  - uid: 396
+    components:
+    - type: Transform
+      pos: -0.5,11.5
+      parent: 2
+  - uid: 397
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,7.5
+      parent: 2
+  - uid: 398
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,6.5
+      parent: 2
+  - uid: 399
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,7.5
+      parent: 2
+  - uid: 400
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,6.5
+      parent: 2
+  - uid: 401
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-0.5
+      parent: 2
+  - uid: 402
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-1.5
+      parent: 2
+  - uid: 403
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,-0.5
+      parent: 2
+  - uid: 404
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,-1.5
+      parent: 2
+  - uid: 405
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,4.5
+      parent: 2
+  - uid: 406
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,3.5
+      parent: 2
+  - uid: 407
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,2.5
+      parent: 2
+  - uid: 408
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,4.5
+      parent: 2
+  - uid: 409
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,3.5
+      parent: 2
+  - uid: 410
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,2.5
+      parent: 2
+- proto: SteeringOar
+  entities:
+  - uid: 411
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-9.5
+      parent: 2
+  - uid: 412
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-9.5
+      parent: 2
+  - uid: 413
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-10.5
+      parent: 2
+  - uid: 414
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-10.5
+      parent: 2
+  - uid: 415
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-1.5
+      parent: 2
+  - uid: 416
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-2.5
+      parent: 2
+  - uid: 417
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-2.5
+      parent: 2
+  - uid: 418
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-1.5
+      parent: 2
+- proto: Syringe
+  entities:
+  - uid: 419
+    components:
+    - type: Transform
+      pos: 5.2524085,10.799806
+      parent: 2
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий (<200г)[/color]'
+- proto: TableCounterWood
+  entities:
+  - uid: 421
+    components:
+    - type: Transform
+      pos: -0.5,-6.5
+      parent: 2
+  - uid: 422
+    components:
+    - type: Transform
+      pos: -0.5,-7.5
+      parent: 2
+  - uid: 423
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 2
+  - uid: 424
+    components:
+    - type: Transform
+      pos: 1.5,1.5
+      parent: 2
+  - uid: 425
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 2
+  - uid: 426
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
+      parent: 2
+  - uid: 427
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 2
+  - uid: 428
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 2
+  - uid: 429
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 2
+- proto: TableFancyBlue
+  entities:
+  - uid: 420
+    components:
+    - type: Transform
+      pos: 4.5,-5.5
+      parent: 2
+- proto: TableWood
+  entities:
+  - uid: 430
+    components:
+    - type: Transform
+      pos: -2.5,9.5
+      parent: 2
+  - uid: 431
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,10.5
+      parent: 2
+  - uid: 432
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,10.5
+      parent: 2
+- proto: WallDirectionalWood
+  entities:
+  - uid: 433
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-9.5
+      parent: 2
+  - uid: 434
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-10.5
+      parent: 2
+  - uid: 435
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-9.5
+      parent: 2
+  - uid: 436
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-10.5
+      parent: 2
+- proto: WaterPump
+  entities:
+  - uid: 437
+    components:
+    - type: Transform
+      pos: -1.5,0.5
+      parent: 2
+  - uid: 438
+    components:
+    - type: Transform
+      pos: 2.5,0.5
+      parent: 2
+- proto: WoodenSupportWall
+  entities:
+  - uid: 439
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,12.5
+      parent: 2
+  - uid: 440
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,8.5
+      parent: 2
+  - uid: 441
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,8.5
+      parent: 2
+  - uid: 442
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,12.5
+      parent: 2
+- proto: WoodRailingCornerScarlatto
+  entities:
+  - uid: 443
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,14.5
+      parent: 2
+  - uid: 446
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,14.5
+      parent: 2
+  - uid: 447
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,20.5
+      parent: 2
+  - uid: 448
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,20.5
+      parent: 2
+- proto: WoodRailingCornerSmallScarlatto
+  entities:
+  - uid: 449
+    components:
+    - type: Transform
+      pos: -3.5,14.5
+      parent: 2
+  - uid: 450
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,14.5
+      parent: 2
+- proto: WoodRailingScarlatto
+  entities:
+  - uid: 451
+    components:
+    - type: Transform
+      pos: -5.5,2.5
+      parent: 2
+  - uid: 452
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,4.5
+      parent: 2
+  - uid: 453
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,4.5
+      parent: 2
+  - uid: 454
+    components:
+    - type: Transform
+      pos: 6.5,2.5
+      parent: 2
+  - uid: 455
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,15.5
+      parent: 2
+  - uid: 456
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,13.5
+      parent: 2
+  - uid: 457
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,15.5
+      parent: 2
+  - uid: 458
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,13.5
+      parent: 2
+  - uid: 459
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,19.5
+      parent: 2
+  - uid: 460
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,19.5
+      parent: 2
+- proto: Worm
+  entities:
+  - uid: 43
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#A8FF99]невесомый (<5г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 44
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#A8FF99]невесомый (<5г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 51
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#A8FF99]невесомый (<5г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+  - uid: 52
+    components:
+    - type: Transform
+      parent: 42
+    - type: Physics
+      canCollide: False
+    - type: RDWeightExamine
+      current: 'Вес: [color=#A8FF99]невесомый (<5г)[/color]'
+    - type: TrashClear
+      willBeDespawnedTime: 138642.7622571
+      enabled: True
+    - type: InsideEntityStorage
+...

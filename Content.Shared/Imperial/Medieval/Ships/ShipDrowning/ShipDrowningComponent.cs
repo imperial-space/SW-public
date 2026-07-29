@@ -29,6 +29,5 @@ public sealed partial class ShipDrowningComponent : Component
     public Vector2 VisualWaterOffset;
     public bool VisualDataInitialized;
 
-
-    public TimeSpan? DisableWavesTime = null;
+    public TimeSpan? WavesDisabledAt;
 }

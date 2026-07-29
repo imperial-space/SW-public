@@ -541,9 +541,35 @@
         Slash: 0.42
         Piercing: 0.45
         Heat: 0.35
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 410
+    repairType: Smithing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.11
+      Slash:
+        coefficient: 0.08
+      Piercing:
+        coefficient: 0.125
+      Heat:
+        coefficient: 0.3
+    brokenResistances:
+      Blunt:
+        coefficient: 0.8
+      Slash:
+        coefficient: 0.8
+      Piercing:
+        coefficient: 0.8
+      Heat:
+        coefficient: 0.8
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 1.2
+      Slash: 0.8
+      Heat: 1
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.94
+    sprintModifier: 0.94
   - type: QuestItem
     contractName: "любая пластинчатая или прочная железная броня"
   # Imperial Medieval End

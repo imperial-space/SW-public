@@ -779,7 +779,7 @@
     damage:
       types:
         Slash: 7
-        Piercing: 6
+        Piercing: 1
         Structural: 16
         ParryAble: 1
     resetOnHandSelected: false
@@ -1652,6 +1652,69 @@
     resourceCount: 4
 
 - type: entity
+  name: falshion
+  parent: [ BaseItem, BaseOneHandedCharged ]
+  id: MedievalFalshionRusty
+  description: An ancient war blade.
+  components:
+  - type: RDWeight
+    value: 2
+  - type: QuestItem
+    contractName: "любые одноручные мечи"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_sword_rusty.rsi
+    state: icon
+  - type: MeleeParry
+    parryChanse: 0.7
+  - type: MeleeWeapon
+    clickDamageModifier: 1.15
+    wideAnimationRotation: -140
+    attackRate: 0.9
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    damage:
+      types:
+        Slash: 12.5
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/sword_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.4
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_sword_rusty.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+    equipSound:
+      path: /Audio/Imperial/Medieval/sword_uneqip.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/sword_eqip.ogg
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 6
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+
+- type: entity
   name: dagger
   parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerT3
@@ -1810,6 +1873,97 @@
   - type: Meltable
     resourceCount: 4
 
+
+- type: entity
+  name: medieval spear
+  parent: [ BaseItem, BaseSpearCharged ]
+  id: MedievalSpearRusty
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Spear
+  - type: RDWeight
+    value: 4
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_spear_rusty.rsi
+    netsync: false
+    state: spear
+  - type: MeleeParry
+    parryChanse: 0.45
+  - type: MeleeWeapon
+    clickDamageModifier: 1.28
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    range: 2.25
+    damage:
+      types:
+        Piercing: 6
+        ParryAble: 1
+    angle: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1.8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.7
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Wieldable
+    #wieldTime: 0.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 15
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+
 - type: entity
   name: mace
   parent: [ BaseItem, BaseCrushingCharged ]
@@ -1876,6 +2030,61 @@
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 3
+
+- type: entity
+  name: mace
+  parent: [ BaseItem, BaseCrushingCharged ]
+  id: MedievalMaceRusty
+  description: An ancient war blade.
+  components:
+  - type: RDWeight
+    value: 2
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  # - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_mace_rusty.rsi
+    state: icon
+  - type: MeleeParry
+    parryChanse: 0.1
+  - type: MeleeWeapon
+    clickDamageModifier: 1.26
+    wideAnimationRotation: -140
+    attackRate: 1.1
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    damage:
+      types:
+        Blunt: 5.5
+        Piercing: 3.5
+        ParryAble: 1
+    resetOnHandSelected: false
+  - type: Item
+    size: Normal
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_mace_rusty.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: StaminaDamageOnHit
+    damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
 
 - type: entity
   name: mace
@@ -2067,7 +2276,7 @@
     attackRate: 0.35
     damage:
       types:
-        Piercing: 6
+        Piercing: 1
         Slash: 6
         Structural: 2
         ParryAble: 1
@@ -2081,7 +2290,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 6
+        Blunt: 1
         Structural: 9
         Slash: 11
   - type: Item
@@ -2154,7 +2363,7 @@
     attackRate: 0.4
     damage:
       types:
-        Piercing: 10
+        Piercing: 1
         Slash: 11.7
         Structural: 3
         ParryAble: 1
@@ -2168,7 +2377,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 9
+        Blunt: 1
         Structural: 17
         Slash: 12
   - type: Item
@@ -4163,6 +4372,86 @@
   - type: Meltable
     resourceCount: 3
 
+
+- type: entity
+  name: dagger
+  parent: [ BaseKnife, BaseOneHandedCharged ]
+  id: MedievalShortSwordRusty
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: RDWeight
+    value: 1.5
+  - type: QuestItem
+    contractName: "любые одноручные мечи"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_short_sword_rusty.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/iron_short_sword_rusty.rsi
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.29
+    #resetOnHandSelected: false
+    attackRate: 1
+    range: 1.4
+    damage:
+      types:
+        Slash: 11
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/sword_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.4
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 13
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+    - Knife
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_short_sword_rusty.rsi
+    slots:
+    - belt
+    quickEquip: false
+    equipSound:
+      path: /Audio/Imperial/Medieval/sword_uneqip.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/sword_eqip.ogg
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+
 - type: entity
   name: short sword
   parent: MedievalShortSword
@@ -4407,6 +4696,87 @@
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 3
+
+
+- type: entity
+  name: dagger
+  parent: [ BaseKnife, BaseOneHandedCharged ]
+  id: MedievalSaberRusty
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: RDWeight
+    value: 1.7
+  - type: QuestItem
+    contractName: "любые одноручные мечи"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_saber_rusty.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Medieval/Melee/iron_saber_rusty.rsi
+  - type: MeleeParry
+    parryChanse: 0.62
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    range: 1.42
+    clickDamageModifier: 0.6
+    wideAnimationRotation: -140
+    attackRate: 1
+    damage:
+      types:
+        Slash: 13
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/sword_swing.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 4
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+    - Knife
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_saber_rusty.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+    equipSound:
+      path: /Audio/Imperial/Medieval/sword_uneqip.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/sword_eqip.ogg
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+
 
 - type: entity
   name: dagger

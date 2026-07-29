@@ -21,6 +21,8 @@
   - type: MedievalSpikeTarget # imperial medieval
     enabled: false
   - type: Mana
+    maxMana: 150
+    regen: 1
     maxManaRaceModifier: 1.5
     regenRaceModifier: 1.5
   - type: PointLight
@@ -230,6 +232,8 @@
   - type: Loadout
     prototypes: [ MedievalNecroLeader ]
   - type: Mana
+    maxMana: 280
+    regen: 2
     maxManaRaceModifier: 3.9
     regenRaceModifier: 3.9
   - type: IgnoreBossStart
@@ -653,6 +657,36 @@
         Piercing: 0.75
         Heat: 0.45
         Cold: 0.55
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 285
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.125
+      Slash:
+        coefficient: 0.085
+      Piercing:
+        coefficient: 0.22
+      Heat:
+        coefficient: 0.2
+    brokenResistances:
+      Blunt:
+        coefficient: 0.9
+      Slash:
+        coefficient: 0.9
+      Piercing:
+        coefficient: 0.9
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 0.8
+      Slash: 1.25
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.5
   - type: Item
@@ -683,6 +717,36 @@
         Piercing: 0.9
         Heat: 0.75
         Cold: 0.75
+  - type: MedievalArmorIntegrity
+    containerArmorHP: 210
+    repairType: Sewing
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.175
+      Slash:
+        coefficient: 0.125
+      Piercing:
+        coefficient: 0.25
+      Heat:
+        coefficient: 0.2
+    brokenResistances:
+      Blunt:
+        coefficient: 0.9
+      Slash:
+        coefficient: 0.9
+      Piercing:
+        coefficient: 0.9
+      Heat:
+        coefficient: 0.9
+    breakageMultipliers:
+      Piercing: 1
+      Blunt: 0.8
+      Slash: 1.25
+      Heat: 1
+    breakSound:
+      path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
+      params:
+        variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.8
   - type: Item

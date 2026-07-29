@@ -50,14 +50,9 @@ public sealed partial class MedievalCartographerTableNavControl : BaseShuttleCon
         _rotation = state.Angle;
 
         WorldMaxRange = state.MaxRange;
-
-        if (WorldMaxRange < WorldRange)
-            ActualRadarRange = WorldMaxRange;
-
-        if (WorldMaxRange < WorldMinRange)
-            WorldMinRange = WorldMaxRange;
-
-        ActualRadarRange = Math.Clamp(ActualRadarRange, WorldMinRange, WorldMaxRange);
+        WorldMinRange = state.MaxRange;
+        ActualRadarRange = state.MaxRange;
+        WorldRange = state.MaxRange;
         _rotateWithEntity = state.RotateWithEntity;
 
         _radarMarkers.Clear();

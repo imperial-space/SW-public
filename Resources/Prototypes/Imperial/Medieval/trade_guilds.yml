@@ -1606,6 +1606,16 @@
   # - productEntity: PianoInstrument
     # cost: 100
     # reputationForBuying: 2.7
+  - productEntity: MedievalDoorLockT1
+    cost: 12
+    reputationForBuying: 0
+  - productEntity: MedievalDoorLockT2
+    cost: 45
+    minReputation: 10
+    reputationForBuying: 10
+  - productEntity: MedievalDoorKeyCheck
+    cost: 10
+    reputationForBuying: 0
   - productEntity: MedievalChest2
     cost: 35
     reputationForBuying: 1.15
@@ -1714,6 +1724,9 @@
   - productEntity: MedievalSign9Craft
     cost: 80
     reputationForBuying: 2.7
+  - productEntity: MedievalSign10Craft
+    cost: 80
+    reputationForBuying: 2.7
   - productEntity: MedievalPrisonGrilleCraft
     cost: 12
     reputationForBuying: 0.4
@@ -1761,4 +1774,4 @@
   - productEntity: PottedPlantRandomSW
     cost: 50
     reputationForBuying: 1.5
-    
+

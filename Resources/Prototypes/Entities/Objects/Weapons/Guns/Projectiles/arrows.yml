@@ -54,10 +54,10 @@
     transferAmount: 2
     solution: ammo
   - type: SolutionTransfer
-    maxTransferAmount: 2
+    maxTransferAmount: 1
   - type: Appearance
   - type: SolutionContainerVisuals
-    maxFillLevels: 1
+    maxFillLevels: 2
     fillBaseName: solution
 
 

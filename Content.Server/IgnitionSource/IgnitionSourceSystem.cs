@@ -7,7 +7,7 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    public override void Update(float frameTime)
+    /*public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
@@ -24,5 +24,5 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
                 _atmosphere.HotspotExpose(gridUid, position, comp.Temperature, 50, uid, true);
             }
         }
-    }
+    }*/ // Imperial medieval optimisation
 }

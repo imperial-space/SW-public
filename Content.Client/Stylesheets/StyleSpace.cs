@@ -10,17 +10,17 @@ namespace Content.Client.Stylesheets
 {
     public sealed class StyleSpace : StyleBase
     {
-        public static readonly Color SpaceRed = Color.FromHex("#9b2236");
+        public static readonly Color SpaceRed = Color.FromHex("#8B4A3D"); // Тёмный махагон вместо ярко-красного
 
-        public static readonly Color ButtonColorDefault = Color.FromHex("#464966");
-        public static readonly Color ButtonColorHovered = Color.FromHex("#575b7f");
-        public static readonly Color ButtonColorPressed = Color.FromHex("#3e6c45");
-        public static readonly Color ButtonColorDisabled = Color.FromHex("#30313c");
+        public static readonly Color ButtonColorDefault = Color.FromHex("#4E3F3A"); // Светлое дерево (ваш любимый)
+        public static readonly Color ButtonColorHovered = Color.FromHex("#5A4A44"); // Высветленная кора
+        public static readonly Color ButtonColorPressed = Color.FromHex("#577A4A"); // Лесной зелёный
+        public static readonly Color ButtonColorDisabled = Color.FromHex("#3A2E29"); // Затенённое дерево
 
-        public static readonly Color ButtonColorCautionDefault = Color.FromHex("#ab3232");
-        public static readonly Color ButtonColorCautionHovered = Color.FromHex("#cf2f2f");
-        public static readonly Color ButtonColorCautionPressed = Color.FromHex("#3e6c45");
-        public static readonly Color ButtonColorCautionDisabled = Color.FromHex("#602a2a");
+        public static readonly Color ButtonColorCautionDefault = Color.FromHex("#8B4A3D"); // Тёмный махагон
+        public static readonly Color ButtonColorCautionHovered = Color.FromHex("#A85B4A"); // Высветленный махагон
+        public static readonly Color ButtonColorCautionPressed = Color.FromHex("#577A4A"); // Лесной зелёный
+        public static readonly Color ButtonColorCautionDisabled = Color.FromHex("#51332D"); // Тусклое тёмное дерево
 
         public override Stylesheet Stylesheet { get; }
 
@@ -28,7 +28,7 @@ namespace Content.Client.Stylesheets
         {
             var notoSans10 = resCache.GetFont
             (
-                new []
+                new[]
                 {
                     "/Fonts/NotoSans/NotoSans-Regular.ttf",
                     "/Fonts/NotoSans/NotoSansSymbols-Regular.ttf",
@@ -38,7 +38,7 @@ namespace Content.Client.Stylesheets
             );
             var notoSansBold16 = resCache.GetFont
             (
-                new []
+                new[]
                 {
                     "/Fonts/NotoSans/NotoSans-Bold.ttf",
                     "/Fonts/NotoSans/NotoSansSymbols-Regular.ttf",
@@ -64,9 +64,9 @@ namespace Content.Client.Stylesheets
             var tabContainerPanel = new StyleBoxTexture();
             tabContainerPanel.SetPatchMargin(StyleBox.Margin.All, 2);
 
-            var tabContainerBoxActive = new StyleBoxFlat {BackgroundColor = new Color(64, 64, 64)};
+            var tabContainerBoxActive = new StyleBoxFlat { BackgroundColor = new Color(64, 64, 64) };
             tabContainerBoxActive.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
-            var tabContainerBoxInactive = new StyleBoxFlat {BackgroundColor = new Color(32, 32, 32)};
+            var tabContainerBoxInactive = new StyleBoxFlat { BackgroundColor = new Color(32, 32, 32) };
             tabContainerBoxInactive.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
 
             Stylesheet = new Stylesheet(BaseRules.Concat(new StyleRule[]

@@ -1,0 +1,26 @@
+- type: entity
+  id: MedievalWoodenFloorRoof
+  parent: MedievalWoodenFloor
+  components:
+  - type: IsRoof
+
+- type: entity
+  id: MedievalWoodenFloorRoofItem
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: MedievalWoodenFloorRoof
+    doAfter: 1
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Objects/Tiles/tile.rsi
+    state: wood-large
+
+- type: CP14Recipe
+  id: MedievalWoodenFloorRoofItem
+  craftTime: 0.125
+  stacks:
+    WoodPlank: 2
+  result: MedievalWoodenFloorRoofItem

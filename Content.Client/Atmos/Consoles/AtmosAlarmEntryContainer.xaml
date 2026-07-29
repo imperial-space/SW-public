@@ -9,7 +9,7 @@
         <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Horizontal">
 
             <!-- Alarm state -->
-            <TextureRect Stretch="Keep" HorizontalAlignment="Left" Margin="-20 -2 0 0" ModulateSelfOverride="#25252a" TexturePath="/Textures/Interface/AtmosMonitoring/status_bg.png">
+            <TextureRect Stretch="Keep" HorizontalAlignment="Left" Margin="-20 -2 0 0" ModulateSelfOverride="#2B211D" TexturePath="/Textures/Interface/AtmosMonitoring/status_bg.png">
                 <BoxContainer VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal" Margin="8 0">
                     <TextureRect Name="ArrowTexture" VerticalAlignment="Center" SetSize="12 12" Stretch="KeepAspectCentered" Margin="3 0" TexturePath="/Textures/Interface/Nano/triangle_right.png"></TextureRect>
                     <Label Name="AlarmStateLabel" HorizontalExpand="True" HorizontalAlignment="Center" FontColorOverride="#5A5A5A" Text="{Loc 'atmos-alerts-window-invalid-state'}"></Label>
@@ -24,7 +24,7 @@
     <!-- Panel that appears on selecting the device -->
     <PanelContainer Name="FocusContainer" HorizontalExpand="True" Margin="1 -1 1 0" ReservesSpace="False" Visible="False" Access="Public">
         <PanelContainer.PanelOverride>
-            <gfx:StyleBoxFlat BackgroundColor="#25252a"/>
+            <gfx:StyleBoxFlat BackgroundColor="#2B211D"/>
         </PanelContainer.PanelOverride>
         <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Vertical">
 
@@ -40,7 +40,7 @@
                     </BoxContainer>
                     <PanelContainer HorizontalExpand="True">
                         <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="#202023"/>
+                            <gfx:StyleBoxFlat BackgroundColor="#241C18"/>
                         </PanelContainer.PanelOverride>
                         <BoxContainer HorizontalExpand="True" Orientation="Horizontal">
                             <Label Name="TemperatureLabel" Text="???" HorizontalAlignment="Center" HorizontalExpand="True" FontColorOverride="#5A5A5A" Margin="0 2 0 0" SetHeight="24"></Label>
@@ -53,7 +53,7 @@
                     </BoxContainer>
                     <PanelContainer HorizontalExpand="True">
                         <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="#202023"/>
+                            <gfx:StyleBoxFlat BackgroundColor="#241C18"/>
                         </PanelContainer.PanelOverride>
 
                         <!-- Gas entries added via C# code -->

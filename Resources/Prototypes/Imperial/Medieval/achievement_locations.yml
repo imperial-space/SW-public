@@ -1,0 +1,69 @@
+- type: entity
+  id: AchievementLocationArea5m
+  parent: MarkerBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: Markers/cross.rsi
+    state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 5
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        - MedievalSpawnerLayer
+  - type: Physics
+    bodyType: Static
+  - type: AchievementLocation
+    locationId: LocationName
+
+- type: entity
+  id: AchievementLocationArea10m
+  parent: AchievementLocationArea5m
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 10
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        - MedievalSpawnerLayer
+
+- type: entity
+  id: AchievementLocationArea15m
+  parent: AchievementLocationArea5m
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 15
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        - MedievalSpawnerLayer
+
+- type: entity
+  id: AchievementLocationArea20m
+  parent: AchievementLocationArea5m
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 20
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        - MedievalSpawnerLayer

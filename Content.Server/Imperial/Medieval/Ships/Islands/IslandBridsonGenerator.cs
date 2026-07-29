@@ -66,11 +66,12 @@ public sealed class IslandBridsonGenerator
     public List<IslandPlacement> Generate(
         IslandRing ring,
         List<(ResPath Path, float Radius)> islands,
+        int maxIslands,
         IslandSpatialGrid grid,
         Random rng)
     {
         var result = new List<IslandPlacement>();
-        if (islands.Count == 0)
+        if (islands.Count == 0 || maxIslands <= 0)
             return result;
 
         var queue = new Queue<(ResPath Path, float Radius)>(Shuffle(islands, rng));
@@ -91,7 +92,7 @@ public sealed class IslandBridsonGenerator
         grid.Add(seed.Value);
         result.Add(seed.Value);
 
-        while (active.Count > 0 && queue.Count > 0)
+        while (active.Count > 0 && queue.Count > 0 && result.Count < maxIslands)
         {
             var idx = rng.Next(active.Count);
             var origin = active[idx];

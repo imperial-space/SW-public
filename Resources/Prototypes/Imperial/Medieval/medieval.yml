@@ -372,18 +372,6 @@
     - id: MedievalSecretLootBoxSpawner
 
 - type: entity
-  name: Message
-  parent: MedievalPaper
-  id: MedievalJailPosxalka
-  description: Idk
-  components:
-    - type: Paper
-      content: >-
-       [italic]
-        Вам не повезло для вас ничего не осталось, простите.
-        С уважением: Ф.Б!
-
-- type: entity
   id: MedievalSecretLootBoxSpawner
   categories: [ HideSpawnMenu ]
   components:
@@ -406,6 +394,18 @@
     deleteSpawnerAfterSpawn: true
     table: !type:NestedSelector
       tableId: SecretLootBoxLootTable
+
+- type: entity
+  name: Message
+  parent: MedievalPaper
+  id: MedievalJailPosxalka
+  description: Idk
+  components:
+    - type: Paper
+      content: >-
+       [italic]
+        Вам не повезло для вас ничего не осталось, простите.
+        С уважением: Ф.Б!
 
 - type: entityTable
   id: SecretLootBoxLootTable
@@ -1885,8 +1885,13 @@
   #    - Prying
   #  useSound:
   #    path: /Audio/Items/crowbar.ogg
-  - type: DoorHackLockpick
-    useCount: 52
+  - type: UniversalLockpick
+    breakChance: 0.04
+    hackTime: 0.5
+  - type: UserInterface
+    interfaces:
+      enum.UniversalSecurityUiKey.Lockpick:
+        type: UniversalLockpickBoundUserInterface
 
 - type: entity
   name: MedievalLockpick
@@ -1913,8 +1918,15 @@
   #    - Prying
   #  useSound:
   #    path: /Audio/Items/crowbar.ogg
-  - type: DoorHackLockpick
-    useCount: 8
+  # - type: DoorHackLockpick
+  #   useCount: 8
+  - type: UniversalLockpick
+    breakChance: 0.2
+    hackTime: 2
+  - type: UserInterface
+    interfaces:
+      enum.UniversalSecurityUiKey.Lockpick:
+        type: UniversalLockpickBoundUserInterface
 
 - type: inventoryTemplate
   id: goblin
@@ -2829,7 +2841,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 10
+          damage: 25
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
@@ -4466,6 +4478,7 @@
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: MedievalFloorWood2
@@ -4487,6 +4500,7 @@
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: MedievalFloorWood3
@@ -4508,6 +4522,7 @@
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
   badSmellMod: 0.75
+  weather: true
 
 - type: soundCollection
   id: FootstepMedievalStone
@@ -4530,6 +4545,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4549,6 +4565,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4568,6 +4585,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4587,6 +4605,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4606,6 +4625,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4625,6 +4645,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4644,6 +4665,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4663,6 +4685,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4682,6 +4705,7 @@
   - 1.0
   - 1.0
   baseTurf: FloorCave
+  weather: true
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
@@ -4702,6 +4726,7 @@
   - 1.0
   baseTurf: FloorCave
   isSubfloor: false
+  weather: true
   ##deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepMedievalStone
@@ -4721,6 +4746,7 @@
   - 1.0
   baseTurf: FloorCave
   isSubfloor: false
+  weather: true
   ##deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepMedievalStone
@@ -6088,7 +6114,7 @@
         enum.MedievalMapUIKey.Key:
           type: MedievalMapBoundUserInterface
     - type: MedievalMap
-      mapTexturePath: /Textures/Imperial/Medieval/Misc/map_tabletop/tabletop.png
+      mapTexturePath: /Textures/Imperial/Medieval/Misc/map_tabletop/tabletopRU.png
 
 - type: entity
   parent: BaseBoardTabletop
@@ -7344,7 +7370,8 @@
 - type: entity
   name: lol
   parent: BaseItem
-  id: MedievalDoorLock
+  abstract: true
+  id: MedievalDoorLockBase
   description: MedievalLoot
   components:
   - type: Sprite
@@ -7352,7 +7379,49 @@
     state: lock
   - type: Item
     size: Tiny
-  - type: DoorNewLock
+  - type: UniversalLock
+    length: 4
+    maxValue: 9
+  - type: UserInterface
+    interfaces:
+      enum.UniversalSecurityUiKey.Lock:
+        type: UniversalLockBoundUserInterface
+
+- type: entity
+  parent: MedievalDoorLockBase
+  id: MedievalDoorLockT1
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/UniversalSecurity/lockes.rsi
+    state: MedievalLockT1
+  - type: UniversalLock
+    length: 4
+    maxValue: 8
+    timeToEject: 16
+
+- type: entity
+  parent: MedievalDoorLockBase
+  id: MedievalDoorLockT2
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/UniversalSecurity/lockes.rsi
+    state: MedievalLockT2
+  - type: UniversalLock
+    length: 5
+    maxValue: 16
+    timeToEject: 32
+
+- type: entity
+  parent: MedievalDoorLockBase
+  id: MedievalDoorLockT3
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/UniversalSecurity/lockes.rsi
+    state: MedievalLockT3
+  - type: UniversalLock
+    length: 6
+    maxValue: 32
+    timeToEject: 64
 
 - type: dungeonRoom
   id: MedievalSteroid9x9a
@@ -8949,6 +9018,7 @@
     snap:
       - Wall
   components:
+    #- type: Occluder
     - type: MeleeSound
       soundGroups:
         Brute:

@@ -911,7 +911,7 @@
   craftTime: 7
   iconOverride: MedievalDoorKeyCheck
   stacks:
-    MedievalIronIngot: 3
+    MedievalIronIngot: 1
   result: WorkpieceMedievalDoorKeyCheck
 
 - type: CP14Recipe

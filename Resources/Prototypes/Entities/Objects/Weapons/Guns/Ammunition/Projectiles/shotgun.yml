@@ -247,6 +247,9 @@
     damage:
       types:
         Piercing: 50
+  - type: CartographerRadarMarker
+    zoomScaling: true
+    radius: 0.025
 
 - type: entity
   id: PelletGrapeshotSpread

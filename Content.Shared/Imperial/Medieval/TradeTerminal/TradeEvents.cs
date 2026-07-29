@@ -52,6 +52,7 @@ public sealed class TradeItemDto
     public string    Name;
     public string?   Description;
     public int?      StackCount;
+    public readonly string? PrototypeId;
     public ItemStorageLocation StorageLocation;
     public int GridWidth;
     public int GridHeight;
@@ -61,6 +62,7 @@ public sealed class TradeItemDto
         string name,
         string? description = null,
         int? stackCount = null,
+        string? prototypeId = null,
         ItemStorageLocation storageLocation = default,
         int gridWidth = 1,
         int gridHeight = 1)
@@ -68,6 +70,7 @@ public sealed class TradeItemDto
         Entity      = entity;
         Name        = name;
         Description = description;
+        PrototypeId = prototypeId;
         StackCount  = stackCount;
         StorageLocation = storageLocation;
         GridWidth = gridWidth;

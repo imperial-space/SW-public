@@ -101,6 +101,9 @@ public sealed partial class FishingSystem : EntitySystem
         if (fishingTarget is not { } fishingTargetUid)
             return;
 
+        if (!_transform.InRange(Transform(args.User).Coordinates, args.ClickLocation, ent.Comp.AfterInteractDistanceThreshold))
+            return;
+
         if (!_interaction.InRangeAndAccessible(args.User, fishingTargetUid, ent.Comp.AfterInteractDistanceThreshold))
             return;
 

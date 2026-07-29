@@ -324,7 +324,7 @@
   - type: InstantAction
     event: !type:WakeActionEvent
     startDelay: true
-    useDelay: 8 # imperial medieval
+    useDelay: 36 # imperial medieval
 
 - type: entity
   parent: BaseImplantAction

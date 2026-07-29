@@ -9,6 +9,7 @@
   - type: Item
     size: Tiny
   - type: Access
+  - type: UniversalKey
 
 - type: entity
   parent: MedievalKeyBase
@@ -730,6 +731,7 @@
   name: MedievalKeyStorage
   description: A storage used to hold keys.
   components:
+  - type: MedievalKeyStorage
   - type: Sprite
     sprite: Imperial/Medieval/Misc/key_storage.rsi
     state: base

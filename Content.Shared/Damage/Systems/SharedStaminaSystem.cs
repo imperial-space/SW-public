@@ -398,7 +398,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             TakeStaminaDamage(
                 uid,
                 comp.AfterCritical ? -(comp.Decay * ev.Modifier) * comp.AfterCritDecayMultiplier : -(comp.Decay * ev.Modifier), // Recover faster after crit
-                comp);
+                comp, ignoreResist: true);
 
             Dirty(uid, comp);
         }

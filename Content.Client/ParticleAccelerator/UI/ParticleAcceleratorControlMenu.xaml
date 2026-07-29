@@ -104,7 +104,7 @@
                     HorizontalAlignment="Center">
 
                     <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxTexture Modulate="#202023"
+                        <gfx:StyleBoxTexture Modulate="#241C18"
                             PatchMarginBottom="8"
                             PatchMarginLeft="8"
                             PatchMarginRight="8"

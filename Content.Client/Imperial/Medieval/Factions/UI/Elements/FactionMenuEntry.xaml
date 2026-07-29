@@ -11,7 +11,7 @@
     Margin="4 4">
     <imp:BorderedPanelContainer Name="MainPanel"
                     ModulateSelfOverride="White"
-                    BackgroundPanelColor="#25252A"
+                    BackgroundPanelColor="#2B211D"
                     HorizontalExpand="True"
                     VerticalExpand="True"
                     Margin="0 2"

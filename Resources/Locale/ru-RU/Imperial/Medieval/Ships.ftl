@@ -94,12 +94,12 @@ helm-examine-center = Вы держите курс вперёд
 helm-examine-sails-efficiency = Эффективность всех парусов: { $efficiency }
 helm-examine-ship-load = Грузоподъёмность судна: { $weight } / { $overloadCeil }
 
-examine-anchor-island-search-range = Необходимое расстояние до острова:
-examine-anchor-time-to-disable-waves = Якорь опущен, земля рядом. Корабль не будет подвержен влиянию волн через:
-examine-anchor-island-near = Остров рядом, если опустить якорь, то запустится таймер на отключение волн
-examine-anchor-island-far = Остров далеко, если опустить якорь, то таймер на отключение волн не запустится
-examine-anchor-waves-disabled = Якорь опущен, земля рядом. Корабль не подвержен влиянию волн
-examine-anchor-waves-will-not-disable = Якорь опущен, острова рядом нет. Корабль подвержен влиянию волн
+examine-anchor-island-search-range = Необходимое расстояние до острова: [color=aqua]{$range}[/color]
+examine-anchor-time-to-disable-waves = Якорь опущен, земля рядом. Корабль не будет подвержен влиянию волн через: [color=aquamarine]{$seconds}[/color]
+examine-anchor-island-near = [color=yellow]Остров рядом, если опустить якорь, то запустится таймер на отключение волн[/color]
+examine-anchor-island-far = [color=orangered]Остров далеко, если опустить якорь, то таймер на отключение волн не запустится[/color]
+examine-anchor-waves-disabled = [color=greenyellow]Якорь опущен, земля рядом. Корабль не подвержен влиянию волн[/color]
+examine-anchor-waves-will-not-disable = [color=orange]Якорь опущен, острова рядом нет. Корабль подвержен влиянию волн[/color]
 
 examine-carthographer-table-show-speed = Текущая скорость корабля:
 examine-carthographer-table-show-rotation = Текущий поворот корабля:

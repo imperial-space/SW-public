@@ -238,7 +238,6 @@ public sealed class CannonSystem : EntitySystem
             return;
 
         ent.Comp.State = nextState;
-        Dirty(ent);
         args.Handled = true;
     }
 
@@ -254,7 +253,6 @@ public sealed class CannonSystem : EntitySystem
             return;
 
         ent.Comp.State = CannonState.GunpowderLoose;
-        Dirty(ent);
 
         QueueDel(args.Used.Value);
         args.Handled = true;
@@ -309,7 +307,6 @@ public sealed class CannonSystem : EntitySystem
 
         ent.Comp.LoadedPayload = payload;
         ent.Comp.State = CannonState.PayloadLoose;
-        Dirty(ent);
         return true;
     }
 
@@ -355,7 +352,6 @@ public sealed class CannonSystem : EntitySystem
 
         ent.Comp.LoadedPayload = null;
         ent.Comp.State = CannonState.Dirty;
-        Dirty(ent);
         return true;
     }
 

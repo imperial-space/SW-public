@@ -26,7 +26,7 @@ public sealed class MedievalReviveSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
-    private const int MaxRevives = 3;
+    private const int MaxRevives = 2;
 
     public override void Initialize()
     {

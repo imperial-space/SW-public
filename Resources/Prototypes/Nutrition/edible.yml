@@ -7,7 +7,7 @@
   id: Food
   useSound: !type:SoundCollectionSpecifier
     params:
-      variation: 0.2
+      variation: 0.1
       volume: -1
     collection: eating # I think this *should* grab the sound specifier...
   message: edible-nom

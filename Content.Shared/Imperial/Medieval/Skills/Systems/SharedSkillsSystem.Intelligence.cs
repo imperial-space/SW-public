@@ -158,26 +158,44 @@ public abstract partial class SharedSkillsSystem
     {
         return diff switch
         {
-            <= -10 => "#0dff00",
-            <= -7 => "#42c0fe",
-            <= -3 => "#7afcd5",
-            <= 2 => "#d1d1d1",
-            >= 10 => "#ff0000",
-            >= 7 => "#ff9100",
-            >= 3 => "#ffea00"
+            <= -15 => "#0dff00", // immensely-lower — ярко-зелёный
+            <= -12 => "#1fe010", // significantly-lower
+            <= -10 => "#30c220", // much-lower
+            <= -8 => "#42c0fe", // substantially-lower — голубой
+            <= -7 => "#55d8d0", // lower
+            <= -5 => "#7afcd5", // moderately-lower — мятный
+            <= -2 => "#a0eed0", // slightly-lower
+            <= 1 => "#d1d1d1", // similar — серый
+            <= 2 => "#ffe680", // slightly-higher — светло-жёлтый
+            <= 5 => "#ffea00", // moderately-higher — жёлтый
+            <= 7 => "#ffc400", // higher — оранжево-жёлтый
+            <= 8 => "#ff9100", // substantially-higher — оранжевый
+            <= 10 => "#ff6a00", // much-higher — тёмно-оранжевый
+            <= 12 => "#ff3d00", // significantly-higher
+            <= 25 => "#ff0000", // immensely-higher — красный
+            _ => "#d1d1d1"  // fallback
         };
     }
+
     private string GetTextForDiff(int diff)
     {
         return diff switch
         {
+            <= -15 => "examine-skills-immensely-lower",
+            <= -12 => "examine-skills-significantly-lower",
             <= -10 => "examine-skills-much-lower",
+            <= -8 => "examine-skills-substantially-lower",
             <= -7 => "examine-skills-lower",
-            <= -3 => "examine-skills-slightly-lower",
-            <= 2 => "examine-skills-similar",
-            >= 10 => "examine-skills-much-higher",
-            >= 7 => "examine-skills-higher",
-            >= 3 => "examine-skills-slightly-higher"
+            <= -5 => "examine-skills-moderately-lower",
+            <= -2 => "examine-skills-slightly-lower",
+            <= 1 => "examine-skills-similar",
+            <= 2 => "examine-skills-slightly-higher",
+            <= 5 => "examine-skills-moderately-higher",
+            <= 7 => "examine-skills-higher",
+            <= 8 => "examine-skills-substantially-higher",
+            <= 10 => "examine-skills-much-higher",
+            <= 12 => "examine-skills-significantly-higher",
+            <= 25 => "examine-skills-immensely-higher"
         };
     }
 }

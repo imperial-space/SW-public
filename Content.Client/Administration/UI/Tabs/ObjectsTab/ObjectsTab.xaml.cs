@@ -17,8 +17,8 @@ public sealed partial class ObjectsTab : Control
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IClientConsoleHost _console = default!;
 
-    private readonly Color _altColor = Color.FromHex("#292B38");
-    private readonly Color _defaultColor = Color.FromHex("#2F2F3B");
+    private readonly Color _altColor = Color.FromHex("#302622");
+    private readonly Color _defaultColor = Color.FromHex("#3A2E29");
 
     private bool _ascending;
     private ObjectsTabHeader.Header _headerClicked = ObjectsTabHeader.Header.ObjectName;

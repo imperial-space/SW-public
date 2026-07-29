@@ -216,6 +216,15 @@
   id: MedievalChest
   name: MedievalChest
   components:
+  - type: EntityStorage
+    closeSound:
+      path: /Audio/Imperial/Medieval/Chest/chest_close.ogg
+      params:
+        variation: 0.05
+    openSound:
+      path: /Audio/Imperial/Medieval/Chest/chest_open.ogg
+      params:
+        variation: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Decor/chest.rsi
     layers:
@@ -249,7 +258,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 135
+        density: 300
         mask:
         - SmallMobMask
         layer:
@@ -265,6 +274,15 @@
   id: MedievalChest2
   name: MedievalChest2
   components:
+  - type: EntityStorage
+    closeSound:
+      path: /Audio/Imperial/Medieval/Chest/chest_close.ogg
+      params:
+        variation: 0.05
+    openSound:
+      path: /Audio/Imperial/Medieval/Chest/chest_open.ogg
+      params:
+        variation: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Decor/chest2.rsi
     layers:
@@ -298,7 +316,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 135
+        density: 300
         mask:
         - SmallMobMask
         layer:
@@ -314,6 +332,15 @@
   id: MedievalChest3
   name: MedievalChest3
   components:
+  - type: EntityStorage
+    closeSound:
+      path: /Audio/Imperial/Medieval/Chest/chest_close.ogg
+      params:
+        variation: 0.05
+    openSound:
+      path: /Audio/Imperial/Medieval/Chest/chest_open.ogg
+      params:
+        variation: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Decor/chest3.rsi
     layers:
@@ -347,7 +374,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 135
+        density: 300
         mask:
         - SmallMobMask
         layer:
@@ -363,6 +390,15 @@
   id: MedievalChest4
   name: MedievalChest4
   components:
+  - type: EntityStorage
+    closeSound:
+      path: /Audio/Imperial/Medieval/Chest/chest_close.ogg
+      params:
+        variation: 0.05
+    openSound:
+      path: /Audio/Imperial/Medieval/Chest/chest_open.ogg
+      params:
+        variation: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Decor/chest4.rsi
     layers:
@@ -396,7 +432,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 135
+        density: 300
         mask:
         - SmallMobMask
         layer:
@@ -469,7 +505,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 900
+        damage: 800
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -507,7 +543,7 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 900
+          Quantity: 600
   - type: Fixtures
     fixtures:
       fix1:
@@ -563,7 +599,7 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 900
+          Quantity: 600
   - type: Destructible
     thresholds:
     - trigger:
@@ -613,7 +649,7 @@
       tank:
         reagents:
         - ReagentId: Wine
-          Quantity: 900
+          Quantity: 600
 
 - type: entity
   parent: MedievalBarrelBase
@@ -624,7 +660,7 @@
       tank:
         reagents:
         - ReagentId: Mead
-          Quantity: 900
+          Quantity: 600
 
 - type: entity
   parent: MedievalBarrelBase
@@ -635,7 +671,7 @@
       tank:
         reagents:
         - ReagentId: RedMead
-          Quantity: 900
+          Quantity: 600
 
 - type: entity
   parent: MedievalBarrelBase
@@ -646,7 +682,7 @@
       tank:
         reagents:
         - ReagentId: Beer
-          Quantity: 900
+          Quantity: 600
 
 - type: entity
   parent: MedievalBarrelBase
@@ -657,7 +693,7 @@
       tank:
         reagents:
         - ReagentId: Moonshine
-          Quantity: 900
+          Quantity: 600
 
 - type: entity
   parent: MedievalBarrelBase
@@ -668,7 +704,7 @@
       tank:
         reagents:
         - ReagentId: Rum
-          Quantity: 900
+          Quantity: 600
 
 - type: entity
   parent: MedievalBarrelBase
@@ -679,7 +715,7 @@
       tank:
         reagents:
         - ReagentId: Vodka
-          Quantity: 900
+          Quantity: 600
 
 - type: entity
   parent: MedievalBarrelBase
@@ -690,7 +726,7 @@
       tank:
         reagents:
         - ReagentId: Ale
-          Quantity: 900
+          Quantity: 600
 
 - type: entity
   id: MedievalDecorOhapka
@@ -1005,8 +1041,6 @@
           !type:PhysShapeCircle
           radius: 0.35
         density: 190
-        mask:
-        - MachineMask
         layer:
         - Opaque
 
@@ -1080,14 +1114,14 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.49
-        density: 190
+        density: 300
         mask:
         - SmallMobMask
         layer:
         - MachineLayer
   - type: Storage
     grid:
-    - 0,0,15,6
+    - 0,0,18,8
     maxItemSize: Ginormous
     storageOpenSound: /Audio/Imperial/Medieval/wood_open.ogg
     storageCloseSound: /Audio/Imperial/Medieval/wood_closed.ogg
@@ -1099,6 +1133,29 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+
+- type: entity
+  id: MedievalDecorBoxEmptyCraft
+  parent: BaseItem
+  components:
+  - type: RDWeight
+    value: 50
+  - type: Item
+    size: Ginormous
+  - type: SpawnAfterInteract
+    prototype: MedievalDecorBoxEmpty
+    doAfter: 5
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stockade.rsi
+    state: icon
+
+- type: CP14Recipe
+  id: MedievalDecorBoxEmptyRecipe
+  craftTime: 5
+  stacks:
+    WoodPlank: 20
+  result: MedievalDecorBoxEmptyCraft
 
 - type: entity
   id: MedievalDecorBox
@@ -1263,13 +1320,13 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.6
+        Brute: -0.1
+        Burn: -0.1
+        Airloss: -0.3
       types:
-        Poison: -0.2
-        Caustic: -0.1
-        Radiation: -0.2
+        Poison: -0.04
+        Caustic: -0.02
+        Radiation: -0.04
   - type: MedievalPlagueHealStrapped
 
 - type: entity
@@ -1294,13 +1351,13 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Brute: -2.6
-        Burn: -2.8
-        Airloss: -3
+        Brute: -0.52
+        Burn: -0.56
+        Airloss: -0.5
       types:
-        Poison: -1.8
-        Caustic: -0.5
-        Radiation: -0.8
+        Poison: -0.36
+        Caustic: -0.1
+        Radiation: -0.16
   - type: MedievalPlagueHealStrapped
     level: 2
 
@@ -1759,6 +1816,21 @@
         params:
           variation: 0.05
 
+- type: entity
+  parent: MedievalSignParent
+  id: MedievalSign10
+  name: sign
+  description: A sign
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_10
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+        params:
+          variation: 0.05
 
 - type: entity
   id: MedievalDecorBags1
@@ -2188,20 +2260,24 @@
       storagebase: !type:Container
   - type: StorageFill
     contents:
+      - id: MedievalFalshionRusty
+        prob: 0.2
+      - id: MedievalMaceRusty
+        prob: 0.2
+      #- id: MedievalSpearRusty
+      #  prob: 0.18
+      - id: MedievalSaberRusty
+        prob: 0.2
       - id: MedievalDaggerT3
-        prob: 0.2
+        prob: 0.13
       - id: MedievalWoodenSword
-        prob: 0.2
-      - id: MedievalMaceT3HeavyBone
-        prob: 0.2
+        prob: 0.13
       - id: BaseBallBat
-        prob: 0.2
+        prob: 0.13
       - id: MedievalHatchet
-        prob: 0.2
+        prob: 0.13
       - id: KitchenKnife
-        prob: 0.2
-      - id: MedievalShortSword
-        prob: 0.2
+        prob: 0.13
 
 
 - type: entity
@@ -2367,6 +2443,7 @@
     West: /Textures/Imperial/Medieval/Tiles/Planet/Cave/double-stoneedge-D.png
   baseTurf: Space
   isSubfloor: true
+  weather: true
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 99910000
@@ -3361,7 +3438,7 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Airloss: 5
+        Airloss: 4
   - type: Destructible
     thresholds:
     - trigger:
@@ -5350,6 +5427,10 @@
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
+  - type: Tag
+    tags:
+    - Structure
+    - PreventShipFloorBreakage
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -5629,17 +5710,19 @@
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Decor/flagpole.rsi
-      state: flag
+      state: flagpole
 
 - type: entity
   name: small light
   description: "An always powered light."
   parent: CandleWall
   id: MedievalWalllamp
+  placement:
+    mode: SnapgridCenter
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Decor/candle_wall3.rsi
-      drawdepth: WallMountedItems
+      drawdepth: OverMobs
       layers:
         - state: base
 

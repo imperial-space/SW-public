@@ -5,6 +5,7 @@ using Content.Shared.MeleeParry.Components;
 using Robust.Shared.Maths;
 using Content.Server.MedievalPotionChecker.Components;
 using Content.Shared.MedievalMeleeResource.Components;
+using Content.Shared.Imperial.Medieval.ChargedAttack;
 
 namespace Content.Server.MeleeBetterExaminable
 {
@@ -18,6 +19,12 @@ namespace Content.Server.MeleeBetterExaminable
         }
         private void OnExamine(EntityUid uid, MeleeWeaponComponent component, ExaminedEvent args)
         {
+            if (TryComp<ChargedAttackComponent>(uid, out var charge) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
+            {
+                args.PushMarkup(Loc.GetString("melee-examine-charge-time") + Math.Round(charge.MaxAttackTime, 2) + "[/color]");
+                args.PushMarkup(Loc.GetString("melee-examine-charge-damage") + Math.Round(charge.StaticModifier + 1f, 2) + "[/color]");
+                args.PushMarkup(Loc.GetString("melee-examine-charge-stamina") + Math.Round(charge.StaminaDamage, 2) + "[/color]");
+            }
             if (TryComp<MeleeWeaponComponent>(uid, out var weapon) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
             {
                 var totaldamage = 0;

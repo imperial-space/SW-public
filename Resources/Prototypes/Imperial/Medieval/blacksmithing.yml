@@ -11,6 +11,15 @@
   id: MedievalHammerBlacksmith
   description: An ancient war blade.
   components:
+  - type: MedievalRepairArmor
+    repairType: Smithing
+    repairAmount: 30
+    isSpendable: false
+    repairTime: 7
+    maxArmorRemove: 1
+    skilledCrafterMaxArmorRemovalModifier: 0.5
+    useSound:
+      path: /Audio/Imperial/Medieval/craft_iron.ogg
   - type: RDWeight
     value: 2
   - type: Sharp
@@ -31,7 +40,7 @@
       types:
         Blunt: 6
   - type: Item
-    size: Normal
+    size: Small
   - type: DisarmMalus
   - type: DamageOtherOnHit
     damage:

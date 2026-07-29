@@ -15,6 +15,15 @@ public sealed partial class IslandRadialGenerationComponent : Component
     public List<ResPath> HighIslands = new();
 
     [DataField]
+    public int LowIslandCount = 6;
+
+    [DataField]
+    public int MediumIslandCount = 6;
+
+    [DataField]
+    public int HighIslandCount = 6;
+
+    [DataField]
     public float LowIslandMinRange = 150f;
 
     [DataField]

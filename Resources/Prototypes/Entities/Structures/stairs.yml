@@ -97,6 +97,9 @@
   parent: Stairs
   suffix: Wood
   components:
+  - type: Tag
+    tags:
+    - PreventShipFloorBreakage
   - type: Sprite
     sprite: Structures/stairs.rsi
     state: stairs_wood

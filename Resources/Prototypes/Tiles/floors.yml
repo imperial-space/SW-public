@@ -1866,6 +1866,7 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   badSmellMod: 1.5 # imperial medieval badsmell
+  weather: true
 
 - type: tile
   id: FloorFlesh
@@ -1886,6 +1887,7 @@
   friction: 0.25 #slippy
   heatCapacity: 99910000
   badSmellMod: 2 # imperial medieval badsmell
+  weather: true
 
 - type: tile
   id: FloorTechMaint2
@@ -1996,6 +1998,7 @@
   - 1.0
   baseTurf: Space
   isSubfloor: true
+  weather: true
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 99910000
@@ -2140,7 +2143,7 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroAsteroidSand
-  weather: false
+  weather: true
 
 - type: tile
   parent: FloorDesert
@@ -2150,7 +2153,7 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemDesertAstroSand
-  weather: false
+  weather: true
 
 - type: tile
   id: FloorWoodLarge

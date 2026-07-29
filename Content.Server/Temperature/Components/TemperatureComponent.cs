@@ -24,7 +24,7 @@ public sealed partial class TemperatureComponent : Component
     public float HeatDamageThreshold = 360f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ColdDamageThreshold = 260f;
+    public float ColdDamageThreshold = 160f;
 
     /// <summary>
     /// Overrides HeatDamageThreshold if the entity's within a parent with the TemperatureDamageThresholdsComponent component.

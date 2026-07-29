@@ -257,6 +257,8 @@
   id: MedievalCatapultCraft
   parent: BaseItem
   components:
+  - type: RDWeight
+    value: 30
   - type: Item
     size: Normal
   - type: SpawnAfterInteract
@@ -1412,6 +1414,22 @@
   #- type: Anchorable
   - type: SpawnAfterInteract
     prototype: MedievalSign9
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  id: MedievalSign10Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_10
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign10
     doAfter: 5
     deleteOnInteract: true
 

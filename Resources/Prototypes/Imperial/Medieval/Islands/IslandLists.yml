@@ -1,12 +1,69 @@
 - type: entity
   id: IslandRadialGenerationBase
-  abstract: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: IslandRadialGeneration
     lowIslands:
+    - /Maps/Imperial/Medieval/Islands/IslandLow1.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow2.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow3.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow4.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow13.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow14.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow15.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow16.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow25.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow26.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow27.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow28.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow38.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow39.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow40.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow41.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow50.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow51.yml
     - /Maps/Imperial/Medieval/Islands/IslandLow52.yml
+    - /Maps/Imperial/Medieval/Islands/IslandLow53.yml
     mediumIslands:
+    - /Maps/Imperial/Medieval/Islands/IslandMedium5.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium6.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium7.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium8.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium17.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium18.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium19.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium20.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium29.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium30.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium31.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium32.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium33.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium42.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium43.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium44.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium45.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium54.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium55.yml
     - /Maps/Imperial/Medieval/Islands/IslandMedium56.yml
+    - /Maps/Imperial/Medieval/Islands/IslandMedium57.yml
     highIslands:
+    - /Maps/Imperial/Medieval/Islands/IslandHard9.yml
     - /Maps/Imperial/Medieval/Islands/IslandHard10.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard11.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard12.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard21.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard22.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard23.yml
     - /Maps/Imperial/Medieval/Islands/IslandHard24.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard34.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard35.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard36.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard37.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard46.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard47.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard48.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard49.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard58.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard59.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard60.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard61.yml

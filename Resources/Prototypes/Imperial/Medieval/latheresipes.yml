@@ -1,13 +1,53 @@
-
+- type: CP14Recipe
+  id: MedievalDoorLockT1
+  craftTime: 8
+  stacks:
+    MedievalIronPlateSmall: 1
+    #MedievalGear: 1
+  result: MedievalDoorLockT1
 
 - type: CP14Recipe
-  id: MedievalDoorLock
-  craftTime: 12
+  id: RecycleCrystalToEssenceVodka
+  result: MagicMedievalVodka
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: RecycleCrystalToEssenceFire
+  result: MagicMedievalFire
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: RecycleCrystalToEssenceLight
+  result: MagicMedievalLight
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: RecycleCrystalToEssenceEarth
+  result: MagicMedievalEarth
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: MedievalDoorLockT2
+  craftTime: 16
   stacks:
+    MedievalRivets: 1
+    MedievalIronPlateSmall: 1
+    #MedievalGear: 2
+  result: MedievalDoorLockT2
+
+- type: CP14Recipe
+  id: MedievalDoorLockT3
+  craftTime: 32
+  stacks:
+    #MedievalSteelIngot: 1
     MedievalRivets: 1
     MedievalIronPlateSmall: 2
     MedievalGear: 1
-  result: MedievalDoorLock
+  result: MedievalDoorLockT3
 
 - type: CP14Recipe
   id: MedievalCoinBag
@@ -38,6 +78,22 @@
   stacks:
     MedievalStone: 20
   result: MedievalDecorMogila1Craft
+
+- type: CP14Recipe
+  id: MedievalScrollBarrier
+  craftTime: 8
+  stacks:
+    MedievalAstrolit: 1
+  entities:
+    MedievalPaper: 1
+  result: MedievalScrollBarrier
+
+- type: CP14Recipe
+  id: MedievalAstrolit
+  craftTime: 4
+  stacks:
+    MedievalAstrolitPiece: 3
+  result: MedievalAstrolit
 
 - type: CP14Recipe
   id: MedievalDecorMogila2Craft
@@ -1435,8 +1491,9 @@
   id: MedievalLintstock
   craftTime: 1
   stacks:
+    WoodPlank: 4
+    MedievalLeather1: 2
     MedievalIronIngot: 1
-    MedievalLeather1: 1
     MedievalFireSerdolick: 1
   result: MedievalLintstock
 
@@ -1444,32 +1501,40 @@
   id: MedievalGunpowderCharge
   craftTime: 1
   stacks:
-    Gunpowder: 4
+    Gunpowder: 1
     Cloth: 1
   result: MedievalGunpowderCharge
+
+- type: CP14Recipe
+  id: MedievalRamrod
+  craftTime: 3
+  stacks:
+    WoodPlank: 2
+    Cloth: 1
+  result: MedievalRamrod
 
 - type: CP14Recipe
   id: MedievalCannonballShip
   craftTime: 3
   stacks:
     MedievalIronIngot: 10
+    Gunpowder: 3
   result: MedievalCannonballShip
 
 - type: CP14Recipe
   id: MedievalCannonballExplosive
   craftTime: 3
   stacks:
-    MedievalIronIngot: 5
-    Gunpowder: 4
+    MedievalIronIngot: 8
+    Gunpowder: 6
   result: MedievalCannonballExplosive
 
 - type: CP14Recipe
   id: MedievalGrapeshot
   craftTime: 3
   stacks:
-    MedievalRivets: 3
+    MedievalRivets: 1
     Cloth: 1
-    MedievalRope: 1
   result: MedievalGrapeshot
 
 - type: CP14Recipe
@@ -1540,12 +1605,62 @@
 
 - type: CP14Recipe
   id: MedievalHammerBlacksmith
-  craftTime: 25
+  craftTime: 12
   iconOverride: MedievalHammerBlacksmith
   stacks:
     WoodPlank: 2
     MedievalIronIngot: 2
   result: MedievalHammerBlacksmith
+
+- type: CP14Recipe
+  id: MedievalSewingNeedle
+  craftTime: 5
+  iconOverride: MedievalSewingNeedle
+  stacks:
+    MedievalIronIngot: 1
+  result: MedievalSewingNeedle
+
+- type: CP14Recipe
+  id: MedievalBlacksmithPatches
+  craftTime: 5
+  iconOverride: MedievalBlacksmithPatches
+  stacks:
+    MedievalRivets: 1
+    MedievalIronPlateSmall: 3
+  result: MedievalBlacksmithPatches
+
+- type: CP14Recipe
+  id: MedievalSewingPatches
+  craftTime: 5
+  iconOverride: MedievalSewingPatches
+  stacks:
+    MedievalIronIngot: 1
+    MedievalLeather1: 1
+    Cloth: 4
+  result: MedievalSewingPatches
+
+- type: CP14Recipe
+  id: MedievalBlacksmithKit
+  craftTime: 5
+  iconOverride: MedievalBlacksmithKit
+  stacks:
+    MedievalIronIngot: 2
+    MedievalRivets: 2
+    MedievalIronPlateSmall: 4
+    WoodPlank: 1
+  result: MedievalBlacksmithKit
+
+- type: CP14Recipe
+  id: MedievalSewingKit
+  craftTime: 5
+  iconOverride: MedievalSewingKit
+  stacks:
+    MedievalIronIngot: 1
+    MedievalLeather1: 2
+    MedievalLeatherBelt: 1
+    Cloth: 6
+    WoodPlank: 1
+  result: MedievalSewingKit
 
 - type: CP14Recipe
   id: MedievalHorseLeatherArmor

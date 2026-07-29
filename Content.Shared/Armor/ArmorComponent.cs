@@ -1,4 +1,5 @@
-﻿using Content.Shared.Damage;
+using Content.Shared.Damage;
+using Content.Shared.Imperial.Medieval.ArmorIntegrity;
 using Content.Shared.Imperial.Medieval.SmithingSystem;
 using Content.Shared.Inventory;
 using Robust.Shared.GameStates;
@@ -9,7 +10,8 @@ namespace Content.Shared.Armor;
 /// <summary>
 /// Used for clothing that reduces damage when worn.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedArmorSystem), typeof(SharedSmithingSystem))] // Imperial medieval smithing
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(SharedArmorSystem), typeof(SharedSmithingSystem), typeof(MedievalArmorIntegritySystem))]
 public sealed partial class ArmorComponent : Component
 {
     /// <summary>

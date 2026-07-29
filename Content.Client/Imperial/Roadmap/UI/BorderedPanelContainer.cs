@@ -13,7 +13,7 @@ public class BorderedPanelContainer : PanelContainer
 
 
     private float _borderRadius = 0f;
-    private Color _backgroundColor = Color.FromHex("#25252A");
+    private Color _backgroundColor = Color.FromHex("#2B211D");
     private Vector2 _artifactScaleProtection = new Vector2(1.0f);
 
 
