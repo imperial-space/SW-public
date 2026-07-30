@@ -20,6 +20,13 @@ public enum TypeMedievalDoAfter : byte
 {
     Hit,
 }
+
+[Serializable, NetSerializable]
+public enum MedievalBerryBushVisuals : byte
+{
+    HasBerries,
+}
+
 [NetSerializable, Serializable]
 public sealed partial class MedievalHitOnDoAfter : SimpleDoAfterEvent { }
 

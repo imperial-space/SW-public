@@ -1,10 +1,9 @@
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Medieval.DoOnUse.DoAfter;
 using Content.Shared.Verbs;
-using Robust.Shared.Prototypes;
+using Robust.Server.GameObjects;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.DoOnUse.DoAfter;
@@ -13,6 +12,8 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
@@ -23,11 +24,21 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalHitOnDoAfter>(GiveHit);
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalCollectBerryDoAfter>(OnCollectBerryDoAfter);
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalUprootBushDoAfter>(OnUprootBushDoAfter);
+        SubscribeLocalEvent<MedievalDoAfterEveryComponent, MapInitEvent>(OnMapInit);
     }
 
     public static bool IsBerryBushPrototype(string? prototypeId)
     {
         return prototypeId is "MedievalGrassBush" or "MedievalGrassBushAutumn" or "MedievalGrassBushWinter";
+    }
+
+    private void OnMapInit(EntityUid uid, MedievalDoAfterEveryComponent comp, MapInitEvent args)
+    {
+        if (!TryComp<MetaDataComponent>(uid, out var metadata) || !IsBerryBushPrototype(metadata.EntityPrototype?.ID))
+            return;
+
+        var appearance = EnsureComp<AppearanceComponent>(uid);
+        _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, !HasComp<MedievalBerryBushComponent>(uid), appearance);
     }
 
     private void GiveHit(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalHitOnDoAfter ev)
@@ -57,9 +68,11 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
             return;
 
         var berryBush = EnsureComp<MedievalBerryBushComponent>(uid);
-        var regrowDelay = TimeSpan.FromMinutes(_random.Next(14, 16));
+        var regrowDelay = TimeSpan.FromMinutes(_random.NextFloat(14f, 16f));
         berryBush.RegrowAt = _timing.CurTime + regrowDelay;
         berryBush.Collected = true;
+        var appearance = EnsureComp<AppearanceComponent>(uid);
+        _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, false, appearance);
 
         Spawn("FoodBerries", Transform(uid).Coordinates);
 
@@ -69,6 +82,9 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
                 return;
 
             RemComp<MedievalBerryBushComponent>(uid);
+
+            if (TryComp<AppearanceComponent>(uid, out var appearanceComp))
+                _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, true, appearanceComp);
         });
     }
 
