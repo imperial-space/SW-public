@@ -5,6 +5,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Medieval.DoOnUse.DoAfter;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.DoOnUse.DoAfter;
 
@@ -12,28 +13,84 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, GetVerbsEvent<AlternativeVerb>>(GenerateDoAfter);
-
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalHitOnDoAfter>(GiveHit);
+        SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalCollectBerryDoAfter>(OnCollectBerryDoAfter);
+        SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalUprootBushDoAfter>(OnUprootBushDoAfter);
     }
+
+    public static bool IsBerryBushPrototype(string? prototypeId)
+    {
+        return prototypeId is "MedievalGrassBush" or "MedievalGrassBushAutumn" or "MedievalGrassBushWinter";
+    }
+
     private void GiveHit(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalHitOnDoAfter ev)
     {
-        if (ev.Cancelled || !TryComp<DamageableComponent>(uid, out var damagecomp)) return;
-        DamageSpecifier damage = new()
+        if (ev.Cancelled || !TryComp<DamageableComponent>(uid, out var damageComp)) return;
+
+        var damage = new DamageSpecifier
         {
             DamageDict = new()
             {
                 { comp.TypeHit, comp.NumHit }
             }
         };
+
         _damageableSystem.TryChangeDamage(uid, damage, true, false);
+
         if (TryComp<DamageableComponent>(ev.Target, out var damageable))
             Dirty(ev.Target.Value, damageable);
     }
+
+    private void OnCollectBerryDoAfter(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalCollectBerryDoAfter ev)
+    {
+        if (ev.Cancelled || HasComp<MedievalBerryBushComponent>(uid))
+            return;
+
+        if (TryComp<MetaDataComponent>(uid, out var metadata) && !IsBerryBushPrototype(metadata.EntityPrototype?.ID))
+            return;
+
+        var berryBush = EnsureComp<MedievalBerryBushComponent>(uid);
+        var regrowDelay = TimeSpan.FromMinutes(_random.Next(14, 16));
+        berryBush.RegrowAt = _timing.CurTime + regrowDelay;
+        berryBush.Collected = true;
+
+        Spawn("FoodBerries", Transform(uid).Coordinates);
+
+        Timer.Spawn(regrowDelay, () =>
+        {
+            if (!Exists(uid) || Deleted(uid))
+                return;
+
+            RemComp<MedievalBerryBushComponent>(uid);
+        });
+    }
+
+    private void OnUprootBushDoAfter(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalUprootBushDoAfter ev)
+    {
+        if (ev.Cancelled || !TryComp<DamageableComponent>(uid, out var damageComp))
+            return;
+
+        var damage = new DamageSpecifier
+        {
+            DamageDict = new()
+            {
+                { "Blunt", 100f }
+            }
+        };
+
+        _damageableSystem.TryChangeDamage(uid, damage, true, false);
+
+        if (TryComp<DamageableComponent>(ev.Target, out var damageable))
+            Dirty(ev.Target.Value, damageable);
+    }
+
     private void StartDoAfterHit(MedievalDoAfterEveryComponent comp, GetVerbsEvent<AlternativeVerb> ev)
     {
         var doAfterHit = new DoAfterArgs(EntityManager, ev.User, comp.Time, new MedievalHitOnDoAfter(), ev.Target, ev.User)
@@ -45,27 +102,59 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
         };
         _doAfter.TryStartDoAfter(doAfterHit);
     }
+
+    private void StartCollectBerryDoAfter(MedievalDoAfterEveryComponent comp, GetVerbsEvent<AlternativeVerb> ev)
+    {
+        var doAfter = new DoAfterArgs(EntityManager, ev.User, comp.Time, new MedievalCollectBerryDoAfter(), ev.Target, ev.User)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+            CancelDuplicate = true
+        };
+        _doAfter.TryStartDoAfter(doAfter);
+    }
+
+    private void StartUprootBushDoAfter(MedievalDoAfterEveryComponent comp, GetVerbsEvent<AlternativeVerb> ev)
+    {
+        var doAfter = new DoAfterArgs(EntityManager, ev.User, comp.Time, new MedievalUprootBushDoAfter(), ev.Target, ev.User)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+            CancelDuplicate = true
+        };
+        _doAfter.TryStartDoAfter(doAfter);
+    }
+
     private void GenerateDoAfter(EntityUid uid, MedievalDoAfterEveryComponent comp, GetVerbsEvent<AlternativeVerb> ev)
     {
         if (!ev.CanAccess || !ev.CanInteract || ev.User == ev.Target)
             return;
+
+        if (TryComp<MetaDataComponent>(uid, out var metadata) && IsBerryBushPrototype(metadata.EntityPrototype?.ID))
+        {
+            if (!HasComp<MedievalBerryBushComponent>(uid))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => StartCollectBerryDoAfter(comp, ev),
+                    Text = Loc.GetString(comp.NameLocId)
+                });
+            }
+
+            ev.Verbs.Add(new AlternativeVerb
+            {
+                Act = () => StartUprootBushDoAfter(comp, ev),
+                Text = Loc.GetString("uproot-bush-verb-name")
+            });
+            return;
+        }
+
         ev.Verbs.Add(new AlternativeVerb
         {
-            Act = () =>
-            {
-                switch (comp.Type)
-                {
-                    case TypeMedievalDoAfter.Hit:
-                        {
-                            StartDoAfterHit(comp, ev);
-                            break;
-                        }
-                    default:
-                        break;
-                }
-            },
+            Act = () => StartDoAfterHit(comp, ev),
             Text = Loc.GetString(comp.NameLocId)
-        }
-        );
+        });
     }
 }

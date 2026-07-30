@@ -1,6 +1,7 @@
 using Content.Shared.Coordinates;
 using Content.Shared.Imperial.Medieval.DoOnUse.Spawn;
 using Content.Shared.Interaction.Events;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Imperial.Medieval.DoOnUse.Spawn;
 
@@ -13,7 +14,7 @@ public sealed partial class AddActionOnUseSystem : EntitySystem
     }
     private void UseInHandEvent(EntityUid uid, SpawnOnUseComponent component, UseInHandEvent ev)
     {
-        SpawnAtPosition(component.EntityPrototype, uid.ToCoordinates());
+        SpawnAtPosition(component.EntityPrototype, Transform(uid).Coordinates);
         QueueDel(uid);
     }
 }

@@ -22,3 +22,19 @@ public enum TypeMedievalDoAfter : byte
 }
 [NetSerializable, Serializable]
 public sealed partial class MedievalHitOnDoAfter : SimpleDoAfterEvent { }
+
+[RegisterComponent]
+public sealed partial class MedievalBerryBushComponent : Component
+{
+    [DataField]
+    public bool Collected;
+
+    [DataField]
+    public TimeSpan? RegrowAt;
+}
+
+[NetSerializable, Serializable]
+public sealed partial class MedievalCollectBerryDoAfter : SimpleDoAfterEvent { }
+
+[NetSerializable, Serializable]
+public sealed partial class MedievalUprootBushDoAfter : SimpleDoAfterEvent { }
