@@ -21,7 +21,6 @@ public sealed partial class ShipBuyTerminalMenu : DefaultWindow
 
     private StoreWithdrawWindow? _withdrawWindow;
     private CurrencyPrototype? _currency;
-    private readonly List<Button> _buyButtons = new();
 
     public event Action<BaseButton.ButtonEventArgs, int>? OnBuyOffer;
     public event Action<BaseButton.ButtonEventArgs, string, int>? OnWithdrawAttempt;
@@ -48,23 +47,14 @@ public sealed partial class ShipBuyTerminalMenu : DefaultWindow
 
         BalanceInfo.SetMarkup(balanceText.Trim());
 
-        PopulateOffers(state.GridOfferIds, state.Balance, state.PurchaseLocked);
+        PopulateOffers(state.GridOfferIds, state.Balance);
 
         WithdrawButton.Disabled = state.Balance <= 0 || _currency == null || !_currency.CanWithdraw;
     }
 
-    public void LockPurchaseButtons()
-    {
-        foreach (var button in _buyButtons)
-        {
-            button.Disabled = true;
-        }
-    }
-
-    private void PopulateOffers(IReadOnlyList<string> offerIds, int balance, bool purchaseLocked)
+    private void PopulateOffers(IReadOnlyList<string> offerIds, int balance)
     {
         OffersContainer.Children.Clear();
-        _buyButtons.Clear();
 
         for (var i = 0; i < offerIds.Count; i++)
         {
@@ -101,13 +91,12 @@ public sealed partial class ShipBuyTerminalMenu : DefaultWindow
             var buyButton = new Button
             {
                 Text = Loc.GetString("store-ui-buy-button"),
-                Disabled = purchaseLocked || !canBuy,
+                Disabled = !canBuy,
                 MinWidth = 60,
             };
 
             var offerIndex = i;
             buyButton.OnButtonDown += args => OnBuyOffer?.Invoke(args, offerIndex);
-            _buyButtons.Add(buyButton);
 
             row.AddChild(nameLabel);
             row.AddChild(costLabel);

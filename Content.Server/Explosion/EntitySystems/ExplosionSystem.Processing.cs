@@ -204,7 +204,6 @@ public sealed partial class ExplosionSystem
         Vector2i tile,
         float throwForce,
         DamageSpecifier damage,
-        float intensity,
         MapCoordinates epicenter,
         HashSet<EntityUid> processed,
         string id,
@@ -228,7 +227,7 @@ public sealed partial class ExplosionSystem
         // process those entities
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, damage, intensity, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
         }
 
         // process anchored entities
@@ -238,7 +237,7 @@ public sealed partial class ExplosionSystem
         foreach (var entity in _anchored)
         {
             processed.Add(entity);
-            ProcessEntity(entity, epicenter, damage, intensity, throwForce, id, null, fireStacks, cause);
+            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause);
         }
 
         // Walls and reinforced walls will break into girders. These girders will also be considered turf-blocking for
@@ -274,7 +273,7 @@ public sealed partial class ExplosionSystem
         {
             // Here we only throw, no dealing damage. Containers n such might drop their entities after being destroyed, but
             // they should handle their own damage pass-through, with their own damage reduction calculation.
-            ProcessEntity(uid, epicenter, null, intensity, throwForce, id, xform, null, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause);
         }
 
         return !tileBlocked;
@@ -307,7 +306,6 @@ public sealed partial class ExplosionSystem
         Vector2i tile,
         float throwForce,
         DamageSpecifier damage,
-        float intensity,
         MapCoordinates epicenter,
         HashSet<EntityUid> processed,
         string id,
@@ -328,7 +326,7 @@ public sealed partial class ExplosionSystem
         foreach (var (uid, xform) in state.Item1)
         {
             processed.Add(uid);
-            ProcessEntity(uid, epicenter, damage, intensity, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
         }
 
         if (throwForce <= 0)
@@ -342,7 +340,7 @@ public sealed partial class ExplosionSystem
 
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, null, intensity, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause);
         }
     }
 
@@ -396,7 +394,7 @@ public sealed partial class ExplosionSystem
         return damage;
     }
 
-    private void GetEntitiesToDamage(EntityUid uid, DamageSpecifier originalDamage, string prototype, float intensity)
+    private void GetEntitiesToDamage(EntityUid uid, DamageSpecifier originalDamage, string prototype)
     {
         _toDamage.Clear();
 
@@ -411,7 +409,7 @@ public sealed partial class ExplosionSystem
         {
             var (ent, damage) = _toDamage[i];
             _containedEntities.Clear();
-            var ev = new BeforeExplodeEvent(damage, prototype, intensity, _containedEntities);
+            var ev = new BeforeExplodeEvent(damage, prototype, _containedEntities);
             RaiseLocalEvent(ent, ref ev);
 
             if (_containedEntities.Count == 0)
@@ -437,7 +435,6 @@ public sealed partial class ExplosionSystem
         EntityUid uid,
         MapCoordinates epicenter,
         DamageSpecifier? originalDamage,
-        float intensity,
         float throwForce,
         string id,
         TransformComponent? xform,
@@ -446,7 +443,7 @@ public sealed partial class ExplosionSystem
     {
         if (originalDamage != null)
         {
-            GetEntitiesToDamage(uid, originalDamage, id, intensity);
+            GetEntitiesToDamage(uid, originalDamage, id);
             foreach (var (entity, damage) in _toDamage)
             {
                 if (damage.GetTotal() > 0 && TryComp<ActorComponent>(entity, out var actorComponent))
@@ -859,7 +856,6 @@ sealed class Explosion
                     _currentEnumerator.Current,
                     _currentThrowForce,
                     _currentDamage,
-                    _currentIntensity,
                     Epicenter,
                     ProcessedEntities,
                     ExplosionType.ID,
@@ -879,7 +875,6 @@ sealed class Explosion
                     _currentEnumerator.Current,
                     _currentThrowForce,
                     _currentDamage,
-                    _currentIntensity,
                     Epicenter,
                     ProcessedEntities,
                     ExplosionType.ID,

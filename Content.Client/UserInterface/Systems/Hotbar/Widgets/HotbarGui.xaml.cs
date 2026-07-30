@@ -60,6 +60,8 @@ public sealed partial class HotbarGui : UIWidget
     public void UpdateStatusVisibility(bool left, bool right)
     {
         // imperial medieval statusbars start
+        // StatusPanelLeft.Visible = left;
+        // StatusPanelRight.Visible = right;
         _leftStatusVisible = left;
         _rightStatusVisible = right;
         StatusPanelLeft.Visible = _handsVisible && left;

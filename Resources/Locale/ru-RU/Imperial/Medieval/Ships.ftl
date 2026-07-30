@@ -74,7 +74,6 @@ ent-CaptainShipMegaphone = Корабельный рупор
     .suffix = { "Средневековье" }
 ship-buy-terminal-ui-title = Корабельная верфь
 ship-buy-terminal-currency-name = ревентов
-ship-buy-terminal-docking-blocked = Препятствие блокирует швартовку покупаемого корабля.
 
 sail-menu-rotate-left = Повернуть влево
 sail-menu-toggle-fold = Свернуть/развернуть

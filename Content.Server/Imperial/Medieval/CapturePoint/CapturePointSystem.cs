@@ -17,8 +17,6 @@ using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
@@ -32,8 +30,8 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
@@ -43,30 +41,9 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     private float _updateTimer;
     private const float UpdateInterval = 0.5f;
 
-    private readonly List<ZoneInfo> _zones = new();
-    private readonly List<int> _zoneCounts = new();
-
-#if RELEASE
-    private EntityQuery<ActorComponent> _actorQuery;
-#endif
-
-    private struct ZoneInfo
-    {
-        public EntityUid Uid;
-        public CapturePointComponent Comp;
-        public MapId MapId;
-        public Box2Rotated Bounds;
-        public int CountOffset;
-        public bool UiOpen;
-    }
-
     public override void Initialize()
     {
         base.Initialize();
-
-#if RELEASE
-        _actorQuery = GetEntityQuery<ActorComponent>();
-#endif
 
         SubscribeLocalEvent<CapturePointComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<CapturePointComponent, StartCapturePointMessage>(OnStartCapture);
@@ -81,7 +58,9 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
         args.Handled = true;
 
         var comp = ent.Comp;
-        if (_userInterface.IsUiOpen(ent.Owner, CapturePointUiKey.Key))
+        var actors = _userInterface.GetActors(ent.Owner, CapturePointUiKey.Key);
+
+        if (actors.Any())
         {
             var message = Loc.GetString("machine-already-in-use", ("machine", ent.Owner));
             _popup.PopupEntity(message, args.User);
@@ -208,162 +187,88 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
             return;
         _updateTimer -= UpdateInterval;
 
-        RefreshFactionCounts();
-
-        var query = EntityQueryEnumerator<CapturePointComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        var query = EntityQueryEnumerator<CapturePointComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var comp, out _))
         {
             UpdateCapturePoint((uid, comp));
             UpdateFactionIncome((uid, comp));
         }
     }
 
-    private void RefreshFactionCounts()
-    {
-        _zones.Clear();
-        _zoneCounts.Clear();
-
-        var pointQuery = EntityQueryEnumerator<CapturePointComponent, TransformComponent>();
-        while (pointQuery.MoveNext(out var uid, out var comp, out var xform))
-        {
-            var uiOpen = _userInterface.IsUiOpen(uid, CapturePointUiKey.Key);
-
-            if (comp.State != CapturePointState.Capturing && !uiOpen)
-                continue;
-
-            _zones.Add(new ZoneInfo
-            {
-                Uid = uid,
-                Comp = comp,
-                MapId = xform.MapID,
-                Bounds = GetZoneBounds(xform, comp.Radius),
-                CountOffset = _zoneCounts.Count,
-                UiOpen = uiOpen,
-            });
-
-            for (var i = 0; i < comp.AllowedFactions.Count; i++)
-                _zoneCounts.Add(0);
-        }
-
-        if (_zones.Count == 0)
-            return;
-
-        var memberQuery = EntityQueryEnumerator<MedievalFactionMemberComponent, TransformComponent>();
-        while (memberQuery.MoveNext(out var uid, out var member, out var xform))
-        {
-            if (!IsParticipant(uid))
-                continue;
-
-            var mapId = xform.MapID;
-            var worldPos = _transform.GetWorldPosition(xform);
-
-            for (var i = 0; i < _zones.Count; i++)
-            {
-                var zone = _zones[i];
-                if (zone.MapId != mapId)
-                    continue;
-
-                var index = GetFactionIndex(zone.Comp, member.Faction);
-                if (index < 0)
-                    continue;
-
-                if (!zone.Bounds.Contains(worldPos))
-                    continue;
-
-                _zoneCounts[zone.CountOffset + index]++;
-            }
-        }
-
-        foreach (var zone in _zones)
-        {
-            var comp = zone.Comp;
-            var factionCount = comp.AllowedFactions.Count;
-
-            if (comp.FactionCounts.Length != factionCount)
-                comp.FactionCounts = new int[factionCount];
-
-            var changed = false;
-            for (var i = 0; i < factionCount; i++)
-            {
-                var value = _zoneCounts[zone.CountOffset + i];
-                if (comp.FactionCounts[i] == value)
-                    continue;
-
-                comp.FactionCounts[i] = value;
-                changed = true;
-            }
-
-            if (!changed)
-                continue;
-
-            Dirty(zone.Uid, comp);
-
-            if (zone.UiOpen)
-                RefreshUiState((zone.Uid, comp));
-        }
-    }
-
-    private void RefreshUiState(Entity<CapturePointComponent> ent)
-    {
-        var viewer = _userInterface.GetActors(ent.Owner, CapturePointUiKey.Key).FirstOrDefault();
-
-        if (viewer == default || !TryComp<MedievalFactionMemberComponent>(viewer, out var member))
-            return;
-
-        var allies = GetFactionEntitiesInRadius(ent, member.Faction);
-        var allyNames = allies.Select(a => Name(a)).ToList();
-        var estimatedDuration = CalculateCaptureDuration(ent.Comp, allies.Count);
-        var canStart = allies.Count >= ent.Comp.MinParticipants;
-        var reason = canStart
-            ? null
-            : Loc.GetString("medieval-capture-point-not-enough-participants");
-
-        _ui.SetUiState(ent.Owner,
-            CapturePointUiKey.Key,
-            new CapturePointBuiState(
-            member.Faction,
-            allyNames,
-            estimatedDuration,
-            canStart,
-            reason));
-    }
-
     private void UpdateCapturePoint(Entity<CapturePointComponent> ent)
     {
         var comp = ent.Comp;
 
-        switch (comp.State)
+        var newCounts = new int[comp.AllowedFactions.Count];
+
+        for (var i = 0; i < comp.AllowedFactions.Count; i++)
         {
-            case CapturePointState.Idle:
-                return;
-
-            case CapturePointState.Cooldown:
-                {
-                    var elapsed = (float)(_timing.CurTime - comp.CooldownStartTime).TotalSeconds;
-                    var cooldownDuration = comp.OwningFaction == null
-                        ? comp.CooldownDuration / 2
-                        : comp.CooldownDuration;
-
-                    if (elapsed < cooldownDuration)
-                        return;
-
-                    comp.State = CapturePointState.Idle;
-                    Dirty(ent);
-                    return;
-                }
+            var entities = GetFactionEntitiesInRadius(ent, comp.AllowedFactions[i]);
+            newCounts[i] = entities.Count;
         }
 
-        var totalInZone = 0;
-        foreach (var count in comp.FactionCounts)
-            totalInZone += count;
+        var countsChanged = false;
+        for (var i = 0; i < newCounts.Length && i < comp.FactionCounts.Length; i++)
+        {
+            if (newCounts[i] == comp.FactionCounts[i])
+                continue;
+
+            countsChanged = true;
+            break;
+        }
+        comp.FactionCounts = newCounts;
+
+        if (countsChanged)
+        {
+            var actors = _userInterface.GetActors(ent.Owner, CapturePointUiKey.Key);
+            var viewer = actors.FirstOrDefault();
+
+            if (viewer != default && TryComp<MedievalFactionMemberComponent>(viewer, out var member))
+            {
+                var allies = GetFactionEntitiesInRadius(ent, member.Faction);
+                var allyNames = allies.Select(a => Name(a)).ToList();
+                var estimatedDuration = CalculateCaptureDuration(comp, allies.Count);
+                var canStart = allies.Count >= comp.MinParticipants;
+                var reason = canStart
+                    ? null
+                    : Loc.GetString("medieval-capture-point-not-enough-participants");
+
+                _ui.SetUiState(ent.Owner,
+                    CapturePointUiKey.Key,
+                    new CapturePointBuiState(
+                    member.Faction,
+                    allyNames,
+                    estimatedDuration,
+                    canStart,
+                    reason));
+            }
+        }
+
+        switch (comp.State)
+        {
+            case CapturePointState.Cooldown:
+            {
+                var elapsed = (float)(_timing.CurTime - comp.CooldownStartTime).TotalSeconds;
+                var cooldownDuration = comp.OwningFaction == null
+                    ? comp.CooldownDuration / 2
+                    : comp.CooldownDuration;
+
+                if (!(elapsed >= cooldownDuration))
+                    return;
+
+                comp.State = CapturePointState.Idle;
+                Dirty(ent);
+                return;
+            }
+            case CapturePointState.Idle:
+                return;
+        }
+
+        var totalInZone = newCounts.Sum();
 
         if (totalInZone < comp.MinParticipants)
         {
-            if (comp.LastEmptyTime == null)
-            {
-                comp.LastEmptyTime = _timing.CurTime;
-                Dirty(ent);
-            }
+            comp.LastEmptyTime ??= _timing.CurTime;
 
             var emptyElapsed = (float)(_timing.CurTime - comp.LastEmptyTime.Value).TotalSeconds;
             if (emptyElapsed >= comp.AbandonTimeout)
@@ -372,36 +277,38 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
                 return;
             }
         }
-        else if (comp.LastEmptyTime != null)
+        else
         {
             comp.LastEmptyTime = null;
-            Dirty(ent);
         }
 
         var captureElapsed = (float)(_timing.CurTime - comp.CaptureStartTime).TotalSeconds;
-        if (captureElapsed < comp.CurrentCaptureDuration)
-            return;
-
-        ProtoId<MedievalFactionPrototype>? winner = null;
-        var maxCount = -1;
-        var tie = false;
-
-        for (var i = 0; i < comp.AllowedFactions.Count; i++)
+        if (captureElapsed >= comp.CurrentCaptureDuration)
         {
-            var count = i < comp.FactionCounts.Length ? comp.FactionCounts[i] : 0;
-            if (count > maxCount)
+            ProtoId<MedievalFactionPrototype>? winner = null;
+            var maxCount = -1;
+            var tie = false;
+
+            for (var i = 0; i < comp.AllowedFactions.Count; i++)
             {
-                maxCount = count;
-                winner = comp.AllowedFactions[i];
-                tie = false;
+                var count = i < newCounts.Length ? newCounts[i] : 0;
+                if (count > maxCount)
+                {
+                    maxCount = count;
+                    winner = comp.AllowedFactions[i];
+                    tie = false;
+                }
+                else if (count == maxCount)
+                {
+                    tie = true;
+                }
             }
-            else if (count == maxCount)
-            {
-                tie = true;
-            }
+
+            FinishCapture(ent, tie ? null : winner);
+            return;
         }
 
-        FinishCapture(ent, tie ? null : winner);
+        Dirty(ent);
     }
 
     private void UpdateFactionIncome(Entity<CapturePointComponent> ent)
@@ -477,7 +384,7 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
             var winnersInRadius = GetFactionEntitiesInRadius(ent, winner.Value);
             foreach (var playerUid in winnersInRadius)
             {
-                _achievement.TryUpdateProgressAndGrant(playerUid, new CapturePointUpdateContext(),
+                _achievement.TryUpdateProgressAndGrant(playerUid, new CapturePointUpdateContext(), 
                     ach => ach.Conditions.Any(c => c is CapturePointCondition));
             }
         }
@@ -548,20 +455,18 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     private bool IsFactionDominant(Entity<CapturePointComponent> ent, ProtoId<MedievalFactionPrototype> faction)
     {
         var comp = ent.Comp;
-        var factionIndex = GetFactionIndex(comp, faction);
+        var factionIndex = comp.AllowedFactions.IndexOf(faction);
         if (factionIndex < 0)
             return false;
 
-        Span<int> counts = stackalloc int[comp.AllowedFactions.Count];
-        CountFactionsInZone(ent, counts);
-
-        var ownCount = counts[factionIndex];
-        for (var i = 0; i < counts.Length; i++)
+        var ownCount = GetFactionEntitiesInRadius(ent, faction).Count;
+        for (var i = 0; i < comp.AllowedFactions.Count; i++)
         {
             if (i == factionIndex)
                 continue;
 
-            if (counts[i] >= ownCount)
+            var otherCount = GetFactionEntitiesInRadius(ent, comp.AllowedFactions[i]).Count;
+            if (otherCount >= ownCount)
                 return false;
         }
 
@@ -583,77 +488,42 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
         return false;
     }
 
-    private void CountFactionsInZone(Entity<CapturePointComponent> ent, Span<int> counts)
-    {
-        counts.Clear();
-
-        var pointXform = Transform(ent);
-        var bounds = GetZoneBounds(pointXform, ent.Comp.Radius);
-
-        var query = EntityQueryEnumerator<MedievalFactionMemberComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var member, out var xform))
-        {
-            if (xform.MapID != pointXform.MapID)
-                continue;
-
-            var index = GetFactionIndex(ent.Comp, member.Faction);
-            if (index < 0 || index >= counts.Length)
-                continue;
-
-            if (!bounds.Contains(_transform.GetWorldPosition(xform)))
-                continue;
-
-            if (!IsParticipant(uid))
-                continue;
-
-            counts[index]++;
-        }
-    }
-
     private HashSet<EntityUid> GetFactionEntitiesInRadius(Entity<CapturePointComponent> ent, ProtoId<MedievalFactionPrototype> faction)
     {
         var result = new HashSet<EntityUid>();
 
-        var pointXform = Transform(ent);
-        var bounds = GetZoneBounds(pointXform, ent.Comp.Radius);
+        var xform = Transform(ent);
+        var (pos, rot) = _transform.GetWorldPositionRotation(ent);
 
-        var query = EntityQueryEnumerator<MedievalFactionMemberComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var member, out var xform))
+        var half = ent.Comp.Radius;
+        var size = new Vector2(half * 2f, half * 2f);
+
+        var box = Box2.CenteredAround(pos, size);
+        var rotated = new Box2Rotated(box, rot, pos);
+
+        var entities = _lookup.GetEntitiesIntersecting(xform.MapID, rotated,
+            LookupFlags.Dynamic | LookupFlags.Sundries);
+
+        foreach (var uid in entities)
         {
-            if (member.Faction != faction || xform.MapID != pointXform.MapID)
+            if (!TryComp<MedievalFactionMemberComponent>(uid, out var member))
                 continue;
 
-            if (!bounds.Contains(_transform.GetWorldPosition(xform)))
+            #if RELEASE
+            if (!HasComp<ActorComponent>(uid))
+                continue;
+            #endif
+
+            if (member.Faction != faction)
                 continue;
 
-            if (!IsParticipant(uid))
+            if (_mobState.IsIncapacitated(uid))
                 continue;
 
             result.Add(uid);
         }
 
         return result;
-    }
-
-    private bool IsParticipant(EntityUid uid)
-    {
-#if RELEASE
-        if (!_actorQuery.HasComp(uid))
-            return false;
-#endif
-
-        if (_container.IsEntityInContainer(uid))
-            return false;
-
-        return !_mobState.IsIncapacitated(uid);
-    }
-
-    private Box2Rotated GetZoneBounds(TransformComponent xform, float radius)
-    {
-        var (pos, rot) = _transform.GetWorldPositionRotation(xform);
-        var size = new Vector2(radius * 2f, radius * 2f);
-
-        return new Box2Rotated(Box2.CenteredAround(pos, size), rot, pos);
     }
 
     private void OnBeforeSpawn(Entity<SpawnAfterInteractComponent> ent, ref BeforeSpawnAfterInteractEvent args)
@@ -663,14 +533,18 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 
         var userPos = _transform.GetMapCoordinates(user);
 
-        var query = EntityQueryEnumerator<CapturePointComponent, TransformComponent>();
-        while (query.MoveNext(out _, out var pointComp, out var pointXform))
+        var query = EntityQueryEnumerator<CapturePointComponent>();
+        while (query.MoveNext(out var pointUid, out var pointComp))
         {
-            if (pointXform.MapID != userPos.MapId)
-                continue;
+            var (pos, rot) = _transform.GetWorldPositionRotation(pointUid);
 
-            var bounds = GetZoneBounds(pointXform, pointComp.Radius * 2f);
-            if (bounds.Contains(userPos.Position))
+            var half = pointComp.Radius * 2f; // чтоб вокруг не застроили ☺☻☺♿♿
+            var size = new Vector2(half * 2f, half * 2f);
+
+            var box = Box2.CenteredAround(pos, size);
+            var rotated = new Box2Rotated(box, rot, pos);
+
+            if (rotated.Contains(userPos.Position))
             {
                 args.Cancelled = true;
                 _popup.PopupEntity(Loc.GetString("construction-system-cannot-start"), ent, user);

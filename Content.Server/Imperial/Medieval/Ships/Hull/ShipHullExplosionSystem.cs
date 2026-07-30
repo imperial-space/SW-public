@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Content.Shared.Explosion;
 using Content.Shared.Imperial.Medieval.Ships.Hull;
@@ -6,6 +5,7 @@ using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Maps;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Medieval.Ships.Hull;
@@ -14,6 +14,7 @@ public sealed class ShipHullExplosionSystem : EntitySystem
 {
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedShipHullSystem _shipHull = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly Dictionary<(EntityUid Grid, Vector2i Indices), EntityUid> _markers = new();
@@ -79,15 +80,21 @@ public sealed class ShipHullExplosionSystem : EntitySystem
     {
         var marker = entity.Comp;
         if (!TryComp<MapGridComponent>(marker.Grid, out var grid) ||
-            !TryComp<ShipDrowningComponent>(marker.Grid, out var ship) ||
+            !HasComp<ShipDrowningComponent>(marker.Grid) ||
             !_map.TryGetTileRef(marker.Grid, grid, marker.GridIndices, out var tile) ||
             !_shipHull.TryGetNextDamageTile(tile.Tile.TypeId, out var damagedTileType) ||
-            _shipHull.IsBreakagePrevented(tile, _tileContents))
+            _shipHull.IsBreakagePrevented(tile, _tileContents) ||
+            !_prototypes.TryIndex<ExplosionPrototype>(args.Id, out var explosionType))
         {
             return;
         }
 
-        if (!_random.Prob(GetExplosionBreakChance(ship, args.Intensity)))
+        var damagePerIntensity = explosionType.DamagePerIntensity.GetTotal().Float();
+        if (damagePerIntensity <= 0f)
+            return;
+
+        var intensity = args.Damage.GetTotal().Float() / damagePerIntensity;
+        if (!_random.Prob(explosionType.TileBreakChance(intensity)))
             return;
 
         var gridEntity = new Entity<MapGridComponent>(marker.Grid, grid);
@@ -96,35 +103,6 @@ public sealed class ShipHullExplosionSystem : EntitySystem
             gridEntity,
             marker.GridIndices,
             _shipHull.WithTileType(tile.Tile, damagedTileType));
-    }
-
-    private static float GetExplosionBreakChance(ShipDrowningComponent component, float intensity)
-    {
-        var chances = component.ExplosionBreakChance;
-        var intensities = component.ExplosionBreakIntensity;
-
-        if (chances.Length == 0 || chances.Length != intensities.Length)
-            return 0f;
-
-        for (var i = 1; i < intensities.Length; i++)
-        {
-            if (intensities[i] <= intensities[i - 1])
-                return 0f;
-        }
-
-        if (intensities.Length == 1 || intensity >= intensities[^1])
-            return Math.Clamp(chances[^1], 0f, 1f);
-
-        if (intensity <= intensities[0])
-            return Math.Clamp(chances[0], 0f, 1f);
-
-        var upperIndex = Array.FindIndex(intensities, value => value >= intensity);
-        var intensityRange = intensities[upperIndex] - intensities[upperIndex - 1];
-        var interpolation = (intensity - intensities[upperIndex - 1]) / intensityRange;
-        var chance = chances[upperIndex - 1] +
-            (chances[upperIndex] - chances[upperIndex - 1]) * interpolation;
-
-        return Math.Clamp(chance, 0f, 1f);
     }
 
     private void EnsureMarker(Entity<MapGridComponent> grid, Vector2i indices)

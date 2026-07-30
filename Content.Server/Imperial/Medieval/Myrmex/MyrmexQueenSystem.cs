@@ -47,8 +47,8 @@ public sealed partial class MyrmexQueenSystem : EntitySystem
 
         if (hunger.Buffs.Count == 0)
         {
-            //_popup.PopupEntity(Loc.GetString("medieval-myrmex-queen-egg-no-buff"), uid, uid);
-            //return;
+            _popup.PopupEntity(Loc.GetString("medieval-myrmex-queen-egg-no-buff"), uid, uid);
+            return;
         }
 
         args.Handled = true;

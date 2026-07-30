@@ -14,8 +14,6 @@ ent-ShipTradeHoleWest = { ent-ShipTradeHole }
     .desc = { ent-ShipTradeHole.desc }
     .suffix = { "Medieval, West" }
 
-ship-buy-terminal-docking-blocked = An obstacle is blocking the purchased ship's docking area.
-
 sail-menu-rotate-left = Rotate left
 sail-menu-toggle-fold = Fold / unfold
 sail-menu-rotate-right = Rotate right

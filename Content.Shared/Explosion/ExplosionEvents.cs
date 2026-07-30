@@ -27,7 +27,7 @@ public record struct GetExplosionResistanceEvent(string ExplosionPrototype) : II
 /// will also receive this event.
 /// </summary>
 [ByRefEvent]
-public record struct BeforeExplodeEvent(DamageSpecifier Damage, string Id, float Intensity, List<EntityUid> Contents)
+public record struct BeforeExplodeEvent(DamageSpecifier Damage, string Id, List<EntityUid> Contents)
 {
     /// <summary>
     /// The damage that will be received by this entity. Note that the entity's explosion resistance has already been
@@ -39,11 +39,6 @@ public record struct BeforeExplodeEvent(DamageSpecifier Damage, string Id, float
     /// ID of the explosion prototype.
     /// </summary>
     public readonly string Id = Id;
-
-    /// <summary>
-    /// Explosion intensity at the entity's tile before damage resistance is applied.
-    /// </summary>
-    public readonly float Intensity = Intensity;
 
     /// <summary>
     /// Damage multiplier for modifying the damage that will get dealt to contained entities.

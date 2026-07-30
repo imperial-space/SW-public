@@ -108,6 +108,6 @@
   components:
   - type: Action
     icon: Imperial/Medieval/Myrmex/Icons/yaico.png
-    useDelay: 300
+    useDelay: 180
   - type: InstantAction
     event: !type:ActionMyrmexQueenLayEggEvent
