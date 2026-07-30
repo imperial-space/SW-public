@@ -19,7 +19,11 @@ public sealed class ShipBuyTerminalBoundUserInterface : BoundUserInterface
         base.Open();
 
         _menu = this.CreateWindow<ShipBuyTerminalMenu>();
-        _menu.OnBuyOffer += (_, index) => SendMessage(new ShipBuyTerminalBuyMessage(index));
+        _menu.OnBuyOffer += (_, index) =>
+        {
+            _menu.LockPurchaseButtons();
+            SendMessage(new ShipBuyTerminalBuyMessage(index));
+        };
         _menu.OnWithdrawAttempt += (_, _, amount) => SendMessage(new ShipBuyTerminalWithdrawMessage(amount));
     }
 

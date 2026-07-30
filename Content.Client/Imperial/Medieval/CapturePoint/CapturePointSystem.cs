@@ -24,6 +24,9 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 
     private CapturePointOverlay? _captureOverlay;
 
+    private float _zoneCheckTimer;
+    private const float ZoneCheckInterval = 0.25f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -43,6 +46,12 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        _zoneCheckTimer += frameTime;
+        if (_zoneCheckTimer < ZoneCheckInterval)
+            return;
+        _zoneCheckTimer -= ZoneCheckInterval;
+
         UpdateZoneCheck();
     }
 

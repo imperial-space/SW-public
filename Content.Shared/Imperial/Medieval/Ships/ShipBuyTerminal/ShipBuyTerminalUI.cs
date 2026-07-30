@@ -11,12 +11,14 @@ public sealed class ShipBuyTerminalUpdateState : BoundUserInterfaceState
     public readonly int Balance;
     public readonly List<string> GridOfferIds;
     public readonly string Currency;
+    public readonly bool PurchaseLocked;
 
-    public ShipBuyTerminalUpdateState(int balance, List<string> gridOfferIds, string currency)
+    public ShipBuyTerminalUpdateState(int balance, List<string> gridOfferIds, string currency, bool purchaseLocked)
     {
         Balance = balance;
         GridOfferIds = gridOfferIds;
         Currency = currency;
+        PurchaseLocked = purchaseLocked;
     }
 }
 
