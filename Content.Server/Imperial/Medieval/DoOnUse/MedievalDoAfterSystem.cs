@@ -27,18 +27,19 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, MapInitEvent>(OnMapInit);
     }
 
-    public static bool IsBerryBushPrototype(string? prototypeId)
+    private static bool IsBerryBushPrototype(string? prototypeId)
     {
         return prototypeId is "MedievalGrassBush" or "MedievalGrassBushAutumn" or "MedievalGrassBushWinter";
     }
 
     private void OnMapInit(EntityUid uid, MedievalDoAfterEveryComponent comp, MapInitEvent args)
     {
-        if (!TryComp<MetaDataComponent>(uid, out var metadata) || !IsBerryBushPrototype(metadata.EntityPrototype?.ID))
+        if (!IsBerryBushPrototype(MetaData(uid).EntityPrototype?.ID))
             return;
 
+        var berryBush = EnsureComp<MedievalBerryBushComponent>(uid);
         var appearance = EnsureComp<AppearanceComponent>(uid);
-        _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, !HasComp<MedievalBerryBushComponent>(uid), appearance);
+        _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, !berryBush.Collected, appearance);
     }
 
     private void GiveHit(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalHitOnDoAfter ev)
@@ -59,33 +60,33 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
             Dirty(ev.Target.Value, damageable);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<MedievalBerryBushComponent, AppearanceComponent>();
+        while (query.MoveNext(out var uid, out var berryBush, out var appearance))
+        {
+            if (!berryBush.Collected || berryBush.RegrowAt == null || _timing.CurTime < berryBush.RegrowAt)
+                continue;
+
+            berryBush.Collected = false;
+            berryBush.RegrowAt = null;
+            _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, true, appearance);
+        }
+    }
+
     private void OnCollectBerryDoAfter(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalCollectBerryDoAfter ev)
     {
-        if (ev.Cancelled || HasComp<MedievalBerryBushComponent>(uid))
+        if (ev.Cancelled || !TryComp<MedievalBerryBushComponent>(uid, out var berryBush) || berryBush.Collected)
             return;
 
-        if (TryComp<MetaDataComponent>(uid, out var metadata) && !IsBerryBushPrototype(metadata.EntityPrototype?.ID))
-            return;
-
-        var berryBush = EnsureComp<MedievalBerryBushComponent>(uid);
-        var regrowDelay = TimeSpan.FromMinutes(_random.NextFloat(14f, 16f));
-        berryBush.RegrowAt = _timing.CurTime + regrowDelay;
+        berryBush.RegrowAt = _timing.CurTime + TimeSpan.FromMinutes(_random.NextFloat(berryBush.MinRegrowMinutes, berryBush.MaxRegrowMinutes));
         berryBush.Collected = true;
         var appearance = EnsureComp<AppearanceComponent>(uid);
         _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, false, appearance);
 
-        Spawn("FoodBerries", Transform(uid).Coordinates);
-
-        Timer.Spawn(regrowDelay, () =>
-        {
-            if (!Exists(uid) || Deleted(uid))
-                return;
-
-            RemComp<MedievalBerryBushComponent>(uid);
-
-            if (TryComp<AppearanceComponent>(uid, out var appearanceComp))
-                _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, true, appearanceComp);
-        });
+        Spawn(berryBush.BerriesPrototype, Transform(uid).Coordinates);
     }
 
     private void OnUprootBushDoAfter(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalUprootBushDoAfter ev)
@@ -148,9 +149,9 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
         if (!ev.CanAccess || !ev.CanInteract || ev.User == ev.Target)
             return;
 
-        if (TryComp<MetaDataComponent>(uid, out var metadata) && IsBerryBushPrototype(metadata.EntityPrototype?.ID))
+        if (TryComp<MedievalBerryBushComponent>(uid, out var berryBush))
         {
-            if (!HasComp<MedievalBerryBushComponent>(uid))
+            if (!berryBush.Collected)
             {
                 ev.Verbs.Add(new AlternativeVerb
                 {

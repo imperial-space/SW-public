@@ -20,27 +20,24 @@ public sealed class MedievalBerryBushVisualsSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MetaDataComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<MetaDataComponent, AppearanceChangeEvent>(OnAppearanceChange);
+        SubscribeLocalEvent<MedievalBerryBushComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<MedievalBerryBushComponent, AppearanceChangeEvent>(OnAppearanceChange);
     }
 
-    private void OnStartup(EntityUid uid, MetaDataComponent component, ComponentStartup args)
+    private void OnStartup(EntityUid uid, MedievalBerryBushComponent component, ComponentStartup args)
     {
-        if (!IsBerryBushPrototype(component.EntityPrototype?.ID))
-            return;
-
         if (!TryComp<AppearanceComponent>(uid, out var appearance) || !TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        UpdateBerryBushSprite(uid, component.EntityPrototype?.ID, sprite, appearance);
+        UpdateBerryBushSprite(uid, MetaData(uid).EntityPrototype?.ID, sprite, appearance);
     }
 
-    private void OnAppearanceChange(EntityUid uid, MetaDataComponent component, ref AppearanceChangeEvent args)
+    private void OnAppearanceChange(EntityUid uid, MedievalBerryBushComponent component, ref AppearanceChangeEvent args)
     {
-        if (!IsBerryBushPrototype(component.EntityPrototype?.ID) || args.Sprite == null)
+        if (args.Sprite == null)
             return;
 
-        UpdateBerryBushSprite(uid, component.EntityPrototype?.ID, args.Sprite, args.Component);
+        UpdateBerryBushSprite(uid, MetaData(uid).EntityPrototype?.ID, args.Sprite, args.Component);
     }
 
     private void UpdateBerryBushSprite(EntityUid uid, string? prototypeId, SpriteComponent sprite, AppearanceComponent appearance)
@@ -89,11 +86,6 @@ public sealed class MedievalBerryBushVisualsSystem : EntitySystem
 
         state = _sprite.LayerGetRsiState((uid, sprite), 0);
         return state.IsValid;
-    }
-
-    private static bool IsBerryBushPrototype(string? prototypeId)
-    {
-        return prototypeId is "MedievalGrassBush" or "MedievalGrassBushAutumn" or "MedievalGrassBushWinter";
     }
 
     private static bool TryGetBerriesSpritePath(string? prototypeId, out string berriesSpritePath)

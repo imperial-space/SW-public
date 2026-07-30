@@ -38,6 +38,15 @@ public sealed partial class MedievalBerryBushComponent : Component
 
     [DataField]
     public TimeSpan? RegrowAt;
+
+    [DataField]
+    public float MinRegrowMinutes = 14f;
+
+    [DataField]
+    public float MaxRegrowMinutes = 16f;
+
+    [DataField]
+    public string BerriesPrototype = "FoodBerries";
 }
 
 [NetSerializable, Serializable]
