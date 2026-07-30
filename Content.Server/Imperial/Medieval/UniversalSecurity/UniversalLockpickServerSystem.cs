@@ -9,6 +9,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using Content.Server.CustomDoorKey.Components;
+using Content.Shared.Popups;
 
 public sealed partial class UniversalLockpickServerSystem : EntitySystem
 {
@@ -18,6 +19,8 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedSkillsSystem _skillsSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
     public override void Initialize()
@@ -36,6 +39,12 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
 
         if (!TryComp<UniversalLockableComponent>(lockableUid, out var lockableComponent))
             return;
+
+        if (HasComp<SkillsComponent>(args.User) && _skillsSystem.IntelligenceMin(args.User))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("lock-door-popup-low-intelligence"), args.User, args.User);
+            return;
+        }
 
         if (!_itemSlots.TryGetSlot(lockableUid, "lockSlot", out var slot) || slot.Item is not { } lockUid)
             return;
