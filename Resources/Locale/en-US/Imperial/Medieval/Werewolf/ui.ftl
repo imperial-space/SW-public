@@ -1,5 +1,10 @@
 lycantropy-menu-title = Evolution menu
 
+lycantropy-ui-recenter = Recenter
+lycantropy-ui-buy = Buy
+lycantropy-ui-points = Evolution points: { $amount }
+lycantropy-ui-cost = Costs [color=crimson]{ $amount }[/color] evolution points
+
 werewolf-black = Black fur
 werewolf-dark-blue = Dark blue fur
 werewolf-dark-light = Light blue fur

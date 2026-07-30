@@ -6,3 +6,4 @@ imperial-hm-illitid-toointl = The mind is too strong
 imperial-hm-illitid-psi = Not enough psy-energy
 imperial-hm-illitid-voices = Voices in your head: {$name}
 imperial-hm-illitid-urvoice = Your voice: {$name}
+imperial-hm-illitid-nobody = No one heard...

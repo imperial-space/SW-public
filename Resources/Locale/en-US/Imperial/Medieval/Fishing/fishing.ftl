@@ -1,9 +1,9 @@
 ent-FishingRodT1 = peasant fishing rod
-    .desc = A makeshift stick-and-rope rod that doesn't look impressive.
+    .desc = Bait the rod, cast the line into water, and wait. When a fish bites, keep the bobber in the green zone with LMB to reel in your catch.
 ent-FishingRodT2 = composite fishing rod
-    .desc = Sturdy, a reliable aid for catching your supper.
+    .desc = Bait the rod, cast the line into water, and wait. When a fish bites, keep the bobber in the green zone with LMB to reel in your catch.
 ent-FishingRodT3 = professional fishing rod
-    .desc = A village fisher's dream. It can handle even the largest and strongest fish.
+    .desc = Bait the rod, cast the line into water, and wait. When a fish bites, keep the bobber in the green zone with LMB to reel in your catch.
 construction-recipe-fishing-rod = fishing rod
 construction-recipe-fishing-rod-desc = A simple fishing rod.
 ent-Worm = worm
@@ -71,3 +71,12 @@ fishing-minigame-tension = tension: {$value}
 fishing-minigame-progress = progress: {$value}
 fishing-minigame-failed-popup = The fish got off the hook!
 fishing-minigame-caught-popup = You caught {$fish}!
+
+fish-size-tiny = tiny
+fish-size-small = small
+fish-size-medium = medium
+fish-size-large = large
+fish-size-huge = huge
+fish-size-gigantic = gigantic
+fish-size-colossal = colossal
+fish-size-titanic = titanic

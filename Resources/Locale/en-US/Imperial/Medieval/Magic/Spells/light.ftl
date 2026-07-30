@@ -94,3 +94,32 @@ medieval-store-spells-light-sunstrike-senior-name = Sunbeam
 medieval-store-spells-light-sunstrike-senior-desc = An accelerated version of the Sunbeam. Costs 60 mana.
 
 MagicSpark = Magic spark
+
+medieval-store-spells-light-summon-foliant-beginner-desc = Summons the grimoire bound to you. Cost: 25 mana
+
+medieval-spell-speach-divine-touch = C̵̢̧o̶nt̡͘͘ac̴t͡͏͜u̷̧̨s ̛̀͝D͜iv́͜i̵̢͟nus
+
+medieval-spell-speach-fire-lightning = I̐͛G̴̸͞N͚̰͔̆̈́I̸̋͌̽S̀ͬ̔̄͢ T̵̷̹̳͙͒͊͂͝O̧̙̗͌̓ͤ̀͝Ň͕͖ͮ̚I̴̢̨͈͖̜T͕̯̞͊̑ͣ́R̸̍̄̉̚U̬̞͈̽́S̷̫ͧͤͬ̑͞
+
+# Prism
+
+medieval-spell-speach-light-sunstrike2 = IĆ̸̢̛̕͢͜͠͞͡͝͠T͢Ú̧͢͟͢͜͠Ş͠ SO̶͘͠͏͘LÍ̷̷̵̢̨̛͟͝͠S
+
+medieval-spell-speach-summon-foliant = L̛ÍB̸ÉR̵ MÓT͢ÚS̶
+
+medieval-spell-speach-lightning = T̵̷̹̳͙͒͊͂͝O̧̙̗͌̓ͤ̀͝Ň͕͖ͮ̚I̴̢̨͈͖̜T͕̯̞͊̑ͣ́R̸̍̄̉̚U̬̞͈̽́S̷̫ͧͤͬ̑͞
+
+medieval-spell-speach-blink = V̀al̶̡̕e̷͜
+
+medieval-store-spells-magic-light-summon-foliant-beginner-name = Summon Grimoire
+
+medieval-spell-speach-prism = L̸Ų̨͐̕͏ṀE̷̲͚͒̕͢N̶̢̙̂͠͝͡͡ ̪̫̿À̪̞͍͡͝R̡̘͝C̵̨̛̛͉̻̞̋A̶N̵̨͇̚̕͡U̫̲̍͟M̵̵̡̻͔̮̀̕
+# Lightning Rune
+
+medieval-spell-speach-light-sunstrike1 = Ignis Caelestis
+
+medieval-spell-speach-flash = O̧̢B̧̀͘Ş͝͡C̷͜͢U̧͝R̴A͝ŢIO̸͏̴
+
+medieval-spell-speach-holy-touch = Ţ̀á̸͡c̸t͘u͡s͡ ̧͜Sa̵̶͜nc̕t͝u̷s
+
+medieval-spell-speach-magic-light = Íl͏ĺ̡͡um̴̷͠ín͢͜͞a͟ ̕V͢͏͡i̸͞͞a͘͜m̀̕

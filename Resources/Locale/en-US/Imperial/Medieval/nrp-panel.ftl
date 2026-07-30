@@ -24,3 +24,24 @@ nrp-ahelp-message = You have received a warning for violating the roleplay atmos
 nrp-ban-message = You have been banned for violating the roleplay atmosphere. Reason: {$reason}. Further violations will result in increased ban duration. Issuing administrator: {$adminName}
 
 nrp-uncurse-message = Your ban has been revoked.
+
+nrp-ahelp-wrap-closing-tag = [/color]
+
+nrp-remark-wrap-opening-tag = ->
+
+nrp-ban-wrap-closing-tag = <-
+
+nrp-log-wrap-closing-tag = ]
+
+nrp-ban-wrap-opening-tag = ->
+
+nrp-remark-wrap-closing-tag = <-
+
+nrp-panel-remark-message = Warning for using NRP in the phrase "{$message}". Administrator who issued the warning: {$adminName}
+
+nrp-log-wrap-opening-tag = [
+
+nrp-remark-message = Warning for breaking the roleplay atmosphere. Reason: {$reason}. Administrator who issued the warning: {$adminName}
+
+nrp-ahelp-wrap-opening-tag = [color=red]
+nrp-panel-message-placeholder-player-info = [color=white]Urist McHuman, Captain, Unknown[/color]

@@ -1,0 +1,9 @@
+ent-FogHeavyUnpassable = thick fog (impassable)
+    .desc = Best not to wander into it.
+    .suffix = { "Medieval" }
+ent-FogHeavyPassable = thick fog
+    .desc = Best not to wander into it.
+    .suffix = { "Medieval" }
+ent-FogLitePassable = fog
+    .desc = Best not to wander into it.
+    .suffix = { "Medieval" }

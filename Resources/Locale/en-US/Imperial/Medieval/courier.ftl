@@ -40,6 +40,6 @@ courier-letter-recipient-sex = Sex: {$sex}
 courier-letter-recipient-unknown-species = unknown
 courier-letter-recipient-unknown-sex = unknown
 
-courier-letter-trash-description-recipient-missing = The recipient of this letter is no longer on the island, now it is trash.
-courier-letter-trash-description-box-destroyed = The parcel was destroyed, now it is useless trash.
+courier-letter-trash-description-recipient-missing = The recipient of this letter is no longer on the island, so the letter is now worthless.
+courier-letter-trash-description-box-destroyed = The parcel was destroyed, so the letter is now worthless.
 courier-letter-expired-popup = [color=red]The letter has expired![/color]

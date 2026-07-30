@@ -126,3 +126,15 @@ ent-WorkpieceMedievalDragonBoneGlovesThunder = dragon gloves workpiece
 ent-WorkpieceMedievalClothingFeetDragonBoneThunder = dragon boots workpiece
 ent-WorkpieceMedievalClothingHeadHelmetDragonBoneThunder = dragon helmet workpiece
 
+
+ent-WorkpieceMedievalClothingFeetDragonBoneBone = dragon boots workpiece
+
+ent-WorkpieceMedievalClothingOuterArmorDragonBoneBone = dragon armor workpiece
+
+ent-WorkpieceSpoon = spoon workpiece
+
+ent-WorkpieceFork = fork workpiece
+
+ent-WorkpieceMedievalClothingHeadHelmetDragonBoneBone = dragon helmet workpiece
+
+ent-WorkpieceMedievalDragonBoneGlovesBone = dragon gloves workpiece

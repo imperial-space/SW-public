@@ -5,7 +5,7 @@ ent-LycantropyProgressMenuAction = Evolution menu
 .desc = Open the evolution menu.
 
 ent-LycantropyHowlAction = Howl
-.desc = Emit a howl audible to everyone on the map, in exchange for minor health regeneration.
+.desc = Let out a howl heard across the map and gain minor health regeneration.
 
 ent-WerewolfInfectAction = Infection
 .desc = Toggle infection mode. In infection mode, your bites will transmit lycanthropy to humanoids in critical condition.

@@ -4,3 +4,6 @@ tiles-grass-planet-floor3 = cursed grass
 tiles-grass-planet-floor4 = dark cursed grass
 tiles-grass-planet-floor5 = dead grass
 tiles-grass-planet-floor6 = dark dead grass
+tiles-cult-floor = engraved floor
+tiles-wooden-tile-sea = breach (seafaring)
+tiles-wooden-tile-sea-NO = breach (unused)

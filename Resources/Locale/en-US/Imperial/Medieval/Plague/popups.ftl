@@ -12,7 +12,7 @@ medieval-plague-forced-vomit-popup = You induced vomiting in { $target }.
 
 medieval-plague-asthma-ghost-popup = You caused an asthma attack in { $target }.
 
-medieval-plague-asthma-target-popup = It's become hard to breathe!
+medieval-plague-asthma-target-popup = It has become hard to breathe!
 
 medieval-plague-dizziness-ghost-popup = You caused dizziness for { $target }.
 

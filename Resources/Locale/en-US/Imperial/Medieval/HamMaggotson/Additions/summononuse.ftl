@@ -1,1 +1,1 @@
-medieval-hm-additions-needmorespace = Нужно больше свободного места для призыва!
+medieval-hm-additions-needmorespace = More free space is needed for the summoning!
