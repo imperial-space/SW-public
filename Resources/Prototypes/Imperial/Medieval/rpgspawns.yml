@@ -2095,7 +2095,7 @@
     sprite: Imperial/Medieval/Decor/flora_trees_birch.rsi
     offset: 0,1.9
   - type: TimedDespawn
-    lifetime: 30 # Temporarily shortened for testing.
+    lifetime: 1200
   - type: SpawnOnDespawn
     prototype: MedievalSpawnerRandomBirchTree
   - type: Destructible
@@ -2121,8 +2121,11 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           Log:
+            min: 4
+            max: 6
+          MedievalRootItem:
             min: 2
-            max: 3
+            max: 4
 
 - type: entity
   id: MedievalBirchTreeStump01

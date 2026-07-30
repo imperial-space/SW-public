@@ -2928,8 +2928,13 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           Log:
-            min: 2
-            max: 8
+            min: 4
+            max: 5
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalGrass:
+            min: 1
+            max: 2
       - !type:SpawnEntitiesBehavior
         offset: 0
         spawn:
@@ -2965,8 +2970,13 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           Log:
-            min: 2
-            max: 8
+            min: 4
+            max: 5
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalGrass:
+            min: 1
+            max: 2
       - !type:SpawnEntitiesBehavior
         offset: 0
         spawn:
