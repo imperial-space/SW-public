@@ -1,0 +1,82 @@
+- type: entity
+  id: MedievalMobSoulsMaster
+  name: Souls Master Summoner
+  description: SWALLOW YER SOUL! SWALLOW YER SOUL...
+  parent: [ SimpleMobBaseNoFood, MobCombat ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/SoulsMaster/souls_master.rsi
+    layers:
+    - state: idle
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 3.4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: Damageable
+    damageModifierSet: MedievalRespawn
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: Puller
+  - type: IgnoreSpiderWeb
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - MedievalMob
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2.5
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileCursedArrow
+    capacity: 1
+    count: 1
+  - type: Gun
+    projectileSpeed: 12
+    fireRate: 1
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Magic/ethereal_exit.ogg
+  - type: SoulsMasterSummoner
+    summonPrototype: MedievalMobSkeletWeakSpell
+    summonEffect: IceBarrierSpellCastEffectBeginner
+    summonCount: 1
+    maxSummons: 3
+    summonRadius: 2
+    spawnAttempts: 5
+    initialDelay: 5
+    cooldown: 20
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
