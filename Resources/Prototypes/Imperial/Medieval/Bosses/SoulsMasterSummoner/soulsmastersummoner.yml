@@ -46,7 +46,6 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
-    - FootstepSound
     - MedievalMob
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 2.5
@@ -64,8 +63,11 @@
     soundGunshot: /Audio/Magic/ethereal_exit.ogg
   - type: SoulsMasterSummoner
     summonPrototype: MedievalMobSkeletWeakSpell
+    summonEffect: IceBarrierSpellCastEffectBeginner
     summonCount: 1
+    maxSummons: 3
     summonRadius: 2
+    spawnAttempts: 5
     initialDelay: 5
     cooldown: 20
   - type: Destructible
