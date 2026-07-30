@@ -11,13 +11,25 @@
             "name": "grass_high_bush1"
         },
         {
+            "name": "grass_high_bush1-berries"
+        },
+        {
             "name": "grass_high_bush2"
+        },
+        {
+            "name": "grass_high_bush2-berries"
         },
         {
             "name": "grass_high_bush3"
         },
         {
+            "name": "grass_high_bush3-berries"
+        },
+        {
             "name": "grass_high_bush4"
+        },
+        {
+            "name": "grass_high_bush4-berries"
         }
     ]
 }
