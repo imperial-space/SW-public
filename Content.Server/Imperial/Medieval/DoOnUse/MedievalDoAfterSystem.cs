@@ -29,7 +29,7 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
 
     private static bool IsBerryBushPrototype(string? prototypeId)
     {
-        return prototypeId is "MedievalGrassBush" or "MedievalGrassBushAutumn" or "MedievalGrassBushWinter";
+        return prototypeId is "MedievalGrassBush" or "MedievalGrassBushAutumn";
     }
 
     private void OnMapInit(EntityUid uid, MedievalDoAfterEveryComponent comp, MapInitEvent args)

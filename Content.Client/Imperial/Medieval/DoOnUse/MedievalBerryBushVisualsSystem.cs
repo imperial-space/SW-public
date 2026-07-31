@@ -29,7 +29,7 @@ public sealed class MedievalBerryBushVisualsSystem : EntitySystem
         if (!TryComp<AppearanceComponent>(uid, out var appearance) || !TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        UpdateBerryBushSprite(uid, MetaData(uid).EntityPrototype?.ID, sprite, appearance);
+        UpdateBerryBushSprite(uid, component, sprite, appearance);
     }
 
     private void OnAppearanceChange(EntityUid uid, MedievalBerryBushComponent component, ref AppearanceChangeEvent args)
@@ -37,23 +37,25 @@ public sealed class MedievalBerryBushVisualsSystem : EntitySystem
         if (args.Sprite == null)
             return;
 
-        UpdateBerryBushSprite(uid, MetaData(uid).EntityPrototype?.ID, args.Sprite, args.Component);
+        UpdateBerryBushSprite(uid, component, args.Sprite, args.Component);
     }
 
-    private void UpdateBerryBushSprite(EntityUid uid, string? prototypeId, SpriteComponent sprite, AppearanceComponent appearance)
+    private void UpdateBerryBushSprite(EntityUid uid, MedievalBerryBushComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
         if (!_appearance.TryGetData(uid, MedievalBerryBushVisuals.HasBerries, out bool hasBerries, appearance))
             return;
 
-        if (!TryGetBerriesSpritePath(prototypeId, out var berriesSpritePath))
+        var baseRsi = _sprite.LayerGetEffectiveRsi((uid, sprite), 0);
+        if (baseRsi == null)
             return;
+
+        var berriesRsiPath = baseRsi.Path;
 
         if (!TryGetBaseBushState(uid, sprite, out var baseState))
             return;
 
         var berriesStateName = $"{baseState.Name}-berries";
         var berriesState = new RSI.StateId(berriesStateName);
-        var berriesRsiPath = new ResPath(berriesSpritePath);
         if (!_resourceCache.TryGetResource(berriesRsiPath, out RSIResource? resource)
             || !resource.RSI.TryGetState(berriesState, out _))
         {
@@ -88,22 +90,4 @@ public sealed class MedievalBerryBushVisualsSystem : EntitySystem
         return state.IsValid;
     }
 
-    private static bool TryGetBerriesSpritePath(string? prototypeId, out string berriesSpritePath)
-    {
-        switch (prototypeId)
-        {
-            case "MedievalGrassBush":
-                berriesSpritePath = "/Textures/Imperial/Medieval/Decor/GrassBush.rsi";
-                return true;
-            case "MedievalGrassBushAutumn":
-                berriesSpritePath = "/Textures/Imperial/Medieval/Decor/GrassBush_autumn.rsi";
-                return true;
-            case "MedievalGrassBushWinter":
-                berriesSpritePath = "/Textures/Imperial/Medieval/Decor/GrassBush_winter.rsi";
-                return true;
-            default:
-                berriesSpritePath = string.Empty;
-                return false;
-        }
-    }
 }
