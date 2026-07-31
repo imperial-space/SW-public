@@ -7,7 +7,7 @@ medieval-warning-base = General:
         - If you’re bored and don’t see opportunities for RP, take initiative—create RP situations, and eventually you'll find like-minded players.
         - Minimize modern slang, spelling, and grammar mistakes in your speech to make your messages pleasant to read. Maintain the low-fantasy atmosphere.
 
-        P.S. The server is in development. Finding bugs and your financial support significantly brings the project closer to a full release.
+        P.S. The server is in development. Bug reports and financial support help bring the project closer to a full release.
 
 medieval-warning-band = General:
         - Remember that every character is a player just like you. Play without causing problems for other participants, and show respect to everyone you meet in the game.
@@ -27,7 +27,7 @@ medieval-warning-band = General:
         - If you decide to capture a player, make the roleplay experience interesting through interaction.
         - No one enjoys sitting in a 2x2 cage for half an hour or endlessly farming. Respect your captives as players.
 
-        P.S. The server is in development. Finding bugs and your financial support significantly brings the project closer to a full release.
+        P.S. The server is in development. Bug reports and financial support help bring the project closer to a full release.
 
 medieval-warning-coll = General:
         - Remember that every character is a player just like you. Play without causing problems for other participants, and show respect to everyone you meet in the game.
@@ -38,15 +38,15 @@ medieval-warning-coll = General:
         - If you’re bored and don’t see opportunities for RP, take initiative—create RP situations, and eventually you'll find like-minded players.
         - Minimize modern slang, spelling, and grammar mistakes in your speech to make your messages pleasant to read. Maintain the low-fantasy atmosphere.
 
-        College:
+        Collegium:
         - Maintaining the barrier is the highest priority. Your faction determines the duration of the round, so use scrolls wisely and recharge the barrier in time.
-        - Members of the college are wise mages who study magic most of their lives. You should reflect this image. In simple terms—watch your language, avoid slang.
+        - Members of the Collegium are wise mages who study magic most of their lives. You should reflect this image. In simple terms—watch your language, avoid slang.
 
         Magic:
         - Use magic reasonably. Throwing a fireball in town to level up or blinding your conversation partner is extremely disrespectful and breaks the atmosphere for others. This may lead to both IC and OOC punishment.
-        - Progress is faster in real combat. Hitting a living being, such as a player or NPC monster, speeds up your training significantly. There’s no need to throw spells at walls for hours inside the college.
+        - Progress is faster in real combat. Hitting a living being, such as a player or NPC monster, speeds up your training significantly. There’s no need to throw spells at walls for hours inside the Collegium.
 
-        P.S. The server is in development. Finding bugs and your financial support significantly brings the project closer to a full release.
+        P.S. The server is in development. Bug reports and financial support help bring the project closer to a full release.
 
 medieval-warning-mag = General:
         - Remember that every character is a player just like you. Play without causing problems for other participants, and show respect to everyone you meet in the game.
@@ -59,9 +59,9 @@ medieval-warning-mag = General:
 
         Magic:
         Use magic reasonably. Throwing a fireball in town to level up or blinding your conversation partner is extremely disrespectful and breaks the atmosphere for others. This may lead to both IC and OOC punishment.
-        Progress is faster in real combat. Hitting a living being, such as a player or NPC monster, speeds up your training significantly. There’s no need to throw spells at walls for hours inside the college.
+        Progress is faster in real combat. Hitting a living being, such as a player or NPC monster, speeds up your training significantly. There’s no need to throw spells at walls for hours inside the Collegium.
 
-        P.S. The server is in development. Finding bugs and your financial support significantly brings the project closer to a full release.
+        P.S. The server is in development. Bug reports and financial support help bring the project closer to a full release.
 
 medieval-warning-cult = General:
         - Remember that every character is a player just like you. Play without causing problems for other participants, and show respect to everyone you meet in the game.
@@ -78,13 +78,13 @@ medieval-warning-cult = General:
 
         Magic:
         - Use magic reasonably. Throwing a fireball in town to level up or blinding your conversation partner is extremely disrespectful and breaks the atmosphere for others. This may lead to both IC and OOC punishment.
-        - Progress is faster in real combat. Hitting a living being, such as a player or NPC monster, speeds up your training significantly. There’s no need to throw spells at walls for hours inside the college.
+        - Progress is faster in real combat. Hitting a living being, such as a player or NPC monster, speeds up your training significantly. There’s no need to throw spells at walls for hours inside the Collegium.
 
         Captivity:
         - If you decide to capture a player, make the roleplay experience interesting through interaction.
         - No one enjoys sitting in a 2x2 cage for half an hour or endlessly farming. Respect your captives as players.
 
-        P.S. The server is in development. Finding bugs and your financial support significantly brings the project closer to a full release.
+        P.S. The server is in development. Bug reports and financial support help bring the project closer to a full release.
 
 medieval-warning-ins = General:
         - Remember that every character is a player just like you. Play without causing problems for other participants, and show respect to everyone you meet in the game.
@@ -124,7 +124,7 @@ medieval-warning-ins-mag = General:
 
     Magic:
     - Use magic wisely. Casting a fireball in a city just to train, or blinding someone mid‑conversation, is disrespectful, breaks immersion, and may lead to IC or OOC punishment.
-    - Progress comes faster in real combat. Hitting a living being—another character or NPC monster—greatly accelerates leveling. There’s no need to cast spells at a wall in a college for hours.
+    - Progress comes faster in real combat. Hitting a living being—another character or NPC monster—greatly accelerates leveling. There’s no need to cast spells at a wall in the Collegium for hours.
 
     Capture:
     - If you decide to capture another player, try to make the role-play experience engaging through various interactions.
@@ -170,7 +170,7 @@ medieval-warning-leg-mag = General:
 
     Magic:
     - Use magic wisely. Casting a fireball in a city just to train, or blinding someone mid‑conversation, is disrespectful, breaks immersion, and may lead to IC or OOC punishment.
-    - Progress comes faster in real combat. Hitting a living being—another character or NPC monster—greatly accelerates leveling. There’s no need to cast spells at a wall in a college for hours.
+    - Progress comes faster in real combat. Hitting a living being—another character or NPC monster—greatly accelerates leveling. There’s no need to cast spells at a wall in the Collegium for hours.
 
     Capture:
     - If you decide to capture another player, try to make the role-play experience engaging through various interactions.

@@ -19,6 +19,9 @@ plague-low-sleep-protect-1-desc = Regular beds stop protecting against the disea
 plague-low-sleep-protect-2-name = Beds II
 plague-low-sleep-protect-2-desc = Luxurious beds stop protecting against the disease.
 
+plague-low-sleep-protect-3-name = Beds III
+plague-low-sleep-protect-3-desc = Even the finest beds no longer shield the sick from the disease.
+
 plague-immune-break-1-name = Immunity break I
 plague-immune-break-1-desc = Allows you to remove immunity from an infected person if it was acquired less than 15 minutes ago.
 
@@ -51,3 +54,15 @@ plague-low-bloodletting-eff-1-desc = Bloodletting becomes less accurate and more
 
 plague-low-bloodletting-eff-2-name = Inconspicuousness II
 plague-low-bloodletting-eff-2-desc = Bloodletting becomes even less accurate and shows false results almost as often as correct ones.
+
+plague-cure-resistance-2-desc = Even good potions lose their effect against the plague.
+
+plague-cure-resistance-3-name = Medicine III
+
+plague-cure-resistance-1-desc = Weak potions lose all effect against the plague.
+
+plague-cure-resistance-1-name = Medicine I
+
+plague-cure-resistance-2-name = Medicine II
+
+plague-cure-resistance-3-desc = Only the best of the best potions will be able to withstand the disease.

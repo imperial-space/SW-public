@@ -1,1 +1,1 @@
-marking-ZveresTail = Мунвульф, хвост
+marking-ZveresTail = Moonwolf, tail

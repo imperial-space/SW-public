@@ -1,2 +1,2 @@
-stealActionSpellward = Обворовать
-stealSuccessSpellward = Вы успешно обокрали {CAPITALIZE($entity1)}.
+stealActionSpellward = Steal
+stealSuccessSpellward = You successfully stole from {CAPITALIZE($entity1)}.

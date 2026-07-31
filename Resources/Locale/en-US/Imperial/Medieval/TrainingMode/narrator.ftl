@@ -1,0 +1,37 @@
+training-narrator-1 = This is the tale of a person who found themselves in a mysterious, magical world - the tale of you.
+training-narrator-2 = Though, to be fair, this person did not even know how to walk using the movement keys...
+training-narrator-3 = Ah, no! You did know how to walk! That changes the story quite a bit... Suddenly, from far away, you heard someone in heavy armor approaching your cell.
+training-narrator-4 = It was a taciturn legionary bringing food to the cell. On the right, near the center of the screen, are your character status icons: health, thirst, hunger, mana, and stamina. Hover over them to learn more. The legionary placed a bowl on the floor: click it to pick it up.
+training-narrator-5 = Use the Z key to eat your food.
+training-narrator-6 = A thought suddenly came to you: if I steal the guard's spare cell key, I can escape. Left-click the legionary and choose "Steal" in the menu.
+training-narrator-7 = Good, you managed it. That means next in the story you... (flips through the script pages) You left-click the door to unlock it.
+training-narrator-8 = Excellent. Now open the door. To do that, hover your mouse over it and press the interaction key.
+training-narrator-9 = The guards are fast asleep now - the perfect time to sneak into the armory. Open it with your key.
+training-narrator-10 = Time to learn your inventory. At the bottom of the screen, you can see that you have two hands; one is highlighted yellow and currently holds the key. That is your active hand. To switch hands, use the hand-swap key, X by default. Try it.
+training-narrator-11 = You will need free hands soon, so put everything you picked up onto the floor so we can gear up. Items are dropped where your mouse is pointing. By default, this is Q. Note that only the item in your active hand is dropped.
+training-narrator-12 = You will need a backpack. Pick up the one lying on the table. Make sure you are trying to take it with a free hand.
+training-narrator-13 = Now equip that backpack. At the bottom of the screen, to the left of your hand slots, there is a backpack slot. Hold the backpack in your active hand and left-click the slot to equip it.
+training-narrator-14 = Now we have room for all the useful things. Pick up the key by left-clicking it.
+training-narrator-15 = Put this key into your backpack. To do that, click the backpack slot with the key, the same slot where we just equipped the backpack.
+training-narrator-16 = Excellent. Now let us see what is inside this backpack. Press V.
+training-narrator-17 = You can now see the backpack's contents; your key is inside. Remember that every item can be interacted with. If you ever do not know what to do, right-click to open the interaction menu - that should keep you from getting lost. Now let us take some armor, so you can pass for one of them and leave the fortress without a fight.
+training-narrator-18 = Press the inventory button to open the equipment you are wearing.
+training-narrator-19 = Now equip the armor in the armor slot. These slots should have appeared in the lower-left corner. Hover your mouse over the right slot, and while the armor is in your active hand, left-click that slot.
+training-narrator-20 = Time to arm yourself: take the sword.
+training-narrator-21 = Time to leave this place. Take the key from your backpack into your free hand and open the door leading outside. To take an item from the backpack, left-click it. Make sure your free hand is selected.
+training-narrator-22 = For my story, you need to leave this fortress. You can run - use the sprint key to cover long distances faster.
+training-narrator-23 = Remember that running spends stamina. You can also dash with Space.
+training-narrator-24 = Here we are, almost at the goal. The exit is close. Two guards stand in the way. They must not suspect we are not who we claim to be, so just walk past them.
+training-narrator-25 = Right... Quickly, see the chat in the upper-right corner? Press T and type "I am going to the legate".
+training-narrator-26 = Looks like a fight cannot be avoided. It happens. On the left, closer to the top, there is a set of buttons; the first one toggles combat mode. Click it to enter combat mode.
+training-narrator-27 = Now prepare for battle. Make sure your sword is in your active hand. Left-clicking makes a precise strike aimed where your cursor points. Right-clicking makes a sweeping strike: weaker, but able to hit several enemies at once. Do not forget that you can run and dash - both are very useful in combat.
+training-narrator-28 = Congratulations, you defeated enemies who had no chance to kill you thanks to your plot armor. Well then... All that remains is to escape the castle. You are still in combat mode, and cannot interact with items while it is active. Time to turn it off.
+training-narrator-29 = Seems the sword will not be useful for now. Hang it on your belt so you do not lose it.
+training-narrator-30 = Guards always keep a key to the main doors in their backpacks. Let us search the bodies: hold Shift and left-click a corpse.
+training-narrator-31 = To open their inventory, press the button with the clothes hanger icon to open another player's inventory.
+training-narrator-32 = In this window, you can see everything this person has. Click the backpack to remove it and take it into your hand so you can open it. This works with both living people and the dead.
+training-narrator-33 = Now let us take the guard's key from his backpack. Hover your mouse over the guard backpack in your hand and press the interaction key.
+training-narrator-34 = Now, with your free hand, take the key to the main gate from that backpack, open the gate, and run!
+training-narrator-35 = This is only the beginning of your adventures in this mysterious world. Remember that the players around you are always ready to help. Press F1 to open chat with the administrators, and in the ESC menu you can open the wiki to find detailed guides for every question. Good luck setting sail into the unknown...
+
+training-narrator-msg = [color=#c58017][bold]Narrator:[/bold][/color] [italic]{$msg}[/italic]

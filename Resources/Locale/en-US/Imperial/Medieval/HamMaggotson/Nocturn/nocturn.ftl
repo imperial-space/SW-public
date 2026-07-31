@@ -11,4 +11,5 @@ medieval-hm-nocturn-nope = Cannot drink their blood right now
 medieval-hm-nocturn-isheavampire = [color=red]Fangs are visible in their mouth[/color]
 medieval-hm-nocturn-gf = [color=red]Breathing heavily[/color]
 medieval-hm-nocturn-dieofdeath = [color=red]Fresh blood is visible on their lips[/color]
-medieval-hm-nocturn-bitten = [color=red]На шее видны следы укуса[/color]
+medieval-hm-nocturn-bitten = [color=red]Bite marks are visible on the neck[/color]
+

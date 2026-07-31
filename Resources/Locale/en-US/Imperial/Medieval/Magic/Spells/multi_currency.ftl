@@ -1,5 +1,5 @@
 action-name-spell-weakening-wave = Weakening wave
-action-description-weakening-wave = Create a stunning wave around yourself. Costs PLACEHOLDER mana.
+action-description-weakening-wave = Create a stunning wave around yourself. Costs an unset amount of mana.
 
 medieval-store-spells-multi-currency-weakening-wave-senior-name = Shockwave
 medieval-store-spells-multi-currency-weakening-wave-senior-desc = Release a wave from your hand that will weaken and blind everyone within its radius. Costs 95 mana.
@@ -21,3 +21,12 @@ medieval-spell-speach-crow = C͏̛̛̕͠o͝r̨̀vu̶͘͜͝s̸̶̀́ ̕S͘̕͠͠�
 
 medieval-store-spells-magic-crow-name = Magic crow
 medieval-store-spells-magic-crow-desc = Summons your faithful companion - a crow.
+
+medieval-spell-emote-weakening-wave = Raised a hand above their head
+
+medieval-store-spells-multi-currency-senior-senior-name = Chloroforming
+
+medieval-store-spells-multi-currency-senior-senior-desc = The second iteration of Sleepweaving. It does not allow you to put yourself to sleep. Cost: 80 mana.
+
+# Crow
+

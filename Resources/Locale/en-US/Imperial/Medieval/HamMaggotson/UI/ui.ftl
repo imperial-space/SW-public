@@ -21,12 +21,10 @@ imperial-hm-ui-set = Set
 imperial-hm-ui-start = Begin!
 imperial-hm-ui-warning = Warning
 imperial-hm-ui-consent = I have read the text and will comply with the role
-imperial-hm-ui-secs = {$amount} secs
 imperial-hm-ui-costrage = Costs [color=crimson]{$amount}[/color] rage points.
 imperial-hm-ui-rageborne = Rage points: {Points}
 imperial-hm-ui-prgg = [bold]Progress: {$min} / {$max}[/bold]
 imperial-hm-ui-reqq = [bold]Requires:[/bold]
-imperial-hm-ui-lvl = LVL: {$amount}
 imperial-hm-ui-pointsd = Points: {$amount}
 imperial-hm-ui-readabove = First, read the text above
 imperial-hm-ui-close = Close

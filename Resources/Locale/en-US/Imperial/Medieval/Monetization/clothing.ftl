@@ -10,6 +10,18 @@ ent-MedievalPassHat3 = nobleman's hat
 ent-MedievalPassHat4 = lady's bonnet
     .desc = A fashionable hat.
     .suffix = { "MONETIZATION, RELEASE, Mysterious Lady, Lady-in-waiting" }
+ent-MedievalPassHat5 = ribboned tricorn
+    .desc = A dark tricorn adorned with red ribbons.
+    .suffix = { "MONETIZATION, Seafaring" }
+ent-MedievalPassHat6 = bicorne
+    .desc = A weather-beaten captain's hat, well suited to long voyages.
+    .suffix = { "MONETIZATION, Seafaring" }
+ent-MedievalPassHat7 = leather tricorn
+    .desc = A well-made tricorn cut from fine leather.
+    .suffix = { "MONETIZATION, Seafaring" }
+ent-MedievalPassHat8 = dark tricorn
+    .desc = A plain dark tricorn fit for any respectable captain.
+    .suffix = { "MONETIZATION, Seafaring" }
 ent-MedievalClothingUniformJumpsuitPass1 = nobleman's suit
     .desc = An elegant suit with gilded elements.
     .suffix = { "MONETIZATION, RELEASE, Emissary" }
@@ -50,14 +62,29 @@ ent-MedievalPassShoes3 = shoes with stockings
     .desc = Shoes with white stockings.
     .suffix = { "MONETIZATION, RELEASE, Maid" }
 ent-MedievalPassShoes4 = shoes with stockings
-    .desc = Shoes with dark stockings.
-    .suffix = { "MONETIZATION, RELEASE, Mysterious Lady, Lady-in-waiting" }
+    .desc = Shoes with black stockings.
+    .suffix = { "MONETIZATION, RELEASE, Chambermaid" }
 ent-MedievalPassShoes5 = black shoes
     .desc = Comfortable shoes.
     .suffix = { "MONETIZATION, RELEASE, Emissary, Butler, Duelist" }
-ent-MedievalPassShoes6 = snow-white jackboots
+ent-MedievalPassShoes6 = jackboots
     .desc = Comfortable boots.
     .suffix = { "MONETIZATION, RELEASE, Capital Guardsman" }
+ent-MedievalPassShoes7 = snow-white boots
+    .desc = Winter boots warm enough to weather the fiercest storm.
+    .suffix = { "MONETIZATION, NY2026" }
+ent-MedievalPassShoes8 = black shoes
+    .desc = Leather shoes dyed black.
+    .suffix = { "MONETIZATION, Priest, Pilgrim" }
+ent-MedievalPassShoes9 = druid's tread
+    .desc = Boots woven from interlaced leaves.
+    .suffix = { "MONETIZATION, Druid" }
+ent-MedievalPassShoes10 = leather jackboots
+    .desc = Sturdy jackboots with a little seawater still trapped inside...
+    .suffix = { "MONETIZATION, Seafaring" }
+ent-MedievalPassShoes11 = dark jackboots
+    .desc = Sturdy jackboots with a little seawater still trapped inside...
+    .suffix = { "MONETIZATION, Seafaring" }
 ent-MedievalClothingHandsGlovesPass1 = velvet gloves
     .desc = Pleasant to the touch gloves.
     .suffix = { "MONETIZATION, RELEASE, Capital Guardsman, Chambermaid, Butler" }
@@ -85,3 +112,75 @@ ent-MedievalClothingNeckCloakPass3 = dark cloak
 ent-MedievalClothingNeckCloakPass4 = patterned cloak
     .desc = A dark leather cloak with an embroidered pattern.
     .suffix = { "MONETIZATION, RELEASE" }
+
+ent-MedievalClothingMaskPlaguePass2 = golden mask
+    .desc = A golden mask with a beak, somewhat reminiscent of plague doctor masks.
+    .suffix = { "MONETIZATION" }
+
+ent-MedievalClothingMaskPlaguePass1 = grim doctor's mask
+    .desc = It looks frightening. It seems the wearer has seen much.
+    .suffix = { "MONETIZATION" }
+
+ent-MedievalClothingUniformJumpsuitPass15 = pilgrim's cassock
+    .desc = Loose clothing that does not restrict your movements.
+    .suffix = { "MONETIZATION, Pilgrim" }
+ent-MedievalClothingUniformJumpsuitPass16 = druidic robe
+    .desc = A robe woven from interlaced leaves and vines, with flowers blooming along its folds. A floral wreath crowns the wearer.
+    .suffix = { "MONETIZATION, Druid" }
+ent-MedievalClothingUniformJumpsuitPass17 = doublet
+    .desc = A weathered doublet that looks as though it once belonged to a pirate.
+    .suffix = { "MONETIZATION, Seafaring" }
+ent-MedievalClothingUniformJumpsuitPass18 = tunic
+    .desc = A comfortable tunic made for long days at sea.
+    .suffix = { "MONETIZATION, Seafaring" }
+ent-MedievalClothingUniformJumpsuitPass19 = green doublet
+    .desc = A green nobleman's doublet, cut for life aboard ship.
+    .suffix = { "MONETIZATION, Seafaring" }
+ent-MedievalClothingUniformJumpsuitPass20 = pirate's doublet
+    .desc = Into the sea devil's maw!
+    .suffix = { "MONETIZATION, Seafaring" }
+ent-MedievalClothingUniformJumpsuitPass21 = sailor's garb
+    .desc = Arrr! Why does the rum always disappear?!
+    .suffix = { "MONETIZATION, Seafaring" }
+
+ent-MedievalClothingNeckCloakPass6 = cloak of the frosty night
+    .desc = A cloak with lush fur, warming you on the coldest nights. It will remind you of the past and the future gathering ahead.
+    .suffix = { "MONETIZATION, NY2026" }
+
+ent-MedievalClothingUniformJumpsuitPass11 = dress of the frosty night
+    .desc = A dress exuding the spirit of winter's presence and recalling warmer days gone by.
+    .suffix = { "MONETIZATION, NY2026" }
+
+ent-MedievalClothingNeckCloakPass7 = warlord's cloak
+    .desc = A cloak with golden epaulettes, giving you an imposing appearance.
+    .suffix = { "MONETIZATION" }
+
+ent-MedievalClothingNeckCloakPass5 = velvet cloak
+    .desc = A black cloak with red velvet on the inner side.
+    .suffix = { "MONETIZATION, NY2026" }
+
+ent-MedievalClothingUniformJumpsuitPass12 = suit of the frosty night
+    .desc = A suit exuding the spirit of winter's presence and recalling warmer days gone by.
+    .suffix = { "MONETIZATION, NY2026" }
+
+ent-MedievalClothingUniformJumpsuitPass13 = astrologer's attire
+    .desc = Garments for one who will admire the stars on this winter night.
+    .suffix = { "MONETIZATION, NY2026" }
+
+ent-MedievalClothingHandsGlovesPass6 = snow-white gloves
+    .desc = Gloves adorned with gemstones that will sparkle in the moonlight on this frosty night.
+    .suffix = { "MONETIZATION, NY2026" }
+
+ent-MedievalClothingHandsGlovesPass7 = black gloves
+    .desc = Leather gloves dyed black.
+    .suffix = { "MONETIZATION, Priest, Pilgrim" }
+ent-MedievalClothingHandsGlovesPass8 = druidic gloves
+    .desc = Gloves woven from interlaced leaves.
+    .suffix = { "MONETIZATION, Druid" }
+ent-MedievalClothingHandsGlovesPass9 = pirate's hook
+    .desc = Yarr!
+    .suffix = { "MONETIZATION, Seafaring" }
+
+ent-MedievalClothingUniformJumpsuitPass14 = clergy uniform
+    .desc = Attire in white and black, smelling of incense.
+    .suffix = { "MONETIZATION, Priest" }

@@ -1,13 +1,13 @@
 chatsan-word-69 = dumbass
 chatsan-replacement-69 = slowpoke
 
-chatsan-word-70 = сheat
+chatsan-word-70 = cheat
 chatsan-replacement-70 = sin
 
 chatsan-word-71 = cheater
 chatsan-replacement-71 = sinner
 
-chatsan-word-72 = сrybaby
+chatsan-word-72 = crybaby
 chatsan-replacement-72 = sensitive soul
 
 chatsan-word-73 = cringe 

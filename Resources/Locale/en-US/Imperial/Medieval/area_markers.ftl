@@ -127,3 +127,48 @@ ent-AreaMarkerHell = hell area location marker
 .desc = empty
 .suffix = { "Medieval" }
 area-map1-hell = Purgatory
+
+ent-AreaMarkerPortLegionNorth = northern city district location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-port-legion-north = Passage District
+
+ent-AreaMarkerPortLegionCastle = Legion fortress location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-port-legion-castle = Legion Fortress
+
+ent-AreaMarkerPortLegionGetto = port ghetto location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-port-legion-getto = Troubled District
+
+ent-AreaMarkerPortLegionUnder = port underground passages location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-port-legion-under = Port Tunnels
+
+ent-AreaMarkerPortLegionBand = underground thieves' guild location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-port-legion-band = Thieves' Guild Hideout
+
+area-map1-deep-caves = Deep Underdark
+ent-AreaMarkerDeepCaves = deep caves location marker
+.desc = empty
+.suffix = { "Medieval" }
+
+area-map1-caves = Caves
+ent-AreaMarkerCaves = cave location marker
+.desc = empty
+.suffix = { "Medieval" }
+
+area-map1-secret = Secret Place
+ent-AreaMarkerSecret = secret location marker
+.desc = empty
+.suffix = { "Medieval" }
+
+area-map1-voolcan-island = Volcanic Island
+ent-AreaMarkerVoolcanIsland = volcanic island location marker
+.desc = empty
+.suffix = { "Medieval" }

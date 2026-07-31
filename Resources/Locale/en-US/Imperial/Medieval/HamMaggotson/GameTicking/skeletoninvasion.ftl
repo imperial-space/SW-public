@@ -1,3 +1,3 @@
-imperial-hm-gameticking-oopsie = Посланники темного повелителя замечен на этих землях.
-imperial-hm-gameticking-cursedskull = Проклятый череп полностью собран. Трепещите смертные,  армия тьмы грядет и мир уже не будет прежним. Объединение - единственный шанс на спасение...
-imperial-hm-gameticking-ancientskull = Древний череп собран. Его проклятие не сломлено, но искажено святым пламенем. Равновесие пало, и теперь судьба этого острова решится в битве!
+imperial-hm-gameticking-oopsie = Servants of the dark lord have been sighted in these lands.
+imperial-hm-gameticking-cursedskull = The cursed skull has been fully assembled. Tremble, mortals: the army of darkness is coming, and the world will never be the same. Unity is the only chance for salvation...
+imperial-hm-gameticking-ancientskull = The ancient skull has been assembled. Its curse was not broken, but twisted by holy flame. Balance has fallen, and now the fate of this island will be decided in battle!
