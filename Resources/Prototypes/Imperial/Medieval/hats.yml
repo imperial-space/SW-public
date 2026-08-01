@@ -208,3 +208,16 @@
     sprite: Imperial/Medieval/Misc/archivist_hat.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalClothingHeadCourierHat
+  name: Courier Hat
+  description: A hat for Couriers
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/courier_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/courier_hat.rsi
+  - type: Item
+    size: Normal
