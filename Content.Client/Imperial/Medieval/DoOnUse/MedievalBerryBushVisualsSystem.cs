@@ -21,10 +21,19 @@ public sealed class MedievalBerryBushVisualsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<MedievalBerryBushComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<MedievalBerryBushComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MedievalBerryBushComponent, AppearanceChangeEvent>(OnAppearanceChange);
     }
 
     private void OnStartup(EntityUid uid, MedievalBerryBushComponent component, ComponentStartup args)
+    {
+        if (!TryComp<AppearanceComponent>(uid, out var appearance) || !TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        UpdateBerryBushSprite(uid, component, sprite, appearance);
+    }
+
+    private void OnMapInit(EntityUid uid, MedievalBerryBushComponent component, MapInitEvent args)
     {
         if (!TryComp<AppearanceComponent>(uid, out var appearance) || !TryComp<SpriteComponent>(uid, out var sprite))
             return;
@@ -42,8 +51,9 @@ public sealed class MedievalBerryBushVisualsSystem : EntitySystem
 
     private void UpdateBerryBushSprite(EntityUid uid, MedievalBerryBushComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
-        if (!_appearance.TryGetData(uid, MedievalBerryBushVisuals.HasBerries, out bool hasBerries, appearance))
-            return;
+        var hasBerries = !component.Collected;
+        if (_appearance.TryGetData(uid, MedievalBerryBushVisuals.HasBerries, out bool appearanceHasBerries, appearance))
+            hasBerries = appearanceHasBerries;
 
         var baseRsi = _sprite.LayerGetEffectiveRsi((uid, sprite), 0);
         if (baseRsi == null)

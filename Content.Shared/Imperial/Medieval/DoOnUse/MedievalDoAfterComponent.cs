@@ -1,4 +1,5 @@
 using Content.Shared.DoAfter;
+using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Medieval.DoOnUse.DoAfter;
@@ -30,10 +31,10 @@ public enum MedievalBerryBushVisuals : byte
 [NetSerializable, Serializable]
 public sealed partial class MedievalHitOnDoAfter : SimpleDoAfterEvent { }
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MedievalBerryBushComponent : Component
 {
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool Collected;
 
     [DataField]
