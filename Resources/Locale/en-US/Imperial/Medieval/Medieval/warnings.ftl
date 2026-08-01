@@ -19,7 +19,7 @@ medieval-warning-band = General:
         - Minimize modern slang, spelling, and grammar mistakes in your speech to make your messages pleasant to read. Maintain the low-fantasy atmosphere.
 
         Banditry and Robbery:
-        - Killing is a last resort. If a victim refuses to comply, it’s better to use whips and shackles to rob or enslave them rather than kill.
+        - Killing is a last resort. If a victim refuses to comply, it’s better to use whips and shackles to rob them rather than kill.
         - Robbery should not start with an attack. Attacking is a sign of aggression. Avoid unnecessary bloodshed—you might suffer too.
         - Don’t take everything from the victim. Taking everything resets their gameplay to zero. Think about how the player on the other side of the screen feels. Recreate a scene from the trailer—ask for a toll or something creative.
 

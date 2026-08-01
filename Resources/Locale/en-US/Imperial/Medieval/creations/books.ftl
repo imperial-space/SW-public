@@ -19,6 +19,9 @@ ent-RandomCreationsBook = random book
     .desc = A random book that can be sent to creations.
     .suffix = { "Medieval" }
 
+ent-Bookshelf = bookshelf
+    .desc = A sturdy wooden shelf made to hold books and scrolls.
+
 ent-BookshelfCreationsFilled = { ent-Bookshelf }
     .suffix = Filled, Random, Creations
     .desc = { ent-Bookshelf.desc }

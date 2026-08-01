@@ -64,8 +64,10 @@ public sealed class CaptainShipMegaphoneRadialMenu : RadialMenu
         AddOrderButton(combatFireLayer, "Megaphone-menu-combat-fire-right");
         AddOrderButton(combatFireLayer, "Megaphone-menu-combat-fire-forward");
 
-        // 2.2 Артиллерия (3 кнопки)
-        AddOrderButton(combatArtilleryLayer, "Megaphone-menu-combat-prepare-cannons");
+        // 2.2 Артиллерия (5 кнопки)
+        AddOrderButton(combatArtilleryLayer, "Megaphone-menu-combat-prepare-cannons-left");
+        AddOrderButton(combatArtilleryLayer, "Megaphone-menu-combat-prepare-cannons-right");
+        AddOrderButton(combatArtilleryLayer, "Megaphone-menu-combat-prepare-cannons-center");
         AddOrderButton(combatArtilleryLayer, "Megaphone-menu-combat-load-grapeshot");
         AddOrderButton(combatArtilleryLayer, "Megaphone-menu-combat-load-cannonballs");
 
@@ -75,7 +77,7 @@ public sealed class CaptainShipMegaphoneRadialMenu : RadialMenu
 
         // --- 3. ДВИЖЕНИЕ: Навигация (3 кнопки) ---
         AddNavButton(movementNavLayer, "Megaphone-menu-nav-movement-state", movementStateLayer);
-        AddNavButton(movementNavLayer, "Megaphone-menu-nav-movement-dir", movementDirLayer);
+        //AddNavButton(movementNavLayer, "Megaphone-menu-nav-movement-dir", movementDirLayer);
         AddNavButton(movementNavLayer, "Megaphone-menu-nav-movement-anchor", movementAnchorLayer);
 
         // 3.1 Состояние парусов (4 кнопки)

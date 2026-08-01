@@ -12,6 +12,7 @@
       stackType: MedievalMagicDust
       count: 1
     - type: Material
+    - type: FoodStack
 
 - type: stack
   id: MedievalMagicDust

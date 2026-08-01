@@ -88,6 +88,11 @@ public sealed class MedievalShipFlagpoleSystemShared : EntitySystem
             MedievalShipFlagpoleMenuAction.Purple => "purpleflag",
             MedievalShipFlagpoleMenuAction.Yellow => "yellowflag",
             MedievalShipFlagpoleMenuAction.Blue => "blueflag",
+            MedievalShipFlagpoleMenuAction.Pirate => "pirateflag",
+            MedievalShipFlagpoleMenuAction.Legion => "legionflag",
+            MedievalShipFlagpoleMenuAction.Insurgency => "foxflag",
+            MedievalShipFlagpoleMenuAction.Collegium => "wizflag",
+            MedievalShipFlagpoleMenuAction.Mercenary => "mercflag",
             _ => "transparent"
         };
     }

@@ -46,7 +46,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -321,7 +321,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -394,7 +394,7 @@
         Slash: 0.95
         Piercing: 0.93
   - type: MedievalArmorIntegrity
-    containerArmorHP: 80
+    containerArmorHP: 100
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -442,7 +442,7 @@
         Slash: 0.95
         Piercing: 0.93
   - type: MedievalArmorIntegrity
-    containerArmorHP: 80
+    containerArmorHP: 100
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -489,7 +489,7 @@
         Slash: 0.95
         Piercing: 0.93
   - type: MedievalArmorIntegrity
-    containerArmorHP: 80
+    containerArmorHP: 100
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -626,7 +626,7 @@
         Slash: 0.97
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -679,7 +679,7 @@
     slots:
     - Hair
   - type: MedievalArmorIntegrity
-    containerArmorHP: 70
+    containerArmorHP: 85
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -741,7 +741,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -794,7 +794,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 160
+    containerArmorHP: 200
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -846,7 +846,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -906,7 +906,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -1011,7 +1011,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -1466,7 +1466,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -1600,7 +1600,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -1978,7 +1978,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2108,7 +2108,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2191,7 +2191,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2274,7 +2274,7 @@
         Slash: 0.75
         Piercing: 0.8
   - type: MedievalArmorIntegrity
-    containerArmorHP: 200
+    containerArmorHP: 250
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2338,7 +2338,7 @@
         Slash: 0.82
         Piercing: 0.82
   - type: MedievalArmorIntegrity
-    containerArmorHP: 200
+    containerArmorHP: 250
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2409,7 +2409,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2492,7 +2492,7 @@
         Slash: 0.85
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:

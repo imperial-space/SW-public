@@ -5479,7 +5479,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.1,-0.1,0.1,0.1"
+          bounds: "-0.2,-0.15,0.2,0.15"
         density: 1000
         layer:
         - WallLayer
@@ -5512,7 +5512,7 @@
         - state: fire
           shader: unshaded
     - type: PointLight
-      color: "#e39c40"
+      color: "#f1ce9f"
       radius: 3.5
       power: 10
     - type: Physics
@@ -5593,6 +5593,22 @@
     - type: Sprite
       sprite: Imperial/Medieval/Decor/map.rsi
       state: map
+    - type: Tag
+      tags:
+      - Wall
+      - Wooden
+      - PreventShipFloorBreakage
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.4,0.4,0.4"
+          mask:
+          - FullTileMask
+          layer:
+          - FlimsyLayer
+          density: 1000
     - type: RadarConsole
       maxRange: 256
       followEntity: true

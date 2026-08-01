@@ -1,4 +1,5 @@
 using Content.Shared.ActionBlocker;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
@@ -19,6 +20,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Pulling.Events;
 using Content.Shared.Standing;
+using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
@@ -58,6 +60,8 @@ public sealed class GrabSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     #endregion
 
@@ -581,6 +585,8 @@ public sealed class GrabSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("grab-popup-success"), grabbableUid, grabberUid);
         _popup.PopupEntity(Loc.GetString("grabbed-popup"), grabberUid, grabbableUid);
+
+        _adminLogger.Add(Database.LogType.Action, Database.LogImpact.Medium, $"{ToPrettyString(grabberUid)} grabbed \"{ToPrettyString(grabbableUid)}\" at coords {_transform.GetMapCoordinates(grabbableUid)}");
     }
 
     public bool TryStopGrab(EntityUid grabbableUid, GrabbableComponent grabbableComp, EntityUid? user = null)
@@ -613,6 +619,8 @@ public sealed class GrabSystem : EntitySystem
                 grabbableComp.GrabJointId = null;
             }
         }
+
+        _adminLogger.Add(Database.LogType.Action, Database.LogImpact.Medium, $"{ToPrettyString(grabbableComp.Grabber)} stop grabbing \"{ToPrettyString(grabbableUid)}\" at coords {_transform.GetMapCoordinates(grabbableUid)}");
 
         var oldGrabber = grabbableComp.Grabber;
         grabbableComp.Grabber = null;

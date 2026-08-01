@@ -370,7 +370,7 @@
 - type: trait
   id: SkillTwoHanded
   name: Мастер двуручного оружия
-  description: Шанс 50% сбить шлем и усиленное отбрасывание при ЛКМ ударе.
+  description: Шанс сбить шлем при ЛКМ ударе
   category: WeaponSkills
   cost: 1
   components:
@@ -379,7 +379,7 @@
 - type: trait
   id: SkillCrossbow
   name: Арбалетчик
-  description: Выстрелы наносят огромный урон стамине и пробивают броню.
+  description: Выстрелы наносят дополнительный урон стамине и пробивают броню.
   category: WeaponSkills
   cost: 1
   components:
@@ -388,7 +388,7 @@
 - type: trait
   id: SkillBow
   name: Лучник
-  description: Автоматическая перезарядка лука, если есть колчан.
+  description: Автоматическая перезарядка лука при натягивании тетивы, если есть колчан.
   category: WeaponSkills
   cost: 1
   components:

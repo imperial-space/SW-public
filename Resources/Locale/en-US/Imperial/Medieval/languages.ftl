@@ -19,6 +19,6 @@ language-Elf-description = High language
 language-Myrmex-name = Myrmexes
 language-Myrmex-description = Psionic link
 language-Plague-name = Plague
-language-Plague-description = Collective mind of plague ghosts
+language-Plague-description = Collective mind of plague phantoms
 language-Resonat-name = Psyonic
 language-Resonat-description = Psyonic bond

@@ -365,10 +365,10 @@ chatsan-word-190 = BFF
 chatsan-replacement-190 = bestfriend
 
 chatsan-word-191 = nigger
-chatsan-replacement-191 = slave
+chatsan-replacement-191 = N
 
 chatsan-word-192 = nigga
-chatsan-replacement-192 = slave
+chatsan-replacement-192 = N
 
 chatsan-word-193 = FYI
 chatsan-replacement-193 = for your information
@@ -440,7 +440,7 @@ chatsan-word-215 = username
 chatsan-replacement-215 = name
 
 chatsan-word-216 = niga
-chatsan-replacement-216 = slave
+chatsan-replacement-216 = N
 
 chatsan-word-217 = reddit
 chatsan-replacement-217 = books

@@ -1,4 +1,4 @@
-ent-MedievalMobPlagueGhost = plague ghost
+ent-MedievalMobPlagueGhost = plague phantom
     .desc = How terrifying...
 
 ent-MedievalPlagueSlimeSpawn = plague slimes

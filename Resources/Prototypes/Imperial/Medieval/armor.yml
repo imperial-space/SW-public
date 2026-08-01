@@ -28,7 +28,7 @@
         Heat: 0.6
         Cold: 0.4
   - type: MedievalArmorIntegrity
-    containerArmorHP: 50
+    containerArmorHP: 60
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -113,7 +113,7 @@
         Heat: 0.7
         Cold: 0.5
   - type: MedievalArmorIntegrity
-    containerArmorHP: 110
+    containerArmorHP: 135
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -261,7 +261,7 @@
         Heat: 0.65
         Cold: 0.6
   - type: MedievalArmorIntegrity
-    containerArmorHP: 145
+    containerArmorHP: 180
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -332,7 +332,7 @@
         Heat: 0.65
         Cold: 0.6
   - type: MedievalArmorIntegrity
-    containerArmorHP: 140
+    containerArmorHP: 175
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -404,7 +404,7 @@
         Heat: 0.62
         Cold: 0.55
   - type: MedievalArmorIntegrity
-    containerArmorHP: 180
+    containerArmorHP: 225
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -498,7 +498,7 @@
         Heat: 0.78
         Cold: 0.8
   - type: MedievalArmorIntegrity
-    containerArmorHP: 220
+    containerArmorHP: 275
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -557,7 +557,7 @@
         Heat: 0.8
         Cold: 0.85
   - type: MedievalArmorIntegrity
-    containerArmorHP: 150
+    containerArmorHP: 185
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -627,7 +627,7 @@
         Heat: 0.5
         Cold: 0.44
   - type: MedievalArmorIntegrity
-    containerArmorHP: 260
+    containerArmorHP: 325
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -742,7 +742,7 @@
         Heat: 0.55
         Cold: 0.7
   - type: MedievalArmorIntegrity
-    containerArmorHP: 335
+    containerArmorHP: 395
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -840,7 +840,7 @@
         Heat: 0.7
         Cold: 0.7
   - type: MedievalArmorIntegrity
-    containerArmorHP: 210
+    containerArmorHP: 260
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -927,7 +927,7 @@
         Heat: 0.45
         Cold: 0.7
   - type: MedievalArmorIntegrity
-    containerArmorHP: 480
+    containerArmorHP: 600
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1004,7 +1004,7 @@
         Heat: 0.25
         Cold: 0.6
   - type: MedievalArmorIntegrity
-    containerArmorHP: 650
+    containerArmorHP: 760
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1145,7 +1145,7 @@
         Heat: 0.9
         Cold: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 50
+    containerArmorHP: 60
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1223,7 +1223,7 @@
         Heat: 0.6
         Cold: 0.4
   - type: MedievalArmorIntegrity
-    containerArmorHP: 55
+    containerArmorHP: 65
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -1396,7 +1396,7 @@
         Slash: 0.95
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 75
+    containerArmorHP: 90
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1470,7 +1470,7 @@
         Slash: 0.95
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 75
+    containerArmorHP: 90
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1537,7 +1537,7 @@
       types:
         Caustic: 12
   - type: MedievalArmorIntegrity
-    containerArmorHP: 80
+    containerArmorHP: 100
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1593,7 +1593,7 @@
       types:
         Caustic: 7
   - type: MedievalArmorIntegrity
-    containerArmorHP: 60
+    containerArmorHP: 75
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1678,7 +1678,7 @@
         Heat: 0.48
         Cold: 0.8
   - type: MedievalArmorIntegrity
-    containerArmorHP: 560
+    containerArmorHP: 700
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1750,7 +1750,7 @@
         Heat: 0.55
         Cold: 0.75
   - type: MedievalArmorIntegrity
-    containerArmorHP: 400
+    containerArmorHP: 500
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1822,7 +1822,7 @@
         Slash: 0.95
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 60
+    containerArmorHP: 75
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -1891,7 +1891,7 @@
         Cold: 0.77
         Bloodloss: 0.77
   - type: MedievalArmorIntegrity
-    containerArmorHP: 215
+    containerArmorHP: 270
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2195,7 +2195,7 @@
         Cold: 0.85
         Bloodloss: 0.85
   - type: MedievalArmorIntegrity
-    containerArmorHP: 135
+    containerArmorHP: 170
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2445,7 +2445,7 @@
         Cold: 0.87
         Bloodloss: 0.87
   - type: MedievalArmorIntegrity
-    containerArmorHP: 110
+    containerArmorHP: 135
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -2587,7 +2587,7 @@
         Heat: 0.38
         Cold: 0.6
   - type: MedievalArmorIntegrity
-    containerArmorHP: 425
+    containerArmorHP: 530
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -2663,7 +2663,7 @@
         Heat: 0.18
         Cold: 0.32
   - type: MedievalArmorIntegrity
-    containerArmorHP: 750
+    containerArmorHP: 840
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -2749,7 +2749,7 @@
         Slash: 0.9
         Piercing: 0.9
   - type: MedievalArmorIntegrity
-    containerArmorHP: 75
+    containerArmorHP: 95
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -2851,7 +2851,7 @@
         Heat: 0.84
         Cold: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 85
+    containerArmorHP: 105
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -2952,7 +2952,7 @@
         Heat: 0.4
         Cold: 0.8
   - type: MedievalArmorIntegrity
-    containerArmorHP: 290
+    containerArmorHP: 435
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -3530,7 +3530,7 @@
         Slash: 0.95
         Piercing: 0.95
   - type: MedievalArmorIntegrity
-    containerArmorHP: 75
+    containerArmorHP: 95
     repairType: Smithing
     unbrokenResistances:
       Blunt:
@@ -3684,7 +3684,7 @@
         Heat: 0.6
         Cold: 0.3
   - type: MedievalArmorIntegrity
-    containerArmorHP: 65
+    containerArmorHP: 80
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -3756,7 +3756,7 @@
         Heat: 0.7
         Cold: 0.54
   - type: MedievalArmorIntegrity
-    containerArmorHP: 100
+    containerArmorHP: 125
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -3831,7 +3831,7 @@
         Heat: 0.5
         Cold: 0.7
   - type: MedievalArmorIntegrity
-    containerArmorHP: 180
+    containerArmorHP: 225
     repairType: Sewing
     unbrokenResistances:
       Blunt:
@@ -3978,7 +3978,7 @@
         Heat: 0.75
         Cold: 0.5
   - type: MedievalArmorIntegrity
-    containerArmorHP: 65
+    containerArmorHP: 80
     repairType: Sewing
     unbrokenResistances:
       Blunt:

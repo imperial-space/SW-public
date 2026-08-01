@@ -1697,6 +1697,9 @@
   - productEntity: MedievalMedicalBedCraft
     cost: 15
     reputationForBuying: 0.5
+  - productEntity: MedievalSleepingBagRolled
+    cost: 50
+    reputationForBuying: 0.5
   - productEntity: MedievalSign1Craft
     cost: 80
     reputationForBuying: 2.7

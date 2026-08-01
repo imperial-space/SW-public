@@ -600,7 +600,7 @@ pomyatyy-dorozhnyy-pergament-content = [head=3][color=#2e8b57]Ballad of the Wand
 
     {"Watched bastions rot from tide to tide,"}
 
-    {"And wild men drive their slaves before."}
+    {"And wild men drive their prisoners before."}
 
 
     {"When in the night the war-host cries,"}
@@ -786,9 +786,9 @@ vyveska-taverna-gniloy-zub-desc = Looks like a place where very bad people gathe
 
 podozritelnyy-derevyannyy-lyuk-name = suspicious wooden hatch
 
-derevyannaya-kryshka1-name = wooden cover
-derevyannaya-kryshka2-name = wooden cover
-derevyannaya-kryshka3-name = wooden cover
+derevyannaya-kryshka-name1 = wooden lid
+derevyannaya-kryshka-name2 = wooden lid
+derevyannaya-kryshka-name3 = wooden lid
 
 podozritelnyy-plakat-name = suspicious placard
 podozritelnyy-plakat-desc = The placard calls adventurers to rise against "imperial tyranny" and begin a march of justice.

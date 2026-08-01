@@ -276,7 +276,7 @@
         Heat: 0.6
         Cold: 0.4
   - type: MedievalArmorIntegrity
-    containerArmorHP: 55
+    containerArmorHP: 65
     repairType: Sewing
     unbrokenResistances:
       Blunt:

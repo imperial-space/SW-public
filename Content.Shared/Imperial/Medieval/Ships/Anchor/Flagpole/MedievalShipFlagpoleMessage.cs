@@ -47,6 +47,11 @@ public enum MedievalShipFlagpoleMenuAction : byte
     Purple,
     Yellow,
     Blue,
+    Pirate,
+    Legion,
+    Insurgency,
+    Collegium,
+    Mercenary,
     None
 }
 

@@ -76,6 +76,24 @@ imperial-medieval-recipe-inserted = Recipe successfully inserted into the book
 ent-MedievalLipadSeeds = pouch of forgotten lipad seeds
     .desc = These seeds will give you a flower that carries you into a world of oblivion.
 
+ent-MedievalStarSeeds = pouch of starflower seeds
+    .desc = These seeds will give you a starflower.
+
+ent-MedievalLunaSeeds = pouch of moonflower seeds
+    .desc = These seeds will give you a moonflower.
+
+ent-MedievalDarkSeeds = pouch of nightshade seeds
+    .desc = These seeds will give you nightshade.
+
+ent-MedievalBloodSeeds = pouch of bloodflower seeds
+    .desc = These seeds will give you a bloodflower.
+
+ent-MedievalWhiteSeeds = pouch of whiteflower seeds
+    .desc = These seeds will give you a whiteflower.
+
+ent-MedievalBlackSeeds = pouch of blackflower seeds
+    .desc = These seeds will give you a blackflower.
+
 imperial-medieval-recipe-already = The recipe is already in the book
 
 imperial-medieval-bestexplosion-desc = Releases a large amount of heat during reaction and enters a gaseous state, causing colossal destruction and filling the area with poisonous smoke

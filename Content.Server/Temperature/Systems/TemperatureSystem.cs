@@ -285,7 +285,7 @@ public sealed class TemperatureSystem : EntitySystem
             var diff = Math.Abs(temperature.CurrentTemperature - coldDamageThreshold);
             var tempDamage =
                 Math.Sqrt(diff * (Math.Pow(temperature.DamageCap.Double(), 2) / coldDamageThreshold));
-            _damageable.TryChangeDamage(uid, temperature.ColdDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false);
+            //_damageable.TryChangeDamage(uid, temperature.ColdDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false); // imperial medieval ships no cold damage
         }
         else if (temperature.TakingDamage)
         {

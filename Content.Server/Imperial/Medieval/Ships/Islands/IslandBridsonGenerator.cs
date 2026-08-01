@@ -39,16 +39,17 @@ public sealed class IslandSpatialGrid
         list.Add(isle);
     }
 
-    public bool Conflicts(Vector2 p, float radius, float gap)
+    public bool Conflicts(Vector2 p, float radius, float gap, float minimumCenterDistance = 0f)
     {
-        var range = (int)MathF.Ceiling((radius + _maxR + gap) / _cell);
+        var maximumConflictDistance = MathF.Max(radius + _maxR + gap, minimumCenterDistance);
+        var range = (int)MathF.Ceiling(maximumConflictDistance / _cell);
         var (cx, cy) = CellOf(p);
         for (var dx = -range; dx <= range; dx++)
         for (var dy = -range; dy <= range; dy++)
             if (_cells.TryGetValue(Key(cx + dx, cy + dy), out var list))
                 foreach (var other in list)
                 {
-                    var min = radius + other.Radius + gap;
+                    var min = MathF.Max(radius + other.Radius + gap, minimumCenterDistance);
                     if (Vector2.DistanceSquared(p, other.Pos) < min * min)
                         return true;
                 }
@@ -66,63 +67,158 @@ public sealed class IslandBridsonGenerator
     public List<IslandPlacement> Generate(
         IslandRing ring,
         List<(ResPath Path, float Radius)> islands,
-        int maxIslands,
+        int targetCount,
         IslandSpatialGrid grid,
         Random rng)
     {
         var result = new List<IslandPlacement>();
-        if (islands.Count == 0 || maxIslands <= 0)
+        if (islands.Count == 0 || targetCount <= 0)
             return result;
 
-        var queue = new Queue<(ResPath Path, float Radius)>(Shuffle(islands, rng));
+        var remaining = Shuffle(islands, rng);
+        if (remaining.Count > targetCount)
+            remaining.RemoveRange(targetCount, remaining.Count - targetCount);
 
-        IslandPlacement? seed = null;
-        var (firstPath, firstRadius) = queue.Peek();
-        for (var t = 0; t < 64 && seed == null; t++)
+        var distributionDistance = CalculateDistributionDistance(ring, remaining.Count);
+        var maximumRadius = 0f;
+        foreach (var (_, radius) in remaining)
+            maximumRadius = MathF.Max(maximumRadius, radius);
+
+        var ringGrid = new IslandSpatialGrid(MathF.Max(distributionDistance, maximumRadius + _gap));
+        var active = new List<IslandPlacement>();
+
+        while (remaining.Count > 0)
         {
-            var pos = RandomInRing(ring, rng);
-            if (FitsInRing(pos, ring) && !grid.Conflicts(pos, firstRadius, _gap))
-                seed = new IslandPlacement(pos, firstPath, firstRadius);
-        }
-        if (seed == null)
-            return result;
-
-        queue.Dequeue();
-        var active = new List<IslandPlacement> { seed.Value };
-        grid.Add(seed.Value);
-        result.Add(seed.Value);
-
-        while (active.Count > 0 && queue.Count > 0 && result.Count < maxIslands)
-        {
-            var idx = rng.Next(active.Count);
-            var origin = active[idx];
-            var (nextPath, nextRadius) = queue.Peek();
-
-            var placed = false;
-            var dMin = origin.Radius + nextRadius + _gap;
-
-            for (var i = 0; i < _maxCandidatesPerPoint; i++)
+            if (active.Count == 0)
             {
-                var cand = SampleAnnulus(origin.Pos, dMin, dMin * 2f, rng);
-                if (!FitsInRing(cand, ring))
-                    continue;
-                if (grid.Conflicts(cand, nextRadius, _gap))
-                    continue;
+                if (!TryCreateSeed(
+                        ring,
+                        remaining,
+                        grid,
+                        ringGrid,
+                        distributionDistance,
+                        rng,
+                        out var seed,
+                        out var seedIndex))
+                    break;
 
-                var isle = new IslandPlacement(cand, nextPath, nextRadius);
-                queue.Dequeue();
-                grid.Add(isle);
-                active.Add(isle);
-                result.Add(isle);
-                placed = true;
-                break;
+                remaining.RemoveAt(seedIndex);
+                AddPlacement(seed, active, result, grid, ringGrid);
+                continue;
             }
 
-            if (!placed)
+            var idx = rng.Next(active.Count);
+            var origin = active[idx];
+
+            if (!TryCreateAround(
+                    origin,
+                    ring,
+                    remaining,
+                    grid,
+                    ringGrid,
+                    distributionDistance,
+                    rng,
+                    out var placement,
+                    out var remainingIndex))
+            {
                 active.RemoveAt(idx);
+                continue;
+            }
+
+            remaining.RemoveAt(remainingIndex);
+            AddPlacement(placement, active, result, grid, ringGrid);
         }
 
         return result;
+    }
+
+    private bool TryCreateSeed(
+        IslandRing ring,
+        List<(ResPath Path, float Radius)> remaining,
+        IslandSpatialGrid grid,
+        IslandSpatialGrid ringGrid,
+        float distributionDistance,
+        Random rng,
+        out IslandPlacement placement,
+        out int remainingIndex)
+    {
+        var attemptsPerIsland = Math.Max(64, _maxCandidatesPerPoint * 4);
+        foreach (var index in ShuffledIndices(remaining.Count, rng))
+        {
+            var (path, radius) = remaining[index];
+            for (var attempt = 0; attempt < attemptsPerIsland; attempt++)
+            {
+                var position = RandomInRing(ring, rng);
+                if (grid.Conflicts(position, radius, _gap))
+                    continue;
+                if (ringGrid.Conflicts(position, radius, _gap, distributionDistance))
+                    continue;
+
+                placement = new IslandPlacement(position, path, radius);
+                remainingIndex = index;
+                return true;
+            }
+        }
+
+        placement = default;
+        remainingIndex = -1;
+        return false;
+    }
+
+    private bool TryCreateAround(
+        IslandPlacement origin,
+        IslandRing ring,
+        List<(ResPath Path, float Radius)> remaining,
+        IslandSpatialGrid grid,
+        IslandSpatialGrid ringGrid,
+        float distributionDistance,
+        Random rng,
+        out IslandPlacement placement,
+        out int remainingIndex)
+    {
+        foreach (var index in ShuffledIndices(remaining.Count, rng))
+        {
+            var (path, radius) = remaining[index];
+            var minimumDistance = MathF.Max(origin.Radius + radius + _gap, distributionDistance);
+
+            for (var attempt = 0; attempt < _maxCandidatesPerPoint; attempt++)
+            {
+                var position = SampleAnnulus(origin.Pos, minimumDistance, minimumDistance * 2f, rng);
+                if (!FitsInRing(position, ring))
+                    continue;
+                if (grid.Conflicts(position, radius, _gap))
+                    continue;
+                if (ringGrid.Conflicts(position, radius, _gap, distributionDistance))
+                    continue;
+
+                placement = new IslandPlacement(position, path, radius);
+                remainingIndex = index;
+                return true;
+            }
+        }
+
+        placement = default;
+        remainingIndex = -1;
+        return false;
+    }
+
+    private static void AddPlacement(
+        IslandPlacement placement,
+        List<IslandPlacement> active,
+        List<IslandPlacement> result,
+        IslandSpatialGrid grid,
+        IslandSpatialGrid ringGrid)
+    {
+        active.Add(placement);
+        result.Add(placement);
+        grid.Add(placement);
+        ringGrid.Add(placement);
+    }
+
+    private static float CalculateDistributionDistance(IslandRing ring, int targetCount)
+    {
+        var area = MathF.PI * MathF.Max(0f, ring.Outer * ring.Outer - ring.Inner * ring.Inner);
+        return MathF.Sqrt(area / targetCount);
     }
 
     private static bool FitsInRing(Vector2 p, IslandRing ring)
@@ -156,5 +252,20 @@ public sealed class IslandBridsonGenerator
             (list[i], list[j]) = (list[j], list[i]);
         }
         return list;
+    }
+
+    private static List<int> ShuffledIndices(int count, Random rng)
+    {
+        var indices = new List<int>(count);
+        for (var i = 0; i < count; i++)
+            indices.Add(i);
+
+        for (var i = indices.Count - 1; i > 0; i--)
+        {
+            var j = rng.Next(i + 1);
+            (indices[i], indices[j]) = (indices[j], indices[i]);
+        }
+
+        return indices;
     }
 }

@@ -4,6 +4,7 @@
   components:
   - type: MedievalShipFlagpole
   - type: Sprite
+    noRot: true
     sprite: Imperial/Medieval/Decor/flagpole.rsi
     drawdepth: Mobs
     offset: 0.5, 1
@@ -56,6 +57,11 @@
           Purple: { state: purpleflag }
           Yellow: { state: yellowflag }
           Blue: { state: blueflag }
+          Pirate: { state: pirateflag }
+          Legion: { state: legionflag }
+          Insurgency: { state: foxflag }
+          Collegium: { state: wizflag }
+          Mercenary: { state: mercflag }
           None: { state: transparent }
   - type: Appearance
   - type: UserInterface

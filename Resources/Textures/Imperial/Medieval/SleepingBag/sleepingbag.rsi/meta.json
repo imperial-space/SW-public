@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "prazat911",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "sleepingbag"
+        },
+        {
+            "name": "sleepingbag-rolled"
+        },
+        {
+            "name": "sleepingbag-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "sleepingbag-inhand-right",
+            "directions": 4
+        }
+    ]
+}

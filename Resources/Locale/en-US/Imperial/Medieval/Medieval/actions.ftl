@@ -49,6 +49,7 @@ action-name-spell-necro2 = Necromancy
 action-name-spell-necro3 = Necromancy
 action-name-medieval-spell-blink = Blink
 action-description-medieval-spell-blink = Effective at 7 meters. Teleports you to the specified point. Costs 35 mana.
+dash-ability-tile-not-empty = The way is blocked!
 medieval-cahrm-speech-blink = D̨̘͙Ḁ̯͔̙͜ͅȘ̙̲͈͜H͇̫͜!!!
 medieval-cahrm-speech-barrier = I͙͇͔̮͢c̝̟͓͜ͅe̡̤̗ b͚͔͕͜a̢̫͓̜̳̲r̨̙̞̯̝r͖͙̭͢i̢͍͎̳͍e͇͈̠͢r̢͔̝̬̭̪!!!
 action-name-spell-barrier = Ice barrier beginner

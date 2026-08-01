@@ -21,5 +21,5 @@ public sealed partial class OarComponent : Component
     public float OverloadCeilPerTile = 20f;
 
     [DataField]
-    public Angle Direction;
+    public Vector2 GridDirection;
 }

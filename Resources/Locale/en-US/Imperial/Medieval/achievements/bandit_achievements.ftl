@@ -4,8 +4,8 @@ achievement-bandit-collect-100-revents-desc = Collect 100 revents while playing 
 achievement-bandit-get-lockpick-pack-name = Lockpicks in readiness
 achievement-bandit-get-lockpick-pack-desc = Obtain a set of lockpicks while playing as a bandit. No lock can stand against you now.
 
-achievement-bandit-become-regular-name = Experienced robber
-achievement-bandit-become-regular-desc = Take on the role of an experienced gang robber. The novice is a thing of the past.
+achievement-bandit-become-regular-name = Safecracker
+achievement-bandit-become-regular-desc = Reach the rank of Safecracker. Your Youngblood days are behind you.
 
 achievement-bandit-destroy-stockades-name = Stockades crusher
 achievement-bandit-destroy-stockades-desc = Destroy 15 stockades while playing as a bandit. Other people's walls are no barrier to you.
@@ -16,8 +16,8 @@ achievement-bandit-collect-250-revents-desc = Collect 250 revents while playing 
 achievement-bandit-get-thieving-medaljon-name = Dexterous hands
 achievement-bandit-get-thieving-medaljon-desc = Obtain the medallion of dexterous hands while playing as a bandit. Now other people's pockets practically reach for you.
 
-achievement-bandit-become-veteran-name = Gang veteran
-achievement-bandit-become-veteran-desc = Appear as a gang veteran. Broken roads, broken enemies; you have been through it all.
+achievement-bandit-become-veteran-name = Gang Veteran
+achievement-bandit-become-veteran-desc = Reach the rank of Gang Veteran. Broken roads, broken enemies. You have survived them all.
 
 achievement-bandit-destroy-gate-name = Knock-knock, open up
 achievement-bandit-destroy-gate-desc = Break or destroy gates while playing as a bandit. Knocking is not how we do things.
@@ -31,14 +31,14 @@ achievement-bandit-raid-treasury-desc = In one round, visit the treasury of a le
 achievement-bandit-get-steel-maces-name = Two-handed diplomacy
 achievement-bandit-get-steel-maces-desc = Obtain two steel maces while playing as a bandit. One for each weighty argument.
 
-achievement-bandit-become-leader-name = Bandit chieftain
-achievement-bandit-become-leader-desc = Appear as a bandit chieftain. Now the gang follows your lead.
+achievement-bandit-become-leader-name = Guildmaster
+achievement-bandit-become-leader-desc = Rise to the rank of Guildmaster. The whole guild now answers to you.
 
 achievement-bandit-get-rebel-letter-name = Message from the Insurgency
-achievement-bandit-get-rebel-letter-desc = Obtain the Insurgency's letter as a bandit chieftain. Other people's secrets are in safe hands.
+achievement-bandit-get-rebel-letter-desc = Obtain the Insurgency's letter as the Guildmaster. Other people's secrets are in safe hands.
 
 achievement-bandit-get-legion-letter-name = Message from the Legion
-achievement-bandit-get-legion-letter-desc = Obtain the Legion's letter as a bandit chieftain. Empires have secrets, too.
+achievement-bandit-get-legion-letter-desc = Obtain the Legion's letter as the Guildmaster. Empires have secrets, too.
 
 achievement-bandit-grand-heist-name = King of Robbers
-achievement-bandit-grand-heist-desc = In one round as a bandit chieftain: visit the Legate's treasury and the Jarl's treasury, obtain the Legate's helmet and the Jarl's helmet, 1000 revents, a Legion medal, and an Insurgency medal. An underworld legend.
+achievement-bandit-grand-heist-desc = In one round as the Guildmaster: visit the Legate's treasury and the Jarl's treasury, obtain the Legate's helmet and the Jarl's helmet, 1000 revents, a Legion medal, and an Insurgency medal. An underworld legend.

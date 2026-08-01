@@ -1802,7 +1802,7 @@
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
           Quantity: 4
-  - type: ForgedFoodStack
+  - type: FoodStack
   - type: Extractable
     juiceSolution:
       reagents:

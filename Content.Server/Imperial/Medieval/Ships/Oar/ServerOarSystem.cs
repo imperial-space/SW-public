@@ -11,6 +11,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using SharedOarSystem = Content.Shared.Imperial.Medieval.Ships.Oar.OarSystem;
 
 namespace Content.Server.Imperial.Medieval.Ships.Oar;
 
@@ -41,7 +42,7 @@ public sealed class OarSystem : EntitySystem
         if (!TryComp<OarComponent>(item, out var oarComp))
             return;
 
-        if (!Push(oarComp.Direction, oarComp.Power, oarComp.OverloadCeilPerTile, args.User))
+        if (!Push(oarComp.GridDirection, oarComp.Power, oarComp.OverloadCeilPerTile, args.User))
             return;
 
         _audio.PlayPvs(MedievalShipSounds.OarUse, args.User);
@@ -49,8 +50,13 @@ public sealed class OarSystem : EntitySystem
         args.Repeat = true;
     }
 
-    private bool Push(Angle direction, float power, float overloadCeilPerTile, EntityUid player)
+    private bool Push(Vector2 gridDirection, float power, float overloadCeilPerTile, EntityUid player)
     {
+        var directionLengthSquared = gridDirection.LengthSquared();
+        if (!float.IsFinite(directionLengthSquared) || directionLengthSquared <= 0.0001f)
+            return false;
+
+        gridDirection /= MathF.Sqrt(directionLengthSquared);
         power += power * (_skills.GetSkillLevel(player, "Strength") - 10) * 0.03f;
 
         if (!TryGetGrid(player, out var boat))
@@ -65,11 +71,9 @@ public sealed class OarSystem : EntitySystem
 
         var weight = _rdWeight.GetTotalOnGrid(boat);
 
-        var normalizedAngle = (float) direction.Theta % (2 * MathF.PI);
-        if (normalizedAngle < 0)
-            normalizedAngle += 2 * MathF.PI;
-
-        var directionVec = new Vector2(MathF.Cos(normalizedAngle), MathF.Sin(normalizedAngle));
+        var directionVec = SharedOarSystem.GetWorldDirection(
+            gridDirection,
+            _transform.GetWorldRotation(boat));
         var impulse = directionVec * GetImpulsePower(power, overloadCeil, weight);
         if (!TryComp<PhysicsComponent>(boat, out var body))
             return false;

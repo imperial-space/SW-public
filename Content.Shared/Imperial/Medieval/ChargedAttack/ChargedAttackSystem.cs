@@ -18,6 +18,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.CombatMode;
 
 namespace Content.Shared.Imperial.Medieval.ChargedAttack;
 
@@ -45,7 +46,16 @@ public sealed class ChargedAttackSystem : EntitySystem
         SubscribeLocalEvent<ChargedAttackComponent, StaminaMeleeHitEvent>(OnStaminaHit);
         SubscribeLocalEvent<ChargedAttackComponent, DroppedEvent>(OnDropped);
         SubscribeLocalEvent<ChargedAttackComponent, GotUnequippedHandEvent>(OnUnequipped);
+        SubscribeLocalEvent<ChargedAttackComponent, ToggleCombatActionEvent>(OnCombatModeToogled);
         SubscribeLocalEvent<ChargedAttackComponent, EntInsertedIntoContainerMessage>(OnInsertedIntoContainer);
+    }
+
+    private void OnCombatModeToogled(Entity<ChargedAttackComponent> weaponEntity, ref ToggleCombatActionEvent args)
+    {
+        if (!weaponEntity.Comp.CurrentAttacking)
+            return;
+
+        StopAttacking(weaponEntity, weaponEntity.Comp, args.Performer);
     }
 
     private void OnDropped(EntityUid weapon, ChargedAttackComponent charged, DroppedEvent args)
@@ -70,13 +80,13 @@ public sealed class ChargedAttackSystem : EntitySystem
             return;
 
         var user = args.Container.Owner;
-        
+
         if (TryComp<TransformComponent>(user, out var xform) && xform.ParentUid.IsValid())
         {
             if (HasComp<HandsComponent>(xform.ParentUid))
                 user = xform.ParentUid;
         }
-        
+
         StopAttacking(weapon, charged, user);
     }
 
@@ -213,6 +223,21 @@ public sealed class ChargedAttackSystem : EntitySystem
     //     var impulseVector = direction.Normalized() * charged.VectorLenght * physics.Mass;
     //     _physicsSystem.SetLinearVelocity(entity, impulseVector, body: physics);
     // }
+
+    public void OnCombatModeChanged(EntityUid user)
+    {
+        if (!_handsSystem.TryGetActiveItem(user, out var item) || !item.HasValue)
+            return;
+
+        if (!TryComp<ChargedAttackComponent>(item.Value, out var charged))
+            return;
+
+        if (!charged.CurrentAttacking)
+            return;
+
+        StopAttacking(item.Value, charged, user);
+    }
+
 
     public void StopAttacking(EntityUid entity, ChargedAttackComponent charged, EntityUid user)
     {

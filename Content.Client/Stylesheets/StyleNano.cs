@@ -150,7 +150,7 @@ namespace Content.Client.Stylesheets
         // Fancy Tree elements
         public static readonly Color FancyTreeEvenRowColor = Color.FromHex("#2B211D");
         public static readonly Color FancyTreeOddRowColor = FancyTreeEvenRowColor * new Color(0.8f, 0.8f, 0.8f);
-        public static readonly Color FancyTreeSelectedRowColor = new Color(55, 55, 68);
+        public static readonly Color FancyTreeSelectedRowColor = new Color(94, 76, 65); // Imperial Medieval
 
         //Used by the APC and SMES menus
         public const string StyleClassPowerStateNone = "PowerStateNone";
@@ -169,7 +169,7 @@ namespace Content.Client.Stylesheets
         public const string StyleClassButtonColorRed = "ButtonColorRed";
         public const string StyleClassButtonColorGreen = "ButtonColorGreen";
 
-        public static readonly Color ChatBackgroundColor = Color.FromHex("#2B211DDD");
+        public static readonly Color ChatBackgroundColor = Color.FromHex("#2b211d74");
 
         //Bwoink
         public const string StyleClassPinButtonPinned = "pinButtonPinned";
@@ -458,9 +458,9 @@ namespace Content.Client.Stylesheets
             };
             tabContainerPanel.SetPatchMargin(StyleBox.Margin.All, 2);
 
-            var tabContainerBoxActive = new StyleBoxFlat { BackgroundColor = new Color(64, 64, 64) };
+            var tabContainerBoxActive = new StyleBoxFlat { BackgroundColor = new Color(128, 111, 100) }; // Imperial Medieval
             tabContainerBoxActive.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
-            var tabContainerBoxInactive = new StyleBoxFlat { BackgroundColor = new Color(32, 32, 32) };
+            var tabContainerBoxInactive = new StyleBoxFlat { BackgroundColor = new Color(61, 53, 48) }; // Imperial Medieval
             tabContainerBoxInactive.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
 
             var progressBarBackground = new StyleBoxFlat
@@ -555,13 +555,13 @@ namespace Content.Client.Stylesheets
             placeholder.SetExpandMargin(StyleBox.Margin.All, -5);
             placeholder.Mode = StyleBoxTexture.StretchMode.Tile;
 
-            var itemListBackgroundSelected = new StyleBoxFlat { BackgroundColor = new Color(75, 75, 86) };
+            var itemListBackgroundSelected = new StyleBoxFlat { BackgroundColor = new Color(22, 15, 50) }; // Imperial Medieval
             itemListBackgroundSelected.SetContentMarginOverride(StyleBox.Margin.Vertical, 2);
             itemListBackgroundSelected.SetContentMarginOverride(StyleBox.Margin.Horizontal, 4);
-            var itemListItemBackgroundDisabled = new StyleBoxFlat { BackgroundColor = new Color(10, 10, 12) };
+            var itemListItemBackgroundDisabled = new StyleBoxFlat { BackgroundColor = new Color(22, 43, 15) }; // Imperial Medieval
             itemListItemBackgroundDisabled.SetContentMarginOverride(StyleBox.Margin.Vertical, 2);
             itemListItemBackgroundDisabled.SetContentMarginOverride(StyleBox.Margin.Horizontal, 4);
-            var itemListItemBackground = new StyleBoxFlat { BackgroundColor = new Color(55, 55, 68) };
+            var itemListItemBackground = new StyleBoxFlat { BackgroundColor = new Color(94, 76, 65) }; // Imperial Medieval
             itemListItemBackground.SetContentMarginOverride(StyleBox.Margin.Vertical, 2);
             itemListItemBackground.SetContentMarginOverride(StyleBox.Margin.Horizontal, 4);
             var itemListItemBackgroundTransparent = new StyleBoxFlat { BackgroundColor = Color.Transparent };
@@ -966,15 +966,15 @@ namespace Content.Client.Stylesheets
 
                 Element<ContainerButton>().Class(ListContainer.StyleClassListContainerButton)
                     .Pseudo(ContainerButton.StylePseudoClassNormal)
-                    .Prop(Control.StylePropertyModulateSelf, new Color(55, 55, 68)),
+                    .Prop(Control.StylePropertyModulateSelf, new Color(94, 76, 65)), // Imperial Medieval
 
                 Element<ContainerButton>().Class(ListContainer.StyleClassListContainerButton)
                     .Pseudo(ContainerButton.StylePseudoClassHover)
-                    .Prop(Control.StylePropertyModulateSelf, new Color(75, 75, 86)),
+                    .Prop(Control.StylePropertyModulateSelf, new Color(81, 69, 61)), // Imperial Medieval
 
                 Element<ContainerButton>().Class(ListContainer.StyleClassListContainerButton)
                     .Pseudo(ContainerButton.StylePseudoClassPressed)
-                    .Prop(Control.StylePropertyModulateSelf, new Color(75, 75, 86)),
+                    .Prop(Control.StylePropertyModulateSelf, new Color(81, 69, 61)), // Imperial Medieval
 
                 Element<ContainerButton>().Class(ListContainer.StyleClassListContainerButton)
                     .Pseudo(ContainerButton.StylePseudoClassDisabled)
@@ -1190,7 +1190,7 @@ namespace Content.Client.Stylesheets
                 new StyleRule(new SelectorElement(typeof(ItemList), null, null, null), new[]
                 {
                     new StyleProperty(ItemList.StylePropertyBackground,
-                        new StyleBoxFlat {BackgroundColor = new Color(32, 32, 40)}),
+                        new StyleBoxFlat {BackgroundColor = new Color(23, 35, 17)}),
                     new StyleProperty(ItemList.StylePropertyItemBackground,
                         itemListItemBackground),
                     new StyleProperty(ItemList.StylePropertyDisabledItemBackground,
@@ -1227,10 +1227,10 @@ namespace Content.Client.Stylesheets
                 new StyleRule(new SelectorElement(typeof(Tree), null, null, null), new[]
                 {
                     new StyleProperty(Tree.StylePropertyBackground,
-                        new StyleBoxFlat {BackgroundColor = new Color(32, 32, 40)}),
+                        new StyleBoxFlat {BackgroundColor = new Color(23, 35, 17)}),
                     new StyleProperty(Tree.StylePropertyItemBoxSelected, new StyleBoxFlat
                     {
-                        BackgroundColor = new Color(55, 55, 68),
+                        BackgroundColor = new Color(94, 76, 65), //Imperial Medieval
                         ContentMarginLeftOverride = 4
                     })
                 }),

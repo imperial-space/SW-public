@@ -13,11 +13,10 @@
     state: magicDust
   visibility: Visible
   conditions:
-  - !type:CraftItemCondition
+  - !type:CollectAllItemsCondition
     progressKey: forgedMagicDustProgression
-    requiredCount: 1
-    targetItems:
-    - MedievalMagicDust
+    itemPrototypes:
+      MedievalMagicDust: 10
 
 # Получить магическую глину
 - type: achievement
@@ -33,11 +32,10 @@
   prerequisites:
   - AchievementForgedMagicDust
   conditions:
-  - !type:CraftItemCondition
+  - !type:CollectAllItemsCondition
     progressKey: forgedMagicGlinaProgression
-    requiredCount: 1
-    targetItems:
-    - MedievalMagicGlina
+    itemPrototypes:
+      MedievalMagicGlina: 10
 
 # Создать все модули кованного деревянного
 - type: achievement

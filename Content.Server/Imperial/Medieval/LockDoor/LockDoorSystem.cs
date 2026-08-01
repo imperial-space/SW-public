@@ -11,7 +11,7 @@ using Content.Shared.DoAfter;
 
 namespace Content.Server.Imperial.LockDoor.Systems;
 
-public sealed partial class LockDoorSystems : EntitySystem
+public abstract partial class LockDoorSystems : EntitySystem
 {
     [Dependency] private readonly DoorSystem _doorSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;

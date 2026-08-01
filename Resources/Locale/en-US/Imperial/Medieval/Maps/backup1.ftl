@@ -91,7 +91,7 @@ roskoshnyy-dnevnik-content = [head=3][color=#5a005a]Personal Chronicles of the C
     {"My Liza has returned to me! In her new gaze there is not a drop of former human weakness. Pure, primordial eternity shines within it. Frail flesh has given way to the perfection only death can grant. The power of Morbius pulses through her veins as black ichor, and I, her devoted husband, gladly bend the knee before the true Lord!"}
 
 
-    {"My peasants shall become her silent servants, my guard her undead legion, knowing neither fear nor fatigue. We are no longer slaves to fate and the laws of the Empire. We are the true masters of this island."}
+    {"My peasants shall become her silent servants, my guard her undead legion, knowing neither fear nor fatigue. We are no longer prisoners to fate and the laws of the Empire. We are the true masters of this island."}
 
 
     {"[color=#8b0000][italic]Let this whole wretched world burn. We shall dance upon its ashes for all eternity.[/italic][/color]"}

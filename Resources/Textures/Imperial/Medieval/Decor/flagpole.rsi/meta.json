@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-    "copyright": "PR by crookielv",
+    "copyright": "PR by crookielv and fortengamer",
     "size": {
         "x": 48,
         "y": 96
@@ -16,79 +16,109 @@
         {
             "name": "blackflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "redflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "whiteflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "brownflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "cyanflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "darkredflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "grayflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "greenflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "orangeflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "pinkflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "purpleflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
             ]
         },
         {
             "name": "yellowflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.1, 0.15, 0.15]
             ]
         },
         {
             "name": "blueflag",
             "delays": [
-                [0.1, 0.1, 0.1, 0.1]
+                [0.15, 0.15, 0.15, 0.15]
+            ]
+        },
+        {
+            "name": "legionflag",
+            "delays": [
+                [0.15, 0.15, 0.15, 0.15]
+            ]
+        },
+        {
+            "name": "wizflag",
+            "delays": [
+                [0.15, 0.15, 0.15, 0.15]
+            ]
+        },
+        {
+            "name": "foxflag",
+            "delays": [
+                [0.15, 0.15, 0.15, 0.15]
+            ]
+        },
+        {
+            "name": "mercflag",
+            "delays": [
+                [0.15, 0.15, 0.15, 0.15]
+            ]
+        },
+        {
+            "name": "pirateflag",
+            "delays": [
+                [0.15, 0.15, 0.15, 0.15]
             ]
         }
     ]

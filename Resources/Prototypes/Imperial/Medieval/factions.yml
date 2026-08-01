@@ -26,8 +26,8 @@
     Merc: Trading
     Miner: Trading
     Village: Trading
-    Bandit: War
-    Kayot: War
+    #Bandit: War
+    #Kayot: War
   envelopeProto: MedievalPaperEnvelopeLegion
 
 - type: medievalFaction
@@ -45,7 +45,7 @@
     Merc: Trading
     Miner: Trading
     Bandit: War
-    Kayot: War
+    #Kayot: War
     Cult: War
   envelopeProto: MedievalPaperEnvelopeRebel
 
@@ -58,27 +58,27 @@
     state: bandit
   wantedText: "[color=red]Изгнанник[/color]"
   defaultRelations:
-    Kayot: War
+    #Kayot: War
     Legion: War
     Insurgency: War
-  blockedRelations:
-    - Kayot
+  #blockedRelations:
+  #  - Kayot
   envelopeProto: MedievalPaperEnvelopeBandit
 
-- type: medievalFaction
-  id: Kayot
-  name: койоты
-  icon:
-    sprite: Imperial/Medieval/Interface/factions.rsi
-    state: bandit
-  wantedText: "[color=red]Изгнанник[/color]"
-  defaultRelations:
-    Bandit: War
-    Legion: War
-    Insurgency: War
-  blockedRelations:
-    - Bandit
-  envelopeProto: MedievalPaperEnvelopeCoyote
+#- type: medievalFaction
+#  id: Kayot
+#  name: койоты
+#  icon:
+#    sprite: Imperial/Medieval/Interface/factions.rsi
+#    state: bandit
+#  wantedText: "[color=red]Изгнанник[/color]"
+#  defaultRelations:
+#    Bandit: War
+#    Legion: War
+#    Insurgency: War
+#  blockedRelations:
+#    - Bandit
+#  envelopeProto: MedievalPaperEnvelopeCoyote
 
 - type: medievalFaction
   id: Merc
@@ -119,12 +119,12 @@
     Village: Trading
   envelopeProto: MedievalPaperEnvelopeMiner
 
-- type: medievalFaction
-  id: Tribe
-  name: племя
-  allowHeadhunt: false
-  wantedText: "[color=red]Изгнанник[/color]"
-  envelopeProto: MedievalPaperEnvelopeTribe
+#- type: medievalFaction
+#  id: Tribe
+#  name: племя
+#  allowHeadhunt: false
+#  wantedText: "[color=red]Изгнанник[/color]"
+#  envelopeProto: MedievalPaperEnvelopeTribe
 
 - type: medievalFaction
   id: Cult

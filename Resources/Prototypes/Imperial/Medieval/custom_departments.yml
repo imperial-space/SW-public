@@ -64,6 +64,7 @@
   name: Шайка койота
   description: Воруй, убивай
   color: "#CCCCCC"
+  editorHidden: true
   roles:
   - MedievalKayotRecruit
   - MedievalKayotRegular
@@ -85,6 +86,7 @@
   name: department-tribe
   description: department-tribe-description
   color: "#CCCCCC"
+  editorHidden: true
   roles:
   - MedievalTribeRecruit
   - MedievalTribeCommon

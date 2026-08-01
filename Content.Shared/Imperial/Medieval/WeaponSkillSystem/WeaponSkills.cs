@@ -32,19 +32,19 @@ public sealed partial class MedievalWeaponSkillCategoryComponent : Component
 public sealed partial class OneHandedBluntSkillComponent : Component
 {
     [DataField("damageMult")] public float DamageMult = 1.15f;
-    [DataField("staminaDamage")] public float StaminaDamage = 8f;
+    [DataField("staminaDamage")] public float StaminaDamage = 4f;
 
     [DataField("bypassType")] public string BypassType = "Blunt";
-    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 2.2f;
+    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 2f;
 }
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class OneHandedBluntLightSkillComponent : Component
 {
-    [DataField("damageMult")] public float DamageMult = 1.15f;
-    [DataField("staminaDamage")] public float StaminaDamage = 4f;
+    [DataField("damageMult")] public float DamageMult = 1.10f;
+    [DataField("staminaDamage")] public float StaminaDamage = 2f;
     [DataField("bypassType")] public string BypassType = "Blunt";
-    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 2.2f;
+    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 1f;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -65,7 +65,7 @@ public sealed partial class OneHandedLargeSlashSkillComponent : Component
 public sealed partial class SpearSkillComponent : Component
 {
     [DataField("bonusType")] public string BonusType = "Piercing";
-    [DataField("bonusAmount")] public FixedPoint2 BonusAmount = 7f;
+    [DataField("bonusAmount")] public FixedPoint2 BonusAmount = 5f;
     [DataField("dismountChance")]
     public float DismountChance = 1.0f;
 }
@@ -80,7 +80,7 @@ public sealed partial class TwoHandedSkillComponent : Component
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CrossbowSkillComponent : Component
 {
-    [DataField("staminaOnHit")] public float StaminaOnHit = 22f;
+    [DataField("staminaOnHit")] public float StaminaOnHit = 16f;
     [DataField("bypassType")] public string BypassType = "Piercing";
     [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 6f;
 }

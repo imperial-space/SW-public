@@ -98,6 +98,36 @@ public sealed class MedievalShipFlagpoleBoundUserInterface : BoundUserInterface
                     new ResPath("/Textures/Imperial/Medieval/Decor/flagpole.rsi"), "blueflag")),
                 ToolTip = Loc.GetString("ship-flagpole-color-blue"),
             },
+            new RadialMenuActionOption<MedievalShipFlagpoleMenuAction>(SendAction, MedievalShipFlagpoleMenuAction.Pirate)
+            {
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(
+                    new ResPath("/Textures/Imperial/Medieval/Decor/flagpole.rsi"), "pirateflag")),
+                ToolTip = Loc.GetString("ship-flagpole-color-pirate"),
+            },
+            new RadialMenuActionOption<MedievalShipFlagpoleMenuAction>(SendAction, MedievalShipFlagpoleMenuAction.Legion)
+            {
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(
+                    new ResPath("/Textures/Imperial/Medieval/Decor/flagpole.rsi"), "legionflag")),
+                ToolTip = Loc.GetString("ship-flagpole-color-legion"),
+            },
+            new RadialMenuActionOption<MedievalShipFlagpoleMenuAction>(SendAction, MedievalShipFlagpoleMenuAction.Insurgency)
+            {
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(
+                    new ResPath("/Textures/Imperial/Medieval/Decor/flagpole.rsi"), "foxflag")),
+                ToolTip = Loc.GetString("ship-flagpole-color-insurgency"),
+            },
+            new RadialMenuActionOption<MedievalShipFlagpoleMenuAction>(SendAction, MedievalShipFlagpoleMenuAction.Collegium)
+            {
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(
+                    new ResPath("/Textures/Imperial/Medieval/Decor/flagpole.rsi"), "wizflag")),
+                ToolTip = Loc.GetString("ship-flagpole-color-collegium"),
+            },
+            new RadialMenuActionOption<MedievalShipFlagpoleMenuAction>(SendAction, MedievalShipFlagpoleMenuAction.Mercenary)
+            {
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(
+                    new ResPath("/Textures/Imperial/Medieval/Decor/flagpole.rsi"), "mercflag")),
+                ToolTip = Loc.GetString("ship-flagpole-color-mercenary"),
+            },
             new RadialMenuActionOption<MedievalShipFlagpoleMenuAction>(SendAction, MedievalShipFlagpoleMenuAction.None)
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(

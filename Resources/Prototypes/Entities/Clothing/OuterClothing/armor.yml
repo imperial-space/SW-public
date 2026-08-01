@@ -542,7 +542,7 @@
         Piercing: 0.45
         Heat: 0.35
   - type: MedievalArmorIntegrity
-    containerArmorHP: 410
+    containerArmorHP: 515
     repairType: Smithing
     unbrokenResistances:
       Blunt:

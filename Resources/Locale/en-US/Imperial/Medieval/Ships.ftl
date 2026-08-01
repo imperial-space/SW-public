@@ -14,6 +14,8 @@ ent-ShipTradeHoleWest = { ent-ShipTradeHole }
     .desc = { ent-ShipTradeHole.desc }
     .suffix = { "Medieval, West" }
 
+ship-buy-terminal-docking-blocked = An obstacle is blocking the purchased ship's docking area.
+
 sail-menu-rotate-left = Rotate left
 sail-menu-toggle-fold = Fold / unfold
 sail-menu-rotate-right = Rotate right
@@ -182,7 +184,9 @@ ent-Medievalblueflag = blue flag
 
 examine-anchor-time-to-disable-waves = Anchor dropped, land nearby. The ship will stop being affected by waves in:
 
-Megaphone-menu-combat-prepare-cannons = Ready the cannons!
+Megaphone-menu-combat-prepare-cannons-left = Port side - STAND READY!
+Megaphone-menu-combat-prepare-cannons-right = Starboard side - STAND READY!
+Megaphone-menu-combat-prepare-cannons-center = Bow - STAND READY!
 
 ent-Medievalcannon = ship cannon
     .desc = A warning is scratched into the side: "Keep fools and madmen away!"
@@ -307,3 +311,8 @@ ship-flagpole-color-purple = Purple
 ship-flagpole-color-yellow = Yellow
 ship-flagpole-color-blue = Blue
 ship-flagpole-color-none = Remove
+ship-flagpole-color-pirate = Jolly Roger
+ship-flagpole-color-legion = Legion
+ship-flagpole-color-insurgency = Insurgency
+ship-flagpole-color-collegium = Collegium
+ship-flagpole-color-mercenary = Mercenaries

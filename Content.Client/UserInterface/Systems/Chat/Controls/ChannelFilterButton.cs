@@ -7,7 +7,7 @@ namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
 public sealed class ChannelFilterButton : ChatPopupButton<ChannelFilterPopup>
 {
-    private static readonly Color ColorNormal = Color.FromHex("#7b7e9e");
+    private static readonly Color ColorNormal = Color.FromHex("#B49E97");
     private static readonly Color ColorHovered = Color.FromHex("#9699bb");
     private static readonly Color ColorPressed = Color.FromHex("#789B8C");
     private readonly TextureRect? _textureRect;

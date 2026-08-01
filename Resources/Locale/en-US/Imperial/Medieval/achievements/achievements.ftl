@@ -44,7 +44,11 @@ achievement-condition-any-item = any item
 achievement-condition-collect-all = Collect all the items: { $targets }
 achievement-condition-collect-any-n = Collect { $count } from the following: { $targets }
 
-achievement-condition-location = Visit [color=#a67d3d]{ $location }[/color] ({ $count } times)
+achievement-condition-location =
+    Visit { $location } ({ $count ->
+        [one] once
+       *[other] { $count } times
+    })
 
 achievement-detail-back = Back to the list
 achievement-detail-conditions-header = Conditions for obtaining:
@@ -135,11 +139,11 @@ achievement-desc-join-spellward = Welcome to Spellward.
 achievement-name-legion-join = Blue Banner
 achievement-desc-legion-join = Begin your glorious and probably brief path in the Legion.
 achievement-name-legion-recruit-capture-point = Cannon Fodder in Action
-achievement-desc-legion-recruit-capture-point = Capture 3 control points as a simple Legion recruit. The Empire is proud of you.
+achievement-desc-legion-recruit-capture-point = Capture 2 control points as a simple Legion recruit. The Empire is proud of you.
 achievement-name-legion-become-legioner = In the Ranks
 achievement-desc-legion-become-legioner = Earn the rank of legionary. You are no longer a raw recruit.
 achievement-name-legion-legioner-capture-points = Imperial Blitz
-achievement-desc-legion-legioner-capture-points = On the march! Capture 4 control points in a single round as a legionary.
+achievement-desc-legion-legioner-capture-points = On the march! Capture 3 control points in a single round as a legionary.
 achievement-name-legion-legioner-visit-insurgency = Into the Enemy's Den
 achievement-desc-legion-legioner-visit-insurgency = Attack the rebel camp as a legionary. Now comes the hard part: getting home.
 achievement-name-legion-become-opcion = Step Up the Ladder
@@ -155,16 +159,16 @@ achievement-desc-legion-tribun-get-helmet = Claim the Jarl's helmet as a tribune
 achievement-name-legion-become-legat = Ave Me!
 achievement-desc-legion-become-legat = Rise to the rank of Legate by visiting the Legion fortress. You stand at the height of command, and the Empire watches you.
 achievement-name-legion-legat-winner = I Came, I Saw, I Conquered
-achievement-desc-legion-legat-winner = Triumph! In a single round as Legate, do it all: capture 5 points, destroy the obelisk, and claim the Jarl's helmet.
+achievement-desc-legion-legat-winner = Triumph! In a single round as Legate, do it all: capture 4 points, destroy the obelisk, and claim the Jarl's helmet.
 
 achievement-name-insurgency-join = Red Banner
 achievement-desc-insurgency-join = Begin your glorious and probably brief path among the rebels.
 achievement-name-insurgency-recruit-capture-point = Cannon Fodder in Action
-achievement-desc-insurgency-recruit-capture-point = Capture 3 control points as a simple rebel recruit. Freedom is proud of you.
+achievement-desc-insurgency-recruit-capture-point = Capture 2 control points as a simple rebel recruit. Freedom is proud of you.
 achievement-name-insurgency-become-insurgencyer = In the Warband
 achievement-desc-insurgency-become-insurgencyer = Earn the rank of rebel. You are no longer a fresh recruit.
 achievement-name-insurgency-insurgencyer-capture-points = Partisan Blitz
-achievement-desc-insurgency-insurgencyer-capture-points = On the march! Capture 4 control points in a single round as a rebel.
+achievement-desc-insurgency-insurgencyer-capture-points = On the march! Capture 3 control points in a single round as a rebel.
 achievement-name-insurgency-insurgencyer-visit-legion = Into the Enemy's Den
 achievement-desc-insurgency-insurgencyer-visit-legion = Attack the Legion fortress as a rebel. Now comes the hard part: getting home.
 achievement-name-insurgency-become-opcion = Step Up the Ladder
@@ -180,4 +184,4 @@ achievement-desc-insurgency-tribun-get-helmet = Claim the Legate's helmet as the
 achievement-name-insurgency-become-legat = Chief of the Uprising
 achievement-desc-insurgency-become-legat = Rise to the rank of Jarl. You stand at the height of command, and the resistance looks to you.
 achievement-name-insurgency-legat-winner = I Came, I Saw, I Conquered
-achievement-desc-insurgency-legat-winner = Triumph! In a single round as Jarl, do it all: capture 5 points, destroy the Legion obelisk, and claim the Legate's helmet.
+achievement-desc-insurgency-legat-winner = Triumph! In a single round as Jarl, do it all: capture 4 points, destroy the Legion obelisk, and claim the Legate's helmet.

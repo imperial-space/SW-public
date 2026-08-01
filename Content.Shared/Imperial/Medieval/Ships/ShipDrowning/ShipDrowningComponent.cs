@@ -25,6 +25,12 @@ public sealed partial class ShipDrowningComponent : Component
     [DataField("maxFloodPerTile")]
     public int MaxFloodPerTile = 100;
 
+    [DataField("explosionBreakChance")]
+    public float[] ExplosionBreakChance = { 0f, 0.5f, 1f };
+
+    [DataField("explosionBreakIntensity")]
+    public float[] ExplosionBreakIntensity = { 0f, 6f, 12f };
+
     public float VisualDrownLevel;
     public Vector2 VisualWaterOffset;
     public bool VisualDataInitialized;

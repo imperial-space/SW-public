@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Imperial.Medieval.ChargedAttack;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.MouseRotator;
@@ -20,6 +21,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly INetManager _netMan = default!; // Imperial medieval edit end
     [Dependency] private   readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private   readonly ChargedAttackSystem _chargedAttackSystem = default!; // Imperial medieval charge attack
 
     public override void Initialize()
     {
@@ -90,6 +92,9 @@ public abstract class SharedCombatModeSystem : EntitySystem
 
             component.NextTimeAudioPlay = Timing.CurTime + component.AudioPlayCooldown;
         }
+
+        _chargedAttackSystem.OnCombatModeChanged(entity);
+
         // Imperial medieval edit end
 
         if (component.CombatToggleActionEntity != null)

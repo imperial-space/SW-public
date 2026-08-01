@@ -1,0 +1,96 @@
+# Spellward International add;
+# Uses the parented CheapRollerBed fold/deploy behavior
+
+- type: entity
+  parent: CheapRollerBed
+  id: MedievalSleepingBag
+  name: camping sleeping bag
+  description: A warm camping sleeping bag made from boar hide!
+  suffix: Medieval
+  components:
+  - type: Item
+    size: Normal
+    heldPrefix: sleepingbag
+
+  - type: Sprite
+    sprite: Imperial/Medieval/SleepingBag/sleepingbag.rsi
+    noRot: true
+    layers:
+    - state: sleepingbag
+      map: ["unfoldedLayer"]
+    - state: sleepingbag-rolled
+      map: ["foldedLayer"]
+      visible: false
+
+  # CheapRollerBed normally expects a third "buckledLayer"
+  # This override removes that requirement because the sleeping bag
+  # only uses unfolded sprite while someone is lying on it
+  - type: GenericVisualizer
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { visible: true }
+          False: { visible: false }
+        unfoldedLayer:
+          True: { visible: false }
+          False: { visible: true }
+
+  - type: Strap
+    enabled: true
+    position: Down
+    rotation: -90
+    buckleOffset: "0,0"
+    buckleOnInteractHand: false
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
+
+  # MedievalMedicalBed has a multiplier of 2.0
+  # sleeping bag has -50%
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 1.5
+
+  # Each value is exactly half of MedievalMedicalBed
+  - type: HealOnBuckle
+    damage:
+      groups:
+        Brute: -0.05
+        Burn: -0.05
+        Airloss: -0.15
+      types:
+        Poison: -0.02
+        Caustic: -0.01
+        Radiation: -0.02
+
+  - type: StaticPrice
+    price: 50
+
+
+# Rolled version used by crafting and shops
+
+- type: entity
+  parent: MedievalSleepingBag
+  id: MedievalSleepingBagRolled
+  name: rolled camping sleeping bag
+  description: A rolled up warm camping sleeping bag made from boar hide!
+  suffix: Medieval, folded
+  components:
+  - type: Foldable
+    folded: true
+  - type: Strap
+    enabled: false
+
+
+# Crafted at MedievalLeatherWorkingPlace
+
+- type: CP14Recipe
+  id: MedievalSleepingBag
+  craftTime: 12
+  stacks:
+    MedievalLeather1: 5
+    Cloth: 3
+    MedievalRope: 1
+  result: MedievalSleepingBagRolled

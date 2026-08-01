@@ -9,7 +9,7 @@ public sealed partial class MedievalShipFlagpoleComponent : Component
     public float DoAfterTime = 5f;
 
     [DataField]
-    public float Scale = 0.5f;
+    public float Scale = 1.1f;
 
     [DataField]
     public bool IsZoomingScale = false;

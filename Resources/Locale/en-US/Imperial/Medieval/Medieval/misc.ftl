@@ -1,5 +1,8 @@
 medieval-rpg-guide = Welcome, traveller, that reads thee words. Thee may not understand what is happening, but fear not. All is fine, but thy memory has been damaged. For now, settle down here. The only thing I may offer thee is a few pieces of advice. To wander alone is like leaping off from a rooftop. Find thyself a group. All equipment can be bought in so-called trade rifts. These exist in every major city. Revents may be earned by selling monster parts, animals, meat or by taking quests from certain folks. No more aid shall thee receive from me, settle in on your own. Learn the rest thyself. ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⢋⣡⣤⣶⠶⠒⠒⢶⣦⣤⣉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⣡⣶⣿⣿⡟⠁⠀⣀⡀⠀⠘⣿⣿⣷⣦⡈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⣴⣿⣿⣿⣿⡀⠀⠸⣿⡿⠀⠀⢸⣿⣿⣿⣿⣆⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠈⠙⠿⣿⣿⣧⡀⠀⠀⠀⠀⣠⣿⣿⣿⠿⠛⣡⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠈⠙⠛⠻⠶⠶⠶⠾⠟⠛⠉⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣴⣶⣦⡀⠀⠀⠀⠀⠀⠀⣠⣶⡄⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⢻⣿⣿⣿⡆⢠⣶⣦⠀⢠⣿⣿⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣾⣿⣿⣿⡇⢸⣿⣿⡇⢸⣿⣿⠃⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠸⣿⣿⡇⢸⣿⣿⣦⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⣠⣿⣿⠃⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 medieval-announcement-title-horn = Horn
+medieval-announcement-title-horn-legion = Legion Horn
+medieval-announcement-title-horn-insurgency = Rebel Horn
+medieval-announcement-title-horn-collegium = Collegium Horn
 medieval-charmer-has = Has
 medieval-cahrm-speech-sleep = T̢̯͖͎i̗̦͎̮͢m̫̰̗̥͢e̡͚̩ t̡͍̞̬̦̪o̢̟̠ ş̯̟l̢̮͕̗͇e̮͔͕͓̣͜e̢̮̞̯p̬̮͢!!!
 medieval-cahrm-speech-boost = B̨̙̥̤O̳̩͓͜O̧̖̬S̡̘̱̲T̡̞̖̲!!!

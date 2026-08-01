@@ -26,7 +26,7 @@ ent-MedievalShopHoleTDMBlue = blue team magical trading hole
     .suffix = { "TDM" }
 medieval-category-tdm = Reinforcement
 ent-WallRockUndestructable = Rock
-    .desc = { ent-BaseStructure.desc }
+    .desc = A mass of rock made nearly impossible to break.
     .suffix = { "Indestructible, TDM" }
 ent-MedievalTDMMoneyCristall = money crystal
     .desc = Place this crystal in the trade hole to receive revents. 1 crystal = 10 revents.

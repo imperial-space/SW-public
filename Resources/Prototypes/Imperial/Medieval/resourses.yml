@@ -94,7 +94,7 @@
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
           Quantity: 2
-  - type: ForgedFoodStack
+  - type: FoodStack
   - type: Extractable
     juiceSolution:
       reagents:
@@ -968,7 +968,7 @@
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
           Quantity: 2
-  - type: ForgedFoodStack
+  - type: FoodStack
   - type: Extractable
     juiceSolution:
       reagents:
@@ -1074,7 +1074,7 @@
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
           Quantity: 2
-  - type: ForgedFoodStack
+  - type: FoodStack
   - type: Extractable
     juiceSolution:
       reagents:

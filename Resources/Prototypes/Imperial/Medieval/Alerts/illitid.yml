@@ -5,7 +5,7 @@
     state: s0
   alertViewEntity: AlertEssenceSpriteView
   name: Пси-энергия
-  description: placeholder
+  description: Psy-energy that allows to use psy-abilities
 
 - type: entity
   id: MedievalAlertIllitidSpriteView

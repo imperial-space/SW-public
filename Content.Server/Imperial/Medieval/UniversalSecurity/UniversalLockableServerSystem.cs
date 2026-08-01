@@ -34,7 +34,7 @@ public sealed class UniversalLockableServerSystem : EntitySystem
     [Dependency] private readonly UniversalLockServerSystem _universalLockSystem = default!;
     [Dependency] private readonly LockSystem _lockSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-
+    [Dependency] private readonly SharedSkillsSystem _skillsSystem = default!;
     public static byte[] SecretServerKeyBytes = Encoding.UTF8.GetBytes(Guid.NewGuid().ToString());
 
     public static int Factionlength = 6;
@@ -49,6 +49,8 @@ public sealed class UniversalLockableServerSystem : EntitySystem
         SubscribeLocalEvent<UniversalLockableComponent, UniversalLockableDoAfterEvent>(OnLockableDoAfter);
         SubscribeLocalEvent<UniversalLockableComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<UniversalLockableComponent, MapInitEvent>(OnMapInit, after: new[] { typeof(ItemSlotsSystem), typeof(ContainerSystem), typeof(SharedContainerSystem) });
+
+        SubscribeLocalEvent<UniversalLockableComponent, LockDoorDoAfterEvent>(OnClickDoAfter);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
     }
@@ -278,6 +280,25 @@ public sealed class UniversalLockableServerSystem : EntitySystem
         if (!TryComp<UniversalLockComponent>(lockUid, out var lockComp))
             return false;
 
+        if (HasComp<SkillsComponent>(user) && _skillsSystem.IntelligenceMin(user))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("lock-door-popup-low-intelligence"), user, user);
+            return false;
+        }
+        if (HasComp<SkillsComponent>(user) && _skillsSystem.CanOpenDoorKey(user))
+        {
+
+            var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(1.25f), new LockDoorDoAfterEvent(), lockableEntity, lockableEntity, keyUsedEntity)
+            {
+                BreakOnMove = true,
+                BreakOnDamage = true,
+                NeedHand = true,
+                BreakOnDropItem = true
+            };
+            _doAfterSystem.TryStartDoAfter(doAfterArgs);
+            return true;
+        }
+
         if (keyComp.IsSuperKey || keyComp.Code.SequenceEqual(lockComp.Code))
         {
             OnUsedKeySuccess((lockUid, lockComp), lockableEntity, slot, user);
@@ -288,6 +309,28 @@ public sealed class UniversalLockableServerSystem : EntitySystem
             OnUsedKeyFail();
             return false;
         }
+    }
+
+    private void OnClickDoAfter(Entity<UniversalLockableComponent> lockableEntity, ref LockDoorDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled)
+            return;
+
+        if (!TryComp<UniversalKeyComponent>(args.Used, out var keyComp))
+            return;
+
+        if (!_itemSlots.TryGetSlot(lockableEntity, "lockSlot", out var slot) || slot.Item is not { } lockUid)
+            return;
+
+        if (!TryComp<UniversalLockComponent>(lockUid, out var lockComp))
+            return;
+
+        if (keyComp.IsSuperKey || keyComp.Code.SequenceEqual(lockComp.Code))
+            OnUsedKeySuccess((lockUid, lockComp), lockableEntity, slot, args.User);
+        else
+            OnUsedKeyFail();
+
+        args.Handled = true;
     }
 
     private void OnUsedKeyStorage(Entity<MedievalKeyStorageComponent> keyStorageEntity, Entity<UniversalLockableComponent> lockableEntity, EntityUid user)

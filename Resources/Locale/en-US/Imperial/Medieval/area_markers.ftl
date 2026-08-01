@@ -172,3 +172,12 @@ area-map1-voolcan-island = Volcanic Island
 ent-AreaMarkerVoolcanIsland = volcanic island location marker
 .desc = empty
 .suffix = { "Medieval" }
+
+# Location IDs displayed in achievement conditions.
+AreaMarkerBand = the bandit hideout
+AreaMarkerCollegium = the Mages' Collegium
+AreaMarkerCult = the Cult of Truth lair
+AreaMarkerCultAltar = the cult altars
+AreaMarkerMerc = the mercenary hideout
+AreaMarkerMine = the miners' outpost
+AreaMarkerVillage = the village

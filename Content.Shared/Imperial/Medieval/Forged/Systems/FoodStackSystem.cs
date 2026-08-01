@@ -4,17 +4,17 @@ using Content.Shared.Stacks;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
-public sealed class ForgedStackFoodSystem : EntitySystem
+public sealed class FoodStackSystem : EntitySystem
 {
     [Dependency] private readonly SharedStackSystem _stack = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ForgedFoodStackComponent, IngestedEvent>(OnIngested, after: new[] { typeof(FoodSystem) });
+        SubscribeLocalEvent<FoodStackComponent, IngestedEvent>(OnIngested, after: new[] { typeof(FoodSystem) });
     }
 
-    private void OnIngested(EntityUid uid, ForgedFoodStackComponent component, ref IngestedEvent args)
+    private void OnIngested(EntityUid uid, FoodStackComponent component, ref IngestedEvent args)
     {
         if (!TryComp<StackComponent>(uid, out var stack))
             return;
