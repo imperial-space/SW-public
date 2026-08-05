@@ -1,7 +1,134 @@
+# species
+- type: emoteSounds
+  id: MaleOrc
+  # imperial medieval "pitch delete"
+  sounds:
+    Scream:
+      collection: MaleScreamsOrc
+    Laugh:
+      collection: MaleLaughOrc
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: BikeHorn
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathOrc
+    Dreaminess:
+      collection: MaleDreaminess
+    Questioning:
+      collection: MaleQuestioning
+    Warcry:
+      collection: MaleWarcry
+    Charge:
+      collection: MaleCharge
+    Woo:
+      collection: MaleWoo
+    PainScream:
+      collection: MaleScreamsOrc
+    PassiveScream:
+      collection: MaleScreamsOrc
+
+- type: emoteSounds
+  id: FemaleOrc
+  # imperial medieval "pitch delete"
+  sounds:
+    Scream:
+      collection: MaleScreamsOrc
+    Laugh:
+      collection: MaleLaughOrc
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: FemaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: CluwneHorn
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathOrc
+    Dreaminess:
+      collection: FemaleDreaminess
+    Questioning:
+      collection: FemaleQuestioning
+    Warcry:
+      collection: FemaleWarcry
+    Charge:
+      collection: FemaleCharge
+    Woo:
+      collection: FemaleWoo
+    PainScream:
+      collection: MaleScreamsOrc
+    PassiveScream:
+      collection: MaleScreamsOrc
+
+- type: soundCollection
+  id: MaleLaughOrc
+  files:
+    - /Audio/Imperial/Medieval/orc_laugh1.ogg
+    - /Audio/Imperial/Medieval/orc_laugh2.ogg
+    - /Audio/Imperial/Medieval/orc_laugh3.ogg
+
+- type: soundCollection
+  id: MaleScreamsOrc
+  files:
+    - /Audio/Imperial/Medieval/orc_scream.ogg
+
+- type: soundCollection
+  id: MaleDeathOrc
+  files:
+    - /Audio/Imperial/Medieval/orc_death.ogg
+
 - type: markingsGroup
   parent: Undergarments
   id: Orc
   limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
@@ -14,11 +141,35 @@
     enum.HumanoidVisualLayers.Snout:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.HeadTop:
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
       required: false
 
 - type: entity
@@ -32,10 +183,13 @@
       Head: OrganOrcHead
       Brain: OrganHumanBrain
       Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
       Torso: OrganOrcTorso
       Lungs: OrganHumanLungs
       Heart: OrganOrcHeart
-      Stomach: OrganReptilianStomach
+      Stomach: OrganOrcStomach
       Liver: OrganOrcLiver
       Kidneys: OrganHumanKidneys
       ArmLeft: OrganOrcArmLeft
@@ -94,7 +248,7 @@
 
 - type: entity
   save: false
-  name: Урист МакОрк
+  name: Urist McOrc
   parent: BaseMobOrc
   id: MobOrc
 
@@ -123,14 +277,8 @@
   - type: LanguageSpeaker
     languages:
       Common: Speak
-      #Goblin: Speak
-      #Ancient: Speak
       Tribe: Understand
       Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -210,9 +358,8 @@
 
 - type: species
   id: Orc
-  name: Орк
+  name: species-name-orc
   roundStart: true
   prototype: MobOrc
   dollPrototype: AppearanceOrc
   skinColoration: OrcColors
-

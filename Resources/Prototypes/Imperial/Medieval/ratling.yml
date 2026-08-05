@@ -2,6 +2,9 @@
   parent: Undergarments
   id: Ratling
   limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
@@ -14,11 +17,35 @@
     enum.HumanoidVisualLayers.Snout:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.HeadTop:
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
       required: false
 
 - type: entity
@@ -32,6 +59,9 @@
       Head: OrganRatlingHead
       Brain: OrganHumanBrain
       Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
       Torso: OrganRatlingTorso
       Lungs: OrganHumanLungs
       Heart: OrganRatlingHeart
@@ -84,7 +114,6 @@
           Quantity: 5
   - type: Stomach
   - type: Metabolizer
-    # mm very yummy
     maxReagents: 5
     metabolizerTypes: [Ratling, Human, Animal]
 
@@ -94,7 +123,7 @@
 
 - type: entity
   save: false
-  name: Урист МакРатлинг
+  name: Urist McRatling
   parent: BaseMobRatling
   id: MobRatling
 
@@ -109,7 +138,7 @@
   - type: Hunger
   - type: Thirst
   - type: Icon
-    sprite: Mobs/Species/Slime/parts.rsi # It was like this beforehand, no idea why.
+    sprite: Mobs/Species/Slime/parts.rsi
     state: full
   - type: Respirator
     damage:
@@ -132,13 +161,6 @@
     languages:
       Common: Speak
       Goblin: Speak
-      #Ancient: Speak
-      #Tribe: Speak
-      #Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
   - type: Mana
     maxManaRaceModifier: 1
     regenRaceModifier: 1
@@ -192,9 +214,9 @@
     speechSounds: Alto
   - type: Vocal
     sounds:
-      Male: Mouse
-      Female: Mouse
-      Unsexed: Mouse
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
   - type: RatlingAccent
   - type: StealRaceChanceIncreaser
     bonus: 25
@@ -211,13 +233,12 @@
 
 - type: species
   id: Ratling
-  name: Ратлинг
+  name: species-name-ratling
   roundStart: true
   prototype: MobRatling
   dollPrototype: AppearanceRatling
   skinColoration: MoonwolfColors
   defaultSkinTone: "#5f5f5f"
-
 
 - type: marking
   id: RatlingTailDefault
@@ -407,21 +428,16 @@
 - type: accent
   id: ratling
   wordReplacements:
-    еда: сыр
-    еды: сыра
-    едой: сыром
-    украсть: свиснуть
-    ревент: серебряшка
-    ревенты: серебряшки
-    ревентов: серебряшек
-    ярл: важный шишка
-    легат: важный шишка
-    архимаг: важный шишка
-    дракон: крылатая крыса
-    оборотень: вонючий
-    оборотни: вонючие
-    крыса: браток
-    мышь: братишка
-    корова: богиня
-    копье: зубочистка
-    воняешь: вкусно пахнешь
+    food: cheese
+    steal: swipe
+    revent: silverling
+    jarl: big boss
+    legate: big boss
+    archmage: big boss
+    dragon: winged rat
+    werewolf: stinky
+    rat: bro
+    mouse: little bro
+    cow: goddess
+    spear: toothpick
+    stink: smell good

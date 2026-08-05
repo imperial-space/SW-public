@@ -47,6 +47,9 @@ public sealed class LocalLightSystem : EntitySystem
 
     private void SetLightParameters(Entity<LocalLightComponent> ent)
     {
+        if (Terminating(ent) || Deleted(ent)) // Imperial medieval crash when golobby fix
+            return;                           // Imperial medieval crash when golobby fix
+
         PointLightComponent clientLight = EnsureComp<PointLightComponent>(ent);
 
         if (clientLight.NetSyncEnabled)

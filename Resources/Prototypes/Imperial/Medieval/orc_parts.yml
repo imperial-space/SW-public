@@ -29,6 +29,11 @@
   id: OrganOrcExternal
   abstract: true
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Orc/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/Orc/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Orc
@@ -42,11 +47,8 @@
 - type: entity
   id: OrganOrcTorso
   name: "Orc torso"
-  parent: [OrganOrcExternal, OrganBaseTorso]
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganOrcExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "torso_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -58,11 +60,8 @@
 - type: entity
   id: OrganOrcHead
   name: "Orc head"
-  parent: [OrganOrcExternal, OrganBaseHead]
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganOrcExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -70,75 +69,47 @@
         Quantity: 5
       - ReagentId: OrcBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
   id: OrganOrcArmLeft
   name: "left Orc arm"
-  parent: [OrganOrcExternal, OrganBaseArmLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "l_arm"
+  parent: [OrganBaseArmLeft, OrganOrcExternal]
 
 - type: entity
   id: OrganOrcArmRight
   name: "right Orc arm"
-  parent: [OrganOrcExternal, OrganBaseArmRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "r_arm"
+  parent: [OrganBaseArmRight, OrganOrcExternal]
 
 - type: entity
   id: OrganOrcHandLeft
   name: "left Orc hand"
-  parent: [OrganOrcExternal, OrganBaseHandLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "l_hand"
+  parent: [OrganBaseHandLeft, OrganOrcExternal]
 
 - type: entity
   id: OrganOrcHandRight
   name: "right Orc hand"
-  parent: [OrganOrcExternal, OrganBaseHandRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "r_hand"
+  parent: [OrganBaseHandRight, OrganOrcExternal]
 
 - type: entity
   id: OrganOrcLegLeft
   name: "left Orc leg"
-  parent: [OrganOrcExternal, OrganBaseLegLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "l_leg"
+  parent: [OrganBaseLegLeft, OrganOrcExternal]
 
 - type: entity
   id: OrganOrcLegRight
   name: "right Orc leg"
-  parent: [OrganOrcExternal, OrganBaseLegRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "r_leg"
+  parent: [OrganBaseLegRight, OrganOrcExternal]
 
 - type: entity
   id: OrganOrcFootLeft
   name: "left Orc foot"
-  parent: [OrganOrcExternal, OrganBaseFootLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "l_foot"
+  parent: [OrganBaseFootLeft, OrganOrcExternal]
 
 - type: entity
   id: OrganOrcFootRight
   name: "right Orc foot"
-  parent: [OrganOrcExternal, OrganBaseFootRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: "r_foot"
+  parent: [OrganBaseFootRight, OrganOrcExternal]

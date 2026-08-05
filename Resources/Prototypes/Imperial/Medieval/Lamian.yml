@@ -2,6 +2,12 @@
   parent: Undergarments
   id: Lamian
   limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
@@ -14,11 +20,35 @@
     enum.HumanoidVisualLayers.Snout:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.HeadTop:
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
       required: false
 
 - type: entity
@@ -32,10 +62,13 @@
       Head: OrganLamianHead
       Brain: OrganHumanBrain
       Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
       Torso: OrganLamianTorso
       Lungs: OrganHumanLungs
       Heart: OrganLamianHeart
-      Stomach: OrganReptilianStomach
+      Stomach: OrganLamianStomach
       Liver: OrganLamianLiver
       Kidneys: OrganHumanKidneys
       ArmLeft: OrganLamianArmLeft
@@ -94,9 +127,10 @@
 
 - type: entity
   save: false
-  name: Урист МакЛамиан
+  name: Urist McLamian
   parent: BaseMobLamian
   id: MobLamian
+  categories: []
 
 - type: entity
   save: false
@@ -125,14 +159,7 @@
   - type: LanguageSpeaker
     languages:
       Common: Speak
-      #Goblin: Speak
-      #Ancient: Speak
-      #Tribe: Understand
-      #Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
       Hissing: Speak
-      #Elf: Speak
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -232,12 +259,11 @@
 
 - type: species
   id: Lamian
-  name: Ламиан
+  name: species-name-lamian
   roundStart: true
   prototype: MobLamian
-  dollPrototype: AppearanceLamian
+  dollPrototype: MobLamianDummy
   skinColoration: Hues
-
 
 - type: marking
   id: LamianTailSmoothPrime

@@ -32,6 +32,9 @@
       Head: OrganDarkElfHead
       Brain: OrganHumanBrain
       Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
       Torso: OrganDarkElfTorso
       Lungs: OrganHumanLungs
       Heart: OrganDarkElfHeart
@@ -94,7 +97,7 @@
 
 - type: entity
   save: false
-  name: Урист МакДаркЭльф
+  name: Urist McDarkElf
   parent: BaseMobDarkElf
   id: MobDarkElf
 
@@ -226,7 +229,7 @@
 
 - type: species
   id: DarkElf
-  name: Темный эльф
+  name: species-name-dark-elf
   roundStart: true
   prototype: MobDarkElf
   dollPrototype: AppearanceDarkElf

@@ -163,6 +163,8 @@
     - DoorBumpOpener
     - AnomalyHost
   - type: InjectNeed # imperial hardsuit injection
+  - type: MeleeParryStorage
+  - type: MeleeParryAble
 
 - type: entity
   abstract: true
