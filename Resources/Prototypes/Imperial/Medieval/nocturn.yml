@@ -2,6 +2,9 @@
   parent: Undergarments
   id: Nocturn
   limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
@@ -14,11 +17,35 @@
     enum.HumanoidVisualLayers.Snout:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.HeadTop:
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
       required: false
 
 - type: entity
@@ -32,6 +59,9 @@
       Head: OrganDrouHead
       Brain: OrganHumanBrain
       Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
       Torso: OrganDrouTorso
       Lungs: OrganHumanLungs
       Heart: OrganArachnidHeart
@@ -79,6 +109,11 @@
   id: OrganDrouExternal
   abstract: true
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Drou/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/Drou/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Nocturn
@@ -90,12 +125,9 @@
 
 - type: entity
   id: OrganDrouTorso
-  name: Туловище ноктюрна
-  parent: [OrganDrouExternal, OrganBaseTorso]
+  name: "Drou torso"
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganDrouExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "torso_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -106,12 +138,9 @@
 
 - type: entity
   id: OrganDrouHead
-  name: Голова ноктюрна
-  parent: [OrganDrouExternal, OrganBaseHead]
+  name: "Drou head"
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganDrouExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -119,78 +148,50 @@
         Quantity: 5
       - ReagentId: DrouBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
   id: OrganDrouArmLeft
-  name: Левая рука ноктюрна
-  parent: [OrganDrouExternal, OrganBaseArmLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "l_arm"
+  name: "left Drou arm"
+  parent: [OrganBaseArmLeft, OrganDrouExternal]
 
 - type: entity
   id: OrganDrouArmRight
-  name: Правая рука ноктюрна
-  parent: [OrganDrouExternal, OrganBaseArmRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "r_arm"
+  name: "right Drou arm"
+  parent: [OrganBaseArmRight, OrganDrouExternal]
 
 - type: entity
   id: OrganDrouHandLeft
-  name: Левая кисть ноктюрна
-  parent: [OrganDrouExternal, OrganBaseHandLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "l_hand"
+  name: "left Drou hand"
+  parent: [OrganBaseHandLeft, OrganDrouExternal]
 
 - type: entity
   id: OrganDrouHandRight
-  name: Правая кисть ноктюрна
-  parent: [OrganDrouExternal, OrganBaseHandRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "r_hand"
+  name: "right Drou hand"
+  parent: [OrganBaseHandRight, OrganDrouExternal]
 
 - type: entity
   id: OrganDrouLegLeft
-  name: Левая нога ноктюрна
-  parent: [OrganDrouExternal, OrganBaseLegLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "l_leg"
+  name: "left Drou leg"
+  parent: [OrganBaseLegLeft, OrganDrouExternal]
 
 - type: entity
   id: OrganDrouLegRight
-  name: Правая нога ноктюрна
-  parent: [OrganDrouExternal, OrganBaseLegRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "r_leg"
+  name: "right Drou leg"
+  parent: [OrganBaseLegRight, OrganDrouExternal]
 
 - type: entity
   id: OrganDrouFootLeft
-  name: Левая ступня ноктюрна
-  parent: [OrganDrouExternal, OrganBaseFootLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "l_foot"
+  name: "left Drou foot"
+  parent: [OrganBaseFootLeft, OrganDrouExternal]
 
 - type: entity
   id: OrganDrouFootRight
-  name: Правая ступня ноктюрна
-  parent: [OrganDrouExternal, OrganBaseFootRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "r_foot"
+  name: "right Drou foot"
+  parent: [OrganBaseFootRight, OrganDrouExternal]
 
 #2
 - type: damageModifierSet
@@ -208,8 +209,8 @@
 
 - type: entity
   save: false
-  name: Урист Ноктюрн'Хендс
-  parent: BaseSpeciesMobOrganic
+  name: Urist McHands The Nocturn
+  parent: [AppearanceNocturn, BaseSpeciesMobOrganic]
   id: BaseMobDrou
   abstract: true
   components:
@@ -235,9 +236,14 @@
     - id: FoodMeatLizard
       amount: 5
   - type: Speech
+    speechSounds: Alto
   - type: TypingIndicator
     proto: drou
   - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Drou
@@ -307,7 +313,7 @@
     bloodReagent: DrouBlood
 
 - type: entity
-  parent: AppearanceHuman
+  parent: AppearanceNocturn
   id: MobDrouDummy
   categories: [ HideSpawnMenu ]
   description: A dummy Drou meant to be used in character setup.
@@ -327,15 +333,16 @@
 
 - type: entity
   save: false
-  name: Урист Ноктюрн'Хендс
-  suffix: Средневековье
+  name: Urist McNocturn
+  suffix: Medieval
   parent: BaseMobDrou
   id: MobDrou
+  categories: []
 
 # 3
 - type: species
   id: Drou
-  name: Ноктюрн
+  name: species-name-drou
   roundStart: true
   prototype: MobDrou
   defaultSkinTone: "#999ec2"
@@ -344,4 +351,3 @@
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
-

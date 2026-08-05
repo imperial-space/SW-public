@@ -2,6 +2,12 @@
   parent: Undergarments
   id: Tifling
   limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
@@ -14,11 +20,35 @@
     enum.HumanoidVisualLayers.Snout:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.HeadTop:
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
       required: false
 
 - type: entity
@@ -32,6 +62,9 @@
       Head: OrganTiflingHead
       Brain: OrganHumanBrain
       Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
       Torso: OrganTiflingTorso
       Lungs: OrganHumanLungs
       Heart: OrganHumanHeart
@@ -60,6 +93,11 @@
   id: OrganTiflingExternal
   abstract: true
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/Tifling/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Tifling
@@ -69,15 +107,11 @@
   id: OrganTiflingInternal
   abstract: true
 
-
 - type: entity
   id: OrganTiflingTorso
-  name: Туловище инферна
-  parent: [OrganHuman, OrganBaseTorso, OrganTiflingExternal]
+  name: "Tifling torso"
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganTiflingExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "torso_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -88,12 +122,9 @@
 
 - type: entity
   id: OrganTiflingHead
-  name: Голова инферна
-  parent: [OrganHuman, OrganBaseHead, OrganTiflingExternal]
+  name: "Tifling head"
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganTiflingExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -101,78 +132,50 @@
         Quantity: 5
       - ReagentId: DemonsBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
   id: OrganTiflingArmLeft
-  name: Левая рука инферна
-  parent: [OrganHuman, OrganBaseArmLeft, OrganTiflingExternal]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "l_arm"
+  name: "left Tifling arm"
+  parent: [OrganBaseArmLeft, OrganTiflingExternal]
 
 - type: entity
   id: OrganTiflingArmRight
-  name: Правая рука инферна
-  parent: [OrganHuman, OrganBaseArmRight, OrganTiflingExternal]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "r_arm"
+  name: "right Tifling arm"
+  parent: [OrganBaseArmRight, OrganTiflingExternal]
 
 - type: entity
   id: OrganTiflingHandLeft
-  name: Левая кисть инферна
-  parent: [OrganHuman, OrganBaseHandLeft, OrganTiflingExternal]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "l_hand"
+  name: "left Tifling hand"
+  parent: [OrganBaseHandLeft, OrganTiflingExternal]
 
 - type: entity
   id: OrganTiflingHandRight
-  name: Правая кисть инферна
-  parent: [OrganHuman, OrganBaseHandRight, OrganTiflingExternal]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "r_hand"
+  name: "right Tifling hand"
+  parent: [OrganBaseHandRight, OrganTiflingExternal]
 
 - type: entity
   id: OrganTiflingLegLeft
-  name: Левая нога инферна
-  parent: [OrganHuman, OrganBaseLegLeft, OrganTiflingExternal]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "l_leg"
+  name: "left Tifling leg"
+  parent: [OrganBaseLegLeft, OrganTiflingExternal]
 
 - type: entity
   id: OrganTiflingLegRight
-  name: Правая нога инферна
-  parent: [OrganHuman, OrganBaseLegRight, OrganTiflingExternal]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "r_leg"
+  name: "right Tifling leg"
+  parent: [OrganBaseLegRight, OrganTiflingExternal]
 
 - type: entity
   id: OrganTiflingFootLeft
-  name: Левая ступня инферна
-  parent: [OrganHuman, OrganBaseFootLeft, OrganTiflingExternal]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "l_foot"
+  name: "left Tifling foot"
+  parent: [OrganBaseFootLeft, OrganTiflingExternal]
 
 - type: entity
   id: OrganTiflingFootRight
-  name: Правая ступня инферна
-  parent: [OrganHuman, OrganBaseFootRight, OrganTiflingExternal]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Tifling/parts.rsi
-    state: "r_foot"
+  name: "right Tifling foot"
+  parent: [OrganBaseFootRight, OrganTiflingExternal]
 
 - type: marking
   id: TiflingHornsOne
@@ -222,17 +225,12 @@
 - type: accent
   id: tifling
   wordReplacements:
-    это: цес
-    этой: цесой
-    этому: цесму
-    этого: цесго
-    эту: цесу
-    эти: цеси
-    эта: цеса
-    этот: цест
-    этом: цесм
-    спасибо: мерси
-    мой: мон
+    this: zis
+    that: zat
+    these: zese
+    those: zose
+    thanks: merci
+    my: mon
 
 - type: typingIndicator
   id: tifling
@@ -242,7 +240,7 @@
 
 - type: entity
   save: false
-  name: Урист ИнфернХэндс
+  name: Urist McHands The Tifling
   parent: [AppearanceTifling, BaseSpeciesMobOrganic]
   id: BaseMobTifling
   abstract: true
@@ -265,9 +263,14 @@
     - id: FoodMeatGoliath
       amount: 5
   - type: Speech
+    speechSounds: Alto
   - type: TypingIndicator
     proto: tifling
   - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Tifling
@@ -293,14 +296,7 @@
   - type: LanguageSpeaker
     languages:
       Common: Speak
-      #Goblin: Speak
       Ancient: Speak
-      #Tribe: Speak
-      #Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
   - type: TemperatureSpeed
     thresholds:
       301: 0.8
@@ -358,10 +354,10 @@
 
 - type: entity
   save: false
-  name: Урист ИнфернХэндс
-  suffix: Урист ИнфернХэндс
+  name: Urist McTifling
   parent: BaseMobTifling
   id: MobTifling
+  categories: []
 
 - type: marking
   id: TiflingTailSmooth
@@ -476,13 +472,12 @@
 # 3
 - type: species
   id: Tifling
-  name: Инферн
+  name: species-name-tifling
   roundStart: true
   prototype: MobTifling
   defaultSkinTone: "#ffffff"
-  dollPrototype: AppearanceTifling
+  dollPrototype: MobTiflingDummy
   skinColoration: TiflingColors
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
-

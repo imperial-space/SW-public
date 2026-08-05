@@ -30,6 +30,11 @@
   id: OrganIllitidExternal
   abstract: true
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/Illitid/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Illitid
@@ -43,11 +48,8 @@
 - type: entity
   id: OrganIllitidTorso
   name: "Illitid torso"
-  parent: [OrganIllitidExternal, OrganBaseTorso]
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganIllitidExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "torso_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -59,11 +61,8 @@
 - type: entity
   id: OrganIllitidHead
   name: "Illitid head"
-  parent: [OrganIllitidExternal, OrganBaseHead]
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganIllitidExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -71,75 +70,47 @@
         Quantity: 5
       - ReagentId: IllitidBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
   id: OrganIllitidArmLeft
   name: "left Illitid arm"
-  parent: [OrganIllitidExternal, OrganBaseArmLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "l_arm"
+  parent: [OrganBaseArmLeft, OrganIllitidExternal]
 
 - type: entity
   id: OrganIllitidArmRight
   name: "right Illitid arm"
-  parent: [OrganIllitidExternal, OrganBaseArmRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "r_arm"
+  parent: [OrganBaseArmRight, OrganIllitidExternal]
 
 - type: entity
   id: OrganIllitidHandLeft
   name: "left Illitid hand"
-  parent: [OrganIllitidExternal, OrganBaseHandLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "l_hand"
+  parent: [OrganBaseHandLeft, OrganIllitidExternal]
 
 - type: entity
   id: OrganIllitidHandRight
   name: "right Illitid hand"
-  parent: [OrganIllitidExternal, OrganBaseHandRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "r_hand"
+  parent: [OrganBaseHandRight, OrganIllitidExternal]
 
 - type: entity
   id: OrganIllitidLegLeft
   name: "left Illitid leg"
-  parent: [OrganIllitidExternal, OrganBaseLegLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "l_leg"
+  parent: [OrganBaseLegLeft, OrganIllitidExternal]
 
 - type: entity
   id: OrganIllitidLegRight
   name: "right Illitid leg"
-  parent: [OrganIllitidExternal, OrganBaseLegRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "r_leg"
+  parent: [OrganBaseLegRight, OrganIllitidExternal]
 
 - type: entity
   id: OrganIllitidFootLeft
   name: "left Illitid foot"
-  parent: [OrganIllitidExternal, OrganBaseFootLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "l_foot"
+  parent: [OrganBaseFootLeft, OrganIllitidExternal]
 
 - type: entity
   id: OrganIllitidFootRight
   name: "right Illitid foot"
-  parent: [OrganIllitidExternal, OrganBaseFootRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: "r_foot"
+  parent: [OrganBaseFootRight, OrganIllitidExternal]

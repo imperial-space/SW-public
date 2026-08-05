@@ -30,6 +30,11 @@
   id: OrganLamianExternal
   abstract: true
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/Lamian/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Lamian
@@ -43,11 +48,8 @@
 - type: entity
   id: OrganLamianTorso
   name: "Lamian torso"
-  parent: [OrganLamianExternal, OrganBaseTorso]
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganLamianExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "torso_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -59,11 +61,8 @@
 - type: entity
   id: OrganLamianHead
   name: "Lamian head"
-  parent: [OrganLamianExternal, OrganBaseHead]
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganLamianExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -71,75 +70,47 @@
         Quantity: 5
       - ReagentId: LamianBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
   id: OrganLamianArmLeft
   name: "left Lamian arm"
-  parent: [OrganLamianExternal, OrganBaseArmLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "l_arm"
+  parent: [OrganBaseArmLeft, OrganLamianExternal]
 
 - type: entity
   id: OrganLamianArmRight
   name: "right Lamian arm"
-  parent: [OrganLamianExternal, OrganBaseArmRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "r_arm"
+  parent: [OrganBaseArmRight, OrganLamianExternal]
 
 - type: entity
   id: OrganLamianHandLeft
   name: "left Lamian hand"
-  parent: [OrganLamianExternal, OrganBaseHandLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "l_hand"
+  parent: [OrganBaseHandLeft, OrganLamianExternal]
 
 - type: entity
   id: OrganLamianHandRight
   name: "right Lamian hand"
-  parent: [OrganLamianExternal, OrganBaseHandRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "r_hand"
+  parent: [OrganBaseHandRight, OrganLamianExternal]
 
 - type: entity
   id: OrganLamianLegLeft
   name: "left Lamian leg"
-  parent: [OrganLamianExternal, OrganBaseLegLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "l_leg"
+  parent: [OrganBaseLegLeft, OrganLamianExternal]
 
 - type: entity
   id: OrganLamianLegRight
   name: "right Lamian leg"
-  parent: [OrganLamianExternal, OrganBaseLegRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "r_leg"
+  parent: [OrganBaseLegRight, OrganLamianExternal]
 
 - type: entity
   id: OrganLamianFootLeft
   name: "left Lamian foot"
-  parent: [OrganLamianExternal, OrganBaseFootLeft]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "l_foot"
+  parent: [OrganBaseFootLeft, OrganLamianExternal]
 
 - type: entity
   id: OrganLamianFootRight
   name: "right Lamian foot"
-  parent: [OrganLamianExternal, OrganBaseFootRight]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "r_foot"
+  parent: [OrganBaseFootRight, OrganLamianExternal]

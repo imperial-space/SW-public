@@ -2,6 +2,9 @@
   parent: Undergarments
   id: Elf
   limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
@@ -14,11 +17,35 @@
     enum.HumanoidVisualLayers.Snout:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.HeadTop:
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
       required: false
 
 - type: entity
@@ -32,6 +59,9 @@
       Head: OrganElfHead
       Brain: OrganHumanBrain
       Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
       Torso: OrganElfTorso
       Lungs: OrganHumanLungs
       Heart: OrganElfHeart
@@ -79,6 +109,11 @@
   id: OrganElfExternal
   abstract: true
   components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Species/Human/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Elf
@@ -92,11 +127,8 @@
 - type: entity
   id: OrganElfTorso
   name: "Elf torso"
-  parent: [OrganElfExternal, OrganBaseTorso]
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganElfExternal]
   components:
-  - type: Sprite
-    sprite: Mobs/Species/Human/parts.rsi
-    state: "torso_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -108,11 +140,8 @@
 - type: entity
   id: OrganElfHead
   name: "Elf head"
-  parent: [OrganElfExternal, OrganBaseHead]
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganElfExternal]
   components:
-  - type: Sprite
-    sprite: Mobs/Species/Human/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -120,6 +149,10 @@
         Quantity: 5
       - ReagentId: ElvishBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
   id: OrganElfHeart
@@ -166,7 +199,7 @@
 
 - type: entity
   save: false
-  name: Урист МакФорестЭльф
+  name: Urist McForestElf
   parent: BaseMobElf
   id: MobElf
 
@@ -270,7 +303,7 @@
 
 - type: species
   id: Elf
-  name: Лесной эльф
+  name: species-name-elf
   roundStart: true
   prototype: MobElf
   dollPrototype: AppearanceElf
