@@ -2087,6 +2087,82 @@
     offset: 0
 
 - type: entity
+  id: MedievalBirchTreeStumpBase
+  parent: FloraTreeStump
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/flora_trees_birch.rsi
+    offset: 0,1.9
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MedievalSpawnerRandomBirchTree
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 170
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 4
+            max: 6
+          MedievalRootItem:
+            min: 2
+            max: 4
+
+- type: entity
+  id: MedievalBirchTreeStump01
+  parent: MedievalBirchTreeStumpBase
+  name: birch tree stump
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: tree_birch_stump_1
+
+- type: entity
+  id: MedievalBirchTreeStump02
+  parent: MedievalBirchTreeStumpBase
+  name: birch tree stump
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: tree_birch_stump_2
+
+- type: entity
+  id: MedievalSpawnerRandomBirchTree
+  parent: MarkerBase
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalFloraTreeBirch01
+    - MedievalFloraTreeBirch02
+    - MedievalFloraTreeBirch03
+    - MedievalFloraTreeBirch04
+    chance: 1
+    offset: 0
+
+- type: entity
   name: MedievalSpawnerRandomTreeLifetime1200Large
   noSpawn: true
   id: MedievalSpawnerRandomTreeLifetime1200Large

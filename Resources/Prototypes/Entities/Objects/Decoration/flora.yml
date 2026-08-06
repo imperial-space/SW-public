@@ -107,6 +107,7 @@
             min: 1
             max: 2
       - !type:SpawnEntitiesBehavior
+        offset: 0
         spawn:
           MedievalSpawnerRandomTreeLifetime1200:
             min: 1
@@ -159,6 +160,7 @@
             min: 4
             max: 6
       - !type:SpawnEntitiesBehavior
+        offset: 0
         spawn:
           MedievalSpawnerRandomTreeLifetime1200Snow:
             min: 1
@@ -214,6 +216,7 @@
             min: 1
             max: 3
       - !type:SpawnEntitiesBehavior
+        offset: 0
         spawn:
           MedievalSpawnerRandomTreeLifetime1200Large:
             min: 1
@@ -269,6 +272,7 @@
             min: 1
             max: 3
       - !type:SpawnEntitiesBehavior
+        offset: 0
         spawn:
           MedievalSpawnerRandomTreeLifetime1200SnowConifer:
             min: 1

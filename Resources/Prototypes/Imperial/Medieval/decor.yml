@@ -2767,7 +2767,7 @@
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 170
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -2896,6 +2896,125 @@
   components:
   - type: Sprite
     state: treelarge06
+
+- type: entity
+  parent: MedievalBaseTree
+  id: MedievalBaseTreeBirch
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/flora_trees_birch.rsi
+    offset: 0,1.9
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 170
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 4
+            max: 5
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalGrass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          MedievalBirchTreeStump02:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: MedievalBaseTreeBirch
+  id: MedievalBaseTreeBirchStump01
+  abstract: true
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 4
+            max: 5
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalGrass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          MedievalBirchTreeStump01:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: MedievalBaseTreeBirchStump01
+  id: MedievalFloraTreeBirch01
+  name: birch tree
+  components:
+  - type: Sprite
+    state: tree_birch_1
+
+- type: entity
+  parent: MedievalBaseTreeBirch
+  id: MedievalFloraTreeBirch02
+  name: birch tree
+  components:
+  - type: Sprite
+    state: tree_birch_2
+
+- type: entity
+  parent: MedievalBaseTreeBirch
+  id: MedievalFloraTreeBirch03
+  name: birch tree
+  components:
+  - type: Sprite
+    state: tree_birch_3
+
+- type: entity
+  parent: MedievalBaseTreeBirch
+  id: MedievalFloraTreeBirch04
+  name: birch tree
+  components:
+  - type: Sprite
+    state: tree_birch_4
 
 - type: entity
   parent: MedievalBaseTree
