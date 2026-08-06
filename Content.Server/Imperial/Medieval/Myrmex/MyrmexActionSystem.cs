@@ -67,7 +67,7 @@ public sealed partial class MyrmexSystem : EntitySystem
     private void OnToggleArmor(Entity<MyrmexComponent> ent, ref ActionMyrmexToggleArmorEvent args)
     {
         ent.Comp.ArmorActive = !ent.Comp.ArmorActive;
-        _damageable.SetDamageModifierSetId(ent, ent.Comp.ArmorActive ? ent.Comp.ActiveArmorProto : ent.Comp.StandardArmorProto);
+        _damageable.SetDamageModifierSetId(ent.Owner, ent.Comp.ArmorActive ? ent.Comp.ActiveArmorProto : ent.Comp.StandardArmorProto);
         ModifyMoveSpeed(ent, ent.Comp.ArmorActive ? -ent.Comp.ActiveArmorSpeedMultiplier : ent.Comp.ActiveArmorSpeedMultiplier);
 
         args.Handled = true;

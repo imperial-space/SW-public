@@ -32,7 +32,7 @@ namespace Content.Server.Body.Systems
                 if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto))
                     continue;
 
-                if (proto.Metabolisms == null || !proto.Metabolisms.ContainsKey("Food"))
+                if (proto.Metabolisms == null || !proto.Metabolisms.Metabolisms.ContainsKey("Digestion"))
                 {
                     solution.RemoveReagent(reagent, quantity);
                     wasChanged = true;

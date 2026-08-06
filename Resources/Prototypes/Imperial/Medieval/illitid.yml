@@ -1,3 +1,84 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Illitid
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceIllitid
+  categories: [ HideSpawnMenu ]
+  name: illitid appearance
+  components:
+  - type: InitialBody
+    organs:
+      Head: OrganIllitidHead
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Torso: OrganIllitidTorso
+      Lungs: OrganHumanLungs
+      Heart: OrganIllitidHeart
+      Stomach: OrganIllitidStomach
+      Liver: OrganIllitidLiver
+      Kidneys: OrganHumanKidneys
+      ArmLeft: OrganIllitidArmLeft
+      ArmRight: OrganIllitidArmRight
+      HandLeft: OrganIllitidHandLeft
+      HandRight: OrganIllitidHandRight
+      LegLeft: OrganIllitidLegLeft
+      LegRight: OrganIllitidLegRight
+      FootLeft: OrganIllitidFootLeft
+      FootRight: OrganIllitidFootRight
+  - type: HumanoidProfile
+    species: Illitid
+
 - type: entity
   id: OrganIllitidHeart
   parent: OrganHumanHeart
@@ -37,70 +118,20 @@
     maxReagents: 5
     metabolizerTypes: [Illitid]
 
-- type: body
-  id: Illitid
-  name: "Illitid"
-  root: torso
-  slots:
-    head:
-      part: HeadIllitid
-      connections:
-      - torso
-      organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-    torso:
-      part: TorsoIllitid
-      connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
-      organs:
-        heart: OrganIllitidHeart
-        lungs: OrganHumanLungs
-        stomach: OrganReptilianStomach
-        liver: OrganIllitidLiver
-        kidneys: OrganHumanKidneys
-    right arm:
-      part: RightArmIllitid
-      connections:
-      - right hand
-    left arm:
-      part: LeftArmIllitid
-      connections:
-      - left hand
-    right hand:
-      part: RightHandIllitid
-    left hand:
-      part: LeftHandIllitid
-    right leg:
-      part: RightLegIllitid
-      connections:
-      - right foot
-    left leg:
-      part: LeftLegIllitid
-      connections:
-      - left foot
-    right foot:
-      part: RightFootIllitid
-    left foot:
-      part: LeftFootIllitid
-
 - type: metabolizerType
   id: Illitid
   name: Illitid
 
 - type: entity
   save: false
-  name: Урист МакРезонат
+  name: Urist McResonat
   parent: BaseMobIllitid
   id: MobIllitid
 
 - type: entity
   save: false
   name: Urist McHands The Resonat
-  parent: BaseMobSpeciesOrganic
+  parent: [AppearanceIllitid, BaseSpeciesMobOrganic]
   id: BaseMobIllitid
   abstract: true
   components:
@@ -119,9 +150,6 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-  - type: Body
-    prototype: Illitid
-    requiredLegs: 2
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -131,15 +159,16 @@
     languages:
       Common: Understand
       Resonat: Speak
-      #Goblin: Speak
       Ancient: Understand
-      #Tribe: Speak
-      #Orc: Speak
       Cursed: Understand
-      #Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
-  - type: HumanoidAppearance
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Speech
+    speechSounds: Alto
+  - type: HumanoidProfile
     species: Illitid
   - type: Mana
     maxManaRaceModifier: 1.1
@@ -180,7 +209,7 @@
     Blunt: 1.1
 
 - type: entity
-  parent: BaseMobIllitid
+  parent: AppearanceIllitid
   id: MobIllitidDummy
   noSpawn: true
   components:
@@ -192,26 +221,12 @@
             sprite: Imperial/Medieval/Species/displacement.rsi
             state: jumpsuit-female
 
-- type: markingPoints
-  id: MobIllitidMarkingLimits
-  points:
-    HeadTop:
-      points: 1
-      required: true
-      defaultMarkings: [ IllitidTwoTent ]
-    HeadSide:
-      points: 1
-      required: false
-    Chest:
-      points: 1
-      required: false
-
 - type: marking
   id: IllitidFourTent
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: true
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/tent.rsi
     state: t1
@@ -221,7 +236,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: true
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/tent.rsi
     state: t2
@@ -231,7 +246,7 @@
   bodyPart: Chest
   markingCategory: Chest
   followSkinColor: true
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: chest
@@ -240,7 +255,7 @@
   id: IllitidChestPlates
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: hitin
@@ -249,7 +264,7 @@
   id: IllitidHeadTopSpot
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: headtop
@@ -259,118 +274,16 @@
   bodyPart: HeadSide
   markingCategory: HeadSide
   followSkinColor: true
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: eye
 
 - type: species
   id: Illitid
-  name: Резонат
+  name: species-name-illitid
   roundStart: true
   prototype: MobIllitid
-  sprites: MobIllitidSprites
-  markingLimits: MobIllitidMarkingLimits
-  dollPrototype: MobIllitidDummy
+  dollPrototype: AppearanceIllitid
   skinColoration: IllitidColors
   defaultSkinTone: "#a1889e"
-
-- type: speciesBaseSprites
-  id: MobIllitidSprites
-  sprites:
-    Head: MobIllitidHead
-    HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
-    Chest: MobIllitidTorso
-    Eyes: MobHumanoidEyes
-    LArm: MobIllitidLArm
-    RArm: MobIllitidRArm
-    LHand: MobIllitidLHand
-    RHand: MobIllitidRHand
-    LLeg: MobIllitidLLeg
-    RLeg: MobIllitidRLeg
-    LFoot: MobIllitidLFoot
-    RFoot: MobIllitidRFoot
-
-- type: humanoidBaseSprite
-  id: MobIllitidHead
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobIllitidHeadMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobIllitidHeadFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: head_f
-
-- type: humanoidBaseSprite
-  id: MobIllitidTorso
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobIllitidTorsoMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobIllitidTorsoFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: torso_f
-
-- type: humanoidBaseSprite
-  id: MobIllitidLLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: l_leg
-
-- type: humanoidBaseSprite
-  id: MobIllitidLArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: l_arm
-
-- type: humanoidBaseSprite
-  id: MobIllitidLHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: l_hand
-
-- type: humanoidBaseSprite
-  id: MobIllitidLFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: l_foot
-
-- type: humanoidBaseSprite
-  id: MobIllitidRLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: r_leg
-
-- type: humanoidBaseSprite
-  id: MobIllitidRArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: r_arm
-
-- type: humanoidBaseSprite
-  id: MobIllitidRHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: r_hand
-
-- type: humanoidBaseSprite
-  id: MobIllitidRFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
-    state: r_foot

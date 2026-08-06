@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.StatusIcon;
 
 /// <summary>
-/// StatusIcons for Imperial Medieval NRP
+
 /// </summary>
 [Prototype]
 public sealed partial class NrpIconPrototype : StatusIconPrototype, IInheritingPrototype

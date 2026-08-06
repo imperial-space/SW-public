@@ -13,7 +13,7 @@ namespace Content.Shared.Chemistry.ReactionEffects;
 /// </summary>
 
 [DataDefinition]
-public sealed partial class TeleportEntityEffect : EntityEffect
+public sealed partial class TeleportEntityEffect : LegacyEntityEffect
 {
     [DataField("radiusPerUnit")]
     public float RadiusPerUnit = 0;

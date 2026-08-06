@@ -43,8 +43,8 @@
       path: /Audio/Imperial/Medieval/Werewolf/miss.ogg
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 18
+      types:
+        Blunt: 18
   - type: Puller
   - type: Tag
     tags:
@@ -239,8 +239,8 @@
      collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 35
+      types:
+        Blunt: 35
   - type: StaminaDamageOnHit
     damage: 300
   - type: MeleeThrowOnHit

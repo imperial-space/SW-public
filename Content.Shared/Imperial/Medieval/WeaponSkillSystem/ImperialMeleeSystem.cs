@@ -58,10 +58,10 @@ public sealed class ImperialMeleeSystem : EntitySystem
         DamageSpecifier? bypassResult = null;
         if (effects.BypassDamage != null && effects.BypassDamage.GetTotal() > FixedPoint2.Zero)
         {
-            bypassResult = _damageable.TryChangeDamage(target, effects.BypassDamage, origin: user, ignoreResistances: true);
+            _damageable.TryChangeDamage(target, effects.BypassDamage, out bypassResult, origin: user, ignoreResistances: true);
         }
 
-        bool anyDamage = (mainDamageResult != null && !mainDamageResult.Empty) ||
+        var anyDamage = (mainDamageResult != null && !mainDamageResult.Empty) ||
                          (bypassResult != null && !bypassResult.Empty);
 
         if (anyDamage)

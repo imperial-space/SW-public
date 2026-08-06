@@ -76,8 +76,7 @@ namespace Content.Server.Imperial.Medieval.BloodRegenBed
                     {
                         continue;
                     }
-
-                    if (_bloodstreamSystem.GetBloodLevelPercentage(buckledEntity) >= 1.0f)
+                    if (_bloodstreamSystem.GetBloodLevel(buckledEntity) >= 1.0f)
                     {
                         continue;
                     }

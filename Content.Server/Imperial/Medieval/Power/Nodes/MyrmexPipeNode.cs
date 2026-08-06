@@ -1,9 +1,6 @@
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
-using Content.Server.Power.Components;
-using Content.Server.Power.Nodes;
 using Content.Shared.NodeContainer;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Imperial.Medieval.Power;
@@ -29,24 +26,26 @@ public sealed partial class MyrmexPipeNode : Node
         return base.Connectable(entMan, xform);
     }
 
-    public override IEnumerable<Node> GetReachableNodes(TransformComponent xform,
+    public override IEnumerable<Node> GetReachableNodes(
+        Entity<TransformComponent> xform,
         EntityQuery<NodeContainerComponent> nodeQuery,
         EntityQuery<TransformComponent> xformQuery,
-        MapGridComponent? grid,
+        Entity<MapGridComponent>? grid,
         IEntityManager entMan)
     {
-        if (!xform.Anchored || grid == null)
+        if (!xform.Comp.Anchored || grid is not { } gridEnt)
             yield break;
 
-        var gridIndex = grid.TileIndicesFor(xform.Coordinates);
-        
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var gridIndex = mapSystem.TileIndicesFor(gridEnt, xform.Comp.Coordinates);
+
         if (!entMan.TryGetComponent<MyrmexPipeComponent>(Owner, out var pipeComp))
             yield break;
 
-        var rotation = xform.LocalRotation.GetCardinalDir();
+        var rotation = xform.Comp.LocalRotation.GetCardinalDir();
         var allowedDirections = GetAllowedDirections(pipeComp.PipeType, rotation);
 
-        foreach (var (dir, node) in NodeHelpers.GetCardinalNeighborNodes(nodeQuery, grid, gridIndex))
+        foreach (var (dir, node) in NodeHelpers.GetCardinalNeighborNodes(nodeQuery, gridEnt, gridIndex, mapSystem))
         {
             if (dir == Direction.Invalid)
                 continue;
@@ -61,23 +60,20 @@ public sealed partial class MyrmexPipeNode : Node
 
                 yield return node;
             }
-
-            else if (node is MyrmexDeviceNode deviceNode)
+            else if (node is MyrmexDeviceNode)
             {
                 if (allowedDirections.Contains(dir))
                     yield return node;
             }
         }
 
-        foreach (var node in NodeHelpers.GetNodesInTile(nodeQuery, grid, gridIndex))
+        foreach (var node in NodeHelpers.GetNodesInTile(nodeQuery, gridEnt, gridIndex, mapSystem))
         {
             if (node == this)
                 continue;
 
             if (node is MyrmexDeviceNode && entMan.HasComponent<MyrmexPipeEndpointComponent>(node.Owner))
-            {
                 yield return node;
-            }
         }
     }
 
@@ -88,26 +84,22 @@ public sealed partial class MyrmexPipeNode : Node
         switch (pipeType)
         {
             case MyrmexPipeType.Straight:
-                // Прямая: вперед и назад относительно ротации
                 directions.Add(rotation);
                 directions.Add(rotation.GetOpposite());
                 break;
 
             case MyrmexPipeType.Corner:
-                // Угловая: вперед и вправо относительно ротации
                 directions.Add(rotation);
-                directions.Add(rotation.GetClockwise90Degrees()); // Поворот на 90° по часовой
+                directions.Add(rotation.GetClockwise90Degrees());
                 break;
 
             case MyrmexPipeType.TJunction:
-                // Т-образная: вперед, назад и вправо относительно ротации
                 directions.Add(rotation);
                 directions.Add(rotation.GetOpposite());
-                directions.Add(rotation.GetClockwise90Degrees()); // Поворот на 90° по часовой
+                directions.Add(rotation.GetClockwise90Degrees());
                 break;
 
             case MyrmexPipeType.Cross:
-                // Перекрестная: все 4 направления
                 directions.Add(Direction.North);
                 directions.Add(Direction.South);
                 directions.Add(Direction.East);
@@ -118,7 +110,7 @@ public sealed partial class MyrmexPipeNode : Node
         return directions;
     }
 
-    private bool CanOtherPipeConnect(MyrmexPipeNode otherNode, Direction oppositeDir, 
+    private bool CanOtherPipeConnect(MyrmexPipeNode otherNode, Direction oppositeDir,
         IEntityManager entMan, EntityQuery<TransformComponent> xformQuery)
     {
         if (!entMan.TryGetComponent<MyrmexPipeComponent>(otherNode.Owner, out var otherPipeComp))

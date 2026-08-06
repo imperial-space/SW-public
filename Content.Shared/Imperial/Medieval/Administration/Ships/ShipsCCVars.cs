@@ -61,11 +61,11 @@ public sealed class ShipsCCVars : CVars
     public static readonly CVarDef<float> StormRainLevel =  // С какого уровня шторма начинается дождь
         CVarDef.Create("ships.stormrainlevel", 4f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<string> StormRainWeather =
-        CVarDef.Create("ships.stormrainweather", "Rain", CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormrainweather", "WeatherRain", CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormStormLevel = // С какого уровня шторма начинается шторм
         CVarDef.Create("ships.stormstormlevel", 5f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<string> StormStormWeather =
-        CVarDef.Create("ships.stormstormweather", "Storm", CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormstormweather", "WeatherStorm", CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// скорость с которой волна спавнится
     /// </summary>

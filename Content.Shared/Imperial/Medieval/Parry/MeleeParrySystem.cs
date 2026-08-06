@@ -47,10 +47,9 @@ namespace Content.Shared.MeleeParry
     public sealed partial class MeleeParrySystem : EntitySystem
     {
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] internal readonly IEntityManager _entityManager = default!;
-        [Dependency] internal readonly ISharedPlayerManager _playerManager = default!;
-        [Dependency] internal readonly IMapManager _mapManager = default!;
-        [Dependency] protected readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly UseDelaySystem _useDelay = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly INetManager _netMan = default!;

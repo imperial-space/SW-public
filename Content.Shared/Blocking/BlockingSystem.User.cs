@@ -1,6 +1,7 @@
+using System.Linq;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
-using Robust.Shared.Audio;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared.Imperial.Medieval.Skills;  // --- IMPERIAL MEDIEVAL
@@ -43,36 +44,37 @@ public sealed partial class BlockingSystem
 
     private void OnUserDamageModified(EntityUid uid, BlockingUserComponent component, DamageModifyEvent args)
     {
-        if (TryComp<BlockingComponent>(component.BlockingItem, out var blocking))
+        if (component.BlockingItem is not { } item || !TryComp<BlockingComponent>(item, out var blocking))
+            return;
+
+        if (args.Damage.GetTotal() <= 0)
+            return;
+
+        // A shield should only block damage it can itself absorb. To determine that we need the Damageable component on it.
+        if (!TryComp<DamageableComponent>(item, out var dmgComp))
+            return;
+
+        var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;
+        // Imperial Medieval Start
+        var ev = new GetShieldBlockFractionEvent(item, uid, blockFraction);
+        RaiseLocalEvent(uid, ref ev);
+        blockFraction = ev.BlockFraction;
+        // Imperial Medieval End
+        var modifier = blocking.IsBlocking ? blocking.ActiveBlockDamageModifier : blocking.PassiveBlockDamageModifer;
+        blockFraction = Math.Clamp(blockFraction, 0, 1);
+        _damageable.TryChangeDamage((item, dmgComp), blockFraction * args.OriginalDamage);
+
+        var modify = new DamageModifierSet();
+        foreach (var key in modifier.Coefficients.Keys.Concat(modifier.FlatReduction.Keys))
         {
-            if (args.Damage.GetTotal() <= 0)
-                return;
+            modify.Coefficients.TryAdd(key, 1 - blockFraction);
+        }
 
-            // A shield should only block damage it can itself absorb. To determine that we need the Damageable component on it.
-            if (!TryComp<DamageableComponent>(component.BlockingItem, out var dmgComp))
-                return;
+        args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modify);
 
-            var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;
-            // --- IMPERIAL MEDIEVAL START ---
-            var ev = new GetShieldBlockFractionEvent(component.BlockingItem.Value, uid, blockFraction);
-            RaiseLocalEvent(uid, ref ev);
-            blockFraction = ev.BlockFraction;
-            // --- IMPERIAL MEDIEVAL END --
-            blockFraction = Math.Clamp(blockFraction, 0, 1);
-            _damageable.TryChangeDamage(component.BlockingItem, blockFraction * args.OriginalDamage);
-
-            var modify = new DamageModifierSet();
-            foreach (var key in dmgComp.Damage.DamageDict.Keys)
-            {
-                modify.Coefficients.TryAdd(key, 1 - blockFraction);
-            }
-
-            args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modify);
-
-            if (blocking.IsBlocking && !args.Damage.Equals(args.OriginalDamage))
-            {
-                _audio.PlayPvs(blocking.BlockSound, uid);
-            }
+        if (blocking.IsBlocking && !args.Damage.Equals(args.OriginalDamage))
+        {
+            _audio.PlayPvs(blocking.BlockSound, uid);
         }
     }
 
@@ -97,14 +99,13 @@ public sealed partial class BlockingSystem
     }
 
     /// <summary>
-    /// Check for the shield and has the user stop blocking
-    /// Used where you'd like the user to stop blocking, but also don't want to remove the <see cref="BlockingUserComponent"/>
+    ///     Called when the user is somehow terminating. Used for items that are held by a user and can be blocked with.
     /// </summary>
-    /// <param name="uid">The user blocking</param>
-    /// <param name="component">The <see cref="BlockingUserComponent"/></param>
     private void UserStopBlocking(EntityUid uid, BlockingUserComponent component)
     {
-        if (TryComp<BlockingComponent>(component.BlockingItem, out var blockComp) && blockComp.IsBlocking)
-            StopBlocking(component.BlockingItem.Value, blockComp, uid);
+        if (TryComp<BlockingComponent>(component.BlockingItem, out var blockingComponent) && blockingComponent.IsBlocking)
+        {
+            StopBlocking(component.BlockingItem.Value, blockingComponent, uid);
+        }
     }
 }

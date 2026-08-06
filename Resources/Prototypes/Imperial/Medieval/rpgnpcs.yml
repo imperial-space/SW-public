@@ -352,7 +352,7 @@
 #
 - type: entity
   name: GreyTide
-  parent: BaseMobHuman
+  parent: MobHuman
   id: MobGreyTide
   components:
     - type: NpcFactionMember

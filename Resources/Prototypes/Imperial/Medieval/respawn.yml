@@ -101,9 +101,6 @@
             False: { visible: false }
     - type: Speech
       speechVerb: Ghost
-    - type: Body
-      prototype: Reptilian
-      requiredLegs: 2
     - type: CreamPied
     - type: FireVisuals
       sprite: Mobs/Effects/onfire.rsi
@@ -169,9 +166,10 @@
       damageCap: 500
       damage:
         types:
-          Heat: -9
-        groups:
-          Brute: -8
+          Heat: -20
+          Blunt: -10
+          Slash: -10
+          Piercing: -10
     - type: Thirst
       baseDecayRate: 0
     - type: Hunger

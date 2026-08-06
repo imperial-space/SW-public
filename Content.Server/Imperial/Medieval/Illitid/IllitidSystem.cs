@@ -261,7 +261,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
                 $"Thought from {ToPrettyString(source):user} as Illitid");
         }
 
-        _nrpMessages.CheckMessage(source, thought);
+        _ = _nrpMessages.CheckMessage(source, thought);
     }
 
     private bool SendThoughtInRange(EntityUid source, float range, string thought)

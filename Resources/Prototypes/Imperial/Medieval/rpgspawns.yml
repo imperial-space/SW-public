@@ -52,7 +52,6 @@
   - type: Sprite
     layers:
     - state: red
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MedievalSpawnerFlower
@@ -69,7 +68,6 @@
   - type: Sprite
     layers:
     - state: red
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MedievalSpawnerMushroom
@@ -214,7 +212,6 @@
   - type: Sprite
     layers:
     - state: blue
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MedievalLateMobSpawnerMedievalMobGoblin
@@ -231,7 +228,6 @@
   - type: Sprite
     layers:
     - state: blue
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MedievalLateMobSpawnerMedievalMobHobGoblin
@@ -244,7 +240,6 @@
   id: MedievalClothingShoesFancy
   parent: MarkerBase
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MedievalLateMobSpawnerMedievalMobGoblin2
@@ -1793,7 +1788,7 @@
   - type: MedievalCurrency
     price:
       Revent: 12
-  - type: Food
+  - type: Edible
   - type: SolutionContainerManager
     solutions:
       food:

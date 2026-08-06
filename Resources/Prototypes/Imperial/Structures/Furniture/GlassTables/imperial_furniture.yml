@@ -6,7 +6,6 @@
   startNode: start
   targetNode: TableUraniumGlass
   category: construction-category-furniture
-  description: Стильный зелёный кусок стекла с примесью урана, установленный на каркас стола.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -21,7 +20,6 @@
   startNode: start
   targetNode: TableUraniumGlassReinforced
   category: construction-category-furniture
-  description: "Стильный квадратный лист уранового стекла, установленный на укреплённый каркас стола"
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -36,7 +34,6 @@
   startNode: start
   targetNode: TablePlasmaGlassReinforced
   category: construction-category-furniture
-  description: Стильный квадратный лист плазменного стекла, установленный на укреплённый каркас стола
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

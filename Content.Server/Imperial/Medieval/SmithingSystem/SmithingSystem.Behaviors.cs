@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Damage.Components;
 using Content.Server.MedievalMeleeResource;
 using Content.Shared.IdentityManagement;
@@ -8,6 +8,8 @@ using Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
 using Content.Shared.MedievalMeleeResource.Components;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.SmithingSystem;
 
@@ -15,16 +17,17 @@ public sealed partial class SmithingSystem
 {
     private readonly Dictionary<ItemQuality, string> _itemQualityDecorators = new()
     {
-        { ItemQuality.Worst, "отвр. " },
-        { ItemQuality.ReallyBad, "ужс. " },
-        { ItemQuality.Bad, "плох. " },
-        { ItemQuality.Default, "хор. " },
-        { ItemQuality.Good, "отл. " },
-        { ItemQuality.Excellent, "шедевр. " },
+        { ItemQuality.Worst, "����. " },
+        { ItemQuality.ReallyBad, "���. " },
+        { ItemQuality.Bad, "����. " },
+        { ItemQuality.Default, "���. " },
+        { ItemQuality.Good, "���. " },
+        { ItemQuality.Excellent, "������. " },
     };
 
     [Dependency] private readonly MedievalMeleeResourceSystem _meleeResource = default!;
     [Dependency] private readonly MedievalArmorIntegritySystem _armorIntegrity = default!;
+    [Dependency] private readonly SharedDamageOtherOnHitSystem _damageOtherOnHit = default!;
 
     private void InitializeBehaviors()
     {
@@ -159,8 +162,7 @@ public sealed partial class SmithingSystem
         {
             if (TryComp(item, out DamageOtherOnHitComponent? damageOtherOnHitComponent))
             {
-                damageOtherOnHitComponent.Damage *= modifier.Modifier;
-                Dirty(item, damageOtherOnHitComponent);
+                _damageOtherOnHit.ScaleDamage((item, damageOtherOnHitComponent), modifier.Modifier);
             }
 
             if (TryComp(item, out MeleeWeaponComponent? meleeWeaponComponent))

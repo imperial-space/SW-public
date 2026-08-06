@@ -1,12 +1,12 @@
 # Imperial Medieval
 
-#- type: marking 
+#- type: marking
 #  id: HumanLongEars
 #  bodyPart: HeadTop
 #  markingCategory: HeadTop
 #  forcedColoring: true
 #  followSkinColor: true
-#  speciesRestriction: [Elf, DarkElf]
+#  groupWhitelist: [Elf, DarkElf]
 #  sprites:
 #  - sprite: Mobs/Customization/ears.rsi
 #    state: long_ears_standard
@@ -17,7 +17,7 @@
 #  markingCategory: HeadTop
 #  forcedColoring: true
 #  followSkinColor: true
-#  speciesRestriction: [Elf, DarkElf]
+#  groupWhitelist: [Elf, DarkElf]
 #  sprites:
 #  - sprite: Mobs/Customization/ears.rsi
 #    state: long_ears_wide
@@ -28,7 +28,7 @@
 #  markingCategory: HeadTop
 #  forcedColoring: true
 #  followSkinColor: true
-#  speciesRestriction: [Elf, DarkElf]
+#  groupWhitelist: [Elf, DarkElf]
 #    sprites:
 #  - sprite: Mobs/Customization/ears.rsi
 #    state: long_ears_small
@@ -39,7 +39,7 @@
 #  markingCategory: HeadTop
 #  forcedColoring: true
 #  followSkinColor: true
-#  speciesRestriction: [Elf, DarkElf]
+#  groupWhitelist: [Elf, DarkElf]
 #  sprites:
 #  - sprite: Mobs/Customization/ears.rsi
 #    state: long_ears_upwards
@@ -50,7 +50,7 @@
 #  markingCategory: HeadTop
 #  forcedColoring: true
 #  followSkinColor: true
-#  speciesRestriction: [Elf, DarkElf]
+#  groupWhitelist: [Elf, DarkElf]
 #  sprites:
 #  - sprite: Mobs/Customization/ears.rsi
 #    state: long_ears_tall
@@ -61,7 +61,7 @@
 #  markingCategory: HeadTop
 #  forcedColoring: true
 #  followSkinColor: true
-#  speciesRestriction: [Elf, DarkElf]
+#  groupWhitelist: [Elf, DarkElf]
 #  sprites:
 #  - sprite: Mobs/Customization/ears.rsi
 #    state: long_ears_thin

@@ -176,7 +176,7 @@
   - type: TimedDespawn #do this shit by hand because of fucking course.
     lifetime: 0.4
   - type: PhysAwakeOnSpawn
-  - type: DamageOnContact
+  - type: BossDamageOnContact
     damage:
       types:
         Piercing: 9

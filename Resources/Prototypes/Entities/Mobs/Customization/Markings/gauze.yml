@@ -1,8 +1,9 @@
+# Generic Markings
 - type: marking
   id: GauzeLefteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -16,7 +17,7 @@
   id: GauzeLefteyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -30,7 +31,7 @@
   id: GauzeRighteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -44,7 +45,7 @@
   id: GauzeRighteyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -58,7 +59,7 @@
   id: GauzeBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -72,7 +73,7 @@
   id: GauzeShoulder
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -81,12 +82,12 @@
   sprites:
   - sprite: Mobs/Customization/gauze.rsi
     state: gauze_shoulder
-    
+
 - type: marking
   id: GauzeStomach
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -100,7 +101,7 @@
   id: GauzeUpperArmRight
   bodyPart: RArm
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -112,9 +113,9 @@
 
 - type: marking
   id: GauzeLowerArmRight
-  bodyPart: RArm, RHand
+  bodyPart: RHand
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -126,9 +127,9 @@
 
 - type: marking
   id: GauzeLeftArm
-  bodyPart: LArm, LHand
+  bodyPart: LArm
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -142,7 +143,7 @@
   id: GauzeLowerLegLeft
   bodyPart: LFoot
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -156,7 +157,7 @@
   id: GauzeUpperLegLeft
   bodyPart: LLeg
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -170,7 +171,7 @@
   id: GauzeUpperLegRight
   bodyPart: RLeg
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -179,12 +180,12 @@
   sprites:
   - sprite: Mobs/Customization/gauze.rsi
     state: gauze_upperleg_r
-    
+
 - type: marking
   id: GauzeLowerLegRight
   bodyPart: RFoot
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -193,12 +194,12 @@
   sprites:
   - sprite: Mobs/Customization/gauze.rsi
     state: gauze_lowerleg_r
-    
+
 - type: marking
   id: GauzeBoxerWrapRight
   bodyPart: RHand
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -207,12 +208,12 @@
   sprites:
   - sprite: Mobs/Customization/gauze.rsi
     state: gauze_boxerwrap_r
-    
+
 - type: marking
   id: GauzeBoxerWrapLeft
   bodyPart: LHand
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -226,7 +227,7 @@
   id: GauzeHead
   bodyPart: Head
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Moth, Beastmen] # Imperial Medieval
+  groupWhitelist: [Dwarf, Human, Reptilian, Arachnid, Moth, Beastmen] # Imperial Medieval
   coloring:
     default:
       type:
@@ -240,8 +241,7 @@
 - type: marking
   id: GauzeLizardLefteyePatch
   bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   coloring:
     default:
       type:
@@ -254,8 +254,7 @@
 - type: marking
   id: GauzeLizardRighteyePatch
   bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   coloring:
     default:
       type:
@@ -268,8 +267,7 @@
 - type: marking
   id: GauzeLizardFootRight
   bodyPart: RFoot
-  markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   coloring:
     default:
       type:
@@ -282,8 +280,7 @@
 - type: marking
   id: GauzeLizardFootLeft
   bodyPart: LFoot
-  markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   coloring:
     default:
       type:
@@ -296,8 +293,7 @@
 - type: marking
   id: GauzeLizardBlindfold
   bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   coloring:
     default:
       type:
@@ -311,8 +307,7 @@
 - type: marking
   id: GauzeMothBlindfold
   bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -325,8 +320,7 @@
 - type: marking
   id: GauzeMothShoulder
   bodyPart: Chest
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -339,8 +333,7 @@
 - type: marking
   id: GauzeMothStomach
   bodyPart: Chest
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -353,8 +346,7 @@
 - type: marking
   id: GauzeMothLeftEyePatch
   bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -367,8 +359,7 @@
 - type: marking
   id: GauzeMothLeftEyePad
   bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -381,8 +372,7 @@
 - type: marking
   id: GauzeMothRightEyePatch
   bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -395,8 +385,7 @@
 - type: marking
   id: GauzeMothRightEyePad
   bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -409,8 +398,7 @@
 - type: marking
   id: GauzeMothUpperArmRight
   bodyPart: RArm
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -423,8 +411,7 @@
 - type: marking
   id: GauzeMothUpperArmLeft
   bodyPart: LArm
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -437,8 +424,7 @@
 - type: marking
   id: GauzeMothUpperLegRight
   bodyPart: RLeg
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -451,8 +437,7 @@
 - type: marking
   id: GauzeMothUpperLegLeft
   bodyPart: LLeg
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -465,8 +450,7 @@
 - type: marking
   id: GauzeMothLowerLegRight
   bodyPart: RFoot
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -479,8 +463,7 @@
 - type: marking
   id: GauzeMothLowerLegLeft
   bodyPart: LFoot
-  markingCategory: Overlay
-  speciesRestriction: [Moth]
+  groupWhitelist: [Moth]
   coloring:
     default:
       type:
@@ -489,3 +472,186 @@
   sprites:
   - sprite: Mobs/Customization/gauze.rsi
     state: gauze_moth_lowerleg_l
+
+# Vulpkanin Specific Markings
+- type: marking
+  id: GauzeVulpStomach
+  bodyPart: Chest
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_abdomen
+
+- type: marking
+  id: GauzeVulpBlindfold
+  bodyPart: Eyes
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_blindfold
+
+- type: marking
+  id: GauzeVulpBoxerwrapLeft
+  bodyPart: LHand
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_boxerwrap_l
+
+- type: marking
+  id: GauzeVulpBoxerwrapRight
+  bodyPart: RHand
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_boxerwrap_r
+
+- type: marking
+  id: GauzeVulpHead
+  bodyPart: Head
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_head
+
+- type: marking
+  id: GauzeVulpLeftArm
+  bodyPart: LArm
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_leftarm
+
+- type: marking
+  id: GauzeVulpLefteyePatch
+  bodyPart: Eyes
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_lefteye_2
+
+- type: marking
+  id: GauzeVulpLowerArmRight
+  bodyPart: RHand
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_lowerarm_r
+
+- type: marking
+  id: GauzeVulpLowerLegLeft
+  bodyPart: LFoot
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_lowerleg_l
+
+- type: marking
+  id: GauzeVulpLowerLegRight
+  bodyPart: RFoot
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_lowerleg_r
+
+- type: marking
+  id: GauzeVulpRighteyePatch
+  bodyPart: Eyes
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_righteye_2
+
+- type: marking
+  id: GauzeVulpShoulder
+  bodyPart: Chest
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_shoulder
+
+- type: marking
+  id: GauzeVulpUpperLegLeft
+  bodyPart: LLeg
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_upperleg_l
+
+- type: marking
+  id: GauzeVulpUpperLegRight
+  bodyPart: RLeg
+  groupWhitelist: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_upperleg_r

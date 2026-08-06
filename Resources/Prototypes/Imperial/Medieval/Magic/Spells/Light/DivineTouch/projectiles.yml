@@ -22,13 +22,17 @@
     attackRate: 1
     angle: 0
     damage:
-      groups:
-        Brute: -20
-        Burn: -20
-        Airloss: -20
-        Toxin: -20
       types:
-        Bloodloss: -10
+        Blunt: -6.67
+        Slash: -6.67
+        Piercing: -6.66
+        Heat: -6.67
+        Shock: -6.67
+        Cold: -6.66
+        Asphyxiation: -10
+        Bloodloss: -20
+        Poison: -10
+        Radiation: -10
         Cellular: -10
     resistanceBypass: true
     soundHit:
@@ -39,24 +43,32 @@
     effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -20
-            Burn: -20
-            Airloss: -20
-            Toxin: -20
           types:
-            Bloodloss: -10
+            Blunt: -6.67
+            Slash: -6.67
+            Piercing: -6.66
+            Heat: -6.67
+            Shock: -6.67
+            Cold: -6.66
+            Asphyxiation: -10
+            Bloodloss: -20
+            Poison: -10
+            Radiation: -10
             Cellular: -10
     selfUseEffects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -10
-            Burn: -10
-            Airloss: -10
-            Toxin: -10
           types:
-            Bloodloss: -5
+            Blunt: -3.33
+            Slash: -3.33
+            Piercing: -3.34
+            Heat: -3.33
+            Shock: -3.33
+            Cold: -3.34
+            Asphyxiation: -5
+            Bloodloss: -10
+            Poison: -5
+            Radiation: -5
             Cellular: -5
 
 # Middle
@@ -83,14 +95,18 @@
     attackRate: 1
     angle: 0
     damage:
-      groups:
-        Brute: -35
-        Burn: -35
-        Airloss: -35
-        Toxin: -35
       types:
+        Blunt: -11.67
+        Slash: -11.67
+        Piercing: -11.66
+        Heat: -11.67
+        Shock: -11.67
+        Cold: -11.66
+        Asphyxiation: -17.5
+        Bloodloss: -52.5
+        Poison: -17.5
+        Radiation: -17.5
         Cellular: -15
-        Bloodloss: -35
     resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/heal_cast.ogg
@@ -100,24 +116,32 @@
     effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -35
-            Burn: -35
-            Airloss: -35
-            Toxin: -35
           types:
+            Blunt: -11.67
+            Slash: -11.67
+            Piercing: -11.66
+            Heat: -11.67
+            Shock: -11.67
+            Cold: -11.66
+            Asphyxiation: -17.5
+            Bloodloss: -52.5
+            Poison: -17.5
+            Radiation: -17.5
             Cellular: -15
-            Bloodloss: -35
     selfUseEffects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -20
-            Burn: -20
-            Airloss: -20
-            Toxin: -20
           types:
-            Bloodloss: -10
+            Blunt: -6.67
+            Slash: -6.67
+            Piercing: -6.66
+            Heat: -6.67
+            Shock: -6.67
+            Cold: -6.66
+            Asphyxiation: -10
+            Bloodloss: -20
+            Poison: -10
+            Radiation: -10
             Cellular: -20
 
 # Senior
@@ -144,14 +168,18 @@
     attackRate: 1
     angle: 0
     damage:
-      groups:
-        Brute: -65
-        Burn: -65
-        Airloss: -65
-        Toxin: -65
       types:
+        Blunt: -21.67
+        Slash: -21.67
+        Piercing: -21.66
+        Heat: -21.67
+        Shock: -21.67
+        Cold: -21.66
+        Asphyxiation: -32.5
+        Bloodloss: -332.5
+        Poison: -32.5
+        Radiation: -32.5
         Cellular: -65
-        Bloodloss: -300
     resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/heal_cast.ogg
@@ -161,11 +189,15 @@
     effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -40
-            Burn: -40
-            Airloss: -600
-            Toxin: -600
           types:
+            Blunt: -13.33
+            Slash: -13.33
+            Piercing: -13.34
+            Heat: -13.33
+            Shock: -13.33
+            Cold: -13.34
+            Asphyxiation: -300
+            Bloodloss: -600
+            Poison: -300
+            Radiation: -300
             Cellular: -200
-            Bloodloss: -300

@@ -44,7 +44,6 @@ public sealed partial class RandomOffsetSpawnSystem : EntitySystem
     {
         var coords = _transform.GetMapCoordinates(uid);
         Vector2 randomVector;
-        Vector2 randomDirectionFromAngle;
         MapCoordinates resultCoords;
         bool needNewCoords;
         for (var i = 0; i < component.Quantity; i++)

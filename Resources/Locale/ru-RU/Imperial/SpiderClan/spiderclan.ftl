@@ -42,10 +42,6 @@ id-card-access-level-ninja = Ниндзя клана Паука
 job-name-ninja = Ниндзя Клана Паука
 job-name-empty = Неизвестно
 
-ent-PlushieHlimmy = Хлимми Вьюго
-    .desc = Что? Вы не можете поместить Научного Руководителя в переработчик артефактов?
-ent-PlushieTaylor = Алекс Тейлор
-    .desc = Пельмени - это очень вкусно!
 ent-EncryptionKeySpiderClanChannel = ключ шифрования
     .desc = Ключ шифрования
 ent-ClothingHeadsetSpiderClanGreen = гарнитура ниндзя

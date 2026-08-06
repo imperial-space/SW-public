@@ -15,6 +15,7 @@ using Content.Shared.Speech;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.Plague;
 
@@ -232,7 +233,7 @@ public sealed partial class MedievalPlagueSystem
                 _vomit.Vomit(uid);
             if (comp.Level >= PlagueVomitLevel.Blood && TryComp<BloodstreamComponent>(uid, out var bloodstream))
             {
-                Solution sol = new(bloodstream.BloodReagent, 20f);
+            Solution sol = new("Blood", 20f);
                 _puddle.TrySpillAt(Transform(uid).Coordinates, sol, out _, false);
             }
 

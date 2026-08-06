@@ -4,9 +4,14 @@
   id: ImperialSCPBase
   suffix: AI
   components:
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        60: 1
+        80: 1
     - type: Tag
       tags:
       - SCP
+      - FootstepSound
     - type: TriggerOnMobstateChange
       mobState:
       - Dead
@@ -18,15 +23,11 @@
         path: /Audio/Effects/Smoke-grenade.ogg
     - type: NoSlip
     - type: MovementIgnoreGravity
-    - type: SlowOnDamage
-      enabled: false
     - type: ZombieImmune
     - type: NonSpreaderZombie
     - type: Clumsy
     - type: Damageable
       damageModifierSet: SCPStandart
-    - type: Body
-      prototype: Human
     - type: Bloodstream
       bloodMaxVolume: 0
     - type: NpcFactionMember
@@ -45,10 +46,13 @@
         gender: male
     - type: StaminaResistance
       damageCoefficient: 0.3
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepSCPMTF
 
 - type: entity
   name: Ded
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCPDed
   description: Pray.
@@ -70,6 +74,7 @@
         0: Alive
         4000: Dead
     - type: MeleeWeapon
+      attackRate: 0.33
       hidden: true
       altDisarm: false
       soundHit:
@@ -78,7 +83,7 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 80
+          Blunt: 5
       resistanceBypass: true
     - type: Speech
       speechVerb: LargeMob
@@ -98,32 +103,33 @@
             !type:PhysShapeCircle
             radius: 0.4
           density: 280
-          hard: false
-          mask:
-          - MobMask
           layer:
           - GhostImpassable
           - MobLayer
     - type: ItemToggle
       predictable: false
       onUse: false
-    - type: ItemToggleActiveSound
-      activeSound:
+    - type: UseDelay
+      delay: 1.0
+    - type: SCP106
+      firstHitDamage:
+        types:
+          Poison: 40
+      damagePerSecond:
+        types:
+          Blunt: 1
+    - type: ImperialSCPChaseMusic
+      chaseSound:
         path: /Audio/Imperial/Seriozha/SCP/chase/chase4.ogg
         params:
           volume: -2
           range: 10
-    - type: UseDelay
-      delay: 1.0
-    - type: ToggleClothing
-      action: ActionToggleSCPMusic
-      mustEquip: false
-      sprite: /Textures/Interface/Misc/job_icons.rsi
-      state: Musician
+    - type: StaminaDamageOnHit
+      damage: 70
 
 - type: entity
   name: Fireman
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCPFireMan
   description: Pray.
@@ -139,7 +145,7 @@
         Alive:
           Base: alive
         Dead:
-          Base: alive
+          Base: dead
     - type: MobThresholds
       thresholds:
         0: Alive
@@ -165,9 +171,6 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3
-    - type: Tag
-      tags:
-      - DoorBumpOpener
     - type: Access
       tags:
       - SCPAccesOne
@@ -206,7 +209,8 @@
       - reagents: [ Water, SpaceCleaner ]
         methods: [ Touch ]
         effects:
-        - !type:WashCreamPieReaction
+        - !type:WashCreamPie
+        - !type:WashCreamPie
       - reagents: [ Water ]
         methods: [ Touch ]
         effects:
@@ -220,10 +224,22 @@
           visualType: Large
           messages: [ "slime-hurt-by-water-popup" ]
           probability: 0.25
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        2200: 0.7
+    - type: AmbientSound
+      volume: -10
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/fire.ogg
+        params:
+          loop: true
+          stream: true
 
 - type: entity
   name: Avel
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: [ ImperialSCPBase, StripableInventoryBase ]
   id: ImperialSCPAvel
   description: Pray.
@@ -299,6 +315,10 @@
     - type: ToggleClothing
       action: ActionToggleSCPMusic
       mustEquip: false
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        1800: 0.7
 
 - type: entity
   name: Katana
@@ -328,12 +348,13 @@
     reflectProb: 0.15
     spread: 60
   - type: DisarmMalus
+  - type: Unremoveable
 
 - type: entity
   parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
   id: ImperialSCPMask
   name: Mask
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   description: idc
   components:
   - type: Sprite
@@ -360,7 +381,7 @@
 
 - type: entity
   name: Doctor
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: [ ImperialSCPBase, StripableInventoryBase ]
   id: ImperialSCPDoc
   description: Pray.
@@ -403,9 +424,6 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 3.5
       baseSprintSpeed: 3
-    - type: FootstepModifier
-      footstepSoundCollection:
-        path: /Audio/Imperial/Seriozha/SCP/doc.ogg
     - type: Loadout
       prototypes: [ ImperialDocGear ]
     - type: Hands
@@ -456,10 +474,14 @@
     - type: ToggleClothing
       action: ActionToggleSCPMusic
       mustEquip: false
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        2700: 0.7
 
 - type: entity
   name: Jelly monster
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: BaseMobAdultSlimes
   id: ImperialSCPJelly
   description: The kindest blob of slime in the galaxy.
@@ -533,10 +555,14 @@
           - MobMask
           layer:
           - MobLayer
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        420: 0.7
 
 - type: entity
   name: Zombie
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: [ ImperialSCPBase, StripableInventoryBase ]
   id: ImperialSCPZombie
   description: Ugh...

@@ -132,7 +132,7 @@ public sealed class DarkMageSystem : EntitySystem
 
             var position = _transform.GetMapCoordinates(uid);
             var entitiesNearby = _lookup.GetEntitiesInRange(position, darkMageComponent.SearchRadius)
-                .Where(e => e != uid && TryComp<MindContainerComponent>(e, out var mindE) && mindE.HasMind && TryComp<MobStateComponent>(e, out var eComp) && eComp.CurrentState == MobState.Alive && HasComp<HumanoidAppearanceComponent>(e)) // Много
+                .Where(e => e != uid && TryComp<MindContainerComponent>(e, out var mindE) && mindE.HasMind && TryComp<MobStateComponent>(e, out var eComp) && eComp.CurrentState == MobState.Alive && HasComp<HumanoidProfileComponent>(e)) // Много
                 .ToList();
 
             if (entitiesNearby.Count >= 2 && !darkMageComponent.IsMoved)

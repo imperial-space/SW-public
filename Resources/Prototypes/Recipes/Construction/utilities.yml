@@ -7,7 +7,6 @@
   startNode: start
   targetNode: camera
   category: construction-category-utilities
-  description: Камера видеонаблюдения. Не похоже, что в ближайшее время она будет за кем-то наблюдать. Возможно. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -19,7 +18,6 @@
   startNode: start
   targetNode: Telescreen
   category: construction-category-utilities
-  description: Монитор видеокамер. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -32,7 +30,6 @@
   startNode: start
   targetNode: station_map
   category: construction-category-structures
-  description: Станционная карта. # Imperial Recipes Locale
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -49,7 +46,6 @@
   startNode: start
   targetNode: apc
   category: construction-category-utilities
-  description: Локальная консоль питания. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -62,7 +58,6 @@
   startNode: start
   targetNode: solarpanel
   category: construction-category-utilities
-  description: Стандартная солнечная панель. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -78,7 +73,6 @@
   startNode: start
   targetNode: cable_terminal
   category: construction-category-utilities
-  description: Подключить красным к аккамулятору для его зарядки. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -91,7 +85,6 @@
   startNode: start
   targetNode: substation
   category: construction-category-utilities
-  description: Подстанция, предназначенная для компактных шаттлов и помещений. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -104,7 +97,6 @@
   startNode: start
   targetNode: generator
   category: construction-category-utilities
-  description: Высокоэффективный термоэлектрический генератор, помещенный в настенный шкаф. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -117,7 +109,6 @@
   startNode: start
   targetNode: APU
   category: construction-category-utilities
-  description: Вспомогательная силовая установка шаттла. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -151,7 +142,6 @@
   hide: true # imperial medieval craft disable
   name: Утилизационная труба # Imperial Recipes Locale
   id: DisposalPipe
-  description: Большой сегмент трубы, используемый при создании системы утилизации. # Imperial Recipes Locale
   graph: DisposalPipe
   startNode: start
   targetNode: pipe
@@ -199,8 +189,6 @@
 
 - type: construction
   hide: true
-  name: Маршрутизатор утилизационной трубы # Imperial Recipes Locale
-  description: Трехсторонний маршрутизатор. Объекты с совпадающими маркерами уходят в сторону с помощью настраиваемых фильтров. # Imperial Recipes Locale
   id: DisposalRouterFlipped
   graph: DisposalPipe
   startNode: start
@@ -227,8 +215,6 @@
 
 - type: construction
   hide: true
-  name: Утилизационный сигнальный маршрутизатор # Imperial Recipes Locale
-  description: Трехсторонний маршрутизатор, управляемый сигналом. # Imperial Recipes Locale
   id: DisposalSignalRouterFlipped
   graph: DisposalPipe
   startNode: start
@@ -255,8 +241,6 @@
 
 - type: construction
   hide: true
-  name: Развязка утилизационной трубы # Imperial Recipes Locale
-  description: Трехсторонняя развязка. Стрелка указывает на место выхода объектов. # Imperial Recipes Locale
   id: DisposalJunctionFlipped
   graph: DisposalPipe
   startNode: start
@@ -308,7 +292,6 @@
   startNode: start
   targetNode: air_alarm
   category: construction-category-structures
-  description: Воздушная сигнализация. Сигнализация.. воздуха?
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -324,7 +307,6 @@
   startNode: start
   targetNode: fire_alarm
   category: construction-category-structures
-  description: Пожарная сигнализация. Огонь!
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -340,7 +322,6 @@
   startNode: start
   targetNode: sensor
   category: construction-category-structures
-  description: Сенсор воздуха. Чувствует воздух.
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -353,7 +334,6 @@
   startNode: start
   targetNode: sensor
   category: construction-category-structures
-  description: Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб. # Imperial Recipes Locale
   placementMode: AlignAtmosPipeLayers
   objectType: Structure
   canRotate: true
@@ -397,7 +377,6 @@
   hide: true # imperial medieval craft disable
   name: Газовая труба половинчатая # Imperial Recipes Locale
   id: GasPipeHalf
-  description: Половина трубы. # Imperial Recipes Locale
   graph: GasPipe
   startNode: start
   targetNode: half
@@ -680,7 +659,6 @@
   hide: true # imperial medieval craft disable
   name: Газовый насос # Imperial Recipes Locale
   id: GasPressurePump
-  description: Насос, перемещающий газ под определённым давлением. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: pressurepump
@@ -779,8 +757,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: GasPassiveGate
-  name: Пассивный клапан # Imperial Recipes Locale
-  description: Односторонний воздушный клапан, не требующий питания. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: passivegate
@@ -877,8 +853,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: GasValve
-  name: Ручной клапан # Imperial Recipes Locale
-  description: Труба с клапаном, которым можно перекрыть поток проходящего по ней газа. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: valve
@@ -927,8 +901,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: SignalControlledValve
-  name: Сигнальный клапан # Imperial Recipes Locale
-  description: Труба с клапаном, который можно контролировать при помощи сигналов. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: signalvalve
@@ -977,8 +949,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: GasPort
-  name: Соединительный порт # Imperial Recipes Locale
-  description: Для подключения портативных устройств, связанных с управлением атмосферой. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: port
@@ -991,8 +961,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: GasDualPortVentPump
-  name: Двухпортовая вентиляция # Imperial Recipes Locale
-  description: Имеет клапан и прикреплённый к нему насос. Один вход для закачивания воздуха, другой - для откачивания. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: dualportventpump
@@ -1003,8 +971,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: HeatExchanger
-  name: Радиатор # Imperial Recipes Locale
-  description: Переносит тепло между трубой и окружающей средой. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: radiator
@@ -1026,8 +992,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: GasFilter
-  name: Газовый фильтр # Imperial Recipes Locale
-  description: Очень полезен для фильтрации газов. # Imperial Recipes Locale
   graph: GasTrinary
   startNode: start
   targetNode: filter
@@ -1056,8 +1020,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: GasMixer
-  name: Газовый смеситель # Imperial Recipes Locale
-  description: Очень полезен для смешивания газов. # Imperial Recipes Locale
   graph: GasTrinary
   startNode: start
   targetNode: mixer
@@ -1086,8 +1048,6 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: PressureControlledValve
-  name: Пневматический клапан # Imperial Recipes Locale
-  description: Клапан, регулируемый давлением. # Imperial Recipes Locale
   graph: GasTrinary
   startNode: start
   targetNode: pneumaticvalve
@@ -1106,7 +1066,6 @@
   startNode: start
   targetNode: intercom
   category: construction-category-structures
-  description: Интерком. # Imperial Recipes Locale
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -1123,7 +1082,6 @@
   startNode: start
   targetNode: signal
   category: construction-category-utilities
-  description: Это таймер для подачи на устройства сигналов через определённое время. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -1138,7 +1096,6 @@
   startNode: start
   targetNode: screen
   category: construction-category-utilities
-  description: Это таймер для подачи на устройства сигналов через определённое время, со встроенным экраном. # Imperial Recipes Locale
   objectType: Structure
   canRotate: false
   placementMode: SnapgridCenter
@@ -1154,7 +1111,6 @@
   startNode: start
   targetNode: brig
   category: construction-category-utilities
-  description: Это таймер для камер брига. # Imperial Recipes Locale
   objectType: Structure
   canRotate: false
   placementMode: SnapgridCenter

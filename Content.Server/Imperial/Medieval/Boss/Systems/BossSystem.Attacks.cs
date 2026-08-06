@@ -22,6 +22,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
@@ -45,7 +46,7 @@ public sealed partial class BossSystem
         SubscribeLocalEvent<TimedBossHealComponent, ComponentInit>(OnHealInit);
         SubscribeLocalEvent<TimedBossHealComponent, BossHealDoAfterEvent>(OnBossHealDoAfter);
         SubscribeLocalEvent<PhysAwakeOnSpawnComponent, ComponentInit>(OnAwakeSpawn);
-        SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamageOnContactCollide);
+        SubscribeLocalEvent<BossDamageOnContactComponent, StartCollideEvent>(OnDamageOnContactCollide);
         SubscribeLocalEvent<ChargingRuneExplosionComponent, ComponentInit>(OnChargingStartup);
         SubscribeLocalEvent<ChargingRuneExplosionComponent, BossRunesChargingDoAfterEvent>(OnChargingDoAfter);
         SubscribeLocalEvent<BossBullethellSourceComponent, MapInitEvent>(OnBHellInit);
@@ -113,7 +114,7 @@ public sealed partial class BossSystem
     private void OnAwakeSpawn(EntityUid uid, PhysAwakeOnSpawnComponent component, ComponentInit args)
         => _physics.WakeBody(uid);
 
-    private void OnDamageOnContactCollide(EntityUid uid, DamageOnContactComponent component, ref StartCollideEvent args)
+    private void OnDamageOnContactCollide(EntityUid uid, BossDamageOnContactComponent component, ref StartCollideEvent args)
         => _damage.TryChangeDamage(args.OtherEntity, component.Damage);
 
     private void OnChargingStartup(EntityUid uid, ChargingRuneExplosionComponent component, ComponentInit args)
@@ -365,7 +366,7 @@ public sealed partial class BossSystem
             comp.NextCheck = _timing.CurTime + TimeSpan.FromSeconds(1f);
 
             var runes = EntityManager.AllEntities<PurifyableExplosionRuneComponent>().Where(x => TryComp<BossAttackComponent>(x, out var attack) && attack.Boss == uid);
-            var activeRunes = runes.Where(x => _physics.GetContactingEntities(x).Where(y => HasComp<HumanoidAppearanceComponent>(y)).ToList().Any());
+            var activeRunes = runes.Where(x => _physics.GetContactingEntities(x).Where(y => HasComp<HumanoidProfileComponent>(y)).ToList().Any());
 
             if (activeRunes.Count() >= runes.Count())
             {
@@ -403,7 +404,7 @@ public sealed partial class BossSystem
 
             var coords = Transform(uid).Coordinates;
             var targetCoords = new EntityCoordinates(coords.EntityId, coords.Position + comp.TargetPos);
-            _gun.AttemptShoot(uid, comp.Weapon, Comp<GunComponent>(comp.Weapon), targetCoords);
+            _gun.AttemptShoot(uid, (comp.Weapon, Comp<GunComponent>(comp.Weapon)), targetCoords);
             _audio.PlayPvs(Comp<GunComponent>(comp.Weapon).SoundGunshot, uid);
             comp.CurShot++;
             comp.NextShot = _timing.CurTime + TimeSpan.FromSeconds(comp.Delay);

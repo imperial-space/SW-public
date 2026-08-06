@@ -17,6 +17,8 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Chat;
 
 namespace Content.Server.Imperial.Medieval.Cult.Bloodspells;
 

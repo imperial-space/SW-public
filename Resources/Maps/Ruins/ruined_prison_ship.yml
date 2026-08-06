@@ -584,7 +584,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 50000
-      autoRecharge: True
   - uid: 362
     components:
     - type: Transform
@@ -2455,13 +2454,6 @@ entities:
     - type: Transform
       pos: -0.53172827,2.545515
       parent: 2
-- proto: HandheldHealthAnalyzerUnpowered
-  entities:
-  - uid: 499
-    components:
-    - type: Transform
-      pos: 1.5534105,-7.299921
-      parent: 2
 - proto: HighSecArmoryLocked
   entities:
   - uid: 229
@@ -2777,7 +2769,7 @@ entities:
     components:
     - type: MetaData
       desc: looks like it took some serious explosive damage
-      name: Destryoed thruster
+      name: Destroyed thruster
     - type: Transform
       pos: -2.5,-7.5
       parent: 2

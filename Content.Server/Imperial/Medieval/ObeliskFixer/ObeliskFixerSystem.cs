@@ -6,6 +6,8 @@ using Content.Shared.Imperial.Medieval.ObeliskDestroyable;
 using Content.Shared.Imperial.Medieval.ObeliskFixer;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Imperial.Medieval.ObeliskFixer;
 
@@ -13,6 +15,7 @@ public sealed class ObeliskFixerSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly ObeliskDestroyableSystem _obelisks = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -33,7 +36,7 @@ public sealed class ObeliskFixerSystem : EntitySystem
             return;
         }
 
-        if (damageable.TotalDamage <= FixedPoint2.Zero &&
+        if (_damageable.GetTotalDamage((target, damageable)) <= FixedPoint2.Zero &&
             obelisk.CurrentPhase == 0)
         {
             return;
@@ -71,7 +74,7 @@ public sealed class ObeliskFixerSystem : EntitySystem
             return;
         }
 
-        if (damageable.TotalDamage <= FixedPoint2.Zero &&
+        if (_damageable.GetTotalDamage((target, damageable)) <= FixedPoint2.Zero &&
             obelisk.CurrentPhase == 0)
         {
             return;

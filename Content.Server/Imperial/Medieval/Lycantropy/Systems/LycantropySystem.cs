@@ -44,6 +44,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.Lycantropy;
 
@@ -246,7 +247,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         {
             foreach (var item in args.HitEntities)
             {
-                if (!HasComp<HumanoidAppearanceComponent>(item))
+                if (!HasComp<HumanoidProfileComponent>(item))
                     continue;
 
                 if (!_mobState.IsCritical(item))

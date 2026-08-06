@@ -1,6 +1,6 @@
 using Content.Server.MedievalMoneyChecker.Components;
 using Content.Shared.Examine;
-using Content.Server.Store.Components;
+using Content.Shared.Store.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Server.MedievalMoneyChecker

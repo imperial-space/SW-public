@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Plague;
 
-public sealed partial class ProgressPlague : EntityEffect
+public sealed partial class ProgressPlague : LegacyEntityEffect
 {
     [DataField(required: true)]
     public float ProgressAmount;

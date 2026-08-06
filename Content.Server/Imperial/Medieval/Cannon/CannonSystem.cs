@@ -341,7 +341,7 @@ public sealed class CannonSystem : EntitySystem
 
         var fromCoordinates = Transform(ent.Owner).Coordinates;
         var toCoordinates = new EntityCoordinates(ent.Owner, gun.DefaultDirection);
-        _gunSystem.Shoot(ent.Owner, gun, payload, fromCoordinates, toCoordinates, out _, user);
+        _gunSystem.Shoot((ent.Owner, gun), payload, fromCoordinates, toCoordinates, out _, user);
         SpawnShotSmoke(ent, gun);
 
         // GunSystem uses PlayPredicted for gunshots, which excludes the initiating user on the server.

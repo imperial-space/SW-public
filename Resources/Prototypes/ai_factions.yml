@@ -2,6 +2,7 @@
   id: Dragon
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - Syndicate
   - Xeno
   - PetsNT
@@ -13,6 +14,7 @@
   - Pirate # Imperial Space Pirates: New Horizon
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: NanoTrasen
@@ -39,19 +41,21 @@
 
 - type: npcFaction
   id: PetsNT
+  friendly:
+  - NanoTrasen
   hostile:
   - Mouse
   - SimpleHostile
   - Zombie
   - Xeno
   - AllHostile
-  - Wizard
   - Dragon
 
 - type: npcFaction
   id: SimpleHostile
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - Syndicate
   - Passive
   - PetsNT
@@ -74,6 +78,7 @@
   id: Syndicate
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - SimpleHostile
   - Xeno
   - PetsNT
@@ -90,6 +95,7 @@
   id: Xeno
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - Syndicate
   - Passive
   - PetsNT
@@ -108,6 +114,7 @@
   id: Zombie
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - SimpleNeutral
   - SimpleHostile
   - Syndicate
@@ -127,6 +134,7 @@
   id: Revolutionary
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - Zombie
   - SimpleHostile
   - Dragon
@@ -140,6 +148,7 @@
   id: AllHostile
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - Dragon
   - Mouse
   - Passive
@@ -160,6 +169,7 @@
   id: Wizard
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - Dragon
   - Mouse
   - Passive
@@ -181,6 +191,7 @@
   hostile:
   # they have brains
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - Syndicate
   - Zombie
   - Revolutionary

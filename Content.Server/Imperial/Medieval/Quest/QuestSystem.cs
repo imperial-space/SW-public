@@ -1,4 +1,4 @@
-п»їusing System.Linq;
+using System.Linq;
 using Content.Server.Quest.Components;
 using Content.Shared.Speech;
 using Content.Shared.Random.Helpers;
@@ -14,6 +14,7 @@ using Robust.Shared.Player;
 using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Medieval.Trading;
 using Content.Shared.Storage.Components;
+using Content.Shared.Chat;
 
 namespace Content.Server.Quest;
 public partial class QuestSystem : EntitySystem
@@ -152,7 +153,7 @@ public partial class QuestSystem : EntitySystem
         foreach (var spy in EntityManager.EntityQuery<PalletSpyComponent>())
         {
             EnsureComp<SpeechComponent>(spy.Owner);
-            _chat.TrySendInGameICMessage(spy.Owner, "Р—Р°РјРµС‡РµРЅРѕ РїСЂРёР±С‹С‚РёРµ С†РµРЅРЅРѕРіРѕ РіСЂСѓР·Р°... РµРіРѕ СЃРѕР±РёСЂР°СЋС‚СЃСЏ РґРѕСЃС‚Р°РІРёС‚СЊ РІ " + comp.ContractPartner +"!!!", InGameICChatType.Speak, false);
+            _chat.TrySendInGameICMessage(spy.Owner, "Замечено прибытие ценного груза... его собираются доставить в " + comp.ContractPartner +"!!!", InGameICChatType.Speak, false);
         }
     }
 
@@ -165,17 +166,17 @@ public partial class QuestSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, QuestContractComponent comp, ExaminedEvent args)
     {
-        args.PushMarkup("[color=sandybrown]РўРёРї РєРѕРЅС‚СЂР°РєС‚Р°: [/color]РґРѕР±С‹С‡Р°");
-        args.PushMarkup("[color=lightgreen]РњРµСЃС‚Рѕ СЃРґР°С‡Рё: [/color]" + comp.ContractPartner);
-        args.PushMarkup("[color=orange]РўРёРї РґРѕР±С‹С‡Рё: [/color]" + comp.ContractName);
-        args.PushMarkup("[color=red]РќРµРѕР±С…РѕРґРёРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ: [/color]" + comp.Amount);
-        args.PushMarkup("[color=yellow]РќР°РіСЂР°РґР°: [/color]" + comp.Reward);
+        args.PushMarkup("[color=sandybrown]Тип контракта: [/color]добыча");
+        args.PushMarkup("[color=lightgreen]Место сдачи: [/color]" + comp.ContractPartner);
+        args.PushMarkup("[color=orange]Тип добычи: [/color]" + comp.ContractName);
+        args.PushMarkup("[color=red]Необходимое количество: [/color]" + comp.Amount);
+        args.PushMarkup("[color=yellow]Награда: [/color]" + comp.Reward);
     }
 
     private void OnExaminePallete(EntityUid uid, PalletContractComponent comp, ExaminedEvent args)
     {
-        args.PushMarkup("[color=sandybrown]РўРёРї РєРѕРЅС‚СЂР°РєС‚Р°: [/color]РґРѕСЃС‚Р°РІРєР°");
-        args.PushMarkup("[color=lightgreen]РњРµСЃС‚Рѕ СЃРґР°С‡Рё: [/color]" + comp.ContractPartner);
-        args.PushMarkup("[color=yellow]РќР°РіСЂР°РґР°: [/color]" + comp.Reward);
+        args.PushMarkup("[color=sandybrown]Тип контракта: [/color]доставка");
+        args.PushMarkup("[color=lightgreen]Место сдачи: [/color]" + comp.ContractPartner);
+        args.PushMarkup("[color=yellow]Награда: [/color]" + comp.Reward);
     }
 }

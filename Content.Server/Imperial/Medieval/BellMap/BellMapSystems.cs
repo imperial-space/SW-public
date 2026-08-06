@@ -1,8 +1,8 @@
-using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Shared.Coordinates;
 using Content.Shared.Imperial.BellMap.Components;
 using Content.Shared.Interaction;
+using Content.Shared.Objectives.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -12,7 +12,7 @@ namespace Content.Server.Imperial.BellMap.Systems;
 public sealed partial class BellMapSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly TargetSystem _targetSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -37,7 +37,7 @@ public sealed partial class BellMapSystem : EntitySystem
         }
 
         var mapId = _transformSystem.GetMapId(ev.Target);
-        var all = _mindSystem.GetAliveHumans();
+        var all = _targetSystem.GetAliveHumans();
         foreach (var mind in all)
         {
             if (mind.Comp.CurrentEntity == null) continue; // Skip if mind doesn't have an entity.

@@ -4,6 +4,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Trade;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Trade;
 

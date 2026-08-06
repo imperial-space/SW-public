@@ -26,8 +26,8 @@ public sealed partial class SpawnBlood : BasePlagueEffect
         var xform = entMan.GetComponent<TransformComponent>(uid);
         if (!entMan.TryGetComponent<BloodstreamComponent>(uid, out var blood))
             return;
-
-        Solution sol = new(blood.BloodReagent, 20f);
+        // Solution sol = new(blood.BloodReagent, 20f);
+        Solution sol = new("Blood", 20f);
         puddle.TrySpillAt(xform.Coordinates, sol, out _, false);
     }
 }

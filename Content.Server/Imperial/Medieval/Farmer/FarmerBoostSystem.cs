@@ -7,6 +7,7 @@ using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.StatusEffect;
 
+using Content.Shared.Nutrition.Components; 
 namespace Content.Server.Imperial.Medieval.Farmer;
 
 public sealed class FarmerBoostSystem : EntitySystem
@@ -32,7 +33,8 @@ public sealed class FarmerBoostSystem : EntitySystem
     }
 
     private void OnMarkerInit(EntityUid uid, AddFarmerBoostOnInitComponent comp, MapInitEvent args)
-        => _lookup.GetEntitiesInRange<FoodComponent>(Transform(uid).Coordinates, comp.Range).ToList()
+        => 
+        _lookup.GetEntitiesInRange<EdibleComponent>(Transform(uid).Coordinates, comp.Range).ToList()
                                                                    .ForEach(x => EnsureComp<FarmerBoostOnConsumeComponent>(x));
 
     private void OnContPickup(EntityUid uid, LastPickedUpContainerComponent comp, GotEquippedHandEvent args)

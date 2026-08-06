@@ -36,7 +36,7 @@ public sealed partial class SoulboundTriggerSystem : EntitySystem
     private void OnGotEquipped(EntityUid uid, SoulboundTriggerComponent component, GotEquippedEvent args)
     {
         if (component.User == null) TryBindSoul(uid, component);
-        else if (component.User != args.Equipee) _trigger.Trigger(uid, component.User, component.KeyOut);
+        else if (component.User != args.EquipTarget) _trigger.Trigger(uid, component.User, component.KeyOut);
     }
 
     public void TryBindSoul(EntityUid uid, SoulboundTriggerComponent? component = null)

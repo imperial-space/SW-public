@@ -2,8 +2,6 @@ using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Map;
-using Robust.Shared.Maths;
 
 namespace Content.Server.Imperial.Medieval.Power;
 
@@ -14,23 +12,29 @@ public partial class MyrmexDeviceNode : Node
     public DirectionFlag ConnectDirections = DirectionFlag.None;
 
     public override IEnumerable<Node> GetReachableNodes(
-        TransformComponent xform,
+        Entity<TransformComponent> xform,
         EntityQuery<NodeContainerComponent> nodeQuery,
         EntityQuery<TransformComponent> xformQuery,
-        MapGridComponent? grid,
+        Entity<MapGridComponent>? grid,
         IEntityManager entMan)
     {
-        if (!xform.Anchored || grid == null)
+        // if (!xform.Anchored || grid == null)
+        //     yield break;
+        // var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+        // foreach (var (dir, node) in NodeHelpers.GetCardinalNeighborNodes(nodeQuery, grid, gridIndex))
+
+        if (!xform.Comp.Anchored || grid is not { } gridEnt)
             yield break;
 
-        var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var gridIndex = mapSystem.TileIndicesFor(gridEnt, xform.Comp.Coordinates);
 
-        foreach (var (dir, node) in NodeHelpers.GetCardinalNeighborNodes(nodeQuery, grid, gridIndex))
+        foreach (var (dir, node) in NodeHelpers.GetCardinalNeighborNodes(nodeQuery, gridEnt, gridIndex, mapSystem))
         {
             if (dir == Direction.Invalid)
                 continue;
 
-            if ((ConnectDirections == DirectionFlag.None || (ConnectDirections & dir.AsFlag()) != 0) 
+            if ((ConnectDirections == DirectionFlag.None || (ConnectDirections & dir.AsFlag()) != 0)
                 && node is MyrmexPipeNode pipeNode)
             {
                 if (CanPipeConnectFromDirection(pipeNode, dir.GetOpposite(), entMan, xformQuery))
@@ -38,8 +42,7 @@ public partial class MyrmexDeviceNode : Node
             }
         }
 
-
-        foreach (var node in NodeHelpers.GetNodesInTile(nodeQuery, grid, gridIndex))
+        foreach (var node in NodeHelpers.GetNodesInTile(nodeQuery, gridEnt, gridIndex, mapSystem))
         {
             if (node != this && node is MyrmexPipeNode)
                 yield return node;

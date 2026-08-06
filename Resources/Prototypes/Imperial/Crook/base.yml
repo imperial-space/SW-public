@@ -7,29 +7,30 @@
   flavor: shocking
   color: "#4d7ee7"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: AndroidBlood
           min: 5
-        - !type:OrganType
-          type: Android
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Android ]
+          inverted: true
       - !type:Electrocute
         probability: 0.1
         conditions:
-        - !type:OrganType
-          type: Android
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Android ]
+          inverted: true
       - !type:HealthChange
         damage:
           groups:
             Airloss: 1
         conditions:
-        - !type:OrganType
-          type: Android
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Android ]
+          inverted: true
 
 - type: metabolizerType
   id: Android
@@ -53,12 +54,9 @@
       metabolizerTypes: [ Android ]
       removeEmpty: true
       groups:
-        - id: Food
-        - id: Drink
-        - id: Medicine
-        - id: Poison
-        - id: Narcotic
-        - id: Alcohol
+        - id: Digestion
+        - id: Bloodstream
+        - id: Metabolites
           rateModifier: 0.25
     - type: SolutionContainerManager
       solutions:
@@ -74,57 +72,36 @@
           - ReagentId: AndroidBlood
             Quantity: 10
 
-- type: body
-  id: Android
-  name: "android"
-  root: torso
-  slots:
-    head:
-      part: HeadHuman
-      connections:
-      - torso
-    torso:
-      part: TorsoHuman
-      connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
-      organs:
-        core: AndroidCore
-    right_arm:
-      part: RightArmHuman
-      connections:
-      - right_hand
-    left_arm:
-      part: LeftArmHuman
-      connections:
-      - left_hand
-    right_hand:
-      part: RightHandHuman
-    left_hand:
-      part: LeftHandHuman
-    right_leg:
-      part: RightLegHuman
-      connections:
-      - right_foot
-    left_leg:
-      part: LeftLegHuman
-      connections:
-      - left_foot
-    right_foot:
-      part: RightFootHuman
-    left_foot:
-      part: LeftFootHuman
+# Imperial Crook: old type: body Android removed; InitialBody on BaseMobMechanic
 
 - type: entity
   save: false
-  parent: [BaseMobSpecies, MobBloodstream]
+  parent: [BaseSpeciesMobOrganic, MobBloodstream]
   id: BaseMobMechanic
   abstract: true
   components:
-  - type: Body
-    prototype: Android
+  - type: InitialBody
+    organs:
+      Torso: OrganHumanTorso
+      Head: OrganHumanHead
+      ArmLeft: OrganHumanArmLeft
+      ArmRight: OrganHumanArmRight
+      HandRight: OrganHumanHandRight
+      HandLeft: OrganHumanHandLeft
+      LegLeft: OrganHumanLegLeft
+      LegRight: OrganHumanLegRight
+      FootLeft: OrganHumanFootLeft
+      FootRight: OrganHumanFootRight
+      Brain: AndroidCore
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganHumanHeart
+      Stomach: OrganHumanStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
   - type: Bloodstream
     bloodReagent: AndroidBlood
     chemicalMaxVolume: 150
@@ -242,7 +219,7 @@
       Female: UnisexSilicon
     wilhelmProbability: 0
   - type: UnblockableSpeech
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Human
     hideLayersOnEquip:
     - Hair

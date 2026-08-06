@@ -1,0 +1,281 @@
+chat-regularforce-g = Регулярка
+chat-guard-n = Гвардия
+chat-medcorps-j = Мед.Корпус
+chat-specoperation-k = Спец.Операция
+chat-airgroup-l = Воздушная Группа
+
+
+ent-EncryptionKeyRegularForce = ключ шифрования
+    .desc = Ключ шифрования
+ent-EncryptionKeyGuard = ключ шифрования
+    .desc = Ключ шифрования
+ent-EncryptionKeyMedCorps = ключ шифрования
+    .desc = Ключ шифрования
+ent-EncryptionKeySpecOperation = ключ шифрования
+    .desc = Ключ шифрования
+ent-EncryptionKeyAirGroup = ключ шифрования
+    .desc = Ключ шифрования
+
+ent-ClothingHeadsetFADAK9MAdministration = Полноразмерная гарнитура администрации
+    .desc = Гарнитура, используемая администраций
+
+ent-ClothingHeadsetFADAK9MPolice = Полноразмерная гарнитура полиция
+    .desc = Гарнитура, используемая полиций
+
+ent-ClothingHeadsetFADAK9MShipyard = Полноразмерная гарнитура "Верфь"
+    .desc = Гарнитура, используемая Верфью
+
+ent-ClothingHeadsetFADAK9MBank = Полноразмерная гарнитура банка
+    .desc = Гарнитура, используемая банком
+
+ent-ClothingHeadsetFADAK9MSpecialist = Полноразмерная гарнитура торгового дока
+    .desc = Гарнитура, используемая торговым доком
+
+ent-ClothingHeadsetFADAK9MWastes = Полноразмерная гарнитура фабрики отходов
+    .desc = Гарнитура, используемая фабрикой отходов
+
+ent-ClothingHeadsetFADAK9MMiner = Полноразмерная гарнитура шахты
+    .desc = Гарнитура, используемая шахтерами
+
+id-card-access-level-starcorps = Звёздный Корпус
+job-name-starcorps = Звёздный Корпус
+job-name-federation = Федерация
+
+ent-StarCorpsIDCard = ID карта
+    .desc = Карта идентификации.
+ent-ElysiumFederationadminIDCard = ID карта
+    .desc = Карта идентификации.
+ent-StarCorpsPDA = КПК Звёздного Корпуса
+    .desc = Устройство для инициализации и просмотра идентификационных карт. Имеет встроенные программы, которые есть в других обычных КПК.
+ent-AirlockStarCorpsLocked = шлюз Звёздного Корпуса
+    .desc = От него исходит превосходство.
+ent-AirlockStarCorps = шлюз Звёздного Корпуса
+    .desc = От него исходит превосходство.
+ent-DarkAirlockStarCorpsLocked = шлюз Звёздного Корпуса
+    .desc = От него исходит превосходство.
+ent-DarkAirlockStarCorps = шлюз Звёздного Корпуса
+    .desc = От него исходит превосходство.
+
+ent-WallShuttleStarCorps = стена Звёздного Корпуса
+    .desc = Удерживает воздух внутри.
+ent-DarkWallShuttleStarCorps = стена Звёздного Корпуса
+    .desc = Удерживает воздух внутри.
+ent-DiagonalWallShuttleStarCorps = стена Звёздного Корпуса
+    .desc = Удерживает воздух внутри.
+ent-DiagonalDarkWallShuttleStarCorps = стена Звёздного Корпуса
+    .desc = Удерживает воздух внутри.
+
+ent-CivilianFederationLocker = гражданский шкафчик
+ent-PatrolLocker = оружейный шкаф
+ent-StarCorpsLocker = шкафчик Звёздного Корпуса
+
+ent-BannerElysiumCivilian = голографический дисплей
+    .desc = Восславь Федерацию!
+ent-BannerElysiumSecurity = голографический дисплей
+    .desc = Восславь Федерацию!
+ent-ElysiumPosterHolo = голографический дисплей
+    .desc = Восславь Федерацию!
+
+ent-StarCorpsTradingTerminal = торговый терминал
+    .desc = Несколько голографических дисплеев, с которыми вы можете взаимодействовать.
+store-category-uplink-FEmergencyequipment = Аварийное Снаряжение
+store-category-uplink-FEngineering = Инженерия
+store-category-uplink-FMaterials = Материалы
+store-category-uplink-FMedicine = Медицина
+store-category-uplink-FRnD = RnD
+store-category-uplink-FSecure = Безопасность и сдерживание
+store-category-uplink-FProvisions = Провиант
+store-category-uplink-FEntertainments = Развлечения
+store-category-uplink-FService = Сервис
+ent-LaserBlastDoor = энергетический барьер
+    .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
+ent-LaserBlastDoorOpen = энергетический барьер
+    .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
+ent-LaserStarCorpsBlastDoor = энергетический барьер
+    .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
+ent-LaserStarCorpsBlastDoorOpen = энергетический барьер
+    .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
+ent-LaserFederationBlastDoor = энергетический барьер
+    .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
+ent-LaserFederationBlastDoorOpen = энергетический барьер
+    .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
+
+ent-ElysiumPrimeFelixPassportPaper = документ
+    .desc = Бумажник с важным содержанием.
+ent-ElysiumPrimeFelixKsivaPaper = документ
+    .desc = Бумажник с важным содержанием.
+ent-ElysiumPrimeFelixBlueKsivaPaper = документ
+    .desc = Бумажник с важным содержанием.
+ent-ElysiumPrimeFelixGreyKsivaPaper = документ
+    .desc = Бумажник с важным содержанием.
+ent-ElysiumPrimeFelixPaper = бумага
+    .desc = Бумага.
+
+ent-FelixFlagBlue = флаг
+    .desc = Развевающийся флаг.
+ent-FelixFlagGreen = флаг
+    .desc = Развевающийся флаг.
+ent-DarkMateryCrystalBase = тёмная материя
+    .desc = Кристализированная тёмная материя.
+ent-DarkMateryCrystal1 = тёмная материя
+    .desc = Кристализированная тёмная материя.
+ent-DarkMateryCrystal2 = тёмная материя
+    .desc = Кристализированная тёмная материя.
+ent-DarkMateryCrystal3 = тёмная материя
+    .desc = Кристализированная тёмная материя.
+ent-DarkMateryCrystal4 = тёмная материя
+    .desc = Кристализированная тёмная материя.
+ent-DarkMateryCrystal5 = тёмная материя
+    .desc = Кристализированная тёмная материя.
+ent-DarkMateryCrystal6 = тёмная материя
+    .desc = Кристализированная тёмная материя.
+ent-DarkMateryCrystal7 = тёмная материя
+    .desc = Кристализированная тёмная материя.
+ent-FelixBigLightsBroken = фонарный столб
+    .desc = Света нет.
+ent-FelixBigLights = фонарный столб
+    .desc = Свет!
+ent-FelixMiniLights = фонарный столб
+    .desc = Свет!
+ent-FelixMiniLightsLightRed = фонарный столб
+    .desc = Свет!
+ent-FelixMiniLightsBlue = фонарный столб
+    .desc = Свет!
+ent-FelixSecurityCase = защищённый ящик
+    .desc = Хранит в себе что-то.
+ent-FelixRadioHandheldRadio10 = рация
+    .desc = Вы можете говорить с кем-то через неё.
+ent-FelixBarrelChemFilledWater = химическая бочка
+    .desc = Хранит в себе что-то.
+ent-FelixBarrelChemFilledMutagen = химическая бочка
+    .desc = Хранит в себе что-то.
+ent-FelixBarrelChemFilledBlood = химическая бочка
+    .desc = Хранит в себе что-то.
+ent-FelixBarrelChemFilledOmnizine = химическая бочка
+    .desc = Хранит в себе что-то.
+ent-FelixBarrelChemFilledFuel = химическая бочка
+    .desc = Хранит в себе что-то.
+ent-FelixTelecomServerMachine = телекоммуникационная вышка
+    .desc = Интернет не ловит...
+ent-FelixBrokenTelecomServer = телекоммуникационная вышка
+    .desc = Интернет не ловит...
+ent-FelixDrillMachine = буровая установка
+    .desc = Rock and Stone!
+ent-MonumentFelixRMK = монумент
+    .desc = Посвящён каким-то важным событиям в какую-то важную дату.
+ent-FelixBrokenMachineCarBase = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar1 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar3 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar4 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar5 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar6 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar7 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar8 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar9 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar10 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-FelixBrokenMachineCar11 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-carpileup = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-cranecargo = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-crawler = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-crawlercratealt = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-crawlerfuel = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-tractordamaged = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-truckdamaged = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-truckmining = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-carpileup2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-cranecargo2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-crawler2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-crawlercratealt2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-crawlerfuel2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-tractordamaged2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-truckdamaged2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+ent-truckmining2 = машина
+    .desc = Наконец-то можно ездить, а не ходить пешком. А стоп... Она сломана.
+
+ent-RemoteSignallerElysiumPrime = Пульт
+    .desc = И далеко от телевизора не отходил.
+
+ent-FelixXenoCollector = коллектор
+    .desc = Мерзкая структура ксеноморфов.
+ent-FelixXenoCore = ядро
+    .desc = Мерзкая структура ксеноморфов.
+ent-FelixXenoCoreAlt = ядро
+    .desc = Мерзкая структура ксеноморфов.
+ent-FelixXenoEggMorth = яйцо морфа
+    .desc = Мерзкая структура ксеноморфов.
+ent-FelixXenoEvopod = эвопод
+    .desc = Мерзкая структура ксеноморфов.
+ent-FelixXenoPoolMutagen = кислотный пруд
+    .desc = Мерзкая структура ксеноморфов.
+ent-FelixXenoPylonDecor = пилон
+    .desc = Мерзкая структура ксеноморфов.
+ent-FelixXenoRecoDecor = восстановитель
+    .desc = Мерзкая структура ксеноморфов.
+
+ent-FelixWeaponQuroMachineGun = Тяжелый Пулемет "Магистр"
+    .desc = Пулемёт с боезапасом 125 патронов. Использует патроны 7x62x51.
+
+ent-PoweredStrobeLightRedHigh = стробоскоп
+    .desc = ЧТООООО ТЫЫЫЫЫ ГООООВОРИШЬ?!! ВСЕ ЧТО Я СЛЫШУ - ЭТО УИИИИ УИИИИ УИИИИИ!!!!
+
+ent-PoweredStrobeLightRedLow = стробоскоп
+    .desc = ЧТООООО ТЫЫЫЫЫ ГООООВОРИШЬ?!! ВСЕ ЧТО Я СЛЫШУ - ЭТО УИИИИ УИИИИ УИИИИИ!!!!
+
+ent-BaseFenceMetalFelix = сетка-рабица
+    .desc = Металлическое ограждение, отгораживающее что-то, вероятно, очень важное.
+ent-FenceMetalBrokenFelix = сломанная сетка-рабица
+    .desc = Кто-то очень разозлился на неодушевленный предмет.
+ent-FenceMetalStraightFelix = { ent-BaseFenceMetal }
+    .desc = { ent-BaseFenceMetal.desc }
+ent-FenceMetalCornerFelix = { ent-BaseFenceMetal }
+    .desc = { ent-BaseFenceMetal.desc }
+ent-FenceMetalEndFelix = { ent-BaseFenceMetal }
+    .desc = { ent-BaseFenceMetal.desc }
+ent-FenceMetalGateFelix = ворота сетки-рабицы
+    .desc = Вы можете использовать дверь вместо того, чтобы перелезать через неё - если вы ТРУС.
+
+ent-GateDoor = Гермоворота
+    .desc = Открывайте! Хм... Никогда не открывают.
+
+ent-GateDoorOpen = Гермоворота
+    .desc = Открывайте! Хм... Никогда не открывают.
+
+ent-ReinforcedConcreteStraight = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+ent-ReinforcedConcreteCorner = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+ent-ReinforcedConcreteEnd = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+# Some temp sting?
+ent-ImperialSimpleRadio1Felix = {ent-ImperialSimpleRadio}
+    .desc = {ent-ImperialSimpleRadio.desc}
+ent-ImperialSimpleRadio2Felix = {ent-ImperialSimpleRadio}
+    .desc = {ent-ImperialSimpleRadio.desc}

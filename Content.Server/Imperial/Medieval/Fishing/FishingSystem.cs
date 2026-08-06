@@ -28,6 +28,7 @@ using Content.Server.Construction;
 using Robust.Shared.Timing;
 using System.Numerics;
 using Content.Shared.Coordinates;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.Fishing;
 
@@ -595,7 +596,7 @@ public sealed partial class FishingSystem : EntitySystem
 
         if (TryComp<StackComponent>(baitUid, out var baitStack) && baitStack.Count != 1)
         {
-            _stack.Use(baitUid, 1, baitStack);
+            _stack.ReduceCount(baitUid, 1);
             return;
         }
 

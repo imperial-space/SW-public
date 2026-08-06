@@ -9,24 +9,28 @@
   flavor: bitter
   color: "#FFC8C8"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalexplosion
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalexplosion
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalexplosion
           min: 30
 
 
@@ -41,7 +45,7 @@
   flavor: null
   color: "#215263"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
@@ -49,29 +53,34 @@
             Heat: -30
             Shock: -20
             Cold: -15
-          groups:
-            Brute: -7
+            Blunt: -2.33
+            Slash: -2.33
+            Piercing: -2.34
       - !type:ProgressPlague
         progressAmount: -10
         curePower: 10
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealburn
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealburn
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealburn
           min: 30
 
 - type: reagent
@@ -85,36 +94,41 @@
   flavor: null
   color: "#0041a8"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
             Asphyxiation: -10
             Bloodloss: -10
-          groups:
-            Brute: -6
+            Blunt: -2
+            Slash: -2
+            Piercing: -2
       - !type:ProgressPlague
         progressAmount: -7
         curePower: 10
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealbloodandoxygen
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealbloodandoxygen
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealbloodandoxygen
           min: 30
 
 - type: reagent
@@ -150,7 +164,7 @@
         emote: Scream
         probability: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -166,20 +180,24 @@
         probability: 0.8
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalacid
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalacid
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalacid
           min: 30
 
 - type: reagent
@@ -208,7 +226,7 @@
           types:
             Radiation: 25
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -216,20 +234,24 @@
             Radiation: 3
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalradiation
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalradiation
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalradiation
           min: 30
 
 - type: reagent
@@ -243,7 +265,7 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows
@@ -253,29 +275,35 @@
         refresh: false
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -20
+          types:
+            Blunt: -6.67
+            Slash: -6.67
+            Piercing: -6.66
       - !type:ProgressPlague
         progressAmount: -15
         curePower: 10
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaldrughealmech
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaldrughealmech
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaldrughealmech
           min: 30
 
 - type: reagent
@@ -289,28 +317,32 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.9
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalvomit
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalvomit
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 24
+          types:
+            Poison: 12
+            Radiation: 12
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalvomit
           min: 30
 
 - type: reagent
@@ -329,7 +361,7 @@
   - !type:PlantAdjustHealth
     amount: 0.5
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -339,26 +371,26 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Rat
-          shouldHave: false
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [ Rat ]
+          inverted: true
+        - !type:ReagentCondition
           reagent: Ammonia
           min: 1
         ignoreResistances: true
         damage:
           types:
             Poison: 0.25
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.12
         conditions:
-        - !type:OrganType
-          type: Rat
-          shouldHave: false
-        - !type:OrganType
-          type: Vox
-          shouldHave: false
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [ Rat ]
+          inverted: true
+        - !type:MetabolizerTypeCondition
+          type: [ Vox ]
+          inverted: true
+        - !type:ReagentCondition
           reagent: Ammonia
           min: 0.8
       - !type:PopupMessage
@@ -367,28 +399,31 @@
         messages: [ "ammonia-smell" ]
         probability: 0.1
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Ammonia
           min: 0.25
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Rat
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [ Rat ]
+        - !type:ReagentCondition
           reagent: Ammonia
           min: 1
         scaleByQuantity: true
         ignoreResistances: true
         damage:
-          groups:
-            Brute: -5
-            Burn: -5
           types:
             Bloodloss: -5
+            Blunt: -1.67
+            Slash: -1.67
+            Piercing: -1.66
+            Heat: -1.67
+            Shock: -1.67
+            Cold: -1.66
       - !type:Oxygenate # ammonia displaces nitrogen in vox blood
         conditions:
-        - !type:OrganType
-          type: Vox
+        - !type:MetabolizerTypeCondition
+          type: [ Vox ]
         factor: -4
 
 - type: reagent
@@ -411,7 +446,7 @@
     - !type:PlantAdjustMutationMod
       amount: 0.1
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
@@ -421,8 +456,8 @@
             Slash: 1
             Piercing: 1
         conditions:
-        - !type:OrganType
-          type: Plant
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ]
 
 - type: reagent
   id: medievalLeft4Zed
@@ -443,19 +478,19 @@
       probability: 0.3
       amount: 0.4
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:SatiateHunger
         conditions:
-        - !type:OrganType
-          type: Plant
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ]
       - !type:HealthChange
         damage:
           types:
             Poison: 1
         conditions:
-        - !type:OrganType
-          type: Plant
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ]
 
 - type: reagent
   id: medievalDiethylamine
@@ -480,7 +515,7 @@
     amount: 1
   - !type:PlantDiethylamine {}
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -498,29 +533,33 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 0.5
         sprintSpeedModifier: 0.5
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalslow
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalslow
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalslow
           min: 30
 
 - type: reagent
@@ -534,29 +573,33 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 1.6
         sprintSpeedModifier: 1.6
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalfast
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalfast
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalfast
           min: 30
 
 - type: reagent
@@ -570,31 +613,35 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:GenericStatusEffect
         key: StaminaModifier
         component: StaminaModifier
         time: 30
         type: Add
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalstamina
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalstamina
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalstamina
           min: 30
 
 - type: reagent
@@ -608,24 +655,28 @@
   flavor: null
   color: "#FFC8C8"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalsmoke
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalsmoke
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalsmoke
           min: 30
 
 - type: reagent
@@ -637,11 +688,12 @@
   flavor: null
   color: "#b0a28a"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalAntihol
           min: 15
         damage:
           types:
@@ -662,24 +714,28 @@
   flavor: null
   color: "#FFC8C8"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalcryoexplosion
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalcryoexplosion
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalcryoexplosion
           min: 30
 
 - type: reagent
@@ -693,35 +749,39 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Slash: -15
-          groups:
-            Brute: -15
+            Slash: -20
+            Blunt: -5
+            Piercing: -5
       - !type:ProgressPlague
         progressAmount: -8
         curePower: 10
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealslash
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealslash
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealslash
           min: 30
 
 - type: reagent
@@ -735,35 +795,39 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Piercing: -15
-          groups:
-            Brute: -15
+            Piercing: -20
+            Blunt: -5
+            Slash: -5
       - !type:ProgressPlague
         progressAmount: -8
         curePower: 10
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealpiercing
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealpiercing
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealpiercing
           min: 30
 
 - type: reagent
@@ -777,35 +841,39 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Blunt: -15
-          groups:
-            Brute: -15
+            Blunt: -20
+            Slash: -5
+            Piercing: -5
       - !type:ProgressPlague
         progressAmount: -8
         curePower: 10
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealblunt
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealblunt
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealblunt
           min: 30
 
 - type: reagent
@@ -819,7 +887,7 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:GenericStatusEffect
         key: Muted
@@ -827,24 +895,28 @@
         type: Add
         time: 180
         refresh: true
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalmute
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalmute
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalmute
           min: 30
 
 - type: reagent
@@ -858,7 +930,7 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:PopupMessage
         type: Local
@@ -880,31 +952,36 @@
         - norepinephricacid-effect-darkness
         - norepinephricacid-effect-blindness
         #conditions:
-        #- !type:ReagentThreshold
+        #- !type:ReagentCondition
+        #  reagent: medievalblind
         #  min: 20
         probability: 0.03
         #If anyone wants to add a light dimming or grayscale effect when under 20u, be my guest
       - !type:GenericStatusEffect
         key: TemporaryBlindness
         component: TemporaryBlindness
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalblind
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalblind
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalblind
           min: 30
 
 - type: reagent
@@ -918,30 +995,34 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
       - !type:Jitter
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaljitter
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaljitter
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaljitter
           min: 30
 
 - type: reagent
@@ -955,7 +1036,7 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Emote
         emote: Yawn
@@ -969,20 +1050,24 @@
         refresh: false
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalsleep
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalsleep
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalsleep
           min: 30
 
 - type: reagent
@@ -999,33 +1084,37 @@
     Flammable:
       methods: [ Touch ]
       effects:
-      - !type:FlammableReaction
+      - !type:Flammable
         multiplier: 3
       - !type:Ignite
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
-      - !type:FlammableReaction
+      - !type:Flammable
         multiplier: 6
       - !type:AdjustTemperature
         amount: 6000
       - !type:Ignite
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalignite
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalignite
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalignite
           min: 30
 
 - type: reagent
@@ -1039,37 +1128,42 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
             Bloodloss: -30
-          groups:
-            Brute: -6
-      - !type:ModifyBleedAmount
+            Blunt: -2
+            Slash: -2
+            Piercing: -2
+      - !type:ModifyBleed
         amount: -5
       - !type:ProgressPlague
         progressAmount: -8
         curePower: 10
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealandstopblood
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealandstopblood
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalhealandstopblood
           min: 30
 
 - type: reagent
@@ -1081,24 +1175,28 @@
   flavor: null
   color: "#FFC8C8"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedsmokeandexplosion
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedsmokeandexplosion
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedsmokeandexplosion
           min: 30
 
 - type: reagent
@@ -1112,37 +1210,47 @@
   flavor: null
   color: "#215263"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -25
-            Toxin: -25
-            Airloss: -25
-            Brute: -25
+          types:
+            Heat: -8.33
+            Shock: -8.33
+            Cold: -8.34
+            Poison: -12.5
+            Radiation: -12.5
+            Asphyxiation: -12.5
+            Bloodloss: -12.5
+            Blunt: -8.33
+            Slash: -8.33
+            Piercing: -8.34
       - !type:ProgressPlague
         progressAmount: -30
         curePower: 30
       - !type:GrantPlagueImmunity
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealeverything
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealeverything
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealeverything
           min: 30
 
 - type: reagent
@@ -1156,35 +1264,39 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Slash: -30
-          groups:
-            Brute: -30
+            Slash: -40
+            Blunt: -10
+            Piercing: -10
       - !type:ProgressPlague
         progressAmount: -20
         curePower: 20
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealslash
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealslash
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealslash
           min: 30
 
 - type: reagent
@@ -1198,35 +1310,39 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Piercing: -30
-          groups:
-            Brute: -30
+            Piercing: -40
+            Blunt: -10
+            Slash: -10
       - !type:ProgressPlague
         progressAmount: -20
         curePower: 20
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealpiercing
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealpiercing
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealpiercing
           min: 30
 
 - type: reagent
@@ -1240,35 +1356,39 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Blunt: -30
-          groups:
-            Brute: -30
+            Blunt: -40
+            Slash: -10
+            Piercing: -10
       - !type:ProgressPlague
         progressAmount: -20
         curePower: 20
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealblunt
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealblunt
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealblunt
           min: 30
 
 - type: reagent
@@ -1282,7 +1402,7 @@
   flavor: null
   color: "#215263"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
@@ -1290,29 +1410,34 @@
             Heat: -30
             Shock: -30
             Cold: -30
-          groups:
-            Brute: -12
+            Blunt: -4
+            Slash: -4
+            Piercing: -4
       - !type:ProgressPlague
         progressAmount: -20
         curePower: 20
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealburn
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealburn
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealburn
           min: 30
 
 - type: reagent
@@ -1349,10 +1474,10 @@
         emote: Scream
         probability: 0.8
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:DeleteDeathCurseEffect
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -1369,20 +1494,24 @@
         probability: 0.7
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedacidradiation
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedacidradiation
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedacidradiation
           min: 30
 
 - type: reagent
@@ -1396,29 +1525,33 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 2.1
         sprintSpeedModifier: 2.1
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedfast
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedfast
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedfast
           min: 30
 
 - type: reagent
@@ -1432,29 +1565,33 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Metabolites:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 0.25
         sprintSpeedModifier: 0.25
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedslow
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedslow
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedslow
           min: 30
 
 - type: reagent
@@ -1468,7 +1605,7 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:GenericStatusEffect
         key: Pacified
@@ -1477,20 +1614,24 @@
         time: 30
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedpacifism
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedpacifism
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedpacifism
           min: 30
 
 - type: reagent
@@ -1511,27 +1652,31 @@
         energyPerUnit: 4
         teleportType: Random
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
         - !type:TeleportEntityEffect
           energyPerUnit: 1
           teleportType: Random
         - !type:Jitter
           conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: medievaladvancedteleport
             min: 30
         - !type:GenericStatusEffect
           key: Stutter
           component: StutteringAccent
           conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: medievaladvancedteleport
             min: 30
         - !type:HealthChange
           damage:
-            groups:
-              Toxin: 6
+            types:
+              Poison: 3
+              Radiation: 3
           conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: medievaladvancedteleport
             min: 30
 
 - type: reagent
@@ -1545,37 +1690,42 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:HealthChange
         damage:
           types:
             Bloodloss: -50
-          groups:
-            Brute: -12
-      - !type:ModifyBleedAmount
+            Blunt: -4
+            Slash: -4
+            Piercing: -4
+      - !type:ModifyBleed
         amount: -10
       - !type:ProgressPlague
         progressAmount: -30
         curePower: 30
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealandstopblood
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealandstopblood
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedhealandstopblood
           min: 30
 
 - type: reagent
@@ -1591,10 +1741,10 @@
   boilingPoint: 212.0
   meltingPoint: 170.0
   metabolisms:
-    Narcotic:
+    Bloodstream:
       metabolismRate: 1.0
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 1.4
         sprintSpeedModifier: 1.4
       - !type:GenericStatusEffect
@@ -1616,37 +1766,43 @@
         type: Remove
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Haloperidol
           max: 0.01
         key: Drowsiness
         time: 10
         type: Remove
-    Medicine:
+    Metabolites:
       metabolismRate: 1.0
       effects:
         - !type:HealthChange
           damage: # heals at the same rate as tricordrazine, doesn't heal poison because if you OD'd I'm not giving you a safety net
-            groups:
-              Brute: -7
-    Poison:
+            types:
+              Blunt: -2.33
+              Slash: -2.33
+              Piercing: -2.34
+    Digestion:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedstimulant
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedstimulant
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedstimulant
           min: 30
 
 - type: reagent
@@ -1660,32 +1816,36 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:DeleteDeathCurseEffect
-    Poison:
+    Bloodstream:
       effects:
-      - !type:FlammableReaction
+      - !type:Flammable
         multiplier: 8
       - !type:AdjustTemperature
         amount: 10000
       - !type:Ignite
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedignite
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedignite
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancedignite
           min: 30
       - !type:ProgressPlague
         progressAmount: -8
@@ -1694,7 +1854,7 @@
     Flammable:
       methods: [ Touch ]
       effects:
-      - !type:FlammableReaction
+      - !type:Flammable
         multiplier: 8
       - !type:Ignite
 
@@ -1709,27 +1869,31 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:NocturnBloodAdd
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancednocturnblood
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancednocturnblood
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievaladvancednocturnblood
           min: 30
 
 - type: reagent
@@ -1757,7 +1921,7 @@
         emote: Scream
         probability: 0.3
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -1774,20 +1938,24 @@
         probability: 0.3
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestexplosion
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestexplosion
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestexplosion
           min: 30
 
 - type: reagent
@@ -1801,50 +1969,58 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:AdjustTemperature
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 293.15
         amount: 100000
       - !type:AdjustTemperature
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           min: 293.15
         amount: -10000
       - !type:HealthChange
         damage:
           types:
             Cellular: -60
-            Bloodloss: -60
-          groups:
-            Burn: -60
-            Toxin: -60
-            Airloss: -60
-            Brute: -60
+            Bloodloss: -90
+            Heat: -20
+            Shock: -20
+            Cold: -20
+            Poison: -30
+            Radiation: -30
+            Asphyxiation: -30
+            Blunt: -20
+            Slash: -20
+            Piercing: -20
       - !type:ProgressPlague
         progressAmount: -20
         curePower: 40
       - !type:GrantPlagueImmunity
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestheal
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestheal
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestheal
           min: 30
 
 - type: reagent
@@ -1858,39 +2034,43 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Medicine:
+    Metabolites:
       effects:
       - !type:DeleteDeathCurseEffect
-    Narcotic:
+    Bloodstream:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 0.1
         sprintSpeedModifier: 0.1
         statusLifetime: 15
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 1
       - !type:GenericStatusEffect
         key: TemporaryBlindness
         component: TemporaryBlindness
         time: 6
-    Poison:
+    Digestion:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestpoison
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestpoison
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbestpoison
           min: 30
 
 - type: reagent
@@ -1904,13 +2084,13 @@
   flavor: null
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
       - !type:Jitter
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 2
         sprintSpeedModifier: 2
       - !type:GenericStatusEffect
@@ -1932,13 +2112,13 @@
         type: Remove
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Haloperidol
           max: 0.01
         key: Drowsiness
         time: 10
         type: Remove
-    Medicine:
+    Metabolites:
       effects:
         - !type:ResetNarcolepsy
         - !type:SatiateHunger
@@ -1949,28 +2129,36 @@
           damage:
             types:
               Cellular: -5
-              Bloodloss: -5
-            groups:
-              Burn: -5
-              Toxin: -5
-              Airloss: -5
-              Brute: -5
-    Poison:
+              Bloodloss: -7.5
+              Heat: -1.67
+              Shock: -1.67
+              Cold: -1.66
+              Poison: -2.5
+              Radiation: -2.5
+              Asphyxiation: -2.5
+              Blunt: -1.67
+              Slash: -1.67
+              Piercing: -1.66
+    Digestion:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbeststimulant
           min: 30
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbeststimulant
           min: 30
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: 6
+          types:
+            Poison: 3
+            Radiation: 3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: medievalbeststimulant
           min: 30

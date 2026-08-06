@@ -4,6 +4,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.hl2.Mobs;
 
@@ -42,7 +43,7 @@ public sealed partial class SelfHealthFractionGreaterPrecondition : HTNPrecondit
             return false;
 
         var thresholdSys = _entManager.System<MobThresholdSystem>();
-        var totalDamage = damageable.TotalDamage;
+        var totalDamage = _entManager.System<DamageableSystem>().GetTotalDamage((owner, damageable));
 
         if (!thresholdSys.TryGetIncapPercentage(owner, totalDamage, out var incapPct))
             return false;

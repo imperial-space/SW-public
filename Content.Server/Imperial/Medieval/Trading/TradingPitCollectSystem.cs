@@ -5,6 +5,7 @@ using Content.Shared.Imperial.Medieval.Trading;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Storage;
+using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;

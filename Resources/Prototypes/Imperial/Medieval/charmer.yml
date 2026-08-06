@@ -21,7 +21,7 @@
     maxCharge: 201
     startingCharge: 201
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileFireball1
     fireCost: 200
   - type: Sprite
@@ -74,7 +74,7 @@
     maxCharge: 201
     startingCharge: 201
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileFireball2
     fireCost: 200
   - type: Sprite
@@ -131,7 +131,7 @@
     maxCharge: 201
     startingCharge: 201
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileFireball3
     fireCost: 200
   - type: Sprite
@@ -188,7 +188,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileDisabler1
     fireCost: 23
   - type: Sprite
@@ -246,7 +246,7 @@
     maxCharge: 121
     startingCharge: 121
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileDisabler2
     fireCost: 20
   - type: Sprite
@@ -308,7 +308,7 @@
     maxCharge: 251
     startingCharge: 251
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileDisabler3
     fireCost: 33
   - type: Sprite
@@ -411,7 +411,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileArrow1
     fireCost: 50
   - type: Sprite
@@ -469,7 +469,7 @@
     maxCharge: 121
     startingCharge: 121
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileArrow2
     fireCost: 30
   - type: Sprite
@@ -528,7 +528,7 @@
     maxCharge: 251
     startingCharge: 251
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileArrow3
     fireCost: 33
   - type: Sprite
@@ -593,7 +593,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileBlood1
     fireCost: 50
   - type: Sprite
@@ -651,7 +651,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileBlood2
     fireCost: 30
   - type: Sprite
@@ -709,7 +709,7 @@
     maxCharge: 191
     startingCharge: 191
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileBlood3
     fireCost: 41
   - type: Sprite
@@ -776,7 +776,7 @@
     maxCharge: 71
     startingCharge: 71
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileFlash1
     fireCost: 30
   - type: Sprite
@@ -837,7 +837,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileFlash2
     fireCost: 30
   - type: Sprite
@@ -903,7 +903,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileFlash3
     fireCost: 30
   - type: Sprite
@@ -978,7 +978,7 @@
     maxCharge: 71
     startingCharge: 71
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileHeal1
     fireCost: 50
   - type: Sprite
@@ -1043,7 +1043,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileHeal2
     fireCost: 50
   - type: Sprite
@@ -1113,7 +1113,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileHeal3
     fireCost: 30
   - type: Sprite
@@ -1188,7 +1188,7 @@
     maxCharge: 71
     startingCharge: 71
   - type: Appearance
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalIcePulse1
     fireCost: 23
   - type: Sprite
@@ -1222,7 +1222,7 @@
     maxCharge: 141
     startingCharge: 141
   - type: Appearance
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalIcePulse2
     fireCost: 31
   - type: Sprite
@@ -1256,7 +1256,7 @@
     maxCharge: 181
     startingCharge: 181
   - type: Appearance
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalIcePulse3
     fireCost: 20
   - type: Sprite
@@ -1266,59 +1266,63 @@
     tags:
       - Taser
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: MedievalIcePulse1
-  damage:
-    types:
-      Cold: 9
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
-
-
-- type: hitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Cold: 9
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
+- type: entity
+  parent: BasicHitscan
   id: MedievalIcePulse2
-  damage:
-    types:
-      Cold: 13
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
-
-- type: hitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Cold: 13
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
+- type: entity
+  parent: BasicHitscan
   id: MedievalIcePulse3
-  damage:
-    types:
-      Cold: 17
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
-
-
-
-
-
-
-
-
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Cold: 17
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
 - type: entity
   id: MedievalCharmerEMP1
   parent: BaseItem
@@ -1342,7 +1346,7 @@
     maxCharge: 71
     startingCharge: 71
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileEMP1
     fireCost: 70
   - type: Sprite
@@ -1403,7 +1407,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileEMP2
     fireCost: 100
   - type: Sprite
@@ -1466,7 +1470,7 @@
     maxCharge: 101
     startingCharge: 101
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileEMP3
     fireCost: 100
   - type: Sprite
@@ -3194,7 +3198,7 @@
 #- type: entity
 #  save: false
 #  name: Urist electro
-#  parent: [BaseMobHuman, BaseMob]
+#  parent: [MobHuman, BaseMob]
 #  id: MobHumanElectroTest
 #  components:
 #  - type: FootPrints

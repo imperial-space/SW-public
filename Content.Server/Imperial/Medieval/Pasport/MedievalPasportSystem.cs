@@ -55,14 +55,16 @@ namespace Content.Server.MedievalPasport
             var pasport = EnsureComp<MedievalPasportComponent>(comp.PasportEntity.Value);
             if (TryComp<MetaDataComponent>(uid, out var metadata))
                 pasport.PersonName = metadata.EntityName;
-            if (TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
+            if (TryComp<HumanoidProfileComponent>(uid, out var appearance))
             {
                 if (appearance.Sex == Sex.Male)
                     pasport.PersonGender = "мужской";
                 else
                     pasport.PersonGender = "женский";
-                pasport.PersonAge = appearance.Age.ToString();
-                pasport.PersonRace = appearance.Species.ToString();
+                var age = appearance.Age;
+                var species = appearance.Species;
+                pasport.PersonAge = age.ToString();
+                pasport.PersonRace = species.ToString();
             }
             pasport.PersonJob = comp.PersonJob;
             _metaData.SetEntityName(comp.PasportEntity.Value, "волшебное удостоверение " + pasport.PersonName);

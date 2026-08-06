@@ -71,8 +71,15 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -30
+      types:
+        Blunt: -15
+        Slash: -15
+        Piercing: -15
+        Heat: -15
+        Shock: -15
+        Cold: -15
+        Asphyxiation: -50
+        Bloodloss: -10
     bloodlossModifier: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"

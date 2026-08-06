@@ -81,9 +81,9 @@ public enum LogType
     ChemicalReaction = 17,
 
     /// <summary>
-    /// Reagent effects related interactions.
+    /// EntityEffect related interactions.
     /// </summary>
-    ReagentEffect = 18,
+    EntityEffect = 18,
 
     /// <summary>
     /// Canister valve was opened or closed.
@@ -480,7 +480,12 @@ public enum LogType
     Instrument = 103,
 
     /// <summary>
-    /// Medieval factions relations interactions.
+    /// Events related to players connecting/disconnecting.
     /// </summary>
-    MedievalFactionRelations = 104,
+    Connection = 104,
+
+    /// <summary>
+    /// Imperial Medieval factions relations interactions.
+    /// </summary>
+    MedievalFactionRelations = 105,
 }

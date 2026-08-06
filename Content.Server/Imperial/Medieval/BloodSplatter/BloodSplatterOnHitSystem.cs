@@ -6,6 +6,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.BloodSplatter;
 
@@ -26,7 +27,7 @@ public sealed class BloodSplatterOnHitSystem : EntitySystem
 
     private void OnPlayerAttached(PlayerAttachedEvent args)
     {
-        if (HasComp<HumanoidAppearanceComponent>(args.Entity))
+        if (HasComp<HumanoidProfileComponent>(args.Entity))
             EnsureComp<BloodSplatterOnHitComponent>(args.Entity);
     }
 

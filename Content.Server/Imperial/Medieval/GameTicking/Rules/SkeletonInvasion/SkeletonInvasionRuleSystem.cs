@@ -168,7 +168,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
             return;
 
         var xform = Transform(args.Stand);
-        var players = EntityManager.AllEntities<HumanoidAppearanceComponent>().Where(x => !HasComp<IgnoreBossStartComponent>(x.Owner) && Transform(x).MapUid == Transform(args.Stand).MapUid);
+        var players = EntityManager.AllEntities<HumanoidProfileComponent>().Where(x => !HasComp<IgnoreBossStartComponent>(x.Owner) && Transform(x).MapUid == Transform(args.Stand).MapUid);
 
         var bossfightPlayers = new List<EntityUid>();
         foreach (var item in players)

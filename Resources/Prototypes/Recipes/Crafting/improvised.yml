@@ -17,7 +17,6 @@
   startNode: start
   targetNode: ghost_sheet
   category: construction-category-clothing
-  description: Станьте жутким призраком. Бу! Испугался? Не бойся, я друг! # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -28,7 +27,6 @@
   startNode: start
   targetNode: cuffscable
   category: construction-category-tools
-  description: Прочные одноразовые пластиковые кабельные стяжки. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -40,7 +38,6 @@
   startNode: start
   targetNode: msstunprod
   category: construction-category-weapons
-  description: Самодельная дубинка-шокер. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -53,7 +50,6 @@
   targetNode: muzzle
   category: construction-category-tools
   objectType: Item
-  description: Намордник, чтобы заткнуть жертву. # Imperial Recipes Locale
 
 
 - type: construction
@@ -65,7 +61,6 @@
   targetNode: cannon
   category: construction-category-weapons
   objectType: Item
-  description: Этот сукин сын может выстрелить из всего, что в него поместится, используя лишь немного газа. # Imperial Recipes Locale
 
 
 - type: construction
@@ -77,7 +72,6 @@
   targetNode: gauze
   category: construction-category-tools
   objectType: Item
-  description: Когда у тебя действительно ничего не осталось. # Imperial Recipes Locale
 
 
 - type: construction
@@ -89,17 +83,14 @@
   targetNode: blindfold
   category: construction-category-tools
   objectType: Item
-  description: Полоса непроницаемого материала. # Imperial Recipes Locale
 
 
 - type: construction
-  name: Цветочный венок # Imperial Recipes Locale
   id: flowerwreath
   graph: flowerwreath
   startNode: start
   targetNode: flowerwreath
   category: construction-category-clothing
-  description: Венок из ярких цветов. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -111,7 +102,6 @@
   targetNode: rag
   category: construction-category-tools
   objectType: Item
-  description: Влажная тряпка для очистки земли. Это лучше, чем скользить весь день. # Imperial Recipes Locale
 
 
 - type: construction
@@ -123,7 +113,6 @@
   targetNode: shotgun
   category: construction-category-weapons
   objectType: Item
-  description: Дерьмовый дробовик ручной работы, использующий патроны 50-го калибра. В патроннике можно держать лишь один патрон. # Imperial Recipes Locale
 
 
 - type: construction
@@ -135,7 +124,6 @@
   targetNode: shell
   category: construction-category-weapons
   objectType: Item
-  description: Самодельный патрон 50-го калибра, стреляющий шрапнелью из осколков стекла. # Imperial Recipes Locale
 
 
 - type: construction
@@ -147,7 +135,6 @@
   targetNode: riflestock
   category: construction-category-weapons
   objectType: Item
-  description: Ложа, вырезанная из дерева, необходимая для самодельного огнестрельного оружия. # Imperial Recipes Locale
 
 
 - type: construction
@@ -159,27 +146,22 @@
   targetNode: firebomb
   category: construction-category-weapons
   objectType: Item
-  description: Слабое самодельное зажигательное устройство. # Imperial Recipes Locale
 
 
 - type: construction
-  name: Хлопковая ткань # Imperial Recipes Locale
   id: CottonWovenCloth
   graph: CottonObjects
   startNode: start
   targetNode: cottoncloth
   category: construction-category-misc
-  description: Кусок хлопчатобумажной ткани, сделанный своими руками, на ощупь грубый. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Соломенная шляпа # Imperial Recipes Locale
   id: strawHat
   graph: StrawHat
   startNode: start
   targetNode: strawhat
   category: construction-category-clothing
-  description: Шикарная шапка для жарких дней! Не рекомендуется носить вблизи огня. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -205,7 +187,6 @@
   targetNode: rollingpin
   category: construction-category-tools
   objectType: Item
-  description: Скалка, используемая для приготовления пищи и защиты кухни. # Imperial Recipes Locale
 
 
 - type: construction
@@ -221,6 +202,14 @@
 - type: construction
   hide: true # imperial medieval craft disable
   name: goliath hardsuit
+  id: RepairMothershipPinpointer
+  graph: RepairMothershipPinpointer
+  startNode: start
+  targetNode: repairedPinpointer
+  category: construction-category-misc
+  objectType: Item
+
+- type: construction
   id: HardsuitGoliath
   graph: HardsuitGoliath
   startNode: start

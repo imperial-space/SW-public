@@ -19,7 +19,7 @@ public sealed class StartTestBossfightCommand : LocalizedEntityCommands
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        var players = _entMan.AllEntities<HumanoidAppearanceComponent>().Select(x => x.Owner).ToList();
+        var players = _entMan.AllEntities<HumanoidProfileComponent>().Select(x => x.Owner).ToList();
         var boss = _entMan.AllEntities<BossComponent>().First();
 
         _entMan.System<BossSystem>().StartBossfight(players, boss);

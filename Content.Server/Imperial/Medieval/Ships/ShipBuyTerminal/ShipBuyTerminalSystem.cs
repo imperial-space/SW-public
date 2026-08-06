@@ -1,3 +1,4 @@
+using Content.Shared.Store.Components;
 using System;
 using System.Linq;
 using System.Numerics;
@@ -306,7 +307,7 @@ public sealed class ShipBuyTerminalSystem : EntitySystem
             if (amountToSpawn <= 0)
                 continue;
 
-            var ents = _stack.SpawnMultiple(cashId, amountToSpawn, coordinates);
+            var ents = _stack.SpawnMultipleAtPosition(cashId, amountToSpawn, coordinates);
             if (ents.FirstOrDefault() is { } ent)
                 _hands.PickupOrDrop(user, ent);
 

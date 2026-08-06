@@ -11,7 +11,7 @@ public sealed partial class IslandPrototype : IPrototype
 {
     /// <inheritdoc/>
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>
     /// Размер острова в тайлах (например, 1 = 1x1, 2 = 2x2, 3 = 3x3).

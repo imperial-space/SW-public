@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.ChemistryRandomization
 {
     [UsedImplicitly]
-    public sealed partial class DeleteDeathCurseEffect : EntityEffect
+    public sealed partial class DeleteDeathCurseEffect : LegacyEntityEffect
     {
         protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
             => Loc.GetString("Снимает проклятье при употреблении более 15 унций");

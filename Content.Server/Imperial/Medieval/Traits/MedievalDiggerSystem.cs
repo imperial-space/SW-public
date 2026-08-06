@@ -8,6 +8,8 @@ using Content.Server.MagicBarrier.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
 using Content.Shared.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.MedievalDigger
 {
@@ -39,7 +41,7 @@ namespace Content.Server.MedievalDigger
             var xform = Transform(uid);
             var coords = xform.Coordinates;
 
-            if (CheckDiggersNearby(coords) && TryComp<DamageableComponent>(uid, out var damageable) && damageable.TotalDamage < 400f && !component.Digged)
+            if (CheckDiggersNearby(coords) && TryComp<DamageableComponent>(uid, out var damageable) && _damageableSystem.GetTotalDamage((uid, damageable)) < 400f && !component.Digged)
             {
                 component.Digged = true;
                 _damageableSystem.TryChangeDamage(uid, component.Damage, true);

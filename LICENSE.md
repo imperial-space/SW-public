@@ -110,11 +110,6 @@ This content is private property. All rights reserved. You are not permitted to 
 This translation is provided for convenience only and has no legal force. Please refer to the Russian version of the license.
 
 
-
-
-
-
-
 # MIT License
 
 Copyright (c) 2017-2025 Space Wizards Federation

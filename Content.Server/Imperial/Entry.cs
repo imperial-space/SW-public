@@ -8,15 +8,17 @@ public sealed partial class ImperialEntry
     public static void Init()
     {
         IoCManager.Resolve<SponsorsManager>().Initialize();
+        MedievalInit();
     }
 
     public static void PostInit()
     {
-
+        MedievalPostInit();
     }
 
-    public static void IoCRegister()
+    public static void IoCRegister(IDependencyCollection deps)
     {
-        IoCManager.Register<SponsorsManager>();
+        deps.Register<SponsorsManager>();
+        MedievalIoCRegister(deps);
     }
 }

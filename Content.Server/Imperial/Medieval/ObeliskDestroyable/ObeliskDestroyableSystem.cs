@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Medieval.Factions;
@@ -44,7 +46,7 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
         }
 
         var requiredDamage = GetCumulativeThreshold(component, phaseIndex + 1);
-        if (damageable.TotalDamage < requiredDamage)
+        if (_damageable.GetTotalDamage((uid, damageable)) < requiredDamage)
             return;
 
         SendAnnouncement(component, phase);
@@ -52,7 +54,7 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
         if (phase.DestroyOnReached)
         {
             var trueOrigin = _achievement.GetPlayerFromOrigin(args.Origin); // xd
-            
+
             if (trueOrigin != null && TryComp<MedievalFactionMemberComponent>(trueOrigin, out var trueOriginFaction))
             {
                 var query = EntityQueryEnumerator<MedievalFactionMemberComponent, ActorComponent>();
@@ -86,8 +88,7 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
         component.CurrentPhase = 0;
         component.InvincibilityActive = false;
         _tempInvincibility.EndTempInvincibilityEarly(uid);
-
-        _damageable.SetAllDamage(uid, damageable, FixedPoint2.Zero);
+        _damageable.SetAllDamage((uid, damageable), FixedPoint2.Zero);
         Dirty(uid, component);
     }
 
@@ -110,12 +111,13 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
 
     private void SetTotalDamage(EntityUid uid, DamageableComponent damageable, FixedPoint2 targetDamage)
     {
-        var currentDamage = new DamageSpecifier(damageable.Damage);
+        // var currentDamage = new DamageSpecifier(damageable.Damage);
+        var currentDamage = _damageable.GetAllDamage((uid, damageable));
         var overflow = currentDamage.GetTotal() - targetDamage;
         if (overflow <= FixedPoint2.Zero)
             return;
 
-        var damageTypes = new List<string>(currentDamage.DamageDict.Keys);
+        var damageTypes = currentDamage.DamageDict.Keys.ToList();
         foreach (var damageType in damageTypes)
         {
             if (!currentDamage.DamageDict.TryGetValue(damageType, out var amount) ||
@@ -134,7 +136,7 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
             }
         }
 
-        _damageable.SetDamage(uid, damageable, currentDamage);
+        _damageable.SetDamage((uid, damageable), currentDamage);
     }
 
     private bool TryGetCurrentPhase(ObeliskDestroyableComponent component, out ObeliskDestroyablePhaseData phase, out int phaseIndex)

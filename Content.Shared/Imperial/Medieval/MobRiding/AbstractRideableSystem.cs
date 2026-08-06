@@ -9,6 +9,7 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
+using Content.Shared.Damage.Systems;
 
 
 namespace Content.Shared.Imperial.Medieval.MobRiding

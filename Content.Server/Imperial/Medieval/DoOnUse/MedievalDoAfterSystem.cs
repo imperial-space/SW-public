@@ -5,6 +5,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Medieval.DoOnUse.DoAfter;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Imperial.Medieval.DoOnUse.DoAfter;
 

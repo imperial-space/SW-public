@@ -7,7 +7,6 @@
   targetNode: plushie
   category: construction-category-misc
   objectType: Item
-  description: Игрушка, которой можно напугать медотсек. # Imperial Recipes Locale
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -18,7 +17,6 @@
   targetNode: suit
   category: construction-category-misc
   objectType: Item
-  description: Сделайте себя похожим на Иана! # Imperial Recipes Locale
 
 - type: construction
   id: MoproachShoes

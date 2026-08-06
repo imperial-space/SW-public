@@ -7,6 +7,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Myrmex.Hive;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Imperial.Medieval.Myrmex
 {

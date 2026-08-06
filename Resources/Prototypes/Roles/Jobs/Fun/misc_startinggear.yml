@@ -176,7 +176,7 @@
     - trayScanner
     - AccessConfiguratorUniversal
     - Multitool
-    - HandheldHealthAnalyzerUnpowered # Imperial Space
+    - HandheldHealthAnalyzer # Imperial Space
     # Imperial Medieval Start
     - MedievalClothingHeadCrownKing
     - MedievalClothingHeadCrownKingNecro
@@ -197,6 +197,7 @@
     - MedievalDoorKeySuperKey
     # Imperial Medieval End
 # imperial medieval end
+    - HandheldHealthAnalyzer # Imperial Space
 
 #Gladiator with spear
 - type: startingGear

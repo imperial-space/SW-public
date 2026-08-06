@@ -1,18 +1,22 @@
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: MedievalMagicBeam
-  damage:
-    types:
-      Heat: 1
-  muzzleFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: muzzle_laser
-  travelFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: beam
-  impactFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: impact_laser
-
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 1
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Imperial/Medieval/Magic/beam.rsi
+      state: muzzle_laser
+    travelFlash:
+      sprite: Imperial/Medieval/Magic/beam.rsi
+      state: beam
+    impactFlash:
+      sprite: Imperial/Medieval/Magic/beam.rsi
+      state: impact_laser
 - type: entity
   id: MedievalMagicWeaponPrism
   parent: BaseItem
@@ -38,7 +42,7 @@
   - type: Battery
     maxCharge: 2500
     startingCharge: 2500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalMagicBeam
   - type: Appearance
 

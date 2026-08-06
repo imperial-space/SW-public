@@ -11,6 +11,7 @@ using Content.Shared.Damage;
 using Content.Server.MagicBarrier.Components;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
 using Content.Shared.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.MagicPotionsMaker
 {

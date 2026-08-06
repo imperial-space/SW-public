@@ -24,6 +24,7 @@ public sealed partial class ChemistryRandomizationSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly IEntitySystemManager _ent = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {
@@ -48,7 +49,7 @@ public sealed partial class ChemistryRandomizationSystem : EntitySystem
         var addedeffects = new List<string>();
         foreach (var key in component.Containers)
         {
-            if (!contman.TryGetContainer($"solution@{key}", out var container))
+            if (!_containers.TryGetContainer(uid, $"solution@{key}", out var container, contman))
                 continue;
             var solution = EnsureComp<SolutionComponent>(((ContainerSlot)container).ContainedEntity!.Value).Solution;
             foreach (var reagent in solution.Contents)
@@ -60,9 +61,9 @@ public sealed partial class ChemistryRandomizationSystem : EntitySystem
                 if (proto.Metabolisms == null)
                     continue;
 
-                foreach (var (_, effectentry) in proto.Metabolisms)
+                foreach (var (_, effectentry) in proto.Metabolisms.Metabolisms)
                 {
-                    var entry = effectentry.MakeGuideEntry(_prototype, _ent);
+                    var entry = effectentry.MakeGuideEntry(_prototype, _ent, proto);
                     var effects = string.Empty;
                     foreach (var effect in entry.EffectDescriptions)
                     {

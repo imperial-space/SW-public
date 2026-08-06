@@ -6,7 +6,6 @@
   startNode: start
   targetNode: cratelivestock
   category: construction-category-storage
-  description: Деревянный ящик для содержания скота. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
@@ -17,7 +16,6 @@
   startNode: start
   targetNode: crategenericsteel
   category: construction-category-storage
-  description: Металлический ящик для хранения вещей. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
@@ -28,18 +26,16 @@
   startNode: start
   targetNode: cratesecure
   category: construction-category-storage
-  description: Надежный металлический ящик для хранения вещей. Доступ может быть настроен с помощью конфигуратора доступов. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   hide: true # imperial medieval craft disable
   id: CrateFreezer
-  name: Холодильник # Imperial Recipes Locale
+  name: construction-recipe-crate-freezer
   graph: CrateFreezer
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Металлический морозильный ящик для хранения вещей. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
@@ -50,7 +46,6 @@
   startNode: start
   targetNode: crateplastic
   category: construction-category-storage
-  description: Пластиковый ящик для хранения вещей. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
@@ -61,7 +56,6 @@
   startNode: start
   targetNode: basebigbox
   category: construction-category-storage
-  description: Большой ящик, в котором можно хранить вещи или прятаться. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
@@ -72,18 +66,33 @@
   startNode: start
   targetNode: boxcardboard
   category: construction-category-storage
-  description: Маленькая коробка для хранения вещей. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
   name: Коробка пиццы # Imperial Recipes Locale
+  id: BoxCardboardSmall
+  graph: BoxCardboardSmall
+  startNode: start
+  targetNode: boxcardboardsmall
+  category: construction-category-storage
+  objectType: Item
+
+- type: construction
+  id: ToteBase
+  name: construction-recipe-box-tote
+  graph: ToteBase
+  startNode: start
+  targetNode: totebase
+  category: construction-category-storage
+  objectType: Item
+
+- type: construction
   id: FoodBoxPizza
   graph: FoodBoxPizza
   startNode: start
   targetNode: foodboxpizza
   category: construction-category-storage
-  description: Коробка для пиццы. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -94,5 +103,4 @@
   startNode: start
   targetNode: cratecoffin
   category: construction-category-storage
-  description: Гроб для хранения трупов. # Imperial Recipes Locale
   objectType: Structure

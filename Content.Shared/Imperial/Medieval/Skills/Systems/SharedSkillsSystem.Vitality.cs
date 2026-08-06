@@ -1,5 +1,6 @@
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Clothing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
 

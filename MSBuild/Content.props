@@ -1,0 +1,19 @@
+<Project>
+  <!--
+  Content specific properties
+  Import *before* Robust.Properties.targets
+  -->
+
+  <PropertyGroup>
+    <LangVersion Condition="'$(LangVersion)' == ''">14</LangVersion>
+    <IsPackable Condition="'$(IsPackable)' == ''">false</IsPackable>
+    <Nullable Condition="'$(Nullable)' == ''">enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- RA0049/RA0051: dependency/partial style (warnings upgraded by TreatWarningsAsErrors). CS0108/CS0414: common upstream merge noise. -->
+    <!-- Imperial Medieval merge: temporary allow older Imperial prototype/system style until full analyzer cleanup -->
+    <WarningsNotAsErrors>CS0618,CS0672,CS0612,CS1062,CS1064,NU1901,NU1902,NU1903,NU1904,CS0108,CS0414,CS0169,CS0105,CS0628,CS8073,CS9336,SYSLIB0060,RA0048,RA0049,RA0050,RA0051,RA0052,RA0002,RA0003,RA0017,RA0020,RA0030,RA0033,RA0037,RA0038,RA0042,RA0045,AD0001</WarningsNotAsErrors>
+  </PropertyGroup>
+</Project>

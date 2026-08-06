@@ -8,19 +8,19 @@ namespace Content.Shared.Imperial.Medieval.Lycantropy;
 public sealed partial class LycantropyAbilityPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public string Name { get; } = default!;
+    public string Name { get; private set; } = default!;
 
     [DataField(required: true)]
-    public string Desc { get; } = default!;
+    public string Desc { get; private set; } = default!;
 
     [DataField(required: true)]
-    public SpriteSpecifier Icon { get; } = default!;
+    public SpriteSpecifier Icon { get; private set; } = default!;
 
     [DataField(required: true)]
-    public int Cost { get; } = 5;
+    public int Cost { get; private set; } = 5;
 
     [DataField(required: true)]
     public Vector2 Position;
@@ -29,10 +29,10 @@ public sealed partial class LycantropyAbilityPrototype : IPrototype
     public ProtoId<LycantropyAbilityPrototype>[] Required = Array.Empty<ProtoId<LycantropyAbilityPrototype>>();
 
     [DataField]
-    public EntProtoId[] HumanActions { get; } = Array.Empty<EntProtoId>();
+    public EntProtoId[] HumanActions { get; private set; } = Array.Empty<EntProtoId>();
 
     [DataField]
-    public EntProtoId[] WerewolfActions { get; } = Array.Empty<EntProtoId>();
+    public EntProtoId[] WerewolfActions { get; private set; } = Array.Empty<EntProtoId>();
 
     [DataField(serverOnly: true)]
     public object? Event;

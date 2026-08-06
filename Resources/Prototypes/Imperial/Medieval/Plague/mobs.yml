@@ -276,7 +276,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 5
-  - type: Food
+  - type: Edible
   - type: FlavorProfile
     flavors:
     - meaty

@@ -7,6 +7,7 @@ using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Physics;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {

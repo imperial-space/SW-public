@@ -8,7 +8,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Imperial.Medieval.Factions;
 
 [Prototype]
-public sealed class FactionGoalPrototype : IPrototype
+public sealed partial class FactionGoalPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

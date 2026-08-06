@@ -1,5 +1,6 @@
 store-ui-default-title = Магазин
 store-ui-default-withdraw-text = Вывести
+store-ui-refund-text = Вернуть
 store-ui-balance-display = {$currency}: {$amount}
 store-ui-price-display = {$amount} {$currency}
 store-ui-discount-display-with-currency = скидка {$amount} на {$currency}
@@ -15,3 +16,5 @@ store-not-account-owner = Этот {$store} не привязан к вам!
 store-preset-name-uplink = Аплинк
 store-preset-name-spellbook = Книга заклинаний
 store-cannot-insert-currency = Вы не можете это вставить!
+store-preset-name-nukie-delivery = Блюспейс-Доставка ЯО
+store-preset-name-changeling = Магазин ДНК

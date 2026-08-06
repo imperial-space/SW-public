@@ -6,6 +6,8 @@
   name: SnowRiflemanPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: soldier
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -23,18 +25,7 @@
       prototypes: [ TDMSnowRiflemanGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -42,6 +33,8 @@
   name: SnowMachineGunnerPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: heavy
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -59,18 +52,7 @@
       prototypes: [ TDMSnowMachineGunnerGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -78,6 +60,8 @@
   name: SnowGrenadierPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: demoman
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -95,18 +79,7 @@
       prototypes: [ TDMSnowGrenadierGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -114,6 +87,8 @@
   name: SnowMedicalPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: medic
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -131,19 +106,7 @@
       prototypes: [ TDMSnowMedicalGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmaceuticals
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -151,6 +114,8 @@
   name: SnowCommanderPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: spy
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -168,18 +133,7 @@
       prototypes: [ TDMSnowCommanderGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -187,6 +141,8 @@
   name: SnowSniperPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: sniper
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -204,18 +160,7 @@
       prototypes: [ TDMSnowSniperGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 #Прототипы для стороны нанотрахен
 
@@ -225,6 +170,8 @@
   name: SnowRiflemanPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: soldier
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -242,18 +189,7 @@
       prototypes: [ TDMSnowRiflemanGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -261,6 +197,8 @@
   name: SnowMachineGunnerPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: heavy
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -278,18 +216,7 @@
       prototypes: [ TDMSnowMachineGunnerGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -297,6 +224,8 @@
   name: SnowGrenadierPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: demoman
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -314,18 +243,7 @@
       prototypes: [ TDMSnowGrenadierGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -333,6 +251,8 @@
   name: SnowMedicalPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: medic
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -350,19 +270,7 @@
       prototypes: [ TDMSnowMedicalGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmaceuticals
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -370,6 +278,8 @@
   name: SnowCommanderPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: spy
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -387,18 +297,7 @@
       prototypes: [ TDMSnowCommanderGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -406,6 +305,8 @@
   name: SnowSniperPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: sniper
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -423,15 +324,4 @@
       prototypes: [ TDMSnowSniperGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]

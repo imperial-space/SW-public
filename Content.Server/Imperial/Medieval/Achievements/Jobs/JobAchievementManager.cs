@@ -8,7 +8,6 @@ using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Serilog;
 
 namespace Content.Server.Imperial.Medieval.Achievements.Jobs;
 

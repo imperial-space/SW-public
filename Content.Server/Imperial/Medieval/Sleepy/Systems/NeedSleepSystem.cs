@@ -84,9 +84,7 @@ namespace Content.Server.NeedSleep
                 if (HasComp<SleepingComponent>(uid))
                     continue;
 
-                var emote = _random.Pick(comp.Emotes);
-                if (_random.Prob(comp.SleepLevel / 450f) && comp.SleepLevel > 65 && !HasComp<SleepingComponent>(uid))
-                    _chatSystem.TryEmoteWithChat(uid, emote, ChatTransmitRange.Normal);
+                TryPlaySleepEmote(uid, comp);
 
                 if (comp.SleepLevel > 96.5f)
                 {
@@ -98,6 +96,15 @@ namespace Content.Server.NeedSleep
                 if (comp.SleepLevel >= comp.MaxSleepLevel)
                     EnsureComp<SleepingComponent>(uid);
             }
+        }
+
+        private void TryPlaySleepEmote(EntityUid uid, NeedSleepComponent component)
+        {
+            if (component.Emotes.Count == 0 || component.SleepLevel <= 65f || !_random.Prob(component.SleepLevel / 450f))
+                return;
+
+            var emote = _random.Pick(component.Emotes);
+            _chatSystem.TryEmoteWithChat(uid, emote, ChatTransmitRange.Normal);
         }
     }
 }

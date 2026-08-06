@@ -15,6 +15,7 @@ using Content.Shared.Examine;
 using Content.Shared.Damage;
 using Robust.Shared.Player;
 using Content.Shared.Inventory;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.SSDFree
 {

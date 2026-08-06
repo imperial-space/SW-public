@@ -6,5 +6,4 @@
   startNode: start
   targetNode: bananiumHorn
   category: construction-category-weapons
-  description: Странный клаксон из бананиума. # Imperial Recipes Locale
   objectType: Item

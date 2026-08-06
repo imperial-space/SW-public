@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Eventing.Reader;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Administration.Managers;
@@ -28,6 +28,7 @@ using Content.Server.Mind;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Chat;
 
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
@@ -256,6 +257,18 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         }
     }
 
+    private uint GetBanMinutesByViolationCount(int violationCount)
+    {
+        return violationCount switch
+        {
+            3 => 5,    // 5 минута
+            4 => 10,   // 10 минут
+            5 => 30,   // 30 минут
+            >= 6 => 60, // 1 час (максимум)
+            _ => 1     // На всякий случай
+        };
+    }
+
 
 
     public override void Initialize()
@@ -349,7 +362,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         return matches;
     }
 
-    private string WrapBannedWordsInTag(string input, Dictionary<string, bool> bannedWords, string openingTag, string closingTag)
+    private string WrapBannedWordsInTag(string input, Dictionary<string, bool> bannedWords, string openingTag = "[color=red]", string closingTag = "[/color]")
     {
         if (string.IsNullOrEmpty(input) || bannedWords.Count == 0)
             return input;
@@ -373,11 +386,10 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         if (patterns.Any())
         {
             var combinedPattern = string.Join("|", patterns);
-            result = Regex.Replace(
+            var regex = new Regex(combinedPattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            result = regex.Replace(
                 result,
-                combinedPattern,
-                match => $"{openingTag}{match.Value}{closingTag}",
-                RegexOptions.IgnoreCase);
+                match => $"{openingTag}{match.Value}{closingTag}");
         }
 
         return result;

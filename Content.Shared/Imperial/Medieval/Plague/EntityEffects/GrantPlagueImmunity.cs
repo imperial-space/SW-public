@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Medieval.Plague;
 
-public sealed partial class GrantPlagueImmunity : EntityEffect
+public sealed partial class GrantPlagueImmunity : LegacyEntityEffect
 {
     public override void Effect(EntityEffectBaseArgs args)
     {

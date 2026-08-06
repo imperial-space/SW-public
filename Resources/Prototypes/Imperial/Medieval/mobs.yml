@@ -27,10 +27,11 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 5
       types:
         ParryAble: 1
+        Blunt: 1.67
+        Slash: 1.67
+        Piercing: 1.66
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -150,10 +151,11 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 5
       types:
         ParryAble: 1
+        Blunt: 1.67
+        Slash: 1.67
+        Piercing: 1.66
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -245,10 +247,11 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 1.5
       types:
         ParryAble: 1
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -383,10 +386,11 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 5.4
       types:
         ParryAble: 1
+        Blunt: 1.8
+        Slash: 1.8
+        Piercing: 1.8
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -521,10 +525,11 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 2
       types:
         ParryAble: 1
+        Blunt: 0.67
+        Slash: 0.67
+        Piercing: 0.66
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -601,10 +606,11 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 78
       types:
         ParryAble: 1
+        Blunt: 26
+        Slash: 26
+        Piercing: 26
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -711,10 +717,11 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 10
       types:
         ParryAble: 1
+        Blunt: 3.34
+        Slash: 3.33
+        Piercing: 3.33
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -832,10 +839,11 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 16
       types:
         ParryAble: 1
+        Blunt: 5.34
+        Slash: 5.33
+        Piercing: 5.33
     range: 1.6
   - type: Puller
   - type: MobThresholds
@@ -959,10 +967,11 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 9.5
       types:
         ParryAble: 1
+        Blunt: 3.17
+        Slash: 3.17
+        Piercing: 3.16
     range: 1.6
   - type: Puller
   - type: MobThresholds
@@ -1167,9 +1176,6 @@
       state: monkey
       sprite: Imperial/Medieval/Mobs/goblin.rsi
   - type: Hands
-  - type: Body
-    prototype: Reptilian
-    requiredLegs: 2
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1317,9 +1323,6 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: hobgoblin
       sprite: Imperial/Medieval/Mobs/hobgoblin.rsi
-  - type: Body
-    prototype: Reptilian
-    requiredLegs: 2
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1334,8 +1337,10 @@
     angle: 0
     animation: WeaponArcPunch
     damage:
-      groups:
-        Brute: 12
+      types:
+        Blunt: 4
+        Slash: 4
+        Piercing: 4
   - type: Thieving
     stripTimeReduction: 3
     stealthy: true
@@ -1486,9 +1491,6 @@
       sprite: Imperial/Medieval/Mobs/murlok.rsi
   - type: Hands
   - type: ComplexInteraction
-  - type: Body
-    prototype: Reptilian
-    requiredLegs: 2
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1790,10 +1792,11 @@
       angle: 0
       animation: WeaponArcPunch
     damage:
-      groups:
-        Brute: 5
       types:
         ParryAble: 1
+        Blunt: 1.67
+        Slash: 1.67
+        Piercing: 1.66
   - type: NoSlip
   - type: Puller
     needsHands: true
@@ -1873,15 +1876,19 @@
     - state: spell
       color: white
   - type: Projectile
-    damage:
-      groups: # good enough. Maybe make it call the rejuvenate command later.
-        Brute: -5
-        Burn: -5
-        Airloss: -5
-        Toxin: -5
+    damage: # good enough. Maybe make it call the rejuvenate command later.
       types:
-        Bloodloss: -2.5
+        Bloodloss: -5
         Cellular: -5
+        Blunt: -1.67
+        Slash: -1.67
+        Piercing: -1.66
+        Heat: -1.67
+        Shock: -1.67
+        Cold: -1.66
+        Asphyxiation: -2.5
+        Poison: -2.5
+        Radiation: -2.5
     ignoreResistances: true
 
 - type: entity
@@ -1956,14 +1963,18 @@
     - Critical
     damageCap: 200
     damage:
-      groups:
-        Brute: -1
-        Burn: -1
-        Airloss: -0.5
-        Toxin: -1
       types:
-        Bloodloss: -1
+        Bloodloss: -1.25
         Cellular: -0.5
+        Blunt: -0.34
+        Slash: -0.33
+        Piercing: -0.33
+        Heat: -0.34
+        Shock: -0.33
+        Cold: -0.33
+        Asphyxiation: -0.25
+        Poison: -0.5
+        Radiation: -0.5
   - type: MedievalDash
     force: 550
   # - type: MultiHandedItem
@@ -2116,10 +2127,11 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 78
       types:
         ParryAble: 1
+        Blunt: 26
+        Slash: 26
+        Piercing: 26
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -2200,11 +2212,12 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 48
       types:
         ParryAble: 1
         Caustic: 10
+        Blunt: 16
+        Slash: 16
+        Piercing: 16
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -2294,11 +2307,12 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 7
       types:
         ParryAble: 1
         Caustic: 4
+        Blunt: 2.34
+        Slash: 2.33
+        Piercing: 2.33
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -2387,12 +2401,13 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 2
       types:
         ParryAble: 1
         Caustic: 1
         Bloodloss: 3
+        Blunt: 0.67
+        Slash: 0.67
+        Piercing: 0.66
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -2509,12 +2524,13 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 6.8
       types:
         ParryAble: 1
         Caustic: 1.9
         Bloodloss: 3
+        Blunt: 2.27
+        Slash: 2.27
+        Piercing: 2.26
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -2896,11 +2912,12 @@
       state: base
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 8.5
       types:
         ParryAble: 1
         Radiation: 1.5
+        Blunt: 2.84
+        Slash: 2.83
+        Piercing: 2.83
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2941,11 +2958,12 @@
       state: base
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 8.5
       types:
         ParryAble: 1
         Radiation: 1.5
+        Blunt: 2.84
+        Slash: 2.83
+        Piercing: 2.83
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2990,11 +3008,12 @@
       state: base
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 13
       types:
         ParryAble: 1
         Radiation: 3
+        Blunt: 4.34
+        Slash: 4.33
+        Piercing: 4.33
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3168,11 +3187,12 @@
     hidden: true
     angle: 0
     damage:
-      groups:
-        Brute: 23
       types:
         ParryAble: 1
         Radiation: 4
+        Blunt: 7.67
+        Slash: 7.67
+        Piercing: 7.66
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3472,12 +3492,13 @@
     soundHit:
       path: /Audio/Imperial/Medieval/hunter_atack.ogg
     damage:
-      groups:
-        Brute: 6
-        Airloss: 2
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 4
+        Blunt: 2
+        Slash: 2
+        Piercing: 2
+        Asphyxiation: 1
   - type: Puller
   - type: Tag
     tags:
@@ -3492,9 +3513,8 @@
     baseWalkSpeed: 2
     baseSprintSpeed: 3.2
   - type: PointLight
-    color: red
-    energy: 0.1
-    radius: 1.3
+    netsync: false
+    enabled: false
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -3547,14 +3567,18 @@
     - Alive
     damageCap: 95
     damage:
-      groups:
-        Brute: -0.8
-        Burn: -0.5
-        Airloss: -0.5
-        Toxin: -0.5
       types:
-        Bloodloss: -0.5
+        Bloodloss: -0.75
         Cellular: -0.5
+        Blunt: -0.27
+        Slash: -0.27
+        Piercing: -0.26
+        Heat: -0.17
+        Shock: -0.17
+        Cold: -0.16
+        Asphyxiation: -0.25
+        Poison: -0.25
+        Radiation: -0.25
   - type: LanguageSpeaker
     languages:
       #Common: Understand
@@ -3616,10 +3640,10 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Airloss: 8
       types:
         ParryAble: 1
+        Asphyxiation: 4
+        Bloodloss: 4
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -3725,11 +3749,13 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 2
-        Airloss: 4
       types:
         ParryAble: 1
+        Blunt: 0.67
+        Slash: 0.67
+        Piercing: 0.66
+        Asphyxiation: 2
+        Bloodloss: 2
   - type: Puller
   - type: Tag
     tags:
@@ -3829,11 +3855,12 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 2.6
       types:
         ParryAble: 1
         Bloodloss: 4.5
+        Blunt: 0.87
+        Slash: 0.87
+        Piercing: 0.86
   - type: Puller
   - type: Tag
     tags:
@@ -3940,11 +3967,12 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 45
       types:
         ParryAble: 1
         Structural: 160
+        Blunt: 15
+        Slash: 15
+        Piercing: 15
   - type: Puller
   - type: Tag
     tags:
@@ -4171,10 +4199,11 @@
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 15
       types:
         ParryAble: 0.2
+        Blunt: 5
+        Slash: 5
+        Piercing: 5
     range: 1.4
   - type: Puller
   - type: MobThresholds
@@ -4254,13 +4283,12 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     damage:
-      groups:
-        Airloss: 3
       types:
         Slash: 17
         ParryAble: 1
-        Bloodloss: 4.5
+        Bloodloss: 6
         Radiation: 4.5
+        Asphyxiation: 1.5
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -4356,12 +4384,13 @@
     soundHit:
       collection: AlienClaw
     damage:
-      groups:
-        Brute: 56
       types:
         ParryAble: 1
         Caustic: 1
         Bloodloss: 3
+        Blunt: 18.67
+        Slash: 18.67
+        Piercing: 18.66
   - type: Puller
   - type: MobThresholds
     thresholds:
@@ -4787,7 +4816,7 @@
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileWaterSphereSenior
     fireCost: 1
   - type: Battery

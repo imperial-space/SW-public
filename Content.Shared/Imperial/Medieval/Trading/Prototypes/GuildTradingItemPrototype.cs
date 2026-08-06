@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Imperial.SpawnOnAction.Components;
 using Content.Shared.Store;
 using Robust.Shared.Prototypes;
@@ -84,5 +84,10 @@ public sealed partial record GuildTradingItem
                Cost == other.Cost &&
                MinReputation == other.MinReputation &&
                MinReputationPlace == other.MinReputationPlace;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(ProductEntity, Cost, MinReputation, MinReputationPlace);
     }
 }

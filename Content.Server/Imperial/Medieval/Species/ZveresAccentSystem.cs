@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
 using Robust.Shared.Random;
@@ -8,6 +8,9 @@ namespace Content.Server.Speech.EntitySystems;
 public sealed class ZveresAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    private static readonly Regex RegexUpperR = new(@"Р+", RegexOptions.Compiled);
+    private static readonly Regex RegexLowerR = new(@"р+", RegexOptions.Compiled);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -17,15 +20,13 @@ public sealed class ZveresAccentSystem : EntitySystem
     private void OnAccent(EntityUid uid, ZveresAccentComponent component, AccentGetEvent args)
     {
         var message = args.Message;
-        message = Regex.Replace(
+        message = RegexUpperR.Replace(
             message,
-            "Р+",
-            _random.Pick(new List<string>() { "Рр", "Ррр" })
+            _ => _random.Pick(new List<string>() { "Рр", "Ррр" })
         );
-        message = Regex.Replace(
+        message = RegexLowerR.Replace(
             message,
-            "р+",
-            _random.Pick(new List<string>() { "рр", "ррр" })
+            _ => _random.Pick(new List<string>() { "рр", "ррр" })
         );
         args.Message = message;
     }

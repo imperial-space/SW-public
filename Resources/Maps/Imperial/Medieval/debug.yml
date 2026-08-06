@@ -16,9 +16,7 @@ entities:
     - type: Transform
     - type: Map
     - type: Sea
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap

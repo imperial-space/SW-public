@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._CP14.Workbench.Prototypes;
 
 [Prototype("CP14Recipe")]
-public sealed class CP14WorkbenchRecipePrototype : IPrototype
+public sealed partial class CP14WorkbenchRecipePrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

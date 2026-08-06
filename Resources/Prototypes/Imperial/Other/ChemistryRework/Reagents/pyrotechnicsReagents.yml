@@ -8,7 +8,7 @@
   pricePerUnit: 1.5
   color: "#A7B0E9"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -79,21 +79,13 @@
   color: "#2DA94C"
   group: Toxins
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: 5
-      - !type:AdjustReagent
-        group: Poison
-        amount: -3
-      - !type:AdjustReagent
-        group: Medicine
-        amount: -3
-      - !type:AdjustReagent
-        group: Narcotic
-        amount: -3
+      # Imperial: old AdjustReagent by metabolism group removed (groups API gone); purge by group no longer supported
 
 - type: reagent
   id: QuantumHairDye
@@ -104,7 +96,7 @@
   color: "#982CEE"
   group: Unknown
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:ChangeMarkingColor
   reactiveEffects:
@@ -114,7 +106,7 @@
       - !type:ChangeMarkingColor
         invertColor: true
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 5
             reagent: QuantumHairDye
 
@@ -127,7 +119,7 @@
   color: "#982CEE"
   group: Unknown
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:ChangeMarkingColor
         markingCategory: "Tail"
@@ -139,7 +131,7 @@
         markingCategory: "Tail"
         invertColor: true
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 5
             reagent: QuantumTailDye
 
@@ -152,11 +144,12 @@
   color: "#5CCE6C"
   group: Unknown
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:RemoveMark
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: ValproicAcid
             min: 10
 
 - type: reagent
@@ -168,7 +161,7 @@
   color: "#F37A00"
   group: Biological
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:Luminescence
         color: "#F37A00"
@@ -183,7 +176,7 @@
   color: "#A9A43A"
   group: Biological
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:Luminescence
         energyPerUnit: 2
@@ -197,15 +190,16 @@
   color: "#5CCE6C"
   group: Unknown
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 5.0
       effects:
       - !type:ChangeMarkingColor
         markingCategory: "Skin"
         invertColor: true
         conditions:
-        - !type:ReagentThreshold
-            min: 10
+        - !type:ReagentCondition
+          reagent: Mutadone
+          min: 10
 
 - type: reagent
   id: StrangeReagent
@@ -217,7 +211,7 @@
   pricePerUnit: 20
   color: "#92DA6D"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -232,8 +226,9 @@
         conditions:
         - !type:MobStateCondition
           mobstate: Dead
-        - !type:ReagentThreshold
-            min: 20
+        - !type:ReagentCondition
+          reagent: StrangeReagent
+          min: 20
         - !type:TotalDamageByGroups
             min: 150
             damageGroups:
@@ -245,8 +240,9 @@
         conditions:
         - !type:MobStateCondition
           mobstate: Dead
-        - !type:ReagentThreshold
-            min: 20
+        - !type:ReagentCondition
+          reagent: StrangeReagent
+          min: 20
       - !type:Resurrection
         penaltyDamage:
           types:
@@ -255,7 +251,7 @@
         conditions:
           - !type:MobStateCondition
             mobstate: Dead
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 20
             reagent: StrangeReagent
 

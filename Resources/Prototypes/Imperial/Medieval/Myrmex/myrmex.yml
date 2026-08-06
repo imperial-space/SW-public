@@ -1,3 +1,6 @@
+# Imperial Medieval: AppearanceMyrmex removed — Myrmex castes are non-humanoid mobs, not species Appearance.
+# Old type: body Myrmex converted out; castes keep their own sprites.
+
 - type: tile
   id: MedievalMyrmexFloor1
   name: смола мирмексов
@@ -305,13 +308,13 @@
   flavor: bitter
   color: "#ff7e00"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: MyrmexPoisonImmune
-          invert: true
+          inverted: true
         damage:
           types:
             Heat: 1
@@ -417,34 +420,6 @@
 - type: Tag
   id: MyrmexPoisonImmune
 
-- type: body
-  name: "myrmex"
-  id: Myrmex
-  root: torso
-  slots:
-    head:
-      part: HeadReptilian
-      connections:
-      - torso
-      organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-    torso:
-      part: TorsoReptilian
-      organs:
-        heart: OrganAnimalHeart
-        lungs: OrganHumanLungs
-        stomach: OrganReptilianStomach
-        liver: OrganAnimalLiver
-        kidneys: OrganHumanKidneys
-      connections:
-      - right hand
-      - left hand
-    right hand:
-      part: RightHandReptilian
-    left hand:
-      part: LeftHandReptilian
-
 - type: Tag
   id: MyrmexCanTake
 
@@ -464,9 +439,6 @@
     whitelistHandTag: MyrmexCanTake
   - type: Hands
     throwRange: 2
-  - type: Body
-    requiredLegs: 0
-    prototype: Myrmex
   - type: Strippable
   - type: UserInterface
     interfaces:
@@ -621,9 +593,8 @@
     soundHit:
       collection: MyrmexAttack
     damage:
-      groups:
-        Brute: 8
       types:
+        Blunt: 8
         ParryAble: 1
         Structural: 85
   - type: MobThresholds
@@ -688,10 +659,9 @@
     soundHit:
       collection: MyrmexAttack
     damage:
-      groups:
-        Brute: 5
-        Airloss: 2
       types:
+        Blunt: 5
+        Asphyxiation: 2
         ParryAble: 1
   - type: Gun
     fireRate: 0.75
@@ -758,10 +728,9 @@
     soundHit:
       collection: MyrmexAttack
     damage:
-      groups:
-        Brute: 14
-        Airloss: 3
       types:
+        Blunt: 14
+        Asphyxiation: 3
         ParryAble: 1
         Bloodloss: 4
   - type: MobThresholds
@@ -822,12 +791,10 @@
     soundHit:
       collection: MyrmexAttack
     damage:
-      groups:
-        Brute: 10
-        Airloss: 2
       types:
+        Blunt: 10
         ParryAble: 1
-        Bloodloss: 2
+        Bloodloss: 4
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -974,12 +941,10 @@
     soundHit:
       collection: MyrmexAttack
     damage:
-      groups:
-        Brute: 20
-        Airloss: 3
       types:
+        Blunt: 20
         ParryAble: 1
-        Bloodloss: 5
+        Bloodloss: 6
         Structural: 155
   - type: MobThresholds
     thresholds:

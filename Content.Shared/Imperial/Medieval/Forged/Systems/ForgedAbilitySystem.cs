@@ -2,6 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Forged;
@@ -24,6 +25,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 
 namespace Content.Shared.Imperial.Medieval.Forged;
@@ -196,7 +198,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
                     DamageDict = { ["Slash"] = FixedPoint2.New(10000) }
                 };
                 _damageable.TryChangeDamage(uid, damage);
-                
+
                 _explosionSystem.QueueExplosion(uid, "Default", 250, 5, 200);
                 _actions.RemoveAction(uid, args.Action.Owner);
             }
@@ -372,7 +374,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
 
         var healSpecifier = new DamageSpecifier();
 
-        foreach (var (damageType, amount) in damageable.Damage.DamageDict)
+        foreach (var (damageType, amount) in _damageable.GetPositiveDamage((forgedUid, damageable)).DamageDict)
         {
             if (healLeft <= 0)
                 break;

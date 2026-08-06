@@ -50,8 +50,12 @@ public sealed class RandomPowerSystem : EntitySystem
             _prototypeVoltages[prototypeId] = voltage;
         }
 
-        if (!_nodeContainer.TryGetNode<Node>(ent.Owner, ent.Comp.Node, out var node))
+        if (!_nodeContainer.TryGetNode<Node>(ent.Owner, ent.Comp.Node, out var node)
+            || !CanRefloodNode(ent.Owner, node))
             return;
+
+        if (node.NodeGroup != null)
+            _nodeGroupSystem.QueueNodeRemove(node);
 
         node.SetNodeGroupID(voltage);
 
@@ -64,6 +68,16 @@ public sealed class RandomPowerSystem : EntitySystem
         var state = ent.Comp.AvailableVoltages[voltage];
         _appearance.SetData(ent, RandomPowerVisuals.Voltage, state);
 
-        _nodeGroupSystem.QueueReflood(node);
+        if (CanRefloodNode(ent.Owner, node))
+            _nodeGroupSystem.QueueReflood(node);
+    }
+
+    private bool CanRefloodNode(EntityUid uid, Node node)
+    {
+        return node.Owner == uid
+            && !node.Deleting
+            && !TerminatingOrDeleted(uid)
+            && !EntityManager.IsQueuedForDeletion(uid)
+            && HasComp<TransformComponent>(uid);
     }
 }

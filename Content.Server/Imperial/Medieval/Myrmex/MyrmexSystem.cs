@@ -1,3 +1,4 @@
+using Content.Shared.Body;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Actions;
@@ -26,6 +27,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Myrmex
 {

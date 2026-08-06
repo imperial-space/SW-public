@@ -10,7 +10,7 @@ namespace Content.Server.Imperial.Medieval.Magic;
 /// <summary>
 /// Allows the entity to create a barrier in 4 directions from itself.
 /// <para>
-/// WARNING, you must spawn the entity with the call <see cref="MedievalAfterSpawnEntityBySpellEvent"/>
+
 /// </para>
 /// <para>
 /// Yes, this is shit code.

@@ -23,9 +23,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Body
-    prototype: Reptilian
-    requiredLegs: 2
   - type: Appearance
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi

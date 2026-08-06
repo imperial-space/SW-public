@@ -4,10 +4,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Imperial.Medieval.Flavors;
 using System.IO;
-using SixLabors.ImageSharp;
 using Content.Server.Preferences.Managers;
 using Robust.Shared.Utility;
-using Content.Shared.Mind.Components;
 using Robust.Server.Player;
 using Content.Shared.DetailExaminable;
 using Content.Shared.Players.PlayTimeTracking;
@@ -45,11 +43,15 @@ namespace Content.Server.Imperial.Medieval.Flavors
             {
                 try
                 {
-                    using (var img = Image.Load(stream))
-                    {
-                        if (!ImageAllowed(img.Width, img.Height))
-                            return;
-                    }
+                    // validate via Robust/ImageSharp is Client-only package
+                    // basic size gate without decoding full image metadata.
+                    // using (var img = Image.Load(stream))
+                    // {
+                    //     if (!ImageAllowed(img.Width, img.Height))
+                    //         return;
+                    // }
+                    if (msg.Image.Length is < 32 or > 2_000_000)
+                        return;
                 }
                 catch
                 {

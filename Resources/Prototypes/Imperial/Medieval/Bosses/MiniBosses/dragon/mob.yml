@@ -102,9 +102,9 @@
       soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
       damage:
-        groups:
-          Brute: 48
         types:
+          Blunt: 40
+          Slash: 8
           Structural: 600
       range: 2.5
       attackRate: 0.5
@@ -141,7 +141,7 @@
     - type: Devourer
       foodPreferenceWhitelist:
         components:
-        - HumanoidAppearance
+        - HumanoidProfile
       stomachStorageWhitelist:
         components:
         - MobState
@@ -167,7 +167,7 @@
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
       sprite: Imperial/Medieval/Mobs/Bosses/Dragons/icedragon.rsi
-    - type: HitscanBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: MedievalProjectileWaterSphereBeginner
       fireCost: 1
     - type: Battery
@@ -403,7 +403,7 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: HitscanBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: MedievalProjectileNecroDragon
       fireCost: 1
     - type: Battery

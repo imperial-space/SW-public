@@ -1,7 +1,7 @@
 namespace Content.Shared.Imperial.Medieval.XxRaay.MedievalAmbientToggle;
 
 /// <summary>
-/// Rule IDs from medieval_ambient_if.yml used to select medieval ambient music.
+
 /// </summary>
 public static class MedievalAmbientRules
 {

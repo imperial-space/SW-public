@@ -170,7 +170,7 @@ public sealed partial class BossSystem : EntitySystem
 
         if (list.Count == 0)
         {
-            foreach (var item in EntityManager.AllEntities<HumanoidAppearanceComponent>().Where(x => players.Contains(x.Owner)))
+            foreach (var item in EntityManager.AllEntities<HumanoidProfileComponent>().Where(x => players.Contains(x.Owner)))
                 list.Add(Transform(item.Owner).Coordinates);
         }
 

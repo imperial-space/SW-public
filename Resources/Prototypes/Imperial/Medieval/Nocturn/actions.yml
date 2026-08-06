@@ -20,7 +20,7 @@
       canTargetSelf: false
       whitelist:
         components:
-          - HumanoidAppearance
+          - HumanoidProfile
           - NocturnBadFood
       event: !type:NocturnDrinkActionEvent
 

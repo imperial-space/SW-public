@@ -23,7 +23,7 @@ public record class MagicEntityEffectsArgs : EntityEffectBaseArgs
     }
 }
 
-public sealed partial class AlcoholDrink : EntityEffect
+public sealed partial class AlcoholDrink : LegacyEntityEffect
 {
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {

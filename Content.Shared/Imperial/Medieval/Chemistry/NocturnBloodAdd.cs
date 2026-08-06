@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.ChemistryRandomization
 {
     [UsedImplicitly]
-    public sealed partial class NocturnBloodAdd : EntityEffect
+    public sealed partial class NocturnBloodAdd : LegacyEntityEffect
     {
         [DataField]
         public float BloodAmount = 1.5f;

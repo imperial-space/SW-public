@@ -1,4 +1,4 @@
-п»їusing Content.Server.NPC.HTN;
+using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
@@ -25,6 +25,7 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.MobRiding
 {
@@ -139,7 +140,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
             var velocity = rideablePhysics.LinearVelocity.Length();
 
-            _popup.PopupEntity("Р’С‹ СЃС€РёР±Р°РµС‚Рµ РїРµС…РѕС‚РёРЅС†Р° СЃ РґРѕСЂРѕРіРё.", rider, rider);
+            _popup.PopupEntity("Вы сшибаете пехотинца с дороги.", rider, rider);
 
             _damageable.TryChangeDamage(other, pikeComp.RidingDamage * velocity);
             var oneSound = _random.Pick(_clashOne);
@@ -333,16 +334,16 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                     var oneSound = _random.Pick(_clashOne);
                     switch (stabilityResult)
                     {
-                        // TODO: С‚РµРєСЃС‚ РІ Loc, РїРѕСЃРјРѕС‚СЂРµС‚СЊ, РїРѕС‡РµРјСѓ РЅРµ СЂР°Р±РѕС‚Р°СЋС‚ Р·РІСѓРєРё
-                        // TODO: СЃРґРµР»Р°СЋ РїРѕСЃР»Рµ РћР‘Рў, СЃРµР№С‡Р°СЃ РІРїР°РґР»Сѓ
+                        // TODO: текст в Loc, посмотреть, почему не работают звуки
+                        // TODO: сделаю после ОБТ, сейчас впадлу
                         case CheckResult.Self:
-                            _popup.PopupEntity("РџСЂРѕС‚РёРІРЅРёРє РЅРµ СѓРґРµСЂР¶РёРІР°РµС‚СЃСЏ РІ СЃРµРґР»Рµ Рё РїР°РґР°РµС‚.", rider.Value, rider.Value);
+                            _popup.PopupEntity("Противник не удерживается в седле и падает.", rider.Value, rider.Value);
                             _audio.PlayPvs(oneSound, uid);
                             ThrowClash(uid, rider.Value, otherRider.Value);
                             DelayPike(rider.Value);
                             break;
                         case CheckResult.Other:
-                            _popup.PopupEntity("РџСЂРѕС‚РёРІРЅРёРє РЅРµ СѓРґРµСЂР¶РёРІР°РµС‚СЃСЏ РІ СЃРµРґР»Рµ Рё РїР°РґР°РµС‚.", otherRider.Value, otherRider.Value);
+                            _popup.PopupEntity("Противник не удерживается в седле и падает.", otherRider.Value, otherRider.Value);
                             _audio.PlayPvs(oneSound, other);
                             ThrowClash(other, otherRider.Value, rider.Value);
                             DelayPike(otherRider.Value);
@@ -352,8 +353,8 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                             ThrowClashBoth(uid, other, rider.Value, otherRider.Value);
                             break;
                         case CheckResult.Both:
-                            _popup.PopupEntity("Р’С‹ СЃС‚Р°Р»РєРёРІР°РµС‚РµСЃСЊ, РЅРѕ РѕР±Р° СѓРґРµСЂР¶РёРІР°РµС‚РµСЃСЊ РІ СЃРµРґР»Рµ.", rider.Value, rider.Value);
-                            _popup.PopupEntity("Р’С‹ СЃС‚Р°Р»РєРёРІР°РµС‚РµСЃСЊ, РЅРѕ РѕР±Р° СѓРґРµСЂР¶РёРІР°РµС‚РµСЃСЊ РІ СЃРµРґР»Рµ.", otherRider.Value, otherRider.Value);
+                            _popup.PopupEntity("Вы сталкиваетесь, но оба удерживаетесь в седле.", rider.Value, rider.Value);
+                            _popup.PopupEntity("Вы сталкиваетесь, но оба удерживаетесь в седле.", otherRider.Value, otherRider.Value);
                             DelayPike(rider.Value);
                             DelayPike(otherRider.Value);
                             _audio.PlayPvs(_clashNone, uid);

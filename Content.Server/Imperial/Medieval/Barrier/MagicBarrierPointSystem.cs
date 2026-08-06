@@ -23,6 +23,7 @@ using Content.Shared.Verbs;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
 using Content.Shared.GameTicking;
 using Content.Server.Cult.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.MagicBarrier
 {
@@ -424,7 +425,6 @@ namespace Content.Server.MagicBarrier
                     //    var choosenSpawner = _random.Pick(cursespawners);
                     //    var cursexform = Transform(choosenSpawner.Owner);
                     //    var cursecoords = cursexform.Coordinates;
-                    //    Spawn("MedievalSpawnNecroSenderPreset", cursecoords);
                     //    _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
                     //}
 
@@ -435,8 +435,6 @@ namespace Content.Server.MagicBarrier
                     //    var cursexform = Transform(choosenSpawner.Owner);
                     //    var cursecoords = cursexform.Coordinates;
                     //    for (int i = 0; i < 100; i++)
-                    //        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                    //    Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
                     //    _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
                     //}
 

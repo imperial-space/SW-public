@@ -19,6 +19,7 @@ using Robust.Shared.Audio;
 using Content.Server.SpikeTrap.Components;
 using Content.Server.MagicBarrier.Components;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server._CP14.Workbench;
@@ -82,7 +83,7 @@ public sealed partial class CP14WorkbenchSystem : SharedCP14WorkbenchSystem
         _solutionContainer.TryGetSolution(resultEntity, recipe.Solution, out var resultSoln, out var resultSolution);
         if (recipe.TryMergeSolutions && resultSoln is not null)
         {
-            resultSoln.Value.Comp.Solution.MaxVolume = 0;
+            _solutionContainer.SetCapacity(resultSoln.Value, FixedPoint2.Zero);
             _solutionContainer.RemoveAllSolution(resultSoln.Value); //If we combine ingredient solutions, we do not use the default solution prescribed in the entity.
         }
 
@@ -102,7 +103,8 @@ public sealed partial class CP14WorkbenchSystem : SharedCP14WorkbenchSystem
                         && resultSoln is not null
                         && _solutionContainer.TryGetSolution(placedEntity, recipe.Solution, out var ingredientSoln, out var ingredientSolution))
                     {
-                        resultSoln.Value.Comp.Solution.MaxVolume += ingredientSoln.Value.Comp.Solution.MaxVolume;
+                        var newMax = resultSoln.Value.Comp.Solution.MaxVolume + ingredientSoln.Value.Comp.Solution.MaxVolume;
+                        _solutionContainer.SetCapacity(resultSoln.Value, newMax);
                         _solutionContainer.TryAddSolution(resultSoln.Value, ingredientSolution);
                     }
 

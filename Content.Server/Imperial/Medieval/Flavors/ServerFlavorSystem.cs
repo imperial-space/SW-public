@@ -20,9 +20,14 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public void CompInit(EntityUid uid, FlavorImageComponent component, ComponentInit args)
         {
-            MindAdded(uid, component, new(new(), new()));
+            TrySetImagePath(uid, component);
         }
         public void MindAdded(EntityUid uid, FlavorImageComponent component, MindAddedMessage args)
+        {
+            TrySetImagePath(uid, component);
+        }
+
+        private void TrySetImagePath(EntityUid uid, FlavorImageComponent component)
         {
             if (component.ImagePath != null)
                 return;

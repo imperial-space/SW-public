@@ -155,16 +155,21 @@ public sealed class ServerWindSystem : EntitySystem
 
     private void UpdateStormWeather(float stormLevel)
     {
+        // var rainWeatherId = new ProtoId<WeatherPrototype>(_cfg.GetCVar(ShipsCCVars.StormRainWeather));
+        // WeatherPrototype? rain = null;
+        // if (rainLevelReached && !_prototype.TryIndex(rainWeatherId, out rain))
+        //     return;
+        // ...
+        // _weather.SetWeather(mapId, rain!, null);
+
         var rainLevelReached = stormLevel >= _cfg.GetCVar(ShipsCCVars.StormRainLevel);
-        var rainWeatherId = new ProtoId<WeatherPrototype>(_cfg.GetCVar(ShipsCCVars.StormRainWeather));
-        WeatherPrototype? rain = null;
-        if (rainLevelReached && !_prototype.TryIndex(rainWeatherId, out rain))
+        var rainWeatherId = new EntProtoId(_cfg.GetCVar(ShipsCCVars.StormRainWeather));
+        if (rainLevelReached && !_prototype.TryIndex(rainWeatherId, out _))
             return;
 
         var stormLevelReached = stormLevel >= _cfg.GetCVar(ShipsCCVars.StormStormLevel);
-        var stormWeatherId = new ProtoId<WeatherPrototype>(_cfg.GetCVar(ShipsCCVars.StormStormWeather));
-        WeatherPrototype? storm = null;
-        if (stormLevelReached && !_prototype.TryIndex(stormWeatherId, out storm))
+        var stormWeatherId = new EntProtoId(_cfg.GetCVar(ShipsCCVars.StormStormWeather));
+        if (stormLevelReached && !_prototype.TryIndex(stormWeatherId, out _))
             return;
 
         var seaMaps = new HashSet<MapId>();
@@ -178,35 +183,20 @@ public sealed class ServerWindSystem : EntitySystem
                 continue;
 
             if (rainLevelReached)
-                _weather.SetWeather(mapId, rain!, null);
+                _weather.TryAddWeather(mapId, rainWeatherId, out _);
             else
-                DisableWeather(mapId, rainWeatherId);
+                _weather.TryRemoveWeather(mapId, rainWeatherId);
 
             if (stormLevelReached)
-                _weather.SetWeather(mapId, storm!, null);
+                _weather.TryAddWeather(mapId, stormWeatherId, out _);
             else
-                DisableWeather(mapId, stormWeatherId);
+                _weather.TryRemoveWeather(mapId, stormWeatherId);
         }
     }
-
-    private void DisableWeather(MapId mapId, ProtoId<WeatherPrototype> weatherId)
-    {
-        if (!_mapSystem.TryGetMap(mapId, out var mapUid) ||
-            !TryComp<WeatherComponent>(mapUid.Value, out var weatherComp))
-        {
-            return;
-        }
-
-        if (!weatherComp.Weather.TryGetValue(weatherId, out var weatherData))
-            return;
-
-        var endTime = _timing.CurTime + WeatherComponent.ShutdownTime;
-        if (weatherData.EndTime != null && weatherData.EndTime <= endTime)
-            return;
-
-        weatherData.EndTime = endTime;
-        Dirty(mapUid.Value, weatherComp);
-    }
+    // private void DisableWeather(MapId mapId, ProtoId<WeatherPrototype> weatherId)
+    // {
+    //     ...
+    // }
 
     private void UpdateStormParallax(float stormLevel)
     {

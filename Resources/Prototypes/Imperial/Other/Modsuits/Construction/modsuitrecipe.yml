@@ -6,7 +6,6 @@
   startNode: start
   targetNode: modsuitatmospheric
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -17,7 +16,6 @@
   startNode: start
   targetNode: modsuitengineer
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -28,7 +26,6 @@
   startNode: start
   targetNode: modsuitmedical
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -39,7 +36,6 @@
   startNode: start
   targetNode: modsuitrnd
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -50,7 +46,6 @@
   startNode: start
   targetNode: modsuitsalvage
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -61,7 +56,6 @@
   startNode: start
   targetNode: modsuitcivillian
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды безработного.
   objectType: Item
 
 - type: construction
@@ -72,7 +66,6 @@
   startNode: start
   targetNode: modsuitsecurity
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -83,7 +76,6 @@
   startNode: start
   targetNode: modsuitadvanced
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -94,7 +86,6 @@
   startNode: start
   targetNode: modsuitrescue
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -105,7 +96,6 @@
   startNode: start
   targetNode: modsuitmagnate
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item
 
 - type: construction
@@ -116,5 +106,4 @@
   startNode: start
   targetNode: modsuithos
   category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
   objectType: Item

@@ -1,3 +1,87 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Zveres
+  limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceZveres
+  categories: [ HideSpawnMenu ]
+  name: zveres appearance
+  components:
+  - type: InitialBody
+    organs:
+      Head: OrganZveresHead
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Torso: OrganZveresTorso
+      Lungs: OrganHumanLungs
+      Heart: OrganZveresHeart
+      Stomach: OrganZveresStomach
+      Liver: OrganZveresLiver
+      Kidneys: OrganHumanKidneys
+      ArmLeft: OrganZveresArmLeft
+      ArmRight: OrganZveresArmRight
+      HandLeft: OrganZveresHandLeft
+      HandRight: OrganZveresHandRight
+      LegLeft: OrganZveresLegLeft
+      LegRight: OrganZveresLegRight
+      FootLeft: OrganZveresFootLeft
+      FootRight: OrganZveresFootRight
+  - type: HumanoidProfile
+    species: Zveres
+
 - type: entity
   id: OrganZveresHeart
   parent: OrganHumanHeart
@@ -37,70 +121,21 @@
     maxReagents: 5
     metabolizerTypes: [Zveres]
 
-- type: body
-  id: Zveres
-  name: "Zveres"
-  root: torso
-  slots:
-    head:
-      part: HeadZveres
-      connections:
-      - torso
-      organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-    torso:
-      part: TorsoZveres
-      connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
-      organs:
-        heart: OrganZveresHeart
-        lungs: OrganHumanLungs
-        stomach: OrganReptilianStomach
-        liver: OrganZveresLiver
-        kidneys: OrganHumanKidneys
-    right arm:
-      part: RightArmZveres
-      connections:
-      - right hand
-    left arm:
-      part: LeftArmZveres
-      connections:
-      - left hand
-    right hand:
-      part: RightHandZveres
-    left hand:
-      part: LeftHandZveres
-    right leg:
-      part: RightLegZveres
-      connections:
-      - right foot
-    left leg:
-      part: LeftLegZveres
-      connections:
-      - left foot
-    right foot:
-      part: RightFootZveres
-    left foot:
-      part: LeftFootZveres
-
 - type: metabolizerType
   id: Zveres
   name: Zveres
 
 - type: entity
   save: false
-  name: Урист МакМунвульф
+  name: Urist McMoonwolf
   parent: BaseMobZveres
   id: MobZveres
+  categories: []
 
 - type: entity
   save: false
   name: Urist McHands The Zveres
-  parent: BaseMobSpeciesOrganic
+  parent: [AppearanceZveres, BaseSpeciesMobOrganic]
   id: BaseMobZveres
   abstract: true
   components:
@@ -119,9 +154,6 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-  - type: Body
-    prototype: Zveres
-    requiredLegs: 2
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -151,23 +183,16 @@
         hard: false # imperial medieval end
   - type: Vocal
     sounds:
-      Male: MaleZveres
-      Female: FemaleZveres
-      Unsexed: MaleZveres
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
   - type: LanguageSpeaker
     languages:
       Common: Speak
-      #Goblin: Speak
-      #Ancient: Speak
-      #Tribe: Speak
-      #Orc: Speak
-      #Cursed: Speak
       Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
   - type: Speech
     speechSounds: Alto
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Zveres
   - type: Mana
     maxManaRaceModifier: 1.1
@@ -202,6 +227,9 @@
   - type: Wagging
   - type: Damageable
     damageModifierSet: Zveres
+  - type: PointLight
+    netsync: false
+    enabled: false
   - type: LocalLight
     energy: 0.2
     radius: 2
@@ -216,7 +244,7 @@
     Heat: 1.2
 
 - type: entity
-  parent: BaseMobZveres
+  parent: AppearanceZveres
   id: MobZveresDummy
   noSpawn: true
   components:
@@ -230,116 +258,9 @@
 
 - type: species
   id: Zveres
-  name: Мунвульф
+  name: species-name-zveres
   roundStart: true
   prototype: MobZveres
-  sprites: MobZveresSprites
-  markingLimits: MobZveresMarkingLimits
   dollPrototype: MobZveresDummy
   skinColoration: MoonwolfColors
   defaultSkinTone: "#5f5f5f"
-
-- type: speciesBaseSprites
-  id: MobZveresSprites
-  sprites:
-    Head: MobZveresHead
-    Hair: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
-    Snout: MobHumanoidAnyMarking
-    Chest: MobZveresTorso
-    Eyes: MobHumanoidEyes
-    LArm: MobZveresLArm
-    RArm: MobZveresRArm
-    LHand: MobZveresLHand
-    RHand: MobZveresRHand
-    LLeg: MobZveresLLeg
-    RLeg: MobZveresRLeg
-    LFoot: MobZveresLFoot
-    RFoot: MobZveresRFoot
-    Tail: MobHumanoidAnyMarking # imperial HairAndTail
-    HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
-    HeadSide: MobHumanoidAnyMarking
-
-- type: humanoidBaseSprite
-  id: MobZveresHead
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobZveresHeadMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobZveresHeadFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: head_f
-
-- type: humanoidBaseSprite
-  id: MobZveresTorso
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobZveresTorsoMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobZveresTorsoFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: torso_f
-
-- type: humanoidBaseSprite
-  id: MobZveresLLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: l_leg
-
-- type: humanoidBaseSprite
-  id: MobZveresLArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: l_arm
-
-- type: humanoidBaseSprite
-  id: MobZveresLHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: l_hand
-
-- type: humanoidBaseSprite
-  id: MobZveresLFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: l_foot
-
-- type: humanoidBaseSprite
-  id: MobZveresRLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: r_leg
-
-- type: humanoidBaseSprite
-  id: MobZveresRArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: r_arm
-
-- type: humanoidBaseSprite
-  id: MobZveresRHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: r_hand
-
-- type: humanoidBaseSprite
-  id: MobZveresRFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: r_foot

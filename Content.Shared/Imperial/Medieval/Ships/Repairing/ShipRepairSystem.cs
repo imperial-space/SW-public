@@ -93,7 +93,7 @@ public sealed class ShipRepairSystem : EntitySystem
             return;
 
         _map.SetTile(args.Target.Value, mapGrid, args.TileCoordinates, _shipHull.WithTileType(currentTile.Tile, repairedTile));
-        _stack.Use(uid, 1);
+        _stack.TryUse(uid, 1);
         args.Handled = true;
 
         if (_net.IsServer)

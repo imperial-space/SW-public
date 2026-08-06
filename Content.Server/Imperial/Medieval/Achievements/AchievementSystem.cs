@@ -74,7 +74,7 @@ public sealed partial class AchievementSystem : EntitySystem
                     }
                 }
 
-                TryGrantAchievement(guid, AchievementFirstJoin, args.Session);
+                _ = TryGrantAchievement(guid, AchievementFirstJoin, args.Session);
                 break;
 
             case SessionStatus.Disconnected:

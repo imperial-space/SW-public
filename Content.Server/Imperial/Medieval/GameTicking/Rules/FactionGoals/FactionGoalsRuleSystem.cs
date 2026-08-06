@@ -12,6 +12,7 @@ using Content.Shared.Imperial.Medieval.Factions;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 

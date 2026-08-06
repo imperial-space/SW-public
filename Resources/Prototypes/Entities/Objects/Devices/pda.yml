@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, StorePresetUplink ] #PDA's have uplinks so they have to inherit the data.
+  parent: [ BaseItem ]
   id: BasePDA
   name: PDA
   description: Personal Data Assistant.
@@ -64,7 +64,8 @@
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
-    radius: 1.5
+    radius: 1.7
+    falloff: 3
     softness: 5
     autoRot: true
   - type: Ringer
@@ -83,6 +84,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge # Imperial NanoChat
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -106,6 +108,7 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+  - type: RemoteStore # PDAs can access uplinks so they need this component.
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -154,6 +157,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: BasePDA
@@ -168,6 +172,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: BasePDA
@@ -295,8 +300,6 @@
     borderColor: "#d7d7d0"
   - type: Icon
     state: pda-cook
-  - type: ReplacementAccent # for random sentience event
-    accent: italian
 
 - type: entity
   parent: BasePDA
@@ -414,6 +417,10 @@
       whitelist:
         components:
         - Cartridge
+    preinstalled:
+    - CrewManifestCartridge
+    - NewsReaderCartridge
+    - NanoChatCartridge # Imperial NanoChat
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -480,6 +487,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: BasePDA
@@ -525,6 +533,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: BasePDA
@@ -875,6 +884,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: BaseSecurityPDA
@@ -947,6 +957,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: CentcomPDA
@@ -962,6 +973,7 @@
     scanDelay: 0
     silent: true
   - type: CartridgeLoader
+    diskSpace: 10 # Imperial NanoChat
     uiKey: enum.PdaUiKey.Key
     notificationsEnabled: false
     preinstalled:
@@ -973,6 +985,8 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - NanoChatAdminCartridge # Imperial NanoChat
+      - SyndiChatAdminCartridge # Imperial NanoChat
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1008,8 +1022,8 @@
   - type: Instrument
     allowPercussion: false
     handheld: true
-    bank: 1
     program: 2
+    bank: 100 # Defined in space-station-14.sf2
 
 - type: entity
   parent: MusicianPDA
@@ -1091,6 +1105,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - SyndiChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1129,6 +1144,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - SyndiChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1177,6 +1193,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1346,6 +1363,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1374,6 +1392,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: ClownPDA
@@ -1500,6 +1519,22 @@
     state: pda-seniorcourier
 
 - type: entity
+  parent: [ BaseHighlyIllegalContraband, BasePDA ]
+  id: NinjaPDA
+  name: ninja PDA
+  description: You stealthy bastard, you!
+  components:
+  - type: Pda
+    id: NinjaIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-ninja
+  - type: Icon
+    state: pda-ninja
+
+- type: entity
   parent: [ BaseMajorContraband, SyndiPDA ]
   id: PiratePDA
   name: pirate PDA
@@ -1546,6 +1581,14 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+
+- type: entity
+  parent: ChameleonPDA
+  id: ChameleonAgentPDA
+  suffix: Chameleon, Agent ID
+  components:
+  - type: Pda
+    id: AgentIDCard
 
 - type: entity
   parent: BaseWidePDA

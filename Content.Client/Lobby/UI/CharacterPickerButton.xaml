@@ -1,24 +1,23 @@
 <ContainerButton xmlns="https://spacestation14.io"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:profile="clr-namespace:Content.Client.Lobby.UI.ProfileEditorControls"
          xmlns:style="clr-namespace:Content.Client.Stylesheets"
          xmlns:ui="clr-namespace:Content.Client.Imperial.Roadmap.UI">
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True"
                   SeparationOverride="0"
                   Name="InternalHBox">
+        <!-- Imperial Medieval -->
         <ui:BorderedPanelContainer
             Name="AvailableIndicator"
             BackgroundPanelColor="#44944A"
             VerticalExpand="True"
             SetWidth="5"/>
-
-        <!-- Imperial medieval -->
-        <SpriteView Scale="2 2"
-                    Margin="0 4 4 4"
-                    OverrideDirection="South"
-                    Name="View"
-                    SetSize="64 64"/>
-        <!-- Imperial medieval end -->
+        <profile:ProfilePreviewSpriteView Scale="2 2"
+                                          Margin="0 4 4 4"
+                                          OverrideDirection="South"
+                                          Name="View"
+                                          SetSize="64 64"/>
         <Label Name="DescriptionLabel"
                ClipText="True"
                HorizontalExpand="True"/>
@@ -27,7 +26,7 @@
         <Button Name="ConfirmDeleteButton"
                 Text="{Loc 'character-setup-gui-character-picker-button-confirm-delete-button'}"
                 Visible="False"
-                ModulateSelfOverride="{x:Static style:StyleNano.ButtonColorCautionDefault}"/>
+                StyleClasses="negative"/>
 
     </BoxContainer>
 </ContainerButton>

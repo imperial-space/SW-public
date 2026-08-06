@@ -2,14 +2,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
 
-[Prototype]
+[Prototype("medievalSkill")]
 public sealed partial class SkillPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public string Name { get; } = default!;
+    public string Name { get; private set; } = default!;
 
     [DataField]
     public Color Color = Color.White;

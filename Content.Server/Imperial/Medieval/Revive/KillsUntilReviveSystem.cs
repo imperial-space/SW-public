@@ -14,7 +14,9 @@ using Content.Shared.Mind.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
+using Content.Shared.Destructible; 
 namespace Content.Server.Imperial.Medieval.Revive
 {
     public sealed class KillsUntilReviveSystem : EntitySystem

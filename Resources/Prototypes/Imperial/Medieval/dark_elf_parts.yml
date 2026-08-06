@@ -17,30 +17,37 @@
   flavorType: Complex
   description: flavor-complex-dark-elvish-blood
 
-# TODO: Add descriptions (many)
-# TODO BODY: Part damage
 - type: entity
-  id: PartDarkElf
-  parent: [BaseItem, BasePart]
-  name: "DarkElf body part"
+  parent: OrganBase
+  id: OrganDarkElf
   abstract: true
-  components:
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 3
-      - ReagentId: DarkElvishBlood
-        Quantity: 10
+  suffix: darkelf
 
 - type: entity
-  id: TorsoDarkElf
-  name: "DarkElf torso"
-  parent: [PartDarkElf, BaseTorso]
+  parent: OrganDarkElf
+  id: OrganDarkElfExternal
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "torso_m"
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: DarkElf
+
+- type: entity
+  parent: OrganDarkElf
+  id: OrganDarkElfInternal
+  abstract: true
+
+
+- type: entity
+  id: OrganDarkElfTorso
+  name: "DarkElf torso"
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganDarkElfExternal]
+  components:
   - type: Extractable
     juiceSolution:
       reagents:
@@ -50,13 +57,10 @@
         Quantity: 20
 
 - type: entity
-  id: HeadDarkElf
+  id: OrganDarkElfHead
   name: "DarkElf head"
-  parent: [PartDarkElf, BaseHead]
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganDarkElfExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -64,75 +68,47 @@
         Quantity: 5
       - ReagentId: DarkElvishBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
-  id: LeftArmDarkElf
+  id: OrganDarkElfArmLeft
   name: "left DarkElf arm"
-  parent: [PartDarkElf, BaseLeftArm]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "l_arm"
+  parent: [OrganBaseArmLeft, OrganDarkElfExternal]
 
 - type: entity
-  id: RightArmDarkElf
+  id: OrganDarkElfArmRight
   name: "right DarkElf arm"
-  parent: [PartDarkElf, BaseRightArm]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "r_arm"
+  parent: [OrganBaseArmRight, OrganDarkElfExternal]
 
 - type: entity
-  id: LeftHandDarkElf
+  id: OrganDarkElfHandLeft
   name: "left DarkElf hand"
-  parent: [PartDarkElf, BaseLeftHand]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "l_hand"
+  parent: [OrganBaseHandLeft, OrganDarkElfExternal]
 
 - type: entity
-  id: RightHandDarkElf
+  id: OrganDarkElfHandRight
   name: "right DarkElf hand"
-  parent: [PartDarkElf, BaseRightHand]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "r_hand"
+  parent: [OrganBaseHandRight, OrganDarkElfExternal]
 
 - type: entity
-  id: LeftLegDarkElf
+  id: OrganDarkElfLegLeft
   name: "left DarkElf leg"
-  parent: [PartDarkElf, BaseLeftLeg]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "l_leg"
+  parent: [OrganBaseLegLeft, OrganDarkElfExternal]
 
 - type: entity
-  id: RightLegDarkElf
+  id: OrganDarkElfLegRight
   name: "right DarkElf leg"
-  parent: [PartDarkElf, BaseRightLeg]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "r_leg"
+  parent: [OrganBaseLegRight, OrganDarkElfExternal]
 
 - type: entity
-  id: LeftFootDarkElf
+  id: OrganDarkElfFootLeft
   name: "left DarkElf foot"
-  parent: [PartDarkElf, BaseLeftFoot]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "l_foot"
+  parent: [OrganBaseFootLeft, OrganDarkElfExternal]
 
 - type: entity
-  id: RightFootDarkElf
+  id: OrganDarkElfFootRight
   name: "right DarkElf foot"
-  parent: [PartDarkElf, BaseRightFoot]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/DarkElf/parts.rsi
-    state: "r_foot"
+  parent: [OrganBaseFootRight, OrganDarkElfExternal]

@@ -187,7 +187,7 @@ public sealed class CourierSystem : EntitySystem
             if (amountToSpawn <= 0)
                 continue;
 
-            var ents = _stack.SpawnMultiple(cashId, amountToSpawn, coordinates);
+            var ents = _stack.SpawnMultipleAtPosition(cashId, amountToSpawn, coordinates);
             if (ents.FirstOrDefault() is {} ent)
                 _hands.PickupOrDrop(user, ent);
 
@@ -312,33 +312,13 @@ public sealed class CourierSystem : EntitySystem
 
     private HumanoidCharacterProfile? BuildRecipientProfile(EntityUid recipient)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(recipient, out var humanoid))
+        // if (!TryComp<HumanoidProfileComponent>(recipient, out var humanoid))
+        //     return null;
+        // ... WithHairStyleName / WithFacialHairStyleName path ...
+        if (!TryComp<HumanoidProfileComponent>(recipient, out var humanoid))
             return null;
 
-        var appearance = new HumanoidCharacterAppearance
-        {
-            EyeColor = humanoid.EyeColor,
-            SkinColor = humanoid.SkinColor,
-            Markings = humanoid.MarkingSet.GetForwardEnumerator().ToList(),
-        };
-
-        if (humanoid.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var hairMarkings) &&
-            hairMarkings.Count > 0)
-        {
-            var hair = hairMarkings[0];
-            appearance = appearance.WithHairStyleName(hair.MarkingId);
-            if (hair.MarkingColors.Count > 0)
-                appearance = appearance.WithHairColor(hair.MarkingColors[0]);
-        }
-
-        if (humanoid.MarkingSet.TryGetCategory(MarkingCategories.FacialHair, out var facialHairMarkings) &&
-            facialHairMarkings.Count > 0)
-        {
-            var facialHair = facialHairMarkings[0];
-            appearance = appearance.WithFacialHairStyleName(facialHair.MarkingId);
-            if (facialHair.MarkingColors.Count > 0)
-                appearance = appearance.WithFacialHairColor(facialHair.MarkingColors[0]);
-        }
+        var appearance = HumanoidCharacterAppearance.DefaultWithSpecies(humanoid.Species, humanoid.Sex);
 
         return new HumanoidCharacterProfile()
             .WithCharacterAppearance(appearance)

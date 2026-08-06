@@ -190,7 +190,7 @@ public sealed partial class MedievalPlagueSystem
                         Loc.GetString($"plague-bloodletting-result-{result.ToString().ToLower()}",
                                     ("target", Identity.Name(args.Target.Value, EntityManager, args.User))),
                         args.User, args.User, Shared.Popups.PopupType.Medium);
-        _damageable.TryChangeDamage(args.Target, comp.Damage, true);
+        _damageable.TryChangeDamage(args.Target.Value, comp.Damage, true);
 
         comp.Result = result;
         _appearance.SetData(uid, BloodlettingVisuals.Data, (int)result);

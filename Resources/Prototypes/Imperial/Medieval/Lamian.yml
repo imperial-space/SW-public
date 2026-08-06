@@ -1,3 +1,88 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Lamian
+  limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+      default: [ LamianEars ]
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceLamian
+  categories: [ HideSpawnMenu ]
+  name: lamian appearance
+  components:
+  - type: InitialBody
+    organs:
+      Head: OrganLamianHead
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Torso: OrganLamianTorso
+      Lungs: OrganHumanLungs
+      Heart: OrganLamianHeart
+      Stomach: OrganLamianStomach
+      Liver: OrganLamianLiver
+      Kidneys: OrganHumanKidneys
+      ArmLeft: OrganLamianArmLeft
+      ArmRight: OrganLamianArmRight
+      HandLeft: OrganLamianHandLeft
+      HandRight: OrganLamianHandRight
+      LegLeft: OrganLamianLegLeft
+      LegRight: OrganLamianLegRight
+      FootLeft: OrganLamianFootLeft
+      FootRight: OrganLamianFootRight
+  - type: HumanoidProfile
+    species: Lamian
+
 - type: entity
   id: OrganLamianHeart
   parent: OrganHumanHeart
@@ -37,70 +122,21 @@
     maxReagents: 5
     metabolizerTypes: [Lamian]
 
-- type: body
-  id: Lamian
-  name: "Lamian"
-  root: torso
-  slots:
-    head:
-      part: HeadLamian
-      connections:
-      - torso
-      organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-    torso:
-      part: TorsoLamian
-      connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
-      organs:
-        heart: OrganLamianHeart
-        lungs: OrganHumanLungs
-        stomach: OrganReptilianStomach
-        liver: OrganLamianLiver
-        kidneys: OrganHumanKidneys
-    right arm:
-      part: RightArmLamian
-      connections:
-      - right hand
-    left arm:
-      part: LeftArmLamian
-      connections:
-      - left hand
-    right hand:
-      part: RightHandLamian
-    left hand:
-      part: LeftHandLamian
-    right leg:
-      part: RightLegLamian
-      connections:
-      - right foot
-    left leg:
-      part: LeftLegLamian
-      connections:
-      - left foot
-    right foot:
-      part: RightFootLamian
-    left foot:
-      part: LeftFootLamian
-
 - type: metabolizerType
   id: Lamian
   name: Lamian
 
 - type: entity
   save: false
-  name: Урист МакЛамиан
+  name: Urist McLamian
   parent: BaseMobLamian
   id: MobLamian
+  categories: []
 
 - type: entity
   save: false
   name: Urist McHands The Lamian
-  parent: BaseMobSpeciesOrganic
+  parent: [AppearanceLamian, BaseSpeciesMobOrganic]
   id: BaseMobLamian
   abstract: true
   components:
@@ -121,20 +157,10 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-  - type: Body
-    prototype: Lamian
-    requiredLegs: 2
   - type: LanguageSpeaker
     languages:
       Common: Speak
-      #Goblin: Speak
-      #Ancient: Speak
-      #Tribe: Understand
-      #Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
       Hissing: Speak
-      #Elf: Speak
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -169,7 +195,7 @@
       Unsexed: MaleHuman
   - type: Speech
     speechSounds: Alto
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Lamian
   - type: Mana
     maxManaRaceModifier: 1.1
@@ -220,7 +246,7 @@
     Poison: 0.5
 
 - type: entity
-  parent: BaseMobLamian
+  parent: AppearanceLamian
   id: MobLamianDummy
   noSpawn: true
   components:
@@ -234,160 +260,17 @@
 
 - type: species
   id: Lamian
-  name: Ламиан
+  name: species-name-lamian
   roundStart: true
   prototype: MobLamian
-  sprites: MobLamianSprites
-  markingLimits: MobLamianMarkingLimits
   dollPrototype: MobLamianDummy
   skinColoration: Hues
-
-- type: markingPoints
-  id: MobLamianMarkingLimits
-  points:
-    Hair:
-      points: 1
-      required: false
-    FacialHair:
-      points: 1
-      required: false
-    HeadTop:
-      points: 1
-      required: true
-      defaultMarkings: [ LamianEars ]
-    HeadSide:
-      points: 1
-      required: false
-    Chest:
-      points: 3
-      required: false
-    Legs:
-      points: 2
-      required: false
-    Arms:
-      points: 2
-      required: false
-    Tail:
-      points: 1
-      required: true
-      defaultMarkings: [ LamianTailSmoothPrime ]
-
-- type: speciesBaseSprites
-  id: MobLamianSprites
-  sprites:
-    Head: MobLamianHead
-    Hair: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
-    Snout: MobHumanoidAnyMarking
-    Chest: MobLamianTorso
-    Eyes: MobHumanoidEyes
-    LArm: MobLamianLArm
-    RArm: MobLamianRArm
-    LHand: MobLamianLHand
-    RHand: MobLamianRHand
-    LLeg: MobLamianLLeg
-    RLeg: MobLamianRLeg
-    LFoot: MobLamianLFoot
-    RFoot: MobLamianRFoot
-    Tail: MobHumanoidAnyMarking
-    HeadTop: MobLamianEars # imperial HairAndTail
-    HeadSide: MobHumanoidAnyMarking
-
-- type: humanoidBaseSprite
-  id: MobLamianEars
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: ears
-
-- type: humanoidBaseSprite
-  id: MobLamianHead
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobLamianHeadMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobLamianHeadFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: head_f
-
-- type: humanoidBaseSprite
-  id: MobLamianTorso
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobLamianTorsoMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobLamianTorsoFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: torso_f
-
-- type: humanoidBaseSprite
-  id: MobLamianLLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: l_leg
-
-- type: humanoidBaseSprite
-  id: MobLamianLArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: l_arm
-
-- type: humanoidBaseSprite
-  id: MobLamianLHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: l_hand
-
-- type: humanoidBaseSprite
-  id: MobLamianLFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: l_foot
-
-- type: humanoidBaseSprite
-  id: MobLamianRLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: r_leg
-
-- type: humanoidBaseSprite
-  id: MobLamianRArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: r_arm
-
-- type: humanoidBaseSprite
-  id: MobLamianRHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: r_hand
-
-- type: humanoidBaseSprite
-  id: MobLamianRFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: r_foot
 
 - type: marking
   id: LamianTailSmoothPrime
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: tail_smooth_primary
@@ -396,7 +279,7 @@
   id: LamianTailSmooth
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: tail_smooth
@@ -405,7 +288,7 @@
   id: LamianTailSpikes
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: tail_spikes
@@ -414,7 +297,7 @@
   id: LamianTailSpikesAnimated
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: tail_spikes_wagging
@@ -423,7 +306,7 @@
   id: LamianTailSmoothAnimated
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: tail_smooth_wagging
@@ -432,7 +315,7 @@
   id: LamianEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: ears
@@ -441,7 +324,7 @@
   id: LamianEarsLong
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: ears_long
@@ -450,7 +333,7 @@
   id: LamianEarsLow
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: ears_low
@@ -459,7 +342,7 @@
   id: LamianEarsTop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: ears_top
@@ -468,7 +351,7 @@
   id: LamianBodyTigerFat
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: body_tiger_fat
@@ -477,7 +360,7 @@
   id: LamianFrillsaquatic
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_aquatic
@@ -486,7 +369,7 @@
   id: LamianFrillsAxolotl
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_axolotl
@@ -495,7 +378,7 @@
   id: LamianFrillsBig
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_big
@@ -504,7 +387,7 @@
   id: LamianFrillsGills
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_gills
@@ -513,7 +396,7 @@
   id: LamianFrillsNeckfull
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_neckfull
@@ -522,7 +405,7 @@
   id: LamianFrillsSharp
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_sharp
@@ -531,7 +414,7 @@
   id: LamianFrillsShort
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_short
@@ -540,7 +423,7 @@
   id: LamianFrillsSimple
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_simple
@@ -549,7 +432,7 @@
   id: LamianFrillsWide
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lamian]
+  groupWhitelist: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
     state: frills_wide

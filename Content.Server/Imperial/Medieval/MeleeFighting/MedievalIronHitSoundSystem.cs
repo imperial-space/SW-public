@@ -21,6 +21,7 @@ using Content.Shared.Damage;
 using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared.Inventory;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.MedievalIronHitSound
 {

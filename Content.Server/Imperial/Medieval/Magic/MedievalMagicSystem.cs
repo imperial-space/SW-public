@@ -7,8 +7,9 @@ using Content.Server.Imperial.MouseInput;
 using Content.Server.Imperial.TargetOverlay;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Imperial.Medieval.Language;
+using Content.Shared.Chat;
+using Content.Shared.EntityEffects;
 using Content.Shared.Imperial.Medieval.Magic;
-using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -18,7 +19,6 @@ namespace Content.Server.Imperial.Medieval.Magic;
 
 
 /// <summary>
-/// Server part of the <see cref="SharedMedievalMagicSystem" />
 /// <para>
 /// Responsible for the words spoken when casting spells and for the spawn of the projectile
 /// </para>
@@ -36,7 +36,8 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
     [Dependency] private readonly TargetOverlaySystem _targetOverlaySystem = default!;
     [Dependency] private readonly ImperialLightningSystem _lightningSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly Content.Shared.Tag.TagSystem _tagSystem = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     private static readonly Gauge SpellCastedMetrics = Metrics.CreateGauge(
@@ -136,14 +137,14 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
         Dirty(uid, casterComponent);
     }
 
-    private InGameICChatType TransformToChatEnum(SpellSpeechType? speechType)
+    private Content.Shared.Chat.InGameICChatType TransformToChatEnum(SpellSpeechType? speechType)
     {
         return speechType switch
         {
-            SpellSpeechType.Speak => InGameICChatType.Speak,
-            SpellSpeechType.Emote => InGameICChatType.Emote,
-            SpellSpeechType.Whisper => InGameICChatType.Whisper,
-            _ => InGameICChatType.Speak
+            SpellSpeechType.Speak => Content.Shared.Chat.InGameICChatType.Speak,
+            SpellSpeechType.Emote => Content.Shared.Chat.InGameICChatType.Emote,
+            SpellSpeechType.Whisper => Content.Shared.Chat.InGameICChatType.Whisper,
+            _ => Content.Shared.Chat.InGameICChatType.Speak
         };
     }
 

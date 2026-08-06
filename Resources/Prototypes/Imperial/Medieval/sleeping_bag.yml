@@ -56,11 +56,15 @@
   # Each value is exactly half of MedievalMedicalBed
   - type: HealOnBuckle
     damage:
-      groups:
-        Brute: -0.05
-        Burn: -0.05
-        Airloss: -0.15
       types:
+        Blunt: -0.015
+        Slash: -0.015
+        Piercing: -0.015
+        Heat: -0.015
+        Shock: -0.015
+        Cold: -0.015
+        Asphyxiation: -0.1
+        Bloodloss: -0.1
         Poison: -0.02
         Caustic: -0.01
         Radiation: -0.02

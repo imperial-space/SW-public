@@ -27,16 +27,15 @@
     randomizeName: false
   - type: CrewSkills
     skills:
-      - skillBotany
-      - skillBaseMed
-      - skillBaseConstraction
-      - skillHacking
-      - skillInstrumentation
-      - skillMaintenance
-      - skillMedicalEquipment
-      - skillPharmacology
-      - skillShooting
-      - skillSurgery
+    - Botany
+    - BaseMed
+    - BaseConstruction
+    - Hacking
+    - Instrumentation
+    - Maintenance
+    - MedicalEquipment
+    - Pharmacology
+    - Shooting
 
 - type: entity
   parent: TriviumCMDUSSP
@@ -71,7 +70,7 @@
   - type: GhostTakeoverAvailable
 
 - type: entity
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: Gaqut, Void, SideUSSP, Dead
   save: false # mobs are currently not saveable.
   id: TriviumPilotUSSPDead
@@ -96,7 +95,7 @@
     prototypes: [ TriviumPilotUSSPgear ]
 
 - type: entity
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: Gaqut, Void, SideUSSP, Dead
   save: false # mobs are currently not saveable.
   id: TriviumSoldierUSSPDead
@@ -121,7 +120,7 @@
     prototypes: [ TriviumSoldierUSSPgear ]
 
 - type: entity
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: Gaqut, Void, SideTrivium, Dead
   save: false # mobs are currently not saveable.
   id: TriviumPilotTriviumDead
@@ -146,7 +145,7 @@
     prototypes: [ TriviumPilotTriviumgear ]
 
 - type: entity
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: Gaqut, Void, SideTrivium, Dead
   save: false # mobs are currently not saveable.
   id: TriviumSoldierTriviumDead

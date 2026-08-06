@@ -672,6 +672,7 @@
     anchored: true
   - type: Appearance
   - type: Battery
+    netsync: false
     maxCharge: 500000000
     startingCharge: 500000000
   - type: NodeContainer
@@ -2185,12 +2186,6 @@
     tags:
     - DiscreteHealthAnalyzer
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.PowerCellSlotVisuals.Enabled:
-        enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: false }
-          False: { visible: false }
   - type: ItemSlots
     slots:
       cell_slot:
@@ -2350,8 +2345,10 @@
       plagueProgressionDecayPerUse: 1
       damageContainers: [Biological, Forged]
       damage:
-        groups:
-          Brute: -15 # 5 for each type in the group
+        types:
+          Blunt: -5
+          Slash: -5
+          Piercing: -5
       healingBeginSound:
         path: "/Audio/Items/Medical/brutepack_begin.ogg"
       healingEndSound:
@@ -4265,7 +4262,7 @@
   #      - Catwalk
   #- type: TileEntityEffect
   #  effects:
-  #  - !type:ExtinguishReaction
+  #  - !type:Extinguish
   - type: IconSmooth
     key: water
     base: water
@@ -5223,111 +5220,11 @@
     _itemstatus_content_margin_left: "#04060604"
     _itemstatus_patch_margin: "#07060404"
 
-- type: tile
-  editorHidden: false
-  id: FloorPlanetDirt
-  name: tiles-dirt-floor
-  sprite: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/cavedrought.png
-  variants: 16
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  edgeSpritePriority: 2
-  edgeSprites:
-    SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_SE.png
-    NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_NE.png
-    NorthWest: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_NW.png
-    SouthWest: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_SW.png
-    South: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/double_edge_S.png
-    East: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/double_edge_E.png
-    North: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/double_edge_N.png
-    West: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/double_edge_W.png
-  #baseTurf: CP14FloorBase
-  #deconstructTools: [ CP14Digging ]
-  #itemDrop: CP14RandomDirtLootSpawner
-  isSubfloor: true
-  footstepSounds:
-    collection: FootstepAsteroid
-  heatCapacity: 999100000
-  weather: true
-  badSmellMod: 2
+# removed duplicate tile FloorPlanetDirt
 
-- type: tile
-  editorHidden: false
-  id: FloorDirt
-  name: tiles-dirt-floor
-  sprite: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/dirt.png
-  variants: 4
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  edgeSpritePriority: 1
-  edgeSprites:
-    SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/single_edge_SE.png
-    NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/single_edge_NE.png
-    NorthWest: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/single_edge_NW.png
-    SouthWest: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/single_edge_SW.png
-    South: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/double_edge_S.png
-    East: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/double_edge_E.png
-    North: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/double_edge_N.png
-    West: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/double_edge_W.png
-  #baseTurf: CP14FloorBase
-  #deconstructTools: [ CP14Digging ]
-  #itemDrop: CP14RandomDirtLootSpawner
-  isSubfloor: true
-  footstepSounds:
-    collection: FootstepAsteroid
-  heatCapacity: 999100000
-  weather: true
-  badSmellMod: 2
+# removed duplicate tile FloorDirt
 
-- type: tile
-  editorHidden: false
-  id: FloorDesert
-  name: песок (переход)
-  sprite: /Textures/Imperial/Medieval/Tiles/Planet/Sand/sand.png
-  variants: 5
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  edgeSpritePriority: 2
-  edgeSprites:
-    SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/Sand/single_edge_SE.png
-    NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/Sand/single_edge_NE.png
-    NorthWest: /Textures/Imperial/Medieval/Tiles/Planet/Sand/single_edge_NW.png
-    SouthWest: /Textures/Imperial/Medieval/Tiles/Planet/Sand/single_edge_SW.png
-    South: /Textures/Imperial/Medieval/Tiles/Planet/Sand/double_edge_S.png
-    East: /Textures/Imperial/Medieval/Tiles/Planet/Sand/double_edge_E.png
-    North: /Textures/Imperial/Medieval/Tiles/Planet/Sand/double_edge_N.png
-    West: /Textures/Imperial/Medieval/Tiles/Planet/Sand/double_edge_W.png
-  #baseTurf: CP14FloorBase
-  #deconstructTools: [ CP14Digging ]
-  #itemDrop: CP14DirtEffect #TODO sand variant
-  isSubfloor: true
-  footstepSounds:
-    collection: FootstepSnow #TODO
-  heatCapacity: 99910000
-  weather: true
-  badSmellMod: 1.5
+# removed duplicate tile FloorDesert
 
 - type: tile
   editorHidden: false
@@ -5612,71 +5509,9 @@
   weather: true
   badSmellMod: 1.25
 
-- type: tile
-  id: FloorAstroGrass
-  editorHidden: false
-  name: трава (переход)
-  sprite: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/grass.png
-  variants: 6
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  edgeSpritePriority: 3
-  edgeSprites:
-    SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/single_edge_SE.png
-    NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/single_edge_NE.png
-    NorthWest: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/single_edge_NW.png
-    SouthWest: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/single_edge_SW.png
-    South: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/double_edge_S.png
-    East: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/double_edge_E.png
-    North: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/double_edge_N.png
-    West: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/double_edge_W.png
-  #baseTurf: CP14FloorDirt
-  #deconstructTools: [ CP14Digging ]
-  #itemDrop: CP14DirtEffect
-  isSubfloor: false
-  footstepSounds:
-    collection: FootstepGrass
-  heatCapacity: 99910000
-  weather: true
-  badSmellMod: 1.25
+# removed duplicate tile FloorAstroGrass
 
-- type: tile
-  id: FloorPlanetGrass
-  editorHidden: false
-  name: трава (переход) 2.0
-  sprite: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/grass.png
-  variants: 6
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  edgeSpritePriority: 3
-  edgeSprites:
-    SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/single_edge_SE.png
-    NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/single_edge_NE.png
-    NorthWest: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/single_edge_NW.png
-    SouthWest: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/single_edge_SW.png
-    South: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/double_edge_S.png
-    East: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/double_edge_E.png
-    North: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/double_edge_N.png
-    West: /Textures/Imperial/Medieval/Tiles/Planet/GrassCP/double_edge_W.png
-  #baseTurf: CP14FloorDirt
-  #deconstructTools: [ CP14Digging ]
-  #itemDrop: CP14DirtEffect
-  isSubfloor: false
-  footstepSounds:
-    collection: FootstepGrass
-  heatCapacity: 99910000
-  weather: true
-  badSmellMod: 1.25
+# removed duplicate tile FloorPlanetGrass
 
 - type: tile
   id: MedievalFloorPlanetGrass2
@@ -6994,7 +6829,7 @@
 - type: entity
   save: false
   name: Urist McHands
-  parent: BaseMobHuman
+  parent: MobHuman
   id: BuffedMobHuman
   components:
     - type: SlowOnDamage
@@ -7043,9 +6878,10 @@
     damageContainers:
       - Shield
     damage:
-      groups:
-        Brute: -1000
       types:
+        Blunt: -1000
+        Slash: -1000
+        Piercing: -1000
         Heat: -1000
         Structural: -1000
     delay: 3
@@ -7878,7 +7714,7 @@
         - Catwalk
   - type: TileEntityEffect
     effects:
-    - !type:ExtinguishReaction
+    - !type:Extinguish
   - type: IconSmooth
     key: water
     base: water
@@ -8139,7 +7975,7 @@
     tags:
       - Payload
       - ClothMade
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       collection: IanBark

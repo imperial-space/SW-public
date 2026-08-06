@@ -39,9 +39,15 @@ public sealed partial class StaminaComponent : Component
     public float StaminaDamage;
 
     /// <summary>
-    /// How much stamina damage is required to enter stam crit.
+    /// The base stamina the entity requires to enter stam crit. Should rarely if ever be modified outside of yaml.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField]
+    public float BaseCritThreshold = 100f;
+
+    /// <summary>
+    /// Modified crit threshold for when an entity should enter stamcrit.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
     public float CritThreshold = 100f;
 
     /// <summary>
@@ -85,7 +91,7 @@ public sealed partial class StaminaComponent : Component
     public SoundSpecifier ForceStandSuccessSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
 
     /// <summary>
-    /// Thresholds that determine an entity's slowdown as a function of stamina damage.
+    /// Thresholds that determine an entity's slowdown as a function of stamina damage, in percentages.
     /// </summary>
     [DataField]
     public Dictionary<FixedPoint2, float> StunModifierThresholds = new() { {0, 1f }, { 60, 0.95f }, { 80, 0.85f } }; // imperial medieval balance changes

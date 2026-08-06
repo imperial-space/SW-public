@@ -1,6 +1,8 @@
 using Content.Server.Decals;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Decals;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
@@ -20,6 +22,7 @@ namespace Content.Server.Imperial.BloodTrail
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IMapManager _map = default!;
         [Dependency] private readonly DecalSystem _decal = default!;
+        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
         private const float MinDistanceBetweenDecals = 0.3f;
         private readonly List<Vector2> _recentDecalPositions = new();
@@ -161,11 +164,13 @@ namespace Content.Server.Imperial.BloodTrail
 
         private Color GetBloodColor(EntityUid victim)
         {
-            if (TryComp<BloodstreamComponent>(victim, out var bloodstream) &&
-                _prototype.TryIndex(bloodstream.BloodReagent, out var reagent))
-                return reagent.SubstanceColor;
+            if (!TryComp<BloodstreamComponent>(victim, out var bloodstream))
+                return Color.DarkRed;
 
-            return Color.DarkRed;
+            if (!_solutionContainerSystem.TryGetSolution(victim, bloodstream.BloodSolutionName, out var _, out var solution))
+                return Color.DarkRed;
+
+            return solution.GetColor(_prototype);
         }
 
         private (Vector2 position, Angle rotation) CalculateDecalPositionAndRotation(Vector2 victimWorldPos, EntityUid? damageSource, float spread)

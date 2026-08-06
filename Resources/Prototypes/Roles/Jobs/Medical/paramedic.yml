@@ -16,12 +16,6 @@
   - External
   extendedAccess:
   - Chemistry
-  skills:
-  - skillBotany
-  - skillBaseMed
-  - skillBaseConstraction
-  - skillPharmacology
-  - skillMedicalEquipment
 
 
 - type: startingGear
@@ -33,6 +27,7 @@
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
+    - HandheldParamedicCrewMonitor # imperial space: add portable paramedic crew monitor
 
 - type: chameleonOutfit
   id: ParamedicChameleonOutfit

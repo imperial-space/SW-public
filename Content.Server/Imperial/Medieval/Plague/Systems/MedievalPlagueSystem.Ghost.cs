@@ -10,6 +10,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 
+using Content.Shared.Movement.Systems; 
 namespace Content.Server.Imperial.Medieval.Plague;
 
 public sealed partial class MedievalPlagueSystem
@@ -101,7 +102,8 @@ public sealed partial class MedievalPlagueSystem
 
         if (_symptoms.Where(x => x.Value.Unlocked).ToDictionary().ContainsKey("BloodVomit") && TryComp<BloodstreamComponent>(uid, out var bloodstream))
         {
-            Solution sol = new(bloodstream.BloodReagent, 20f);
+            // Solution sol = new(bloodstream.BloodReagent, 20f);
+            Solution sol = new("Blood", 20f);
             _puddle.TrySpillAt(Transform(uid).Coordinates, sol, out _, false);
             DamageSpecifier damage = new()
             {
@@ -145,11 +147,14 @@ public sealed partial class MedievalPlagueSystem
 
         _jitter.DoJitter(args.Target, TimeSpan.FromSeconds(6), true, 10, 3);
         _drunk.TryApplyDrunkenness(args.Target, TimeSpan.FromSeconds(600));
-        var modifier = EnsureComp<MovespeedModifierMetabolismComponent>(uid);
-        modifier.SprintSpeedModifier = 0.7f;
-        modifier.WalkSpeedModifier = 0.7f;
-        modifier.ModifierTimer = _timing.CurTime + TimeSpan.FromSeconds(6);
-        Dirty(uid, modifier);
+        // var modifier = EnsureComp<MovespeedModifierMetabolismComponent>(uid);
+        // ...
+        _movementMod.TryAddMovementSpeedModDuration(
+            uid,
+            MovementModStatusSystem.VomitingSlowdown,
+            TimeSpan.FromSeconds(6),
+            0.7f,
+            0.7f);
 
         _audio.PlayGlobal(new SoundCollectionSpecifier("PlagueDizziness"), Filter.Empty().FromEntities(args.Target), false);
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/dizzy.ogg"), Filter.Empty().FromEntities(uid), false);
@@ -213,7 +218,7 @@ public sealed partial class MedievalPlagueSystem
 
         var xform = Transform(uid);
 
-        if (_lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(xform.Coordinates, 8f).Any())
+        if (_lookup.GetEntitiesInRange<HumanoidProfileComponent>(xform.Coordinates, 8f).Any())
         {
             _popup.PopupEntity(Loc.GetString("medieval-plague-mouse-polymorph-nearby-popup"), uid, uid);
             return;

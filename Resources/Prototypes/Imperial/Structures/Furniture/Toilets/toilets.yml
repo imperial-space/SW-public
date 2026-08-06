@@ -44,7 +44,6 @@
   startNode: start
   targetNode: goldtoilet
   category: construction-category-furniture
-  description: Только для богачей
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

@@ -393,11 +393,15 @@
     state: icon
   - type: HealOnBuckle
     damage:
-      groups:
-        Brute: -0.3
-        Burn: -0.3
-        Airloss: -1.1
       types:
+        Blunt: -0.04
+        Slash: -0.04
+        Piercing: -0.04
+        Heat: -0.08
+        Shock: -0.015
+        Cold: -0.015
+        Asphyxiation: -0.1
+        Bloodloss: -0.1
         Poison: -0.12
         Caustic: -0.1
         Radiation: -0.12

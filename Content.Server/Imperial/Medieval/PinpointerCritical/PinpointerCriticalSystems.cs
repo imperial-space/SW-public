@@ -28,7 +28,7 @@ public sealed partial class PinpointerCriticalSystem : EntitySystem
         var query = EntityQueryEnumerator<MobThresholdsComponent>();
         while (query.MoveNext(out var uidd, out var compp))
         {
-            if (HasComp<HumanoidAppearanceComponent>(uidd) && compp.CurrentThresholdState == MobState.Critical
+            if (HasComp<HumanoidProfileComponent>(uidd) && compp.CurrentThresholdState == MobState.Critical
              && Transform(ev.User).ParentUid == Transform(uidd).ParentUid) // Проверка на критическое состояние
             {
                 var targetCoords = _transform.GetMapCoordinates(uidd); // Координаты цели
@@ -53,7 +53,7 @@ public sealed partial class PinpointerCriticalSystem : EntitySystem
         }
         if (TryComp<PinpointerComponent>(ev.Target, out var pinComp) && closestUid != null)
         {
-            _pinpointer.SetTarget(uid, closestUid, pinComp);
+            _pinpointer.SetTarget((uid, pinComp), closestUid);
         }
     }
 

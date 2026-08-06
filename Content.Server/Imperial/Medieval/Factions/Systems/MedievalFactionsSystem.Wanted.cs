@@ -69,44 +69,10 @@ public sealed partial class MedievalFactionsSystem
 
     private HumanoidCharacterProfile? BuildProfile(EntityUid uid)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+        if (!TryComp<HumanoidProfileComponent>(uid, out var humanoid))
             return null;
 
-        HumanoidCharacterAppearance hca = new();
-
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.FacialHair, out var facialHair))
-            if (facialHair.TryGetValue(0, out var marking))
-            {
-                hca = hca.WithFacialHairStyleName(marking.MarkingId);
-                hca = hca.WithFacialHairColor(marking.MarkingColors.First());
-            }
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Hair, out var hair))
-            if (hair.TryGetValue(0, out var marking))
-            {
-                hca = hca.WithHairStyleName(marking.MarkingId);
-                hca = hca.WithHairColor(marking.MarkingColors.First());
-            }
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Head, out var head))
-            hca = hca.WithMarkings(head);
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.HeadSide, out var headSide))
-            hca = hca.WithMarkings(headSide);
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.HeadTop, out var headTop))
-            hca = hca.WithMarkings(headTop);
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Snout, out var snout))
-            hca = hca.WithMarkings(snout);
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Chest, out var chest))
-            hca = hca.WithMarkings(chest);
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Arms, out var arms))
-            hca = hca.WithMarkings(arms);
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Legs, out var legs))
-            hca = hca.WithMarkings(legs);
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var tail))
-            hca = hca.WithMarkings(tail);
-        if (humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Overlay, out var overlay))
-            hca = hca.WithMarkings(overlay);
-
-        hca = hca.WithSkinColor(humanoid.SkinColor);
-        hca = hca.WithEyeColor(humanoid.EyeColor);
+        var hca = HumanoidCharacterAppearance.DefaultWithSpecies(humanoid.Species, humanoid.Sex);
 
         return new HumanoidCharacterProfile().
                 WithCharacterAppearance(hca).

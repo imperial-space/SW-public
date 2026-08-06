@@ -69,12 +69,15 @@ public sealed class MyrmexPipeSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        if (!_nodeContainer.TryGetNode<MyrmexPipeNode>(pipe.Owner, pipe.Comp.NodeId, out var pipeNode))
+        if (!_nodeContainer.TryGetNode<MyrmexPipeNode>(pipe.Owner, pipe.Comp.NodeId, out var pipeNode)
+            || !CanRefloodNode(pipe.Owner, pipeNode))
             return;
 
         pipeNode.Enabled ^= true;
 
-        _nodeGroupSystem.QueueReflood(pipeNode);
+        if (CanRefloodNode(pipe.Owner, pipeNode))
+            _nodeGroupSystem.QueueReflood(pipeNode);
+
         _appearance.SetData(pipe, MyrmexValveVisuals.State, pipeNode.Enabled);
 
         args.Handled = true;
@@ -239,7 +242,34 @@ public sealed class MyrmexPipeSystem : EntitySystem
             cable1
         );
 
-        QueueDel(cable1);
-        QueueDel(cable2);
+        QueueNodeContainerDeletion(cable1);
+        QueueNodeContainerDeletion(cable2);
+    }
+
+    private bool CanRefloodNode(EntityUid uid, Node node)
+    {
+        return node.Owner == uid
+            && !node.Deleting
+            && !TerminatingOrDeleted(uid)
+            && !EntityManager.IsQueuedForDeletion(uid)
+            && HasComp<TransformComponent>(uid);
+    }
+
+    private void QueueNodeContainerDeletion(EntityUid uid)
+    {
+        if (TerminatingOrDeleted(uid))
+            return;
+
+        if (TryComp<NodeContainerComponent>(uid, out var container))
+        {
+            foreach (var node in container.Nodes.Values)
+            {
+                node.Deleting = true;
+                _nodeGroupSystem.QueueNodeRemove(node);
+            }
+        }
+
+        if (!EntityManager.IsQueuedForDeletion(uid))
+            QueueDel(uid);
     }
 }

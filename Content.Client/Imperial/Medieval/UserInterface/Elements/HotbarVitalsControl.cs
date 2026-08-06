@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Client.Damage.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Forged;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Mobs;
@@ -53,6 +54,7 @@ public sealed class HotbarVitalsControl : BoxContainer
     private MobStateSystem? _mobStateSystem;
     private MobThresholdSystem? _mobThresholdSystem;
     private StaminaSystem? _staminaSystem;
+    private DamageableSystem? _damageableSystem; // Imperial Medieval: public Damageable access
 
     private EntityUid? _trackedEntity;
     private TimeSpan? _manaHideAt;
@@ -157,7 +159,8 @@ public sealed class HotbarVitalsControl : BoxContainer
     {
         if ((_mobStateSystem == null && !_entityManager.TrySystem(out _mobStateSystem)) ||
             (_mobThresholdSystem == null && !_entityManager.TrySystem(out _mobThresholdSystem)) ||
-            (_staminaSystem == null && !_entityManager.TrySystem(out _staminaSystem)))
+            (_staminaSystem == null && !_entityManager.TrySystem(out _staminaSystem)) ||
+            (_damageableSystem == null && !_entityManager.TrySystem(out _damageableSystem)))
         {
             _content.Visible = false;
             return;
@@ -211,7 +214,7 @@ public sealed class HotbarVitalsControl : BoxContainer
             }
             else
             {
-                ratio = Math.Clamp(1f - damageable.TotalDamage.Float() / critThreshold.Value.Float(), 0f, 1f);
+                ratio = Math.Clamp(1f - _damageableSystem!.GetTotalDamage(entity).Float() / critThreshold.Value.Float(), 0f, 1f);
             }
         }
         else if (_mobStateSystem.IsCritical(entity, mobState))
@@ -223,7 +226,7 @@ public sealed class HotbarVitalsControl : BoxContainer
             {
                 var thresholdRange = (deadThreshold.Value - critThreshold.Value).Float();
                 if (thresholdRange > 0f)
-                    ratio = Math.Clamp(1f - (damageable.TotalDamage - critThreshold.Value).Float() / thresholdRange, 0f, 1f);
+                    ratio = Math.Clamp(1f - (_damageableSystem!.GetTotalDamage(entity) - critThreshold.Value).Float() / thresholdRange, 0f, 1f);
             }
         }
 

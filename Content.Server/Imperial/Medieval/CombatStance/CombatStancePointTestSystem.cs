@@ -26,6 +26,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Damage.Events;
 using Content.Shared.Explosion;
 using Content.Server.Popups;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.CombatStance;
 
@@ -92,17 +93,15 @@ public sealed class CombatStancePointTestSystem : EntitySystem
     {
         if (!component.HasDefence)
             return;
-        var newdict = new Dictionary<string, FixedPoint2>();
-        foreach (var (key, value) in args.Damage.DamageDict)
+        var keys = new List<Robust.Shared.Prototypes.ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype>>(args.Damage.DamageDict.Keys);
+        foreach (var key in keys)
         {
-            Console.WriteLine(value.Float());
+            var value = args.Damage.DamageDict[key];
+            Log.Debug(value.Float().ToString());
             if (value > 0)
-                newdict[key] = FixedPoint2.New(value.Float() * 0.5f);
-            else
-                newdict[key] = value;
-            Console.WriteLine(newdict[key].Float());
+                args.Damage.DamageDict[key] = FixedPoint2.New(value.Float() * 0.5f);
+            Log.Debug(args.Damage.DamageDict[key].Float().ToString());
         }
-        args.Damage.DamageDict = newdict;
     }
     public void MemberRemoved(EntityUid uid, string faction, FactionMemberGroup group)
     {

@@ -224,7 +224,7 @@
       - 0,0,1,1
     - type: Construction
       graph: MedievalMortarNew
-      node: ground
+      node: MedievalMortarNew
 
 - type: entity
   name: mortar tool
@@ -242,7 +242,7 @@
     - type: MortarTool
     - type: Construction
       graph: MedievalMortarTool
-      node: ground
+      node: MedievalMortarTool
 
 - type: entity
   name: recipe book

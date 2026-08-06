@@ -1,4 +1,4 @@
-﻿using Content.Shared.Actions;
+using Content.Shared.Actions;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -47,7 +47,7 @@ public sealed partial class MyrmexQueenSystem : EntitySystem
 
         if (hunger.Buffs.Count == 0)
         {
-            //_popup.PopupEntity(Loc.GetString("medieval-myrmex-queen-egg-no-buff"), uid, uid);
+            
             //return;
         }
 

@@ -7,6 +7,7 @@ using Robust.Server.GameObjects;
 using Content.Shared.Mobs;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.MagicPotionsMaker
 {

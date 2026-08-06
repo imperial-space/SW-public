@@ -1,4 +1,4 @@
-- type: skill
+- type: medievalSkill
   id: Agility
   name: skill-agility-name
   color: "#96fff3"
@@ -28,7 +28,7 @@
     NegativeStealChanceModifier: -0.15
     PositiveLockpickLossModifier: -0.09
 
-- type: skill
+- type: medievalSkill
   id: Strength
   name: skill-strength-name
   color: "#ff9696"
@@ -51,7 +51,7 @@
     PositiveGateInteractionTimeModifier: -0.07
     NegativeGateInteractionTimeModifier: 0.1
 
-- type: skill
+- type: medievalSkill
   id: Vitality
   name: skill-vitality-name
   color: "#99ff96"
@@ -74,7 +74,7 @@
     PositiveBloodRegenModifier: 0.06
     NegativeBloodRegenModifier: -0.06
 
-- type: skill
+- type: medievalSkill
   id: Endurance
   name: skill-endurance-name
   color: "#ffec96"
@@ -96,7 +96,7 @@
     MaxStaminaDamageModifier: 0.3
     HighMeleeThrowDistanceModifier: 0.4
 
-- type: skill
+- type: medievalSkill
   id: Intelligence
   name: skill-intelligence-name
   color: "#ea96ff"

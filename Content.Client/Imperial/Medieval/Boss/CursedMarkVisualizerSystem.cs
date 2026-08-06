@@ -35,7 +35,7 @@ public sealed class CursedMarkVisualizerSystem : EntitySystem
             if (!_sprite.TryGetLayer(comp.FlameEntity, 0, out var layer, true))
                 return;
 
-            var color = (_lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(uid).Coordinates, 1.5f).Count > 1) switch
+            var color = (_lookup.GetEntitiesInRange<HumanoidProfileComponent>(Transform(uid).Coordinates, 1.5f).Count > 1) switch
             {
                 true => comp.ActiveColor,
                 false => comp.InactiveColor

@@ -67,8 +67,13 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 5
+    activeModeProtoId: HyposprayInjectMode
+    popupOnInjectFail: false # Impreial Space
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
@@ -203,8 +208,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 5
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: BorgHypo
@@ -212,27 +221,27 @@
       - reagents:
         - reagentId: Bicaridine
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/brutekit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/brutekit.png
       - reagents:
         - reagentId: Dermaline
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/burnkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/burnkit.png
       - reagents:
         - reagentId: Dexalin
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/o2kit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/o2kit.png
       - reagents:
         - reagentId: Inaprovaline
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/firstaid.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/firstaid.png
       - reagents:
         - reagentId: Hyronalin
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/radkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/radkit.png
       - reagents:
         - reagentId: Dylovene
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/toxinkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/toxinkit.png
   - type: SolutionRegeneration
     solution: hypospray
     generated:
@@ -251,7 +260,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
 #    - Beaker  Imperial Space Удалено в связи с ребалансом медицинского борга
 #    - Beaker
 #    - BorgDropper
@@ -322,16 +331,6 @@
   components:
   - type: AutoRecharge
     rechargeDuration: 20
-  - type: GenericVisualizer
-    visuals:
-      enum.FlashVisuals.Burnt:
-        enum.FlashVisuals.BaseLayer:
-          False: {state: burnt}
-      enum.FlashVisuals.Flashing:
-        enum.FlashVisuals.LightLayer:
-          True: {visible: true}
-          False: {visible: false}
-
 
 - type: entity
   id: BorgModuleNonLethalSecurity # Нелетальный модуль СБ борга
@@ -348,7 +347,7 @@
     - item: WeaponDisablerBorg
     - item: FlashBorg
     - item: Handcuffs
-      hand: 
+      hand:
         emptyLabel: borg-slot-security-cuffs-empty
         emptyRepresentative: Handcuffs
         whitelist:
@@ -372,13 +371,14 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserBorg
+    - item: CombatKnife
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-lethal }  #Надо заменить
   - type: Tag
     tags:
     - BorgModuleSecurityImperial
 
-# Imperial Space Инженерный борг 
+# Imperial Space Инженерный борг
 
 - type: Tag
   id: Manipulator
@@ -462,6 +462,7 @@
   id: BorgModuleNonLethalSecurityErt # Нелетальный модуль ОБР борга
   parent: BaseErtBorgModule
   name: NonLethal Ert Module
+  suffix: cyborg
   components:
   - type: Sprite
     sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
@@ -597,7 +598,7 @@
     fireRate: 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseDeathSquad
     fireCost: 200
   - type: BatterySelfRecharger
@@ -665,7 +666,7 @@
     - type: ItemToggleHot
     - type: ItemToggleSize
       activatedSize: Huge
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: FlamethrowerBullet
     fireCost: 100
   - type: Battery
@@ -1044,8 +1045,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 5
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: BorgHypo
@@ -1097,7 +1102,7 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: DefibrillatorOneHandedUnpowered
     - item: JawsOfLife
     - item: JetpackErtBorg
@@ -1119,7 +1124,7 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: HyposprayBorgErt
     - item: JetpackErtBorg
   - type: BorgModuleIcon
@@ -1146,7 +1151,7 @@
 
 - type: entity
   id: HandheldHealthAnalyzerErtBorg
-  parent: HandheldHealthAnalyzerUnpowered
+  parent: HandheldHealthAnalyzer
   name: ert borg health analyzer
   suffix: Always Powered
   description: A hand-held body scanner capable of distinguishing vital signs of the subject.
@@ -1299,12 +1304,12 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 150
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 50
+    autoRechargeRate: 48
+    autoRechargePauseTime: 10
   - type: MagazineVisuals
     magState: mag
     steps: 5

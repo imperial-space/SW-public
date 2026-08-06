@@ -6,7 +6,6 @@
   startNode: start
   targetNode: grenade
   category: construction-category-weapons
-  description: Соберите гранату, используя триггер и заряд. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -18,6 +17,5 @@
   startNode: start
   targetNode: mine
   category: construction-category-weapons
-  description: Соберите мину, используя заряд. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified

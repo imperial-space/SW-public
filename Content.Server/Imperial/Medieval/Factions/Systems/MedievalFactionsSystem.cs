@@ -1,4 +1,4 @@
-ï»¿using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Actions;
 using Robust.Shared.Player;
 using Content.Server.Administration;
@@ -13,6 +13,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Mobs;
 using Robust.Shared.Utility;
+using Content.Shared.Chat;
 
 namespace Content.Server.Imperial.Medieval.Factions;
 
@@ -42,7 +43,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
     public void OnCloackMessageAction(EntityUid uid, CloackMessageComponent comp, CloackMessageActionEvent args)
     {
         if (!_sharedPlayerManager.TryGetSessionByEntity(uid, out var session)) return;
-        _quickDialog.OpenDialog(session, "Ð’ÐµÑÑ‚ÑŒ", "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ", (string message) =>
+        _quickDialog.OpenDialog(session, "Âåñòü", "Ñîîáùåíèå", (string message) =>
         {
             var query = EntityQueryEnumerator<CloackRecieverComponent>();
             while (query.MoveNext(out var cloackOwner, out var cloack))

@@ -5,6 +5,8 @@ using Content.Shared.Chat;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
 
@@ -16,6 +18,7 @@ public sealed class CritEmotesSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     public override void Update(float frameTime)
     {
@@ -28,7 +31,7 @@ public sealed class CritEmotesSystem : EntitySystem
             {
                 crit.NextEmoteUpdate = _gameTiming.CurTime + TimeSpan.FromSeconds(_random.NextFloat(4f, 7f));
 
-                if (damageable.Damage.GetTotal() < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)
+                if (_damageable.GetTotalDamage((uid, damageable)) < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)
                     continue;
 
                 _chat.TryEmoteWithChat(uid, _random.Pick(crit.Emotes), ChatTransmitRange.HideChat, ignoreActionBlocker: true);
@@ -37,7 +40,7 @@ public sealed class CritEmotesSystem : EntitySystem
             {
                 crit.NextHeartbeatUpdate = _gameTiming.CurTime + TimeSpan.FromSeconds(_random.NextFloat(1.4f, 2.1f));
 
-                if (damageable.Damage.GetTotal() < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)
+                if (_damageable.GetTotalDamage((uid, damageable)) < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)
                     continue;
 
                 _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/heartbeat.ogg"), uid);

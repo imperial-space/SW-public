@@ -1,42 +1,73 @@
-# Imperial Medieval Start
-#- type: tile
-#  id: FloorPlanetDirt
-#  name: tiles-dirt-planet-floor
-#  sprite: /Textures/Tiles/Planet/Dirt/dirt.png
-#  variants: 4
-#  placementVariants:
-#  - 1.0
-#  - 1.0
-#  - 1.0
-#  - 1.0
-#  isSubfloor: true
-#  footstepSounds:
-#    collection: FootstepAsteroid
-#  heatCapacity: 99910000
-#  weather: true
-#  indestructible: true
+- type: tile
+  id: BaseFloorPlanet
+  abstract: true
+  heatCapacity: 10000
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  weather: true
+  indestructible: true
+
+
+- type: tile
+  editorHidden: false
+  id: FloorPlanetDirt
+  name: tiles-dirt-floor
+  sprite: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/cavedrought.png
+  variants: 16
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 2
+  edgeSprites:
+    SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_SE.png
+    NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_NE.png
+    NorthWest: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_NW.png
+    SouthWest: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_SW.png
+    South: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/double_edge_S.png
+    East: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/double_edge_E.png
+    North: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/double_edge_N.png
+    West: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/double_edge_W.png
+  #baseTurf: CP14FloorBase
+  #deconstructTools: [ CP14Digging ]
+  #itemDrop: CP14RandomDirtLootSpawner
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 999100000
+  weather: true
+  badSmellMod: 2
+
 
 # Desert
-#- type: tile
-#  id: FloorDesert
-#  name: tiles-desert-floor
-#  sprite: /Textures/Tiles/Planet/Desert/desert.png
-#  variants: 6
-#  placementVariants:
-#  - 1.0
-#  - 1.0
-#  - 1.0
-#  - 1.0
-#  - 1.0
-#  - 1.0
-#  isSubfloor: true
-#  footstepSounds:
-#    collection: FootstepAsteroid
-#  heatCapacity: 99910000
-#  weather: true
-#  indestructible: true
-# Imperial Medieval End
-#
+- type: tile
+  id: FloorDesert
+  parent: BaseFloorPlanet
+  name: tiles-desert-floor
+  sprite: /Textures/Tiles/Planet/Desert/desert.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+
 - type: tile
   id: FloorLowDesert
   name: tiles-low-desert-floor
@@ -49,62 +80,44 @@
   - 1.0
   - 1.0
   - 1.0
-  isSubfloor: true
-  footstepSounds:
-    collection: FootstepAsteroid
-  heatCapacity: 99910000
-  weather: true
-  indestructible: true
-  badSmellMod: 1.5 # imperial medieval badsmell
 
 # Grass
-# Imperial Medieval Start
-#- type: tile
-#  id: FloorPlanetGrass
-#  name: tiles-grass-planet-floor
-#  sprite: /Textures/Tiles/Planet/Grass/grass.png
-#  variants: 4
-#  placementVariants:
-#  - 1.0
-#  - 1.0
-#  - 1.0
-#  - 1.0
-#  edgeSpritePriority: 1
-#  edgeSprites:
-#    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-#    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-#    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-#    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-#    South: /Textures/Tiles/Planet/Grass/double_edge.png
-#    East: /Textures/Tiles/Planet/Grass/double_edge.png
-#    North: /Textures/Tiles/Planet/Grass/double_edge.png
-#    West: /Textures/Tiles/Planet/Grass/double_edge.png
-#  baseTurf: FloorPlanetDirt
-#  isSubfloor: true
-#  footstepSounds:
-#    collection: FootstepGrass
-#  itemDrop: FloorTileItemGrass
-#  heatCapacity: 99910000
-#  weather: true
-#  indestructible: true
-# Imperial Medieval End
+- type: tile
+  id: FloorPlanetGrass
+  parent: BaseFloorPlanet
+  name: tiles-grass-planet-floor
+  sprite: /Textures/Tiles/Planet/Grass/grass.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+    South: /Textures/Tiles/Planet/Grass/double_edge.png
+    East: /Textures/Tiles/Planet/Grass/double_edge.png
+    North: /Textures/Tiles/Planet/Grass/double_edge.png
+    West: /Textures/Tiles/Planet/Grass/double_edge.png
+  baseTurf: FloorPlanetDirt
+  footstepSounds:
+    collection: FootstepGrass
 
 # Lava
 - type: tile
   id: FloorBasalt
   name: tiles-basalt-floor
+  parent: BaseFloorPlanet
   sprite: /Textures/Tiles/Planet/basalt.png
-  isSubfloor: true
-  footstepSounds:
-    collection: FootstepAsteroid
-  heatCapacity: 99910000
-  weather: true
-  indestructible: true
-  badSmellMod: 1.5 # imperial medieval badsmell
 
 # Snow
 - type: tile
   id: FloorSnow
+  parent: BaseFloorPlanet
   name: tiles-snow
   sprite: /Textures/Tiles/Planet/Snow/snow.png
   variants: 13
@@ -122,23 +135,14 @@
   - 0.0166
   - 0.0116
   - 0.0116
-  edgeSpritePriority: 4
+  edgeSpritePriority: 2
   edgeSprites:
-    SouthEast: /Textures/Tiles/Planet/Snow/single_edge_SE.png
-    NorthEast: /Textures/Tiles/Planet/Snow/single_edge_NE.png
-    NorthWest: /Textures/Tiles/Planet/Snow/single_edge_NW.png
-    SouthWest: /Textures/Tiles/Planet/Snow/single_edge_SW.png
-    South: /Textures/Tiles/Planet/Snow/double_edge_S.png
-    East: /Textures/Tiles/Planet/Snow/double_edge_E.png
-    North: /Textures/Tiles/Planet/Snow/double_edge_N.png
-    West: /Textures/Tiles/Planet/Snow/double_edge_W.png
-  isSubfloor: true
+    South: /Textures/Tiles/Planet/Snow/snow_double_edge_south.png
+    East: /Textures/Tiles/Planet/Snow/snow_double_edge_east.png
+    North: /Textures/Tiles/Planet/Snow/snow_double_edge_north.png
+    West: /Textures/Tiles/Planet/Snow/snow_double_edge_west.png
   footstepSounds:
     collection: FootstepSnow
-  heatCapacity: 99910000
-  weather: true
-  indestructible: true
-  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Ice
 - type: tile
@@ -147,33 +151,24 @@
   sprite: /Textures/Tiles/Planet/Snow/ice.png
   isSubfloor: true
   friction: 0.05
-  heatCapacity: 99910000
+  heatCapacity: 10000
   weather: true
   mobAcceleration: 0.1
   indestructible: true
-  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Dug snow
 - type: tile
   id: FloorSnowDug
+  parent: BaseFloorPlanet
   name: tiles-snow-dug
   sprite: /Textures/Tiles/Planet/Snow/snow_dug.png
-  edgeSpritePriority: 3
+  edgeSpritePriority: 1
   edgeSprites:
-    SouthEast: /Textures/Tiles/Planet/Snow/dug_single_edge_SE.png
-    NorthEast: /Textures/Tiles/Planet/Snow/dug_single_edge_NE.png
-    NorthWest: /Textures/Tiles/Planet/Snow/dug_single_edge_NW.png
-    SouthWest: /Textures/Tiles/Planet/Snow/dug_single_edge_SW.png
-    South: /Textures/Tiles/Planet/Snow/dug_double_edge_S.png
-    East: /Textures/Tiles/Planet/Snow/dug_double_edge_E.png
-    North: /Textures/Tiles/Planet/Snow/dug_double_edge_N.png
-    West: /Textures/Tiles/Planet/Snow/dug_double_edge_W.png
-  isSubfloor: true
+    South: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_south.png
+    East: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_east.png
+    North: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_north.png
+    West: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_west.png
   footstepSounds:
     collection: FootstepSnow
-  heatCapacity: 99910000
-  weather: true
-  indestructible: true
-  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Wasteland

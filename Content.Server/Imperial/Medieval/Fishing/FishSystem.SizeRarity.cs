@@ -1,3 +1,4 @@
+using Content.Shared.Store.Components;
 using System.Numerics;
 using Content.Server.Construction;
 using Content.Server.Store.Components;

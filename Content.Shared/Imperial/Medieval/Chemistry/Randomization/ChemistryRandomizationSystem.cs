@@ -23,6 +23,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
     /// <summary>
     /// Хранит все реагенты в паре с одним из реактантов
@@ -540,29 +541,15 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
 
     private void OnReaction(Entity<SolutionComponent> soln, ReactionData reaction, ReagentPrototype? reagent, FixedPoint2 unitReactions)
     {
-        var args = new EntityEffectReagentArgs(soln, EntityManager, null, soln.Comp.Solution, unitReactions, reagent, null, 1f);
-
         var posFound = _transformSystem.TryGetMapOrGridCoordinates(soln, out var gridPos);
 
         _adminLogger.Add(LogType.ChemicalReaction, reaction.Impact,
             $"Chemical reaction occurred with strength {unitReactions:strength} on entity {ToPrettyString(soln):metabolizer} at Pos:{(posFound ? $"{gridPos:coordinates}" : "[Grid or Map not Found]")}");
 
-        foreach (var effect in reaction.Effects)
-        {
-            if (!effect.ShouldApply(args))
-                continue;
+        _entityEffects.ApplyEffects(soln, reaction.Effects.ToArray(), unitReactions);
 
-            if (effect.ShouldLog)
-            {
-                var entity = args.TargetEntity;
-                _adminLogger.Add(LogType.ReagentEffect, effect.LogImpact,
-                    $"Reaction effect {effect.GetType().Name:effect} of reaction applied on entity {ToPrettyString(entity):entity} at Pos:{(posFound ? $"{gridPos:coordinates}" : "[Grid or Map not Found")}");
-            }
-
-            effect.Effect(args);
-        }
-
-        _audio.PlayPvs(reaction.Sound, soln);
+        if (_net.IsServer)
+            _audio.PlayPvs(reaction.Sound, soln);
     }
 
     /// <summary>

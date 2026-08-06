@@ -1,7 +1,7 @@
 - type: entity
   id: ForgedCoreBase
   name: ForgedCoreBase
-  parent: BaseHumanOrgan
+  parent: OrganBase
   abstract: true
   components:
   - type: Sprite
@@ -27,8 +27,7 @@
     removeEmpty: true
     metabolizerTypes: [ Forged ]
     groups:
-      - id: Food
-
+      - id: Digestion
 - type: entity
   id: ForgedCoreSerdolic
   name: ForgedCoreSerdolic

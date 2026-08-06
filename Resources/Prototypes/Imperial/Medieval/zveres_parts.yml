@@ -20,27 +20,35 @@
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
-  id: PartZveres
-  parent: [BaseItem, BasePart]
-  name: "Zveres body part"
+  parent: OrganBase
+  id: OrganZveres
   abstract: true
-  components:
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 3
-      - ReagentId: ZveresBlood
-        Quantity: 10
+  suffix: zveres
 
 - type: entity
-  id: TorsoZveres
-  name: "Zveres torso"
-  parent: [PartZveres, BaseTorso]
+  parent: OrganZveres
+  id: OrganZveresExternal
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "torso_m"
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/Zveres/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Zveres
+
+- type: entity
+  parent: OrganZveres
+  id: OrganZveresInternal
+  abstract: true
+
+- type: entity
+  id: OrganZveresTorso
+  name: "Zveres torso"
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganZveresExternal]
+  components:
   - type: Extractable
     juiceSolution:
       reagents:
@@ -50,89 +58,58 @@
         Quantity: 20
 
 - type: entity
-  id: HeadZveres
+  id: OrganZveresHead
   name: "Zveres head"
-  parent: [PartZveres, BaseHead]
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganZveresExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: Blood
+      - ReagentId: ZveresBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
-  id: LeftArmZveres
+  id: OrganZveresArmLeft
   name: "left Zveres arm"
-  parent: [PartZveres, BaseLeftArm]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "l_arm"
+  parent: [OrganBaseArmLeft, OrganZveresExternal]
 
 - type: entity
-  id: RightArmZveres
+  id: OrganZveresArmRight
   name: "right Zveres arm"
-  parent: [PartZveres, BaseRightArm]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "r_arm"
+  parent: [OrganBaseArmRight, OrganZveresExternal]
 
 - type: entity
-  id: LeftHandZveres
+  id: OrganZveresHandLeft
   name: "left Zveres hand"
-  parent: [PartZveres, BaseLeftHand]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "l_hand"
+  parent: [OrganBaseHandLeft, OrganZveresExternal]
 
 - type: entity
-  id: RightHandZveres
+  id: OrganZveresHandRight
   name: "right Zveres hand"
-  parent: [PartZveres, BaseRightHand]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "r_hand"
+  parent: [OrganBaseHandRight, OrganZveresExternal]
 
 - type: entity
-  id: LeftLegZveres
+  id: OrganZveresLegLeft
   name: "left Zveres leg"
-  parent: [PartZveres, BaseLeftLeg]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "l_leg"
+  parent: [OrganBaseLegLeft, OrganZveresExternal]
 
 - type: entity
-  id: RightLegZveres
+  id: OrganZveresLegRight
   name: "right Zveres leg"
-  parent: [PartZveres, BaseRightLeg]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "r_leg"
+  parent: [OrganBaseLegRight, OrganZveresExternal]
 
 - type: entity
-  id: LeftFootZveres
+  id: OrganZveresFootLeft
   name: "left Zveres foot"
-  parent: [PartZveres, BaseLeftFoot]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "l_foot"
+  parent: [OrganBaseFootLeft, OrganZveresExternal]
 
 - type: entity
-  id: RightFootZveres
+  id: OrganZveresFootRight
   name: "right Zveres foot"
-  parent: [PartZveres, BaseRightFoot]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: "r_foot"
+  parent: [OrganBaseFootRight, OrganZveresExternal]

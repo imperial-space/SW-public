@@ -35,6 +35,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Toolshed.Commands.Values;
+using Content.Shared.Medical;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.Plague;
 
@@ -63,6 +65,7 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _moveSpeed = default!;
+    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IChatManager _chat = default!;

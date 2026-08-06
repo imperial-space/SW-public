@@ -1,7 +1,7 @@
 # ИМПЕРИЯ - ГОТОВЫЕ ПЕРСОНАЖИ
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialOfficer
   name: Офицер Империи
   suffix: Империя, Ивент
@@ -21,7 +21,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialUnterofficer
   name: Унтер-офицер Империи
   suffix: Империя, Ивент
@@ -41,7 +41,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialSeniorArtillery
   name: Старший канонир Империи
   suffix: Империя, Ивент
@@ -61,7 +61,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialCaptain
   name: Ротмистр Империи
   suffix: Империя, Ивент
@@ -81,7 +81,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialMusketeer
   name: Мушкетёр Империи
   suffix: Империя, Ивент
@@ -99,7 +99,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialArtilleryman
   name: Канонир Империи
   suffix: Империя, Ивент
@@ -117,7 +117,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialSapper
   name: Сапёр Империи
   suffix: Империя, Ивент
@@ -135,7 +135,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialMusician
   name: Музыкант Империи
   suffix: Империя, Ивент, Флейта
@@ -153,7 +153,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialMusicianBagpipe
   name: Музыкант Империи
   suffix: Империя, Ивент, Волынка
@@ -171,7 +171,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialDoctor
   name: Военврач Империи
   suffix: Империя, Ивент
@@ -189,7 +189,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobImperialCavalry
   name: Кавалерист Империи
   suffix: Империя, Ивент
@@ -211,7 +211,7 @@
 # МАЛЛИНХЕН - ГОТОВЫЕ ПЕРСОНАЖИ
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenOfficer
   name: Офицер Маллинхена
   suffix: Маллинхен, Ивент
@@ -231,7 +231,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenUnterofficer
   name: Унтер-офицер Маллинхена
   suffix: Маллинхен, Ивент
@@ -251,7 +251,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenSeniorArtillery
   name: Фейерверкер Маллинхена
   suffix: Маллинхен, Ивент
@@ -271,7 +271,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenCaptain
   name: Ротмистр Маллинхена
   suffix: Маллинхен, Ивент
@@ -291,7 +291,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenMusketeer
   name: Вольтижёр Маллинхена
   suffix: Маллинхен, Ивент
@@ -309,7 +309,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenArtilleryman
   name: Канонир Маллинхена
   suffix: Маллинхен, Ивент
@@ -327,7 +327,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenSapper
   name: Сапёр-пионер Маллинхена
   suffix: Маллинхен, Ивент
@@ -345,7 +345,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenMusician
   name: Музыкант Маллинхена
   suffix: Маллинхен, Ивент, Флейта
@@ -363,7 +363,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenMusicianBagpipe
   name: Музыкант Маллинхена
   suffix: Маллинхен, Ивент, Волынка
@@ -381,7 +381,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenDoctor
   name: Ротный-лекарь Маллинхена
   suffix: Маллинхен, Ивент
@@ -399,7 +399,7 @@
   - type: TakeName
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: MobMallinhenCavalry
   name: Кавалерист Маллинхена
   suffix: Маллинхен, Ивент

@@ -1,6 +1,3 @@
-chatsan-word-69 = dumbass
-chatsan-replacement-69 = slowpoke
-
 chatsan-word-70 = cheat
 chatsan-replacement-70 = sin
 

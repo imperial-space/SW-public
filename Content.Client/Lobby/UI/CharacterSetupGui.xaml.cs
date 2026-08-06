@@ -12,6 +12,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby.UI
@@ -23,12 +24,11 @@ namespace Content.Client.Lobby.UI
     public sealed partial class CharacterSetupGui : Control
     {
         [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
-        [Dependency] private readonly IEntityManager _entManager = default!;
         [Dependency] private readonly IPrototypeManager _protomanager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly CharacterBlockManager _characterBlockManager = default!;
-
+        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+        [Dependency] private readonly CharacterBlockManager _characterBlockManager = default!; // Imperial Medieval
 
         private readonly Button _createNewCharacterButton;
 
@@ -67,6 +67,7 @@ namespace Content.Client.Lobby.UI
 
             StatsButton.OnPressed += _ => new PlaytimeStatsWindow().OpenCentered();
 
+            // Imperial Medieval
             var achievementController = UserInterfaceManager.GetUIController<AchievementUIController>();
             AchievementsButton.OnPressed += _ => achievementController.ToggleMenu();
 
@@ -98,14 +99,14 @@ namespace Content.Client.Lobby.UI
             foreach (var (slot, character) in _preferencesManager.Preferences!.Characters)
             {
                 numberOfFullSlots++;
-                var wasInRound = _characterBlockManager.IsCharacterBlocked((HumanoidCharacterProfile)character); // Imperial medieval edit
+                var wasInRound = _characterBlockManager.IsCharacterBlocked((HumanoidCharacterProfile)character); // Imperial Medieval
 
-                var characterPickerButton = new CharacterPickerButton(_entManager,
-                    _protomanager,
+                var characterPickerButton = new CharacterPickerButton(_protomanager,
+                    _playerManager,
                     characterButtonsGroup,
-                    character,
+                    (HumanoidCharacterProfile)character,
                     slot == selectedSlot,
-                    wasInRound); // Imperial medieval edit
+                    wasInRound); // Imperial Medieval
 
                 Characters.AddChild(characterPickerButton);
 

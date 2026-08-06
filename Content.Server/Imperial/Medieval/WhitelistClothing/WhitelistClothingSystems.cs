@@ -2,7 +2,6 @@ using Content.Shared.Imperial.WhitelistClothing.Components;
 using Content.Shared.Tag;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Inventory;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Content.Server.Imperial.WhitelistClothing.Systems;
 
@@ -18,9 +17,9 @@ public sealed class WhitelistClothingSystems : EntitySystem
     }
     private void OnEquipAttempt(DidEquipEvent args)
     {
-        if (TryComp<WhitelistClothingComponent>(args.Equipee, out var component) && component.WhitelistState == "humanoid" && !_tagSystem.HasTag(args.Equipment, component.Whitelist) && args.Slot.Equals("outerclothing", StringComparison.CurrentCultureIgnoreCase))
-            _inventorySystem.TryUnequip(args.Equipee, args.Slot);
-        else if (TryComp<WhitelistClothingComponent>(args.Equipment, out var componentEquipment) && componentEquipment.WhitelistState == "clothing" && !HasComp<WhitelistClothingComponent>(args.Equipee))
-            _inventorySystem.TryUnequip(args.Equipee, args.Slot);
+        if (TryComp<WhitelistClothingComponent>(args.EquipTarget, out var component) && component.WhitelistState == "humanoid" && !_tagSystem.HasTag(args.Equipment, component.Whitelist) && args.Slot.Equals("outerclothing", StringComparison.CurrentCultureIgnoreCase))
+            _inventorySystem.TryUnequip(args.EquipTarget, args.Slot);
+        else if (TryComp<WhitelistClothingComponent>(args.Equipment, out var componentEquipment) && componentEquipment.WhitelistState == "clothing" && !HasComp<WhitelistClothingComponent>(args.EquipTarget))
+            _inventorySystem.TryUnequip(args.EquipTarget, args.Slot);
     }
 }

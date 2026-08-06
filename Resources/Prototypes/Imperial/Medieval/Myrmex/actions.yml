@@ -93,9 +93,15 @@
   - type: EntityTargetAction
     event: !type:ActionMyrmexHealEvent
       healedDamage:
-        groups:
-          Brute: -50
-          Burn: -50
+        types:
+          Blunt: -35
+          Slash: -35
+          Piercing: -35
+          Heat: -35
+          Shock: -35
+          Cold: -20
+          Asphyxiation: -80
+          Bloodloss: -80
     canTargetSelf: false
     whitelist:
       requireAll: true

@@ -1319,13 +1319,17 @@
     state: bed
   - type: HealOnBuckle
     damage:
-      groups:
-        Brute: -0.1
-        Burn: -0.1
-        Airloss: -0.3
       types:
+        Blunt: -0.03
+        Slash: -0.03
+        Piercing: -0.03
+        Heat: -0.03
+        Shock: -0.03
+        Cold: -0.03
+        Caustic: -0.04
+        Asphyxiation: -0.2
+        Bloodloss: -0.03
         Poison: -0.04
-        Caustic: -0.02
         Radiation: -0.04
   - type: MedievalPlagueHealStrapped
 
@@ -1350,11 +1354,15 @@
     state: bed2
   - type: HealOnBuckle
     damage:
-      groups:
-        Brute: -0.52
-        Burn: -0.56
-        Airloss: -0.5
       types:
+        Blunt: -0.16
+        Slash: -0.16
+        Piercing: -0.16
+        Heat: -0.16
+        Shock: -0.16
+        Cold: -0.16
+        Asphyxiation: -0.25
+        Bloodloss: -0.25
         Poison: -0.36
         Caustic: -0.1
         Radiation: -0.16
@@ -2246,7 +2254,7 @@
         - BulletImpassable
   - type: Storage
     grid:
-    - 0,0,4,1
+    - 0,0,1,3
     maxItemSize: Ginormous
     #storageOpenSound: /Audio/Imperial/Medieval/wood_open.ogg
     #storageCloseSound: /Audio/Imperial/Medieval/wood_closed.ogg
@@ -2262,22 +2270,28 @@
     contents:
       - id: MedievalFalshionRusty
         prob: 0.2
+        orGroup: WeaponRackLoot
       - id: MedievalMaceRusty
         prob: 0.2
-      #- id: MedievalSpearRusty
-      #  prob: 0.18
+        orGroup: WeaponRackLoot
       - id: MedievalSaberRusty
         prob: 0.2
+        orGroup: WeaponRackLoot
       - id: MedievalDaggerT3
         prob: 0.13
+        orGroup: WeaponRackLoot
       - id: MedievalWoodenSword
         prob: 0.13
+        orGroup: WeaponRackLoot
       - id: BaseBallBat
         prob: 0.13
+        orGroup: WeaponRackLoot
       - id: MedievalHatchet
         prob: 0.13
+        orGroup: WeaponRackLoot
       - id: KitchenKnife
         prob: 0.13
+        orGroup: WeaponRackLoot
 
 
 - type: entity
@@ -2332,30 +2346,37 @@
     contents:
       - id: MedievalClothingHeadHelmetNazal
         prob: 0.03
+        orGroup: ArmorRackLoot
       - id: MedievalIronGloves
         prob: 0.06
+        orGroup: ArmorRackLoot
       - id: MedievalClothingFeetSteel
         prob: 0.06
+        orGroup: ArmorRackLoot
       - id: MedievalClothingHeadHelmetBacinet
         prob: 0.15
+        orGroup: ArmorRackLoot
       - id: MedievalClothingHeadHelmetSalad
         prob: 0.15
+        orGroup: ArmorRackLoot
       - id: MedievalClothingHeadHelmetSaladLight
         prob: 0.15
+        orGroup: ArmorRackLoot
       - id: MedievalClothingHeadHelmetCrusader
         prob: 0.15
+        orGroup: ArmorRackLoot
       - id: MedievalClothingHeadHelmetShapel
         prob: 0.15
+        orGroup: ArmorRackLoot
       - id: MedievalClothingHeadHelmetNormandFree
-        prob: 0.15
+        prob: 0.45
+        orGroup: ArmorRackLoot
       - id: MedievalClothingHeadHelmetNormand
         prob: 0.15
+        orGroup: ArmorRackLoot
       - id: MedievalClothingHeadHelmetHoodHelmet
         prob: 0.15
-      - id: MedievalClothingHeadHelmetNormandFree
-        prob: 0.15
-      - id: MedievalClothingHeadHelmetNormandFree
-        prob: 0.15
+        orGroup: ArmorRackLoot
 
 #- type: tile
 #  id: MedievalFloorPlanetGrass1
@@ -2418,36 +2439,7 @@
 #  indestructible: true
 
 # Caves
-- type: tile
-  id: FloorCave
-  name: tiles-cave
-  sprite: /Textures/Imperial/Medieval/Tiles/Planet/Cave/cave.png
-  variants: 7
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  edgeSpritePriority: 4
-  edgeSprites:
-    SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/Cave/single-stoneedge-A.png
-    NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/Cave/single-stoneedge-B.png
-    NorthWest: /Textures/Imperial/Medieval/Tiles/Planet/Cave/single-stoneedge-C.png
-    SouthWest: /Textures/Imperial/Medieval/Tiles/Planet/Cave/single-stoneedge-D.png
-    South: /Textures/Imperial/Medieval/Tiles/Planet/Cave/double-stoneedge-A.png
-    East: /Textures/Imperial/Medieval/Tiles/Planet/Cave/double-stoneedge-B.png
-    North: /Textures/Imperial/Medieval/Tiles/Planet/Cave/double-stoneedge-C.png
-    West: /Textures/Imperial/Medieval/Tiles/Planet/Cave/double-stoneedge-D.png
-  baseTurf: Space
-  isSubfloor: true
-  weather: true
-  footstepSounds:
-    collection: FootstepAsteroid
-  heatCapacity: 99910000
-  badSmellMod: 1.5
+# removed duplicate tile FloorCave
 
 - type: tile
   id: MedievalFloorPlanetGrass3
@@ -4279,7 +4271,6 @@
     state: telega
     drawdepth: Overdoors
   - type: SpriteFade
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - ShockWaveEffectAlarm
@@ -4559,7 +4550,6 @@
     sprite: Imperial/Medieval/Decor/tribe_altar.rsi
     state: altar
     drawdepth: Overdoors
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MedievalTribeQuest

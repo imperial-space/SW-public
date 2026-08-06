@@ -67,7 +67,7 @@
         - Catwalk
   - type: TileEntityEffect
     effects:
-    - !type:ExtinguishReaction
+    - !type:Extinguish
   # Imperial Medieval Start
   - type: IconSmooth
     key: water

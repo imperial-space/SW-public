@@ -45,9 +45,15 @@
       plagueProgressionDecayPerUse: 1
       damageContainers: [Forged]
       damage:
-        groups:
-          Brute: -25
-          Burn: -25
+        types:
+          Blunt: -12
+          Slash: -12
+          Piercing: -12
+          Heat: -12
+          Shock: -12
+          Cold: -12
+          Asphyxiation: -30
+          Bloodloss: -30
       healingBeginSound:
         path: "/Audio/Items/Medical/brutepack_begin.ogg"
       healingEndSound:
@@ -86,7 +92,7 @@
   physicalDesc: Переливается странной радугой.
   flavor: Неописуем
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:HealthChange
         damage:
@@ -106,7 +112,7 @@
     MedievalMagicCrystallReagent:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: MedievalMagicDust
 
 - type: entity

@@ -4,7 +4,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.ToggleHair.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
-using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -15,7 +14,8 @@ public sealed partial class MedievalToggleHairSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private readonly SharedHideableHumanoidLayersSystem _hideableHumanoidLayers = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -25,16 +25,17 @@ public sealed partial class MedievalToggleHairSystem : EntitySystem
 
         SubscribeLocalEvent<HideHairToggleEvent>(ToggleEvent);
     }
+
     /// <summary>
     ///     On map init, either spawn the appropriate entity into the suit slot, or if it already exists, perform some
     ///     sanity checks. Also updates the action icon to show the toggled-entity.
     /// </summary>
     private void OnMapInit(EntityUid uid, MedievalToggleHairComponent comp, GotEquippedEvent ev)
     {
-        if (!TryComp<MetaDataComponent>(ev.Equipment, out var meta) || meta.EntityPrototype == null) return;
+        if (!TryComp(ev.Equipment, out MetaDataComponent? meta) || meta.EntityPrototype == null) return;
         if (HasComp<HideLayerClothingComponent>(ev.Equipment))
-            SetLayerVisibility(ev.Equipment!, ev.Equipee, hideLayers: true);
-        _actions.AddAction(ev.Equipee, ref comp.Action, out var action, comp.PrototypeID);
+            SetLayerVisibility(ev.Equipment!, ev.EquipTarget, hideLayers: true);
+        _actions.AddAction(ev.EquipTarget, ref comp.Action, out var action, comp.PrototypeID);
         if (action != null && comp.Action != null)
         {
             action.EntityIcon = ev.Equipment;
@@ -42,12 +43,14 @@ public sealed partial class MedievalToggleHairSystem : EntitySystem
             Dirty(comp.Action.Value, action);
         }
     }
+
     private void OnGotUnequipped(EntityUid uid, MedievalToggleHairComponent comp, GotUnequippedEvent ev)
     {
         if (HasComp<HideLayerClothingComponent>(ev.Equipment))
-            SetLayerVisibility(ev.Equipment!, ev.Equipee, hideLayers: false);
-        _actions.RemoveAction(ev.Equipee, comp.Action);
+            SetLayerVisibility(ev.Equipment!, ev.EquipTarget, hideLayers: false);
+        _actions.RemoveAction(ev.EquipTarget, comp.Action);
     }
+
     private void ToggleEvent(HideHairToggleEvent ev)
     {
         var uid = ev.Performer;
@@ -65,9 +68,9 @@ public sealed partial class MedievalToggleHairSystem : EntitySystem
         SetLayerVisibility(head.Value!, uid, hideLayers: true);
     }
     public void SetLayerVisibility(
-    Entity<HideLayerClothingComponent?, ClothingComponent?> clothing,
-    Entity<HumanoidAppearanceComponent?> user,
-    bool hideLayers) // а вот и паблик, визарды же пожалели сделать публичным метод
+        Entity<HideLayerClothingComponent?, ClothingComponent?> clothing,
+        Entity<HideableHumanoidLayersComponent?> user,
+        bool hideLayers)
     {
         if (_gameTiming.ApplyingState)
             return;
@@ -81,27 +84,18 @@ public sealed partial class MedievalToggleHairSystem : EntitySystem
 
         hideLayers &= IsEnabled(clothing!);
 
-        var hideable = user.Comp.HideLayersOnEquip;
         var inSlot = clothing.Comp2.InSlotFlag ?? SlotFlags.NONE;
-
-        // This method should only be getting called while the clothing is equipped (though possibly currently in
-        // the process of getting unequipped).
 
         if (inSlot == SlotFlags.NONE)
             return;
-
-        var dirty = false;
 
         // iterate the HideLayerClothingComponent's layers map and check that
         // the clothing is (or was)equipped in a matching slot.
         foreach (var (layer, validSlots) in clothing.Comp1.Layers)
         {
-            if (!hideable.Contains(layer))
-                continue;
-
             // Only update this layer if we are currently equipped to the relevant slot.
             if (validSlots.HasFlag(inSlot))
-                _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty);
+                _hideableHumanoidLayers.SetLayerOcclusion(user, layer, hideLayers, inSlot);
         }
 
         // Fallback for obsolete field: assume we want to hide **all** layers, as long as we are equipped to any
@@ -112,14 +106,13 @@ public sealed partial class MedievalToggleHairSystem : EntitySystem
         {
             foreach (var layer in slots)
             {
-                if (hideable.Contains(layer))
-                    _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty);
+                _hideableHumanoidLayers.SetLayerOcclusion(user, layer, hideLayers, inSlot);
             }
         }
-
-        if (dirty)
-            Dirty(user!);
+        // var hideable = user.Comp.HideLayersOnEquip;
+        // _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty);
     }
+
     private bool IsEnabled(Entity<HideLayerClothingComponent, ClothingComponent> clothing)
     {
         // TODO Generalize this

@@ -3,10 +3,10 @@
 namespace Content.Shared.Imperial.Medieval.Customization;
 
 [Prototype("customization")]
-public sealed class CustomizationPrototype : IPrototype
+public sealed partial class CustomizationPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = string.Empty;
+    public string ID { get; private set; } = string.Empty;
 
     [DataField]
     public string Holder = string.Empty;

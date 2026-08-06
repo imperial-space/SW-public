@@ -6,7 +6,6 @@
   startNode: start
   targetNode: MetalRod
   category: construction-category-materials
-  description: Прочный металлический стержень, который можно использовать для различных целей. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -83,7 +82,6 @@
   startNode: start
   targetNode: MaterialDurathread
   category: construction-category-materials
-  description: Высококачественная нить, используемая для изготовления прочной одежды. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction

@@ -45,6 +45,9 @@ using Content.Shared.Database;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Storage;
 using Content.Shared.Tag;
+using Content.Shared.Administration.Systems;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Cult
 {
@@ -237,10 +240,14 @@ namespace Content.Server.Cult
                         _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
                         _popupSystem.PopupEntity("Еще немного, и связь с культом разорвется. Терпеть осталось недолго.", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
                     }
-                    if (cursed.CurseLevel > 60f && TryComp<DamageableComponent>(cursed.Owner, out var damage) && damage.TotalDamage < 100 && damage.TotalDamage > 5)
+                    if (cursed.CurseLevel > 60f && TryComp<DamageableComponent>(cursed.Owner, out var damage))
                     {
+                        var total = _damageableSystem.GetTotalDamage((cursed.Owner, damage));
+                        if (total < 100 && total > 5)
+                        {
                         _damageableSystem.TryChangeDamage(cursed.Owner, -cursed.RegenDamage, true, false);
                         _popupSystem.PopupEntity("Связь с культом восстанавливает твои раны", cursed.Owner, cursed.Owner, PopupType.Small);
+                        }
                     }
                 }
 
@@ -378,8 +385,6 @@ namespace Content.Server.Cult
                                     {
                                         var axform = Transform(altar.Owner);
                                         var acoords = axform.Coordinates;
-
-                                        //if (!isDead) Spawn("MedievalCultCrystallRed", acoords);
                                         if (isDead && TryComp<SSDFreeComponent>(victim, out var ssdfreeComp) && _playerManager.TryGetSessionByEntity(victim, out var session)) _ssdFreeSystem.GoToSSD(victim, session.UserId, false, ssdfreeComp);
                                         if (!isDead)
                                             _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", acoords)} призван от привязки {blood.Owner} {ToPrettyString(altar.Owner):altar}");

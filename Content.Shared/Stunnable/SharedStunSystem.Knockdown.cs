@@ -1,13 +1,15 @@
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CCVar;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
+using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Imperial.Traits; // Imperial "CrawlingForLegsParalyzed"
 using Content.Shared.Input;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -29,8 +31,6 @@ namespace Content.Shared.Stunnable;
 /// </summary>
 public abstract partial class SharedStunSystem
 {
-    private EntityQuery<CrawlerComponent> _crawlerQuery;
-
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -38,12 +38,13 @@ public abstract partial class SharedStunSystem
     [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
 
+    [Dependency] private readonly EntityQuery<CrawlerComponent> _crawlerQuery = default!;
+    [Dependency] private readonly EntityQuery<FixturesComponent> _fixtureQuery = default!;
+
     public static readonly ProtoId<AlertPrototype> KnockdownAlert = "Knockdown";
 
     private void InitializeKnockdown()
     {
-        _crawlerQuery = GetEntityQuery<CrawlerComponent>();
-
         SubscribeLocalEvent<KnockedDownComponent, RejuvenateEvent>(OnRejuvenate);
 
         // Startup and Shutdown
@@ -54,7 +55,7 @@ public abstract partial class SharedStunSystem
         SubscribeLocalEvent<KnockedDownComponent, BuckleAttemptEvent>(OnBuckleAttempt);
         SubscribeLocalEvent<KnockedDownComponent, StandAttemptEvent>(OnStandAttempt);
 
-        // Updating movement a friction
+        // Updating movement and friction
         SubscribeLocalEvent<KnockedDownComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshKnockedSpeed);
         SubscribeLocalEvent<KnockedDownComponent, RefreshFrictionModifiersEvent>(OnRefreshFriction);
         SubscribeLocalEvent<KnockedDownComponent, TileFrictionEvent>(OnKnockedTileFriction);
@@ -66,6 +67,9 @@ public abstract partial class SharedStunSystem
         SubscribeLocalEvent<CrawlerComponent, KnockedDownRefreshEvent>(OnKnockdownRefresh);
         SubscribeLocalEvent<CrawlerComponent, DamageChangedEvent>(OnDamaged);
         SubscribeLocalEvent<KnockedDownComponent, WeightlessnessChangedEvent>(OnWeightlessnessChanged);
+        SubscribeLocalEvent<KnockedDownComponent, DidEquipHandEvent>(OnHandEquipped);
+        SubscribeLocalEvent<KnockedDownComponent, DidUnequipHandEvent>(OnHandUnequipped);
+        SubscribeLocalEvent<KnockedDownComponent, HandCountChangedEvent>(OnHandCountChanged);
         SubscribeLocalEvent<GravityAffectedComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
         SubscribeLocalEvent<GravityAffectedComponent, GetStandUpTimeEvent>(OnGetStandUpTime);
 
@@ -96,7 +100,7 @@ public abstract partial class SharedStunSystem
 
     private void OnRejuvenate(Entity<KnockedDownComponent> entity, ref RejuvenateEvent args)
     {
-        SetKnockdownTime(entity, GameTiming.CurTime);
+        SetKnockdownNextUpdate(entity, GameTiming.CurTime);
 
         if (entity.Comp.AutoStand)
             RemComp<KnockedDownComponent>(entity);
@@ -158,6 +162,19 @@ public abstract partial class SharedStunSystem
     }
 
     /// <summary>
+    /// Sets the time left of the knockdown timer to the inputted value.
+    /// </summary>
+    /// <param name="entity">Entity who's knockdown time we're updating.</param>
+    /// <param name="time">The time we're updating with.</param>
+    public void SetKnockdownTime(Entity<KnockedDownComponent?> entity, TimeSpan time)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+            return;
+
+        SetKnockdownNextUpdate((entity, entity.Comp), GameTiming.CurTime + time);
+    }
+
+    /// <summary>
     /// Updates the knockdown timer of a knocked down entity with a given inputted time, then dirties the time.
     /// </summary>
     /// <param name="entity">Entity who's knockdown time we're updating.</param>
@@ -169,18 +186,6 @@ public abstract partial class SharedStunSystem
             RefreshKnockdownTime(entity, time);
         else
             AddKnockdownTime(entity, time);
-    }
-
-    /// <summary>
-    /// Sets the next update datafield of an entity's <see cref="KnockedDownComponent"/> to a specific time.
-    /// </summary>
-    /// <param name="entity">Entity whose timer we're updating</param>
-    /// <param name="time">The exact time we're setting the next update to.</param>
-    public void SetKnockdownTime(Entity<KnockedDownComponent> entity, TimeSpan time)
-    {
-        entity.Comp.NextUpdate = time;
-        DirtyField(entity, entity.Comp, nameof(KnockedDownComponent.NextUpdate));
-        Alerts.ShowAlert(entity.Owner, KnockdownAlert, null, (GameTiming.CurTime, entity.Comp.NextUpdate));
     }
 
     /// <summary>
@@ -196,7 +201,7 @@ public abstract partial class SharedStunSystem
 
         var knockedTime = GameTiming.CurTime + time;
         if (entity.Comp.NextUpdate < knockedTime)
-            SetKnockdownTime((entity, entity.Comp), knockedTime);
+            SetKnockdownNextUpdate((entity, entity.Comp), knockedTime);
     }
 
     /// <summary>
@@ -211,18 +216,31 @@ public abstract partial class SharedStunSystem
 
         if (entity.Comp.NextUpdate < GameTiming.CurTime)
         {
-            SetKnockdownTime((entity, entity.Comp), GameTiming.CurTime + time);
+            SetKnockdownNextUpdate((entity, entity.Comp), GameTiming.CurTime + time);
             return;
         }
 
-        entity.Comp.NextUpdate += time;
-        DirtyField(entity, entity.Comp, nameof(KnockedDownComponent.NextUpdate));
-        Alerts.ShowAlert(entity.Owner, KnockdownAlert, null, (GameTiming.CurTime, entity.Comp.NextUpdate));
+        SetKnockdownNextUpdate((entity, entity.Comp), entity.Comp.NextUpdate + time);
     }
 
     #endregion
 
     #region Knockdown Logic
+
+    /// <summary>
+    /// Sets the next update datafield of an entity's <see cref="KnockedDownComponent"/> to a specific time.
+    /// </summary>
+    /// <param name="entity">Entity whose timer we're updating</param>
+    /// <param name="time">The exact time we're setting the next update to.</param>
+    private void SetKnockdownNextUpdate(Entity<KnockedDownComponent> entity, TimeSpan time)
+    {
+        if (GameTiming.CurTime > time)
+            time = GameTiming.CurTime;
+
+        entity.Comp.NextUpdate = time;
+        DirtyField(entity, entity.Comp, nameof(KnockedDownComponent.NextUpdate));
+        Alerts.UpdateAlert(entity.Owner, KnockdownAlert, null, entity.Comp.NextUpdate);
+    }
 
     private void HandleToggleKnockdown(ICommonSession? session)
     {
@@ -276,6 +294,9 @@ public abstract partial class SharedStunSystem
             _adminLogger.Add(LogType.Stamina, LogImpact.Medium, $"{ToPrettyString(entity):user} has stood up from knockdown.");
             return true;
         }
+
+        if (HasComp<ImperialLegsParalyzedComponent>(entity)) // Imperial "CrawlingForLegsParalyzed"
+            return false; // Imperial "CrawlingForLegsParalyzed"
 
         if (!TryStand((entity, entity.Comp)))
             return false;
@@ -366,7 +387,7 @@ public abstract partial class SharedStunSystem
 
     private void OnForceStandup(ForceStandUpEvent msg, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not {} user)
+        if (args.SenderSession.AttachedEntity is not { } user)
             return;
 
         ForceStandUp(user);
@@ -444,17 +465,14 @@ public abstract partial class SharedStunSystem
         if (intersecting.Count == 0)
             return false;
 
-        var fixtureQuery = GetEntityQuery<FixturesComponent>();
-        var xformQuery = GetEntityQuery<TransformComponent>();
-
         var ourAABB = _entityLookup.GetAABBNoContainer(entity, entity.Comp.LocalPosition, entity.Comp.LocalRotation);
 
         foreach (var ent in intersecting)
         {
-            if (!fixtureQuery.TryGetComponent(ent, out var fixtures))
+            if (!_fixtureQuery.TryGetComponent(ent, out var fixtures))
                 continue;
 
-            if (!xformQuery.TryComp(ent, out var xformComp))
+            if (!TryComp(ent, out TransformComponent? xformComp))
                 continue;
 
             var xform = new Transform(xformComp.LocalPosition, xformComp.LocalRotation);
@@ -506,6 +524,30 @@ public abstract partial class SharedStunSystem
         // Targeted moth attack
         CancelKnockdownDoAfter((entity, entity.Comp));
         RemCompDeferred<KnockedDownComponent>(entity);
+    }
+
+    private void OnHandEquipped(Entity<KnockedDownComponent> entity, ref DidEquipHandEvent args)
+    {
+        if (GameTiming.ApplyingState)
+            return; // The result of the change is already networked separately in the same game state
+
+        RefreshKnockedMovement(entity);
+    }
+
+    private void OnHandUnequipped(Entity<KnockedDownComponent> entity, ref DidUnequipHandEvent args)
+    {
+        if (GameTiming.ApplyingState)
+            return; // The result of the change is already networked separately in the same game state
+
+        RefreshKnockedMovement(entity);
+    }
+
+    private void OnHandCountChanged(Entity<KnockedDownComponent> entity, ref HandCountChangedEvent args)
+    {
+        if (GameTiming.ApplyingState)
+            return; // The result of the change is already networked separately in the same game state
+
+        RefreshKnockedMovement(entity);
     }
 
     private void OnKnockdownAttempt(Entity<GravityAffectedComponent> entity, ref KnockDownAttemptEvent args)
@@ -585,6 +627,7 @@ public abstract partial class SharedStunSystem
 
         ent.Comp.SpeedModifier = ev.SpeedModifier;
         ent.Comp.FrictionModifier = ev.FrictionModifier;
+        Dirty(ent);
 
         _movementSpeedModifier.RefreshMovementSpeedModifiers(ent);
         _movementSpeedModifier.RefreshFrictionModifiers(ent);

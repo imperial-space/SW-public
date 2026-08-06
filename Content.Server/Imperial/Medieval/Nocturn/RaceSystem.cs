@@ -2,6 +2,7 @@ using Content.Shared.Nocturn.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Map;
 using Content.Shared.Humanoid;
+using Content.Shared.Body;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Random;
@@ -30,6 +31,8 @@ using Content.Shared.Body.Components;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Server.Imperial.Medieval.Skills;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Nocturn
 {
@@ -54,6 +57,7 @@ namespace Content.Server.Nocturn
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly SharedTypingIndicatorSystem _typing = default!;
         [Dependency] private readonly SkillsSystem _skills = default!;
+        [Dependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
 
 
         public override void Initialize()
@@ -141,17 +145,25 @@ namespace Content.Server.Nocturn
                         comp.BloodLevel = 400f;
                     }
 
-                    if (comp.BloodLevel >= 200f && TryComp<DamageableComponent>(comp.Owner, out var damageable) && damageable.TotalDamage < 61f && damageable.TotalDamage > 5f)
+                    if (comp.BloodLevel >= 200f && TryComp<DamageableComponent>(comp.Owner, out var damageable))
                     {
+                        var total = _damageableSystem.GetTotalDamage((comp.Owner, damageable));
+                        if (total < 61f && total > 5f)
+                        {
                         _damageableSystem.TryChangeDamage(uid, -comp.BloodLostDamage, true, false);
                         //comp.BloodLevel -= comp.BloodDrainPerSecond * 2;
+                        }
                     }
 
-                    if (comp.BloodLevel >= 200f && TryComp<DamageableComponent>(comp.Owner, out var damag) && damag.TotalDamage < 105f && damag.TotalDamage > 60f)
+                    if (comp.BloodLevel >= 200f && TryComp<DamageableComponent>(comp.Owner, out var damag))
                     {
+                        var total2 = _damageableSystem.GetTotalDamage((comp.Owner, damag));
+                        if (total2 < 105f && total2 > 60f)
+                        {
                         _damageableSystem.TryChangeDamage(uid, -comp.BloodLostDamage, true, false);
                         //_damageableSystem.TryChangeDamage(uid, -comp.RegenDamage * 3.5f, true, false);
                         //comp.BloodLevel -= comp.BloodDrainPerSecond * 39;
+                        }
                     }
 
                     if (comp.BloodDrainPerSecond > comp.BloodLevel)
@@ -185,7 +197,7 @@ namespace Content.Server.Nocturn
 
                     if (comp.BloodLevel < 50f && comp.IsDisguised)
                     {
-                        if (TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
+                        if (TryComp<HumanoidProfileComponent>(uid, out var appearance))
                         {
                             _popupSystem.PopupEntity(Loc.GetString("nocturn-disguise-low-blood"), uid, uid, PopupType.LargeCaution);
 
@@ -325,7 +337,7 @@ namespace Content.Server.Nocturn
                             return;
                         }
                     }
-                    if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
+                    if (HasComp<HumanoidProfileComponent>(args.Args.Target.Value))
                     {
                         if (!HasComp<NocturnComponent>(args.Args.Target))
                         {
@@ -397,8 +409,9 @@ namespace Content.Server.Nocturn
         {
             if (args.Handled || args.Cancelled)
                 return;
-
-            if (!TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
+            // if (!TryComp<HumanoidProfileComponent>(uid, out var appearance))
+            //     return;
+            if (!TryComp<HumanoidProfileComponent>(uid, out var appearance))
                 return;
 
             if (!component.IsDisguised)
@@ -419,9 +432,9 @@ namespace Content.Server.Nocturn
             }
         }
 
-        private void ApplyDisguise(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
+        private void ApplyDisguise(EntityUid uid, NocturnComponent component, HumanoidProfileComponent appearance)
         {
-            appearance.Species = "Human";
+            _humanoidProfile.SetSpecies((uid, appearance), "Human");
             component.BloodDrainPerSecond *= 1.3f;
             component.BloodLevel -= 10;
 
@@ -435,9 +448,9 @@ namespace Content.Server.Nocturn
             }
         }
 
-        private void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
+        private void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidProfileComponent appearance)
         {
-            appearance.Species = "Drou";
+            _humanoidProfile.SetSpecies((uid, appearance), "Drou");
             component.BloodDrainPerSecond /= 1.3f;
 
             component.IsDisguised = false;
@@ -452,12 +465,13 @@ namespace Content.Server.Nocturn
 
         public void ShowEyes(EntityUid uid)
         {
-            if (TryComp<HumanoidAppearanceComponent>(uid, out var appeareance))
-            {
-                appeareance.EyeColor = Color.Red;
-                Dirty(uid, appeareance);
-            }
-
+            // if (TryComp<HumanoidProfileComponent>(uid, out var appeareance))
+            // {
+            //     appeareance.EyeColor = Color.Red;
+            //     Dirty(uid, appeareance);
+            // }
+            var visualBody = EntityManager.System<SharedVisualBodySystem>();
+            visualBody.ApplyProfile(uid, new OrganProfileData { EyeColor = Color.Red });
         }
 
         private void OnExamine(EntityUid uid, NocturnComponent component, ExaminedEvent args)

@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration.Logs;
+using Content.Server.Administration.Logs;
 using Content.Server.EUI;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
@@ -70,6 +70,6 @@ public sealed class NrpWarnCommand : IConsoleCommand
         await _nrpSystem.AddPlayerNrpViolation(targetUid);
         var violations = await _nrpSystem.GetPlayerNrpViolations(targetUid, 3);
         _nrpSystem.OnViolation(targetUid, targetName, reason, violations, player.UserId);
-        _nrpSystem.AddResolveToStats(player.Name, true, located.UserId);
+        _ = _nrpSystem.AddResolveToStats(player.Name, true, located.UserId);
     }
 }

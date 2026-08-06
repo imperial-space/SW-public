@@ -20,27 +20,36 @@
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
-  id: PartLamian
-  parent: [BaseItem, BasePart]
-  name: "Lamian body part"
+  parent: OrganBase
+  id: OrganLamian
   abstract: true
-  components:
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 3
-      - ReagentId: LamianBlood
-        Quantity: 10
+  suffix: lamian
 
 - type: entity
-  id: TorsoLamian
-  name: "Lamian torso"
-  parent: [PartLamian, BaseTorso]
+  parent: OrganLamian
+  id: OrganLamianExternal
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "torso_m"
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Lamian
+
+- type: entity
+  parent: OrganLamian
+  id: OrganLamianInternal
+  abstract: true
+
+
+- type: entity
+  id: OrganLamianTorso
+  name: "Lamian torso"
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganLamianExternal]
+  components:
   - type: Extractable
     juiceSolution:
       reagents:
@@ -50,13 +59,10 @@
         Quantity: 20
 
 - type: entity
-  id: HeadLamian
+  id: OrganLamianHead
   name: "Lamian head"
-  parent: [PartLamian, BaseHead]
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganLamianExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -64,75 +70,47 @@
         Quantity: 5
       - ReagentId: LamianBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
-  id: LeftArmLamian
+  id: OrganLamianArmLeft
   name: "left Lamian arm"
-  parent: [PartLamian, BaseLeftArm]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "l_arm"
+  parent: [OrganBaseArmLeft, OrganLamianExternal]
 
 - type: entity
-  id: RightArmLamian
+  id: OrganLamianArmRight
   name: "right Lamian arm"
-  parent: [PartLamian, BaseRightArm]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "r_arm"
+  parent: [OrganBaseArmRight, OrganLamianExternal]
 
 - type: entity
-  id: LeftHandLamian
+  id: OrganLamianHandLeft
   name: "left Lamian hand"
-  parent: [PartLamian, BaseLeftHand]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "l_hand"
+  parent: [OrganBaseHandLeft, OrganLamianExternal]
 
 - type: entity
-  id: RightHandLamian
+  id: OrganLamianHandRight
   name: "right Lamian hand"
-  parent: [PartLamian, BaseRightHand]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "r_hand"
+  parent: [OrganBaseHandRight, OrganLamianExternal]
 
 - type: entity
-  id: LeftLegLamian
+  id: OrganLamianLegLeft
   name: "left Lamian leg"
-  parent: [PartLamian, BaseLeftLeg]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "l_leg"
+  parent: [OrganBaseLegLeft, OrganLamianExternal]
 
 - type: entity
-  id: RightLegLamian
+  id: OrganLamianLegRight
   name: "right Lamian leg"
-  parent: [PartLamian, BaseRightLeg]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "r_leg"
+  parent: [OrganBaseLegRight, OrganLamianExternal]
 
 - type: entity
-  id: LeftFootLamian
+  id: OrganLamianFootLeft
   name: "left Lamian foot"
-  parent: [PartLamian, BaseLeftFoot]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "l_foot"
+  parent: [OrganBaseFootLeft, OrganLamianExternal]
 
 - type: entity
-  id: RightFootLamian
+  id: OrganLamianFootRight
   name: "right Lamian foot"
-  parent: [PartLamian, BaseRightFoot]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: "r_foot"
+  parent: [OrganBaseFootRight, OrganLamianExternal]

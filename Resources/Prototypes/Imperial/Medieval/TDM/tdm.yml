@@ -281,7 +281,7 @@
 #  - type: RotationVisuals
 #    defaultRotation: 90
 #    horizontalRotation: 90
-#  - type: HumanoidAppearance
+#  - type: HumanoidProfile
 #    species: Human
 #  - type: SlowOnDamage
 #    speedModifierThresholds:
@@ -321,7 +321,7 @@
 #    - reagents: [Water, SpaceCleaner]
 #      methods: [Touch]
 #      effects:
-#      - !type:WashCreamPieReaction
+#      - !type:WashCreamPie
 #  - type: StatusEffects
 #    allowed:
 #    - Stun

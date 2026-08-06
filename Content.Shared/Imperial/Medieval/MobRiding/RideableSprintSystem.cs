@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Body.Components;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
@@ -21,6 +20,8 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Body;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {

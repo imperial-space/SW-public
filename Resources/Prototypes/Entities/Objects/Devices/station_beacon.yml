@@ -455,6 +455,9 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-solars
+  - type: Tag
+    tags:
+    - NinjaBombingTargetBlocker
 
 - type: entity
   parent: DefaultStationBeaconEngineering
@@ -673,6 +676,9 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-arrivals
+  - type: Tag
+    tags:
+    - NinjaBombingTargetBlocker
 
 - type: entity
   parent: DefaultStationBeacon
@@ -761,6 +767,9 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-cryosleep
+  - type: Tag
+    tags:
+    - NinjaBombingTargetBlocker
 
 - type: entity
   parent: DefaultStationBeacon
@@ -863,7 +872,7 @@
   suffix: CentComm
   components:
   - type: NavMapBeacon
-    text: CentComm
+    text: station-beacon-cc # imperial space localization
 
 - type: entity
   parent: DefaultStationBeaconGhost
@@ -871,7 +880,7 @@
   suffix: CentComm Afterhours
   components:
   - type: NavMapBeacon
-    text: Afterhours
+    text: station-beacon-cc-afterhours # imperial space localization
 
 - type: entity
   parent: DefaultStationBeaconGhost
@@ -879,7 +888,7 @@
   suffix: CentComm Thunder Dome
   components:
   - type: NavMapBeacon
-    text: Thunderdome
+    text: station-beacon-cc-thunderdome # imperial space localization
 
 - type: entity
   parent: DefaultStationBeaconGhost
@@ -887,4 +896,4 @@
   suffix: CentComm ERT
   components:
   - type: NavMapBeacon
-    text: ERT
+    text: station-beacon-cc-ert # imperial space localization

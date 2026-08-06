@@ -1,9 +1,14 @@
-﻿namespace Content.Shared.Destructible;
+using Content.Shared.Damage.Systems;
+
+namespace Content.Shared.Destructible;
 
 public abstract class SharedDestructibleSystem : EntitySystem
 {
+    // TODO: I don't really like this but this is out of scope to re-do destructible triggers while refactoring damageable
+    [Dependency] public readonly DamageableSystem Damageable = default!;
+
     /// <summary>
-    ///     Force entity to be destroyed and deleted.
+    /// Force entity to be destroyed and deleted.
     /// </summary>
     public bool DestroyEntity(EntityUid owner, EntityUid? performer = null)
     {
@@ -15,12 +20,12 @@ public abstract class SharedDestructibleSystem : EntitySystem
         var eventArgs = new DestructionEventArgs(performer);
         RaiseLocalEvent(owner, eventArgs);
 
-        QueueDel(owner);
+        PredictedQueueDel(owner);
         return true;
     }
 
     /// <summary>
-    ///     Force entity to break.
+    /// Force entity to break.
     /// </summary>
     public void BreakEntity(EntityUid owner, EntityUid? performer = null)
     {
@@ -30,7 +35,7 @@ public abstract class SharedDestructibleSystem : EntitySystem
 }
 
 /// <summary>
-///     Raised before an entity is about to be destroyed and deleted
+/// Raised before an entity is about to be destroyed and deleted
 /// </summary>
 public sealed class DestructionAttemptEvent : CancellableEntityEventArgs
 {
@@ -38,7 +43,7 @@ public sealed class DestructionAttemptEvent : CancellableEntityEventArgs
 }
 
 /// <summary>
-///     Raised when entity is destroyed and about to be deleted.
+/// Raised when entity is destroyed and about to be deleted.
 /// </summary>
 public sealed class DestructionEventArgs : EntityEventArgs
 {
@@ -51,7 +56,7 @@ public sealed class DestructionEventArgs : EntityEventArgs
 }
 
 /// <summary>
-///     Raised when entity was heavy damage and about to break.
+/// Raised when entity was heavy damage and about to break.
 /// </summary>
 public sealed class BreakageEventArgs : EntityEventArgs
 {

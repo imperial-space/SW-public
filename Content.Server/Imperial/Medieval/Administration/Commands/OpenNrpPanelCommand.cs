@@ -12,7 +12,6 @@ using Content.Server.Administration;
 using Content.Server.Imperial.Medieval.Administration.Nrp;
 using System.Linq;
 using Content.Server.Administration.Managers;
-using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;

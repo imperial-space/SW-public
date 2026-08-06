@@ -35,7 +35,7 @@ public abstract partial class AchievementCondition
     {
         if (RequiredSpecies is { Count: > 0 })
         {
-            if (!entManager.TryGetComponent<HumanoidAppearanceComponent>(player, out var humanoid))
+            if (!entManager.TryGetComponent<HumanoidProfileComponent>(player, out var humanoid))
                 return false;
 
             if (!RequiredSpecies.Contains(humanoid.Species))
@@ -83,7 +83,7 @@ public abstract partial class AchievementCondition
             var names = RequiredSpecies
                 .Select(id => proto.TryIndex<SpeciesPrototype>(id, out var sp) ? Loc.GetString(sp.Name) : id)
                 .ToList();
-                
+
             msg.PushColor(Color.FromHex("#7b8e9e"));
             msg.AddText(", " + Loc.GetString("achievement-condition-requires-species", ("species", string.Join(", ", names))));
             msg.Pop();
@@ -104,7 +104,7 @@ public abstract partial class AchievementCondition
         {
             msg.PushColor(Color.FromHex("#7b8e9e"));
             msg.AddText(", " + Loc.GetString("achievement-condition-requires-faction-header") + " ");
-            
+
             for (var i = 0; i < RequiredFactions.Count; i++)
             {
                 var factionId = RequiredFactions[i];

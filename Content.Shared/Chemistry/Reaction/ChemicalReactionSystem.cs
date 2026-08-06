@@ -6,11 +6,11 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
-using Content.Shared.Imperial.Medieval.ChemistryRandomization;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Medieval.ChemistryRandomization; // Imperial Medieval
 
 
 namespace Content.Shared.Chemistry.Reaction
@@ -32,7 +32,7 @@ namespace Content.Shared.Chemistry.Reaction
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-        [Dependency] private readonly SharedChemistryRandomizationSystem _chemRandom = default!;
+        [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
         /// <summary>
         /// A cache of all reactions indexed by at most ONE of their required reactants.
@@ -207,27 +207,13 @@ namespace Content.Shared.Chemistry.Reaction
 
         private void OnReaction(Entity<SolutionComponent> soln, ReactionPrototype reaction, ReagentPrototype? reagent, FixedPoint2 unitReactions)
         {
-            var args = new EntityEffectReagentArgs(soln, EntityManager, null, soln.Comp.Solution, unitReactions, reagent, null, 1f);
-
             var posFound = _transformSystem.TryGetMapOrGridCoordinates(soln, out var gridPos);
 
             _adminLogger.Add(LogType.ChemicalReaction, reaction.Impact,
                 $"Chemical reaction {reaction.ID:reaction} occurred with strength {unitReactions:strength} on entity {ToPrettyString(soln):metabolizer} at Pos:{(posFound ? $"{gridPos:coordinates}" : "[Grid or Map not Found]")}");
 
-            foreach (var effect in reaction.Effects)
-            {
-                if (!effect.ShouldApply(args))
-                    continue;
-
-                if (effect.ShouldLog)
-                {
-                    var entity = args.TargetEntity;
-                    _adminLogger.Add(LogType.ReagentEffect, effect.LogImpact,
-                        $"Reaction effect {effect.GetType().Name:effect} of reaction {reaction.ID:reaction} applied on entity {ToPrettyString(entity):entity} at Pos:{(posFound ? $"{gridPos:coordinates}" : "[Grid or Map not Found")}");
-                }
-
-                effect.Effect(args);
-            }
+            // Imperial Medieval: ReactionData.Effects is List<>; public ApplyEffects expects array
+            _entityEffects.ApplyEffects(soln, reaction.Effects.ToArray(), unitReactions);
 
             // Someday, some brave soul will thread through an optional actor
             // argument in from every call of OnReaction up, all just to pass
@@ -280,8 +266,6 @@ namespace Content.Shared.Chemistry.Reaction
         /// </summary>
         public void FullyReactSolution(Entity<SolutionComponent> soln, ReactionMixerComponent? mixerComponent = null)
         {
-            _chemRandom.FullyReactSolution(soln, mixerComponent);   // Imperial Medieval chemistry randomization
-
             // construct the initial set of reactions to check.
             SortedSet<ReactionPrototype> reactions = new();
             foreach (var reactant in soln.Comp.Solution.Contents)
@@ -309,9 +293,10 @@ namespace Content.Shared.Chemistry.Reaction
     ///     Some solution containers (e.g., bloodstream, smoke, foam) use this to block certain reactions from occurring.
     /// </reamrks>
     [ByRefEvent]
-    public record struct ReactionAttemptEvent(ReactionData Reaction, Entity<SolutionComponent> Solution)    // Imperial Medieval - ReactionData
+    // Imperial Medieval: ReactionData so randomized reactions (non-prototype) can raise the same event
+    public record struct ReactionAttemptEvent(ReactionData Reaction, Entity<SolutionComponent> Solution)
     {
-        public readonly ReactionData Reaction = Reaction;   // Imperial Medieval - ReactionData
+        public readonly ReactionData Reaction = Reaction;
         public readonly Entity<SolutionComponent> Solution = Solution;
         public bool Cancelled = false;
     }

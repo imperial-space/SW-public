@@ -1,3 +1,84 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Orc
+  limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceOrc
+  categories: [ HideSpawnMenu ]
+  name: orc appearance
+  components:
+  - type: InitialBody
+    organs:
+      Head: OrganOrcHead
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Torso: OrganOrcTorso
+      Lungs: OrganHumanLungs
+      Heart: OrganOrcHeart
+      Stomach: OrganOrcStomach
+      Liver: OrganOrcLiver
+      Kidneys: OrganHumanKidneys
+      ArmLeft: OrganOrcArmLeft
+      ArmRight: OrganOrcArmRight
+      HandLeft: OrganOrcHandLeft
+      HandRight: OrganOrcHandRight
+      LegLeft: OrganOrcLegLeft
+      LegRight: OrganOrcLegRight
+      FootLeft: OrganOrcFootLeft
+      FootRight: OrganOrcFootRight
+  - type: HumanoidProfile
+    species: Orc
+
 - type: entity
   id: OrganOrcHeart
   parent: OrganHumanHeart
@@ -37,70 +118,20 @@
     maxReagents: 5
     metabolizerTypes: [Orc]
 
-- type: body
-  id: Orc
-  name: "Orc"
-  root: torso
-  slots:
-    head:
-      part: HeadOrc
-      connections:
-      - torso
-      organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-    torso:
-      part: TorsoOrc
-      connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
-      organs:
-        heart: OrganOrcHeart
-        lungs: OrganHumanLungs
-        stomach: OrganReptilianStomach
-        liver: OrganOrcLiver
-        kidneys: OrganHumanKidneys
-    right arm:
-      part: RightArmOrc
-      connections:
-      - right hand
-    left arm:
-      part: LeftArmOrc
-      connections:
-      - left hand
-    right hand:
-      part: RightHandOrc
-    left hand:
-      part: LeftHandOrc
-    right leg:
-      part: RightLegOrc
-      connections:
-      - right foot
-    left leg:
-      part: LeftLegOrc
-      connections:
-      - left foot
-    right foot:
-      part: RightFootOrc
-    left foot:
-      part: LeftFootOrc
-
 - type: metabolizerType
   id: Orc
   name: Orc
 
 - type: entity
   save: false
-  name: Урист МакОрк
+  name: Urist McOrc
   parent: BaseMobOrc
   id: MobOrc
 
 - type: entity
   save: false
   name: Urist McHands The Orc
-  parent: BaseMobSpeciesOrganic
+  parent: [AppearanceOrc, BaseSpeciesMobOrganic]
   id: BaseMobOrc
   abstract: true
   components:
@@ -119,20 +150,11 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-  - type: Body
-    prototype: Orc
-    requiredLegs: 2
   - type: LanguageSpeaker
     languages:
       Common: Speak
-      #Goblin: Speak
-      #Ancient: Speak
       Tribe: Understand
       Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -167,7 +189,7 @@
       Unsexed: MaleOrc
   - type: Speech
     speechSounds: Alto
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Orc
   - type: Mana
     maxManaRaceModifier: 0
@@ -198,7 +220,7 @@
     bloodReagent: OrcBlood
 
 - type: entity
-  parent: BaseMobOrc
+  parent: AppearanceOrc
   id: MobOrcDummy
   noSpawn: true
   components:
@@ -212,114 +234,8 @@
 
 - type: species
   id: Orc
-  name: Орк
+  name: species-name-orc
   roundStart: true
   prototype: MobOrc
-  sprites: MobOrcSprites
-  markingLimits: MobHumanMarkingLimits
   dollPrototype: MobOrcDummy
   skinColoration: OrcColors
-
-- type: speciesBaseSprites
-  id: MobOrcSprites
-  sprites:
-    Head: MobOrcHead
-    Hair: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
-    Snout: MobHumanoidAnyMarking
-    Chest: MobOrcTorso
-    Eyes: MobHumanoidEyes
-    LArm: MobOrcLArm
-    RArm: MobOrcRArm
-    LHand: MobOrcLHand
-    RHand: MobOrcRHand
-    LLeg: MobOrcLLeg
-    RLeg: MobOrcRLeg
-    LFoot: MobOrcLFoot
-    RFoot: MobOrcRFoot
-    #Tail: MobHumanoidAnyMarking # imperial HairAndTail
-    #HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
-
-- type: humanoidBaseSprite
-  id: MobOrcHead
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobOrcHeadMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobOrcHeadFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: head_f
-
-- type: humanoidBaseSprite
-  id: MobOrcTorso
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobOrcTorsoMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobOrcTorsoFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: torso_f
-
-- type: humanoidBaseSprite
-  id: MobOrcLLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: l_leg
-
-- type: humanoidBaseSprite
-  id: MobOrcLArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: l_arm
-
-- type: humanoidBaseSprite
-  id: MobOrcLHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: l_hand
-
-- type: humanoidBaseSprite
-  id: MobOrcLFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: l_foot
-
-- type: humanoidBaseSprite
-  id: MobOrcRLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: r_leg
-
-- type: humanoidBaseSprite
-  id: MobOrcRArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: r_arm
-
-- type: humanoidBaseSprite
-  id: MobOrcRHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: r_hand
-
-- type: humanoidBaseSprite
-  id: MobOrcRFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Orc/parts.rsi
-    state: r_foot

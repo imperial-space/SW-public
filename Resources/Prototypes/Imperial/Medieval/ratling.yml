@@ -1,3 +1,86 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Ratling
+  limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+      default: [ RatlingEarsDefault ]
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ RatlingTailDefault ]
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceRatling
+  categories: [ HideSpawnMenu ]
+  name: ratling appearance
+  components:
+  - type: InitialBody
+    organs:
+      Head: OrganRatlingHead
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Torso: OrganRatlingTorso
+      Lungs: OrganHumanLungs
+      Heart: OrganRatlingHeart
+      Stomach: OrganRatlingStomach
+      Liver: OrganRatlingLiver
+      Kidneys: OrganHumanKidneys
+      ArmLeft: OrganRatlingArmLeft
+      ArmRight: OrganRatlingArmRight
+      HandLeft: OrganRatlingHandLeft
+      HandRight: OrganRatlingHandRight
+      LegLeft: OrganRatlingLegLeft
+      LegRight: OrganRatlingLegRight
+      FootLeft: OrganRatlingFootLeft
+      FootRight: OrganRatlingFootRight
+  - type: HumanoidProfile
+    species: Ratling
+
 - type: entity
   id: OrganRatlingHeart
   parent: OrganHumanHeart
@@ -33,59 +116,8 @@
           Quantity: 5
   - type: Stomach
   - type: Metabolizer
-    # mm very yummy
     maxReagents: 5
     metabolizerTypes: [Ratling, Human, Animal]
-
-- type: body
-  id: Ratling
-  name: "Ratling"
-  root: torso
-  slots:
-    head:
-      part: HeadRatling
-      connections:
-      - torso
-      organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-    torso:
-      part: TorsoRatling
-      connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
-      organs:
-        heart: OrganRatlingHeart
-        lungs: OrganHumanLungs
-        stomach: OrganRatlingStomach
-        liver: OrganRatlingLiver
-        kidneys: OrganHumanKidneys
-    right arm:
-      part: RightArmRatling
-      connections:
-      - right hand
-    left arm:
-      part: LeftArmRatling
-      connections:
-      - left hand
-    right hand:
-      part: RightHandRatling
-    left hand:
-      part: LeftHandRatling
-    right leg:
-      part: RightLegRatling
-      connections:
-      - right foot
-    left leg:
-      part: LeftLegRatling
-      connections:
-      - left foot
-    right foot:
-      part: RightFootRatling
-    left foot:
-      part: LeftFootRatling
 
 - type: metabolizerType
   id: Ratling
@@ -93,14 +125,14 @@
 
 - type: entity
   save: false
-  name: Урист МакРатлинг
+  name: Urist McRatling
   parent: BaseMobRatling
   id: MobRatling
 
 - type: entity
   save: false
   name: Urist McHands The Ratling
-  parent: BaseMobSpeciesOrganic
+  parent: [AppearanceRatling, BaseSpeciesMobOrganic]
   id: BaseMobRatling
   abstract: true
   components:
@@ -108,7 +140,7 @@
   - type: Hunger
   - type: Thirst
   - type: Icon
-    sprite: Mobs/Species/Slime/parts.rsi # It was like this beforehand, no idea why.
+    sprite: Mobs/Species/Slime/parts.rsi
     state: full
   - type: Respirator
     damage:
@@ -120,9 +152,6 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-  - type: Body
-    prototype: Ratling
-    requiredLegs: 2
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -134,13 +163,6 @@
     languages:
       Common: Speak
       Goblin: Speak
-      #Ancient: Speak
-      #Tribe: Speak
-      #Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
   - type: Mana
     maxManaRaceModifier: 1
     regenRaceModifier: 1
@@ -173,6 +195,9 @@
     modifier: 100
   - type: Damageable
     damageModifierSet: Ratling
+  - type: PointLight
+    netsync: false
+    enabled: false
   - type: LocalLight
     energy: 0.2
     radius: 4.2
@@ -182,7 +207,7 @@
     bloodReagent: RatlingBlood
   - type: Puller
     needsHands: false
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Ratling
   - type: BadSmellVision
     smellThreshold: 80.0
@@ -191,9 +216,9 @@
     speechSounds: Alto
   - type: Vocal
     sounds:
-      Male: Mouse
-      Female: Mouse
-      Unsexed: Mouse
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
   - type: RatlingAccent
   - type: StealRaceChanceIncreaser
     bonus: 25
@@ -204,150 +229,25 @@
     Heat: 1.2
 
 - type: entity
-  parent: BaseMobRatling
+  parent: AppearanceRatling
   id: MobRatlingDummy
   noSpawn: true
 
 - type: species
   id: Ratling
-  name: Ратлинг
+  name: species-name-ratling
   roundStart: true
   prototype: MobRatling
-  sprites: MobRatlingSprites
-  markingLimits: MobRatlingMarkingLimits
-  dollPrototype: MobRatlingDummy
+  dollPrototype: AppearanceRatling
   skinColoration: MoonwolfColors
   defaultSkinTone: "#5f5f5f"
-
-- type: speciesBaseSprites
-  id: MobRatlingSprites
-  sprites:
-    Head: MobRatlingHead
-    Hair: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
-    Snout: MobHumanoidAnyMarking
-    Chest: MobRatlingTorso
-    Eyes: MobHumanoidEyes
-    LArm: MobRatlingLArm
-    RArm: MobRatlingRArm
-    LHand: MobRatlingLHand
-    RHand: MobRatlingRHand
-    LLeg: MobRatlingLLeg
-    RLeg: MobRatlingRLeg
-    LFoot: MobRatlingLFoot
-    RFoot: MobRatlingRFoot
-    Tail: MobHumanoidAnyMarking # imperial HairAndTail
-    HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
-    HeadSide: MobHumanoidAnyMarking
-
-- type: humanoidBaseSprite
-  id: MobRatlingHead
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobRatlingHeadMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobRatlingHeadFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: head_f
-
-- type: humanoidBaseSprite
-  id: MobRatlingTorso
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobRatlingTorsoMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobRatlingTorsoFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: torso_f
-
-- type: humanoidBaseSprite
-  id: MobRatlingLLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: l_leg
-
-- type: humanoidBaseSprite
-  id: MobRatlingLArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: l_arm
-
-- type: humanoidBaseSprite
-  id: MobRatlingLHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: l_hand
-
-- type: humanoidBaseSprite
-  id: MobRatlingLFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: l_foot
-
-- type: humanoidBaseSprite
-  id: MobRatlingRLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: r_leg
-
-- type: humanoidBaseSprite
-  id: MobRatlingRArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: r_arm
-
-- type: humanoidBaseSprite
-  id: MobRatlingRHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: r_hand
-
-- type: humanoidBaseSprite
-  id: MobRatlingRFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
-    state: r_foot
-
-- type: markingPoints
-  id: MobRatlingMarkingLimits
-  points:
-    Hair:
-      points: 1
-      required: false
-    FacialHair:
-      points: 1
-      required: false
-    Tail:
-      points: 1
-      required: true
-      defaultMarkings: [ RatlingTailDefault ]
-    HeadTop:
-      points: 1
-      required: true
-      defaultMarkings: [ RatlingEarsDefault ]
 
 - type: marking
   id: RatlingTailDefault
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
     state: default
@@ -357,7 +257,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
     state: big
@@ -367,7 +267,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
     state: down
@@ -377,7 +277,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
     state: b0
@@ -389,7 +289,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
     state: d0
@@ -401,7 +301,7 @@
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/face.rsi
     state: long
@@ -530,21 +430,16 @@
 - type: accent
   id: ratling
   wordReplacements:
-    еда: сыр
-    еды: сыра
-    едой: сыром
-    украсть: свиснуть
-    ревент: серебряшка
-    ревенты: серебряшки
-    ревентов: серебряшек
-    ярл: важный шишка
-    легат: важный шишка
-    архимаг: важный шишка
-    дракон: крылатая крыса
-    оборотень: вонючий
-    оборотни: вонючие
-    крыса: браток
-    мышь: братишка
-    корова: богиня
-    копье: зубочистка
-    воняешь: вкусно пахнешь
+    food: cheese
+    steal: swipe
+    revent: silverling
+    jarl: big boss
+    legate: big boss
+    archmage: big boss
+    dragon: winged rat
+    werewolf: stinky
+    rat: bro
+    mouse: little bro
+    cow: goddess
+    spear: toothpick
+    stink: smell good

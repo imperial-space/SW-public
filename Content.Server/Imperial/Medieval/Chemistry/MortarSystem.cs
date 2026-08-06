@@ -46,9 +46,9 @@ public sealed class MortarSystem : EntitySystem
             Solution transfer;
             if (extractable.JuiceSolution == null)
             {
-                if (extractable.GrindableSolution == null)
+                if (extractable.GrindableSolutionName == null)
                     continue;
-                if (!_solution.TryGetSolution(item, extractable.GrindableSolution, out _, out var itemsolution))
+                if (!_solution.TryGetSolution(item, extractable.GrindableSolutionName, out _, out var itemsolution))
                     continue;
                 transfer = itemsolution;
             }

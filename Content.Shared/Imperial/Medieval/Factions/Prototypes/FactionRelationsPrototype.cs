@@ -4,7 +4,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Imperial.Medieval.Factions;
 
 [Prototype]
-public sealed class FactionRelationsPrototype : IPrototype
+public sealed partial class FactionRelationsPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

@@ -40,7 +40,7 @@ public sealed class ChargedAttackSystem : EntitySystem
         SubscribeAllEvent<ChargedAttackStart>(OnStart);
         SubscribeAllEvent<ChargedAttackEnd>(OnEnd);
 
-        SubscribeLocalEvent<HumanoidAppearanceComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
+        SubscribeLocalEvent<HumanoidProfileComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
 
         SubscribeLocalEvent<ChargedAttackComponent, MeleeHitEvent>(OnHit);
         SubscribeLocalEvent<ChargedAttackComponent, StaminaMeleeHitEvent>(OnStaminaHit);
@@ -147,7 +147,7 @@ public sealed class ChargedAttackSystem : EntitySystem
         }
     }
 
-    private void OnRefreshMovespeed(EntityUid uid, HumanoidAppearanceComponent component, RefreshMovementSpeedModifiersEvent args)
+    private void OnRefreshMovespeed(EntityUid uid, HumanoidProfileComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         var item = _handsSystem.EnumerateHeld(uid).Where(c => HasComp<ChargedAttackComponent>(c)).FirstOrNull();
 

@@ -195,7 +195,8 @@ public abstract partial class SharedSkillsSystem
             <= 8 => "examine-skills-substantially-higher",
             <= 10 => "examine-skills-much-higher",
             <= 12 => "examine-skills-significantly-higher",
-            <= 25 => "examine-skills-immensely-higher"
+            <= 25 => "examine-skills-immensely-higher",
+            _ => "examine-skills-immensely-higher"
         };
     }
 }

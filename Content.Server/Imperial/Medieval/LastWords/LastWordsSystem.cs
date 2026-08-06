@@ -23,7 +23,7 @@ public sealed class LastWordsSystem : EntitySystem
 
     private void OnEntitySpoke(Entity<LastWordsComponent> ent, ref EntitySpokeEvent args)
     {
-        if (!HasComp<ActorComponent>(ent) || !HasComp<HumanoidAppearanceComponent>(ent))
+        if (!HasComp<ActorComponent>(ent) || !HasComp<HumanoidProfileComponent>(ent))
             return;
 
         if (string.IsNullOrWhiteSpace(args.Message))

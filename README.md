@@ -25,14 +25,15 @@ Assets have their license and the copyright in the metadata file. [Example](http
 ```shell
 git clone https://github.com/space-wizards/space-station-14.git
 ```
-2. Go to the project folder and run `RUN_THIS.py` to initialize the submodules and load the engine:
-```shell
-cd space-station-14
-python RUN_THIS.py
+git clone https://github.com/imperial-space/SS14-public
 ```
 3. Compile the solution:
 
-Build the server using `dotnet build`.
+```
+dotnet build -c release
+```
+
+Использование команды `dotnet build` без аргументов запускает сервер в DEV режиме. В нём при входе вы появляетесь в роли капитана на DEV-карте с некоторыми ограничениями, а также при любой ошибке сервер будет завершать работу с фатальным логом в консоли. **Этот режим не подходит для маппинга**.
 
 [More detailed instructions on building the project.](https://docs.spacestation14.com/en/general-development/setup.html)
 

@@ -6,7 +6,6 @@
   startNode: start
   targetNode: beerEyepatch
   category: construction-category-clothing
-  description: Повязка и пивные очки объединены воедино.
   #icon: { sprite: Clothing/Eyes/Hud/beerpatch.rsi, state: icon }
   objectType: item
 
@@ -18,7 +17,6 @@
   startNode: start
   targetNode: securityEyepatch
   category: construction-category-clothing
-  description: Повязка на глаза и охранный визор объединены воедино.
   #icon: { sprite: Clothing/Eyes/Hud/secpatch.rsi, state: icon }
   objectType: item
 
@@ -30,7 +28,6 @@
   startNode: start
   targetNode: medicalEyepatch
   category: construction-category-clothing
-  description: Повязка на глаза и медицинский визор объединены воедино.
   #icon: { sprite: Clothing/Eyes/Hud/medpatch.rsi, state: icon }
   objectType: item
 
@@ -42,7 +39,6 @@
   startNode: start
   targetNode: diagnosticEyepatch
   category: construction-category-clothing
-  description: Повязка на глаза и диагностический визор объединены воедино
   #icon: { sprite: Clothing/Eyes/Hud/diagpatch.rsi, state: icon }
   objectType: item
 
@@ -54,7 +50,6 @@
   startNode: start
   targetNode: chemicalEyepatch
   category: construction-category-clothing
-  description: Повязка на глаза и очки для химического анализа объединены воедино.
   #icon: { sprite: Imperial/PiratesNewHorizon/chempatch.rsi, state: icon }
   objectType: item
 
@@ -66,7 +61,6 @@
   startNode: start
   targetNode: flashEyepatch
   category: construction-category-clothing
-  description: Какого хрена? Никто не знает
   #icon: { sprite: Imperial/PiratesNewHorizon/flashpatch.rsi, state: icon }
   objectType: item
 
@@ -78,7 +72,6 @@
   startNode: start
   targetNode: engEyepatch
   category: construction-category-clothing
-  description: Повязка на глаза и инженерный визор объединены воедино
   #icon: { sprite: Imperial/PiratesNewHorizon/engpatch.rsi, state: icon }
   objectType: item
 
@@ -90,6 +83,5 @@
   startNode: start
   targetNode: omniEyepatch
   category: construction-category-clothing
-  description: Порази своим взором всех!
   #icon: { sprite: Imperial/PiratesNewHorizon/omnipatch.rsi, state: icon }
   objectType: item

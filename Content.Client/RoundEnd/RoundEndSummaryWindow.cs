@@ -37,7 +37,7 @@ namespace Content.Client.RoundEnd
             roundEndTabs.AddChild(MakePlayerManifestTab(info));
             roundEndTabs.AddChild(MakeLastWordsTab(lastWords)); // Imperial Medieval Last Words
 
-            Contents.AddChild(roundEndTabs);
+            ContentsContainer.AddChild(roundEndTabs);
 
             OpenCenteredRight();
             MoveToFront();

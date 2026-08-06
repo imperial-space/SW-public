@@ -102,7 +102,7 @@ public sealed partial class TradeTerminalSystem
             TryComp<StackComponent>(item, out var heldStack) &&
             heldStack.Count > amount)
         {
-            var split = _stack.Split(item, amount, Transform(uid).Coordinates, heldStack);
+            var split = _stack.Split((item, heldStack), amount, Transform(uid).Coordinates);
             if (split == null)
             {
                 _popup.PopupEntity(Loc.GetString("trade-terminal-insert-failed"), uid, user);
@@ -134,12 +134,11 @@ public sealed partial class TradeTerminalSystem
     {
         if (!TryComp<StackComponent>(item, out var insertStack) ||
             !TryComp<StackComponent>(target, out var targetStack) ||
-            !_stack.TryAdd(
-                item,
-                target,
-                amount > 0 ? Math.Min(amount, insertStack.Count) : insertStack.Count,
-                insertStack,
-                targetStack))
+            !_stack.TryMergeStacks(
+                (item, insertStack),
+                (target, targetStack),
+                out _,
+                amount > 0 ? Math.Min(amount, insertStack.Count) : insertStack.Count))
         {
             return false;
         }

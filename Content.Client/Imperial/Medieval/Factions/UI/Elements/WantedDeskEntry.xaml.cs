@@ -1,6 +1,5 @@
-using System.Linq;
+using Content.Client.Lobby.UI.ProfileEditorControls;
 using Content.Client.Imperial.Medieval.Factions;
-using Content.Client.Lobby;
 using Content.Shared.Chat;
 using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Roles;
@@ -21,16 +20,12 @@ namespace Content.Client.Imperial.Medieval.Factions.UI.Elements;
 public sealed partial class WantedDeskEntry : Control
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    private readonly LobbyUIController _lobby;
 
     public WantedDeskEntry(WantedData data)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _lobby = UserInterfaceManager.GetUIController<LobbyUIController>();
-
-        var ent = _lobby.LoadProfileEntity(data.Profile, _proto.Index<JobPrototype>(data.Job), true);
-        Character.SetEntity(ent);
+        Character.LoadPreview(data.Profile, _proto.Index<JobPrototype>(data.Job), true);
 
         Name.SetMessage(data.Profile.Name);
         Faction.SetMessage($"Состоял в: {_proto.Index(data.Faction).Name.ToLower()}");

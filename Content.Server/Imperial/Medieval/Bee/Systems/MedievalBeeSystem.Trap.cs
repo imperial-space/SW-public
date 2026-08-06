@@ -21,7 +21,7 @@ public sealed partial class MedievalBeeSystem : EntitySystem
         if (HasComp<MedievalBeeTrappedComponent>(args.OtherEntity))
             return;
 
-        if (!HasComp<HumanoidAppearanceComponent>(args.OtherEntity))
+        if (!HasComp<HumanoidProfileComponent>(args.OtherEntity))
             return;
 
         if (!_stun.TryAddParalyzeDuration(args.OtherEntity, component.StunTime))

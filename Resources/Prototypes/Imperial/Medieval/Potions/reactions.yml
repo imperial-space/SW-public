@@ -7,7 +7,7 @@
     Fluorine:
       amount: 3
   effects:
-  - !type:ExplosionReactionEffect
+  - !type:Explosion
     explosionType: Default # 15 damage per intensity.
     maxIntensity: 200
     intensityPerUnit: 5
@@ -43,7 +43,7 @@
     Fluorine:
       amount: 3
   effects:
-  - !type:ExplosionReactionEffect
+  - !type:Explosion
     explosionType: Cryo # 15 damage per intensity.
     maxIntensity: 200
     intensityPerUnit: 5
@@ -61,7 +61,7 @@
     Fluorine:
       amount: 3
   effects:
-  - !type:ExplosionReactionEffect
+  - !type:Explosion
     explosionType: Default # 15 damage per intensity.
     maxIntensity: 400
     intensityPerUnit: 8
@@ -85,7 +85,7 @@
     Fluorine:
       amount: 3
   effects:
-  - !type:ExplosionReactionEffect
+  - !type:Explosion
     explosionType: Default # 15 damage per intensity.
     maxIntensity: 1000
     intensityPerUnit: 100

@@ -6,7 +6,6 @@
   startNode: start
   targetNode: clownHardsuit
   category: construction-category-clothing
-  description: Самодельный скафандр для клоуна. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -17,27 +16,22 @@
   startNode: start
   targetNode: mimeHardsuit
   category: construction-category-clothing
-  description: Самодельный скафандр для мима. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Костяная броня # Imperial Recipes Locale
   id: BoneArmor
   graph: BoneArmor
   startNode: start
   targetNode: armor
   category: construction-category-clothing
-  description: Кажется костянные шутки тут неуместны... # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Костяной шлем # Imperial Recipes Locale
   id: BoneHelmet
   graph: BoneHelmet
   startNode: start
   targetNode: helmet
   category: construction-category-clothing
-  description: Крутой шлем из черепов ваших врагов. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -65,7 +59,6 @@
   startNode: start
   targetNode: mask
   category: construction-category-clothing
-  description: Наряд настоящего проказника. Клоун неполноценен без парика и маски. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -76,7 +69,6 @@
   startNode: start
   targetNode: jumpsuit
   category: construction-category-clothing
-  description: ХОНК! # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -87,7 +79,6 @@
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Когда юмор и обувь поднимаются на новый уровень абсурда. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -98,7 +89,6 @@
   startNode: start
   targetNode: medsecHud
   category: construction-category-clothing
-  description: Медицинский и охранный визоры, объединенные в один. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -109,7 +99,6 @@
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Удобные, но преследуемые призраками уток, которых вы кормили в детстве. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -120,7 +109,6 @@
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Очаровательная пара тапочек, напоминающих человека-ящерицу. Сочетайте это с другой зеленой одеждой, и вы станете самым крутым членом экипажа на станции!
   objectType: Item
 
 - type: construction
@@ -131,7 +119,6 @@
   startNode: start
   targetNode: glassesSec
   category: construction-category-clothing
-  description: Пара солнцезащитных очков со встроенным интерфейсом СБ. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -142,7 +129,6 @@
   startNode: start
   targetNode: Quiver
   category: construction-category-clothing
-  description: Вмещает до 15 стрел и плотно прилегает к талии. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -153,5 +139,4 @@
   startNode: start
   targetNode: helmet
   category: construction-category-clothing
-  description: Передовое средство безопасности. Защищает станцию от бездельников. # Imperial Recipes Locale
   objectType: Item

@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Imperial.Medieval.Ships.ShipBuyTerminal;
 
 [Prototype("shipGridOffer")]
-public sealed class ShipGridOfferPrototype : IPrototype
+public sealed partial class ShipGridOfferPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

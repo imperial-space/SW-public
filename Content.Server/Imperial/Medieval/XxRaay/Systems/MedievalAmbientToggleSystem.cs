@@ -18,12 +18,12 @@ public sealed class MedievalAmbientToggleSystem : EntitySystem
     }
 
     /// <summary>
-    /// Current state: true = medieval ambient music can play, false = disabled.
+    
     /// </summary>
     public bool IsMedievalAmbientEnabled => _medievalAmbientEnabled;
 
     /// <summary>
-    /// Sets medieval ambient on/off and notifies all clients. Returns new state.
+    
     /// </summary>
     public bool SetMedievalAmbientEnabled(bool enabled)
     {
@@ -35,7 +35,7 @@ public sealed class MedievalAmbientToggleSystem : EntitySystem
     }
 
     /// <summary>
-    /// Toggles medieval ambient and returns new state.
+    
     /// </summary>
     public bool ToggleMedievalAmbient()
     {

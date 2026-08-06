@@ -8,22 +8,22 @@ namespace Content.Shared.Imperial.Medieval.Plague;
 public sealed partial class MedievalPlagueSymptomPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public string Name { get; } = default!;
+    public string Name { get; private set; } = default!;
 
     [DataField(required: true)]
-    public string Desc { get; } = default!;
+    public string Desc { get; private set; } = default!;
 
     [DataField(required: true)]
-    public SpriteSpecifier Icon { get; } = default!;
+    public SpriteSpecifier Icon { get; private set; } = default!;
 
     [DataField(required: true)]
-    public int Cost { get; } = 5;
+    public int Cost { get; private set; } = 5;
 
     [DataField(required: true)]
-    public int Tier { get; } = 1;
+    public int Tier { get; private set; } = 1;
 
     [DataField(required: true)]
     public Vector2 Position;
@@ -35,16 +35,16 @@ public sealed partial class MedievalPlagueSymptomPrototype : IPrototype
     public string[] Required = Array.Empty<string>();
 
     [DataField(serverOnly: true)]
-    public object? IncubationTargetEvent { get; }
+    public object? IncubationTargetEvent { get; private set; }
 
     [DataField(serverOnly: true)]
-    public object? TargetEvent { get; }
+    public object? TargetEvent { get; private set; }
 
     [DataField(serverOnly: true)]
-    public object? BroadcastEvent { get; }
+    public object? BroadcastEvent { get; private set; }
 
     [DataField(serverOnly: true)]
-    public EntProtoId[] Actions { get; } = Array.Empty<EntProtoId>();
+    public EntProtoId[] Actions { get; private set; } = Array.Empty<EntProtoId>();
 
     [DataField]
     public SymptomCategory Category = SymptomCategory.Symptom;

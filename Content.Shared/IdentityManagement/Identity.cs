@@ -15,7 +15,13 @@ public static class Identity
     /// <summary>
     ///     Returns the name that should be used for this entity for identity purposes.
     /// </summary>
-    public static string Name(EntityUid uid, IEntityManager ent, EntityUid? viewer = null, bool showId = false) // Imperial medieval - showId
+    /// <remarks>
+    /// This will return the true identity of the entity if called before the
+    /// identity component has been initialized — this may occur for example if
+    /// the client raises an event in response to an entity entering PVS for
+    /// the first time.
+    /// </remarks>
+    public static string Name(EntityUid uid, IEntityManager ent, EntityUid? viewer = null, bool showId = false) // Imperial Medieval - showId
     {
         if (!uid.IsValid())
             return string.Empty;
@@ -29,29 +35,27 @@ public static class Identity
         if (!ent.TryGetComponent<IdentityComponent>(uid, out var identity))
             return uidName;
 
-        var ident = identity.IdentityEntitySlot.ContainedEntity;
+        var ident = identity.IdentityEntitySlot?.ContainedEntity;
         if (ident is null)
             return uidName;
 
         var identName = ent.GetComponent<MetaDataComponent>(ident.Value).EntityName;
 
-        // imperial medieval start
+        // Imperial Medieval start
         if (viewer == null)
         {
             return identName;
         }
-        // imperial medieval end
 
-        // Imperial medieval start
         if (ent.TryGetComponent<IdentityRequiresKnowledgeComponent>(uid, out var identReqTarget) && ent.TryGetComponent<IdentityRequiresKnowledgeComponent>(viewer, out var identReqViewer))
         {
             if (identReqViewer.KnownIds.Contains(identReqTarget.Identifier) || identReqTarget.Identifier == identReqViewer.Identifier || !identReqTarget.HideUnknown)
                 return identName;
 
-            if (!ent.TryGetComponent<HumanoidAppearanceComponent>(uid, out var humanoid))
+            if (!ent.TryGetComponent<HumanoidProfileComponent>(uid, out var humanoid))
                 return Loc.GetString("identity-gender-person") + (showId ? $" ({identReqTarget.Identifier})" : "");
 
-            var humanoidSys = ent.System<SharedHumanoidAppearanceSystem>();
+            var humanoidSys = ent.System<HumanoidProfileSystem>();
             var ageStr = humanoidSys.GetAgeRepresentation(humanoid.Species, humanoid.Age);
             return humanoid.Sex switch
             {
@@ -60,9 +64,9 @@ public static class Identity
                 Sex.Unsexed or _ => $"{ageStr} {Loc.GetString("identity-gender-person")}" + (showId ? $" ({identReqTarget.Identifier})" : "")
             };
         }
+        // Imperial Medieval end
 
-        if (!CanSeeThroughIdentity(uid, viewer.Value, ent))
-            // Imperial medieval end
+        if (viewer == null || !CanSeeThroughIdentity(uid, viewer.Value, ent))
         {
             return identName;
         }
@@ -82,6 +86,7 @@ public static class Identity
     /// <param name="viewer">
     ///     If this entity can see through identities, this method will always return the actual target entity.
     /// </param>
+    /// <inheritdoc cref="Name" path="remarks" />
     public static EntityUid Entity(EntityUid uid, IEntityManager ent, EntityUid? viewer = null)
     {
         if (!ent.TryGetComponent<IdentityComponent>(uid, out var identity))
@@ -90,7 +95,7 @@ public static class Identity
         if (viewer != null && CanSeeThroughIdentity(uid, viewer.Value, ent))
             return uid;
 
-        return identity.IdentityEntitySlot.ContainedEntity ?? uid;
+        return identity.IdentityEntitySlot?.ContainedEntity ?? uid;
     }
 
     public static bool CanSeeThroughIdentity(EntityUid uid, EntityUid viewer, IEntityManager ent)

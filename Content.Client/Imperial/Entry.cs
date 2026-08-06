@@ -16,6 +16,8 @@ public sealed partial class ImperialEntry
 
         prototypeManager.RegisterIgnore("stationGoal");
         prototypeManager.RegisterIgnore("ertCall");
+
+        MedievalInit();
     }
 
     public static void PostInit()
@@ -29,10 +31,18 @@ public sealed partial class ImperialEntry
         overlayManager.AddOverlay(new SeaWindOverlay());
 
         IoCManager.Resolve<SponsorsManager>().Initialize();
+
+        MedievalPostInit();
     }
 
-    public static void IoCRegister()
+    public static void Shutdown()
     {
-        //IoCManager.Register<SponsorsManager>(); //Imperial sponsors
+        MedievalShutdown();
+    }
+
+    public static void IoCRegister(IDependencyCollection collection)
+    {
+        //IoCManager.Register<SponsorsManager>(); //Imperial sponsors — registered in ClientContentIoC
+        MedievalIoCRegister(collection);
     }
 }

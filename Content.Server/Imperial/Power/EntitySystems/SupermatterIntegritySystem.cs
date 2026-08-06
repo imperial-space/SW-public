@@ -2,72 +2,33 @@ using Content.Server.AlertLevel;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.Imperial.Power.Components;
 using Content.Server.Lightning;
-using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Audio;
-using Content.Shared.Examine;
+using Content.Shared.Imperial.Power.Components;
 using Content.Shared.Radiation.Components;
-using Content.Shared.Tag;
-using Robust.Shared.Physics.Events;
 using System.Linq;
 using Content.Shared.Chat;
 using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
+using Content.Server.Radiation.Systems;
+using Content.Shared.Explosion.Components;
+using Content.Shared.Imperial.Power.Events;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
 public sealed class SupermatterIntegritySystem : EntitySystem
 {
-    [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly LightningSystem _lightning = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<SupermatterIntegrityComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<SupermatterIntegrityComponent, StartCollideEvent>(OnStartCollide);
-    }
-
-    private void OnExamined(EntityUid uid, SupermatterIntegrityComponent component, ExaminedEvent args)
-    {
-        if (!args.IsInDetailsRange)
-            return;
-
-        args.PushMarkup(component.Activated
-            ? $"[color=yellow]{Loc.GetString("supermatter-status-active")}[/color]"
-            : $"[color=gray]{Loc.GetString("supermatter-status-inactive")}[/color]");
-
-        var integrityPercent = component.Integrity / component.MaxIntegrity * 100;
-        var integrityLevel = component.SupermatterIntegrity.First(entry => integrityPercent > entry.Threshold);
-
-        args.PushMarkup(Loc.GetString(integrityLevel.Description));
-    }
-
-    private void OnStartCollide(EntityUid uid, SupermatterIntegrityComponent component, ref StartCollideEvent args)
-    {
-        var other = args.OtherEntity;
-        if (!_tagSystem.HasTag(other, component.HealTag))
-            return;
-
-        if (!component.Activated)
-        {
-            component.Activated = true;
-            SendSupermatterRadio(args.OurEntity,Loc.GetString("supermatter-activated"), component);
-        }
-
-        component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + component.EmitterHealAmount);
-    }
-
+    [Dependency] private readonly AlertLevelSystem _alertLevelSystem = null!;
+    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = null!;
+    [Dependency] private readonly ChatSystem _chatSystem = null!;
+    [Dependency] private readonly ExplosionSystem _explosionSystem = null!;
+    [Dependency] private readonly IGameTiming _gameTiming = null!;
+    [Dependency] private readonly LightningSystem _lightning = null!;
+    [Dependency] private readonly RadiationSystem _radiationSystem = null!;
+    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = null!;
+    [Dependency] private readonly SharedPointLightSystem _lightSystem = null!;
+    [Dependency] private readonly StationSystem _stationSystem = null!;
 
     public override void Update(float frameTime)
     {
@@ -75,72 +36,73 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         var enumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
         while (enumerator.MoveNext(out var uid, out var comp, out var transComp))
         {
-            ProcessSupermatterUpdate(uid, comp, transComp, frameTime);
+            ProcessSupermatterUpdate((uid, comp), transComp);
         }
     }
 
-    private void ProcessSupermatterUpdate(EntityUid uid, SupermatterIntegrityComponent comp, TransformComponent transComp, float frameTime)
+    private void ProcessSupermatterUpdate(Entity<SupermatterIntegrityComponent> ent, TransformComponent transComp)
     {
-        if (TryComp(uid, out RadiationSourceComponent? radiation))
-            radiation.Enabled = comp.Activated;
+        if (TryComp(ent, out RadiationSourceComponent? radiation))
+            _radiationSystem.SetSourceEnabled((ent, radiation), ent.Comp.Activated);
 
-        if (TryComp(uid, out PointLightComponent? light))
-            _lightSystem.SetEnabled(uid, comp.Activated, light);
+        if (TryComp(ent, out PointLightComponent? light))
+            _lightSystem.SetEnabled(ent, ent.Comp.Activated, light);
 
-        if (TryComp(uid, out AmbientSoundComponent? ambient))
+        if (TryComp(ent, out AmbientSoundComponent? ambient))
         {
-            if (comp.Activated)
+            if (ent.Comp.Activated)
             {
-                _ambientSound.SetVolume(uid, comp.AmbientSound[0].Volume, ambient);
-                _ambientSound.SetRange(uid, comp.AmbientSound[0].Range, ambient);
+                _ambientSound.SetVolume(ent, ent.Comp.AmbientSound[0].Volume, ambient);
+                _ambientSound.SetRange(ent, ent.Comp.AmbientSound[0].Range, ambient);
             }
             else
             {
-                _ambientSound.SetVolume(uid, comp.AmbientSound[1].Volume, ambient);
-                _ambientSound.SetRange(uid, comp.AmbientSound[1].Range, ambient);
+                _ambientSound.SetVolume(ent, ent.Comp.AmbientSound[1].Volume, ambient);
+                _ambientSound.SetRange(ent, ent.Comp.AmbientSound[1].Range, ambient);
             }
         }
 
-        if (!comp.Activated)
+        if (!ent.Comp.Activated)
             return;
 
-        var gas = _atmosphereSystem.GetContainingMixture((uid, transComp), true, true);
+        var gas = _atmosphereSystem.GetContainingMixture((ent, transComp), true, true);
 
         bool badConditions;
         if (gas != null)
         {
-            badConditions = gas.Temperature > comp.UpperTempThreshold
-                            || gas.Temperature < comp.LowerTempThreshold
-                            || gas.Pressure > comp.UpperPressureThreshold
-                            || gas.Pressure < comp.LowerPressureThreshold;
+            badConditions = gas.Temperature < ent.Comp.TempThresholds.Item1
+                            || gas.Temperature > ent.Comp.TempThresholds.Item2
+                            || gas.Pressure < ent.Comp.PressureThresholds.Item1
+                            || gas.Pressure > ent.Comp.PressureThresholds.Item2;
         }
         else
             badConditions = true;
 
-        var integrityPercent = comp.Integrity / comp.MaxIntegrity * 100f;
+        var integrityPercent = ent.Comp.Integrity / ent.Comp.MaxIntegrity * 100f;
 
         // Сброс флага предупреждения для текущего уровня
-        var index = comp.SupermatterIntegrity.FindIndex(entry => integrityPercent > entry.Threshold);
+        var index = ent.Comp.SupermatterIntegrity.FindIndex(entry => integrityPercent > entry.Threshold);
         if (index >= 0)
         {
-            var oldEntry = comp.SupermatterIntegrity[index];
+            var oldEntry = ent.Comp.SupermatterIntegrity[index];
             if (oldEntry.Flag)
-                comp.SupermatterIntegrity[index] = (oldEntry.Threshold, oldEntry.Color, oldEntry.Description, oldEntry.Warning, false);
+                oldEntry.Flag = false;
         }
 
-        foreach (var level in comp.SupermatterIntegrity.OrderByDescending(entry => entry.Threshold))
+        foreach (var level in ent.Comp.SupermatterIntegrity.OrderByDescending(entry => entry.Threshold))
         {
             if (integrityPercent > level.Threshold || level.Flag || string.IsNullOrEmpty(level.Warning))
                 continue;
 
             var integrityWarning = Loc.GetString(level.Warning);
-            SendSupermatterRadio(uid, integrityWarning, comp);
+            var ev = new SupermatterSendRadioEvent(integrityWarning);
+            RaiseLocalEvent(ent, ref ev);
 
             // Если мы достигли уровня с порогом <= 10% — выставляем код тревоги для станции и объявление.
             // Раньше использовался MinBy по всем порогам (что возвращало 0) и из-за этого код не ставился.
-            if (level.Threshold <= 10f)
+            if (level.Threshold <= 30f)
             {
-                var station = _stationSystem.GetOwningStation(uid, transComp);
+                var station = _stationSystem.GetOwningStation(ent, transComp);
                 if (station != null)
                 {
                     _alertLevelSystem.SetLevel(station.Value, "yellow", true, true, true);
@@ -154,27 +116,21 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             }
 
             // Устанавливаем флаг предупреждения
-            var levelIndex = comp.SupermatterIntegrity.FindIndex(entry => Math.Abs(level.Threshold - entry.Threshold) < 1f);
-            if (levelIndex >= 0)
-            {
-                var updated = comp.SupermatterIntegrity[levelIndex];
-                comp.SupermatterIntegrity[levelIndex] = (updated.Threshold, updated.Color, updated.Description, updated.Warning, true);
-            }
+            level.Flag = true;
             break;
         }
 
         // Обработка катастрофы
-        if (!comp.CatastropheActive && integrityPercent <= comp.CatastropheThreshold)
+        if (!ent.Comp.CatastropheActivated && integrityPercent <= ent.Comp.CatastropheThreshold)
         {
-            comp.CatastropheActive = true;
-            comp.CatastropheTimer = TimeSpan.Zero; // Начинаем с 0
-            comp.CatastropheLightningTimer = TimeSpan.Zero; // Сбрасываем таймер молний
+            ent.Comp.CatastropheActivated = true;
+            ent.Comp.CatastropheEndTime = _gameTiming.CurTime + ent.Comp.CatastropheDuration;
+            ent.Comp.CatastropheLightningNextTime = _gameTiming.CurTime + ent.Comp.CatastropheLightningInterval;
 
             // Отправляем предупреждение о катастрофе
-            var station = _stationSystem.GetOwningStation(uid, transComp);
+            var station = _stationSystem.GetOwningStation(ent, transComp);
             if (station != null)
             {
-                _alertLevelSystem.SetLevel(station.Value, "red", true, true, true);
                 _chatSystem.DispatchStationAnnouncement(
                     station.Value,
                     Loc.GetString("supermatter-station-catastrophe"),
@@ -182,38 +138,23 @@ public sealed class SupermatterIntegritySystem : EntitySystem
                     colorOverride: Color.Red
                 );
             }
-
-            // Отправляем сообщение в радио о начале катастрофы
-            SendSupermatterRadio(uid, Loc.GetString("supermatter-catastrophe-warning"), comp);
         }
 
-        if (comp.CatastropheActive)
+        if (ent.Comp.CatastropheActivated)
         {
-            comp.CatastropheTimer += TimeSpan.FromSeconds(frameTime);
-
             // Молнии во время катастрофы
-            comp.CatastropheLightningTimer += TimeSpan.FromSeconds(frameTime);
-            if (comp.CatastropheLightningTimer >= comp.CatastropheLightningInterval)
+            if (_gameTiming.CurTime > ent.Comp.CatastropheLightningNextTime)
             {
-                comp.CatastropheLightningTimer = TimeSpan.Zero;
-                _lightning.ShootRandomLightnings(uid, comp.CatastropheLightningRange, comp.CatastropheLightningCount);
+                ent.Comp.CatastropheLightningNextTime = _gameTiming.CurTime + ent.Comp.CatastropheLightningInterval;
+                _lightning.ShootRandomLightnings(ent, ent.Comp.CatastropheLightningRange, ent.Comp.CatastropheLightningCount);
             }
 
-            if (comp.CatastropheTimer >= comp.CatastropheDuration)
+            if (_gameTiming.CurTime > ent.Comp.CatastropheEndTime)
             {
-                if (TryComp(uid, out TransformComponent? xformCat))
-                {
-                    var coords = _transformSystem.ToMapCoordinates(xformCat.Coordinates);
-                    _explosionSystem.QueueExplosion(
-                        coords,
-                        comp.ExplosionPrototypeId,
-                        comp.CatastropheTotalIntensity,
-                        comp.CatastropheSlope,
-                        comp.CatastropheMaxTileIntensity,
-                        cause: uid
-                    );
-                }
-                EntityManager.QueueDeleteEntity(uid);
+                if (TryComp<ExplosiveComponent>(ent, out var explosive))
+                    _explosionSystem.TriggerExplosive(ent, explosive);
+                else
+                    QueueDel(ent);
                 return;
             }
         }
@@ -221,20 +162,22 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         // Обработка урона от плохих условий
         if (badConditions)
         {
-            comp.TickAccumulator += TimeSpan.FromSeconds(frameTime);
-            while (comp.TickAccumulator >= comp.DamageTickInterval)
-            {
-                comp.TickAccumulator -= comp.DamageTickInterval;
-                var tickAmount = comp.TickDamage.DamageDict.Values.Sum(v => (float)v);
-                comp.Integrity = MathF.Max(0, comp.Integrity - tickAmount);
-            }
-        }
-    }
+            if (ent.Comp.NextDamageTime == TimeSpan.MaxValue)
+                ent.Comp.NextDamageTime = _gameTiming.CurTime + ent.Comp.DamageInterval;
 
-    // Отправка сообщения в общую рацию от имени суперматерии
-    private void SendSupermatterRadio(EntityUid source, string message, SupermatterIntegrityComponent component)
-    {
-        _chatSystem.TrySendInGameICMessage(source, message, InGameICChatType.Speak, ChatTransmitRange.Normal);
-        _radioSystem.SendRadioMessage(source, message, component.RadioChannel, source);
+            if (_gameTiming.CurTime < ent.Comp.NextDamageTime)
+                return;
+
+            ent.Comp.NextDamageTime = _gameTiming.CurTime + ent.Comp.DamageInterval;
+
+            var tickAmount = ent.Comp.TickDamage.GetTotal().Float();
+            if (tickAmount <= 0)
+                tickAmount = 0.65f;
+
+            ent.Comp.Integrity = MathF.Max(0, ent.Comp.Integrity - tickAmount);
+            Dirty(ent);
+        }
+        else
+            ent.Comp.NextDamageTime = TimeSpan.MaxValue;
     }
 }

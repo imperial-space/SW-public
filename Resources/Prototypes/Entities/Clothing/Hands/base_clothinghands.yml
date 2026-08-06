@@ -13,7 +13,7 @@
       path: /Audio/Imperial/Medieval/gloves_equip.ogg # imperial medieval
     unequipSound: # imperial medieval
       path: /Audio/Imperial/Medieval/gloves_unequip.ogg # imperial medieval
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: Item
     size: Normal # imperial medieval

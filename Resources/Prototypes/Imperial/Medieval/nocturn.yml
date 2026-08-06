@@ -1,3 +1,84 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Nocturn
+  limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Special:
+      limit: 0
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceNocturn
+  categories: [ HideSpawnMenu ]
+  name: nocturn appearance
+  components:
+  - type: InitialBody
+    organs:
+      Head: OrganDrouHead
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Torso: OrganDrouTorso
+      Lungs: OrganHumanLungs
+      Heart: OrganArachnidHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
+      ArmLeft: OrganDrouArmLeft
+      ArmRight: OrganDrouArmRight
+      HandLeft: OrganDrouHandLeft
+      HandRight: OrganDrouHandRight
+      LegLeft: OrganDrouLegLeft
+      LegRight: OrganDrouLegRight
+      FootLeft: OrganDrouFootLeft
+      FootRight: OrganDrouFootRight
+  - type: HumanoidProfile
+    species: Drou
+
 # Blood
 
 - type: reagent
@@ -18,27 +99,35 @@
   description: flavor-complex-drou-blood
 
 - type: entity
-  id: PartDrou
-  parent: [BaseItem, BasePart]
-  name: Часть от ноктюрна
+  parent: OrganBase
+  id: OrganDrou
   abstract: true
-  components:
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 3
-      - ReagentId: DrouBlood
-        Quantity: 10
+  suffix: drou
 
 - type: entity
-  id: TorsoDrou
-  name: Туловище ноктюрна
-  parent: [PartHuman, BaseTorso]
+  parent: OrganDrou
+  id: OrganDrouExternal
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "torso_m"
+  - type: VisualOrgan
+    data:
+      sprite: Imperial/Medieval/Species/Drou/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Nocturn
+
+- type: entity
+  parent: OrganDrou
+  id: OrganDrouInternal
+  abstract: true
+
+- type: entity
+  id: OrganDrouTorso
+  name: "Drou torso"
+  parent: [OrganBaseTorsoSexed, OrganBaseTorso, OrganDrouExternal]
+  components:
   - type: Extractable
     juiceSolution:
       reagents:
@@ -48,13 +137,10 @@
         Quantity: 20
 
 - type: entity
-  id: HeadDrou
-  name: Голова ноктюрна
-  parent: [PartHuman, BaseHead]
+  id: OrganDrouHead
+  name: "Drou head"
+  parent: [OrganBaseHeadSexed, OrganBaseHead, OrganDrouExternal]
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "head_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -62,134 +148,56 @@
         Quantity: 5
       - ReagentId: DrouBlood
         Quantity: 10
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
 
 - type: entity
-  id: LeftArmDrou
-  name: Левая рука ноктюрна
-  parent: [PartHuman, BaseLeftArm]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "l_arm"
+  id: OrganDrouArmLeft
+  name: "left Drou arm"
+  parent: [OrganBaseArmLeft, OrganDrouExternal]
 
 - type: entity
-  id: RightArmDrou
-  name: Правая рука ноктюрна
-  parent: [PartHuman, BaseRightArm]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "r_arm"
+  id: OrganDrouArmRight
+  name: "right Drou arm"
+  parent: [OrganBaseArmRight, OrganDrouExternal]
 
 - type: entity
-  id: LeftHandDrou
-  name: Левая кисть ноктюрна
-  parent: [PartHuman, BaseLeftHand]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "l_hand"
+  id: OrganDrouHandLeft
+  name: "left Drou hand"
+  parent: [OrganBaseHandLeft, OrganDrouExternal]
 
 - type: entity
-  id: RightHandDrou
-  name: Правая кисть ноктюрна
-  parent: [PartHuman, BaseRightHand]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "r_hand"
+  id: OrganDrouHandRight
+  name: "right Drou hand"
+  parent: [OrganBaseHandRight, OrganDrouExternal]
 
 - type: entity
-  id: LeftLegDrou
-  name: Левая нога ноктюрна
-  parent: [PartHuman, BaseLeftLeg]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "l_leg"
+  id: OrganDrouLegLeft
+  name: "left Drou leg"
+  parent: [OrganBaseLegLeft, OrganDrouExternal]
 
 - type: entity
-  id: RightLegDrou
-  name: Правая нога ноктюрна
-  parent: [PartHuman, BaseRightLeg]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "r_leg"
+  id: OrganDrouLegRight
+  name: "right Drou leg"
+  parent: [OrganBaseLegRight, OrganDrouExternal]
 
 - type: entity
-  id: LeftFootDrou
-  name: Левая ступня ноктюрна
-  parent: [PartHuman, BaseLeftFoot]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "l_foot"
+  id: OrganDrouFootLeft
+  name: "left Drou foot"
+  parent: [OrganBaseFootLeft, OrganDrouExternal]
 
 - type: entity
-  id: RightFootDrou
-  name: Правая ступня ноктюрна
-  parent: [PartHuman, BaseRightFoot]
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: "r_foot"
+  id: OrganDrouFootRight
+  name: "right Drou foot"
+  parent: [OrganBaseFootRight, OrganDrouExternal]
 
 #2
 - type: damageModifierSet
   id: Drou
   coefficients:
     Poison: 0.7
-
-- type: body
-  name: Ноктюрн
-  id: Drou
-  root: torso
-  slots:
-    head:
-      part: HeadDrou
-      connections:
-      - torso
-      organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-    torso:
-      part: TorsoDrou
-      organs:
-        heart: OrganArachnidHeart
-        lungs: OrganHumanLungs
-        stomach: OrganAnimalStomach
-        liver: OrganAnimalLiver
-        kidneys: OrganHumanKidneys
-      connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
-    right arm:
-      part: RightArmDrou
-      connections:
-      - right hand
-    left arm:
-      part: LeftArmDrou
-      connections:
-      - left hand
-    right hand:
-      part: RightHandDrou
-    left hand:
-      part: LeftHandDrou
-    right leg:
-      part: RightLegDrou
-      connections:
-      - right foot
-    left leg:
-      part: LeftLegDrou
-      connections:
-      - left foot
-    right foot:
-      part: RightFootDrou
-    left foot:
-      part: LeftFootDrou
 
 # 3
 
@@ -201,12 +209,12 @@
 
 - type: entity
   save: false
-  name: Урист Ноктюрн'Хендс
-  parent: BaseMobSpeciesOrganic
+  name: Urist McHands The Nocturn
+  parent: [AppearanceNocturn, BaseSpeciesMobOrganic]
   id: BaseMobDrou
   abstract: true
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Drou
     hideLayersOnEquip:
     - Hair
@@ -222,18 +230,20 @@
   - type: Icon
     sprite: Imperial/Medieval/Species/Drou/parts.rsi
     state: full
-  - type: Body
-    prototype: Drou
-    requiredLegs: 2
   - type: Butcherable
     butcheringType: Spike
     spawned:
     - id: FoodMeatLizard
       amount: 5
   - type: Speech
+    speechSounds: Alto
   - type: TypingIndicator
     proto: drou
   - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Drou
@@ -290,6 +300,9 @@
     maxManaRaceModifier: 0.95
     regenRaceModifier: 0.95
   - type: Nocturn
+  - type: PointLight
+    netsync: false
+    enabled: false
   - type: LocalLight
     energy: 0.4
     radius: 4.5
@@ -300,12 +313,12 @@
     bloodReagent: DrouBlood
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: AppearanceNocturn
   id: MobDrouDummy
   categories: [ HideSpawnMenu ]
   description: A dummy Drou meant to be used in character setup.
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Drou
     hideLayersOnEquip:
     - HeadTop
@@ -320,151 +333,21 @@
 
 - type: entity
   save: false
-  name: Урист Ноктюрн'Хендс
-  suffix: Средневековье
+  name: Urist McNocturn
+  suffix: Medieval
   parent: BaseMobDrou
   id: MobDrou
+  categories: []
 
 # 3
 - type: species
   id: Drou
-  name: Ноктюрн
+  name: species-name-drou
   roundStart: true
   prototype: MobDrou
-  sprites: MobDrouSprites
   defaultSkinTone: "#999ec2"
-  markingLimits: MobDrouMarkingLimits
-  dollPrototype: MobDrouDummy
+  dollPrototype: AppearanceNocturn
   skinColoration: TintedHues
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
-
-- type: speciesBaseSprites
-  id: MobDrouSprites
-  sprites:
-    Head: MobDrouHead
-    Chest: MobDrouTorso
-    Hair: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
-    HeadTop: MobHumanoidAnyMarking
-    HeadSide: MobHumanoidAnyMarking
-    Eyes: MobHumanoidEyes
-    LArm: MobDrouLArm
-    RArm: MobDrouRArm
-    LHand: MobDrouLHand
-    RHand: MobDrouRHand
-    LLeg: MobDrouLLeg
-    RLeg: MobDrouRLeg
-    LFoot: MobDrouLFoot
-    RFoot: MobDrouRFoot
-
-- type: markingPoints
-  id: MobDrouMarkingLimits
-  onlyWhitelisted: false
-  points:
-    Hair:
-      points: 1
-      required: false
-    FacialHair:
-      points: 1
-      required: false
-    HeadTop:
-      points: 1
-      required: false
-    HeadSide:
-      points: 1
-      required: false
-    Chest:
-      points: 3
-      required: false
-    Legs:
-      points: 2
-      required: false
-    Arms:
-      points: 2
-      required: false
-
-- type: humanoidBaseSprite
-  id: MobDrouHead
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobDrouHeadMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobDrouHeadFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: head_f
-
-- type: humanoidBaseSprite
-  id: MobDrouTorso
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobDrouTorsoMale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobDrouTorsoFemale
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: torso_f
-
-- type: humanoidBaseSprite
-  id: MobDrouLLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: l_leg
-
-- type: humanoidBaseSprite
-  id: MobDrouLHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: l_hand
-
-- type: humanoidBaseSprite
-  id: MobDrouLArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: l_arm
-
-- type: humanoidBaseSprite
-  id: MobDrouLFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: l_foot
-
-- type: humanoidBaseSprite
-  id: MobDrouRLeg
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: r_leg
-
-- type: humanoidBaseSprite
-  id: MobDrouRHand
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: r_hand
-
-- type: humanoidBaseSprite
-  id: MobDrouRArm
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: r_arm
-
-- type: humanoidBaseSprite
-  id: MobDrouRFoot
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Drou/parts.rsi
-    state: r_foot

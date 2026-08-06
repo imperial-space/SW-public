@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Imperial.Medieval.Achievements;
 using Content.Server.Chat.Managers;
 using Content.Server.Mind;
@@ -18,6 +18,7 @@ using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Robust.Server.Player;
 using Robust.Shared.Collections;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -157,7 +158,7 @@ public sealed class BountyBoardSystem : EntitySystem
         var xform = Transform(args.Target);
 
 
-        _stackSystem.SpawnMultiple(contractComponent.CurrencyProtoId.Id, contractComponent.Payout, xform.Coordinates);
+        _stackSystem.SpawnMultipleAtPosition((EntProtoId)contractComponent.CurrencyProtoId.Id, contractComponent.Payout, xform.Coordinates);
 
         if (HasComp<AchievementOwnerComponent>(args.User))
         {
@@ -174,7 +175,7 @@ public sealed class BountyBoardSystem : EntitySystem
 
         EntityUid target;
 
-        var query = EntityQueryEnumerator<MercenaryBountyTargetTraitComponent, HumanoidAppearanceComponent, SSDFreeComponent>();
+        var query = EntityQueryEnumerator<MercenaryBountyTargetTraitComponent, HumanoidProfileComponent, SSDFreeComponent>();
 
         while (query.MoveNext(out var uid, out _, out _, out _))
         {

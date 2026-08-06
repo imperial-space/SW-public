@@ -85,7 +85,7 @@
   - type: MedievalCurrency
     price:
       Revent: 10
-  - type: Food
+  - type: Edible
   - type: SolutionContainerManager
     solutions:
       food:
@@ -959,7 +959,7 @@
   - type: MedievalCurrency
     price:
       Revent: 10
-  - type: Food
+  - type: Edible
   - type: SolutionContainerManager
     solutions:
       food:
@@ -1064,7 +1064,7 @@
   - type: MedievalCurrency
     price:
       Revent: 10
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:

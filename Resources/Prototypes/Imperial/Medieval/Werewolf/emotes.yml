@@ -54,7 +54,7 @@
       collection: WerewolfHowl
 
 - type: emote
-  id: Howl
+  id: MedievalWerewolfHowl
   name: chat-emote-name-howl
   category: Vocal
   whitelist:

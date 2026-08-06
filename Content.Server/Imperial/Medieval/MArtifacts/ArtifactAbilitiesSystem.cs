@@ -32,7 +32,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Wieldable.Components;
+using Content.Shared.Damage.Systems;
 
+using Content.Shared.Chemistry.Components; 
 namespace Content.Server.Imperial.Medieval.Artifacts;
 
 public sealed class ArtifacAbilitiestSystem : EntitySystem
@@ -107,7 +109,7 @@ public sealed class ArtifacAbilitiestSystem : EntitySystem
     {
         foreach (var target in args.HitEntities)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(target))
+            if (!HasComp<HumanoidProfileComponent>(target))
                 continue;
             if (component.Blacklist.Contains(target))
                 continue;
@@ -125,17 +127,17 @@ public sealed class ArtifacAbilitiestSystem : EntitySystem
         {
             if (!HasComp<SolutionContainerManagerComponent>(target))
                 continue;
-            _blood.TryAddToChemicals(target, new(new List<ReagentQuantity>()
+            _blood.TryAddToBloodstream(target, new Solution(new List<ReagentQuantity>()
             {
                 new("Amatoxin", FixedPoint2.New(component.Amount))
-            }, new()));
+            }));
         }
     }
     private void LightHit(EntityUid _, ArtifactLightWeaponComponent component, MeleeHitEvent args)
     {
         foreach (var target in args.HitEntities)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(target))
+            if (!HasComp<HumanoidProfileComponent>(target))
                 continue;
             _flash.Flash(target, args.User, args.Weapon, TimeSpan.FromSeconds(component.FlashTime * 1000), 1f, true, true);
         }
@@ -194,7 +196,7 @@ public sealed class ArtifacAbilitiestSystem : EntitySystem
         var passed = false;
         foreach (var target in args.HitEntities)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(target))
+            if (!HasComp<HumanoidProfileComponent>(target))
                 continue;
             passed = true;
             break;
@@ -217,7 +219,7 @@ public sealed class ArtifacAbilitiestSystem : EntitySystem
         {
             heald.DamageDict[type.ID] = heal;
         }
-        _damage.TryChangeDamage(args.User, heald, true, false, null, uid);
+        _damage.TryChangeDamage(args.User, heald, true, false, uid);
         if (TryComp<NocturnComponent>(args.User, out var nocturn))
             nocturn.BloodLevel += component.BloodRestore;
     }

@@ -1,11 +1,9 @@
 using System.Linq;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Content.Shared.Imperial.Medieval.Forged;
-using Content.Shared.Body.Events;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Movement.Systems;
@@ -16,6 +14,8 @@ using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Explosion;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Gibbing;
 
 namespace Content.Shared.Forged;
 
@@ -25,7 +25,7 @@ public sealed class ForgedSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly ForgedAbilitySystem _forgedAbility = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
@@ -84,29 +84,22 @@ public sealed class ForgedSystem : EntitySystem
     {
         Timer.Spawn(0, () =>
         {
-            var test = _bodySystem.GetBodyChildren(uid).ToList();
-            EntityUid? torsoId = null;
-            foreach (var part in _bodySystem.GetBodyChildren(uid))
-            {
-                if (part.Component.PartType == BodyPartType.Torso)
-                {
-                    torsoId = part.Id;
-                    break;
-                }
-            }
-            if (torsoId == null) return;
+            // Organs now live directly in BodyComponent.Organs container.
+            // So... Its not good
+            if (!TryComp<BodyComponent>(uid, out var body) || body.Organs == null)
+                return;
 
-            foreach (var organ in _bodySystem.GetBodyOrgans(uid))
+            if (_bodySystem.TryGetOrgansWithComponent<StomachComponent>(uid, out var stomachs))
             {
-                if (HasComp<StomachComponent>(organ.Id))
+                foreach (var organ in stomachs)
                 {
-                    _bodySystem.RemoveOrgan(organ.Id, organ.Component);
-                    QueueDel(organ.Id);
+                    _containerSystem.Remove(organ.Owner, body.Organs);
+                    QueueDel(organ.Owner);
                     break;
                 }
             }
 
-            _bodySystem.InsertOrgan(torsoId.Value, moduleId, "stomach");
+            _containerSystem.Insert(moduleId, body.Organs);
         });
     }
 
@@ -187,7 +180,7 @@ public sealed class ForgedSystem : EntitySystem
     private void OnExplosionResistance(EntityUid uid, ForgedComponent component, ref GetExplosionResistanceEvent args)
     {
         float mod = GetModuleResistanceModifier(component);
-        
+
         args.DamageCoefficient *= mod;
     }
 

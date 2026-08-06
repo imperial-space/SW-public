@@ -4,7 +4,7 @@ namespace Content.Server.Imperial.Medieval.Magic.MedievalShootAfterSpawn;
 
 
 /// <summary>
-/// Shoots after calling <see cref="MedievalAfterAimingSpawnBySpellEvent"> at selected targets
+
 /// </summary>
 [RegisterComponent]
 public sealed partial class MedievalShootAfterSpawnComponent : Component

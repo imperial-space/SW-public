@@ -12,6 +12,7 @@ using Content.Server.Imperial.DayTime;
 using Content.Shared.Damage;
 using Content.Shared.Speech;
 using Content.Shared.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 

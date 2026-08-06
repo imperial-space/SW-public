@@ -6,6 +6,7 @@ using Content.Shared.Imperial.Medieval.Stamina;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Containers;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Medieval.Courier;
 
@@ -49,7 +50,7 @@ public sealed class VeryFragileSystem : EntitySystem
 
     private void OnFragileEquipped(Entity<VeryFragileComponent> ent, ref GotEquippedEvent args)
     {
-        SetCarrier(ent, args.Equipee);
+        SetCarrier(ent, args.EquipTarget);
     }
 
     private void OnFragileInsertedIntoContainer(Entity<VeryFragileComponent> ent, ref EntGotInsertedIntoContainerMessage args)

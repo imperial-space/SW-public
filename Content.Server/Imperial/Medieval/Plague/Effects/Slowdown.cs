@@ -32,10 +32,17 @@ public sealed partial class Slowdown : BasePlagueEffect
 
     protected override void Effect(EntityUid uid, IEntityManager entMan)
     {
-        var comp = entMan.EnsureComponent<MovespeedModifierMetabolismComponent>(uid);
-        comp.SprintSpeedModifier = 0.7f;
-        comp.WalkSpeedModifier = 0.7f;
-        comp.ModifierTimer = IoCManager.Resolve<IGameTiming>().CurTime + TimeSpan.FromSeconds(Duration);
-        entMan.Dirty(uid, comp);
+        // var comp = entMan.EnsureComponent<MovespeedModifierMetabolismComponent>(uid);
+        // comp.SprintSpeedModifier = 0.7f;
+        // comp.WalkSpeedModifier = 0.7f;
+        // comp.ModifierTimer = IoCManager.Resolve<IGameTiming>().CurTime + TimeSpan.FromSeconds(Duration);
+        // entMan.Dirty(uid, comp);
+        var moveMod = entMan.System<Content.Shared.Movement.Systems.MovementModStatusSystem>();
+        moveMod.TryAddMovementSpeedModDuration(
+            uid,
+            Content.Shared.Movement.Systems.MovementModStatusSystem.VomitingSlowdown,
+            TimeSpan.FromSeconds(Duration),
+            0.7f,
+            0.7f);
     }
 }
