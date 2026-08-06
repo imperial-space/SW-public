@@ -4461,6 +4461,7 @@
     nameLocId: grass-bush-doafter-name
     numHit: 45.0
     time: 5
+    - type: MedievalBerryBushComponent
   - type: TriggerOnCollide
     fixtureID: fix1
 

@@ -24,22 +24,13 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalHitOnDoAfter>(GiveHit);
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalCollectBerryDoAfter>(OnCollectBerryDoAfter);
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalUprootBushDoAfter>(OnUprootBushDoAfter);
-        SubscribeLocalEvent<MedievalDoAfterEveryComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<MedievalBerryBushComponent, MapInitEvent>(OnBerryBushMapInit);
     }
 
-    private static bool IsBerryBushPrototype(string? prototypeId)
+    private void OnBerryBushMapInit(EntityUid uid, MedievalBerryBushComponent component, MapInitEvent args)
     {
-        return prototypeId is "MedievalGrassBush" or "MedievalGrassBushAutumn";
-    }
-
-    private void OnMapInit(EntityUid uid, MedievalDoAfterEveryComponent comp, MapInitEvent args)
-    {
-        if (!IsBerryBushPrototype(MetaData(uid).EntityPrototype?.ID))
-            return;
-
-        var berryBush = EnsureComp<MedievalBerryBushComponent>(uid);
         var appearance = EnsureComp<AppearanceComponent>(uid);
-        _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, !berryBush.Collected, appearance);
+        _appearance.SetData(uid, MedievalBerryBushVisuals.HasBerries, !component.Collected, appearance);
     }
 
     private void GiveHit(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalHitOnDoAfter ev)
