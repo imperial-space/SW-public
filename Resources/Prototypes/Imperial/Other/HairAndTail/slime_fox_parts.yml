@@ -2,7 +2,7 @@
   id: SlimeFoxEars # if cat ears from slime can exist, then why fox ears cannot?
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [SlimePerson]
+  groupWhitelist: [SlimePerson]
   sprites:
   - sprite: Imperial/Other/HairAndTail/slime_fox_parts.rsi
     state: ears_slime_fox_outer

@@ -226,7 +226,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: true
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/tent.rsi
     state: t1
@@ -236,7 +236,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: true
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/tent.rsi
     state: t2
@@ -246,7 +246,7 @@
   bodyPart: Chest
   markingCategory: Chest
   followSkinColor: true
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: chest
@@ -255,7 +255,7 @@
   id: IllitidChestPlates
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: hitin
@@ -264,7 +264,7 @@
   id: IllitidHeadTopSpot
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: headtop
@@ -274,7 +274,7 @@
   bodyPart: HeadSide
   markingCategory: HeadSide
   followSkinColor: true
-  speciesRestriction: [Illitid]
+  groupWhitelist: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: eye

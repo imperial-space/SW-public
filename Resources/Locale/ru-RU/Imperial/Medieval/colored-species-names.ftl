@@ -12,15 +12,16 @@ species-colored-Beastmen = [color=pink]зверолюд[/color]
 species-colored-Diona = [color=green]дендрит[/color]
 species-colored-Lamian = [color=blue]ламиан[/color]
 
-species-DarkElf = темный эльф
-species-Tifling = инферн
-species-Drou = ноктюрн
-species-Orc = орк
-species-Zveres = мунвульф
-species-Dwarf = дварф
-species-Human = человек
-species-Reptilian = ящер
-species-Skeleton = скелетон
-species-Elf = лесной эльф
-species-Beastmen = зверолюд
-species-Lamian = ламиан
+species-name-dark-elf = Темный эльф
+species-name-tifling = Инферн
+species-name-drou = Ноктюрн
+species-name-orc = Орк
+species-name-zveres = Мунвульф
+species-Human = Человек
+species-Reptilian = Ящер
+species-Skeleton = Скелет
+species-name-elf = Лесной эльф
+species-name-beastmen = Зверолюд
+species-name-lamian = Ламиан
+species-name-illitid = Резонат
+species-name-ratling = Ратлинг

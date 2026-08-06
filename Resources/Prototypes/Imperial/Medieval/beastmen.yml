@@ -4,7 +4,8 @@
   limits:
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
-      required: false
+      required: true
+      default: [CatEars]
     enum.HumanoidVisualLayers.HeadSide:
       limit: 1
       required: false
@@ -247,14 +248,3 @@
   prototype: MobBeastmen
   dollPrototype: MobBeastmenDummy
   skinColoration: HumanToned
-
-- type: marking
-  id: BeastmenEarsStandard
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  forcedColoring: true
-  followSkinColor: true
-  speciesRestriction: [Beastmen]
-  sprites:
-  - sprite: Mobs/Customization/ears.rsi
-    state: long_ears_standard

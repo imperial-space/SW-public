@@ -4,7 +4,8 @@
   limits:
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
-      required: false
+      required: true
+      default: [TiflingHornsTwo]
     enum.HumanoidVisualLayers.HeadSide:
       limit: 1
       required: false
@@ -46,7 +47,8 @@
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
-      required: false
+      required: true
+      default: [TiflingTailSmooth]
     enum.HumanoidVisualLayers.Special:
       limit: 0
       required: false
@@ -181,7 +183,7 @@
   id: TiflingHornsOne
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/horns.rsi
     state: horn1
@@ -190,7 +192,7 @@
   id: TiflingHornsTwo
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/horns.rsi
     state: horn2
@@ -199,7 +201,7 @@
   id: TiflingHornsThree
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/horns.rsi
     state: horn3
@@ -208,7 +210,7 @@
   id: TiflingHornsFour
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/horns.rsi
     state: horn4
@@ -364,7 +366,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: true
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/tails.rsi
     state: tail_smooth_primary
@@ -374,7 +376,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: true
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/tails.rsi
     state: tail_smooth_wagging
@@ -383,7 +385,7 @@
   id: TiflingChestPlatesOne
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi
@@ -393,7 +395,7 @@
   id: TiflingChestPlatesTwo
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi
@@ -403,7 +405,7 @@
   id: TiflingChestPlatesThree
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi
@@ -413,7 +415,7 @@
   id: TiflingLArmPlatesOne
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi
@@ -423,7 +425,7 @@
   id: TiflingRArmPlatesOne
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi
@@ -433,7 +435,7 @@
   id: TiflingLLegPlatesOne
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi
@@ -443,7 +445,7 @@
   id: TiflingLLegPlatesTwo
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi
@@ -453,7 +455,7 @@
   id: TiflingRLegPlatesOne
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi
@@ -463,7 +465,7 @@
   id: TiflingRLegPlatesTwo
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Tifling]
+  groupWhitelist: [Tifling]
   followSkinColor: true
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/plates.rsi

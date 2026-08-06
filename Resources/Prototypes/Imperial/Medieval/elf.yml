@@ -4,7 +4,8 @@
   limits:
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
-      required: false
+      required: true
+      default: [ElfEarsStandart]
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
@@ -315,7 +316,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Elf]
+  groupWhitelist: [Elf]
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_tall
@@ -326,7 +327,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Elf]
+  groupWhitelist: [Elf]
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_thin
@@ -337,7 +338,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Elf]
+  groupWhitelist: [Elf]
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_upwards
@@ -348,7 +349,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Elf]
+  groupWhitelist: [Elf]
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_small
@@ -359,7 +360,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Elf]
+  groupWhitelist: [Elf]
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_wide
@@ -370,7 +371,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Elf]
+  groupWhitelist: [Elf]
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_standard

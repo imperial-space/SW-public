@@ -6,7 +6,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: true
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
     state: tail
@@ -16,7 +16,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: true
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
     state: rounded
@@ -26,7 +26,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: true
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
     state: short
@@ -37,7 +37,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: true
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
     state: tail_wagging
@@ -47,7 +47,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: true
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
     state: rounded_wagging
@@ -57,7 +57,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: true
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
     state: short_wagging
@@ -70,7 +70,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: true
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   coloring:
     default:
       type:
@@ -94,7 +94,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: true
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   coloring:
     default:
       type:
@@ -118,7 +118,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: true
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   coloring:
     default:
       type:
@@ -144,7 +144,7 @@
   id: ZveresAllbodySpots
   bodyPart: LLeg
   markingCategory: Overlay
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   coloring:
     default:
       type:
@@ -158,7 +158,7 @@
   id: ZveresEyeLeftSpot
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
     state: eye_left
@@ -167,7 +167,7 @@
   id: ZveresEyeRightSpot
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
     state: eye_right
@@ -176,7 +176,7 @@
   id: ZveresJawSpot
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
     state: jaw
@@ -185,7 +185,7 @@
   id: ZveresBellySpot
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Zveres]
+  groupWhitelist: [Zveres]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
     state: belly

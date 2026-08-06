@@ -2,7 +2,7 @@
   id: ScarEyeRight
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Human, Dwarf, SlimePerson, Beastmen] # Imperial Medieval
+  groupWhitelist: [Human, Dwarf, SlimePerson, Beastmen] # Imperial Medieval
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -12,7 +12,7 @@
   id: ScarEyeLeft
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Human, Dwarf, SlimePerson, Beastmen] # Imperial Medieval
+  groupWhitelist: [Human, Dwarf, SlimePerson, Beastmen] # Imperial Medieval
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -22,7 +22,7 @@
   id: ScarTopSurgeryShort
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson, Moth, Arachnid, Diona, Beastmen] # Imperial Medieval
+  groupWhitelist: [Human, Dwarf, Reptilian, SlimePerson, Moth, Arachnid, Diona, Beastmen] # Imperial Medieval
   sexRestriction: [Male]
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -32,7 +32,7 @@
   id: ScarTopSurgeryLong
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson, Moth, Arachnid, Diona, Beastmen] # Imperial Medieval
+  groupWhitelist: [Human, Dwarf, Reptilian, SlimePerson, Moth, Arachnid, Diona, Beastmen] # Imperial Medieval
   sexRestriction: [Male]
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -42,7 +42,7 @@
   id: ScarChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson, Moth, Arachnid, Diona, Beastmen] # Imperial Medieval
+  groupWhitelist: [Human, Dwarf, Reptilian, SlimePerson, Moth, Arachnid, Diona, Beastmen] # Imperial Medieval
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi

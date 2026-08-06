@@ -4,7 +4,8 @@
   limits:
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
-      required: false
+      required: true
+      default: [ RatlingEarsDefault ]
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
@@ -43,7 +44,8 @@
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
-      required: false
+      required: true
+      default: [ RatlingTailDefault ]
     enum.HumanoidVisualLayers.Special:
       limit: 0
       required: false
@@ -245,7 +247,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
     state: default
@@ -255,7 +257,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
     state: big
@@ -265,7 +267,7 @@
   bodyPart: Tail
   markingCategory: Tail
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/tails.rsi
     state: down
@@ -275,7 +277,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
     state: b0
@@ -287,7 +289,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   followSkinColor: false
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
     state: d0
@@ -299,7 +301,7 @@
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
-  speciesRestriction: [Ratling]
+  groupWhitelist: [Ratling]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Ratling/face.rsi
     state: long
