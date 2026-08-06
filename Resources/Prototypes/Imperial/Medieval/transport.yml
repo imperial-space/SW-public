@@ -349,12 +349,19 @@
     accelerationTime: 8
     maxSpeedModifier: 1.76
 
+- type: damageModifierSet
+  id: MedievalSkeletonHorseDamageModifierSet
+  coefficients:
+    Radiation: 0
+
 - type: entity
   parent: MedievalHorseTransport
   id: MedievalSkeletonHorseTransport
   name: horse
   description: MedievalSkeletonHorseTransport
   components:
+  - type: Damageable
+    damageModifierSet: MedievalSkeletonHorseDamageModifierSet
   - type: Bloodstream
     bloodMaxVolume: 0
   - type: Sprite
