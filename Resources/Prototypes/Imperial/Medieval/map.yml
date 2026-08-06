@@ -12,13 +12,15 @@
           mapNameTemplate: "Medieval"
         - type: StationJobs
           availableJobs:
-            # Free people (31 total)
+            # Free people (35 total)
             MedievalTraveller: [ -1, -1 ]
             MedievalAvanturist: [ 7, 7 ]
             MedievalBard: [ 3, 3 ]
             MedievalBum: [ 10, 10 ]
             MedievalInnkeeper: [ 1, 1 ]
             MedievalInnkeeperN: [ 1, 1 ]
+            MedievalInnkeeperAssistant: [ 3, 3 ]
+            MedievalInnkeeperGuard: [ 1, 1 ]
             MedievalChaplain: [ 7, 7 ]
             MedievalWanderMag: [ 4, 4 ]
             # Legion (29 total)
@@ -96,13 +98,15 @@
           mapNameTemplate: "Medieval"
         - type: StationJobs
           availableJobs:
-            # Free people (26 total)
+            # Free people (30 total)
             MedievalTraveller: [ -1, -1 ]
             MedievalAvanturist: [ 5, 5 ]
             MedievalBard: [ 3, 3 ]
             MedievalBum: [ 10, 10 ]
             MedievalInnkeeper: [ 1, 1 ]
             MedievalInnkeeperN: [ 1, 1 ]
+            MedievalInnkeeperAssistant: [ 3, 3 ]
+            MedievalInnkeeperGuard: [ 1, 1 ]
             MedievalChaplain: [ 5, 5 ]
             MedievalWanderMag: [ 3, 3 ]
             # Legion (22 total)
@@ -178,13 +182,15 @@
           mapNameTemplate: "Medieval"
         - type: StationJobs
           availableJobs:
-            # Free people (20 total)
+            # Free people (23 total)
             MedievalTraveller: [ -1, -1 ]
             MedievalAvanturist: [ 3, 3 ]
             MedievalBard: [ 2, 2 ]
             MedievalBum: [ 8, 8 ]
             MedievalInnkeeper: [ 1, 1 ]
             MedievalInnkeeperN: [ 1, 1 ]
+            MedievalInnkeeperAssistant: [ 2, 2 ]
+            MedievalInnkeeperGuard: [ 1, 1 ]
             MedievalChaplain: [ 3, 3 ]
             MedievalWanderMag: [ 2, 2 ]
             # Legion (15 total)
@@ -259,13 +265,15 @@
           mapNameTemplate: "Medieval"
         - type: StationJobs
           availableJobs:
-            # Free people (14 total)
+            # Free people (17 total)
             MedievalTraveller: [ -1, -1 ]
             MedievalAvanturist: [ 1, 1 ]
             MedievalBard: [ 2, 2 ]
             MedievalBum: [ 6, 6 ]
             MedievalInnkeeper: [ 1, 1 ]
             MedievalInnkeeperN: [ 1, 1 ]
+            MedievalInnkeeperAssistant: [ 2, 2 ]
+            MedievalInnkeeperGuard: [ 1, 1 ]
             MedievalChaplain: [ 2, 2 ]
             MedievalWanderMag: [ 1, 1 ]
             # Legion (11 total)
@@ -335,13 +343,15 @@
           mapNameTemplate: "Medieval"
         - type: StationJobs
           availableJobs:
-            # Free people (8 total)
+            # Free people (11 total)
             MedievalTraveller: [ -1, -1 ]
             #MedievalAvanturist: [ 1, 1 ]
             MedievalBard: [ 1, 1 ]
             MedievalBum: [ 3, 3 ]
             MedievalInnkeeper: [ 1, 1 ]
             MedievalInnkeeperN: [ 1, 1 ]
+            MedievalInnkeeperAssistant: [ 2, 2 ]
+            MedievalInnkeeperGuard: [ 1, 1 ]
             MedievalChaplain: [ 1, 1 ]
             MedievalWanderMag: [ 1, 1 ]
             # Legion (8 total)
