@@ -1762,6 +1762,110 @@
     proto: InnkeeperTimer4hours
   equipment:
     outerClothing: MedievalClothingHeadCloth
+    
+# MEDIEVAL TAVERN ASSISTANT
+
+- type: startingGear
+  id: MedievalInnkeeperAssistantGear
+  equipment:
+    pocket1: MedievalRevent25
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth12
+    id: MedievalKeyTavern
+
+- type: playTimeTracker
+  id: JobMedievalInnkeeperAssistant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalInnkeeperAssistant
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: innkeeper
+  jobName: job-name-innkeeper-assistant
+
+- type: job
+  id: MedievalInnkeeperAssistant
+  name: job-name-innkeeper-assistant
+  description: job-description-innkeeper-assistant
+  playTimeTracker: JobMedievalInnkeeperAssistant
+  startingGear: MedievalInnkeeperAssistantGear
+  icon: "JobIconMedievalInnkeeperAssistant"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
+    - type: MedievalJobSpawn
+      spawnType: LegionTrader
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective300500
+    - type: Farmer
+
+- type: roleLoadout
+  id: JobMedievalInnkeeperAssistant
+  groups:
+  - InnkeeperHead
+  - MedievalBackpack
+  - MedievalShoes
+  - MedievalBelt
+  - InnkeeperFartuk
+  - MedievalTrinkets
+  - MedievalGloves
+
+# MEDIEVAL INNKEEPER GUARD
+
+- type: startingGear
+  id: MedievalInnkeeperGuardGear
+  equipment:
+    pocket1: MedievalRevent25
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth11
+    head: MedievalClothingHeadHelmetNormandFree
+    outerClothing: MedievalClothingOuterArmorGambeson
+    neck: MedievalClothingNeckCloakViking
+    id: MedievalKeyTavern
+  inhand:
+  - MedievalFalshionT3
+
+- type: playTimeTracker
+  id: JobMedievalInnkeeperGuard
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalInnkeeperGuard
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: villager_def
+  jobName: job-name-innkeeper-guard
+
+- type: job
+  id: MedievalInnkeeperGuard
+  name: job-name-innkeeper-guard
+  description: job-description-innkeeper-guard
+  playTimeTracker: JobMedievalInnkeeperGuard
+  startingGear: MedievalInnkeeperGuardGear
+  icon: "JobIconMedievalInnkeeperGuard"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
+    - type: MedievalJobSpawn
+      spawnType: LegionTrader
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective300500
+
+- type: roleLoadout
+  id: JobMedievalInnkeeperGuard
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets
+  - MedievalGloves
+  - MedievalShoes
+  - MedievalRepair
+
 
 # MEDIEVAL INNKEEPERN
 
