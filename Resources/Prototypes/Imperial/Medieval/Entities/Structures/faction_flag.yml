@@ -1,0 +1,57 @@
+- type: entity
+  parent: BaseStructure
+  id: MedievalFactionFlagBase
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: UserInterface
+    interfaces:
+      enum.MedievalFactionFlagUiKey.Key:
+        type: MedievalFactionFlagBoundUserInterface
+  - type: Sprite
+    drawdepth: 3
+    sprite: Imperial/Medieval/Decor/medieval_banner.rsi
+  - type: PointLight
+    radius: 3.7
+    energy: 7.6
+    castShadows: false
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 190
+
+- type: entity
+  parent: MedievalFactionFlagBase
+  id: MedievalFactionFlagLegion
+  components:
+  - type: Sprite
+    state: banner_blul_gold
+  - type: MedievalFactionFlag
+    faction: Legion
+  - type: PointLight
+    color: cyan
+
+- type: entity
+  parent: MedievalFactionFlagBase
+  id: MedievalFactionFlagInsurgency
+  components:
+  - type: Sprite
+    state: banner_red_gold
+  - type: MedievalFactionFlag
+    faction: Insurgency
+  - type: PointLight
+    color: red

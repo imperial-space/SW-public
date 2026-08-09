@@ -34,7 +34,7 @@ public sealed partial class MedievalFactionMemberComponent : Component
 
     [DataField]
     [AutoNetworkedField]
-    public List<ProtoId<MedievalFactionPrototype>> AttackedFactions = new();
+    public HashSet<ProtoId<MedievalFactionPrototype>> AttackedFactions = [];
 }
 
 [Serializable, NetSerializable]

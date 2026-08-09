@@ -1,0 +1,14 @@
+- type: medievalFactionMap
+  id: Main
+  mapTexture: /Textures/Imperial/Medieval/Misc/map_tabletop/tabletopRU.png
+  mapSize: 1600, 1600
+  neutralPointIcon:
+    sprite: Imperial/Medieval/Decor/medieval_banner.rsi
+    state: banner
+  factionPointIcons:
+    Legion:
+      sprite: Imperial/Medieval/Decor/medieval_banner.rsi
+      state: banner_blul
+    Insurgency:
+      sprite: Imperial/Medieval/Decor/medieval_banner.rsi
+      state: banner_red

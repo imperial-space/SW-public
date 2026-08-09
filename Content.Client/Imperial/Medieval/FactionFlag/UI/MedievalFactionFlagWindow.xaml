@@ -1,0 +1,53 @@
+<imp:MedievalWindow
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:cc="clr-namespace:Content.Client.Imperial.Medieval.FactionFlag.UI;assembly=Content.Client"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Medieval.CapturePoint.UI.MedievalWindow;assembly=Content.Client"
+    Title="{Loc 'medieval-faction-flag-menu-title'}"
+    SetSize="1000 800"
+    Resizable="False">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8">
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="10">
+            <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#100c09" BorderColor="#4a392f" BorderThickness="2" />
+                </PanelContainer.PanelOverride>
+                <cc:MedievalFactionFlagMapControl Name="Map" Access="Public" HorizontalExpand="True" VerticalExpand="True" />
+            </PanelContainer>
+            <PanelContainer MinWidth="280" MaxWidth="280" VerticalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#18110e" BorderColor="#4a392f" BorderThickness="2" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+                    <RichTextLabel
+                        Name="PointNameLabel"
+                        Access="Public"
+                        HorizontalExpand="True"
+                        Text="{Loc medieval-faction-flag-no-point-selected}"
+                        StyleClasses="LabelHeadingBigger" />
+                    
+                    <PanelContainer MinHeight="1">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#4a392f" />
+                        </PanelContainer.PanelOverride>
+                    </PanelContainer>
+
+                    <BoxContainer Orientation="Vertical" SeparationOverride="6">
+                        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                            <Label Text="{Loc medieval-faction-flag-owner}" FontColorOverride="#91887d" SetWidth="100" />
+                            <RichTextLabel Name="OwnerLabel" Access="Public" Text="-" HorizontalExpand="True" />
+                        </BoxContainer>
+                        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                            <Label Text="{Loc medieval-faction-flag-state}" FontColorOverride="#91887d" SetWidth="100" />
+                            <RichTextLabel Name="StateLabel" Access="Public" Text="-" HorizontalExpand="True" />
+                        </BoxContainer>
+                        <BoxContainer Name="AttackerContainer" Access="Public" Orientation="Horizontal" SeparationOverride="6">
+                            <Label Text="{Loc medieval-faction-flag-attacker}" FontColorOverride="#91887d" SetWidth="100" />
+                            <RichTextLabel Name="AttackerLabelValue" Access="Public" Text="-" HorizontalExpand="True" />
+                        </BoxContainer>
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </BoxContainer>
+</imp:MedievalWindow>

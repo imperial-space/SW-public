@@ -6,7 +6,6 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
-using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.Medieval.CapturePoint;
 
@@ -14,7 +13,6 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 {
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -121,38 +119,34 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 
     public float GetCaptureProgress()
     {
-        if (!TryComp<CapturePointComponent>(GetEntity(OverlayPointEntity), out var comp))
+        var entity = GetEntity(OverlayPointEntity);
+
+        if (!TryComp<CapturePointComponent>(entity, out var comp) || comp.CurrentCaptureDuration <= 0f)
             return 0f;
 
-        if (comp.State != CapturePointState.Capturing || comp.CurrentCaptureDuration <= 0f)
-            return 0f;
+        var remaining = GetCaptureRemaining((entity, comp));
 
-        var elapsed = (float)(_timing.CurTime - comp.CaptureStartTime).TotalSeconds;
-        return Math.Clamp(elapsed / comp.CurrentCaptureDuration, 0f, 1f);
+        return Math.Clamp(1f - remaining / comp.CurrentCaptureDuration, 0f, 1f);
     }
 
     public float GetCaptureTimeRemaining()
     {
-        if (!TryComp<CapturePointComponent>(GetEntity(OverlayPointEntity), out var comp))
+        var point = GetEntity(OverlayPointEntity);
+
+        if (!TryComp<CapturePointComponent>(point, out var comp))
             return 0f;
 
-        if (comp.State != CapturePointState.Capturing)
-            return 0f;
-
-        var elapsed = (float)(_timing.CurTime - comp.CaptureStartTime).TotalSeconds;
-        return Math.Max(0f, comp.CurrentCaptureDuration - elapsed);
+        return GetCaptureRemaining((point, comp));
     }
 
     public float GetCooldownRemaining()
     {
-        if (!TryComp<CapturePointComponent>(GetEntity(OverlayPointEntity), out var comp))
+        var point = GetEntity(OverlayPointEntity);
+
+        if (!TryComp<CapturePointComponent>(point, out var comp))
             return 0f;
 
-        if (comp.State != CapturePointState.Cooldown)
-            return 0f;
-
-        var elapsed = (float)(_timing.CurTime - comp.CooldownStartTime).TotalSeconds;
-        return Math.Max(0f, comp.CooldownDuration - elapsed);
+        return GetCooldownRemaining((point, comp));
     }
 
     private void OnMessenger(CapturePointMessengerEvent ev)

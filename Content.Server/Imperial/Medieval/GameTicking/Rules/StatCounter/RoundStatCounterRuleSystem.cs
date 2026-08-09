@@ -7,11 +7,11 @@ using Content.Server.BadSmell.Components;
 using System.Linq;
 using Content.Server.SpikeTrap.Components;
 using Content.Shared.Nocturn.Components;
-using Content.Server.MedievalFactionFlag.Components;
 using Content.Server.Imperial.DayTime;
 using Content.Shared.Damage;
 using Content.Shared.Speech;
 using Content.Shared.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.Factions.Components;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 
@@ -149,10 +149,10 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         {
             switch (flag.Faction)
             {
-                case "legion":
+                case "Legion":
                     legion++;
                     break;
-                case "insurgency":
+                case "Insurgency":
                     insurgency++;
                     break;
             }

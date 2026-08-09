@@ -748,3 +748,8 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 
 # 2025-08-29
 PrefilledSyringe: Syringe
+
+# 2026-08-08 Imperial Space Рефакторинг точек захвата
+MedievalFlagCaptureBlueGold: MedievalFactionFlagLegion
+MedievalFlagCaptureRedGold: MedievalFactionFlagInsurgency
+MedievalCapturePoint: MedievalFlagCaptureWhite

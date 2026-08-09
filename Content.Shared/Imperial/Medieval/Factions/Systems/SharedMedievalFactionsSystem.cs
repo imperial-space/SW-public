@@ -4,8 +4,8 @@ using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Damage;
-using Content.Shared.Weapons.Melee.Events; // Добавлено для отслеживания урона
+using Content.Shared.Weapons.Melee.Events;
+using System.Diagnostics.CodeAnalysis; // Добавлено для отслеживания урона
 
 namespace Content.Shared.Imperial.Medieval.Factions;
 
@@ -16,9 +16,45 @@ public abstract partial class SharedMedievalFactionsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<MedievalFactionMemberComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<MedievalFactionMemberComponent, OpenFactionMenuActionEvent>(OnFactionMenuAction);
         SubscribeLocalEvent<MedievalFactionMemberComponent, MeleeHitEvent>(OnMeleeHit);
+    }
+
+    public bool IsRelationEnemy(ProtoId<MedievalFactionPrototype> faction1, ProtoId<MedievalFactionPrototype> faction2)
+    {
+        if (TryGetRelation(faction1, faction2, out var relation))
+            return relation.Id == "War";
+
+        return false;
+    }
+
+    public bool IsRelationUnion(ProtoId<MedievalFactionPrototype> faction1, ProtoId<MedievalFactionPrototype> faction2)
+    {
+        if (TryGetRelation(faction1, faction2, out var relation))
+            return relation.Id == "Union";
+
+        return false;
+    }
+
+    public bool TryGetFaction(EntityUid entity, [NotNullWhen(true)] out MedievalFactionPrototype? faction)
+    {
+        return TryGetFaction((entity, null), out faction);
+    }
+
+    public bool TryGetFaction(Entity<MedievalFactionMemberComponent?> entity, [NotNullWhen(true)] out MedievalFactionPrototype? faction)
+    {
+        faction = null;
+
+        if (!Resolve(entity.Owner, ref entity.Comp, false))
+            return false;
+
+        return Proto.TryIndex(entity.Comp.Faction, out faction);
+    }
+
+    public virtual void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data, FactionMenuAccess access)
+    {
     }
 
     private void OnExamine(EntityUid uid, MedievalFactionMemberComponent comp, ExaminedEvent args)
@@ -55,44 +91,18 @@ public abstract partial class SharedMedievalFactionsSystem : EntitySystem
 
     private void OnMeleeHit(EntityUid uid, MedievalFactionMemberComponent comp, MeleeHitEvent args)
     {
-        if (args.HitEntities.Count != 0)
-        {
-            for (int i = 0; i < args.HitEntities.Count; i++)
-            {
-                if (TryComp<MedievalFactionMemberComponent>(args.HitEntities[i], out var targetComp))
-                {
-                    if (targetComp.Faction != comp.Faction && IsRelationEnemy(comp.Faction, targetComp.Faction))
-                    {
-                        if (comp.AttackedFactions.Contains(targetComp.Faction))
-                        {
-                            return;
-                        }
-                        comp.AttackedFactions.Add(targetComp.Faction);
-                    }
-                }
+        if (args.HitEntities.Count == 0)
+            return;
 
-            }
-        }
-    }
-    public bool IsRelationEnemy(ProtoId<MedievalFactionPrototype> faction1, ProtoId<MedievalFactionPrototype> faction2)
-    {
-        if (TryGetRelation(faction1, faction2, out var relation))
+        for (var i = 0; i < args.HitEntities.Count; i++)
         {
-            return relation.Id == "War";
-        }
-        return false;
-    }
+            if (!TryComp<MedievalFactionMemberComponent>(args.HitEntities[i], out var targetComp))
+                continue;
 
-    public bool IsRelationUnion(ProtoId<MedievalFactionPrototype> faction1, ProtoId<MedievalFactionPrototype> faction2)
-    {
-        if (TryGetRelation(faction1, faction2, out var relation))
-        {
-            return relation.Id == "Union";
-        }
-        return false;
-    }
+            if (targetComp.Faction == comp.Faction || !IsRelationEnemy(comp.Faction, targetComp.Faction))
+                continue;
 
-    public virtual void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data, FactionMenuAccess access)
-    {
+            comp.AttackedFactions.Add(targetComp.Faction);
+        }
     }
 }

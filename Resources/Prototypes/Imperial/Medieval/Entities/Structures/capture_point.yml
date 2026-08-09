@@ -1,0 +1,107 @@
+- type: entity
+  parent: BaseStructure
+  id: MedievalCapturePointBase
+  abstract: true
+  components:
+  - type: Damageable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Physics
+    bodyType: Static
+  - type: CapturePoint
+    radius: 5.5
+    allowedFactions:
+    - Legion
+    - Insurgency
+    factionIncomeInterval: 420
+    factionIncome:
+      Legion:
+        MedievalRevent25: 6
+        MedievalMedalLegion: 6
+      Insurgency:
+        MedievalRevent25: 6
+        MedievalMedalIns: 6
+  - type: Transform
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: Imperial/Medieval/Decor/medieval_banner.rsi
+    layers:
+    - state: banner
+      map: ["factionLayer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CapturePointVisuals.Faction:
+        factionLayer:
+          Legion:
+            state: banner_blul
+          Insurgency:
+            state: banner_red
+          NoFaction:
+            state: banner
+  - type: InteractionOutline
+  - type: UserInterface
+    interfaces:
+      enum.CapturePointUiKey.Key:
+        type: CapturePointBoundUi
+  - type: PointLight
+    radius: 2.5
+    energy: 3
+    castShadows: false
+
+- type: entity
+  parent: MedievalCapturePointBase
+  id: MedievalFlagCaptureWhite
+  components:
+  - type: Sprite
+    layers:
+    - state: banner
+      map: ["factionLayer"]
+  - type: PointLight
+    color: white
+
+- type: entity
+  parent: MedievalCapturePointBase
+  id: MedievalFlagCaptureBlue
+  components:
+  - type: Sprite
+    layers:
+    - state: banner_blul
+      map: ["factionLayer"]
+  - type: PointLight
+    color: cyan
+  - type: CapturePoint
+    owningFaction: Legion
+
+- type: entity
+  parent: MedievalCapturePointBase
+  id: MedievalFlagCaptureRed
+  components:
+  - type: Sprite
+    layers:
+    - state: banner_red
+      map: ["factionLayer"]
+  - type: PointLight
+    color: red
+  - type: CapturePoint
+    owningFaction: Insurgency

@@ -15,9 +15,13 @@ public sealed class CapturePointBoundUi : BoundUserInterface
 
     private CapturePointStartWindow? _window;
 
+    private readonly CapturePointSystem _capturePointSystem;
+
     public CapturePointBoundUi(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         IoCManager.InjectDependencies(this);
+
+        _capturePointSystem = EntMan.System<CapturePointSystem>();
     }
 
     protected override void Open()
@@ -53,14 +57,12 @@ public sealed class CapturePointBoundUi : BoundUserInterface
         _window.FactionLabel.Text = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(factionProto.Name);
         _window.FactionLabel.FontColorOverride = factionProto.Color;
 
-        _window.AlliesCountLabel.Text = state.NearbyAllies.Count.ToString();
-
         _window.AlliesListContainer.DisposeAllChildren();
         foreach (var allyName in state.NearbyAllies)
         {
             _window.AlliesListContainer.AddChild(new Label
             {
-                Text = $"  ▸ {allyName}",
+                Text = $"{allyName}",
                 FontColorOverride = new Color(0.75f, 0.68f, 0.50f),
                 Margin = new Thickness(0, 1, 0, 1),
             });
@@ -85,6 +87,23 @@ public sealed class CapturePointBoundUi : BoundUserInterface
         _window.StartButton.Disabled = !state.CanStart;
 
         if (EntMan.TryGetComponent<CapturePointComponent>(Owner, out var capturePoint))
+        {
             _window.PointNameLabel.Text = capturePoint.PointName;
+
+            var alliesCount = state.NearbyAllies.Count;
+            _window.AlliesCountLabel.Text = $"{alliesCount} / {capturePoint.MinParticipants}";
+            var alliesCountLabelColor = alliesCount >= capturePoint.MinParticipants ? Color.LightGreen : Color.IndianRed;
+            _window.AlliesCountLabel.FontColorOverride = alliesCountLabelColor;
+
+            if (_capturePointSystem.TryGetFactionIncomeText(capturePoint, state.PlayerFaction, out var text))
+            {
+                var mins = (int)(capturePoint.FactionIncomeInterval.TotalSeconds / 60);
+                var secs = (int)(capturePoint.FactionIncomeInterval.TotalSeconds % 60);
+                _window.IncomeLabel.Text = Loc.GetString("medieval-capture-point-income-ui",
+                    ("income", text),
+                    ("minutes", mins),
+                    ("seconds", secs));
+            }
+        }
     }
 }

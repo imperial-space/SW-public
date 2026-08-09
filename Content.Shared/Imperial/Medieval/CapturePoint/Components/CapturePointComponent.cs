@@ -1,24 +1,24 @@
 using Content.Shared.Imperial.Medieval.Factions.Prototypes;
-using Content.Shared.StatusEffect;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using System.Numerics;
 
 namespace Content.Shared.Imperial.Medieval.CapturePoint.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class CapturePointComponent : Component
 {
-    public HashSet<EntityUid> AffectedByStatusEffect = new();
+    public HashSet<EntityUid> AffectedByStatusEffect = [];
 
     [DataField, AutoNetworkedField]
-    public string PointName = "Точка захвата";
+    public string PointName = "No name";
 
     [DataField, AutoNetworkedField]
     public float Radius = 5f;
 
     [DataField(required: true), AutoNetworkedField]
-    public List<ProtoId<MedievalFactionPrototype>> AllowedFactions = new();
+    public List<ProtoId<MedievalFactionPrototype>> AllowedFactions = [];
 
     [DataField, AutoNetworkedField]
     public int MinParticipants = 3;
@@ -41,7 +41,7 @@ public sealed partial class CapturePointComponent : Component
     [ViewVariables, AutoNetworkedField]
     public CapturePointState State = CapturePointState.Idle;
 
-    [ViewVariables, AutoNetworkedField]
+    [DataField, ViewVariables, AutoNetworkedField]
     public ProtoId<MedievalFactionPrototype>? OwningFaction;
 
     [ViewVariables, AutoNetworkedField]
@@ -65,11 +65,14 @@ public sealed partial class CapturePointComponent : Component
     [AutoNetworkedField]
     public int[] FactionCounts = new int[2];
 
+    [DataField, AutoNetworkedField]
+    public Vector2? LocalMapPosition = new(0, 0);
+
     /// <summary>
     /// Maps factions to their resource income amounts
     /// </summary>
     [DataField]
-    public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<EntProtoId, int>> FactionIncome = new();
+    public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<EntProtoId, int>> FactionIncome = [];
 
     [DataField]
     public TimeSpan FactionIncomeInterval = TimeSpan.FromMinutes(12);
@@ -78,7 +81,7 @@ public sealed partial class CapturePointComponent : Component
     public TimeSpan NextFactionIncome;
 
     [DataField]
-    public EntProtoId CaptureStatusEffect = "MedievalFarmerBoost";
+    public EntProtoId? CaptureStatusEffect;
 
     [DataField]
     public string LinkId = string.Empty;
