@@ -44,3 +44,13 @@ medieval-capture-point-no-income-examine = Эта точка не приноси
 medieval-capture-point-income-ui = {$income}; [color="#d4c8a0"]каждые [color="#d9c689"]{$minutes}м {$seconds}с[/color][/color]
 medieval-capture-point-income-examine-entry-format = [color="{$color}"]{$itemName}[/color] x{$count}
 medieval-capture-point-income-examine-entry-separator = ,{" "}
+
+ent-MedievalFlagCaptureWhite = незакрашенный флаг
+    .desc = Обозначает то, что точка никому не принадлежит.
+    .suffix = { "Средневековье" }
+ent-MedievalFlagCaptureBlue = флаг легиона
+    .desc = Обозначает, что данная точка принадлежит легиону.
+    .suffix = { "Средневековье" }
+ent-MedievalFlagCaptureRed = флаг мятежников
+    .desc = Обозначает, что данная точка принадлежит мятежникам.
+    .suffix = { "Средневековье" }

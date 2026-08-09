@@ -14,10 +14,10 @@ medieval-faction-flag-state-cooldown = Недавно была осаждена
 medieval-faction-flag-state-neutral = Ничейная земля
 medieval-faction-flag-no-attacker = Никто
 
-ent-MedievalFactionFlagLegion = магический флаг Легиона
+ent-MedievalFactionFlagLegion = магический флаг легиона
     .desc = Магический флаг, с помощью которого можно узнавать количество точек, подконтрольных фракциям.
     .suffix = { "Средневековье" }
 
-ent-MedievalFactionFlagInsurgency = магический флаг Мятежников
+ent-MedievalFactionFlagInsurgency = магический флаг мятежников
     .desc = Магический флаг, с помощью которого можно узнавать количество точек, подконтрольных фракциям.
     .suffix = { "Средневековье" }
