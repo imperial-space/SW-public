@@ -41,7 +41,7 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
 
         private void Clamp(EntityUid uid, MyrmexHungerComponent comp)
         {
-            if (!_hive.TryGetHive(out var hive))
+            if (!_hive.TryEnsureHive(out var hive))
                 return;
 
             var maxBuffs = hive!.Value.Comp.MaxBuffs;

@@ -544,6 +544,10 @@
   - type: MedievalArmorIntegrity
     containerArmorHP: 515
     repairType: Smithing
+    unbrokenExplosionResistance:
+      damageCoefficient: 0.08
+    brokenExplosionResistance:
+      damageCoefficient: 0.85
     unbrokenResistances:
       Blunt:
         coefficient: 0.11

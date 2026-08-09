@@ -27,6 +27,21 @@
     - type: MyrmexPipe
       pipeType: Straight
     - type: Physics
+      bodyType: Static
+    - type: Damageable
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: WoodDestroy
+            params:
+              volume: -8
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
 
 - type: entity
   id: SteamMyrmexPipeStraight

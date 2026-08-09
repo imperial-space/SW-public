@@ -6,3 +6,4 @@ medieval-myrmex-buff-damage-examine = [bold]Урон[/bold] [color=red]x{$value}
 medieval-myrmex-buff-stamina-examine = [bold]Расход выносливости[/bold] [color=cyan]x{$value}[/color]
 
 medieval-myrmex-queen-egg-no-buff = Вы должны поесть для откладывания яйца
+medieval-myrmex-buff-limit-reached = Достигнут лимит баффов

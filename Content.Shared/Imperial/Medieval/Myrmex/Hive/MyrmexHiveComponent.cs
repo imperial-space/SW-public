@@ -1,4 +1,3 @@
-using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Myrmex.Hive;
@@ -19,6 +18,9 @@ public sealed partial class MyrmexHiveComponent : Component
     public int MaxBuffs = 10;
 
     [DataField]
+    public int AltarBuffBonus;
+
+    [DataField]
     public float BaseHealthMultiplier = 1.0f;
 
     [DataField]
@@ -26,6 +28,9 @@ public sealed partial class MyrmexHiveComponent : Component
 
     [DataField]
     public float AltarHealthMultiplierStep = 0.2f;
+
+    [DataField]
+    public float LifeSourceHealthBonus;
 
     [DataField]
     public int ActiveAltars = 0;

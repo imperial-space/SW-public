@@ -45,18 +45,17 @@ public sealed partial class MyrmexQueenSystem : EntitySystem
         if (!TryComp<TransformComponent>(uid, out var transform))
             return;
 
-        if (hunger.Buffs.Count == 0)
-        {
-            //_popup.PopupEntity(Loc.GetString("medieval-myrmex-queen-egg-no-buff"), uid, uid);
-            //return;
-        }
-
         args.Handled = true;
 
         var sound = _random.Pick(_eggSounds);
         _audio.PlayPvs(sound, uid);
 
-        hunger.Buffs.Pop();
+        if (hunger.Buffs.Count > 0)
+        {
+            hunger.Buffs.Pop();
+            Dirty(uid, hunger);
+        }
+
         Spawn(comp.Egg, transform.Coordinates);
     }
 }

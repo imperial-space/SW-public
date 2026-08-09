@@ -1,9 +1,11 @@
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Explosion;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
 namespace Content.Shared.Imperial.Medieval.ArmorIntegrity;
 
@@ -32,6 +34,12 @@ public sealed partial class MedievalArmorIntegrityComponent : Component
         { "Holy", new MedievalArmorResistance() },
         { "ParryAble", new MedievalArmorResistance() },
     };
+
+    [DataField, AutoNetworkedField]
+    public MedievalArmorExplosionResistance UnbrokenExplosionResistance = new();
+
+    [DataField, AutoNetworkedField]
+    public MedievalArmorExplosionResistance BrokenExplosionResistance = new();
 
     [DataField, AutoNetworkedField]
     public Dictionary<ProtoId<DamageTypePrototype>, float> BreakageMultipliers = new()
@@ -92,4 +100,20 @@ public sealed partial class MedievalArmorResistance
 
     [DataField]
     public float FlatReduction;
+}
+
+[DataDefinition, Serializable, NetSerializable]
+public sealed partial class MedievalArmorExplosionResistance
+{
+    [DataField]
+    public float DamageCoefficient = 1f;
+
+    [DataField]
+    public bool Worn = true;
+
+    [DataField]
+    public LocId Examine = "explosion-resistance-coefficient-value";
+
+    [DataField("modifiers", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, ExplosionPrototype>))]
+    public Dictionary<string, float> Modifiers = new();
 }

@@ -44,24 +44,26 @@ public sealed partial class MyrmexLifeSourceSystem : EntitySystem
 
     private void ApplyBuffs(Entity<MyrmexLifeSourceComponent> ent, bool apply)
     {
-        if (!_hive.TryGetHive(out var hive) || hive is null)
+        if (!_hive.TryEnsureHive(out var hive) || hive is null)
             return;
 
         if (apply)
         {
-            if (hive.Value.Comp.ActiveLifeSources < hive.Value.Comp.MaxLifeSources)
-            {
-                hive.Value.Comp.ActiveLifeSources++;
-                _hive.ModifyHealthMultiplier(hive.Value, ent.Comp.HealthMultiplierIncrease);
-            }
+            if (ent.Comp.Contributing || hive.Value.Comp.ActiveLifeSources >= hive.Value.Comp.MaxLifeSources)
+                return;
+
+            ent.Comp.Contributing = true;
+            hive.Value.Comp.ActiveLifeSources++;
+            _hive.ModifyLifeSourceHealthBonus(hive.Value, ent.Comp.HealthMultiplierIncrease);
         }
         else
         {
-            if (hive.Value.Comp.ActiveLifeSources > 0)
-            {
-                hive.Value.Comp.ActiveLifeSources--;
-                _hive.ModifyHealthMultiplier(hive.Value, -ent.Comp.HealthMultiplierIncrease);
-            }
+            if (!ent.Comp.Contributing)
+                return;
+
+            ent.Comp.Contributing = false;
+            hive.Value.Comp.ActiveLifeSources--;
+            _hive.ModifyLifeSourceHealthBonus(hive.Value, -ent.Comp.HealthMultiplierIncrease);
         }
     }
 }

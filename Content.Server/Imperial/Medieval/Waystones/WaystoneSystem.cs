@@ -194,12 +194,10 @@ public sealed class WaystoneSystem : EntitySystem
 
             var targetFaction = entityTarget.Comp.Faction;
 
-            bool isEnemy = _factionsSystem.IsRelationEnemy(faction, targetFaction);
+            bool isEnemy = false;
 
-            if (!isEnemy && member is not null)
-            {
+            if (member is not null)
                 isEnemy = _factionsSystem.IsRelationEnemy(member.Faction, targetFaction);
-            }
 
             infoList.Add(new WaystoneInfo(
                 GetNetEntity(entityTarget),

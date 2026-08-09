@@ -1,6 +1,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirassLight
   id: MedievalClothingOuterArmorIronCuirassLightCopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -10,6 +12,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorBrigantin
   id: MedievalClothingOuterArmorBrigantinCopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -19,6 +23,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirass
   id: MedievalClothingOuterArmorIronCuirassCopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -28,6 +34,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorChainMail
   id: MedievalClothingOuterArmorChainMailCopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -37,6 +45,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorIron
   id: MedievalClothingOuterArmorIronCopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -46,6 +56,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorUpIron2
   id: MedievalClothingOuterArmorUpIron2CopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -56,6 +68,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorUpIron3
   id: MedievalClothingOuterArmorUpIron3CopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -66,6 +80,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorUpIron
   id: MedievalClothingOuterArmorUpIronCopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -76,6 +92,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorEbonit
   id: MedievalClothingOuterArmorEbonitCopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -86,6 +104,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorEbonit2
   id: MedievalClothingOuterArmorEbonit2CopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -96,6 +116,8 @@
 - type: entity
   parent: MedievalClothingOuterArmorForstone
   id: MedievalClothingOuterArmorForstoneCopperKnight
+  name: oxidized cuirass
+  description: 30 kilograms of pure copper.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_cuirass.rsi
@@ -106,6 +128,8 @@
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
   id: MedievalClothingHeadHelmetCopperKnight
+  name: oxidized helmet
+  description: Two lightning rods on the sides.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_helmet.rsi
@@ -119,6 +143,8 @@
 - type: entity
   parent: MedievalIronGloves
   id: MedievalIronGlovesCopperKnight
+  name: oxidized gloves
+  description: Deal additional tetanus damage.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_gloves.rsi
@@ -128,6 +154,8 @@
 - type: entity
   parent: MedievalClothingFeetSteel
   id: MedievalClothingFeetSteelCopperKnight
+  name: oxidized boots
+  description: Conduct electricity well.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Zakvielian/copper_knight/copper_boots.rsi

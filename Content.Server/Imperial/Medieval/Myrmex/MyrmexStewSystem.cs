@@ -120,12 +120,12 @@ namespace Content.Server.Imperial.Medieval.Myrmex;
             entity.Comp.Uses--;
             hunger.LastEaten = _gameTiming.CurTime;
 
-            if (entity.Comp.Buff != null && _hive.TryGetHive(out var hive))
+            if (entity.Comp.Buff != null && _hive.TryEnsureHive(out var hive))
             {
                 if (hunger.Buffs.Count < hive!.Value.Comp.MaxBuffs)
                     hunger.Buffs.Add(entity.Comp.Buff);
                 else
-                    _popup.PopupEntity("Достигнут лимит баффов", args.User, args.User);
+                    _popup.PopupEntity(Loc.GetString("medieval-myrmex-buff-limit-reached"), args.User, args.User);
             }
 
             hunger.Dirty();

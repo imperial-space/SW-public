@@ -5,3 +5,4 @@ medieval-myrmex-buff-damage-examine = [bold]Damage[/bold] [color=red]x{$value}[/
 medieval-myrmex-buff-stamina-examine = [bold]Stamina consumption[/bold] [color=cyan]x{$value}[/color]
 
 medieval-myrmex-queen-egg-no-buff = You must eat to lay an egg
+medieval-myrmex-buff-limit-reached = Buff limit reached

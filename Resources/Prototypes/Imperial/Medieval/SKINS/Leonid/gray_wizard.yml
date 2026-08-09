@@ -1,7 +1,8 @@
 - type: entity
-  name: MedievalClothingOuterArmorCharmerLightGrayWizardSKIN
   parent: MedievalClothingOuterArmorCharmerLight
   id: MedievalClothingOuterArmorCharmerLightGrayWizardSKIN
+  name: gray wizard's robe
+  description: You shall not pass!
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Leonid/gray_wizard/gray_wizard_robe.rsi
@@ -12,8 +13,9 @@
 
 - type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
-  name: MedievalClothingHeadHelmetCharmerGrayWizardSKIN
   id: MedievalClothingHeadHelmetCharmerGrayWizardSKIN
+  name: gray wizard's hat
+  description: You shall pass!
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Leonid/gray_wizard/gray_wizard_helmet.rsi
@@ -21,9 +23,10 @@
     sprite: Imperial/Medieval/Clothing/SKINS/Leonid/gray_wizard/gray_wizard_helmet.rsi
 
 - type: entity
-  name: MedievalClothingOuterArmorCharmerLightGrayWizardSKIN
   parent: MedievalClothingOuterArmorCharmerWeak
   id: MedievalClothingOuterArmorCharmerWeakGrayWizardSKIN
+  name: gray wizard's robe
+  description: You shall not pass!
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Leonid/gray_wizard/gray_wizard_robe.rsi
@@ -31,9 +34,10 @@
     sprite: Imperial/Medieval/Clothing/SKINS/Leonid/gray_wizard/gray_wizard_robe.rsi
 
 - type: entity
-  name: MedievalClothingHeadHelmetCharmerGrayWizardSKIN
   parent: MedievalClothingHeadHelmetCharmerWeak
   id: MedievalClothingHeadHelmetCharmerWeakGrayWizardSKIN
+  name: gray wizard's hat
+  description: You shall pass!
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Leonid/gray_wizard/gray_wizard_helmet.rsi
@@ -43,6 +47,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: MedievalClothingNeckCloakGrayWizardSKIN
+  name: gray wizard's cloak
+  description: Or maybe a white one.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Leonid/gray_wizard/gray_wizard_coat.rsi
@@ -50,8 +56,9 @@
 
 - type: entity
   parent: MedievalBlackHat
-  name: MedievalClothingHeadHelmetCharmerGrayWizardSKIN
   id: MedievalBlackHatGrayWizardSKIN
+  name: gray wizard's hat
+  description: You shall pass!
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/SKINS/Leonid/gray_wizard/gray_wizard_helmet.rsi

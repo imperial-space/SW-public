@@ -460,6 +460,7 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: MyrmexHunger
+  - type: MyrmexThreshold
   - type: BorgHandsImperial
     whitelistHandTag: MyrmexCanTake
   - type: Hands

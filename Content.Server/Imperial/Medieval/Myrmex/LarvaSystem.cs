@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Polymorph.Systems;
 using Content.Shared.Imperial.Medieval.Myrmex;
 using Robust.Shared.Prototypes;
@@ -24,8 +24,6 @@ public sealed partial class LarvaSystem : EntitySystem
         if (recipe.Count != input.Count)
             return false;
 
-        var inputIDs = input.Select(e => e.ID).ToList();
-
         for (int i = 0; i < recipe.Count; i++)
         {
             var food = recipe[i];
@@ -33,11 +31,19 @@ public sealed partial class LarvaSystem : EntitySystem
                 return false;
         }
 
-
         if (proto.Condition == null)
             return true;
 
-        return proto.Condition.Check(inputIDs);
+        var condition = proto.Condition;
+
+        if (condition.A < 0 || condition.A >= input.Count
+            || condition.B < 0 || condition.B >= input.Count)
+        {
+            Log.Error($"larvaGrow {proto.ID}: условие ссылается на индексы {condition.A} и {condition.B}, а блюд в рецепте {input.Count}.");
+            return false;
+        }
+
+        return condition.Check(input.Select(e => e.ID).ToList());
     }
 
     private void OnLarvaFeed(EntityUid uid, LarvaComponent component, ref LarvaFeedEvent args)
@@ -55,6 +61,7 @@ public sealed partial class LarvaSystem : EntitySystem
                 continue;
 
             _polymorph.PolymorphEntity(uid, recipe.ResultEntity.Id);
+            break;
         }
     }
 }

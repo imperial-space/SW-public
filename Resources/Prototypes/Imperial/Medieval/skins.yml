@@ -275,10 +275,10 @@
   id: ungabunga
   holder: e80d956f-e819-4cc0-96d2-97996cb4e3c9
   map:
-    Log: [ MedievalClothingUniformJumpsuitShitCloth74, MedievalClothingNeckCloakSpookyVendigo, MedievalClothingNeckCloakGrayWizardSKIN, MedievalClothingUniformJumpsuitUngaRat, BlueGirlDressUnga, BlueGirlWig ]
-    MedievalClothingNeckCloakDark: [ MedievalClothingNeckCloakGrayWizardSKIN ]
-    MedievalClothingNeckCloakBrown: [ MedievalClothingNeckCloakGrayWizardSKIN ]
-    MedievalClothingNeckCloakGreen: [ MedievalClothingNeckCloakGrayWizardSKIN ]
+    Log: [ MedievalClothingUniformJumpsuitShitCloth74, MedievalClothingNeckCloakSpookyVendigo, MedievalClothingUniformJumpsuitUngaRat, BlueGirlDressUnga, BlueGirlWig, MedievalClothingNeckCloakUngaRat ]
+    MedievalClothingNeckCloakDark: [ MedievalClothingNeckCloakUngaRat ]
+    MedievalClothingNeckCloakBrown: [ MedievalClothingNeckCloakUngaRat ]
+    MedievalClothingNeckCloakGreen: [ MedievalClothingNeckCloakUngaRat ]
     MedievalClothingUniformJumpsuitShitCloth24: [ MedievalClothingUniformJumpsuitUngaRat ]
 
 - type: customization
@@ -502,7 +502,7 @@
 
 - type: customization
   id: zakvielian
-  holder: 7bef4086-1fc4-4c9b-b2ba-1859e8d3d6c5
+  holder: b257bdf8-7a7f-4a40-85e8-3e3c9e304995
   map:
     MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuterArmorIronCuirassLightCopperKnight]
     MedievalClothingOuterArmorBrigantin: [MedievalClothingOuterArmorBrigantinCopperKnight]
@@ -515,7 +515,7 @@
     MedievalClothingOuterArmorEbonit: [MedievalClothingOuterArmorEbonitCopperKnight]
     MedievalClothingOuterArmorEbonit2: [MedievalClothingOuterArmorEbonit2CopperKnight]
     MedievalClothingOuterArmorForstone: [MedievalClothingOuterArmorForstoneCopperKnight]
-    Log : [MedievalClothingHeadHelmetCopperKnight, MedievalClothingUniformJumpsuitBaron, MedievalClothingNeckCloakBaron]
+    Log: [MedievalClothingHeadHelmetCopperKnight, MedievalClothingUniformJumpsuitBaron, MedievalClothingNeckCloakBaron]
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetCopperKnight]
     MedievalIronGloves: [MedievalIronGlovesCopperKnight]
     MedievalClothingFeetSteel: [MedievalClothingFeetSteelCopperKnight, MedievalClothingFeetSteelBaron]

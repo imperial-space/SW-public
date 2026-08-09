@@ -44,26 +44,28 @@ public sealed partial class MyrmexAltarSystem : EntitySystem
 
     private void ApplyBuffs(Entity<MyrmexAltarComponent> ent, bool apply)
     {
-        if (!_hive.TryGetHive(out var hive) || hive is null)
+        if (!_hive.TryEnsureHive(out var hive) || hive is null)
             return;
 
         if (apply)
         {
-            if (hive.Value.Comp.ActiveAltars < hive.Value.Comp.MaxAltars)
-            {
-                hive.Value.Comp.ActiveAltars++;
-                _hive.ModifyMaxBuffs(hive.Value, ent.Comp.BuffsIncrease);
-            }
+            if (ent.Comp.Contributing || hive.Value.Comp.ActiveAltars >= hive.Value.Comp.MaxAltars)
+                return;
+
+            ent.Comp.Contributing = true;
+            hive.Value.Comp.ActiveAltars++;
+            _hive.ModifyAltarBuffBonus(hive.Value, ent.Comp.BuffsIncrease);
         }
         else
         {
-            if (hive.Value.Comp.ActiveAltars > 0)
-            {
-                hive.Value.Comp.ActiveAltars--;
-                _hive.ModifyMaxBuffs(hive.Value, -ent.Comp.BuffsIncrease);
-            }
+            if (!ent.Comp.Contributing)
+                return;
+
+            ent.Comp.Contributing = false;
+            hive.Value.Comp.ActiveAltars--;
+            _hive.ModifyAltarBuffBonus(hive.Value, -ent.Comp.BuffsIncrease);
         }
 
-        _hive.RecalculateAltarHealthMultiplier(hive.Value);
+        _hive.RecalculateHealthMultiplier(hive.Value);
     }
 }

@@ -996,6 +996,12 @@
   name: golden cup
   description: An elegant golden cup.
   components:
+  - type: Currency
+    price:
+      Revent: 10
+  - type: MedievalCurrency
+    price:
+      Revent: 10
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -1029,6 +1035,12 @@
     solutions:
       drink:
         maxVol: 25
+  - type: Currency
+    price:
+      Revent: 10
+  - type: MedievalCurrency
+    price:
+      Revent: 10
   - type: Sprite
     sprite: Imperial/Medieval/Misc/silvercup.rsi
     layers:

@@ -5643,3 +5643,137 @@
     sprite: Imperial/Medieval/Melee/bib_spear.rsi
     netsync: false
     state: spear
+
+- type: entity
+  name: dragonslayer
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalDragonslayer
+  description: Dragonslayer.
+  components:
+  - type: RDWeight
+    value: 25
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 2.5
+    wideAnimationRotation: 45
+    attackRate: 0.15
+    range: 2.2
+    damage:
+      types:
+        Piercing: 32
+        Blunt: 59
+        Structural: 85
+        Slash: 52
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.05
+    safeToHitGroup: structure
+  - type: MultiHandedItem
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/Medieval/Melee/dragonslayer.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 7
+        Slash: 15
+        Blunt: 39
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: Meltable
+    resourceCount: 15
+  - type: HeldSpeedModifier
+    walkModifier: 0.65
+    sprintModifier: 0.65
+  - type: Clothing
+    equipDelay: 4.6
+    unequipDelay: 2.6
+    sprite: Imperial/Medieval/Melee/dragonslayer.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/dragonslayer.rsi
+    state: icon
+  - type: StaminaDamageOnHit
+    damage: 35 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Blocking
+    passiveBlockFraction: 0.25
+    activeBlockFraction: 0.7
+    passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+    activeBlockModifier: #ActiveMedievalWoodenShieldBlock
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: HealthExaminable
+    examinableTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    locPrefix: shield
+  - type: Damageable
+    damageContainer: Shield
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 10000
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/metalbreak.ogg
+  - type: ChargedAttack
+    maxAttackTime: 4.0
+    staticModifier: 3
+    staminaDamage: 20
+    speedModifer: 0.4
+    effectProtoId: AttackEffect4s
+  - type: StaminaResistance
+    damageCoefficient: 0.85
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85

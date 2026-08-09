@@ -6,4 +6,7 @@ public abstract partial class MyrmexPowerStructureComponent : Component
 {
 	[DataField]
 	public bool Powered;
+
+	[DataField]
+	public bool Contributing;
 }

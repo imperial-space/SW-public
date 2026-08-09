@@ -4,6 +4,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.MagicBarrier.Components;
+using Content.Server.RoundEnd;
 using Content.Server.Voting;
 using Content.Server.Voting.Managers;
 using Content.Shared.CCVar;
@@ -16,6 +17,7 @@ namespace Content.Server.GameTicking.Systems;
 public sealed partial class AutoRoundExtendSystem : EntitySystem
 {
     [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly IVoteManager _voteManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -73,7 +75,7 @@ public sealed partial class AutoRoundExtendSystem : EntitySystem
         if (currentDuration >= _targetDuration)
         {
             _isEnded = true;
-            _ticker.EndRound(Loc.GetString("auto-round-end-reason"));
+            _roundEndSystem.EndRound();
             return;
         }
 

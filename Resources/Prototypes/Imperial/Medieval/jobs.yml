@@ -1704,6 +1704,10 @@
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: Farmer
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Владелец таверны[/color]"
+      pasport: MedievalPasportLegion
+      #jobPrefix: "[Тав]"
 
 - type: roleLoadout
   id: JobMedievalInnkeeper
@@ -1804,6 +1808,11 @@
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: Farmer
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Персонал таверны[/color]"
+      pasport: MedievalPasportLegion
+      #jobPrefix: "[Тав]"
+
 
 - type: roleLoadout
   id: JobMedievalInnkeeperAssistant
@@ -1860,6 +1869,11 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Охрана таверны[/color]"
+      pasport: MedievalPasportLegion
+      #jobPrefix: "[Тав]"
+
 
 - type: roleLoadout
   id: JobMedievalInnkeeperGuard
@@ -2926,7 +2940,7 @@
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
       personJob: "[color=cyan]Казначей легиона[/color]"
-      pasport: MedievalPasportTreasurer
+      pasport: MedievalPasportLegion
       jobPrefix: "[КазЛ]"
 
 - type: roleLoadout
