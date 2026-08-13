@@ -1,0 +1,27 @@
+{
+  "version":1,
+  "size": {
+    "x":32,
+    "y":32
+  },
+  "copyright":"Created by timur",
+  "license":"this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "states": [
+    {
+      "name":"big_forehead",
+      "directions":4
+    },
+    {
+      "name":"wide_jaw",
+      "directions":4
+    },
+    {
+      "name":"horns",
+      "directions":4
+    },
+    {
+      "name":"arrow",
+      "directions":4
+    }
+  ]
+}
