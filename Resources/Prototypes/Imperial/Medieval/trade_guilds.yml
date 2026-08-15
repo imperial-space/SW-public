@@ -174,42 +174,6 @@
   maximumGuilds: 2
   currency: Revent
   items:
-  - productEntity: MedaljonMana
-    cost: 400
-    reputationForBuying: 13.3
-    minReputationPlace: 1
-    minReputation: 50
-  - productEntity: MedaljonDark
-    cost: 250
-    reputationForBuying: 8.3
-    minReputation: 25
-  - productEntity: MedaljonDef
-    cost: 400
-    reputationForBuying: 13.3
-    minReputationPlace: 1
-    minReputation: 50
-  - productEntity: MedaljonFlashImmune
-    cost: 200
-    reputationForBuying: 6.7
-    minReputation: 25
-  - productEntity: MedaljonExpl
-    cost: 400
-    reputationForBuying: 13.3
-    minReputationPlace: 1
-    minReputation: 50
-  - productEntity: MedaljonSpeed
-    cost: 500
-    reputationForBuying: 16.7
-    minReputationPlace: 1
-    minReputation: 50
-  - productEntity: MedaljonNoslip
-    cost: 200
-    reputationForBuying: 6.3
-    minReputation: 25
-  - productEntity: MedaljonAntiMana
-    cost: 300
-    minReputation: 5
-    reputationForBuying: 10
   - productEntity: MedievalManaBurnGrenade
     cost: 150
     reputationForBuying: 2
@@ -219,10 +183,6 @@
   - productEntity: MedievalServerMap
     cost: 5
     reputationForBuying: 0.15
-  - productEntity: MedievalHandheldGPSBasic
-    cost: 220
-    minReputation: 5
-    reputationForBuying: 7.3
   - productEntity: MedievalAstrolabe
     cost: 20
     reputationForBuying: 0.7
@@ -256,37 +216,35 @@
   - productEntity: MedievalPinpointerCritical
     cost: 80
     reputationForBuying: 2
-  - productEntity: CompactDefibrillator
-    cost: 150
-    minReputation: 1
-    reputationForBuying: 3.3
   - productEntity: MedievalClothingOuterArmorCharmerWeak
     cost: 250
-    reputationForBuying: 8.3
+    reputationForBuying: 5.3
   - productEntity: MedievalClothingHeadHelmetCharmerWeak
     cost: 100
     reputationForBuying: 3.3
-  - productEntity: MedievalClothingOuterArmorCharmerNeutral
-    cost: 600
-    minReputationPlace: 1
-    minReputation: 25
-    reputationForBuying: 15
-  - productEntity: MedievalClothingHeadHelmetCharmerNeutral
-    cost: 250
-    minReputationPlace: 1
-    minReputation: 25
-    reputationForBuying: 8.3
   - productEntity: MedievalShoesChamber
     cost: 100
     reputationForBuying: 3.3
+  - productEntity: Bible
+    cost: 150
+    minReputation: 5
+    reputationForBuying: 5
+  - productEntity: CompactDefibrillator
+    cost: 150
+    minReputation: 5
+    reputationForBuying: 3.3
+  - productEntity: MedievalHandheldGPSBasic
+    cost: 220
+    minReputation: 5
+    reputationForBuying: 4.7
   - productEntity: MedievalScrollBarrier
     cost: 100
     reputationForBuying: 2
     minReputation: 15
-  - productEntity: Bible
-    cost: 150
-    minReputation: 1
-    reputationForBuying: 5
+  - productEntity: MedaljonAntiMana
+    cost: 300
+    minReputation: 15
+    reputationForBuying: 10
   - productEntity: MedievalReliefStoneWeak
     cost: 220
     reputationForBuying: 7.3
@@ -300,11 +258,28 @@
     minReputationPlace: 1
     minReputation: 50
     reputationForBuying: 38.3
-  - productEntity: MedievalShoesSpeed
-    cost: 1250
+  - productEntity: MedievalClothingOuterArmorCharmerNeutral
+    cost: 600
     minReputationPlace: 1
-    minReputation: 50
-    reputationForBuying: 41.7
+    minReputation: 25
+    reputationForBuying: 15
+  - productEntity: MedievalClothingHeadHelmetCharmerNeutral
+    cost: 250
+    minReputationPlace: 1
+    minReputation: 25
+    reputationForBuying: 8.3
+  - productEntity: MedaljonDark
+    cost: 250
+    reputationForBuying: 8.3
+    minReputation: 25
+  - productEntity: MedaljonFlashImmune
+    cost: 200
+    reputationForBuying: 6.7
+    minReputation: 25
+  - productEntity: MedaljonNoslip
+    cost: 200
+    reputationForBuying: 6.3
+    minReputation: 25
   - productEntity: MedievalIceDragonTablet
     minReputation: 25
     cost: 1600
@@ -321,6 +296,31 @@
     minReputation: 25
     cost: 1600
     reputationForBuying: 25.5
+  - productEntity: MedaljonMana
+    cost: 400
+    reputationForBuying: 13.3
+    minReputationPlace: 1
+    minReputation: 50
+  - productEntity: MedaljonDef
+    cost: 400
+    reputationForBuying: 13.3
+    minReputationPlace: 1
+    minReputation: 50
+  - productEntity: MedaljonExpl
+    cost: 400
+    reputationForBuying: 13.3
+    minReputationPlace: 1
+    minReputation: 50
+  - productEntity: MedaljonSpeed
+    cost: 500
+    reputationForBuying: 16.7
+    minReputationPlace: 1
+    minReputation: 50
+  - productEntity: MedievalShoesSpeed
+    cost: 1250
+    minReputationPlace: 1
+    minReputation: 50
+    reputationForBuying: 41.7
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
     reputationForBuying: 3.7
@@ -1232,16 +1232,15 @@
     cost: 70
     reputationForBuying: 2.3
     minReputation: 5
-  - productEntity: MedievalClothingBackpackSatchelTraveller
-    cost: 215
-    reputationForBuying: 7.15
+  - productEntity: MedievalClothingOuterArmorLeatherLight
+    cost: 55
+    minReputation: 5
+    reputationForBuying: 2
+  - productEntity: MedievalClothingOuterArmorLeatherHeavy
+    cost: 340
+    reputationForBuying: 11.3
     minReputationPlace: 1
-    minReputation: 15
-  - productEntity: MedievalSewingKit
-    cost: 220
-    reputationForBuying: 7.2
-    minReputationPlace: 1
-    minReputation: 15
+    minReputation: 10
   - productEntity: MedievalClothingOuterArmorFur
     cost: 10
     reputationForBuying: 0.3
@@ -1254,15 +1253,6 @@
   - productEntity: MedievalClothingOuterArmorLeather
     cost: 40
     reputationForBuying: 1.3
-  - productEntity: MedievalClothingOuterArmorLeatherLight
-    cost: 55
-    minReputation: 5
-    reputationForBuying: 2
-  - productEntity: MedievalClothingOuterArmorLeatherHeavy
-    cost: 340
-    reputationForBuying: 11.3
-    minReputationPlace: 1
-    minReputation: 10
   - productEntity: MedievalClothingUniformJumpsuitShitCloth11
     cost: 10
     reputationForBuying: 0.3
@@ -1525,6 +1515,16 @@
     reputationForBuying: 3.3
     minReputationPlace: 1
     minReputation: 10
+  - productEntity: MedievalClothingBackpackSatchelTraveller
+    cost: 215
+    reputationForBuying: 7.15
+    minReputationPlace: 1
+    minReputation: 15
+  - productEntity: MedievalSewingKit
+    cost: 220
+    reputationForBuying: 7.2
+    minReputationPlace: 1
+    minReputation: 15
   - productEntity: MedievalQuestContractLegionArmorLight
     cost: 20
     reputationForBuying: 0.7
