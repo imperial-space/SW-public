@@ -145,7 +145,7 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 6 # 20 caustic on t1??? down to 6.
+            Caustic: 3 # 20 caustic on t1??? down to 3.
       - !type:Emote
         emote: Scream
         probability: 0.8
@@ -206,7 +206,7 @@
         ignoreResistances: false
         damage:
           types:
-            Radiation: 6 # 25? rad on t1??? down to 6.
+            Radiation: 3 # 25? rad on t1??? down to 3.
   metabolisms:
     Poison:
       effects:
@@ -1340,11 +1340,11 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: false
         damage:
           types:
-            Caustic: 6
-            Radiation: 6
+            Caustic: 3
+            Radiation: 3
       - !type:Emote
         emote: Scream
         probability: 0.8
@@ -1751,8 +1751,8 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 5
-            Radiation: 5
+            Caustic: 2.5
+            Radiation: 2.5
       - !type:Emote
         emote: Scream
         probability: 0.3

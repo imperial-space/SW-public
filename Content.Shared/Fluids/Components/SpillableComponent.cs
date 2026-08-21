@@ -21,7 +21,7 @@ public sealed partial class SpillableComponent : Component
     ///     At most how much reagent can be splashed on someone at once?
     /// </summary>
     [DataField]
-    public FixedPoint2 MaxMeleeSpillAmount = FixedPoint2.New(20);
+    public FixedPoint2 MaxMeleeSpillAmount = FixedPoint2.New(5);
 
     /// <summary>
     ///     Should this item be spilled when thrown?
