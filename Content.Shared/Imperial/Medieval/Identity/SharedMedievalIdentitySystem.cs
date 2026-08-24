@@ -51,6 +51,15 @@ public abstract class SharedMedievalIdentitySystem : EntitySystem
 
     private void OnExamined(EntityUid uid, IdentityRequiresKnowledgeComponent component, ExaminedEvent args)
     {
+        if (args.IsInDetailsRange &&
+            uid != args.Examiner &&
+            TryComp<IdentityRequiresKnowledgeComponent>(args.Examiner, out var examiner) &&
+            examiner.KnownIds.Contains(component.Identifier) &&
+            IsIdentityMasked(uid))
+        {
+            args.PushMarkup(Loc.GetString("imperial-hm-identity-familiar"));
+        }
+
         args.PushMarkup(Loc.GetString("imperial-hm-identity-id", ("name", component.Identifier)), -1);
     }
     public bool IsIdentityMasked(EntityUid entity)
