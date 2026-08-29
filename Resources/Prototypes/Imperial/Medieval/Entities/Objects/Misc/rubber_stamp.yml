@@ -1,0 +1,186 @@
+#head stamp
+
+- type: entity   #Легат
+  name: legat's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampLegat
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-legat
+    stampedColor: "#3681bb"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    state: stamp-cap
+
+- type: entity   #Ярл
+  name: head of fox rubber stamp
+  parent: RubberStampBase
+  id: RubberStampHeadFox
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-headfox
+    stampedColor: "#B22222"
+    stampState: "paper_stamp-hos"
+  - type: Sprite
+    state: stamp-hos
+
+- type: entity   #Староста
+  name: village elder rubber stamp
+  parent: RubberStampBase
+  id: RubberStampVillageElder
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-village
+    stampedColor: "#808000"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    state: stamp-qm
+
+- type: entity   #Архимаг
+  name: harmer's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampHarmer
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-harmer
+    stampedColor: "#800080"
+    stampState: "paper_stamp-rd"
+  - type: Sprite
+    state: stamp-rd
+
+- type: entity   #Глава шахтёров
+  name: green head rubber stamp
+  parent: RubberStampBase
+  id: RubberStampGreenHead
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-greenhead
+    stampedColor: "#008000"
+    stampState: "paper_stamp-centcom"
+  - type: Sprite
+    state: stamp-centcom
+
+- type: entity   #Глава наёмников
+  name: merc lead's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampMercLead
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-merclead
+    stampedColor: "#3681bb"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    state: stamp-qm
+
+- type: entity   #Столица
+  name: capital's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampCapital
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-capital
+    stampedColor: "#DAA520"
+    stampState: "paper_stamp-ce"
+  - type: Sprite
+    state: stamp-ce
+
+# Artisans
+
+- type: entity   #Тавернщик С
+  name: innkeeper's rubber stamp of North
+  parent: RubberStampBase
+  id: RubberStampInnkeeperN
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-innkeeperN
+    stampedColor: "#FF7F50"
+    stampState: "paper_stamp-warden"
+  - type: Sprite
+    state: stamp-warden
+
+- type: entity   #Тавернщик Ю
+  name: innkeeper's rubber stamp of South
+  parent: RubberStampBase
+  id: RubberStampInnkeeperS
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-innkeeperS
+    stampedColor: "#5F9EA0"
+    stampState: "paper_stamp-cmo"
+  - type: Sprite
+    state: stamp-cmo
+
+- type: entity   #Алхимик С
+  name: Alch's rubber stamp of North
+  parent: RubberStampBase
+  id: RubberStampAlchN
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-alchN
+    stampedColor: "#FF7F50"
+    stampState: "paper_stamp-warden"
+  - type: Sprite
+    state: stamp-warden
+
+- type: entity   #Алхимик Ю
+  name: Alch's rubber stamp of South
+  parent: RubberStampBase
+  id: RubberStampAlchS
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-alchS
+    stampedColor: "#5F9EA0"
+    stampState: "paper_stamp-cmo"
+  - type: Sprite
+    state: stamp-cmo
+
+- type: entity   #Кузнец С
+  name: Blacksmith's rubber stamp of North
+  parent: RubberStampBase
+  id: RubberStampBlacksmithN
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-blacksmithN
+    stampedColor: "#FF7F50"
+    stampState: "paper_stamp-warden"
+  - type: Sprite
+    state: stamp-warden
+
+- type: entity   #Кузнец Ю
+  name: Blacksmith's rubber stamp of South
+  parent: RubberStampBase
+  id: RubberStampBlacksmithS
+  suffix: ForMap
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-blacksmithS
+    stampedColor: "#5F9EA0"
+    stampState: "paper_stamp-cmo"
+  - type: Sprite
+    state: stamp-cmo
+
+# Other
+
+- type: entity
+  name: stamp
+  parent: RubberStampBase
+  id: MedievalStampMedievalTreasurer
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-treasurer
+    stampedColor: "#3681bb"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    state: stamp-cap
