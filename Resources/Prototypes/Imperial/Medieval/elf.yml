@@ -272,3 +272,7 @@
   markingLimits: MobElfMarkingLimits
   dollPrototype: MobElfDummy
   skinColoration: TintedHues
+  minAge: 18
+  maxAge: 750
+  oldAge: 600
+  youngAge: 100

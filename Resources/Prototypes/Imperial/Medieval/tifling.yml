@@ -482,6 +482,10 @@
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
+  minAge: 18
+  maxAge: 120
+  oldAge: 90
+  youngAge: 30
 
 - type: speciesBaseSprites
   id: MobTiflingSprites
