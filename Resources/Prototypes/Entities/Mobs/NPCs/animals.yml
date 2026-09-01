@@ -937,8 +937,15 @@
     guides:
     - Chef
     - FoodRecipes
-  - type: NocturnBadFood # imperial medieval
-    timesCanBeBiten: 4 # imperial medieval
+# imperial medieval start
+  - type: NocturnBadFood
+    timesCanBeBiten: 4
+  - type: ExcrementProducer
+    produceMinimumInterval: 100
+    excrementSpawn:
+    - id: Dung
+# imperial medieval end
+
 
 - type: entity
   name: crab
@@ -1112,6 +1119,13 @@
   - type: HTN
     rootTask:
       task: RuminantHostileCompound
+# imperial medieval start
+  - type: ExcrementProducer
+    produceMinimumInterval: 100
+    excrementSpawn:
+    - id: Dung
+# imperial medieval end
+
 
 # Note that we gotta make this bitch vomit someday when you feed it anthrax or sumthin. Needs to be a small item thief too and aggressive if attacked.
 - type: entity
@@ -3639,6 +3653,12 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
+# imperial medieval start
+  - type: ExcrementProducer
+    produceMinimumInterval: 80
+    excrementSpawn:
+    - id: Dung
+# imperial medieval end
 
 - type: entity
   name: diona nymph

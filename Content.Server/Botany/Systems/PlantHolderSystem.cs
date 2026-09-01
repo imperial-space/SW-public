@@ -28,6 +28,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Labels.Components;
+using Content.Shared.Imperial.Medieval.Farming;
 
 namespace Content.Server.Botany.Systems;
 
@@ -358,6 +359,15 @@ public sealed class PlantHolderSystem : EntitySystem
             }
             QueueDel(args.Used);
         }
+
+        // Imperial Medieval Tweak Start
+        if (TryComp<FertilizerComponent>(args.Used, out var fertilizer))
+        {
+            args.Handled = true;
+            AdjustNutrient(uid, fertilizer.NutrientValue, component);
+            QueueDel(args.Used);
+        }
+        // Imperial Medieval Tweak Stop
     }
 
     private void OnSolutionTransferred(Entity<PlantHolderComponent> ent, ref SolutionTransferredEvent args)
