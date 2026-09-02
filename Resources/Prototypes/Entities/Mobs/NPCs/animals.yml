@@ -941,7 +941,7 @@
   - type: NocturnBadFood
     timesCanBeBiten: 4
   - type: ExcrementProducer
-    produceMinimumInterval: 600
+    produceMinimumInterval: 800
     excrementSpawn:
     - id: Dung
 # imperial medieval end
@@ -1121,7 +1121,7 @@
       task: RuminantHostileCompound
 # imperial medieval start
   - type: ExcrementProducer
-    produceMinimumInterval: 600
+    produceMinimumInterval: 800
     excrementSpawn:
     - id: Dung
 # imperial medieval end
@@ -3655,7 +3655,7 @@
       task: RuminantCompound
 # imperial medieval start
   - type: ExcrementProducer
-    produceMinimumInterval: 400
+    produceMinimumInterval: 600
     excrementSpawn:
     - id: Dung
 # imperial medieval end
