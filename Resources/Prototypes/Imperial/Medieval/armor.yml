@@ -152,6 +152,9 @@
         variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 1
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -303,7 +306,10 @@
       params:
         variation: 0.2
   - type: StaminaResistance
-    damageCoefficient: 0.78
+    damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 0.8
+    flatReduction: 3
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -378,7 +384,10 @@
       params:
         variation: 0.2
   - type: StaminaResistance
-    damageCoefficient: 0.78
+    damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 0.8
+    flatReduction: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -454,7 +463,10 @@
       params:
         variation: 0.2
   - type: StaminaResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 0.5
+    flatReduction: 3
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -548,7 +560,10 @@
       Slash: 0.8
       Heat: 1
   - type: StaminaResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 0.5
+    flatReduction: 4
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -611,7 +626,10 @@
       Slash: 0.8
       Heat: 1
   - type: StaminaResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 0.8
+    flatReduction: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -689,7 +707,10 @@
       params:
         variation: 0.2
   - type: StaminaResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 0.5
+    flatReduction: 6
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -805,6 +826,9 @@
       Heat: 1
   - type: StaminaResistance
     damageCoefficient: 0.5
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 2
   - type: ClothingSpeedModifier
     walkModifier: 0.97
     sprintModifier: 0.97
@@ -906,7 +930,10 @@
       Slash: 0.8
       Heat: 1
   - type: StaminaResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.65
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 2
   - type: ClothingSpeedModifier
     walkModifier: 0.97
     sprintModifier: 0.97
@@ -997,7 +1024,10 @@
       Slash: 0.8
       Heat: 1
   - type: StaminaResistance
-    damageCoefficient: 0.45
+    damageCoefficient: 0.25
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 2
   - type: ClothingSpeedModifier
     walkModifier: 0.93
     sprintModifier: 0.93
@@ -1078,7 +1108,10 @@
       Slash: 0.8
       Heat: 1
   - type: StaminaResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.15
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 2
   - type: ClothingSpeedModifier
     walkModifier: 0.92
     sprintModifier: 0.92
@@ -1783,6 +1816,9 @@
       Heat: 1
   - type: StaminaResistance
     damageCoefficient: 0.4
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 1
   - type: Item
     size: Large
   - type: ExplosionResistance
@@ -1858,7 +1894,10 @@
       Slash: 0.8
       Heat: 1
   - type: StaminaResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 1
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -2011,7 +2050,10 @@
       params:
         variation: 0.2
   - type: StaminaResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.85
+  - type: StaminaStunArmor
+    multiplier: 0.8
+    flatReduction: 1
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -2320,6 +2362,9 @@
         variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.85
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -2587,6 +2632,9 @@
         variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.85
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -2729,6 +2777,9 @@
       Heat: 1
   - type: StaminaResistance
     damageCoefficient: 0.4
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 2
   - type: ClothingSpeedModifier
     walkModifier: 0.98
     sprintModifier: 0.98
@@ -2808,7 +2859,10 @@
       Slash: 0.8
       Heat: 1
   - type: StaminaResistance
-    damageCoefficient: 0.15
+    damageCoefficient: 0.1
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 2
   - type: ClothingSpeedModifier
     walkModifier: 0.92
     sprintModifier: 0.92
@@ -3110,6 +3164,9 @@
       Heat: 1
   - type: StaminaResistance
     damageCoefficient: 0.5
+  - type: StaminaStunArmor
+    multiplier: 0.8
+    flatReduction: 3
   - type: ClothingSpeedModifier
     walkModifier: 0.98
     sprintModifier: 0.98
@@ -4171,6 +4228,9 @@
         variation: 0.2
   - type: StaminaResistance
     damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 3
   - type: Item
     size: Normal
   - type: ExplosionResistance

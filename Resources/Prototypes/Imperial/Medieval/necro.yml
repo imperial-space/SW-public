@@ -692,7 +692,10 @@
       params:
         variation: 0.2
   - type: StaminaResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 3
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -756,7 +759,10 @@
       params:
         variation: 0.2
   - type: StaminaResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.9
+  - type: StaminaStunArmor
+    multiplier: 1
+    flatReduction: 4
   - type: Item
     size: Normal
   - type: ExplosionResistance
