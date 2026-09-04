@@ -34,7 +34,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 12
+        Piercing: 12
   - type: MeleeThrowOnHit
     distance: 0.3
     speed: 5
@@ -76,7 +76,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 14
+        Piercing: 14
   - type: MeleeThrowOnHit
     distance: 0.3
     speed: 5
@@ -109,7 +109,7 @@
     range: 1.15
     damage:
       types:
-        Slash: 11
+        Slash: 12
         ParryAble: 1
     resetOnHandSelected: false
   - type: EmbeddableProjectile
@@ -118,7 +118,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 20
+        Piercing: 20
+        Cold: 3
   - type: MeleeThrowOnHit
     distance: 0.3
     speed: 5
