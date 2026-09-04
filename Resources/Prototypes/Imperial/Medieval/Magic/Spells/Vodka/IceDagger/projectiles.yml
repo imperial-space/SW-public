@@ -109,7 +109,8 @@
     range: 1.15
     damage:
       types:
-        Slash: 12
+        Slash: 11
+        Cold: 1
         ParryAble: 1
     resetOnHandSelected: false
   - type: EmbeddableProjectile
