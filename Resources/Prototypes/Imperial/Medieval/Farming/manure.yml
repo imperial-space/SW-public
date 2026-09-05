@@ -14,7 +14,7 @@
     enabled: true
     onTheGround: true
   - type: Fertilizer
-    nutrientValue: 10
+    nutrientValue: 30
   - type: Stinky
   - type: Slippery
   - type: StepTrigger
