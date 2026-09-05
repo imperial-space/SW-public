@@ -110,7 +110,7 @@
     damage:
       types:
         Slash: 11
-        Cold: 1
+        Cold: 0.5
         ParryAble: 1
     resetOnHandSelected: false
   - type: EmbeddableProjectile
@@ -120,7 +120,7 @@
     damage:
       types:
         Piercing: 20
-        Cold: 3
+        Cold: 1
   - type: MeleeThrowOnHit
     distance: 0.3
     speed: 5
