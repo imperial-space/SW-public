@@ -296,7 +296,7 @@ public sealed partial class IngestionSystem
     /// Checks if the item is currently edible.
     /// </summary>
     /// <param name="ingested">Entity being ingested</param>
-    /// <param name="user">The entity trying to make the ingestion happening, not necessarily the one eating</param>
+    /// <param name="user">The entity consuming the item.</param>
     /// <param name="solution">Solution we're returning</param>
     /// <param name="time">The time it takes us to eat this entity</param>
     public bool CanAccessSolution(Entity<SolutionContainerManagerComponent?> ingested,
