@@ -49,57 +49,57 @@
 
 ############################# LEGION
 
-- type: loadoutGroup
-  id: MedievalArmorLegionRecruit
-  name: loadout-group-armor-mdv
-  minLimit: 0
-  maxLimit: 1
-  loadouts:
-  - MedievalClothingOuterArmorGambesonLegionRecruit
-  - MedievalClothingOuterArmorStuddedLegionRecruit
-  - MedievalClothingOuterArmorChainMailLightLegionRecruit
+#- type: loadoutGroup
+#  id: MedievalArmorLegionRecruit
+#  name: loadout-group-armor-mdv
+#  minLimit: 0
+#  maxLimit: 1
+#  loadouts:
+#  - MedievalClothingOuterArmorGambesonLegionRecruit
+#  - MedievalClothingOuterArmorStuddedLegionRecruit
+#  - MedievalClothingOuterArmorChainMailLightLegionRecruit
 
-- type: loadout
-  id: MedievalClothingOuterArmorGambesonLegionRecruit
-  equipment:
-    outerClothing: MedievalClothingOuterArmorGambeson
+#- type: loadout
+#  id: MedievalClothingOuterArmorGambesonLegionRecruit
+#  equipment:
+#    outerClothing: MedievalClothingOuterArmorGambeson
 
-- type: loadout
-  id: MedievalClothingOuterArmorStuddedLegionRecruit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: LegionTimer4hours
-  equipment:
-    outerClothing: MedievalClothingOuterArmorStudded
+#- type: loadout
+#  id: MedievalClothingOuterArmorStuddedLegionRecruit
+#  effects:
+#  - !type:GroupLoadoutEffect
+#    proto: LegionTimer4hours
+#  equipment:
+#    outerClothing: MedievalClothingOuterArmorStudded
 
-- type: loadout
-  id: MedievalClothingOuterArmorChainMailLightLegionRecruit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: LegionTimer10hours
-  equipment:
-    outerClothing: MedievalClothingOuterArmorChainMailLight
-
-
-- type: loadoutGroup
-  id: MedievalArmorLegion
-  name: loadout-group-armor-mdv
-  minLimit: 0
-  maxLimit: 1
-  loadouts:
-  - MedievalClothingOuterArmorGambesonLegionRecruit
-  - MedievalClothingOuterArmorStuddedLegionRecruit
-  - MedievalClothingOuterArmorChainMailLightLegionRecruit
-  - MedievalClothingOuterArmorIronCuirassLightLegion
+#- type: loadout
+#  id: MedievalClothingOuterArmorChainMailLightLegionRecruit
+#  effects:
+#  - !type:GroupLoadoutEffect
+#    proto: LegionTimer10hours
+#  equipment:
+#    outerClothing: MedievalClothingOuterArmorChainMailLight
 
 
-- type: loadout
-  id: MedievalClothingOuterArmorIronCuirassLightLegion
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: LegionTimer30hours
-  equipment:
-    outerClothing: MedievalClothingOuterArmorIronCuirassLight
+#- type: loadoutGroup
+#  id: MedievalArmorLegion
+#  name: loadout-group-armor-mdv
+#  minLimit: 0
+#  maxLimit: 1
+#  loadouts:
+#  - MedievalClothingOuterArmorGambesonLegionRecruit
+#  - MedievalClothingOuterArmorStuddedLegionRecruit
+#  - MedievalClothingOuterArmorChainMailLightLegionRecruit
+#  - MedievalClothingOuterArmorIronCuirassLightLegion
+
+
+#- type: loadout
+#  id: MedievalClothingOuterArmorIronCuirassLightLegion
+#  effects:
+#  - !type:GroupLoadoutEffect
+#    proto: LegionTimer30hours
+#  equipment:
+#    outerClothing: MedievalClothingOuterArmorIronCuirassLight
 
 
 

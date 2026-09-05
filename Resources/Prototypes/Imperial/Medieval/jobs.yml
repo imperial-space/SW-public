@@ -2447,6 +2447,7 @@
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallLeg
     #belt: Bible
+    outerClothing: MedievalFactionArmorLegionRecruit
     head: MedievalClothingHeadHelmetLegionRecruit
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
@@ -2509,7 +2510,7 @@
   - MedievalTrinkets
   - MedievalGloves
   - MedievalJumpsuitLegion
-  - MedievalArmorLegionRecruit
+  #- MedievalArmorLegionRecruit
   - MedievalRepair
 
 - type: loadoutGroup
@@ -2561,6 +2562,7 @@
     pocket2: MedievalCommsCrystallLeg
     head: MedievalClothingHeadHelmetLegionLegionerNew
     neck: MedievalClothingNeckCloakClanEagle
+    outerClothing: MedievalFactionArmorLegionSoldier
     id: MedievalLeatherKey
   storage:
     back:
@@ -2622,7 +2624,7 @@
   - MedievalTrinkets
   - MedievalGloves
   - MedievalJumpsuitLegion
-  - MedievalArmorLegion
+  #- MedievalArmorLegion
   - MedievalRepair
 
 # MEDIEVAL LEGION Gateman
@@ -2682,7 +2684,7 @@
   - MedievalTrinkets
   - MedievalGloves
   - MedievalJumpsuitLegion
-  - MedievalArmorLegion
+  #- MedievalArmorLegion
   - MedievalRepair
 
 # MEDIEVAL LEGION OPCION
@@ -2693,6 +2695,7 @@
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallLeg
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth85
+    outerClothing: MedievalFactionArmorLegionJunOfficer
     head: MedievalClothingHeadHelmetLegionOpcionNew
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
@@ -2756,7 +2759,7 @@
   - MedievalBeltLegion
   - MedievalTrinkets3
   - MedievalGlovesWithIron
-  - MedievalArmorLegion
+  #- MedievalArmorLegion
   - MedievalRepair
 
 # MEDIEVAL LEGION TRIBUN
@@ -2767,6 +2770,7 @@
     pocket1: MedievalCommsCrystallLeg
     pocket2: MedievalKeyCargo
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth86
+    outerClothing: MedievalFactionArmorLegionOfficer
     head: MedievalClothingHeadHelmetLegionTribuneNew
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
@@ -2829,7 +2833,7 @@
   - MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGlovesWithIron
-  - MedievalArmorLegion
+  #- MedievalArmorLegion
   - MedievalRepair
 
 # MEDIEVAL LEGION LEGAT
@@ -2913,8 +2917,29 @@
   - MedievalTrinkets
   - MedievalGlovesWithIron
   - MedievalHelmetLegionLegat
-  - MedievalArmorLegion
+  - MedievalArmorLegionLegat
+  #- MedievalArmorLegion
   - MedievalRepair
+
+- type: loadoutGroup
+  id: MedievalArmorLegionLegat
+  name: loadout-group-medieval-armor-legion-legat
+  loadouts:
+  - LegionMedievalClothingOuterArmorLegionLegat
+  - LegionMedievalClothingOuterArmorLegionLegatAlt
+
+- type: loadout
+  id: LegionMedievalClothingOuterArmorLegionLegatAlt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LegionTimer30hours
+  equipment:
+    outerClothing: MedievalFactionArmorLegionLeaderHigh
+
+- type: loadout
+  id: LegionMedievalClothingOuterArmorLegionLegat
+  equipment:
+    outerClothing: MedievalFactionArmorLegionLeader
 
 - type: loadoutGroup
   id: MedievalHelmetLegionLegat
@@ -2944,6 +2969,7 @@
     pocket1: MedievalStampMedievalTreasurer
     pocket2: MedievalKeyTreasurer
     jumpsuit: MedievalClothingTreasurer
+    outerClothing: MedievalFactionArmorLegionTreas
     head: MedievalClothingHeadTreasurer
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
@@ -3019,6 +3045,7 @@
     pocket1: MedievalKeyTreasurer
     jumpsuit: MedievalClothingTreasurer
     head: MedievalClothingHeadTreasurer
+    outerClothing: MedievalFactionArmorLegionTreasHelper
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
   storage:
