@@ -35,9 +35,9 @@ public sealed partial class MagicScrollComponent : Component
     public int GridSize = 7;
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int TotalMines = 7;
+    public int TotalMines = 4;
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int PointsPerDecodedRune = 8;
+    public int PointsPerDecodedRune = 7;
 }
 

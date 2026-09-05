@@ -43,7 +43,7 @@ namespace Content.Server.HellRespawnPoint
                     {
                         foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
                         {
-                            barrier.Stability -= 0.5f;
+                            barrier.Stability -= 2.5f;
                         }
                         //_chat.DispatchGlobalAnnouncement("Еще одна душа прошла испытание. Стабильность магических барьеров снижена.", playSound: false, colorOverride: Color.Red, sender: "Death");
                         var sysMan = IoCManager.Resolve<IEntitySystemManager>();

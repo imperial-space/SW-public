@@ -4464,7 +4464,7 @@
     - state: scroll1
   - type: MagicScroll
     bad: true
-    basicPower: -15
+    basicPower: -50
   - type: Tag
     tags:
     - MagicScroll
