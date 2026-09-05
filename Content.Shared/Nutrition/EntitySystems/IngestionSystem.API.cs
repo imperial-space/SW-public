@@ -134,7 +134,7 @@ public sealed partial class IngestionSystem
             return false;
 
         // If we don't have the tools to eat we can't eat.
-        return CanAccessSolution(ingested, user, out solution, out time);
+        return CanAccessSolution(ingested, user, target, out solution, out time);
     }
 
     #endregion
@@ -304,6 +304,23 @@ public sealed partial class IngestionSystem
         [NotNullWhen(true)] out Entity<SolutionComponent>? solution,
         out TimeSpan? time)
     {
+        return CanAccessSolution(ingested, user, user, out solution, out time);
+    }
+
+    /// <summary>
+    /// Checks if the item is currently edible by a specific target.
+    /// </summary>
+    /// <param name="ingested">Entity being ingested.</param>
+    /// <param name="user">The entity performing the interaction.</param>
+    /// <param name="target">The entity that will consume the solution.</param>
+    /// <param name="solution">The edible solution, if accessible.</param>
+    /// <param name="time">The time required to consume the solution.</param>
+    public bool CanAccessSolution(Entity<SolutionContainerManagerComponent?> ingested,
+        EntityUid user,
+        EntityUid target,
+        [NotNullWhen(true)] out Entity<SolutionComponent>? solution,
+        out TimeSpan? time)
+    {
         solution = null;
         time = null;
 
@@ -313,7 +330,7 @@ public sealed partial class IngestionSystem
             return false;
         }
 
-        var ev = new EdibleEvent(user);
+        var ev = new EdibleEvent(user, target);
         RaiseLocalEvent(ingested, ref ev);
 
         solution = ev.Solution;
