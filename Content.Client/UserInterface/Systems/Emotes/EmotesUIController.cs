@@ -1,4 +1,7 @@
 using Content.Client.Gameplay;
+#region medieval edit
+using Content.Client.Imperial.Medieval.SkillCheck;
+#endregion medieval edit
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
@@ -54,7 +57,10 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
         {
             // setup window
             var prototypes = _prototypeManager.EnumeratePrototypes<EmotePrototype>();
-            var models = ConvertToButtons(prototypes);
+            #region medieval edit
+            var models = EntitySystemManager.GetEntitySystem<SkillCheckSystem>()
+                .AddSkillCheckMenu(ConvertToButtons(prototypes), _playerManager.LocalSession?.AttachedEntity);
+            #endregion medieval edit
 
             _menu = new SimpleRadialMenu();
             _menu.SetButtons(models);

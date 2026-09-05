@@ -1,0 +1,19 @@
+- type: entity
+  id: MedievalSkillCheckDie
+  name: D20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SkillCheckDie
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/SkillCheck/dice_roll.ogg
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/SkillCheck/d20.rsi
+    state: "1"
+    drawdepth: Effects
+    noRot: true
+    offset: 0, 0.9
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 3
