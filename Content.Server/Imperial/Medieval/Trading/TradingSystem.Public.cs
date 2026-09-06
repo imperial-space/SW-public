@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Imperial.Medieval.Trading;
 using Content.Shared.Popups;
@@ -123,18 +124,12 @@ public sealed partial class TradingSystem
         long total = 0;
         foreach (var item in GetPublicInventoryItems(user))
         {
-            if (!TryGetCurrencyUnitValue(item, currency, out var unitValue))
+            if (!TryGetPublicCurrencyStack(item, currency, out var stack))
                 continue;
 
-            var count = 1;
-            if (TryComp<StackComponent>(item, out var stack))
-            {
-                count = stack.Count;
-                trackedCurrencyStacks.Add(item);
-                EnsureComp<PublicTradingCurrencyTrackerComponent>(item).User = user;
-            }
-
-            total = Math.Min(int.MaxValue, total + (long) unitValue * count);
+            trackedCurrencyStacks.Add(item);
+            EnsureComp<PublicTradingCurrencyTrackerComponent>(item).User = user;
+            total = Math.Min(int.MaxValue, total + stack.Count);
         }
 
         return (int) total;
@@ -148,10 +143,17 @@ public sealed partial class TradingSystem
         if (amount == 0)
             return true;
 
-        var currencyItems = GetPublicInventoryItems(user)
-            .Where(item => TryGetCurrencyUnitValue(item, currency, out var value) && value == 1)
-            .ToList();
-        var available = currencyItems.Sum(item => (long) (TryComp<StackComponent>(item, out var stack) ? stack.Count : 1));
+        var currencyItems = new List<Entity<StackComponent>>();
+        long available = 0;
+        foreach (var item in GetPublicInventoryItems(user))
+        {
+            if (!TryGetPublicCurrencyStack(item, currency, out var stack))
+                continue;
+
+            currencyItems.Add((item, stack));
+            available += stack.Count;
+        }
+
         if (available < amount)
             return false;
 
@@ -161,16 +163,9 @@ public sealed partial class TradingSystem
             if (remaining == 0)
                 break;
 
-            if (TryComp<StackComponent>(item, out var stack))
-            {
-                var used = Math.Min(stack.Count, remaining);
-                _stack.SetCount(item, stack.Count - used, stack);
-                remaining -= used;
-                continue;
-            }
-
-            QueueDel(item);
-            remaining--;
+            var used = Math.Min(item.Comp.Count, remaining);
+            _stack.SetCount(item.Owner, item.Comp.Count - used, item.Comp);
+            remaining -= used;
         }
 
         if (TryComp<PublicTradingBalanceComponent>(user, out var balance))
@@ -182,23 +177,25 @@ public sealed partial class TradingSystem
         return remaining == 0;
     }
 
-    private bool TryGetCurrencyUnitValue(
+    private bool TryGetPublicCurrencyStack(
         EntityUid item,
         ProtoId<CurrencyPrototype> currency,
-        out int unitValue)
+        [NotNullWhen(true)] out StackComponent? stack)
     {
-        unitValue = 0;
+        stack = null;
         if (!Exists(item) ||
             TerminatingOrDeleted(item) ||
             EntityManager.IsQueuedForDeletion(item) ||
-            !TryComp<MedievalCurrencyComponent>(item, out var medievalCurrency) ||
-            !medievalCurrency.Price.TryGetValue(currency.Id, out var price))
+            !TryComp(item, out stack) ||
+            stack.Count <= 0 ||
+            !_prototypeManager.TryIndex<StackPrototype>(stack.StackTypeId, out var stackPrototype) ||
+            !_prototypeManager.TryIndex(currency, out var currencyPrototype) ||
+            currencyPrototype.Cash == null)
         {
             return false;
         }
 
-        unitValue = price.Int();
-        return unitValue > 0;
+        return currencyPrototype.Cash.TryGetValue(1, out var cash) && stackPrototype.Spawn == cash;
     }
 
     private List<EntityUid> GetPublicInventoryItems(EntityUid user)
