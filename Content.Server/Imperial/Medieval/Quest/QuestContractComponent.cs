@@ -43,10 +43,5 @@ namespace Content.Server.Quest.Components
         [DataField]
         public int Amount = 4;
 
-        [DataField]
-        public float ReputationReward = 10;
-
-        public Guid? ContractGuildId;
-
     }
 }

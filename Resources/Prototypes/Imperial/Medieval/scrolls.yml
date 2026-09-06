@@ -141,6 +141,8 @@
     lifetime: 300    # 900 = 15 minutes
   - type: SpawnOnDespawn
     prototype: DraftParticles
+  - type: MedievalWeaponSkillCategory
+    skill: Bow
 
 - type: entity
   id: MedievalDraftBowImprovised
@@ -203,6 +205,8 @@
   id: MedievalDraftBaseArrow
   abstract: true
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Gun/draft_arrows.rsi
     rotation: -135
@@ -303,7 +307,7 @@
     sprite: Imperial/Medieval/Clothing/Belt/draft_quiver_steel.rsi
   - type: Storage
     grid:
-    - 0,0,7,7
+    - 0,0,8,8
     whitelist:
       tags:
       - Bolt
@@ -326,7 +330,7 @@
   - type: StorageFill
     contents:
     - id: MedievalDraftArrowSteelPhysics
-      amount: 30
+      amount: 40
       
 - type: entity
   parent: MedievalDraftQuiverSteel
@@ -336,7 +340,7 @@
   - type: StorageFill
     contents:
     - id: MedievalDraftBoltSteel
-      amount: 25
+      amount: 40
 
 #scrolls
 - type: entity

@@ -21,9 +21,9 @@
   required: [StoneClaws]
   event: !type:SetWerewolfDamageEvent
     replacements:
-      Blunt: 7
-      Slash: 9
-      Piercing: 9
+      Blunt: 15
+      Slash: 20
+      Piercing: 15
 
 - type: lycantropyAbility
   id: LongJump

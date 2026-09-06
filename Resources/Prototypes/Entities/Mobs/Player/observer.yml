@@ -81,6 +81,7 @@
   id: MobObserver
   components:
   - type: Spectral
+  - type: GhostSkillProfile
   - type: Tag
     tags:
     - AllowGhostShownByEvent

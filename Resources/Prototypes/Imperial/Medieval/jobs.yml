@@ -135,6 +135,12 @@
   - TravellerGold2
   - TravellerGold3
   - TravellerGold4
+  - TravellerVillage1
+  - TravellerVillage2
+  - TravellerVillage3
+  - TravellerVillage4
+  - TravellerVillage5
+  - TravellerVillage6
 
 - type: loadout
   id: TravellerDefault
@@ -479,6 +485,54 @@
     proto: TravellerTimer30hours
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth59
+
+- type: loadout
+  id: TravellerVillage1
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer10hours
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth92
+
+- type: loadout
+  id: TravellerVillage2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer10hours
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth93
+
+- type: loadout
+  id: TravellerVillage3
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer10hours
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth94
+
+- type: loadout
+  id: TravellerVillage4
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer10hours
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth95
+
+- type: loadout
+  id: TravellerVillage5
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer10hours
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth96
+
+- type: loadout
+  id: TravellerVillage6
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer10hours
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth97
 
 - type: loadoutGroup
   id: MedievalNeck
@@ -5917,9 +5971,14 @@
 - type: roleLoadout
   id: JobMedievalVillager
   groups:
+  - TravellerHead
+  - TravellerJumpsuitVillage
+  - MedievalNeck
   - MedievalBackpack
+  - MedievalShoes
   - MedievalBelt
   - MedievalTrinkets
+  - MedievalGloves
   - MedievalRepair
   - MedievalVillagerStash
 
@@ -5974,6 +6033,9 @@
 - type: roleLoadout
   id: JobMedievalVillagerDef
   groups:
+  - TravellerHead
+  - TravellerJumpsuitVillage
+  - MedievalNeck
   - MedievalBackpack
   - MedievalBelt
   - MedievalTrinkets
@@ -6047,6 +6109,9 @@
 - type: roleLoadout
   id: JobMedievalVillagerLeader
   groups:
+  - TravellerHead
+  - TravellerJumpsuitVillage
+  - MedievalNeck
   - MedievalBackpack
   - MedievalShoes
   - MedievalBelt
@@ -6065,3 +6130,59 @@
   storage:
     back:
     - FoodBreadMeat
+
+- type: loadoutGroup
+  id: TravellerJumpsuitVillage
+  name: loadout-group-traveller-jumpsuit
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - TravellerDefault
+  - TravellerDefault2
+  - TravellerFine1
+  - TravellerFine2
+  - TravellerFine3
+  - TravellerFine4
+  - TravellerFine5
+  - TravellerFine6
+  - TravellerFine7
+  - TravellerFine8
+  - TravellerFine9
+  - TravellerFine10
+  - TravellerFine11
+  - TravellerFine12
+  - TravellerFine13
+  - TravellerFine14
+  - TravellerFine15
+  - TravellerBeaty1
+  - TravellerBeaty2
+  - TravellerBeaty3
+  - TravellerBeaty4
+  - TravellerBeaty5
+  - TravellerBeaty6
+  - TravellerBeaty7
+  - TravellerBeaty8
+  - TravellerBeaty9
+  - TravellerBeaty9_2
+  - TravellerBeaty10
+  - TravellerBeaty11
+  - TravellerBeaty12
+  - TravellerBeaty13
+  - TravellerBeaty14
+  - TravellerBeaty15
+  - TravellerBeaty16
+  - TravellerBeaty17
+  - TravellerBeaty18
+  - TravellerBeaty19
+  - TravellerBeaty20
+  - TravellerBeaty21
+  - TravellerGold
+  - TravellerGold2
+  - TravellerGold3
+  - TravellerGold4
+  - TravellerVillage1
+  - TravellerVillage2
+  - TravellerVillage3
+  - TravellerVillage4
+  - TravellerVillage5
+  - TravellerVillage6

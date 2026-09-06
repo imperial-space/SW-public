@@ -135,6 +135,12 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         Dirty(uid, comp);
     }
 
+    public void ApplySkills(EntityUid uid, Dictionary<string, int> skills)
+    {
+        SetSkills(uid, skills);
+        TryGetMagicRuneComp(uid);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);

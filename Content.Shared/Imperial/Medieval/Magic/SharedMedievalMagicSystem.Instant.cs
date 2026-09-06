@@ -53,9 +53,12 @@ public abstract partial class SharedMedievalMagicSystem
         );
 
         args.SpellCastDoAfter.CopyToDoAfter(ref doAfterArgs);
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
-
-        _speedModifierSystem.RefreshMovementSpeedModifiers(args.Performer);
+        TryStartSpellDoAfter(
+            args.Performer,
+            args.Action,
+            casterComponent,
+            speedModifier,
+            doAfterArgs);
     }
 
     #region Helpers

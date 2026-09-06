@@ -107,7 +107,7 @@ public sealed class ImperialEntityEffectSystem : EntitySystem
                     null,
                     null,
                     args.Effect.MaxDuration,
-                    1.0f
+                    args.Effect.SlowTo
                 );
 
                 return;

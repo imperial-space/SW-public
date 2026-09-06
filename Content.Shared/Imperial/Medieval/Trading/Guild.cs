@@ -1,138 +1,55 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Imperial.Medieval.Trading.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Medieval.Trading;
 
-[Serializable, NetSerializable]
-public sealed class Guild : IEquatable<Guild>
+public sealed class Guild
 {
-    [DataField]
     public Guid Id { get; }
-
-    [DataField]
-    public string Name { get; private set; }
-
-    // TODO: указать здесь стандартную иконку
-    public string IconPath { get; private set; } = "";
-
-    public ProtoId<GuildTypePrototype> TypePrototype { get; private set; }
-
-    [DataField]
-    public List<GuildTradingItem> Items;
-    public Dictionary<GuildTradingItem, string> UnavailableItems = new();
-
-    [DataField]
-    public Dictionary<NetEntity, float> Reputation = new();
-
-    [DataField]
-    public Dictionary<NetEntity, string> ReputationNames = new();
-
-    public float GetReputation(NetEntity ent)
-    {
-        return Reputation.GetValueOrDefault(ent, 0);
-    }
-
-    public void AddReputation(NetEntity ent, float val, string? name = null)
-    {
-        Reputation[ent] = Reputation.GetValueOrDefault(ent) + val;
-
-        if (name != null)
-            ReputationNames[ent] = name;
-    }
-
-    private Guild(Guid id, string name, ProtoId<GuildTypePrototype> typePrototype, string iconPath, List<GuildTradingItem>? items = null)
-    {
-        items ??= new();
-
-        Id = id;
-        Name = name;
-        TypePrototype = typePrototype;
-        IconPath = iconPath;
-        Items = items;
-    }
+    public string Name { get; }
+    public string IconPath { get; }
+    public ProtoId<GuildTypePrototype> TypePrototype { get; }
+    public List<GuildTradingItem> Items { get; }
 
     public Guild(GuildTypePrototype prototype, IRobustRandom random, IPrototypeManager prototypeManager)
     {
-        foreach (var item in prototype.Items)
-        {
-            var factor = 1.0 + (random.NextDouble() * 0.4 - 0.2);
-            item.ChangedCost = (int)Math.Round(item.Cost * factor);
-        }
-
-
         Id = Guid.NewGuid();
+        TypePrototype = prototype.ID;
+        Items = prototype.Items.Select(item => item with { }).ToList();
 
         var namePrototype = prototypeManager.Index(prototype.Name);
         Name = GenerateName(namePrototype, random);
-
-        Items = prototype.Items.Select(x => x with { }).ToList();
-        Items.ForEach(i => i.GuildId = Id);
-
-        TypePrototype = prototype.ID;
 
         if (prototype.Icons.Count > 0)
         {
             var icon = random.Pick(prototype.Icons);
             IconPath = prototypeManager.Index(icon).TexturePath;
         }
-        else if (prototypeManager.TryGetRandom<GuildIconPrototype>(random, out var proto))
+        else if (prototypeManager.TryGetRandom<GuildIconPrototype>(random, out var selected) &&
+                 selected is GuildIconPrototype guildIcon)
         {
-            if (proto is not GuildIconPrototype icon)
-                return;
-
-            IconPath = icon.TexturePath;
+            IconPath = guildIcon.TexturePath;
+        }
+        else
+        {
+            IconPath = string.Empty;
         }
     }
 
-    public string GenerateName(GuildNamePrototype prototype, IRobustRandom random)
+    private static string GenerateName(GuildNamePrototype prototype, IRobustRandom random)
     {
-        var name = "";
-        for (var i = 1; i <= prototype.PartCount; i++)
+        var parts = new List<string>();
+        for (var index = 1; index <= prototype.PartCount; index++)
         {
-            var i1 = i;
-            var parts = prototype.Parts
-                .Where(p => i1 >= p.Min)
-                .Where(p => i1 <= p.Max)
+            var partIndex = index;
+            var candidates = prototype.Parts
+                .Where(part => partIndex >= part.Min && partIndex <= part.Max)
                 .ToArray();
-
-            var part = random.Pick(parts);
-            name += part.Text;
-            name += prototype.Split;
+            parts.Add(random.Pick(candidates).Text);
         }
 
-        return name;
+        return string.Join(prototype.Split, parts);
     }
-
-    public override int GetHashCode()
-    {
-        return Id.GetHashCode();
-    }
-
-    public bool Equals(Guild? obj)
-    {
-        if (obj == null)
-            return false;
-
-        return Id == obj.Id;
-    }
-
-    public Guild Clone()
-    {
-        return new Guild(Id, Name, TypePrototype, IconPath, Items.Select(x => x with { }).ToList())
-        {
-            Reputation = new Dictionary<NetEntity, float>(Reputation)
-        };
-    }
-
-    public Guild CloneWithoutItems()
-    {
-        return new Guild(Id, Name, TypePrototype, IconPath)
-        {
-            Reputation = new Dictionary<NetEntity, float>(Reputation)
-        };
-    }
-
 }

@@ -20,10 +20,13 @@ public abstract partial class SharedMedievalMagicSystem
     private void OnEntityAimingSpellCast(MedievalEntityAimingSpellEvent args)
     {
         if (args.Handled) return;
-        if (!PassesSpellPrerequisites(args.Action, args.Performer, args.Target)) return;
+        var isContinuation = TryComp<MedievalSpellCasterComponent>(args.Performer, out var caster) &&
+                             caster.TargetStack.ContainsKey(args.Action);
+        if (!PassesSpellPrerequisites(args.Action, args.Performer, args.Target, isContinuation)) return;
 
         args.Handled = true;
         AddToStack(args.Performer, args.SpeechPoints);
+        var casterComponent = EnsureComp<MedievalSpellCasterComponent>(args.Performer);
 
         if (args.SpellCastDoAfter == null)
         {
@@ -32,7 +35,6 @@ public abstract partial class SharedMedievalMagicSystem
             return;
         }
 
-        var casterComponent = EnsureComp<MedievalSpellCasterComponent>(args.Performer);
         var speedModifier = args.SpellCastDoAfter.SpeedModifier;
 
         casterComponent.SpeedModifiers.Add(speedModifier);
@@ -49,9 +51,12 @@ public abstract partial class SharedMedievalMagicSystem
         );
 
         args.SpellCastDoAfter.CopyToDoAfter(ref doAfterArgs);
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
-
-        _speedModifierSystem.RefreshMovementSpeedModifiers(args.Performer);
+        TryStartSpellDoAfter(
+            args.Performer,
+            args.Action,
+            casterComponent,
+            speedModifier,
+            doAfterArgs);
     }
 
     #region Helpers

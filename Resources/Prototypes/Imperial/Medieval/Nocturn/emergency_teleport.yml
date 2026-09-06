@@ -1,0 +1,15 @@
+- type: entity
+  id: MedievalAncientNocturneEmergencyTeleportAction
+  name: Emergency teleport
+  description: After a short cast, teleports you to your blood ruby. Cost 15 blood units.
+  components:
+  - type: NocturnBloodDrainSpell
+    bloodDrain: 15
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Nocturn/BloodRuby/blood_ruby.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:AncientNocturneEmergencyTeleportActionEvent

@@ -1,0 +1,67 @@
+# Begginer
+
+- type: imperialListing
+  id: MedievalSpellSeedlingsBeginner
+  name: medieval-store-spells-earth-seedlings-beginner-name
+  description: medieval-store-spells-earth-seedlings-beginner-desc
+  productAction: MedievalActionSeedlingsBeginner
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellSeedlingsMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Tree/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalEarth: 10
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellSeedlingsMiddle
+  name: medieval-store-spells-earth-seedlings-middle-name
+  description: medieval-store-spells-earth-seedlings-middle-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellSeedlingsSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Tree/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalEarth: 30
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSeedlingsBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellSeedlingsSenior
+  name: medieval-store-spells-earth-seedlings-senior-name
+  description: medieval-store-spells-earth-seedlings-senior-desc 
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellSeedlingsSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Tree/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalEarth: 60
+    ArchmagePoints: 1
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSeedlingsMiddle

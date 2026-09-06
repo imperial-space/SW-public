@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseItem
+  id: MedievalInquisitorMedallion
+  components:
+  - type: MedievalInquisitorMedallion
+  - type: UseDelay
+    delay: 600
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/inquisitor_medallion.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: Imperial/Medieval/Clothing/Medaljons/inquisitor_medallion.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Medaljons/inquisitor_medallion.rsi
+    slots:
+    - ears
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.7
+        Radiation: 0.7
+        Bloodloss: 0.7
+
+- type: entity
+  parent: MedievalPaper
+  id: MedievalInquisitionOrder
+  components:
+  - type: Paper
+    content: medieval-inquisition-order-text
+    stampState: paper_stamp-syndicate
+    stampedBy:
+    - stampedName: medieval-inquisition-senior-stamp
+      stampedColor: "#ff0000"
+    editingDisabled: true

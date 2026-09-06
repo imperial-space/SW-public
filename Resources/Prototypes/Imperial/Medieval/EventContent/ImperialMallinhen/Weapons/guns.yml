@@ -244,3 +244,147 @@
     state: buckshot
   - type: TimedDespawn
     lifetime: 0.5
+
+- type: entity
+  id: MedievalPowderCartridgeHeavy
+  parent: BaseCartridgeCaselessRifle
+  components:
+  - type: Tag
+    tags:
+      - CartridgeMagnum
+  - type: CartridgeAmmo
+    proto: MedievalBulletHeavy
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/ammo.rsi
+    layers:
+      - state: paper_patron_pistol
+        map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: MedievalBulletHeavy
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 38
+        Heat: 5
+        Bloodloss: 10
+    soundHit:
+      collection: MeatBulletImpact
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: TimedDespawn
+    lifetime: 1
+  - type: StaminaDamageOnCollide
+    damage: 10
+
+- type: Tag
+  id: MedievalBullet
+
+- type: entity
+  parent: BaseWeaponSniper
+  id: MedievalPistole1
+  name: medieval pistol
+  components:
+  - type: RDWeight
+    value: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/pistole1.rsi
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Weapons/gun/pistole1.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.6
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/Event/fire3.ogg
+    minAngle: 8
+    maxAngle: 8
+  - type: BallisticAmmoProvider
+    capacity: 1
+    proto: MedievalPowderCartridgeHeavy
+  - type: MedievalGun
+    loadTime: 1.5
+    loadSound:
+      path: /Audio/Imperial/Medieval/Cannon/ramrod_action.ogg
+    ramrodTime: 6
+    ammoWhitelist:
+      tags:
+      - MedievalBullet
+
+- type: entity
+  parent: BaseWeaponSniper
+  id: MedievalPistole2
+  name: medieval pistol
+  components:
+  - type: RDWeight
+    value: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/pistole2.rsi
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Weapons/gun/pistole2.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.6
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/Event/fire3.ogg
+    minAngle: 10
+    maxAngle: 10
+  - type: BallisticAmmoProvider
+    capacity: 2
+    proto: MedievalPowderCartridgeHeavy
+  - type: MedievalGun
+    loadTime: 1.5
+    loadSound:
+      path: /Audio/Imperial/Medieval/Cannon/ramrod_action.ogg
+    ramrodTime: 6
+    ammoWhitelist:
+      tags:
+      - MedievalBullet
+
+- type: entity
+  id: MedievalPaperBullet
+  name: paper cartridge
+  parent: BaseItem
+  components:
+  - type: RDWeight
+    value: 0.1
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/bullet.rsi
+    state: bullet
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - MedievalBullet
+
+- type: entity
+  id: MedievalGunRamrod
+  name: ramrod
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/ramrod.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: MedievalGunRamrod
+    actionSound:
+      path: /Audio/Imperial/Medieval/Event/ramrod.ogg

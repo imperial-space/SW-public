@@ -1,4 +1,5 @@
 using Content.Shared.Explosion.EntitySystems;
+using Content.Shared.Projectiles;
 using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
@@ -25,7 +26,7 @@ public sealed class ExplodeOnTriggerSystem : EntitySystem
         if (target == null)
             return;
 
-        _explosion.TriggerExplosive(target.Value, user: args.User);
+        _explosion.TriggerExplosive(target.Value, user: GetTriggerUser(ent.Owner, args.User));
         args.Handled = true;
     }
 
@@ -48,7 +49,15 @@ public sealed class ExplodeOnTriggerSystem : EntitySystem
                                     comp.TileBreakScale,
                                     comp.MaxTileBreak,
                                     comp.CanCreateVacuum,
-                                    args.User);
+                                    GetTriggerUser(uid, args.User));
         args.Handled = true;
+    }
+
+    private EntityUid? GetTriggerUser(EntityUid uid, EntityUid? user)
+    {
+        if (TryComp<ProjectileComponent>(uid, out var projectile) && projectile.Shooter != null)
+            return projectile.Shooter;
+
+        return user;
     }
 }

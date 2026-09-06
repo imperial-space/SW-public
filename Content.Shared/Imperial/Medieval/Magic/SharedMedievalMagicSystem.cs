@@ -65,24 +65,14 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
 
         if (args.Cancelled)
         {
-            RaiseLocalEvent(GetEntity(spellData.Action), new MedievalFailCastSpellEvent()
-            {
-                Action = GetEntity(spellData.Action),
-                Performer = uid
-            });
-
+            RaiseSpellCastFailed(GetEntity(spellData.Action), uid);
             return;
         }
 
         if (_handsSystem.TryGetEmptyHand(args.User, out _) == false)
         {
             _popupSystem.PopupClient(Loc.GetString("medieval-magic-free-hand-required"), args.User);
-            RaiseLocalEvent(GetEntity(spellData.Action), new MedievalFailCastSpellEvent()
-            {
-                Action = GetEntity(spellData.Action),
-                Performer = uid
-            });
-
+            RaiseSpellCastFailed(GetEntity(spellData.Action), uid);
             return;
         }
 
@@ -112,16 +102,59 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
     protected bool PassesSpellPrerequisites(
         EntityUid spell,
         EntityUid performer,
-        EntityCoordinates target
-    )
+        EntityCoordinates target,
+        bool isContinuation = false)
     {
-        if (_handsSystem.TryGetEmptyHand(performer, out _) == false)
-            return false;
-
-        var ev = new MedievalBeforeCastSpellEvent(performer, target);
+        var ev = new MedievalBeforeCastSpellEvent(performer, target)
+        {
+            IsContinuation = isContinuation
+        };
         RaiseLocalEvent(spell, ref ev);
 
-        return !ev.Cancelled;
+        if (ev.Cancelled ||
+            _handsSystem.TryGetEmptyHand(performer, out _) == false)
+        {
+            if (ev.HasResourceReservation)
+                RaiseSpellCastFailed(spell, performer);
+            return false;
+        }
+
+        return true;
+    }
+
+    protected void RaiseSpellCastFailed(EntityUid action, EntityUid performer)
+    {
+        if (TryComp<MedievalSpellCasterComponent>(performer, out var caster))
+        {
+            caster.TargetStack.Remove(action);
+            caster.SpellStack.Remove(action);
+        }
+
+        RaiseLocalEvent(action, new MedievalFailCastSpellEvent
+        {
+            Action = action,
+            Performer = performer
+        });
+    }
+
+    protected bool TryStartSpellDoAfter(
+        EntityUid performer,
+        EntityUid action,
+        MedievalSpellCasterComponent caster,
+        float speedModifier,
+        DoAfterArgs doAfterArgs)
+    {
+        if (_doAfterSystem.TryStartDoAfter(doAfterArgs))
+        {
+            _speedModifierSystem.RefreshMovementSpeedModifiers(performer);
+            return true;
+        }
+
+        caster.SpeedModifiers.Remove(speedModifier);
+        Dirty(performer, caster);
+        _speedModifierSystem.RefreshMovementSpeedModifiers(performer);
+        RaiseSpellCastFailed(action, performer);
+        return false;
     }
 
     protected MedievalSpellData GetSpellData(MedievalSpellDoAfterEvent ev)

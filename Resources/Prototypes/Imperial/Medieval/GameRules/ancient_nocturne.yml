@@ -1,0 +1,155 @@
+- type: entity
+  parent: BaseGameRule
+  id: MedievalAncientNocturneSpawnRule
+  components:
+  - type: GameRule
+  - type: AncientNocturneSpawnRule
+    spawnCount: 3
+    spawnerPrototype: MedievalAncientNocturneGhostRoleSpawner
+    inquisitionDelay: 600
+    inquisitionLeaderSpawnerPrototype: MedievalHellfireInquisitionLeaderGhostRoleSpawner
+    inquisitionKnightSpawnerPrototype: MedievalHellfireInquisitionKnightGhostRoleSpawner
+    inquisitionChaplainSpawnerPrototype: MedievalHellfireInquisitionChaplainGhostRoleSpawner
+    inquisitionKnightCount: 4
+    inquisitionSpawnOffset: 1
+
+- type: ghostRoleRaffleSettings
+  id: MedievalAncientNocturneRaffle
+  settings:
+    initialDuration: 30
+    joinExtendsDurationBy: 0
+    maxDuration: 30
+
+- type: entity
+  parent: MarkerBase
+  id: MedievalAncientNocturneSpawnMarker
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: AncientNocturneSpawnMarker
+
+- type: entity
+  parent: MarkerBase
+  id: MedievalAncientNocturneGhostRoleSpawner
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ancient-nocturne-name
+    description: ghost-role-information-ancient-nocturne-description
+    rules: ghost-role-information-ancient-nocturne-rules
+    mindRoles:
+    - MindRoleAncientNocturne
+    raffle:
+      settings: MedievalAncientNocturneRaffle
+  - type: GhostRoleMobSpawner
+    prototype: MobAncientDrou
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
+    layers:
+    - state: green
+    - state: cburn
+
+- type: ghostRoleRaffleSettings
+  id: MedievalHellfireInquisitionRaffle
+  settings:
+    initialDuration: 30
+    joinExtendsDurationBy: 0
+    maxDuration: 30
+
+- type: entity
+  parent: MarkerBase
+  id: MedievalHellfireInquisitionSpawnMarker
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: HellfireInquisitionSpawnMarker
+
+- type: entity
+  parent: MarkerBase
+  id: MedievalHellfireInquisitionLeaderGhostRoleSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GhostRole
+    name: ghost-role-information-hellfire-inquisition-leader-name
+    description: ghost-role-information-hellfire-inquisition-leader-description
+    rules: ghost-role-information-hellfire-inquisition-rules
+    raffle:
+      settings: MedievalHellfireInquisitionRaffle
+  - type: GhostRoleMobSpawner
+    prototype: MedievalHellfireInquisitionLeader
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
+    layers:
+    - state: green
+    - state: cburn
+
+- type: entity
+  parent: MarkerBase
+  id: MedievalHellfireInquisitionKnightGhostRoleSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GhostRole
+    name: ghost-role-information-hellfire-inquisition-knight-name
+    description: ghost-role-information-hellfire-inquisition-knight-description
+    rules: ghost-role-information-hellfire-inquisition-rules
+    raffle:
+      settings: MedievalHellfireInquisitionRaffle
+  - type: GhostRoleMobSpawner
+    prototype: MedievalHellfireInquisitionKnight
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
+    layers:
+    - state: green
+    - state: cburn
+
+- type: entity
+  parent: MarkerBase
+  id: MedievalHellfireInquisitionChaplainGhostRoleSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GhostRole
+    name: ghost-role-information-hellfire-inquisition-chaplain-name
+    description: ghost-role-information-hellfire-inquisition-chaplain-description
+    rules: ghost-role-information-hellfire-inquisition-rules
+    raffle:
+      settings: MedievalHellfireInquisitionRaffle
+  - type: GhostRoleMobSpawner
+    prototype: MedievalHellfireInquisitionChaplain
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
+    layers:
+    - state: green
+    - state: cburn
+
+- type: entity
+  parent: MobHuman
+  id: MedievalHellfireInquisitionKnight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HellfireInquisitionMember
+  - type: Loadout
+    prototypes: [ RPGMedievalFlame ]
+  - type: OneHandedLargeSlashSkill
+
+- type: entity
+  parent: MobHuman
+  id: MedievalHellfireInquisitionLeader
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HellfireInquisitionMember
+  - type: Loadout
+    prototypes: [ RPGMedievalFlameLeader ]
+  - type: TwoHandedSkill
+
+- type: entity
+  parent: MobHuman
+  id: MedievalHellfireInquisitionChaplain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HellfireInquisitionMember
+  - type: Loadout
+    prototypes: [ RPGMedievalFlameChaplain ]
+  - type: BibleUser

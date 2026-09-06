@@ -1,68 +1,70 @@
-﻿<DefaultWindow
+<DefaultWindow
     xmlns="https://spacestation14.io"
-    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-    Title="{Loc 'store-ui-default-title'}"
-    MinSize="512 512"
-    SetSize="863 712">
-    <BoxContainer Name="GuildTab" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
-        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-            <GridContainer HorizontalAlignment="Center" Columns="3" HorizontalExpand="True" VerticalExpand="True" Name="ControlContainer"/>
-        </ScrollContainer>
-    </BoxContainer>
-
-    <BoxContainer Name="TradingTab" Visible="False" Orientation="Vertical">
-        <BoxContainer Orientation="Vertical" VerticalExpand="True">
-            <BoxContainer Margin="4,4,4,4" Orientation="Horizontal">
-                <Button
-                    Name="BackButton"
-                    MinWidth="64"
-                    HorizontalAlignment="Right"
-                    Text="{Loc 'store-ui-back-button-text'}"
-                    Margin="0 0 5 0"/>
-                <RichTextLabel
-                    Name="BalanceInfo"
-                    HorizontalAlignment="Left"
-                    Access="Public"
-                    HorizontalExpand="True" />
-                <Button
-                    Name="WithdrawButton"
-                    MinWidth="64"
-                    HorizontalAlignment="Right"
-                    Text="{Loc 'store-ui-default-withdraw-text'}" />
-            </BoxContainer>
-            <LineEdit Name="SearchBar" Margin="4" PlaceHolder="Search" HorizontalExpand="True"/>
-                <PanelContainer VerticalExpand="True">
-                <PanelContainer.PanelOverride>
-                    <gfx:StyleBoxFlat BackgroundColor="#000000FF" />
-                </PanelContainer.PanelOverride>
-                <BoxContainer Orientation="Horizontal" VerticalExpand="True">
-                    <ScrollContainer
-                        Name="TradingItemsScroll"
-                        HScrollEnabled="False"
-                        HorizontalExpand="True"
-                        MinSize="100 256"
-                        SizeFlagsStretchRatio="2"
-                        VerticalExpand="True">
-                        <BoxContainer
-                            Name="TradingItemsContainer"
-                            MinSize="100 256"
-                            Orientation="Vertical"
-                            SizeFlagsStretchRatio="2"
-                            VerticalExpand="True">
-                            <!--  Listings are added here by code  -->
-                        </BoxContainer>
+    Title="{Loc trading-ui-window-title}"
+    MinSize="940 620"
+    SetSize="1160 760">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="6">
+        <BoxContainer Name="BalancePanel" Orientation="Horizontal" Margin="0 0 0 6" Visible="False">
+            <RichTextLabel Name="BalanceInfo" HorizontalExpand="True" />
+            <Button Name="HelpButton" Text="{Loc trading-ui-help-button}" MinWidth="100" Margin="0 0 6 0" />
+            <Button Name="WithdrawButton" Text="{Loc trading-ui-withdraw-button}" MinWidth="140" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 6">
+            <Button Name="CommonButton" Text="{Loc trading-ui-common-button}" MinWidth="140" Visible="False" />
+            <Button Name="UniqueButton" Text="{Loc trading-ui-unique-button}" MinWidth="140" Margin="6 0 0 0" />
+            <Button Name="ManagementButton" Text="{Loc trading-ui-management-button}" MinWidth="210" Margin="6 0 0 0" Visible="False" />
+            <Button Name="ArchiveButton" Text="{Loc trading-ui-archive-button}" MinWidth="140" Margin="6 0 0 0" Visible="False" />
+        </BoxContainer>
+        <LineEdit Name="SearchBar" PlaceHolder="{Loc trading-ui-market-search-placeholder}" HorizontalExpand="True" Margin="0 0 0 6" />
+        <BoxContainer Name="MarketView" Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
+            <PanelContainer Name="CategoryPanel" MinWidth="160" Margin="0 0 6 0">
+                <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                    <BoxContainer Name="CategoryContainer" Orientation="Vertical" HorizontalExpand="True" />
+                </ScrollContainer>
+            </PanelContainer>
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" Margin="0 0 6 0">
+                <GridContainer Name="ItemsGrid" Columns="3" HorizontalExpand="True" />
+            </ScrollContainer>
+            <PanelContainer MinWidth="350" MaxWidth="430">
+                <BoxContainer Orientation="Vertical" Margin="8" VerticalExpand="True">
+                    <Label Name="SelectedName" Text="{Loc trading-ui-select-item}" HorizontalExpand="True" />
+                    <PanelContainer Name="SelectedPreview" MinSize="96 96" Margin="0 6" />
+                    <RichTextLabel Name="SelectedStats" MinHeight="28" />
+                    <BoxContainer Name="BuyOrderPanel" Orientation="Horizontal" Margin="0 4" Visible="False">
+                        <LineEdit Name="BuyPrice" PlaceHolder="{Loc trading-ui-buy-price-placeholder}" HorizontalExpand="True" />
+                        <Button Name="CreateBuyOrderButton" Text="{Loc trading-ui-create-buy-order-button}" MinWidth="76" Margin="4 0 0 0" />
+                    </BoxContainer>
+                    <Label Name="MarketOffersTitle" Text="{Loc trading-ui-market-offers-title}" Margin="0 4" />
+                    <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                        <BoxContainer Name="OffersContainer" Orientation="Vertical" HorizontalExpand="True" />
                     </ScrollContainer>
                 </BoxContainer>
             </PanelContainer>
         </BoxContainer>
-
-        <BoxContainer Orientation="Vertical" Name="Footer">
-            <PanelContainer StyleClasses="LowDivider"/>
-            <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom" HorizontalExpand="True">
-                <Label HorizontalExpand="False" HorizontalAlignment="Left" Name="ReputationLabel"/>
-                <Label HorizontalExpand="True" HorizontalAlignment="Left" Name="ReputationDiscoundLabel" Margin="5 0 0 0 " Text="" FontColorOverride="#00FF00"/>
-                <Button HorizontalAlignment="Right" Name="ReputationLeaderboardButton" Text="{Loc 'trading-ui-reputation-leaderboard'}"/>
+        <ScrollContainer Name="ManagementView" HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" Visible="False">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Text="{Loc trading-ui-active-offers-title}" Margin="4" />
+                <BoxContainer Name="ManagedOffersContainer" Orientation="Vertical" HorizontalExpand="True" />
+                <Label Text="{Loc trading-ui-pending-sales-title}" Margin="4 12 4 4" />
+                <BoxContainer Name="PendingSalesContainer" Orientation="Vertical" HorizontalExpand="True" />
+                <Label Text="{Loc trading-ui-stored-items-title}" Margin="4 12 4 4" />
+                <BoxContainer Name="StoredItemsContainer" Orientation="Vertical" HorizontalExpand="True" />
             </BoxContainer>
-        </BoxContainer>
+        </ScrollContainer>
+        <ScrollContainer Name="ArchiveView" HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" Visible="False">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Text="{Loc trading-ui-archive-title}" Margin="4" />
+                <BoxContainer Name="ArchiveContainer" Orientation="Vertical" HorizontalExpand="True" />
+            </BoxContainer>
+        </ScrollContainer>
+        <PanelContainer Name="OfferCreationPanel" Margin="0 6 0 0" Visible="False">
+            <BoxContainer Orientation="Horizontal" Margin="6">
+                <RichTextLabel Name="HeldItemName" Text="{Loc trading-ui-held-item-none}" VerticalAlignment="Center" MinSize="260 42" SetSize="260 42" RectClipContent="True" Margin="0 0 6 0" />
+                <LineEdit Name="HeldPrice" PlaceHolder="{Loc trading-ui-price-placeholder}" HorizontalExpand="True" MinWidth="130" />
+                <Button Name="CreateSellOfferButton" Text="{Loc trading-ui-create-sell-offer-button}" MinWidth="130" />
+                <Button Name="CreateUnitSellOfferButton" Text="{Loc trading-ui-create-unit-sell-offer-button}" MinWidth="185" Margin="6 0 0 0" />
+                <Button Name="CreateHeldBuyOrderButton" Text="{Loc trading-ui-create-sample-order-button}" MinWidth="190" Margin="6 0 0 0" />
+            </BoxContainer>
+        </PanelContainer>
     </BoxContainer>
 </DefaultWindow>

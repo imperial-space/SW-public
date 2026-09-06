@@ -9,4 +9,6 @@ public sealed class MedievalAfterCastSpellEvent : EntityEventArgs
     public EntityUid Performer;
 
     public EntityUid Action;
+
+    public bool ShowManaPopup = true;
 }

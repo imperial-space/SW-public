@@ -136,9 +136,9 @@ namespace Content.Server.Nocturn
 
                     comp.EndTime = comp.StartTime + TimeSpan.FromSeconds(1f);
 
-                    if (comp.BloodLevel > 400f)
+                    if (comp.BloodLevel > comp.MaximumBloodLevel)
                     {
-                        comp.BloodLevel = 400f;
+                        comp.BloodLevel = comp.MaximumBloodLevel;
                     }
 
                     if (comp.BloodLevel >= 200f && TryComp<DamageableComponent>(comp.Owner, out var damageable) && damageable.TotalDamage < 61f && damageable.TotalDamage > 5f)
@@ -242,6 +242,9 @@ namespace Content.Server.Nocturn
         }
         public void OnNocturnDrinkAction(EntityUid uid, NocturnComponent component, NocturnDrinkActionEvent args)
         {
+            if (args.Handled)
+                return;
+
             IngestionBlockerComponent? blocker;
 
             if (_inventory.TryGetSlotEntity(uid, "mask", out var maskUid) &&
@@ -421,6 +424,9 @@ namespace Content.Server.Nocturn
 
         private void ApplyDisguise(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
         {
+            if (component.IsDisguised)
+                return;
+
             appearance.Species = "Human";
             component.BloodDrainPerSecond *= 1.3f;
             component.BloodLevel -= 10;
@@ -435,9 +441,12 @@ namespace Content.Server.Nocturn
             }
         }
 
-        private void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
+        public void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
         {
-            appearance.Species = "Drou";
+            if (!component.IsDisguised)
+                return;
+
+            appearance.Species = component.UnmaskedSpecies;
             component.BloodDrainPerSecond /= 1.3f;
 
             component.IsDisguised = false;

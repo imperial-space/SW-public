@@ -14,9 +14,6 @@
   - type: Currency
     price:
       Revent: 90
-  - type: MedievalCurrency
-    price:
-      Revent: 90
 
 - type: entity
   id: MedievalReliefStoneStrong
@@ -34,9 +31,6 @@
   - type: Currency
     price:
       Revent: 180
-  - type: MedievalCurrency
-    price:
-      Revent: 180
 
 - type: entity
   id: MedievalAntiGravitationStone
@@ -52,9 +46,6 @@
   - type: RDWeight
     value: -25
   - type: Currency
-    price:
-      Revent: 350
-  - type: MedievalCurrency
     price:
       Revent: 350
 

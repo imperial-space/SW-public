@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionConfigureGhostSkills
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/Imperial/Medieval/Interface/Skills/intelligence.rsi
+      state: good
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:OpenGhostSkillsActionEvent

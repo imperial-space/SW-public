@@ -162,33 +162,33 @@
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
       connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
-    right arm:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+    right_arm:
       part: RightArmDrou
       connections:
-      - right hand
-    left arm:
+      - right_hand
+    left_arm:
       part: LeftArmDrou
       connections:
-      - left hand
-    right hand:
+      - left_hand
+    right_hand:
       part: RightHandDrou
-    left hand:
+    left_hand:
       part: LeftHandDrou
-    right leg:
+    right_leg:
       part: RightLegDrou
       connections:
-      - right foot
-    left leg:
+      - right_foot
+    left_leg:
       part: LeftLegDrou
       connections:
-      - left foot
-    right foot:
+      - left_foot
+    right_foot:
       part: RightFootDrou
-    left foot:
+    left_foot:
       part: LeftFootDrou
 
 # 3
@@ -285,10 +285,10 @@
     thresholds:
       0: Alive
       95: Critical
-      180: Dead
+      190: Dead
   - type: Mana
     maxManaRaceModifier: 0.95
-    regenRaceModifier: 0.95
+    regenRaceModifier: 0.97
   - type: Nocturn
   - type: LocalLight
     energy: 0.4
@@ -335,6 +335,65 @@
   defaultSkinTone: "#999ec2"
   markingLimits: MobDrouMarkingLimits
   dollPrototype: MobDrouDummy
+  skinColoration: TintedHues
+  maleFirstNames: NamesReptilianMale
+  femaleFirstNames: NamesReptilianFemale
+  naming: FirstDashFirst
+
+- type: entity
+  id: MobAncientDrou
+  parent: MobDrou
+  name: Древний ноктюрн
+  components:
+  - type: HumanoidAppearance
+    species: AncientDrou
+  - type: LocalLight
+    radius: 6
+  - type: Loadout
+    prototypes:
+    - MedievalAncientNocturneGear
+  - type: ActionGrant
+    actions:
+    - MedievalAncientNocturneBloodArrowAction
+    - MedievalAncientNocturneBatAction
+    - MedievalAncientNocturneHypnosisAction
+    - MedievalAncientNocturneEmergencyTeleportAction
+    - MedievalAncientNocturneConversionAction
+  - type: AncientNocturne
+  - type: Nocturn
+    unmaskedSpecies: AncientDrou
+  - type: MedievalSpecialDamageReceiver
+    targetType: Werewolf
+  - type: BloodRubyOwner
+  - type: AncientNocturneMindConnection
+
+- type: startingGear
+  id: MedievalAncientNocturneGear
+  equipment:
+    jumpsuit: MedievalClothingUniformAncientNocturneFrockCoat
+    shoes: MedievalClothingShoesAncientNocturneBoots
+    neck: MedievalClothingNeckAncientNocturneCloak
+    back: MedievalClothingBackpackSatchelLeather
+  storage:
+    back:
+    - MedievalBloodRuby
+
+- type: entity
+  id: MobAncientDrouDummy
+  parent: MobDrouDummy
+  components:
+  - type: HumanoidAppearance
+    species: AncientDrou
+
+- type: species
+  id: AncientDrou
+  name: species-name-ancient-nocturne
+  roundStart: false
+  prototype: MobAncientDrou
+  sprites: MobDrouSprites
+  defaultSkinTone: "#999ec2"
+  markingLimits: MobDrouMarkingLimits
+  dollPrototype: MobAncientDrouDummy
   skinColoration: TintedHues
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale

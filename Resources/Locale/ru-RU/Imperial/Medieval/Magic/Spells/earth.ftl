@@ -54,6 +54,19 @@ medieval-store-spells-earth-stone-ridge-beginner-desc = Создаёт в слу
 medieval-store-spells-earth-stone-ridge-middle-name = Каменная гряда
 medieval-store-spells-earth-stone-ridge-middle-desc = Создаёт в случайном месте, относительно указанного, 10 камней.
 
+# Tree
+
+medieval-spell-speach-seedlings = B̸l̵e̶s̷s̵i̴n̴g̶ ̴o̴f̶ ̷t̴h̴e̴ ̴F̵o̷r̵e̵s̸t̴
+
+medieval-store-spells-earth-seedlings-beginner-name = Дерево.
+medieval-store-spells-earth-seedlings-beginner-desc = Создайте в указанном месте дерево 
+
+medieval-store-spells-earth-seedlings-middle-name = Небольшой лесок.
+medieval-store-spells-earth-seedlings-middle-desc = Создаёт в указаном месте небольшой лес 
+
+medieval-store-spells-earth-seedlings-senior-name = Большой лесок.
+medieval-store-spells-earth-seedlings-senior-desc = Создаёт в указаном месте великий лес!
+
 # Obelisk
 
 medieval-spell-speach-obelisk = P̮͍y̖̜r̬ͫa̮̲ͅm̞ͅì͔s͎̙̮ A͖̹̅r̦̈c̸ͩa̛̻̪n͐um̸̫

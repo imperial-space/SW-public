@@ -1,0 +1,169 @@
+- type: entity
+  id: MedievalBaseTreeNoRoots
+  description: Yep, it's a tree.
+  abstract: true
+  components:
+  - type: CP14WaveShader
+    speed: 1
+    dis: 6.5
+  - type: SpriteFade
+  - type: Clickable
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Decoration/Flora/flora_trees.rsi
+    drawdepth: Overdoors
+    offset: 0,0.9
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.4,0.35,0.4"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg # imperial medieval
+        params:
+          variation: 0.05
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalGrass:
+            min: 1
+            max: 2
+
+- type: entity
+  parent: MedievalBaseTreeNoRoots
+  id: MedievalBaseTreeLargeNoRoots
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/flora_treeslarge.rsi
+    offset: 0,1.55
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.18,-0.35,0.18,0.35"
+        density: 2000
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: MedievalBaseTreeNoRoots
+  id: FloraTreeNoRoots
+  name: tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+        tree05: ""
+        tree06: ""
+
+- type: entity
+  parent: MedievalBaseTreeLargeNoRoots
+  id: FloraTreeLargeNoRoots
+  name: tree
+  components:
+  - type: Sprite
+    layers:
+    - state: treelarge01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        treelarge01: ""
+        treelarge02: ""
+        treelarge03: ""
+        treelarge04: ""
+        treelarge05: ""
+        treelarge06: ""
+
+- type: entity
+  id: RandomFloraTreeNoRoots
+  name: random tree spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Decoration/Flora/flora_trees.rsi
+        state: tree01
+  - type: RandomSpawner
+    prototypes:
+    - FloraTreeLargeNoRoots
+    - FloraTreeNoRoots
+
+# Beginner
+
+- type: entity
+  id: MedievalSeedlingsBeginner
+  components:
+  - type: TriggerOnSpawn
+  - type: RandomOffsetSpawn
+    spawnedEntityID: RandomFloraTreeNoRoots
+    radius: 1
+    quantity: 1
+
+# Middle
+
+- type: entity
+  id: MedievalSeedlingsMiddle
+  components:
+  - type: TriggerOnSpawn
+  - type: RandomOffsetSpawn
+    spawnedEntityID: RandomFloraTreeNoRoots
+    radius: 6
+    quantity: 4
+
+# Senior
+
+- type: entity
+  id: MedievalSeedlingsSenior
+  components:
+  - type: TriggerOnSpawn
+  - type: RandomOffsetSpawn
+    spawnedEntityID: RandomFloraTreeNoRoots
+    radius: 10
+    quantity: 7

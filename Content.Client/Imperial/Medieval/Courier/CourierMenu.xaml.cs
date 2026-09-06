@@ -67,7 +67,7 @@ public sealed partial class CourierMenu : DefaultWindow
         for (var i = 0; i < offers.Count; i++)
         {
             var offer = offers[i];
-            var canBuy = balance >= offer.BalanceCost &&
+            var canBuy = (offer.BalanceCost <= 0 || balance >= offer.BalanceCost) &&
                          deliveryPoints >= offer.DeliveryPointsCost &&
                          freeMailsCount >= offer.FreeMailsCost;
 

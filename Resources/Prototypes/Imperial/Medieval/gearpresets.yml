@@ -214,13 +214,38 @@
 - type: startingGear
   id: RPGMedievalFlame
   equipment:
-    shoes: MedievalShoesSapogi
-    outerClothing: MedievalClothingOuterArmorLeatherLight
+    shoes: MedievalClothingFeetSteel
+    head: MedievalClothingHeadHelmetHoly
+    outerClothing: MedievalClothingOuterArmorUpIron3
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
     back: MedievalClothingBackpackSatchelLeather
     pocket1: MedievalRevent100
     neck: MedievalClothingNeckCloakClanFlame
-    belt: MedievalFalshionT3
+    suitstorage: MedievalFalshionT3Silver
+    ears: MedievalInquisitorMedallion
+  storage:
+    back:
+    - MedievalDaggerT3Silver
+    - FoodGarlic
+    - FoodGarlic
+    - MedievalFlowerBlood
+    - MedievalFlowerBlood
+    - MedievalRepairStone
+    - Gauze1
+    - MedievalInquisitionOrder
+
+- type: startingGear
+  id: RPGMedievalFlameLeader
+  parent: RPGMedievalFlame
+  equipment:
+    neck: MedievalClothingNeckCloakInqVeteran
+    suitstorage: MedievalIronClaymoreSilver
+
+- type: startingGear
+  id: RPGMedievalFlameChaplain
+  parent: RPGMedievalFlame
+  equipment:
+    pocket2: Bible
 
 - type: startingGear
   id: RPGMedievalEagle

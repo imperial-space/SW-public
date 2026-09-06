@@ -74,6 +74,7 @@
       - entity_storage
   - type: TimedDespawn
     lifetime: 600
+  - type: PreserveContentsOnTimedDespawn
 
 - type: entity
   name: Empty Crate Spawner

@@ -10,6 +10,7 @@
     state: icon
   - type: Item
     sprite: Imperial/Medieval/Misc/magic_book.rsi
+  - type: Undrowable
   - type: UserInterface
     interfaces:
       enum.ImperialStoreUiKey.Key:

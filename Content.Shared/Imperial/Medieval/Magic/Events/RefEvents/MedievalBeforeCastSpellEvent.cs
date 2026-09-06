@@ -16,5 +16,9 @@ public struct MedievalBeforeCastSpellEvent(EntityUid performer, EntityCoordinate
 
     public EntityCoordinates Target = target;
 
+    public bool IsContinuation;
+
+    public bool HasResourceReservation;
+
     public bool Cancelled;
 }

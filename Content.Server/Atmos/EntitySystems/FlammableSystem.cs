@@ -128,8 +128,12 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
             }
 
+            EntityUid? user = null;
+            if (TryComp<ProjectileComponent>(uid, out var projectile))
+                user = projectile.Shooter;
+
             flammable.FireStacks += component.FireStacks;
-            Ignite(otherEnt, uid, flammable);
+            Ignite(otherEnt, uid, flammable, user);
             component.Count--;
 
             if (component.Count == 0)

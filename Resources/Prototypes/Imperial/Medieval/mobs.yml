@@ -4349,7 +4349,8 @@
           radius: 0.8
         density: 50
         mask:
-        - MobMask
+        - Impassable
+        - HighImpassable
         layer:
         - MobLayer
   - type: Appearance
@@ -4366,7 +4367,7 @@
       groups:
         Brute: 56
       types:
-        ParryAble: 1
+        ParryAble: 1.5
         Caustic: 1
         Bloodloss: 3
   - type: Puller
@@ -4441,6 +4442,11 @@
     excess: 150
   - type: StaminaDamageOnHit
     damage: 28
+  - type: DamageOnContact
+    damage:
+      types:
+        Structural: 250
+
 
 - type: entity
   id: MedievalElementalAir

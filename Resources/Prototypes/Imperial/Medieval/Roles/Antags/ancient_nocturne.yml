@@ -1,0 +1,15 @@
+- type: antag
+  id: AncientNocturne
+  name: roles-antag-ancient-nocturne-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-ancient-nocturne-objective
+
+- type: entity
+  parent: MindRoleGhostRoleSoloAntagonist
+  id: MindRoleAncientNocturne
+  name: Ancient Nocturne Role
+  components:
+  - type: MindRole
+    antagPrototype: AncientNocturne
+    exclusiveAntag: true

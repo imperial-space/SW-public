@@ -1,4 +1,5 @@
 using Content.Shared.Flash;
+using Content.Shared.Projectiles;
 using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
@@ -24,7 +25,11 @@ public sealed class FlashOnTriggerSystem : EntitySystem
         if (target == null)
             return;
 
-        _flash.FlashArea(target.Value, args.User, ent.Comp.Range, ent.Comp.Duration, probability: ent.Comp.Probability);
+        var user = args.User;
+        if (TryComp<ProjectileComponent>(ent.Owner, out var projectile) && projectile.Shooter != null)
+            user = projectile.Shooter;
+
+        _flash.FlashArea(target.Value, user, ent.Comp.Range, ent.Comp.Duration, probability: ent.Comp.Probability);
         args.Handled = true;
     }
 }

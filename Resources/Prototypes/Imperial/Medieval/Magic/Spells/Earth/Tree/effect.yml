@@ -1,0 +1,17 @@
+- type: entity
+  id: SeedlingsSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    color: "#AB8C00"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#AB8C00"
+  - type: TimedDespawn
+    lifetime: 5
+      

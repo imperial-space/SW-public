@@ -87,6 +87,7 @@ public sealed partial class MedievalSpellSleepSystem : EntitySystem
 
         sleepComp2.WakeThreshold = component.WakeThreshold;
         sleepComp2.Cooldown = component.Cooldown;
+        sleepComp2.CanPutToSleep = uid1 == uid2 ? component.CanPutToSleepCaster : true;
         sleepComp2.SpawnedEffect = component.SpawnedEffect;
     }
 

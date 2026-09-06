@@ -108,6 +108,10 @@
   name: MedievalClothingCharmerHelmetPass1
   description: MedievalClothingCharmerHelmetPass1
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/darkness.rsi
   - type: Clothing
@@ -121,6 +125,10 @@
   name: MedievalClothingCharmerHelmetPass2
   description: MedievalClothingCharmerHelmetPass2
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/earth.rsi
   - type: Clothing
@@ -134,6 +142,10 @@
   name: MedievalClothingCharmerHelmetPass3
   description: MedievalClothingCharmerHelmetPass3
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/fire.rsi
   - type: Clothing
@@ -147,6 +159,10 @@
   name: MedievalClothingCharmerHelmetPass4
   description: MedievalClothingCharmerHelmetPass4
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/light.rsi
   - type: Clothing
@@ -160,6 +176,10 @@
   name: MedievalClothingCharmerHelmetPass5
   description: MedievalClothingCharmerHelmetPass5
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/water.rsi
   - type: Clothing
@@ -173,6 +193,10 @@
   name: MedievalClothingCharmerLightHelmetPass1
   description: MedievalClothingCharmerLightHelmetPass1
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/darkness.rsi
   - type: Clothing
@@ -186,6 +210,10 @@
   name: MedievalClothingCharmerLightHelmetPass2
   description: MedievalClothingCharmerLightHelmetPass2
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/earth.rsi
   - type: Clothing
@@ -199,6 +227,10 @@
   name: MedievalClothingCharmerLightHelmetPass3
   description: MedievalClothingCharmerLightHelmetPass3
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/fire.rsi
   - type: Clothing
@@ -212,6 +244,10 @@
   name: MedievalClothingCharmerLightHelmetPass4
   description: MedievalClothingCharmerLightHelmetPass4
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/light.rsi
   - type: Clothing
@@ -225,6 +261,10 @@
   name: MedievalClothingCharmerLightHelmetPass5
   description: MedievalClothingCharmerLightHelmetPass5
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/water.rsi
   - type: Clothing
@@ -238,6 +278,10 @@
   name: MedievalClothingCharmerWeakHelmetPass1
   description: MedievalClothingCharmerWeakHelmetPass1
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/darkness.rsi
   - type: Clothing
@@ -251,6 +295,10 @@
   name: MedievalClothingCharmerWeakHelmetPass2
   description: MedievalClothingCharmerWeakHelmetPass2
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/earth.rsi
   - type: Clothing
@@ -264,6 +312,10 @@
   name: MedievalClothingCharmerWeakHelmetPass3
   description: MedievalClothingCharmerHelmetPass3
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/fire.rsi
   - type: Clothing
@@ -277,6 +329,10 @@
   name: MedievalClothingCharmerWeakHelmetPass4
   description: MedievalClothingCharmerWeakHelmetPass4
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/light.rsi
   - type: Clothing
@@ -290,6 +346,10 @@
   name: MedievalClothingCharmerWeakHelmetPass5
   description: MedievalClothingCharmerWeakHelmetPass5
   components:
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots: []
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Head/water.rsi
   - type: Clothing

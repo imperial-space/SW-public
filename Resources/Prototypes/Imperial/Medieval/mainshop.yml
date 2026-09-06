@@ -64,32 +64,13 @@
   items:
   - productEntity: FoodPizzaPineapple
 
-    # минимальное кол-во репутации для покупки
-    # по умолчанию 0
-    minReputation: 10
-
     # цена предмета
     cost: 10
   - productEntity: FoodBurgerBacon
     cost: 5
 
-    # на какой позиции в рейтинге гильдии
-    # должен находиться игрок, чтобы купить
-    # по умолчанию 0 - на любом месте
-    minReputationPlace: 1
-
-    # сколько дают репутации за покупку этого предмета
-    # по умолчанию 2
-    reputationForBuying: 0.2
-
-    # в квесте нужно указать reputationReward: ...
   - productEntity: MedievalQuestContractLegionMelee
     cost: 0
-
-    # позволяет "отделить" северных торговцев от южных
-    # можно указать какой ActionId должен быть
-    # в компоненте MedievalJobSpawnComponent
-    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
 
     # если не указывать, то будут использоваться имя и описание предмета
     name: тест квеста
@@ -103,6 +84,7 @@
 
 - type: entity
   id: MedievalShopHole
+  categories: [ HideSpawnMenu ]
   name: MedievalShopHole
   description: Suspiciously looking old radio...
   suffix: Empty
@@ -117,7 +99,7 @@
       enum.TradingUiKey.Key:
         type: TradingBoundUserInterface
   - type: ActivatableUI
-    singleUser: true
+    singleUser: false
     key: enum.TradingUiKey.Key
     # трейдинг указывать здесь
   - type: Trading
@@ -135,11 +117,7 @@
     # должно совпадать с currency во всех guildTypes
     currency: Revent
     balance: 0
-    # может ли эту дыру открывать только её владелец
-    # сейчас включено, при необходимости выключить
-    # нужно создать прототип личной торговой дыры (?)
-    # все остальные ограничения по типу дыры для легиона настраиваются также, как раньше
-    ownerOnly: true
+  - type: AntiRottingContainer
   - type: TradingPitCollect
   - type: TrashDefendArea
   - type: Transform
@@ -163,6 +141,19 @@
     tags:
       - Structure
   - type: PointLight
+
+- type: entity
+  parent: MedievalShopHole
+  id: MedievalPublicShopHole
+  name: public trading pit
+  description: A shared market where anyone can buy lots listed by merchants.
+  suffix: Medieval
+  components:
+  - type: PublicTradingPit
+  - type: Trading
+    guildTypes: []
+    currency: Revent
+    balance: 0
 
 #- type: entity
 #  parent: MedievalShopHole

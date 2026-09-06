@@ -18,9 +18,8 @@
     disappearDistancePercentage: 1
   - type: TimedDespawn
     lifetime: 1.35
-  - type: StaminaDamageOnTrigger
+  - type: ShockWaveStaminaDamage
     stamina: 300
-  - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Imperial/Medieval/Magic/Spells/stamina_damage.ogg
       params:

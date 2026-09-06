@@ -908,6 +908,7 @@
   id: MedievalFlowerBlood
   description: gol
   components:
+  - type: NocturnBloodFood
   - type: RDWeight
     value: 0.05
   - type: Sprite

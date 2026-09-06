@@ -260,7 +260,7 @@ public sealed class MedievalArmorRepairSystem : EntitySystem
 
         var delay = repairTool.RepairTime;
         if (intelligence > repairTool.BaselineIntelligence)
-            delay *= 1f - 0.05f * intelligence;
+            delay *= 1f - 0.05f * (intelligence - repairTool.BaselineIntelligence);
         else if (intelligence < repairTool.BaselineIntelligence)
             delay *= 1f + 0.15f * (repairTool.BaselineIntelligence - intelligence);
 

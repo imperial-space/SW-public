@@ -2133,6 +2133,10 @@
     sprite: Imperial/Medieval/Clothing/Head/fox3.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/fox3.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false # parity, people need to know their 2iC
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy

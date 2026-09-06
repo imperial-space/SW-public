@@ -139,7 +139,7 @@ public sealed class CourierSystem : EntitySystem
 
         var offer = component.Offers[msg.OfferIndex];
 
-        if (courier.Balance < offer.BalanceCost ||
+        if ((offer.BalanceCost > 0 && courier.Balance < offer.BalanceCost) ||
             courier.DeliveryPoints < offer.DeliveryPointsCost ||
             courier.FreeMailsCount < offer.FreeMailsCost)
         {

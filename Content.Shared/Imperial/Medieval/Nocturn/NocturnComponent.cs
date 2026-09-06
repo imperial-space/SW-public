@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Shared.Actions;
 using Robust.Shared.Serialization;
 using Content.Shared.DoAfter;
+using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 using Content.Shared.Alert;
@@ -33,6 +34,17 @@ namespace Content.Shared.Nocturn.Components
 
         [ViewVariables(VVAccess.ReadWrite)]
         public float BloodLevel = 250.0f;
+
+        [ViewVariables]
+        public Dictionary<EntityUid, float> CastedBloodSpells = new();
+
+        [DataField]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float MaximumBloodLevel = 400f;
+
+        [DataField]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float MinimumBloodLevelForSpells = 50f;
 
         [ViewVariables(VVAccess.ReadWrite)]
         public float BloodDrainPerSecond = 0.115f;
@@ -87,6 +99,9 @@ namespace Content.Shared.Nocturn.Components
 
         [DataField]
         public bool IsDisguised = false;
+
+        [DataField]
+        public ProtoId<SpeciesPrototype> UnmaskedSpecies = "Drou";
 
         [DataField, AutoNetworkedField]
         public EntProtoId DisguiseAction = "NocturnDisguiseAction";

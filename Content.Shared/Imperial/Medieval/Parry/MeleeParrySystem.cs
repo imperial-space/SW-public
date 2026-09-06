@@ -239,8 +239,15 @@ namespace Content.Shared.MeleeParry
             _useDelay.TryResetDelay((activeItem, useDelay));
             weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryUseDelay);
 
-            if (_netMan.IsServer)
-                Spawn(parry.ParryEffectWindow, Transform(uid).Coordinates);
+            var effectCoordinates = Transform(uid).Coordinates;
+            var effectUid = PredictedSpawnAttachedTo(parry.ParryEffectWindow, effectCoordinates);
+            if (TryComp<MeleeParryEffectComponent>(effectUid, out var effect))
+            {
+                effect.AnimationStartTime = parry.ParriedTime;
+                Dirty(effectUid, effect);
+            }
+
+            _audio.PlayPredicted(parry.ParryWindowSound, effectCoordinates, uid);
 
             Dirty(activeItem, weapon);
             Dirty(activeItem, parry);

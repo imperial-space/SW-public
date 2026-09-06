@@ -2,7 +2,7 @@
 
 - type: entity
   name: IceDagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: IceDaggerBeginner
   description: Hurry up! It will melt soon
   components:

@@ -1844,12 +1844,6 @@
     damage:
       types:
         Blunt: 2
-  - type: Currency
-    price:
-      Revent: 2
-  - type: MedievalCurrency
-    price:
-      Revent: 2
 
 - type: stack
   id: MedievalAstrolitPiece

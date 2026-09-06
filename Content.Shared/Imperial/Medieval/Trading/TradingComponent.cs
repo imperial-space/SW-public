@@ -7,13 +7,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Trading;
 
-/// <summary>
-/// This component manages a store which players can use to purchase different listings
-/// through the ui. The currency, listings, and categories are defined in yaml.
-/// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class TradingComponent : Component
 {
+    public const string MarketContainerId = "trading-pit-market";
+
     [DataField]
     public int Balance;
 
@@ -26,17 +24,22 @@ public sealed partial class TradingComponent : Component
     [DataField]
     public HashSet<ProtoId<GuildTypePrototype>> GuildTypes;
 
-    [DataField]
-    public List<Guild> Guilds = new();
+    public HashSet<Guid> MarketOffers = new();
 
-    [ViewVariables]
-    public HashSet<Guild> LastAvailableGuilds = new();
+    public List<EntityUid> StoredMarketItems = new();
 
-    [ViewVariables(VVAccess.ReadWrite), DataField]
-    public bool OwnerOnly;
+    public List<TradingPendingSale> PendingSales = new();
 
-    #region audio
+    public List<string> MarketArchive = new();
+
     [DataField]
     public SoundSpecifier BuySuccessSound = new SoundPathSpecifier("/Audio/Effects/kaching.ogg");
-    #endregion
+}
+
+public sealed class TradingPendingSale
+{
+    public Guid Id;
+    public string ItemName = string.Empty;
+    public string BuyerName = string.Empty;
+    public int Price;
 }

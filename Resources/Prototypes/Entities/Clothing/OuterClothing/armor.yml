@@ -532,7 +532,7 @@
     value: 14
   # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.45
   # Imperial Space Stamina Resistance End
   - type: Armor
     modifiers:
@@ -574,6 +574,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.94
     sprintModifier: 0.94
+  - type: ManaRegen
+    regen: -2
   - type: QuestItem
     contractName: "любая пластинчатая или прочная железная броня"
   # Imperial Medieval End

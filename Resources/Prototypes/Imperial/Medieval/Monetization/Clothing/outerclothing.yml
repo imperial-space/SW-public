@@ -14,7 +14,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/darkness.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
         shader: unshaded
@@ -34,7 +34,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/earth.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
 
@@ -54,7 +54,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/fire.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
         shader: unshaded
@@ -99,7 +99,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/darkness.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
         shader: unshaded
@@ -119,7 +119,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/earth.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
 
@@ -139,7 +139,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/fire.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
         shader: unshaded
@@ -184,7 +184,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/darkness.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
         shader: unshaded
@@ -204,7 +204,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/earth.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
 
@@ -224,7 +224,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/fire.rsi
     clothingVisuals:
-      neck:
+      outerClothing:
       - state: equipped-OUTERCLOTHING
       - state: equipped-unshaded
         shader: unshaded

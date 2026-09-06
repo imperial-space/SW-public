@@ -658,7 +658,7 @@
         Heat: 0.45
         Cold: 0.55
   - type: MedievalArmorIntegrity
-    containerArmorHP: 355
+    containerArmorHP: 400
     repairType: Sewing
     unbrokenExplosionResistance:
       damageCoefficient: 0.15
@@ -722,7 +722,7 @@
         Heat: 0.75
         Cold: 0.75
   - type: MedievalArmorIntegrity
-    containerArmorHP: 260
+    containerArmorHP: 350
     repairType: Sewing
     unbrokenExplosionResistance:
       damageCoefficient: 0.15

@@ -1,0 +1,6 @@
+- type: radioChannel
+  id: Nocturne
+  name: medieval-ancient-nocturne-mind-connection-channel-name
+  keycode: 'o'
+  frequency: 1666
+  color: "#A060E8"

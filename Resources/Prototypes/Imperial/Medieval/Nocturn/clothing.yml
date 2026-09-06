@@ -1,0 +1,32 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckAncientNocturneCloak
+  name: count's cloak
+  description: After so many years, it remains in perfect condition.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Nocturn/Clothing/count_cloak.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Nocturn/Clothing/count_cloak.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformAncientNocturneFrockCoat
+  name: red-trimmed frock coat
+  description: Perfect for walks under the full moon.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Nocturn/Clothing/red_trim_frock_coat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Nocturn/Clothing/red_trim_frock_coat.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingShoesAncientNocturneBoots
+  name: aristocrat's boots
+  description: Many souls have been buried beneath these soles.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Nocturn/Clothing/aristocrat_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Nocturn/Clothing/aristocrat_boots.rsi

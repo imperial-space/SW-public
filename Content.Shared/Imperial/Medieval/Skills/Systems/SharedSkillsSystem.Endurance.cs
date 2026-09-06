@@ -15,7 +15,7 @@ public abstract partial class SharedSkillsSystem
         SubscribeLocalEvent<SkillsComponent, GetSprintStaminaDamageModifiersEvent>(OnGetSprintStaminaDamageModifiers);
         SubscribeLocalEvent<SkillsComponent, GetStaminaRegenModifiersEvent>(OnModifyStaminaRegenModifiers);
         SubscribeLocalEvent<SkillsComponent, GetStaminaCritDurationModifiersEvent>(OnGetStaminaCritDurationModifiers);
-        SubscribeLocalEvent<SkillsComponent, StaminaModifyEvent>(OnModifyStaminaDamage);
+        SubscribeLocalEvent<SkillsComponent, BeforeStaminaDamageEvent>(OnModifyStaminaDamage);
         SubscribeLocalEvent<SkillsComponent, MeleeThrowOnHitStartEvent>(OnModifyMeleeThrowDistance);
         SubscribeLocalEvent<SkillsComponent, CanSprintEvent>(OnCanSprint);
     }
@@ -56,14 +56,14 @@ public abstract partial class SharedSkillsSystem
         args.Modifier += (level > 10 ? proto.Modifiers["PositiveStaminaCritModifier"] : proto.Modifiers["NegativeStaminaCritModifier"]) * diff;
     }
 
-    private void OnModifyStaminaDamage(EntityUid uid, SkillsComponent comp, StaminaModifyEvent args)
+    private void OnModifyStaminaDamage(EntityUid uid, SkillsComponent comp, ref BeforeStaminaDamageEvent args)
     {
         var (proto, level) = GetSkill(uid, EnduranceId);
 
         if (level < 20)
             return;
 
-        args.Damage *= proto.Modifiers["MaxStaminaDamageModifier"];
+        args.Value *= proto.Modifiers["MaxStaminaDamageModifier"];
     }
 
     private void OnModifyMeleeThrowDistance(EntityUid uid, SkillsComponent comp, ref MeleeThrowOnHitStartEvent args)

@@ -143,7 +143,7 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: 1
+            Caustic: 0.65 # balanced around arrows+bow perk, t1 = ~15 arrows per kill with ONLY pure damage
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -171,7 +171,7 @@
           min: 30
 
 - type: reagent
-  id: medievalradiation
+  id: medievaladvancedradiation
   name: ""
   desc: ""
   physicalDesc: ""
@@ -187,12 +187,12 @@
     amount: 1
   metabolisms:
     Poison:
-      metabolismRate: 0.2
+      metabolismRate: 0.1
       effects:
       - !type:HealthChange
         damage:
           types:
-            Radiation: 1.5
+            Radiation: 1 # balanced around arrows+bow perk, t2 = ~10 arrows per kill with ONLY pure damage
       - !type:Jitter
         conditions:
         - !type:ReagentThreshold
@@ -1295,7 +1295,7 @@
           min: 11
 
 - type: reagent
-  id: medievaladvancedacidradiation
+  id: medievalbestacidradiation
   name: ""
   desc: ""
   physicalDesc: ""
@@ -1318,13 +1318,13 @@
       effects:
       - !type:DeleteDeathCurseEffect
     Poison:
-      metabolismRate: 0.4
+      metabolismRate: 0.1
       effects:
       - !type:HealthChange
         damage:
           types:
-            Caustic: 6
-            Radiation: 6
+            Caustic: 1
+            Radiation: 1 # balanced around arrows+bow perk, t3 = ~5 arrows per kill with ONLY pure damage
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -1714,8 +1714,8 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: 5
-            Radiation: 5
+            Caustic: 1
+            Radiation: 1
       - !type:PopupMessage
         type: Local
         visualType: Large

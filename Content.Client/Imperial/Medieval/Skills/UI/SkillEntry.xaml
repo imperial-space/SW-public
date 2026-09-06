@@ -45,6 +45,7 @@
                         Text="+" />
                     <Button
                         Name="DecreaseButton"
+                        Access="Public"
                         Margin="2"
                         HorizontalExpand="True"
                         Text="-" />

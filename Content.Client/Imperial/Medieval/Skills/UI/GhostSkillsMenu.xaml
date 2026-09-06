@@ -1,0 +1,20 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    Title="{Loc 'ghost-skills-window-title'}"
+    MinHeight="560"
+    SetHeight="650">
+    <BoxContainer Orientation="Vertical" Margin="6" HorizontalExpand="True" VerticalExpand="True">
+        <PanelContainer StyleClasses="BackgroundDark">
+            <BoxContainer Orientation="Vertical">
+                <Button Name="SaveButton" Text="{Loc 'ghost-skills-save'}" Margin="5" />
+                <Label Name="PointsLabel" Margin="5" HorizontalAlignment="Center" />
+            </BoxContainer>
+        </PanelContainer>
+        <BoxContainer
+            Name="SkillsContainer"
+            Orientation="Horizontal"
+            Margin="10"
+            HorizontalExpand="True"
+            VerticalExpand="True" />
+    </BoxContainer>
+</DefaultWindow>

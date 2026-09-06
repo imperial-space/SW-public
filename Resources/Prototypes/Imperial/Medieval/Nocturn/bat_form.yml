@@ -1,0 +1,67 @@
+- type: entity
+  id: MedievalAncientNocturneBatAction
+  name: Transform into a bat
+  description: Transform into a bat for 20 seconds. Cost 20 blood units.
+  components:
+  - type: NocturnBloodDrainSpell
+    bloodDrain: 20
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Nocturn/Bat/actions.rsi
+      state: bat
+  - type: InstantAction
+    event: !type:AncientNocturneBatActionEvent
+
+- type: entity
+  id: MedievalAncientNocturneRevertAction
+  name: Transform into a nocturne
+  description: Return to your original form early.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Nocturn/Bat/actions.rsi
+      state: unbat
+  - type: InstantAction
+    event: !type:RevertPolymorphActionEvent
+
+- type: entity
+  id: MedievalAncientNocturneBat
+  parent: MobBat
+  name: bat
+  description: She has very large fangs and bloodthirsty red eyes. You should not stay near her.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Grammar
+    attributes:
+      gender: female
+      proper: true
+  - type: ActionGrant
+    actions:
+    - MedievalAncientNocturneRevertAction
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 17
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      95: Critical
+      180: Dead
+  - type: MedievalSpecialDamageReceiver
+    targetType: Werewolf
+  - type: Undrowable
+
+- type: polymorph
+  id: MedievalAncientNocturneBatPolymorph
+  configuration:
+    entity: MedievalAncientNocturneBat
+    forced: true
+    inventory: None
+    transferDamage: true
+    transferName: false
+    duration: 20
+    revertOnCrit: true
+    revertOnDeath: true
+    allowRepeatedMorphs: false

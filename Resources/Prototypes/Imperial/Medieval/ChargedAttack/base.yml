@@ -63,6 +63,20 @@
 
 - type: entity
   abstract: true
+  id: BaseCrushingLightCharged
+  components:
+  - type: UseDelayAroundCursor
+  - type: ChargedAttack
+    maxAttackTime: 3.0
+    staticModifier: 2
+    staminaDamage: 9
+    speedModifer: 0.8
+    effectProtoId: AttackEffect3s
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBluntLight
+
+- type: entity
+  abstract: true
   id: BaseTwoHandedCharged
   components:
   - type: UseDelayAroundCursor
@@ -75,3 +89,30 @@
   - type: MedievalWeaponSkillCategory
     skill: TwoHanded
 
+- type: entity
+  abstract: true
+  id: BaseSekirCharged # since battleaxe is a wideswing weapon, BaseTwoHandedCharged doesn't suit it
+  components:
+  - type: UseDelayAroundCursor
+  - type: ChargedAttack
+    maxAttackTime: 4.0
+    staticModifier: 3
+    staminaDamage: 4
+    speedModifer: 0.9
+    effectProtoId: AttackEffect4s
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+
+- type: entity
+  abstract: true
+  id: BaseSaberCharged # since saber is a wideswing weapon, BaseOneHandedCharged doesn't suit it
+  components:
+  - type: UseDelayAroundCursor
+  - type: ChargedAttack
+    maxAttackTime: 2.0
+    staticModifier: 3
+    staminaDamage: 3
+    speedModifer: 1
+    effectProtoId: AttackEffect2s
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedSlashLarge

@@ -44,9 +44,9 @@
     animation: WeaponArcBite
     damage:
       groups:
-        Brute: 18
+        Brute: 35
       types:
-        ParryAble: 0.5
+        ParryAble: 1
   - type: Puller
   - type: Tag
     tags:

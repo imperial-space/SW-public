@@ -161,6 +161,11 @@ namespace Content.Server.BadSmell
             if (comp.SmellLevel < 40f && _mobState.IsAlive(comp.Owner))
                 comp.BestSmell++;
 
+            PerformSmellEffects(uid, comp, curTime, coords);
+        }
+
+        private void PerformSmellEffects(EntityUid uid, BadSmellComponent comp, TimeSpan curTime, EntityCoordinates coords)
+        {
             var alertLevel = (short)Math.Clamp(Math.Round(comp.SmellLevel / comp.MaxSmellLevel * 4.1f), 0, 4);
             // Обновляем алерт только если уровень запаха изменился
             if (!_previousSmellLevels.TryGetValue(uid, out var previousLevel) || Math.Abs(previousLevel - comp.SmellLevel) > 0.01f)
@@ -168,8 +173,6 @@ namespace Content.Server.BadSmell
                 _alerts.ShowAlert(comp.Owner, comp.SmellAlert, alertLevel);
                 _previousSmellLevels[uid] = comp.SmellLevel;  // Обновляем закэшированный уровень
             }
-
-
 
             // Звуки проигрываем с ограничением по времени
             if (_random.Prob(comp.SmellLevel / 120f) && comp.SmellLevel > 55 && curTime > _nextSoundPlayTime.GetValueOrDefault(uid, TimeSpan.Zero))
@@ -197,6 +200,16 @@ namespace Content.Server.BadSmell
 
             if (comp.IsDirtyVisible)
                 _appearance.SetData(uid, BadSmellVisuals.Dirt, Math.Min(Math.Floor(comp.SmellLevel / 20f), 4));
+        }
+
+        public void ApplyStinky(EntityUid uid, float amount, BadSmellComponent? comp = null)
+        {
+            if (!Resolve(uid, ref comp))
+                return;
+
+            comp.SmellLevel = Math.Clamp(comp.SmellLevel + amount, 0f, comp.MaxSmellLevel);
+
+            PerformSmellEffects(uid, comp, _timing.CurTime, Transform(uid).Coordinates);
         }
 
         public float CheckWash(EntityCoordinates coords)

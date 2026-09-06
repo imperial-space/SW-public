@@ -1,105 +1,117 @@
-﻿using Content.Shared.Store;
-using JetBrains.Annotations;
-using System.Linq;
 using Content.Shared.Imperial.Medieval.Trading;
-using Content.Shared.Imperial.Medieval.Trading.Prototypes;
-using Content.Shared.Store.Components;
+using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.Imperial.Medieval.Trading;
 
 [UsedImplicitly]
 public sealed class TradingBoundUserInterface : BoundUserInterface
 {
-    private IPrototypeManager _prototypeManager = default!;
-
-    [ViewVariables]
     private TradingMenu? _menu;
-
-    [ViewVariables]
-    private string _search = string.Empty;
-
-    [ViewVariables]
-    private HashSet<Guild> _guilds = new();
+    private readonly TradingExamineSystem _examineSystem;
+    private bool _isOwner;
+    private bool _canBuy;
 
     public TradingBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        _examineSystem = EntMan.System<TradingExamineSystem>();
     }
 
     protected override void Open()
     {
         base.Open();
-
         _menu = this.CreateWindow<TradingMenu>();
-        BindMenuEvents();
-    }
-
-    private void BindMenuEvents()
-    {
-        if (_menu == null)
-            return;
-
-        _menu.OnGuildSelect += (guild) =>
+        _menu.OnBuy += commodity => SendPurchaseMessage(new TradingBuyMessage(commodity));
+        _menu.OnSell += commodity => SendOwnerMessage(new TradingSellMessage(commodity));
+        _menu.OnBuyOffer += offer => SendPurchaseMessage(new TradingBuyOfferMessage(offer));
+        _menu.OnSellOffer += offer => SendOwnerMessage(new TradingSellOfferMessage(offer));
+        _menu.OnSelectCommodity += commodity => SendMessage(new TradingSelectCommodityMessage(commodity));
+        _menu.OnSelectOffer += offer => SendMessage(new TradingSelectOfferMessage(offer));
+        _menu.OnCreateSellOffer += price => SendOwnerMessage(new TradingCreateSellOfferMessage(price));
+        _menu.OnPrepareUnitSellOffer += price => SendOwnerMessage(new TradingPrepareUnitSellOfferMessage(price));
+        _menu.OnCreateUnitSellOffers += (request, amount) =>
+            SendOwnerMessage(new TradingCreateUnitSellOffersMessage(request, amount));
+        _menu.OnCreateBuyOffer += (commodity, price) => SendOwnerMessage(new TradingCreateBuyOfferMessage(commodity, price));
+        _menu.OnCreateBuyOfferFromHeld += price => SendOwnerMessage(new TradingCreateBuyOfferFromHeldMessage(price));
+        _menu.OnCancelOffer += id => SendOwnerMessage(new TradingCancelOfferMessage(id));
+        _menu.OnCollectStoredItem += item => SendOwnerMessage(new TradingCollectStoredItemMessage(item));
+        _menu.OnCollectSaleRevenue += sale => SendOwnerMessage(new TradingCollectSaleRevenueMessage(sale));
+        _menu.OnExamineItem += item =>
         {
-            _menu?.SelectTradingTab();
-            _menu?.SelectGuild(guild);
+            _examineSystem.Begin(Owner, EntMan.GetEntity(item));
+            SendMessage(new TradingExamineItemMessage(item));
         };
-
-        _menu.OnItemButtonPressed += (_, item) =>
+        _menu.OnExamineCommodity += (commodity, product) =>
         {
-            SendMessage(new TradingBuyMessage(item));
+            _examineSystem.Begin(Owner, _menu.GetPrototypeExamineEntity(product), commodity);
+            SendMessage(new TradingExamineCommodityMessage(commodity));
         };
-
-        _menu.SearchTextUpdated += (_, search) =>
-        {
-            _search = search.Trim().ToLowerInvariant();
-            UpdateCurrentGuildWithSearchFilter();
-        };
-
-        _menu.OnWithdrawAttempt += (_, type, amount) =>
-        {
-            SendMessage(new TradingRequestWithdrawMessage(amount));
-        };
+        _menu.OnWithdraw += amount => SendOwnerMessage(new TradingRequestWithdrawMessage(amount));
+        SendMessage(new TradingRequestUpdateInterfaceMessage());
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-
-        switch (state)
+        if (state is TradingUpdateState update)
         {
-            case TradingUpdateState msg:
-                _guilds = msg.Guilds;
-                if (_menu == null)
-                    return;
-
-                _menu.User = msg.User;
-                _menu.CurrencyPrototype = msg.Currency;
-                UpdateCurrentGuild();
-
-                _menu?.PopulateGuilds(_guilds);
-                _menu?.UpdateBalance(msg.Balance);
-
-                _menu?.SelectGuild();
-                break;
+            _isOwner = update.IsOwner;
+            _canBuy = update.IsOwner || update.IsPublic;
+            _menu?.UpdateState(update);
         }
     }
 
-    private void UpdateCurrentGuildWithSearchFilter()
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
     {
-        if (_menu?.CurrentGuild == null)
-            return;
+        base.ReceiveMessage(message);
+        if (message is TradingUpdateInterfaceMessage update)
+        {
+            _isOwner = update.State.IsOwner;
+            _canBuy = update.State.IsOwner || update.State.IsPublic;
+            _menu?.UpdateState(update.State);
+        }
+        else if (message is TradingExamineInfoMessage examine)
+        {
+            if (_menu == null)
+                return;
 
-        var guild = _menu.CurrentGuild!;
-        _menu.UpdateItems(guild, _search);
+            var target = examine.PreviewProduct is { } product
+                ? _menu.GetPrototypeExamineEntity(product)
+                : EntMan.GetEntity(examine.Item);
+            _examineSystem.Open(
+                Owner,
+                target,
+                examine.Message,
+                examine.Verbs,
+                examine.CommodityId,
+                verb => SendMessage(new TradingExecuteExamineVerbMessage(examine.Item, verb)));
+        }
+        else if (message is TradingUnitSellOfferPreparedMessage prepared)
+        {
+            _menu?.OpenUnitSellWindow(prepared);
+        }
     }
 
-    private void UpdateCurrentGuild()
+    protected override void Dispose(bool disposing)
     {
-        if (_menu?.CurrentGuild == null)
-            return;
+        if (disposing)
+        {
+            _examineSystem.Close(Owner);
+            _menu?.StopTrackingHands();
+        }
 
-        _menu.CurrentGuild = _guilds.FirstOrDefault(g => g.Id == _menu.CurrentGuild.Id);
+        base.Dispose(disposing);
+    }
+
+    private void SendOwnerMessage(BoundUserInterfaceMessage message)
+    {
+        if (_isOwner)
+            SendMessage(message);
+    }
+
+    private void SendPurchaseMessage(BoundUserInterfaceMessage message)
+    {
+        if (_canBuy)
+            SendMessage(message);
     }
 }

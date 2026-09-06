@@ -1,0 +1,48 @@
+- type: entity
+  id: MedievalAncientNocturneBloodArrowAction
+  name: Blood arrow
+  description: Shape an arrow from your own blood and release it from your hand. Cost 8 blood units.
+  components:
+  - type: NocturnBloodDrainSpell
+    bloodDrain: 8
+  - type: SpellCastEffect
+    effectProto: MagicArrowSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 4
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Nocturn/BloodArrow/action.rsi
+      state: blood-arrow
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:MedievalProjectileSpellEvent
+      projectilePrototype:
+        0: BloodArrow
+
+- type: entity
+  id: BloodArrow
+  parent: BulletRocket
+  name: blood arrow
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Nocturn/BloodArrow/projectile.rsi
+    layers:
+    - state: blood-arrow
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 1
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 0
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 55

@@ -1,4 +1,3 @@
-using Content.Server.Imperial.ImperialStore;
 using Content.Server.Imperial.Medieval.Magic.BindStoreOnEquip;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
@@ -11,7 +10,7 @@ namespace Content.Server.Imperial.Medieval.EntityEffects;
 public sealed partial class AddMagicEssence : EntityEffect
 {
     private IRobustRandom? _random;
-    private ImperialStoreSystem? _storeSys;
+    private BindStoreOnEquipSystem? _grimoireSystem;
 
     [DataField]
     public Dictionary<EntProtoId, FixedPoint2> AddedEssences = [];
@@ -29,24 +28,16 @@ public sealed partial class AddMagicEssence : EntityEffect
     public override void Effect(EntityEffectBaseArgs args)
     {
         _random ??= IoCManager.Resolve<IRobustRandom>();
-        _storeSys ??= args.EntityManager.System<ImperialStoreSystem>();
+        _grimoireSystem ??= args.EntityManager.System<BindStoreOnEquipSystem>();
 
         if (args is not MagicEntityEffectsArgs magicEntityEffectsArgs)
             return;
 
-        var enumerator = args.EntityManager.EntityQueryEnumerator<BindStoreOnEquipComponent>();
+        if (_random.Prob(EssenceAddProbability))
+            _grimoireSystem.TryAddCurrency(magicEntityEffectsArgs.Performer, AddedEssences);
 
-        while (enumerator.MoveNext(out var spellBookUid, out var bindStoreOnEquipComponent))
-        {
-            if (bindStoreOnEquipComponent.BindedEntity != magicEntityEffectsArgs.Performer)
-                continue;
-
-            if (_random.Prob(EssenceAddProbability))
-                _storeSys.TryAddCurrency(AddedEssences, spellBookUid);
-
-            if (_random.Prob(BonusAddProbability))
-                _storeSys.TryAddBonus(BonusEssences, spellBookUid);
-        }
+        if (_random.Prob(BonusAddProbability))
+            _grimoireSystem.TryAddBonus(magicEntityEffectsArgs.Performer, BonusEssences);
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => "";

@@ -253,7 +253,10 @@ namespace Content.Shared.Examine
             return InRangeUnOccluded(originPos, other, range, predicate, ignoreInsideBlocker);
         }
 
-        public FormattedMessage GetExamineText(EntityUid entity, EntityUid? examiner)
+        public FormattedMessage GetExamineText(
+            EntityUid entity,
+            EntityUid? examiner,
+            bool? isInDetailsRangeOverride = null)
         {
             var message = new FormattedMessage();
 
@@ -275,7 +278,7 @@ namespace Content.Shared.Examine
             message.PushColor(Color.DarkGray);
 
             // Raise the event and let things that subscribe to it change the message...
-            var isInDetailsRange = IsInDetailsRange(examiner.Value, entity);
+            var isInDetailsRange = isInDetailsRangeOverride ?? IsInDetailsRange(examiner.Value, entity);
             var examinedEvent = new ExaminedEvent(message, entity, examiner.Value, isInDetailsRange, hasDescription);
             RaiseLocalEvent(entity, examinedEvent);
 

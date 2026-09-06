@@ -1,0 +1,7 @@
+- type: entity
+  id: MedievalTraderSpawnRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GameRule
+  - type: TraderSpawnRule
+    job: MedievalTrader

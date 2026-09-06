@@ -15,6 +15,9 @@ namespace Content.Shared.MeleeParry.Components
         [DataField]
         public string ParryEffectWindow = "MedievalEffectWindowParry";
 
+        [DataField]
+        public SoundSpecifier ParryWindowSound = new SoundCollectionSpecifier("MeleeParryWindow");
+
         [ViewVariables(VVAccess.ReadWrite)]
         public float ParryWindow = 0.8f;
 

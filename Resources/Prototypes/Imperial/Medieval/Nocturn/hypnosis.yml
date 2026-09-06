@@ -1,0 +1,51 @@
+- type: entity
+  id: MedievalAncientNocturneHypnosisAction
+  name: Hypnosis
+  description: Attempt to bend the victim to your will and put them to sleep.
+  components:
+  - type: NocturnBloodDrainSpell
+    bloodDrain: 40
+  - type: SpellCastEffect
+    effectProto: SleepSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 130
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/sedation_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Nocturn/Hypnosis/action.rsi
+      state: hipnosis
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:MedievalProjectileSpellEvent
+      projectilePrototype:
+        0: MedievalAncientNocturneHypnosisProjectile
+
+- type: entity
+  id: MedievalAncientNocturneHypnosisProjectile
+  name: hypnosis
+  description: An irresistible hypnotic impulse.
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/projectiles.rsi
+    state: bullet
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Blunt: 1
+  - type: MedievalSpellSleep
+    minigameId: MedievalAncientNocturneHypnosisArrows
+    canPutToSleepCaster: false
+    spawnedEffect: SleepParticles
+
+- type: minigame
+  id: MedievalAncientNocturneHypnosisArrows
+  maxMinigamePlaytime: 20
+  minigames:
+  - type: MedievalArrowsMinigame
+    baseArrowsCount: 5

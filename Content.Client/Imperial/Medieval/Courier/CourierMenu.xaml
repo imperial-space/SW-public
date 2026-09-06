@@ -39,7 +39,6 @@
                     Orientation="Vertical"
                     HorizontalExpand="True"
                     VerticalExpand="True">
-                    <!-- Listings are added here by code -->
                 </BoxContainer>
             </ScrollContainer>
         </PanelContainer>

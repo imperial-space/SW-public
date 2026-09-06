@@ -44,7 +44,9 @@ public sealed class TradingPitCollectSystem : EntitySystem
 
     private void OnGetAltVerb(EntityUid uid, TradingPitCollectComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract)
+        if (HasComp<PublicTradingPitComponent>(uid) ||
+            !args.CanAccess ||
+            !args.CanInteract)
             return;
 
         args.Verbs.Add(new AlternativeVerb
@@ -109,6 +111,9 @@ public sealed class TradingPitCollectSystem : EntitySystem
 
     private bool IsSellableCandidate(EntityUid pit, EntityUid item)
     {
+        if (HasComp<PublicTradingPitComponent>(pit))
+            return false;
+
         if (TryComp<TradingComponent>(pit, out var trading))
         {
             if (!TryComp<MedievalCurrencyComponent>(item, out var currency) || currency.Price.Count == 0)

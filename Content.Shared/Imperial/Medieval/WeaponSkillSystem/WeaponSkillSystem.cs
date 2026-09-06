@@ -134,9 +134,9 @@ public sealed class WeaponSkillSystem : EntitySystem
         ev = ev with { Handled = true };
     }
 
-    #endregion
+#endregion
 
-    #region Helpers
+            #region Helpers
 
     private static DamageSpecifier AddDamage(DamageSpecifier? existing, string type, FixedPoint2 amount)
     {

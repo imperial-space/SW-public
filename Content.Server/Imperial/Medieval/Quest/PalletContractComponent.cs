@@ -1,4 +1,3 @@
-using Content.Shared.Imperial.Medieval.Trading;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 
@@ -23,11 +22,6 @@ namespace Content.Server.Quest.Components
         public int MaxReward = 575;
         [DataField]
         public int Reward = 500;
-
-        [DataField]
-        public float ReputationReward = 10;
-
-        public Guid? ContractGuildId;
 
     }
 }

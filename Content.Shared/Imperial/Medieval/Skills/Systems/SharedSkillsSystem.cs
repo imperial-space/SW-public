@@ -1,5 +1,6 @@
 using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Popups;
+using System.Linq;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -80,6 +81,44 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         }
 
         return sum;
+    }
+
+    public static Dictionary<string, int> GetDefaultSkillLevels(IPrototypeManager prototypes)
+    {
+        return prototypes.EnumeratePrototypes<SkillPrototype>()
+            .ToDictionary(skill => skill.ID, _ => 10);
+    }
+
+    public static int GetRemainingPoints(IPrototypeManager prototypes, IReadOnlyDictionary<string, int> levels)
+    {
+        var points = Points;
+        foreach (var skill in prototypes.EnumeratePrototypes<SkillPrototype>())
+            points += GetPointsCost(levels.GetValueOrDefault(skill.ID, 10));
+
+        return points;
+    }
+
+    public static bool TryValidateSkillLevels(
+        IPrototypeManager prototypes,
+        IReadOnlyDictionary<string, int> levels,
+        out Dictionary<string, int> validated,
+        int minimumLevel = 1,
+        int maximumLevel = 20)
+    {
+        validated = new();
+        var skills = prototypes.EnumeratePrototypes<SkillPrototype>().ToList();
+        if (levels.Count != skills.Count)
+            return false;
+
+        foreach (var skill in skills)
+        {
+            if (!levels.TryGetValue(skill.ID, out var level) || level < minimumLevel || level > maximumLevel)
+                return false;
+
+            validated[skill.ID] = level;
+        }
+
+        return GetRemainingPoints(prototypes, validated) >= 0;
     }
 
     public int GetSkillLevel(EntityUid uid, string skill)

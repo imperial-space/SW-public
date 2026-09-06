@@ -12,7 +12,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Content.Server.Chat.Systems;
-using Content.Server.Imperial.Medieval.Trading;
 using Content.Shared.Storage.Components;
 
 namespace Content.Server.Quest;
@@ -23,7 +22,6 @@ public partial class QuestSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] protected readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly TradingSystem _trading = null!;
 
     public override void Initialize()
     {
@@ -64,7 +62,7 @@ public partial class QuestSystem : EntitySystem
             }
             if (lootCount >= comp.Amount)
             {
-                GetReward(used, user, storage.Owner, comp.Reward, comp.ContractPartner, comp.ReputationReward, comp.ContractGuildId);
+                GetReward(used, user, storage.Owner, comp.Reward, comp.ContractPartner);
             }
         }
     }
@@ -84,16 +82,14 @@ public partial class QuestSystem : EntitySystem
             return;
 
         if (TryComp<PalletStorageComponent>(target.Value, out var pallet) && pallet.ContractPartner == comp.ContractPartner)
-            GetReward(used, user, target.Value, comp.Reward, comp.ContractPartner, comp.ReputationReward, comp.ContractGuildId);
+            GetReward(used, user, target.Value, comp.Reward, comp.ContractPartner);
     }
 
     public void GetReward(EntityUid contract,
         EntityUid user,
         EntityUid chest,
         int reward,
-        string contractPartner,
-        float reputationReward,
-        Guid? contractGuildId)
+        string contractPartner)
     {
         int remainingAmount = reward;
         var xform = Transform(chest);
@@ -109,22 +105,6 @@ public partial class QuestSystem : EntitySystem
         if (TryComp<StackComponent>(lastStack, out var stack) && stack != null)
             _stack.SetCount(lastStack, remainingAmount, stack);
         _audio.PlayEntity("/Audio/Imperial/Medieval/quest_reward.ogg", Filter.Entities(user), user, false, AudioParams.Default.WithVolume(20f));
-
-        if (contractGuildId != null)
-        {
-            var guild = _trading.Guilds
-                .FirstOrDefault(t => t.Id == contractGuildId);
-            if (guild == null)
-                return;
-
-            var netUser = GetNetEntity(user);
-
-            string? name = null;
-            if (TryComp(user, out MetaDataComponent? meta))
-                name = meta.EntityName;
-
-            guild.AddReputation(netUser, reputationReward, name);
-        }
 
         QueueDel(contract);
         QueueDel(chest);

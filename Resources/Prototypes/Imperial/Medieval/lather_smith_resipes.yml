@@ -639,7 +639,7 @@
   craftTime: 10
   iconOverride: MedievalSaber
   stacks:
-    MedievalIronIngot: 11
+    MedievalIronIngot: 8
     WoodPlank: 7
   result: WorkpieceMedievalSaber
 
@@ -648,7 +648,7 @@
   craftTime: 10
   iconOverride: MedievalSaberSteel
   stacks:
-    MedievalSteelIngot: 9
+    MedievalSteelIngot: 8
     WoodPlank: 7
   result: WorkpieceMedievalSaberSteel
 
@@ -675,7 +675,7 @@
   craftTime: 22
   iconOverride: MedievalIronHalberdT3
   stacks:
-    MedievalIronIngot: 35
+    MedievalIronIngot: 30
     WoodPlank: 12
   result: WorkpieceMedievalIronHalberdT3
 
@@ -684,7 +684,7 @@
   craftTime: 22
   iconOverride: MedievalIronHalberdT3Steel
   stacks:
-    MedievalSteelIngot: 27
+    MedievalSteelIngot: 20
     WoodPlank: 12
   result: WorkpieceMedievalIronHalberdT3Steel
 
@@ -702,7 +702,7 @@
   craftTime: 10
   iconOverride: MedievalMaceT3SteelHeavy
   stacks:
-    MedievalSteelIngot: 18
+    MedievalSteelIngot: 15
     WoodPlank: 7
   result: WorkpieceMedievalMaceT3SteelHeavy
 
@@ -720,7 +720,7 @@
   craftTime: 22
   iconOverride: MedievalIronSekirSteel
   stacks:
-    MedievalSteelIngot: 17
+    MedievalSteelIngot: 16
     WoodPlank: 25
   result: WorkpieceMedievalIronSekirSteel
 
@@ -811,8 +811,7 @@
   craftTime: 5
   iconOverride: MedievalRepairStone
   stacks:
-    MedievalIronIngot: 1
-    MedievalSteelIngot: 1
+    MedievalIronIngot: 2
   result: WorkpieceMedievalRepairStone
 
 - type: CP14Recipe
@@ -911,7 +910,7 @@
   craftTime: 4
   iconOverride: MedievalKeyStorage
   stacks:
-    MedievalIronIngot: 5
+    MedievalIronIngot: 2
   result: WorkpieceMedievalKeyStorage
 
 - type: CP14Recipe

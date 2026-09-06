@@ -965,14 +965,14 @@
   description: A belt used to hold arrows and bolts.
   components:
   - type: RDWeight
-    value: 1.5
+    value: 0.5
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Belt/quiver.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Belt/quiver.rsi
   - type: Storage
     grid:
-    - 0,0,5,5
+    - 0,0,6,6  
     whitelist:
       tags:
       - Bolt
@@ -990,7 +990,7 @@
   - type: StorageFill
     contents:
     - id: MedievalArrow
-      amount: 18
+      amount: 24
 
 - type: entity
   parent: MedievalQuiver
@@ -1000,7 +1000,7 @@
   - type: StorageFill
     contents:
     - id: MedievalArrowIronPhysics
-      amount: 18
+      amount: 24
 
 - type: entity
   parent: MedievalQuiver
@@ -1010,7 +1010,7 @@
   - type: StorageFill
     contents:
     - id: MedievalArrowSteel
-      amount: 18
+      amount: 24
 
 - type: entity
   parent: MedievalQuiver
@@ -1020,7 +1020,7 @@
   - type: StorageFill
     contents:
     - id: MedievalArrowSteelPhysics
-      amount: 18
+      amount: 24
 
 - type: entity
   parent: MedievalQuiver
@@ -1030,7 +1030,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBoltSteel
-      amount: 18
+      amount: 24
 
 - type: entity
   parent: MedievalQuiver
@@ -1040,7 +1040,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBolt
-      amount: 18
+      amount: 24
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -1050,7 +1050,27 @@
   - type: StorageFill
     contents:
     - id: MedievalArrow
-      amount: 21
+      amount: 40
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullArrowIronPhysics
+  suffix: Full, IronArrowPhysics
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowIronPhysics
+      amount: 40
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullArrowSteelPhysics
+  suffix: Full, SteelArrowPhysics
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowSteelPhysics
+      amount: 40
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -1060,7 +1080,7 @@
   - type: StorageFill
     contents:
     - id: MedievalArrowSteel
-      amount: 21
+      amount: 40
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -1070,7 +1090,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBoltSteel
-      amount: 21
+      amount: 40
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -1080,7 +1100,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBolt
-      amount: 21
+      amount: 40
 
 - type: entity
   parent: MedievalQuiver
@@ -1111,14 +1131,14 @@
   description: A belt used to hold arrows and bolts.
   components:
   - type: RDWeight
-    value: 2
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Belt/quiver_steel.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Belt/quiver_steel.rsi
   - type: Storage
     grid:
-    - 0,0,6,6
+    - 0,0,8,8
     whitelist:
       tags:
       - Bolt
@@ -1135,7 +1155,7 @@
   description: A belt used to hold arrows and bolts.
   components:
   - type: RDWeight
-    value: 2
+    value: 0.5
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Belt/quiver_necro.rsi
   - type: Clothing
@@ -2739,3 +2759,75 @@
     sprite: Imperial/Medieval/Clothing/Shoes/bib_boots.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/bib_boots.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth92
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_92.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_92.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth93
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_93.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_93.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth94
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_94.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_94.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth95
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_95.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_95.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth96
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_96.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_96.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth97
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_97.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_97.rsi
+  - type: Insulated
