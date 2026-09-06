@@ -144,7 +144,7 @@ public sealed partial class TradingSystem
             return true;
 
         var currencyItems = new List<Entity<StackComponent>>();
-        long available = 0;
+        int available = 0;
         foreach (var item in GetPublicInventoryItems(user))
         {
             if (!TryGetPublicCurrencyStack(item, currency, out var stack))
