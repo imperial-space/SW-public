@@ -1157,7 +1157,7 @@
     - MagicScroll
   - type: MagicScroll
     bad: true
-    basicPower: -15
+    basicPower: -50
 
 - type: damageModifierSet
   id: MyrmexArmorOff

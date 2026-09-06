@@ -114,33 +114,49 @@ namespace Content.Server.MagicBarrier
         {
             if (!args.CanReach)
                 return;
-            OnUse(args.Target, args.User, args.Used, comp);
+            if (OnUse(args.Target, args.User, args.Used, comp))
+                args.Handled = true;
         }
 
-        public void OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
+        public bool OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
         {
             if (target == null)
-                return;
+                return false;
 
             if (TryComp<MagicBarrierComponent>(target, out var barrier))
             {
                 barrier.Stability += comp.Power;
-                _audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), target.Value);
+
+                _audio.PlayPvs(
+                new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd),
+                target.Value);
+
                 QueueDel(used);
 
-                _achievement.TryUpdateProgressAndGrant(user, new BarrierRefilledContext(),
-                    ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
-                return;
+                _achievement.TryUpdateProgressAndGrant(
+                user,
+                new BarrierRefilledContext(),
+                ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
+
+                return true;
             }
 
             if (TryComp<MagicSpellcraftComponent>(target, out var magicSpellcraft))
             {
                 magicSpellcraft.Charge += comp.Power;
 
-                _audio.PlayPvs(new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd), target.Value);
+                _audio.PlayPvs(
+                new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd),
+                target.Value);
+
                 QueueDel(used);
+
+                return true;
             }
+
+            return false;
         }
+
 
         public void OnStart(EntityUid uid, MagicBarrierComponent component, ComponentStartup args)
         {
@@ -175,17 +191,35 @@ namespace Content.Server.MagicBarrier
             _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
-                comp.Lose *= 0.72f;
+                var growthCount = EntityManager.EntityQuery<MagicBarrierCurseComponent>().Count();
+                //comp.MagicBarrierCursePE++;
+                if (growthCount < 10)
+                {
+                    comp.MagicBarrierCurseEffect += comp.MagicBarrierCurseEM;
+                }
                 comp.Stability += 4f;
             }
         }
 
-        private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
+
+        private void RecalculateLose(MagicBarrierComponent comp)
         {
+            var growthCount = EntityQuery<MagicBarrierCurseComponent>().Count();
+            var riftCount = EntityQuery<MagicBarrierRiftComponent>().Count();
+
+            comp.Lose = MagicBarrierDrainCalculator.Calculate(comp, growthCount, riftCount);
+            comp.LastLoseCalculateTime = _timing.CurTime;
+        }
+        private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
+        {    /* TimeSpan.FromSeconds(5) is the time bettween every check to prevent spamming
+                TimeSpan.FromSeconds(5) — интервал между проверками, чтобы предотвратить спам */
+            if (_timing.CurTime >= component.LastLoseCalculateTime + TimeSpan.FromSeconds(5))
+            {
+            RecalculateLose(component);
+            }
+
             args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]", 1);
-            var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
-            var riftLoss = component.ElementalRiftStabilityLossPerMinute * riftCount;
-            args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose + riftLoss, 2) + " стабильности в минуту[/color]", 0);
+            args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose, 2) + " стабильности в минуту[/color]", 0);
             int sector1 = 0;
             int sector2 = 0;
             int sector3 = 0;
@@ -329,21 +363,26 @@ namespace Content.Server.MagicBarrier
                     var xform = Transform(comp.Owner);
                     var coords = xform.Coordinates;
 
-                    if (comp.Stability <= 10f && comp.Stability > 5f)
+                    if (comp.Stability <= 100f && comp.Stability > 50f)
                     {
                         _chat.DispatchGlobalAnnouncement("Низкий уровень стабильности барьера", playSound: false, colorOverride: Color.GreenYellow, sender: "Барьер");
                     }
-                    if (comp.Stability <= 5f)
+                    if (comp.Stability <= 50f)
                     {
                         _chat.DispatchGlobalAnnouncement("Крайне Низкий уровень стабильности барьера", playSound: false, colorOverride: Color.IndianRed, sender: "Барьер");
                     }
 
                     if (comp.Stability > 0f)
                     {
+                        var growthCount = EntityQuery<MagicBarrierCurseComponent>().Count();
+                        var riftCount = EntityQuery<MagicBarrierRiftComponent>().Count();
+
+                        comp.Lose = MagicBarrierDrainCalculator.Calculate(
+                         comp,
+                         growthCount,
+                         riftCount);
+
                         comp.Stability -= comp.Lose;
-                        var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
-                        if (riftCount > 0)
-                            comp.Stability -= comp.ElementalRiftStabilityLossPerMinute * riftCount;
                     }
                     else
                     {
@@ -361,7 +400,6 @@ namespace Content.Server.MagicBarrier
                     comp.Cycle += 1;
                     if (comp.Cycle % 10 == 0)
                     {
-                        comp.Lose = comp.Lose * comp.Rate;
                         var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
                         if (cursespawners.Length > 0)
                         {
@@ -500,7 +538,6 @@ namespace Content.Server.MagicBarrier
             foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
                 barrier.Stability += 4f;
-                barrier.Lose *= 0.72f;
             }
 
             _chat.DispatchGlobalAnnouncement("Элементальный разлом уничтожен, стабильность барьера восстановлена.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");

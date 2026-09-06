@@ -124,6 +124,24 @@
   result: MedievalScrollBarrier
 
 - type: CP14Recipe
+  id: MedievalScrollBarrierOverclocked
+  craftTime: 16
+  stacks:
+    MedievalAstrolit: 1
+  entities:
+    MedievalScrollBarrierDecoded: 1
+  result: MedievalScrollBarrierOverclocked
+
+- type: CP14Recipe
+  id: MedievalScrollBarrierUnstable
+  craftTime: 16
+  stacks:
+    MedievalAstrolit: 1
+  entities:
+    MedievalScrollBarrier: 1
+  result: MedievalScrollBarrierUnstable
+
+- type: CP14Recipe
   id: MedievalAstrolit
   craftTime: 4
   stacks:

@@ -10,7 +10,7 @@ using Robust.Client.UserInterface.XAML;
 // MagicScrollWindow.xaml.cs
 //=========================================================================
 // Purpose: Code-behind for magic scroll window with rune decryption UI
-// Author: rhailrake
+// Author: rhailrake, edited by Bladefire5
 //=========================================================================
 
 namespace Content.Client.Imperial.Medieval.MagicScroll;
@@ -22,9 +22,6 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     private readonly Dictionary<MagicRune, Button> _knownRuneButtons = new();
     private readonly Dictionary<MagicRune, Label> _encryptedRuneLabels = new();
     private MinesweeperWindow? _minesweeperWindow;
-    private int _playerIntelligence = 10;
-    private int _gridSize = 5;
-    private int _totalMines = 2;
 
     public MagicScrollBoundUserInterface? Owner;
 
@@ -44,10 +41,11 @@ public sealed partial class MagicScrollWindow : DefaultWindow
 
     public void UpdateState(MagicScrollBoundUserInterfaceState state)
     {
+        if (Disposed)
+            return;
+
         _currentState = state;
-        _playerIntelligence = state.PlayerIntelligence;
-        _gridSize = state.GridSize;
-        _totalMines = state.TotalMines;
+
         UpdatePowerDisplay();
         UpdateEncryptedRunes();
         UpdateKnownRunes();
@@ -55,14 +53,29 @@ public sealed partial class MagicScrollWindow : DefaultWindow
 
     private void UpdatePowerDisplay()
     {
-        if (_currentState == null) return;
+        if (Disposed || _currentState == null)
+            return;
 
         PowerLabel.Text = $"Сила свитка: {_currentState.ScrollPower:F1}";
 
         var decodedCount = _currentState.DecodedRunes.Count;
         var totalCount = _currentState.EncryptedRunes.Count;
 
-        if (decodedCount == totalCount)
+        if (_currentState.RequiresRunePairs)
+        {
+            if (_currentState.DecodedPairs.Count == _currentState.EncryptedPairs.Count)
+            {
+                StatusLabel.Text = "Статус: Полностью расшифрован";
+                StatusLabel.Modulate = Color.Green;
+            }
+            else
+            {
+                StatusLabel.Text =
+                    $"Статус: Решено {_currentState.DecodedPairs.Count}/{_currentState.EncryptedPairs.Count} пар";
+                StatusLabel.Modulate = Color.White;
+            }
+        }
+        else if (decodedCount == totalCount)
         {
             StatusLabel.Text = "Статус: Полностью расшифрован";
             StatusLabel.Modulate = Color.Green;
@@ -76,14 +89,50 @@ public sealed partial class MagicScrollWindow : DefaultWindow
 
     private void UpdateEncryptedRunes()
     {
-        if (_currentState == null) return;
+        if (Disposed || _currentState == null)
+            return;
 
         EncryptedRunesGrid.RemoveAllChildren();
         _encryptedRuneLabels.Clear();
 
+        // Pair-based scrolls: Overclocked / Unstable
+        if (_currentState.RequiresRunePairs)
+        {
+            EncryptedRunesGrid.Columns = 4;
+
+            for (var pairIndex = 0; pairIndex < _currentState.EncryptedPairs.Count; pairIndex++)
+            {
+                var pair = _currentState.EncryptedPairs[pairIndex];
+                var pairSolved = _currentState.DecodedPairs.Contains(pairIndex);
+
+                var label = new Label
+                {
+                    Text = pairSolved
+                    ? MagicRuneData.GetPairDisplay(pair)
+                    : "? + ?",
+
+                    HorizontalAlignment = Control.HAlignment.Center,
+                    VerticalAlignment = Control.VAlignment.Center,
+                    MinSize = new Vector2(80, 40),
+                    MouseFilter = Control.MouseFilterMode.Stop
+                };
+
+                if (pairSolved)
+                    label.Modulate = Color.LightGreen;
+
+                EncryptedRunesGrid.AddChild(label);
+            }
+
+            return;
+        }
+
+        // Normal scroll: individual runes
+        EncryptedRunesGrid.Columns = 8;
+
         foreach (var rune in _currentState.EncryptedRunes)
         {
             var isDecoded = _currentState.DecodedRunes.Contains(rune);
+
             var label = new Label
             {
                 Text = isDecoded ? MagicRuneData.GetSymbol(rune) : "?",
@@ -94,27 +143,26 @@ public sealed partial class MagicScrollWindow : DefaultWindow
             };
 
             if (isDecoded)
-            {
                 label.Modulate = Color.LightGreen;
-                label.ToolTip = MagicRuneData.GetMeaning(rune);
-            }
-            else
-            {
-                label.Modulate = Color.Gray;
-                label.ToolTip = "Не расшифровано";
-            }
 
-            EncryptedRunesGrid.AddChild(label);
             _encryptedRuneLabels[rune] = label;
+            EncryptedRunesGrid.AddChild(label);
         }
     }
 
     private void UpdateKnownRunes()
     {
-        if (_currentState == null) return;
+        if (Disposed || _currentState == null)
+            return;
 
         KnownRunesGrid.RemoveAllChildren();
         _knownRuneButtons.Clear();
+
+        if (_currentState.RequiresRunePairs)
+        {
+            UpdateKnownRunePairs();
+            return;
+        }
 
         foreach (var rune in _currentState.KnownRunes)
         {
@@ -125,7 +173,9 @@ public sealed partial class MagicScrollWindow : DefaultWindow
                 ToolTip = MagicRuneData.GetMeaning(rune)
             };
 
-            var canUse = CanUseRuneForDecryption(rune);
+            var canUse = _currentState.RequiresRunePairs
+                ? false
+                : (_currentState.KnownRunes.Contains(rune) && CanUseRuneForDecryption(rune));
             var isMinesweeperOpen = _minesweeperWindow != null;
 
             if (canUse && !isMinesweeperOpen)
@@ -139,13 +189,9 @@ public sealed partial class MagicScrollWindow : DefaultWindow
                 button.Disabled = true;
 
                 if (isMinesweeperOpen)
-                {
                     button.ToolTip += " (сапёр уже открыт)";
-                }
                 else if (!canUse)
-                {
                     button.ToolTip += " (уже использована или нет подходящих рун для расшифровки)";
-                }
             }
 
             KnownRunesGrid.AddChild(button);
@@ -153,9 +199,59 @@ public sealed partial class MagicScrollWindow : DefaultWindow
         }
     }
 
+    private void UpdateKnownRunePairs()
+    {
+        if (_currentState == null)
+            return;
+
+        for (var pairIndex = 0; pairIndex < _currentState.EncryptedPairs.Count; pairIndex++)
+        {
+            var pair = _currentState.EncryptedPairs[pairIndex];
+            var firstKnown = _currentState.KnownRunes.Contains(pair.First) || _currentState.DebugBypassMinigameRequirements;
+            var secondKnown = _currentState.KnownRunes.Contains(pair.Second) || _currentState.DebugBypassMinigameRequirements;
+            var pairSolved = _currentState.DecodedPairs.Contains(pairIndex);
+
+            var button = new Button
+            {
+                Text = pairSolved
+                    ? MagicRuneData.GetPairDisplay(pair)
+                    : MagicRuneData.GetPairDisplay(pair),
+
+                MinSize = new Vector2(100, 50),
+
+                ToolTip =
+                    $"{MagicRuneData.GetMeaning(pair.First)} + {MagicRuneData.GetMeaning(pair.Second)}"
+            };
+
+            var canUse = firstKnown && secondKnown && !pairSolved;
+            var isMinesweeperOpen = _minesweeperWindow != null;
+
+            if (canUse && !isMinesweeperOpen)
+            {
+                button.Modulate = Color.White;
+                button.OnPressed += _ => StartMinesweeper(pair);
+            }
+            else
+            {
+                button.Modulate = Color.Gray;
+                button.Disabled = true;
+
+                if (isMinesweeperOpen)
+                    button.ToolTip += " (сапёр уже открыт)";
+                else if (!firstKnown || !secondKnown)
+                    button.ToolTip += " (нужны обе руны пары)";
+                else
+                    button.ToolTip += " (пара уже использована)";
+            }
+
+            KnownRunesGrid.AddChild(button);
+        }
+    }
+
     private bool CanUseRuneForDecryption(MagicRune knownRune)
     {
-        if (_currentState == null) return false;
+        if (_currentState == null)
+            return false;
 
         return _currentState.EncryptedRunes.Contains(knownRune) &&
                !_currentState.DecodedRunes.Contains(knownRune);
@@ -164,34 +260,91 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     private void StartMinesweeper(MagicRune rune)
     {
         if (_minesweeperWindow != null)
-        {
             return;
-        }
 
         _minesweeperWindow = new MinesweeperWindow();
-        _minesweeperWindow.GameCompleted += (success, blow) => OnMinesweeperCompleted(rune, success, blow);
+        _minesweeperWindow.GameCompleted +=
+            (success, blow) => OnMinesweeperCompleted(rune, success, blow);
+
         _minesweeperWindow.OnClose += () =>
         {
             _minesweeperWindow = null;
+
+            if (Disposed) return;
+
             UpdateKnownRunes();
         };
-        _minesweeperWindow.StartGame(rune, _playerIntelligence, _gridSize, _totalMines);
-        _minesweeperWindow.OpenCentered();
 
+        _minesweeperWindow.StartGame(
+            rune,
+            _currentState?.PlayerIntelligence ?? 10,
+            _currentState?.GridSize ?? 5,
+            _currentState?.TotalMines ?? 2,
+            _currentState?.MoveTimeSeconds ?? 0,
+            _currentState?.MinimumMoveDelaySeconds ?? 0,
+            _currentState?.TipsAvailable ?? 1,
+            _currentState?.MaxRestarts ?? -1,
+            _currentState?.IsUnstable ?? false,
+            _currentState?.DebugBypassMinigameRequirements ?? false);
+
+        _minesweeperWindow.OpenCentered();
+        UpdateKnownRunes();
+    }
+
+    private void StartMinesweeper(MagicRunePair pair)
+    {
+        if (_minesweeperWindow != null)
+            return;
+
+        _minesweeperWindow = new MinesweeperWindow();
+        _minesweeperWindow.GameCompleted +=
+            (success, blow) => OnMinesweeperPairCompleted(pair, success, blow);
+
+        _minesweeperWindow.OnClose += () =>
+        {
+            _minesweeperWindow = null;
+
+            if (Disposed) return;
+
+            UpdateKnownRunes();
+        };
+
+        _minesweeperWindow.StartPairGame(
+            pair,
+            _currentState?.PlayerIntelligence ?? 10,
+            _currentState?.GridSize ?? 9,
+            _currentState?.TotalMines ?? 9,
+            _currentState?.MoveTimeSeconds ?? 30,
+            _currentState?.MinimumMoveDelaySeconds ?? 0,
+            _currentState?.TipsAvailable ?? 3,
+            _currentState?.MaxRestarts ?? -1,
+            _currentState?.IsUnstable ?? false,
+            _currentState?.DebugBypassMinigameRequirements ?? false);
+
+        _minesweeperWindow.OpenCentered();
         UpdateKnownRunes();
     }
 
     private void OnMinesweeperCompleted(MagicRune rune, bool success, bool blow)
     {
         if (success)
-        {
             Owner?.SendMessage(new MagicScrollRuneUnlockedMessage(rune));
+        else if (blow)
+            Owner?.SendMessage(new MagicScrollExplosionMessage());
+
+    }
+
+    private void OnMinesweeperPairCompleted(MagicRunePair pair, bool success, bool blow)
+    {
+        if (success)
+        {
+            Owner?.SendMessage(
+                new MagicScrollRunePairUnlockedMessage(pair.First, pair.Second));
         }
         else if (blow)
         {
             Owner?.SendMessage(new MagicScrollExplosionMessage());
         }
 
-        _minesweeperWindow = null;
     }
 }

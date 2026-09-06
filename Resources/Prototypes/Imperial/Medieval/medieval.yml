@@ -4438,6 +4438,8 @@
     layers:
     - state: scroll1
   - type: MagicScroll
+    maxRestarts: 2
+    debugBypassMinigameRequirements: true
   - type: Tag
     tags:
     - MagicScroll
@@ -4452,6 +4454,135 @@
     deleteAfterExplosion: true
 
 - type: entity
+  id: MedievalScrollBarrierOverclocked
+  name: overclocked barrier rune scroll
+  parent: BaseItem
+  components:
+  - type: ActivatableUI
+    key: enum.MagicScrollUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MagicScrollUiKey.Key:
+        type: MagicScrollBoundUserInterface
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    layers:
+    - state: scroll1
+  - type: PointLight
+    radius: 1.5
+    energy: 15
+    color: blue
+    castShadows: false
+  - type: MagicScroll
+    basicPower: 30
+    requiresRunePairs: true
+    maxEncryptedPairs: 4
+    gridSize: 9
+    totalMines: 9
+    moveTimeSeconds: 30
+    tipsAvailable: 3
+    maxRestarts: 2
+    powerPerSolvedPair: 20
+    debugBypassMinigameRequirements: true
+  - type: Tag
+    tags:
+    - MagicScroll
+  - type: TrashClear
+    safe: true
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1.1
+    intensitySlope: 8
+    totalIntensity: 36
+    maxTileBreak: 0
+    deleteAfterExplosion: true
+
+- type: entity
+  id: MedievalScrollBarrierUnstable
+  name: unstable barrier rune scroll
+  parent: BaseItem
+  components:
+  - type: ActivatableUI
+    key: enum.MagicScrollUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MagicScrollUiKey.Key:
+        type: MagicScrollBoundUserInterface
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    layers:
+    - state: scroll1
+  - type: PointLight
+    radius: 1.5
+    energy: 15
+    color: red
+    castShadows: false
+  - type: MagicScroll
+    basicPower: 8
+    requiresRunePairs: true
+    maxEncryptedPairs: 8
+    gridSize: 6
+    totalMines: 4
+    moveTimeSeconds: 10
+    minimumMoveDelaySeconds: 1
+    tipsAvailable: 1
+    maxRestarts: 0
+    powerPerSolvedPair: 5
+    isUnstable: true
+    debugBypassMinigameRequirements: true
+  - type: Tag
+    tags:
+    - MagicScroll
+  - type: TrashClear
+    safe: true
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1.1
+    intensitySlope: 8
+    totalIntensity: 36
+    maxTileBreak: 0
+    deleteAfterExplosion: true
+
+- type: entity
+  id: MedievalScrollBarrierDecoded
+  name: scroll of runes
+  parent: BaseItem
+  components:
+  - type: ActivatableUI
+    key: enum.MagicScrollUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MagicScrollUiKey.Key:
+        type: MagicScrollBoundUserInterface
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    layers:
+    - state: scroll1
+  - type: MagicScroll
+    maxRunes: 0
+    requiresRunePairs: false
+    randomizeSettings: false
+  - type: Tag
+    tags:
+    - MagicScroll
+  - type: TrashClear
+    safe: true
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1.1
+    intensitySlope: 8
+    totalIntensity: 36
+    maxTileBreak: 0
+    deleteAfterExplosion: true
+
+
+- type: entity
   id: MedievalScrollBarrierBad
   name: scroll of runes
   parent: BaseItem
@@ -4464,7 +4595,7 @@
     - state: scroll1
   - type: MagicScroll
     bad: true
-    basicPower: -15
+    basicPower: -50
   - type: Tag
     tags:
     - MagicScroll
