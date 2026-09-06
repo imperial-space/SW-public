@@ -114,33 +114,49 @@ namespace Content.Server.MagicBarrier
         {
             if (!args.CanReach)
                 return;
-            OnUse(args.Target, args.User, args.Used, comp);
+            if (OnUse(args.Target, args.User, args.Used, comp))
+                args.Handled = true;
         }
 
-        public void OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
+        public bool OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
         {
             if (target == null)
-                return;
+                return false;
 
             if (TryComp<MagicBarrierComponent>(target, out var barrier))
             {
                 barrier.Stability += comp.Power;
-                _audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), target.Value);
+
+                _audio.PlayPvs(
+                new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd),
+                target.Value);
+
                 QueueDel(used);
 
-                _achievement.TryUpdateProgressAndGrant(user, new BarrierRefilledContext(),
-                    ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
-                return;
+                _achievement.TryUpdateProgressAndGrant(
+                user,
+                new BarrierRefilledContext(),
+                ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
+
+                return true;
             }
 
             if (TryComp<MagicSpellcraftComponent>(target, out var magicSpellcraft))
             {
                 magicSpellcraft.Charge += comp.Power;
 
-                _audio.PlayPvs(new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd), target.Value);
+                _audio.PlayPvs(
+                new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd),
+                target.Value);
+
                 QueueDel(used);
+
+                return true;
             }
+
+            return false;
         }
+
 
         public void OnStart(EntityUid uid, MagicBarrierComponent component, ComponentStartup args)
         {

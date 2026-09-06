@@ -2,36 +2,60 @@
 <!-- MinesweeperWindow.xaml -->
 <!-- ===================================================================== -->
 <!-- Purpose: XAML layout for minesweeper rune decryption game -->
-<!-- Author: rhailrake -->
+<!-- Author: rhailrake, edited by Bladefire5 -->
 <!-- ===================================================================== -->
 
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
                Title="Расшифровка Руны - Сапёр"
-               MinSize="500 400">
+               MinSize="500 500">
     <BoxContainer Orientation="Vertical" Margin="10">
-        <Label Name="RuneLabel" Text="Расшифровка руны: ⚵" HorizontalAlignment="Center" Margin="0 0 0 10"/>
+        <Label Name="RuneLabel"
+               Text="Расшифровка: ⚵"
+               HorizontalAlignment="Center"
+               Margin="0 0 0 10"/>
 
         <customControls:HSeparator Margin="0 10"/>
 
         <BoxContainer Orientation="Vertical">
-            <Label Name="StatusLabel" Text="Найдите все безопасные клетки!" HorizontalAlignment="Center"/>
-            <Label Name="InfoLabel" Text="ЛКМ - открыть/поставить флаг | Чтобы поставить флаг, включите режим флага" HorizontalAlignment="Center" Margin="0 5"/>
+            <Label Name="StatusLabel"
+                   Text="Нажмите «Начать», чтобы запустить мини-игру."
+                   HorizontalAlignment="Center"/>
+            <Label Name="InfoLabel"
+                   Text="ЛКМ - открыть клетку | ПКМ - поставить/снять флаг"
+                   HorizontalAlignment="Center"
+                   Margin="0 5"/>
         </BoxContainer>
 
-        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
-            <Label Name="MinesLabel" Text="Мины: 5" />
-            <Label Name="OpenedLabel" Text="Открыто: 0/20" Margin="10 0 0 0"/>
-            <Button Name="HintButton" Text="Подсказка" Margin="10 0 0 0"/>
-            <Button Name="RestartButton" Text="Начать с начала" Margin="10 0 0 0"/>
+        <BoxContainer Orientation="Horizontal"
+                     HorizontalAlignment="Center"
+                     Margin="0 10">
+            <Label Name="MinesLabel" Text="Мины: 0"/>
+            <Label Name="OpenedLabel" Text="Открыто: 0/0" Margin="10 0 0 0"/>
+            <Label Name="TimerLabel" Text="Время: —" Margin="10 0 0 0"/>
+            <Button Name="HintButton" Text="Подсказка (0)" Margin="10 0 0 0"/>
         </BoxContainer>
 
-        <GridContainer Name="MinesweeperGrid" Columns="5" HSeparationOverride="2" VSeparationOverride="2" Margin="0 10">
+        <BoxContainer Orientation="Horizontal"
+                     HorizontalAlignment="Center"
+                     Margin="0 0 0 10">
+            <Button Name="StartButton"
+                    Text="Начать"
+                    Margin="0 0 10 0"/>
+            <Button Name="RestartButton"
+                    Text="Начать с начала"
+                    Margin="0 0 10 0"
+                    Disabled="True"/>
+            <Button Name="CloseButto"
+                    Text="Закрыть"/>
+        </BoxContainer>
+
+        <GridContainer Name="MinesweeperGrid"
+                       Columns="5"
+                       HSeparationOverride="2"
+                       VSeparationOverride="2"
+                       Margin="0 10">
         </GridContainer>
-
-        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
-            <Button Name="CloseButto" Text="Закрыть" Margin="10 0 0 0"/>
-        </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

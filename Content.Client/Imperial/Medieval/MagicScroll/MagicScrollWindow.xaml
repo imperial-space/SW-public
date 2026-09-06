@@ -2,7 +2,7 @@
 <!-- MagicScrollWindow.xaml -->
 <!-- ===================================================================== -->
 <!-- Purpose: XAML layout for magic scroll decryption window -->
-<!-- Author: rhailrake -->
+<!-- Author: rhailrake, edited by Bladefire5 -->
 <!-- ===================================================================== -->
 
 <DefaultWindow xmlns="https://spacestation14.io"
@@ -21,16 +21,18 @@
 
         <BoxContainer Orientation="Vertical">
             <Label Text="Зашифрованные руны:" Margin="0 0 0 5"/>
-            <GridContainer Name="EncryptedRunesGrid" Columns="4" HSeparationOverride="5" VSeparationOverride="5">
+            <GridContainer Name="EncryptedRunesGrid" Columns="8" HorizontalExpand="True" HSeparationOverride="5" VSeparationOverride="5">
             </GridContainer>
         </BoxContainer>
 
         <customControls:HSeparator Margin="0 10"/>
 
-        <BoxContainer Orientation="Vertical">
-            <Label Text="Известные руны (нажмите для расшифровки):" Margin="0 0 0 5"/>
-            <GridContainer Name="KnownRunesGrid" Columns="4" HSeparationOverride="5" VSeparationOverride="5">
-            </GridContainer>
+        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+            <Label Text="Известные руны / пары (нажмите, чтобы расшифровать):" Margin="0 0 0 5"/>
+            <ScrollContainer VerticalExpand="True" MinSize="0 110">
+                <GridContainer Name="KnownRunesGrid" Columns="3" HorizontalExpand="True" HSeparationOverride="5" VSeparationOverride="5">
+                </GridContainer>
+            </ScrollContainer>
         </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

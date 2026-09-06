@@ -7,7 +7,7 @@ using Content.Shared.Imperial.Medieval.Skills;
 // MagicRuneSystem.Helpers.cs
 //=========================================================================
 // Purpose: Helper methods for rune initialization, learning, and power calculation
-// Author: rhailrake
+// Author: rhailrake, edited by Bladefire5
 //=========================================================================
 
 namespace Content.Shared.Imperial.Medieval.MagicRunes.Systems;
@@ -17,18 +17,89 @@ public partial class MagicRuneSystem
     public void InitializeScroll(EntityUid uid, MagicScrollComponent scroll)
     {
         scroll.EncryptedRunes.Clear();
+        scroll.DecodedRunes.Clear();
+        scroll.EncryptedPairs.Clear();
+        scroll.DecodedPairs.Clear();
 
-        var allRunes = Enum.GetValues<MagicRune>().ToList();
-        _random.Shuffle(allRunes);
+        if (scroll.IsUnstable)
+            RandomizeUnstableScrollSettings(scroll);
 
-        var runeCount = scroll.MaxRunes;
-        runeCount = Math.Min(runeCount, allRunes.Count);
+        if (scroll.RequiresRunePairs)
+        {
+            var allPairs = MagicRuneData.GetAllPairs();
+            _random.Shuffle(allPairs);
 
-        scroll.EncryptedRunes.AddRange(allRunes.Take(runeCount));
+            var pairCount = Math.Clamp(scroll.MaxEncryptedPairs, 1, allPairs.Count);
+            for (var i = 0; i < pairCount; i++)
+            {
+                var pair = allPairs[i];
+                scroll.EncryptedPairs.Add(pair);
+                scroll.EncryptedRunes.Add(pair.First);
+                scroll.EncryptedRunes.Add(pair.Second);
+            }
+        }
+        else
+        {
+            var allRunes = Enum.GetValues<MagicRune>().ToList();
+            _random.Shuffle(allRunes);
+
+            var runeCount = Math.Min(scroll.MaxRunes, allRunes.Count);
+            scroll.EncryptedRunes.AddRange(allRunes.Take(runeCount));
+        }
 
         RecalculateScrollPower(uid, scroll);
-
         Dirty(uid, scroll);
+    }
+
+    private void RandomizeUnstableScrollSettings(MagicScrollComponent scroll)
+    {
+        // Middle values are common; extreme values are deliberately rare.
+        scroll.GridSize = WeightedChoice(
+            new[] { 6, 7, 8, 9, 10, 11, 12 },
+            new[] { 2, 7, 11, 12, 9, 5, 2 });
+
+        scroll.TotalMines = WeightedChoice(
+            new[] { 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+            new[] { 3, 7, 10, 12, 13, 11, 8, 5, 2 });
+
+        scroll.TipsAvailable = _random.Next(1, 6);
+
+        // 2 and 8 are both outliers. The middle number of pairs is much more likely.
+        scroll.MaxEncryptedPairs = WeightedChoice(
+            new[] { 2, 3, 4, 5, 6, 7, 8 },
+            new[] { 1, 6, 11, 13, 9, 5, 1 });
+
+        scroll.BasicPower = WeightedChoice(
+            new[] { 8, 10, 12, 15, 18, 22, 28 },
+            new[] { 12, 10, 8, 6, 4, 2, 1 });
+
+        scroll.PowerPerSolvedPair = WeightedChoice(
+            new[] { 5, 6, 7, 8, 10, 12, 15 },
+            new[] { 12, 10, 8, 6, 4, 2, 1 });
+
+        // Unstable scrolls always use their fixed 10 second turn timer
+        // and the first second is dangerous.
+        scroll.MoveTimeSeconds = 10;
+        scroll.MinimumMoveDelaySeconds = 1;
+    }
+
+    private int WeightedChoice(int[] values, int[] weights)
+    {
+        if (values.Length == 0 || values.Length != weights.Length)
+            throw new ArgumentException("Weighted choice requires matching non-empty arrays.");
+
+        var totalWeight = weights.Sum();
+        var roll = _random.Next(0, totalWeight);
+
+        for (var i = 0; i < values.Length; i++)
+        {
+            if (roll < weights[i])
+                return values[i];
+
+            roll -= weights[i];
+        }
+
+        return values[^1];
     }
 
     private void RecalculateScrollPower(EntityUid uid, MagicScrollComponent scroll)
@@ -36,10 +107,20 @@ public partial class MagicRuneSystem
         if (scroll.Bad)
         {
             scroll.Power = scroll.BasicPower;
+            Dirty(uid, scroll);
             return;
         }
 
-        scroll.Power = scroll.BasicPower + scroll.DecodedRunes.Count * scroll.PointsPerDecodedRune;
+        if (scroll.RequiresRunePairs)
+        {
+            var decodedPairs = scroll.DecodedPairs.Count;
+            scroll.Power = scroll.BasicPower + decodedPairs * scroll.PowerPerSolvedPair;
+        }
+        else
+        {
+            scroll.Power = scroll.BasicPower + scroll.DecodedRunes.Count * scroll.PointsPerDecodedRune;
+        }
+
         Dirty(uid, scroll);
     }
 
