@@ -2153,6 +2153,23 @@
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetFox4_5
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/fox4_5.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/fox4_5.rsi
+  - type: StealTarget # imperial medieval
+    stealGroup: MedievalGetMedievalClothingHeadHelmetFox4 # imperial medieval
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetHoodHelmet
   name: shapel helmet
   description: Medieval shapel helmet
