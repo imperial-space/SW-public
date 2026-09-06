@@ -1,0 +1,198 @@
+# This is Legion
+
+# Recruit, light leather cuirass
+
+- type: entity
+  parent: MedievalClothingOuterArmorLeatherLight
+  id: MedievalFactionArmorLegionRecruit
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/lorica_recruit.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/lorica_recruit.rsi
+
+# Legionary, long sleeve chainmail
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalFactionArmorLegionSoldier
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/lorica_soldier.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/lorica_soldier.rsi
+
+# Optio, iron cuirass
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalFactionArmorLegionJunOfficer
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_optio.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_optio.rsi
+
+# Tribune, brigandine 
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalFactionArmorLegionOfficer
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_tribune.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_tribune.rsi
+
+# Legate, lamellar armor
+
+- type: entity
+  parent: ClothingOuterArmorPodWars
+  id: MedievalFactionArmorLegionLeader
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_legate.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_legate.rsi
+
+# Legate Timelock, iron plate
+
+- type: entity
+  parent: MedievalClothingOuterArmorIron
+  id: MedievalFactionArmorLegionLeaderHigh
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_legate_time.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_legate_time.rsi
+
+# Treasurer Helper, light leather cuirass
+
+- type: entity
+  parent: MedievalClothingOuterArmorLeatherLight
+  id: MedievalFactionArmorLegionTreasHelper
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_treashelper.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_treashelper.rsi
+
+# Treasurer, heavy leather cuirass
+
+- type: entity
+  parent: MedievalClothingOuterArmorLeatherHeavy
+  id: MedievalFactionArmorLegionTreas
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_treas.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/musculata_treas.rsi
+
+# This is Rebels
+
+# Felag, light leather cuirass
+
+- type: entity
+  parent: MedievalClothingOuterArmorLeatherLight
+  id: MedievalFactionArmorRebelRecruit
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox1.rsi
+
+# Militiaman, long sleeve chainmail
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalFactionArmorRebelSoldier
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox2.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox2.rsi
+
+# Varangian, iron cuirass
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalFactionArmorRebelJunOfficer
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox2_5.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox2_5.rsi
+
+# Foring, brigandine 
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalFactionArmorRebelOfficer
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox3.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox3.rsi
+
+# Jarl, lamellar armor
+
+- type: entity
+  parent: ClothingOuterArmorPodWars
+  id: MedievalFactionArmorRebelLeader
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox4.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox4.rsi
+
+# Jarl Timelock, sturdy iron plate
+
+- type: entity
+  parent: MedievalClothingOuterArmorIron
+  id: MedievalFactionArmorRebelLeaderHigh
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox4_5.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox4_5.rsi
+
+# Unused, sprite looks above foring, brigandine
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalFactionArmorRebelSenOfficer
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox3_5.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/armor_fox3_5.rsi

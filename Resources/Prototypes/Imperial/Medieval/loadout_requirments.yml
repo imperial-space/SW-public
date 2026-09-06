@@ -175,6 +175,15 @@
       time: 108000
 
 - type: loadoutEffectGroup
+  id: LegionTimer40hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Legion
+      time: 144000
+
+- type: loadoutEffectGroup
   id: InsurgencyTimer4hours
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -200,6 +209,15 @@
       !type:DepartmentTimeRequirement
       department: Insurgency
       time: 108000
+
+- type: loadoutEffectGroup
+  id: InsurgencyTimer40hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Insurgency
+      time: 144000
 
 - type: loadoutEffectGroup
   id: BandTimer4hours

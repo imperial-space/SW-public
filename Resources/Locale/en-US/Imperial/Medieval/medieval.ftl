@@ -438,6 +438,12 @@ loadout-group-medieval-jumpsuit-legion = Uniform
 
 loadout-group-medieval-helmet-legion-legat = Helmet
 
+loadout-group-medieval-armor-legion-legat = Armor
+
+loadout-group-medieval-helmet-rebel-legat = Helmet
+
+loadout-group-medieval-armor-rebel-legat = Armor
+
 medieval-interact-verb = Pet
 
 medieval-interaction-popup = You pet { $target } on { POSS-ADJ($target) } soft feathered head.
