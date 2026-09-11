@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla, resprite alc of Ledniky",
     "copyright": "by zhenya28 and dantanat for imperial space",
     "size": {
         "x": 8,
@@ -53,7 +53,7 @@
             "name": "farmer"
         },
         {
-            "name": "alchemic"
+            "name": "alc"
         },
         {
             "name": "band_common"
