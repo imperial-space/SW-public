@@ -40,6 +40,7 @@ namespace Content.Server.MagicBarrier
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly AchievementSystem _achievement = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
+        [Dependency] private readonly AncientNocturneSpawnRuleSystem _ancientNocturne = default!;
 
         public static bool IsBarrierActive = true;
         private static readonly string[] ElementalRiftPrototypes =
@@ -90,7 +91,7 @@ namespace Content.Server.MagicBarrier
         {
             AlternativeVerb verb = new()
             {
-                Text = "Пожертвовать собой",
+                Text = Loc.GetString("medieval-hm-barrier-sacrifice"),
                 Act = () => TrySuicide(args.User, uid),
             };
             args.Verbs.Add(verb);
@@ -100,7 +101,7 @@ namespace Content.Server.MagicBarrier
         {
             if (!HasComp<MagicRuneKnowledgeComponent>(uid))
             {
-                _popupSystem.PopupEntity("Я слишком бесполезен..", uid, uid);
+                _popupSystem.PopupEntity(Loc.GetString("medieval-hm-barrier-iamuseless"), uid, uid);
                 return;
             }
 
@@ -172,7 +173,7 @@ namespace Content.Server.MagicBarrier
             Spawn("ShockWaveEffect", coords);
             RemComp(uid, component);
             QueueDel(uid);
-            _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-wart"), playSound: false, colorOverride: Color.LimeGreen, sender: Loc.GetString("medieval-hm-barrier-barrier"));
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
                 comp.Lose *= 0.72f;
@@ -182,10 +183,13 @@ namespace Content.Server.MagicBarrier
 
         private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]", 1);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-stability",
+                ("stability", Math.Round(component.Stability, 2)),
+                ("maxStability", component.MaxStability)), 1);
             var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
             var riftLoss = component.ElementalRiftStabilityLossPerMinute * riftCount;
-            args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose + riftLoss, 2) + " стабильности в минуту[/color]", 0);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-drain",
+                ("drain", Math.Round(component.Lose + riftLoss, 2))), 0);
             int sector1 = 0;
             int sector2 = 0;
             int sector3 = 0;
@@ -238,16 +242,16 @@ namespace Content.Server.MagicBarrier
                 }
                 else sector0++;
             }
-            args.PushMarkup(sector1 + " проклятых наростов в секторе 1 (Некрополь)", -1);
-            args.PushMarkup(sector2 + " проклятых наростов в секторе 2 (Мятеж)", -2);
-            args.PushMarkup(sector3 + " проклятых наростов в секторе 3 (Церковь)", -3);
-            args.PushMarkup(sector4 + " проклятых наростов в секторе 4 (Пустыня)", -4);
-            args.PushMarkup(sector5 + " проклятых наростов в секторе 5 (Коллегия)", -5);
-            args.PushMarkup(sector6 + " проклятых наростов в секторе 6 (Шахта)", -6);
-            args.PushMarkup(sector7 + " проклятых наростов в секторе 7 (Гоблины)", -7);
-            args.PushMarkup(sector8 + " проклятых наростов в секторе 8 (Легион)", -8);
-            args.PushMarkup(sector9 + " проклятых наростов в секторе 9 (Племя)", -9);
-            args.PushMarkup(sector0 + " проклятых наростов скрыты в неизвестном месте под землей", -10);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector1), ("sector", 1)), -1);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector2), ("sector", 2)), -2);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector3), ("sector", 3)), -3);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector4), ("sector", 4)), -4);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector5), ("sector", 5)), -5);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector6), ("sector", 6)), -6);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector7), ("sector", 7)), -7);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector8), ("sector", 8)), -8);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector9), ("sector", 9)), -9);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-unknown", ("amount", sector0)), -10);
 
             int riftSector1 = 0;
             int riftSector2 = 0;
@@ -305,23 +309,23 @@ namespace Content.Server.MagicBarrier
                 }
             }
 
-            args.PushMarkup(riftSector1 + "  разломов в секторе 1 (Некрополь)", -11);
-            args.PushMarkup(riftSector2 + "  разломов в секторе 2 (Мятеж)", -12);
-            args.PushMarkup(riftSector3 + "  разломов в секторе 3 (Церковь)", -13);
-            args.PushMarkup(riftSector4 + "  разломов в секторе 4 (Пустыня)", -14);
-            args.PushMarkup(riftSector5 + "  разломов в секторе 5 (Коллегия)", -15);
-            args.PushMarkup(riftSector6 + "  разломов в секторе 6 (Шахта)", -16);
-            args.PushMarkup(riftSector7 + "  разломов в секторе 7 (Гоблины)", -17);
-            args.PushMarkup(riftSector8 + "  разломов в секторе 8 (Легион)", -18);
-            args.PushMarkup(riftSector9 + "  разломов в секторе 9 (Племя)", -19);
-            args.PushMarkup(riftSector0 + "  разломов скрыты в неизвестном месте под землей", -20);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector1), ("sector", 1)), -11);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector2), ("sector", 2)), -12);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector3), ("sector", 3)), -13);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector4), ("sector", 4)), -14);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector5), ("sector", 5)), -15);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector6), ("sector", 6)), -16);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector7), ("sector", 7)), -17);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector8), ("sector", 8)), -18);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector9), ("sector", 9)), -19);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-unknown", ("amount", riftSector0)), -20);
         }
+
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
-
                 if (_timing.CurTime > comp.EndTime)
                 {
                     comp.StartTime = _timing.CurTime;
@@ -329,13 +333,14 @@ namespace Content.Server.MagicBarrier
                     var xform = Transform(comp.Owner);
                     var coords = xform.Coordinates;
 
+
                     if (comp.Stability <= 10f && comp.Stability > 5f)
                     {
-                        _chat.DispatchGlobalAnnouncement("Низкий уровень стабильности барьера", playSound: false, colorOverride: Color.GreenYellow, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-lowstab"), playSound: false, colorOverride: Color.GreenYellow, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                     }
                     if (comp.Stability <= 5f)
                     {
-                        _chat.DispatchGlobalAnnouncement("Крайне Низкий уровень стабильности барьера", playSound: false, colorOverride: Color.IndianRed, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-verylowstab"), playSound: false, colorOverride: Color.IndianRed, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                     }
 
                     if (comp.Stability > 0f)
@@ -347,19 +352,19 @@ namespace Content.Server.MagicBarrier
                     }
                     else
                     {
-                        _chat.DispatchGlobalAnnouncement("Барьер не сдержал темную силу.", playSound: false, colorOverride: Color.Red, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-darkforce"), playSound: false, colorOverride: Color.Red, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                         _roundEndSystem.EndRound();
                         //QueueDel(comp.Owner);
                     }
                     if (comp.Stability > comp.MaxStability)
                     {
-                        _chat.DispatchGlobalAnnouncement("Слишком высокий уровень стабильности барьера, сброс.", playSound: false, colorOverride: Color.SeaGreen, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-toohighstab"), playSound: false, colorOverride: Color.SeaGreen, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                         comp.Stability = comp.MaxStability;
                         Spawn("ShockWaveEffect", coords);
                     }
 
                     comp.Cycle += 1;
-                    if (comp.Cycle % 10 == 0)
+                    if (comp.Cycle % 17 == 0)
                     {
                         comp.Lose = comp.Lose * comp.Rate;
                         var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
@@ -369,7 +374,7 @@ namespace Content.Server.MagicBarrier
                             var cursexform = Transform(choosenSpawner.Owner);
                             var cursecoords = cursexform.Coordinates;
                             Spawn("MedievalBarrierCurse", cursecoords);
-                            _chat.DispatchGlobalAnnouncement("Расход стабильности барьера увеличен, тьма наступает.", playSound: false, colorOverride: Color.DeepPink, sender: "Барьер");
+                            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-decreaserateincreased"), playSound: false, colorOverride: Color.DeepPink, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                             Spawn("ShockWaveEffect", cursecoords);
                             Spawn("ShockWaveEffect", coords);
                         }
@@ -387,41 +392,9 @@ namespace Content.Server.MagicBarrier
                     comp.StarfallCurrentPoints++;
                     if (comp.StarfallCurrentPoints >= comp.StarfallPointsCapCurrent)
                     {
-                        comp.StarfallPointsCapCurrent = comp.StarfallPointsCapCurrent + _random.NextFloat(-comp.StarfallRandomise, comp.StarfallRandomise);
+                        comp.StarfallPointsCapCurrent = GetNextStarfallInterval(comp);
                         comp.StarfallCurrentPoints = 0;
-                        var starfallspawners = EntityManager.EntityQuery<StarFallComponent>().ToArray();
-                        bool found = false;
-                        var choosenSpawner = _random.Pick(starfallspawners);
-                        while (!found)
-                        {
-                            choosenSpawner = _random.Pick(starfallspawners);
-                            if (choosenSpawner.Active)
-                            {
-                                found = true;
-                                choosenSpawner.Active = false;
-                                break;
-                            }
-                        }
-                        var starfallxform = Transform(choosenSpawner.Owner);
-                        var starfallcoords = starfallxform.Coordinates;
-                        float randomise = _random.NextFloat(0f, 100f);
-                        Spawn("ShockWaveEffect", starfallcoords);
-                        string cordX = starfallcoords.X.ToString();
-                        string cordY = starfallcoords.Y.ToString();
-                        if (randomise > 35)
-                        {
-                            _chat.DispatchGlobalAnnouncement("Падающая звезда была замечена " + choosenSpawner.Side + ". Для магической карты: X = " + cordX + ", Y = " + cordY + ".", playSound: true, colorOverride: Color.Yellow, sender: "Событие");
-                            Spawn("MedievalSteroidRoomMarker", starfallcoords);
-                        }
-                        else if (randomise > comp.AncientNocturneEventChance)
-                        {
-                            _chat.DispatchGlobalAnnouncement("Аура проклятого каравана была обнаружена " + choosenSpawner.Side + ". Для магической карты: X = " + cordX + ", Y = " + cordY + ".", playSound: true, colorOverride: Color.Yellow, sender: "Событие");
-                            Spawn("MedievalKaravanRoomMarker", starfallcoords);
-                        }
-                        else
-                        {
-                            _gameTicker.StartGameRule("MedievalAncientNocturneSpawnRule");
-                        }
+                        TryStartRandomMidroundEvent(comp);
                     }
 
                     //if (comp.Cycle == 85)
@@ -431,7 +404,7 @@ namespace Content.Server.MagicBarrier
                     //    var cursexform = Transform(choosenSpawner.Owner);
                     //    var cursecoords = cursexform.Coordinates;
                     //    Spawn("MedievalSpawnNecroSenderPreset", cursecoords);
-                    //    _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                    //    _chat.DispatchGlobalAnnouncement("An emissary of the dark lord has been sighted in these lands.", playSound: true, colorOverride: Color.DeepPink, sender: "Barrier");
                     //}
 
                     //if (comp.Cycle == 161)
@@ -443,13 +416,13 @@ namespace Content.Server.MagicBarrier
                     //    for (int i = 0; i < 100; i++)
                     //        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
                     //    Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
-                    //    _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                    //    _chat.DispatchGlobalAnnouncement("Fear them, for THEY are coming... Unity is the only hope of salvation.", playSound: true, colorOverride: Color.DeepPink, sender: "Barrier");
                     //}
 
                     // if (comp.Cycle == 180)
                     // {
                     //     IsBarrierActive = false;
-                    //     _chat.DispatchGlobalAnnouncement("Барьер изветшал и рассыпался в пыль.", playSound: true, colorOverride: Color.Red, sender: "Барьер");
+                    //     _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-destroyed"), playSound: true, colorOverride: Color.Red, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                     //     _roundEndSystem.EndRound();
                     // }
                 }
@@ -475,7 +448,7 @@ namespace Content.Server.MagicBarrier
                 if (TryComp<MagicBarrierRiftComponent>(rift, out var riftComponent))
                     riftComponent.Spawner = chosenSpawner.Owner;
                 chosenSpawner.Occupied = true;
-                _chat.DispatchGlobalAnnouncement("Элементальный разлом открылся!", playSound: false, colorOverride: Color.DeepSkyBlue, sender: "Барьер");
+                _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-magic-barrier-rift-opened"), playSound: false, colorOverride: Color.DeepSkyBlue, sender: Loc.GetString("medieval-magic-barrier-sender"));
                 Spawn("ShockWaveEffect", riftCoords);
                 return;
             }
@@ -489,6 +462,69 @@ namespace Content.Server.MagicBarrier
             return TimeSpan.FromMinutes(delayMinutes);
         }
 
+        private float GetNextStarfallInterval(MagicBarrierComponent component)
+        {
+            var randomise = MathF.Abs(component.StarfallRandomise);
+            return MathF.Max(
+                1f,
+                component.StarfallPointsCap + _random.NextFloat(-randomise, randomise));
+        }
+
+        private bool TryStartRandomMidroundEvent(MagicBarrierComponent component)
+        {
+            var randomise = _random.NextFloat(0f, 100f);
+            if (randomise <= 35f && randomise <= component.AncientNocturneEventChance)
+                return TryStartAncientNocturneEvent();
+
+            var availableSpawners = EntityManager.EntityQuery<StarFallComponent>()
+                .Where(candidate => candidate.Active)
+                .ToArray();
+
+            if (availableSpawners.Length == 0)
+            {
+                Log.Warning("Unable to start barrier midround event: no active StarFallComponent spawn markers are available");
+                return false;
+            }
+
+            var chosenSpawner = _random.Pick(availableSpawners);
+            chosenSpawner.Active = false;
+
+            var starfallXform = Transform(chosenSpawner.Owner);
+            var starfallCoords = starfallXform.Coordinates;
+            Spawn("ShockWaveEffect", starfallCoords);
+            var coordX = starfallCoords.X.ToString();
+            var coordY = starfallCoords.Y.ToString();
+            var side = chosenSpawner.Side;
+
+            if (randomise > 35)
+            {
+                _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-fallingstar", ("side", $"{side}"), ("x", $"{coordX}"), ("y", $"{coordY}")), playSound: true, colorOverride: Color.Yellow, sender: Loc.GetString("medieval-hm-barrier-event"));
+                Spawn("MedievalSteroidRoomMarker", starfallCoords);
+            }
+            else
+            {
+                _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-caravan", ("side", $"{side}"), ("x", $"{coordX}"), ("y", $"{coordY}")), playSound: true, colorOverride: Color.Yellow, sender: Loc.GetString("medieval-hm-barrier-event"));
+                Spawn("MedievalKaravanRoomMarker", starfallCoords);
+            }
+
+            return true;
+        }
+
+        private bool TryStartAncientNocturneEvent()
+        {
+            if (!_ancientNocturne.CanStartNocturneEvent())
+            {
+                Log.Warning("Unable to start Ancient Nocturne midround event: no unused AncientNocturneSpawnMarkerComponent markers are available");
+                return false;
+            }
+
+            if (_gameTicker.StartGameRule("MedievalAncientNocturneSpawnRule"))
+                return true;
+
+            Log.Warning("Unable to start Ancient Nocturne midround event: game rule startup failed");
+            return false;
+        }
+
         private void OnRiftTerminating(EntityUid uid, MagicBarrierRiftComponent component, ref EntityTerminatingEvent args)
         {
             if (component.Spawner.HasValue && TryComp<MagicBarrierRiftSpawnComponent>(component.Spawner.Value, out var spawner))
@@ -500,10 +536,10 @@ namespace Content.Server.MagicBarrier
             foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
                 barrier.Stability += 4f;
-                barrier.Lose *= 0.72f;
+                barrier.Lose *= 0.76f;
             }
 
-            _chat.DispatchGlobalAnnouncement("Элементальный разлом уничтожен, стабильность барьера восстановлена.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-magic-barrier-rift-destroyed"), playSound: false, colorOverride: Color.LimeGreen, sender: Loc.GetString("medieval-magic-barrier-sender"));
         }
     }
 

@@ -49,6 +49,12 @@ public sealed class AncientNocturneSpawnRuleSystem : GameRuleSystem<AncientNoctu
         SubscribeLocalEvent<HellfireInquisitionMemberComponent, PlayerAttachedEvent>(OnInquisitorAttached);
     }
 
+    public bool CanStartNocturneEvent()
+    {
+        return EntityManager.AllEntities<AncientNocturneSpawnMarkerComponent>()
+            .Any(marker => !marker.Comp.Used);
+    }
+
     protected override void Started(
         EntityUid uid,
         AncientNocturneSpawnRuleComponent component,
