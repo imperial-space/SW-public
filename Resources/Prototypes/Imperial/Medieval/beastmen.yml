@@ -231,6 +231,10 @@
   markingLimits: MobBeastmenMarkingLimits
   dollPrototype: MobBeastmenDummy
   skinColoration: HumanToned
+  minAge: 18
+  maxAge: 90
+  oldAge: 70
+  youngAge: 35
 
 - type: speciesBaseSprites
   id: MobBeastmenSprites
