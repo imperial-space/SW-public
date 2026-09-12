@@ -106,6 +106,48 @@
   #- type: Damageable
   #- type: Anchorable
 
+- type: constructionGraph
+  id: MedievalCampfireConstruction
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: Built
+      completed:
+      - !type:SnapToGrid {}  # Привязываем к сетке после завершения
+      steps:
+      - material: WoodPlank  # Требуемый материал
+        amount: 18          # Количество
+        doAfter: 7          # Время строительства (секунды)
+  - node: Built
+    entity: MedievalCampfire  # Что спавнится после строительства
+    edges:
+    - to: start  # Обратный путь - разборка
+      completed:
+      - !type:SpawnPrototype  # Возврат материалов при разборке
+        prototype: MaterialWoodPlank
+        amount: 12
+      steps:
+      - tool: Prying  # Требуемый инструмент
+        doAfter: 3    # Время разборки (секунды)
+
+- type: construction
+  id: MedievalCampfireConstruction
+  name: костёр
+  description: Самое то, когда хотите поесть шашлыки вдали от города.
+  graph: MedievalCampfireConstruction  # Ссылка на граф выше
+  startNode: start
+  targetNode: Built
+  category: construction-category-furniture  # Категория в меню
+  icon:
+    sprite: Imperial/Medieval/Lathe/campfire.rsi  # Иконка в меню
+    state: mw_unlit  # Состояние спрайта
+  objectType: Structure
+  placementMode: SnapgridCenter  # Размещение по центру тайла
+  canBuildInImpassable: false  # Нельзя строить в непроходимом
+  conditions:
+  - !type:TileNotBlocked ""  # Условие: тайл не заблокирован
+
 - type: entity
   name: MedievalCampfireCraft
   description: MedievalCampfireCraft
@@ -124,52 +166,6 @@
   - type: Construction
     graph: MedievalCampfireCraft
     node: MedievalCampfireCraft
-
-- type: construction
-  id: MedievalCampfireCraft
-  name: заготовка костра
-  description: Самое то, когда хотите поесть шашлыки в дали от города.
-  graph: MedievalCampfireCraft
-  startNode: start
-  targetNode: MedievalCampfireCraft
-  category: construction-category-furniture
-  icon:
-    sprite: Imperial/Medieval/CraftBosses/stockade.rsi
-    state: icon
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked ""
-
-- type: constructionGraph
-  id: MedievalCampfireCraft
-  start: start
-  graph:
-  - node: start
-    actions:
-    - !type:DestroyEntity {}
-    edges:
-    - to: MedievalCampfireCraft
-      completed:
-      - !type:SnapToGrid {}
-      steps:
-      - material: WoodPlank
-        amount: 18
-        doAfter: 3
-  - node: MedievalCampfireCraft
-    entity: MedievalCampfireCraft
-    edges:
-    - to: start
-      completed:
-      - !type:SpawnPrototype
-        prototype: MaterialWoodPlank
-        amount: 12
-      steps:
-      - tool: Prying
-        doAfter: 1
-  #- type: Damageable
-  #- type: Anchorable
 
 - type: construction
   id: MedievalhydroponicsSoilCraft
