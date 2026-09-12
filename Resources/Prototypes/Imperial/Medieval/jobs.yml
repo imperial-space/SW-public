@@ -5938,8 +5938,9 @@
 - type: startingGear
   id: MedievalVillagerGear
   equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth8
-    shoes: MedievalBastShoes
+    pocket1: MedievalRevent10
+    # jumpsuit: MedievalClothingUniformJumpsuitShitCloth8
+    # shoes: MedievalBastShoes
 
 - type: playTimeTracker
   id: JobMedievalVillager
@@ -5982,10 +5983,10 @@
   id: JobMedievalVillager
   groups:
   - TravellerHead
-  - TravellerJumpsuitVillage
+  - TravellerJumpsuitVillageRegular
   - MedievalNeck
   - MedievalBackpack
-  - MedievalShoes
+  - MedievalShoesVillage
   - MedievalBelt
   - MedievalTrinkets
   - MedievalGloves
@@ -5999,7 +6000,7 @@
   id: MedievalVillagerDefGear
   equipment:
     pocket1: MedievalRevent25
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth11
+    # jumpsuit: MedievalClothingUniformJumpsuitShitCloth11
     head: MedievalClothingHeadHelmetNormandFree
 
 - type: playTimeTracker
@@ -6043,14 +6044,13 @@
 - type: roleLoadout
   id: JobMedievalVillagerDef
   groups:
-  - TravellerHead
-  - TravellerJumpsuitVillage
+  - TravellerJumpsuitVillageDef
   - MedievalNeck
   - MedievalBackpack
   - MedievalBelt
   - MedievalTrinkets
   - MedievalGloves
-  - MedievalShoes
+  - MedievalShoesVillage
   - MedievalArmorVilage
   - MedievalRustyWeapons
   - MedievalRepair
@@ -6062,8 +6062,8 @@
   equipment:
     pocket1: MedievalRevent50
     pocket2: MedievalStampMedievalVillage
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
-    head: MedievalClothingHeadArcherHat
+    # jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
+    # head: MedievalClothingHeadArcherHat
 
 
 - type: playTimeTracker
@@ -6120,10 +6120,10 @@
   id: JobMedievalVillagerLeader
   groups:
   - TravellerHead
-  - TravellerJumpsuitVillage
+  - TravellerJumpsuitVillageLeader
   - MedievalNeck
   - MedievalBackpack
-  - MedievalShoes
+  - MedievalShoesVillage
   - MedievalBelt
   - MedievalTrinkets
   - MedievalGloves
@@ -6142,19 +6142,17 @@
     - FoodBreadMeat
 
 - type: loadoutGroup
-  id: TravellerJumpsuitVillage
+  id: TravellerJumpsuitVillageLeader
   name: loadout-group-traveller-jumpsuit
-  minLimit: 0
-  maxLimit: 1
   loadouts:
+  - TravellerFine3Village
   - TravellerDefault
   - TravellerDefault2
   - TravellerFine1
   - TravellerFine2
-  - TravellerFine3
   - TravellerFine4
-  - TravellerFine5
-  - TravellerFine6
+  - TravellerFine5Village
+  - TravellerFine6Village
   - TravellerFine7
   - TravellerFine8
   - TravellerFine9
@@ -6196,3 +6194,148 @@
   - TravellerVillage4
   - TravellerVillage5
   - TravellerVillage6
+
+- type: loadoutGroup
+  id: TravellerJumpsuitVillageDef
+  name: loadout-group-traveller-jumpsuit
+  loadouts:
+  - TravellerFine6Village
+  - TravellerDefault
+  - TravellerDefault2
+  - TravellerFine1
+  - TravellerFine2
+  - TravellerFine3Village
+  - TravellerFine4
+  - TravellerFine5Village
+  - TravellerFine7
+  - TravellerFine8
+  - TravellerFine9
+  - TravellerFine10
+  - TravellerFine11
+  - TravellerFine12
+  - TravellerFine13
+  - TravellerFine14
+  - TravellerFine15
+  - TravellerBeaty1
+  - TravellerBeaty2
+  - TravellerBeaty3
+  - TravellerBeaty4
+  - TravellerBeaty5
+  - TravellerBeaty6
+  - TravellerBeaty7
+  - TravellerBeaty8
+  - TravellerBeaty9
+  - TravellerBeaty9_2
+  - TravellerBeaty10
+  - TravellerBeaty11
+  - TravellerBeaty12
+  - TravellerBeaty13
+  - TravellerBeaty14
+  - TravellerBeaty15
+  - TravellerBeaty16
+  - TravellerBeaty17
+  - TravellerBeaty18
+  - TravellerBeaty19
+  - TravellerBeaty20
+  - TravellerBeaty21
+  - TravellerGold
+  - TravellerGold2
+  - TravellerGold3
+  - TravellerGold4
+  - TravellerVillage1
+  - TravellerVillage2
+  - TravellerVillage3
+  - TravellerVillage4
+  - TravellerVillage5
+  - TravellerVillage6
+
+- type: loadoutGroup
+  id: TravellerJumpsuitVillageRegular
+  name: loadout-group-traveller-jumpsuit
+  loadouts:
+  - TravellerFine5Village
+  - TravellerDefault
+  - TravellerDefault2
+  - TravellerFine1
+  - TravellerFine2
+  - TravellerFine3Village
+  - TravellerFine4
+  - TravellerFine6Village
+  - TravellerFine7
+  - TravellerFine8
+  - TravellerFine9
+  - TravellerFine10
+  - TravellerFine11
+  - TravellerFine12
+  - TravellerFine13
+  - TravellerFine14
+  - TravellerFine15
+  - TravellerBeaty1
+  - TravellerBeaty2
+  - TravellerBeaty3
+  - TravellerBeaty4
+  - TravellerBeaty5
+  - TravellerBeaty6
+  - TravellerBeaty7
+  - TravellerBeaty8
+  - TravellerBeaty9
+  - TravellerBeaty9_2
+  - TravellerBeaty10
+  - TravellerBeaty11
+  - TravellerBeaty12
+  - TravellerBeaty13
+  - TravellerBeaty14
+  - TravellerBeaty15
+  - TravellerBeaty16
+  - TravellerBeaty17
+  - TravellerBeaty18
+  - TravellerBeaty19
+  - TravellerBeaty20
+  - TravellerBeaty21
+  - TravellerGold
+  - TravellerGold2
+  - TravellerGold3
+  - TravellerGold4
+  - TravellerVillage1
+  - TravellerVillage2
+  - TravellerVillage3
+  - TravellerVillage4
+  - TravellerVillage5
+  - TravellerVillage6
+
+- type: loadout
+  id: TravellerFine3Village
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
+
+- type: loadout
+  id: TravellerFine6Village
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth11
+
+- type: loadout
+  id: TravellerFine5Village
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth8
+
+- type: loadoutGroup
+  id: MedievalShoesVillage
+  name: loadout-group-medieval-shoes
+  loadouts:
+  - MedievalBastShoesVillage
+  - MedievalShoesSapogi
+  - MedievalClothingShoesLeather
+  - MedievalShoesSapogiHigh
+  - ClothingShoesBootsWork
+  - ClothingShoesBootsSalvage
+  - MedievalShoesSapogiRobin
+  - ClothingShoesCult
+  - ClothingShoesBootsCowboyBlack
+  - ClothingShoesBootsCowboyBrown
+  - MedievalShoesValenki
+  - ClothingShoesBootsLaceup
+
+- type: loadout
+  id: MedievalBastShoesVillage
+  equipment:
+    shoes: MedievalBastShoes
