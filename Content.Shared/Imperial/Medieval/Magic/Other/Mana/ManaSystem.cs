@@ -44,6 +44,7 @@ public sealed partial class ManaSystem : EntitySystem
             return;
 
         mana.Regen *= component.Modifier;
+        RecalculatePassiveManaChange(uid, mana); // immediately reflect the new modifier.
     }
 
     public override void Update(float frameTime)
@@ -52,12 +53,17 @@ public sealed partial class ManaSystem : EntitySystem
 
         while (enumerator.MoveNext(out var uid, out var component))
         {
-            if (component.MaxMana == 0f) continue;
-            if (_timing.CurTime <= component.EndTime) continue;
+            if (component.MaxMana == 0f)
+                continue;
+            if (_timing.CurTime <= component.EndTime)
+                continue;
 
-            component.EndTime = _timing.CurTime + component.ReloadTime;
+            component.EndTime =
+            _timing.CurTime + component.ReloadTime;
 
-            TryChargeMana(uid, component.Regen, component);
+            RecalculatePassiveManaChange(uid, component);
+
+            TryChangeMana(uid, component.Mana + component.CurrentPassiveManaChange, component);
 
             // if (_net.IsServer)
             //     _alertsSystem.ShowAlert(uid, component.ManaAlert, (short)Math.Clamp(Math.Round(component.Mana / component.MaxMana * 5.05f), 0, 5));
@@ -84,6 +90,7 @@ public sealed partial class ManaSystem : EntitySystem
             component.Regen *= job.RegenJobModifier;
         }
         component.ModifiersApplied = true;
+        RecalculatePassiveManaChange(uid, component); //current passive effect is initialized immediately.
         component.Mana = component.MaxMana;
     }
 
@@ -164,11 +171,56 @@ public sealed partial class ManaSystem : EntitySystem
 
     #region Helpers
 
-    private float GetAllSpellsManaDrain(Dictionary<EntityUid, float> spells) => spells.Aggregate(0.0f, (sum, next) => sum + next.Value);
+    // combine all passive mana effects into a single value.
+    private void RecalculatePassiveManaChange(EntityUid uid, ManaComponent component)
+    {
+        var passiveChanges = component.PassiveManaChanges.Values.Sum();
+
+        component.CurrentPassiveManaChange =
+            (component.Regen + passiveChanges)
+            * component.RegenMultiplier
+            * component.RaceTimeCompensator;
+
+        Dirty(uid, component);
+    }
+
+    private static float GetAllSpellsManaDrain(Dictionary<EntityUid, float> spells) => spells.Aggregate(0.0f, (sum, next) => sum + next.Value);
 
     #endregion
 
     #region Public API
+
+    public bool SetPassiveManaChange(
+    EntityUid uid,
+    EntityUid source,
+    float change,
+    ManaComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+
+        component.PassiveManaChanges[source] = change;
+
+        RecalculatePassiveManaChange(uid, component);
+
+        return true;
+    }
+
+    public bool RemovePassiveManaChange(
+    EntityUid uid,
+    EntityUid source,
+    ManaComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+
+        if (!component.PassiveManaChanges.Remove(source))
+            return false;
+
+        RecalculatePassiveManaChange(uid, component);
+
+        return true;
+    }
 
     public bool TryChangeMana(EntityUid uid, float mana, ManaComponent? component = null)
     {
