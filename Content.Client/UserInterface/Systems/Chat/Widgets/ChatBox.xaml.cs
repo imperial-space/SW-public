@@ -1,3 +1,4 @@
+using Content.Client.Imperial.Medieval.Chat; // imperial medieval - repeated chat messages
 using Content.Client.UserInterface.Systems.Chat.Controls;
 using Content.Shared.Chat;
 using Content.Shared.Input;
@@ -24,7 +25,11 @@ public partial class ChatBox : UIWidget
 
     private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
-
+    
+    // imperial medieval - recent lines eligible for "xN" folding. Bounded, so it never grows with the round.
+    private const int RepeatHistory = 10;
+    private readonly Queue<RepeatedChatMessage> _repeatQueue = new();
+    
     public bool Main { get; set; }
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
@@ -52,7 +57,6 @@ public partial class ChatBox : UIWidget
     {
         _controller.SendMessage(this, SelectedChannel);
     }
-
     private void OnMessageAdded(ChatMessage msg)
     {
         _sawmill.Debug($"{msg.Channel}: {msg.Message}");
@@ -68,7 +72,62 @@ public partial class ChatBox : UIWidget
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
 
-        AddLine(msg.WrappedMessage, color);
+        // imperial medieval - fold repeats instead of printing the same line again.
+        // Checked before building the line so folded messages cost no markup parsing.
+        if (TryFoldRepeat(msg))
+            return;
+
+        var formatted = BuildLine(msg.WrappedMessage ?? string.Empty, color);
+
+        _repeatQueue.Enqueue(new RepeatedChatMessage(Contents.EntryCount, formatted, msg.Message, msg.Channel));
+
+        while (_repeatQueue.Count > RepeatHistory)
+        {
+            _repeatQueue.Dequeue();
+        }
+
+        Contents.AddMessage(formatted);
+    }
+
+    /// <summary>
+    ///     imperial medieval - folds this message into a matching recent one instead of printing it again.
+    ///     Matches the oldest entry in the queue.
+    /// </summary>
+    private bool TryFoldRepeat(ChatMessage msg)
+    {
+        foreach (var old in _repeatQueue)
+        {
+            // msg.Message can be null; string.Equals handles that without throwing
+            if (old.Channel != msg.Channel || !string.Equals(old.Text, msg.Message, StringComparison.Ordinal))
+                continue;
+
+            // Bounds guard only. Correctness relies on the queue being cleared whenever the panel is,
+            // which is done in Repopulate and OnChannelFilter - this just keeps a missed clear from
+            // throwing instead of silently writing to whatever line now sits at that index.
+            if (old.Index >= Contents.EntryCount)
+                return false;
+
+            old.Count++;
+
+            var copy = new FormattedMessage(old.Original);
+            copy.AddMarkupPermissive($" [color=red]x{old.Count}[/color]");
+            Contents.SetMessage(old.Index, copy);
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///     imperial medieval - builds a chat line without printing it, so it can be stored for repeat folding.
+    /// </summary>
+    private FormattedMessage BuildLine(string message, Color color)
+    {
+        var formatted = new FormattedMessage(3);
+        formatted.PushColor(color);
+        formatted.AddMarkupOrThrow(message);
+        formatted.Pop();
+        return formatted;
     }
 
     private void OnHighlightsUpdated(string highlights)
@@ -84,16 +143,18 @@ public partial class ChatBox : UIWidget
     public void Repopulate()
     {
         Contents.Clear();
+        _repeatQueue.Clear(); // imperial medieval - indices are invalid after a clear
 
         foreach (var message in _controller.History)
         {
             OnMessageAdded(message.Item2);
         }
     }
-
+    
     private void OnChannelFilter(ChatChannel channel, bool active)
     {
         Contents.Clear();
+        _repeatQueue.Clear(); // imperial medieval - indices are invalid after a clear
 
         foreach (var message in _controller.History)
         {
@@ -113,11 +174,7 @@ public partial class ChatBox : UIWidget
 
     public void AddLine(string message, Color color)
     {
-        var formatted = new FormattedMessage(3);
-        formatted.PushColor(color);
-        formatted.AddMarkupOrThrow(message);
-        formatted.Pop();
-        Contents.AddMessage(formatted);
+        Contents.AddMessage(BuildLine(message, color));
     }
 
     public void Focus(ChatSelectChannel? channel = null)
