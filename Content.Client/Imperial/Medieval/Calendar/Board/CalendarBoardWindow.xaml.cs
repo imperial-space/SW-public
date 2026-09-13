@@ -65,29 +65,28 @@ public sealed partial class CalendarBoardWindow : DefaultWindow
             WantedGrid.AddChild(entry);
         }
 
-        // Заполняем сетку дней
+
         DayCalendarGrid.RemoveAllChildren();
-        if (state.DayDeck != null) // Убедись, что переменная в State называется DayDeck
+        if (state.DayDeck != null)
         {
             var daysCount = state.DayDeck.Count;
             for (var i = 0; i < daysCount; i++)
             {
                 var isCurrent = i == (state.CurrentCycle % daysCount);
-                // Передаем ключ локализации для дня
+
                 var entry = new CalendarDayEntry(i + 1, state.DayDeck[i], isCurrent, "calendar-board-day");
                 DayCalendarGrid.AddChild(entry);
             }
         }
 
-        // Заполняем сетку ночей
         NightCalendarGrid.RemoveAllChildren();
-        if (state.NightDeck != null) // Убедись, что ты добавил NightDeck в State
+        if (state.NightDeck != null)
         {
             var nightsCount = state.NightDeck.Count;
             for (var i = 0; i < nightsCount; i++)
             {
                 var isCurrent = i == (state.CurrentCycle % nightsCount);
-                // Передаем ключ локализации для ночи
+
                 var entry = new CalendarDayEntry(i + 1, state.NightDeck[i], isCurrent, "calendar-board-night");
                 NightCalendarGrid.AddChild(entry);
             }

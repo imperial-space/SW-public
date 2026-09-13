@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Content.Server.Imperial.DayTime;
 using Content.Server.Imperial.Medieval.Factions;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Imperial.Medieval.Calendar;
 using Content.Shared.Imperial.Medieval.Factions;
 using Robust.Server.GameObjects;
@@ -17,6 +18,7 @@ public sealed class CalendarBoardSystem : EntitySystem
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly CalendarSystem _calendar = default!;
     [Dependency] private readonly MedievalFactionsSystem _factions = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
 
     public readonly List<AnnouncementData> Announcements = new();
     private const int MaxAnnouncements = 3;
@@ -34,6 +36,9 @@ public sealed class CalendarBoardSystem : EntitySystem
 
     private void OnCreateAnnouncement(EntityUid uid, CalendarBoardComponent component, CalendarBoardCreateAnnouncementMessage args)
     {
+        if (!_actionBlocker.CanInteract(args.Actor, uid))
+            return;
+
         if (Announcements.Count >= MaxAnnouncements)
             return;
 
@@ -68,6 +73,9 @@ public sealed class CalendarBoardSystem : EntitySystem
 
     private void OnDeleteAnnouncement(EntityUid uid, CalendarBoardComponent component, CalendarBoardDeleteAnnouncementMessage args)
     {
+        if (!_actionBlocker.CanInteract(args.Actor, uid))
+            return;
+
         var actorNetEntity = GetNetEntity(args.Actor);
 
         Announcements.RemoveAll(a => a.Id == args.Id && a.AuthorId == actorNetEntity);

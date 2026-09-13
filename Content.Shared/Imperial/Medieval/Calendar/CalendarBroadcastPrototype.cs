@@ -25,10 +25,21 @@ public sealed partial class CalendarEventPrototype : IPrototype
     public HashSet<string> Tags { get; private set; } = new();
 
     /// <summary>
-    /// Вес. Чем выше - тем больше шанс появления этого дня
+    /// Вес. Чем выше - тем больше шанс появления этого дня.
     /// </summary>
     [DataField("weight")]
     public float Weight { get; private set; } = 1.0f;
+
+    /// <summary>
+    /// Кривая веса. Вычисляет вес для промежуточных дней пропорционально расстоянию между точками. Если не задано, то никак не влияет. Если запрашивается день больше существующих точек, то алгоритм вернет значение последней доступной точки
+    /// </summary>
+    [DataField("weightCurve")]
+    public CalendarWeightCurve? WeightCurve { get; private set; }
+
+    public float GetWeight(int day)
+    {
+        return WeightCurve != null ? WeightCurve.Evaluate(day) : Weight;
+    }
 
     /// <summary>
     /// Максимальное количество таких дней в раунде
@@ -50,6 +61,27 @@ public sealed partial class CalendarEventPrototype : IPrototype
     /// </summary>
     [DataField("minOffset")]
     public int MinOffset { get; private set; } = 1;
+
+    [DataField("minPlayers")]
+
+    /// <summary>
+    /// Минимальное количество игроков необходимое для включения этого события в календарь
+    /// </summary>
+    public int MinPlayers { get; private set; } = 0;
+
+
+    /// <summary>
+    /// Максимальное количество игроков необходимое для включения этого события в календарь. Если больше, то день не будет включен в календарь
+    /// </summary>
+    [DataField("maxPlayers")]
+    public int MaxPlayers { get; private set; } = int.MaxValue;
+
+    /// <summary>
+    /// Спавн прототипов по айди маркера CalendarSpawnMarkerComponent
+    /// </summary>
+
+    [DataField("spawns")]
+    public Dictionary<EntProtoId, List<string>>? Spawns { get; private set; }
 }
 
 public enum CalendarDayType : byte

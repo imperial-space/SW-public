@@ -3,9 +3,12 @@ using Content.Server.Imperial.DayTime;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Robust.Shared.Console;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System;
+using System.Collections.Generic;
 
 namespace Content.Shared.Imperial.Medieval.Calendar;
 
@@ -13,8 +16,9 @@ public sealed class CalendarSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
-    public const int DayStageNumber = 1;
+    public const int DayStageNumber = 12;
     public const int NightStageNumber = 6;
 
     public const string DayTag = "Day";
@@ -36,14 +40,34 @@ public sealed class CalendarSystem : EntitySystem
 
         SubscribeLocalEvent<DayCycleStageChangedEvent>(OnDayCycleChanged);
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStart);
-        SubscribeLocalEvent<CalendarDayStartedEvent>(OnNewDay);
+        SubscribeLocalEvent<CalendarEventStartedEvent>(OnCalendarEventStarted);
     }
 
-    private void OnNewDay(CalendarDayStartedEvent args)
+    private void OnCalendarEventStarted(CalendarEventStartedEvent args)
     {
-        if (args.EventId == "CalendarEventFairDay")
+        if (args.Prototype.Spawns == null || args.Prototype.Spawns.Count == 0)
+            return;
+
+        foreach (var (entProto, targetMarkers) in args.Prototype.Spawns)
         {
-            var i = 1 + 1; // Таким образом ловится ивент
+            foreach (var markerId in targetMarkers)
+            {
+                if (string.IsNullOrWhiteSpace(markerId) || markerId.Equals("Global", StringComparison.OrdinalIgnoreCase))
+                    Spawn(entProto, MapCoordinates.Nullspace);
+            }
+        }
+
+        var query = EntityQueryEnumerator<CalendarSpawnMarkerComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var marker, out var xform))
+        {
+            foreach (var (entProto, targetMarkers) in args.Prototype.Spawns)
+            {
+                foreach (var targetMarkerId in targetMarkers)
+                {
+                    if (targetMarkerId == marker.MarkerId)
+                        Spawn(entProto, xform.Coordinates);
+                }
+            }
         }
     }
 
@@ -83,15 +107,23 @@ public sealed class CalendarSystem : EntitySystem
                 _dayDeck[index] = eventId;
         }
     }
+
     private void GenerateDeck(List<ProtoId<CalendarEventPrototype>> deck, string filterTag, string fallbackEventId)
     {
         deck.Clear();
 
         var pool = new List<CalendarEventPrototype>();
+        var playerCount = _playerManager.PlayerCount;
+
         foreach (var proto in _prototype.EnumeratePrototypes<CalendarEventPrototype>())
         {
-            if (proto.Tags.Contains(filterTag) && proto.Weight > 0f)
+            if (proto.Tags.Contains(filterTag) &&
+                proto.Weight > 0f &&
+                playerCount >= proto.MinPlayers &&
+                playerCount <= proto.MaxPlayers)
+            {
                 pool.Add(proto);
+            }
         }
 
         if (pool.Count == 0)
@@ -125,7 +157,7 @@ public sealed class CalendarSystem : EntitySystem
             var totalWeight = 0f;
             for (var i = 0; i < candidates.Count; i++)
             {
-                totalWeight += candidates[i].Weight;
+                totalWeight += candidates[i].GetWeight(day);
             }
 
             var roll = _random.NextFloat() * totalWeight;
@@ -134,7 +166,7 @@ public sealed class CalendarSystem : EntitySystem
 
             for (var i = 0; i < candidates.Count; i++)
             {
-                acc += candidates[i].Weight;
+                acc += candidates[i].GetWeight(day);
                 if (roll <= acc)
                 {
                     selected = candidates[i];
@@ -196,7 +228,7 @@ public sealed class CalendarSystem : EntitySystem
             return;
 
         RaiseNetworkEvent(new CalendarBroadcastNotificationEvent(id), Filter.Broadcast());
-        RaiseLocalEvent(new CalendarDayStartedEvent(_curCycle, id, proto));
+        RaiseLocalEvent(new CalendarEventStartedEvent(_curCycle, id, proto));
     }
 }
 

@@ -19,7 +19,6 @@ public sealed partial class AnnouncementCreateWindow : DefaultWindow
     {
         RobustXamlLoader.Load(this);
 
-        // Применяем визуальный стиль для поля описания
         DescPanel.PanelOverride = new StyleBoxFlat
         {
             BorderThickness = new Thickness(1)

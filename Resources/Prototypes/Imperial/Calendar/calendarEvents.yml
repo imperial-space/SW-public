@@ -29,8 +29,9 @@
   sound:
     path: "/Audio/Effects/church_bell1.ogg"
   weight: 20.0
-  minDay: 1
-  minOffset: 2
+  maxOccurrences: 100 # Дни заполнители не должны иметь ограничений на количество появлений
+  minDay: 1 # Могут начинаться сразу же
+  minOffset: 1 # Дни заполнители не должны иметь оффсет
   tags:
     - Day
 
@@ -56,13 +57,27 @@
   text: calendar-event-fair-desc
   sound:
     path: "/Audio/Effects/church_bell1.ogg"
-  weight: 100.5
+  weight: 10.0 # Базовый вес, если кривой нет
+  weightCurve:
+    points:
+      - 1, 0.05  # В первый день шанс крайне мал
+      - 4, 0.05  # прямая до четвертого дня
+      - 5, 150000.0  # К пятому дню шанс возрастает
+      - 6, 0.0 # На шестой день и после событие не появится
   minDay: 3
+  minPlayers: 1 # Нужно минимум 1 игрок для включения этого ивента
+  maxPlayers: 15 # Если будет больше 15, то ивент не будет включен
   maxOccurrences: 1
   minOffset: 2
   tags:
     - Day
     - TradeEvent
+  spawns:
+    MobHuman:
+      - FairSpawnMarker1
+      - FairSpawnMarker2 # Нужно навесить на объект в мире компонент CalendarSpawnMarkerComponent и указать там айди такой же как
+    CrowbarRed:
+      - "Global" # Если не важно где появится прототип (допустим это спавн прототипа для триггера ивента). Это конечно можно было бы сделать и если бы маперы добавили просто объект с айди Global
 
 # 4. Солнечное затмение
 - type: calendarEvent
@@ -72,7 +87,7 @@
   text: calendar-event-eclipse-desc
   sound:
     path: "/Audio/Effects/church_bell1.ogg"
-  weight: 0.1
+  weight: 100
   minDay: 7
   maxOccurrences: 1
   tags:
@@ -92,8 +107,9 @@
   sound:
     path: "/Audio/Effects/church_bell1.ogg"
   weight: 20.0
-  minDay: 1
-  minOffset: 1
+  maxOccurrences: 100 # Дни заполнители не должны иметь ограничений на количество появлений
+  minDay: 1 # Могут начинаться сразу же
+  minOffset: 1 # Дни заполнители не должны иметь оффсет
   tags:
     - Night
 

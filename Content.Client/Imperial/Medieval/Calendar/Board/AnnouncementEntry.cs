@@ -16,7 +16,6 @@ public sealed class AnnouncementEntry : PanelContainer
         Margin = new Thickness(0, 0, 0, 10);
         HorizontalExpand = true;
 
-        // Ограничиваем максимальную ширину для корректного расчета переноса текста при открытии окна
         MaxWidth = 1020;
 
         var vBox = new BoxContainer

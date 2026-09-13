@@ -18,6 +18,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: ActivatableUI
+    requireActiveHand: false
+    requiresComplex: false
     key: enum.CalendarBoardUiKey.Key
   - type: UserInterface
     interfaces:
