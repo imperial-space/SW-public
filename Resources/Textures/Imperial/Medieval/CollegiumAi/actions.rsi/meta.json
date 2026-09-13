@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by @fortengamer",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "strip_magic"
+    },
+    {
+      "name": "restore_magic"
+    },
+    {
+      "name": "return_statue"
+    },
+    {
+      "name": "return_barrier"
+    }
+  ]
+}

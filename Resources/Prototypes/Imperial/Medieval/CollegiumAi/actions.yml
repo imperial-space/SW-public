@@ -21,10 +21,10 @@
     checkCanInteract: false
     itemIconStyle: BigAction
     # Long enough that stripping a mage stays a considered decision rather than a reflex.
-    useDelay: 300
+    useDelay: 900
     icon:
-      sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/icons.rsi
-      state: senior
+      sprite: Imperial/Medieval/CollegiumAi/actions.rsi
+      state: strip_magic
   - type: TargetAction
     checkCanAccess: false
     interactOnMiss: false
@@ -83,8 +83,8 @@
     itemIconStyle: BigAction
     useDelay: 10
     icon:
-      sprite: Imperial/Medieval/Magic/Earth/Obelisk/icons.rsi
-      state: beginner
+      sprite: Imperial/Medieval/CollegiumAi/actions.rsi
+      state: return_statue
   - type: InstantAction
     event: !type:CollegiumAiReturnActionEvent
 
@@ -97,8 +97,8 @@
     itemIconStyle: BigAction
     useDelay: 15
     icon:
-      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
-      state: beginner
+      sprite: Imperial/Medieval/CollegiumAi/actions.rsi
+      state: restore_magic
   - type: TargetAction
     checkCanAccess: false
     interactOnMiss: false
@@ -120,7 +120,7 @@
     itemIconStyle: BigAction
     useDelay: 10
     icon:
-      sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
-      state: senior
+      sprite: Imperial/Medieval/CollegiumAi/actions.rsi
+      state: return_barrier
   - type: InstantAction
     event: !type:CollegiumAiBarrierActionEvent

@@ -11,11 +11,11 @@
   - type: CollegiumAi
     faction: Collegium
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/Light/MagicLight/light2.rsi
+    sprite: Imperial/Medieval/CollegiumAi/watcher.rsi
     drawdepth: Ghosts
     noRot: true
     layers:
-    - state: light2
+    - state: watcher
       shader: unshaded
   - type: PointLight
     radius: 3
@@ -38,6 +38,9 @@
   # Telepathy to the whole Collegium, the same channel the comms crystals use.
   - type: CloackMessage
     action: ActionMedievalCollegiumAiBroadcast
+    faction: "collegium"
+  # The watcher carries no crystal, so it needs its own receiver to hear the channel it can talk on.
+  - type: CloackReciever
     faction: "collegium"
   # Restricts sight to whatever the Collegium mages themselves can see.
   - type: StationAiOverlay
@@ -63,6 +66,11 @@
   - type: ContainerSpawnPoint
     containerId: collegium_ai_mind_slot
     job: MedievalCollegiumAi
+  # Seeds sight the same way the barrier does, so the watcher can hold station over its own statue.
+  # Only covers this grid, and only while the statue is near the viewport.
+  - type: StationAiVision
+    range: 28
+    occluded: false
   - type: Sprite
     sprite: Imperial/Medieval/statues.rsi
     drawdepth: Mobs

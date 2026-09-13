@@ -3,6 +3,7 @@ using Content.Server.Ghost;
 using Content.Server.MagicBarrier.Components;
 using Content.Server.Popups;
 using Content.Shared.Actions;
+using Content.Shared.Chat;
 using Content.Shared.Destructible;
 using Content.Shared.Imperial.Medieval.CollegiumAi;
 using Content.Shared.Imperial.Medieval.Factions.Components;
@@ -55,6 +56,8 @@ public sealed partial class CollegiumAiSystem : EntitySystem
         SubscribeLocalEvent<CollegiumAiComponent, ComponentShutdown>(OnWatcherShutdown);
         SubscribeLocalEvent<CollegiumAiComponent, InteractionAttemptEvent>(OnWatcherInteract);
 
+        SubscribeLocalEvent<CollegiumAiStrippedComponent, EntityTerminatingEvent>(OnStrippedTerminating);
+
         InitializeActions();
     }
 
@@ -86,7 +89,34 @@ public sealed partial class CollegiumAiSystem : EntitySystem
 
         BindToCore(ent);
         SendHome(ent, silent: true);
+        SendBriefing(ent, args.Player);
     }
+
+    /// <summary>
+    /// Tells a new watcher what the job actually is. Sent once, to that player only.
+    /// </summary>
+    private void SendBriefing(Entity<CollegiumAiComponent> ent, ICommonSession session)
+    {
+        if (ent.Comp.Briefed)
+            return;
+
+        ent.Comp.Briefed = true;
+
+        foreach (var line in new[] { "collegium-ai-briefing-role", "collegium-ai-briefing-power" })
+        {
+            var message = Loc.GetString(line);
+            _chatManager.ChatMessageToOne(
+                ChatChannel.Server,
+                message,
+                message,
+                ent.Owner,
+                false,
+                session.Channel,
+                colorOverride: BriefingColor);
+        }
+    }
+
+    private static readonly Color BriefingColor = Color.FromHex("#b48ee8");
 
     /// <summary>
     /// Attaches the watcher to a statue if it did not spawn inside one.
@@ -151,6 +181,18 @@ public sealed partial class CollegiumAiSystem : EntitySystem
             return;
 
         args.Cancelled = true;
+    }
+
+    /// <summary>
+    /// Parked spells live in nullspace, so they have to go with the mage they were taken from.
+    /// </summary>
+    private void OnStrippedTerminating(Entity<CollegiumAiStrippedComponent> ent, ref EntityTerminatingEvent args)
+    {
+        foreach (var spell in ent.Comp.Spells)
+        {
+            if (!TerminatingOrDeleted(spell))
+                QueueDel(spell);
+        }
     }
 
     private void OnCoreDestroyed(Entity<CollegiumAiCoreComponent> ent, ref DestructionEventArgs args)
@@ -310,8 +352,8 @@ public sealed partial class CollegiumAiSystem : EntitySystem
     }
 
     /// <summary>
-    /// Nearest thing the watcher may sit near: a living mage of its faction, or the barrier. The barrier counts so
-    /// the watcher can hold station over it whether or not a mage is present.
+    /// Nearest thing the watcher may sit near: a living mage of its faction, the barrier, or its own statue.
+    /// The barrier and the statue count so the watcher can hold station over either whether or not a mage is present.
     /// </summary>
     private bool TryGetNearestAnchor(Entity<CollegiumAiComponent> ent, out EntityUid anchor, out float distance)
     {
@@ -343,6 +385,12 @@ public sealed partial class CollegiumAiSystem : EntitySystem
         while (barriers.MoveNext(out var barrier, out _))
         {
             Consider(barrier, ref anchor, ref distance);
+        }
+
+        var statues = EntityQueryEnumerator<CollegiumAiCoreComponent>();
+        while (statues.MoveNext(out var statue, out _))
+        {
+            Consider(statue, ref anchor, ref distance);
         }
 
         return anchor != default;

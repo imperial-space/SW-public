@@ -83,8 +83,9 @@ public sealed partial class CollegiumAiMageListMenu : DefaultWindow
         }
         else
         {
+            // The loc string wraps the name in colour markup and is then parsed, so the name itself must be escaped.
             name.SetMessage(FormattedMessage.FromMarkupPermissive(
-                Loc.GetString("collegium-ai-mage-list-dead-name", ("name", mage.Name))));
+                Loc.GetString("collegium-ai-mage-list-dead-name", ("name", FormattedMessage.EscapeText(mage.Name)))));
         }
 
         rows.AddChild(name);

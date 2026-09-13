@@ -25,7 +25,7 @@ ent-ActionMedievalCollegiumAiBarrier = return to the barrier
 # Job
 
 job-name-collegiumAi-medieval = Collegium Watcher
-job-description-collegiumAi-medieval = A bodiless eye bound to the Collegium statue. You watch the mages of the Collegium itself and the barrier they keep standing, speak to them, strip the spells from any who disgrace the order, and return that magic once they have earned it back. You cannot touch the world, and you cannot stray far from the mages or the barrier.
+job-description-collegiumAi-medieval = A bodiless eye bound to the Collegium. Watch over its mages as they uphold the barrier, and answer to the Archmage. You cannot touch the world, only see it and speak into it.
 
 # Binding and the leash
 
@@ -68,3 +68,8 @@ collegium-ai-mage-list-search = Search
 collegium-ai-mage-list-empty = No mage answers.
 collegium-ai-mage-list-dead = This mage is dead.
 collegium-ai-mage-list-dead-name = [color=gray]{ $name } (dead)[/color]
+
+# Briefing
+
+collegium-ai-briefing-role = You are the Collegium Watcher. Ensure Collegium mages are upholding the barrier and assist the Archmage in their duties.
+collegium-ai-briefing-power = You have a limited power to strip spells from irresponsible mages. Use this sparingly.

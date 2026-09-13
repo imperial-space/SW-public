@@ -12,6 +12,7 @@ using Content.Shared.Imperial.Medieval.Magic.SpellTypes;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.CollegiumAi;
 
@@ -143,63 +144,53 @@ public sealed partial class CollegiumAiSystem
     }
 
     /// <summary>
-    /// Removes the spell actions granted to an entity and returns how many were taken. The action entities are
-    /// deleted rather than merely un-granted, otherwise they linger in the mind action container.
+    /// Takes the spell actions off an entity and returns how many were taken.
     /// </summary>
+    /// <remarks>
+    /// The actions are detached to nullspace, not deleted, so the same entities can be handed back later. Deleting
+    /// them would break grimoire upgrades, since the store tracks bought spells by entity. Detaching also takes them
+    /// out of the mind action container, which stops <c>GrantContainedActions</c> handing them straight back the
+    /// next time a mind is added to the body.
+    /// </remarks>
     private int StripSpells(EntityUid target)
     {
         var spells = new List<EntityUid>();
 
         foreach (var action in _actions.GetActions(target))
         {
-            if (!IsSpell(action.Owner))
-                continue;
-
-            spells.Add(action.Owner);
+            if (IsSpell(action.Owner))
+                spells.Add(action.Owner);
         }
 
         if (spells.Count == 0)
             return 0;
 
-        // An action with no prototype behind it cannot be rebuilt, so it is removed but not recorded.
         var stripped = EnsureComp<CollegiumAiStrippedComponent>(target);
 
         foreach (var spell in spells)
         {
-            if (MetaData(spell).EntityPrototype?.ID is { } proto && !stripped.Spells.Contains(proto))
-                stripped.Spells.Add(proto);
+            _actionContainer.RemoveAction(spell);
 
-            _actions.RemoveAction(target, spell);
-            QueueDel(spell);
+            if (!stripped.Spells.Contains(spell))
+                stripped.Spells.Add(spell);
         }
 
         return spells.Count;
     }
 
     /// <summary>
-    /// Puts a spell back into the mind action container, the same place the grimoire grants them.
+    /// Puts a parked spell back into the mind action container, the same place the grimoire grants them.
     /// </summary>
     /// <remarks>
     /// Aimed spells are driven by <c>MousePositionRefreshEvent</c>, which the medieval magic system relays only to
     /// actions in the mind container. A spell restored onto the body would be castable but never aimable.
     /// </remarks>
-    private bool GrantSpell(EntityUid target, EntProtoId proto)
+    private bool GrantSpell(EntityUid target, EntityUid spell)
     {
         if (_mind.TryGetMind(target, out var mind, out _))
-            return _actionContainer.AddAction(mind, proto) != null;
+            return _actionContainer.AddAction(mind, spell);
 
-        return _actions.AddAction(target, proto) != null;
-    }
-
-    private bool HasSpell(EntityUid target, EntProtoId proto)
-    {
-        foreach (var action in _actions.GetActions(target))
-        {
-            if (MetaData(action.Owner).EntityPrototype?.ID == proto.Id)
-                return true;
-        }
-
-        return false;
+        return _actions.AddActionDirect(target, spell);
     }
 
     private bool IsSpell(EntityUid action)
@@ -253,7 +244,9 @@ public sealed partial class CollegiumAiSystem
             return;
         }
 
-        var wrapped = Loc.GetString("collegium-ai-whisper-received", ("message", message));
+        // Escaped: the client renders the wrapped message as markup, so an unescaped player string could forge a
+        // system message or plant a [cmdlink] that runs a console command on the recipient when clicked.
+        var wrapped = Loc.GetString("collegium-ai-whisper-received", ("message", FormattedMessage.EscapeText(message)));
 
         _chatManager.ChatMessageToOne(
             ChatChannel.Server,
@@ -303,13 +296,12 @@ public sealed partial class CollegiumAiSystem
 
         var restored = 0;
 
-        foreach (var proto in stripped.Spells)
+        foreach (var spell in stripped.Spells)
         {
-            // They may have re-bought some of it from their grimoire in the meantime.
-            if (HasSpell(args.Target, proto))
+            if (TerminatingOrDeleted(spell))
                 continue;
 
-            if (GrantSpell(args.Target, proto))
+            if (GrantSpell(args.Target, spell))
                 restored++;
         }
 
