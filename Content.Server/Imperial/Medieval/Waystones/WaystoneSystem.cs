@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
+using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
@@ -295,8 +296,20 @@ public sealed class WaystoneSystem : EntitySystem
         var angle = _random.NextFloat(0, MathF.PI * 2);
         var dist = 1.5f;
         var offset = new Vector2(MathF.Cos(angle) * dist, MathF.Sin(angle) * dist);
+        var targetCoords = xform.Coordinates.Offset(offset);
 
-        _transform.SetCoordinates(user, xform.Coordinates.Offset(offset));
+        EntityUid? mount = null;
+        if (TryComp<BuckleComponent>(user, out var buckle) &&
+            buckle.BuckledTo is { } buckledTo &&
+            EntityManager.EntityExists(buckledTo))
+        {
+            mount = buckledTo;
+        }
+
+        _transform.SetCoordinates(user, targetCoords);
+
+        if (mount is { } mountUid)
+            _transform.SetCoordinates(mountUid, targetCoords);
 
         entity.Comp.CollectedMoney += CountDeparturePrice(entity, user);
         entityTarget.Comp.CollectedMoney += CountArrivalPrice(entityTarget, user);
