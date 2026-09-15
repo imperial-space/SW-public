@@ -429,7 +429,7 @@ namespace Content.Server.Cult
                     {
                         foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
                         {
-                            barrier.Stability *= 0.7f;
+                            barrier.Stability *= 0.85f;
                         }
                         Spawn("ShockWaveEffect", coords);
                         _audioSystem.PlayPvs(comp.SuccesSound, uid);
@@ -732,8 +732,8 @@ namespace Content.Server.Cult
                         double speed = 0f;
                         foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
                         {
-                            stab = Math.Round(barrier.Stability, 2);
-                            speed = Math.Round(barrier.Lose, 2);
+                            stab = barrier.Stability;
+                            speed = barrier.Lose;
                         }
                         Spawn("ShockWaveEffect", coords);
                         _audioSystem.PlayPvs(comp.SuccesSound, uid);

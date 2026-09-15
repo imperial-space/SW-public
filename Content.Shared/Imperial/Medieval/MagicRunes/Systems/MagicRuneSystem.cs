@@ -3,6 +3,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Hands.EntitySystems;
 
 //=========================================================================
 // MagicRuneSystem.cs
@@ -22,6 +23,7 @@ public partial class MagicRuneSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedExplosionSystem _boomSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
 
     public override void Initialize()

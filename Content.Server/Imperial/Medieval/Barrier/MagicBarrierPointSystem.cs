@@ -90,7 +90,7 @@ namespace Content.Server.MagicBarrier
         {
             AlternativeVerb verb = new()
             {
-                Text = "Пожертвовать собой",
+                Text = Loc.GetString("magic-barrier-verb-sacrifice"),
                 Act = () => TrySuicide(args.User, uid),
             };
             args.Verbs.Add(verb);
@@ -100,7 +100,7 @@ namespace Content.Server.MagicBarrier
         {
             if (!HasComp<MagicRuneKnowledgeComponent>(uid))
             {
-                _popupSystem.PopupEntity("Я слишком бесполезен..", uid, uid);
+                _popupSystem.PopupEntity(Loc.GetString("magic-barrier-sacrifice-no-rune-knowledge"), uid, uid);
                 return;
             }
 
@@ -114,33 +114,49 @@ namespace Content.Server.MagicBarrier
         {
             if (!args.CanReach)
                 return;
-            OnUse(args.Target, args.User, args.Used, comp);
+            if (OnUse(args.Target, args.User, args.Used, comp))
+                args.Handled = true;
         }
 
-        public void OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
+        public bool OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
         {
             if (target == null)
-                return;
+                return false;
 
             if (TryComp<MagicBarrierComponent>(target, out var barrier))
             {
                 barrier.Stability += comp.Power;
-                _audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), target.Value);
+
+                _audio.PlayPvs(
+                new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd),
+                target.Value);
+
                 QueueDel(used);
 
-                _achievement.TryUpdateProgressAndGrant(user, new BarrierRefilledContext(),
-                    ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
-                return;
+                _achievement.TryUpdateProgressAndGrant(
+                user,
+                new BarrierRefilledContext(),
+                ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
+
+                return true;
             }
 
             if (TryComp<MagicSpellcraftComponent>(target, out var magicSpellcraft))
             {
                 magicSpellcraft.Charge += comp.Power;
 
-                _audio.PlayPvs(new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd), target.Value);
+                _audio.PlayPvs(
+                new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd),
+                target.Value);
+
                 QueueDel(used);
+
+                return true;
             }
+
+            return false;
         }
+
 
         public void OnStart(EntityUid uid, MagicBarrierComponent component, ComponentStartup args)
         {
@@ -172,20 +188,38 @@ namespace Content.Server.MagicBarrier
             Spawn("ShockWaveEffect", coords);
             RemComp(uid, component);
             QueueDel(uid);
-            _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-growth-destroyed"), playSound: false, colorOverride: Color.LimeGreen, sender: Loc.GetString("magic-barrier-announcement-sender"));
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
-                comp.Lose *= 0.72f;
+                var growthCount = EntityManager.EntityQuery<MagicBarrierCurseComponent>().Count();
+                //comp.MagicBarrierCursePE++;
+                if (growthCount < 10)
+                {
+                    comp.MagicBarrierCurseEffect += comp.MagicBarrierCurseEM;
+                }
                 comp.Stability += 4f;
             }
         }
 
-        private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
+
+        private void RecalculateLose(MagicBarrierComponent comp)
         {
-            args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]", 1);
-            var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
-            var riftLoss = component.ElementalRiftStabilityLossPerMinute * riftCount;
-            args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose + riftLoss, 2) + " стабильности в минуту[/color]", 0);
+            var growthCount = EntityQuery<MagicBarrierCurseComponent>().Count();
+            var riftCount = EntityQuery<MagicBarrierRiftComponent>().Count();
+
+            comp.Lose = MagicBarrierDrainCalculator.Calculate(comp, growthCount, riftCount);
+            comp.LastLoseCalculateTime = _timing.CurTime;
+        }
+        private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
+        {    /* TimeSpan.FromSeconds(5) is the time bettween every check to prevent spamming
+                TimeSpan.FromSeconds(5) — интервал между проверками, чтобы предотвратить спам */
+            if (_timing.CurTime >= component.LastLoseCalculateTime + TimeSpan.FromSeconds(5))
+            {
+            RecalculateLose(component);
+            }
+
+            args.PushMarkup(Loc.GetString("magic-barrier-examine-stability", ("current", Math.Round(component.Stability, 2)), ("max", component.MaxStability)), 1);
+            args.PushMarkup(Loc.GetString("magic-barrier-examine-drain", ("drain", Math.Round(component.Lose, 2))), 0);
             int sector1 = 0;
             int sector2 = 0;
             int sector3 = 0;
@@ -238,16 +272,16 @@ namespace Content.Server.MagicBarrier
                 }
                 else sector0++;
             }
-            args.PushMarkup(sector1 + " проклятых наростов в секторе 1 (Некрополь)", -1);
-            args.PushMarkup(sector2 + " проклятых наростов в секторе 2 (Мятеж)", -2);
-            args.PushMarkup(sector3 + " проклятых наростов в секторе 3 (Церковь)", -3);
-            args.PushMarkup(sector4 + " проклятых наростов в секторе 4 (Пустыня)", -4);
-            args.PushMarkup(sector5 + " проклятых наростов в секторе 5 (Коллегия)", -5);
-            args.PushMarkup(sector6 + " проклятых наростов в секторе 6 (Шахта)", -6);
-            args.PushMarkup(sector7 + " проклятых наростов в секторе 7 (Гоблины)", -7);
-            args.PushMarkup(sector8 + " проклятых наростов в секторе 8 (Легион)", -8);
-            args.PushMarkup(sector9 + " проклятых наростов в секторе 9 (Племя)", -9);
-            args.PushMarkup(sector0 + " проклятых наростов скрыты в неизвестном месте под землей", -10);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-1", ("count", sector1)), -1);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-2", ("count", sector2)), -2);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-3", ("count", sector3)), -3);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-4", ("count", sector4)), -4);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-5", ("count", sector5)), -5);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-6", ("count", sector6)), -6);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-7", ("count", sector7)), -7);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-8", ("count", sector8)), -8);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-9", ("count", sector9)), -9);
+            args.PushMarkup(Loc.GetString("magic-barrier-growth-sector-unknown", ("count", sector0)), -10);
 
             int riftSector1 = 0;
             int riftSector2 = 0;
@@ -305,16 +339,16 @@ namespace Content.Server.MagicBarrier
                 }
             }
 
-            args.PushMarkup(riftSector1 + "  разломов в секторе 1 (Некрополь)", -11);
-            args.PushMarkup(riftSector2 + "  разломов в секторе 2 (Мятеж)", -12);
-            args.PushMarkup(riftSector3 + "  разломов в секторе 3 (Церковь)", -13);
-            args.PushMarkup(riftSector4 + "  разломов в секторе 4 (Пустыня)", -14);
-            args.PushMarkup(riftSector5 + "  разломов в секторе 5 (Коллегия)", -15);
-            args.PushMarkup(riftSector6 + "  разломов в секторе 6 (Шахта)", -16);
-            args.PushMarkup(riftSector7 + "  разломов в секторе 7 (Гоблины)", -17);
-            args.PushMarkup(riftSector8 + "  разломов в секторе 8 (Легион)", -18);
-            args.PushMarkup(riftSector9 + "  разломов в секторе 9 (Племя)", -19);
-            args.PushMarkup(riftSector0 + "  разломов скрыты в неизвестном месте под землей", -20);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-1", ("count", riftSector1)), -11);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-2", ("count", riftSector2)), -12);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-3", ("count", riftSector3)), -13);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-4", ("count", riftSector4)), -14);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-5", ("count", riftSector5)), -15);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-6", ("count", riftSector6)), -16);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-7", ("count", riftSector7)), -17);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-8", ("count", riftSector8)), -18);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-9", ("count", riftSector9)), -19);
+            args.PushMarkup(Loc.GetString("magic-barrier-rift-sector-unknown", ("count", riftSector0)), -20);
         }
         public override void Update(float frameTime)
         {
@@ -329,31 +363,36 @@ namespace Content.Server.MagicBarrier
                     var xform = Transform(comp.Owner);
                     var coords = xform.Coordinates;
 
-                    if (comp.Stability <= 10f && comp.Stability > 5f)
+                    if (comp.Stability <= 100f && comp.Stability > 50f)
                     {
-                        _chat.DispatchGlobalAnnouncement("Низкий уровень стабильности барьера", playSound: false, colorOverride: Color.GreenYellow, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-stability-low"), playSound: false, colorOverride: Color.GreenYellow, sender: Loc.GetString("magic-barrier-announcement-sender"));
                     }
-                    if (comp.Stability <= 5f)
+                    if (comp.Stability <= 50f)
                     {
-                        _chat.DispatchGlobalAnnouncement("Крайне Низкий уровень стабильности барьера", playSound: false, colorOverride: Color.IndianRed, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-stability-critical"), playSound: false, colorOverride: Color.IndianRed, sender: Loc.GetString("magic-barrier-announcement-sender"));
                     }
 
                     if (comp.Stability > 0f)
                     {
+                        var growthCount = EntityQuery<MagicBarrierCurseComponent>().Count();
+                        var riftCount = EntityQuery<MagicBarrierRiftComponent>().Count();
+
+                        comp.Lose = MagicBarrierDrainCalculator.Calculate(
+                         comp,
+                         growthCount,
+                         riftCount);
+
                         comp.Stability -= comp.Lose;
-                        var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
-                        if (riftCount > 0)
-                            comp.Stability -= comp.ElementalRiftStabilityLossPerMinute * riftCount;
                     }
                     else
                     {
-                        _chat.DispatchGlobalAnnouncement("Барьер не сдержал темную силу.", playSound: false, colorOverride: Color.Red, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-failed"), playSound: false, colorOverride: Color.Red, sender: Loc.GetString("magic-barrier-announcement-sender"));
                         _roundEndSystem.EndRound();
                         //QueueDel(comp.Owner);
                     }
                     if (comp.Stability > comp.MaxStability)
                     {
-                        _chat.DispatchGlobalAnnouncement("Слишком высокий уровень стабильности барьера, сброс.", playSound: false, colorOverride: Color.SeaGreen, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-stability-too-high"), playSound: false, colorOverride: Color.SeaGreen, sender: Loc.GetString("magic-barrier-announcement-sender"));
                         comp.Stability = comp.MaxStability;
                         Spawn("ShockWaveEffect", coords);
                     }
@@ -361,7 +400,6 @@ namespace Content.Server.MagicBarrier
                     comp.Cycle += 1;
                     if (comp.Cycle % 10 == 0)
                     {
-                        comp.Lose = comp.Lose * comp.Rate;
                         var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
                         if (cursespawners.Length > 0)
                         {
@@ -369,7 +407,7 @@ namespace Content.Server.MagicBarrier
                             var cursexform = Transform(choosenSpawner.Owner);
                             var cursecoords = cursexform.Coordinates;
                             Spawn("MedievalBarrierCurse", cursecoords);
-                            _chat.DispatchGlobalAnnouncement("Расход стабильности барьера увеличен, тьма наступает.", playSound: false, colorOverride: Color.DeepPink, sender: "Барьер");
+                            _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-drain-increased"), playSound: false, colorOverride: Color.DeepPink, sender: Loc.GetString("magic-barrier-announcement-sender"));
                             Spawn("ShockWaveEffect", cursecoords);
                             Spawn("ShockWaveEffect", coords);
                         }
@@ -410,12 +448,12 @@ namespace Content.Server.MagicBarrier
                         string cordY = starfallcoords.Y.ToString();
                         if (randomise > 35)
                         {
-                            _chat.DispatchGlobalAnnouncement("Падающая звезда была замечена " + choosenSpawner.Side + ". Для магической карты: X = " + cordX + ", Y = " + cordY + ".", playSound: true, colorOverride: Color.Yellow, sender: "Событие");
+                            _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-starfall-spotted", ("side", choosenSpawner.Side), ("x", cordX), ("y", cordY)), playSound: true, colorOverride: Color.Yellow, sender: Loc.GetString("magic-barrier-event-sender"));
                             Spawn("MedievalSteroidRoomMarker", starfallcoords);
                         }
                         else if (randomise > comp.AncientNocturneEventChance)
                         {
-                            _chat.DispatchGlobalAnnouncement("Аура проклятого каравана была обнаружена " + choosenSpawner.Side + ". Для магической карты: X = " + cordX + ", Y = " + cordY + ".", playSound: true, colorOverride: Color.Yellow, sender: "Событие");
+                            _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-cursed-caravan-spotted", ("side", choosenSpawner.Side), ("x", cordX), ("y", cordY)), playSound: true, colorOverride: Color.Yellow, sender: Loc.GetString("magic-barrier-event-sender"));
                             Spawn("MedievalKaravanRoomMarker", starfallcoords);
                         }
                         else
@@ -475,7 +513,7 @@ namespace Content.Server.MagicBarrier
                 if (TryComp<MagicBarrierRiftComponent>(rift, out var riftComponent))
                     riftComponent.Spawner = chosenSpawner.Owner;
                 chosenSpawner.Occupied = true;
-                _chat.DispatchGlobalAnnouncement("Элементальный разлом открылся!", playSound: false, colorOverride: Color.DeepSkyBlue, sender: "Барьер");
+                _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-rift-opened"), playSound: false, colorOverride: Color.DeepSkyBlue, sender: Loc.GetString("magic-barrier-announcement-sender"));
                 Spawn("ShockWaveEffect", riftCoords);
                 return;
             }
@@ -500,10 +538,9 @@ namespace Content.Server.MagicBarrier
             foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
                 barrier.Stability += 4f;
-                barrier.Lose *= 0.72f;
             }
 
-            _chat.DispatchGlobalAnnouncement("Элементальный разлом уничтожен, стабильность барьера восстановлена.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("magic-barrier-rift-destroyed"), playSound: false, colorOverride: Color.LimeGreen, sender: Loc.GetString("magic-barrier-announcement-sender"));
         }
     }
 
