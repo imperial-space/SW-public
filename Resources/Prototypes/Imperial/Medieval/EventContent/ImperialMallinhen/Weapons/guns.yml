@@ -267,18 +267,20 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 38
-        Heat: 5
-        Bloodloss: 10
+        Piercing: 46
     soundHit:
       collection: MeatBulletImpact
+  - type: StaminaDamageOnCollide
+    damage: 18
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     state: buckshot
   - type: TimedDespawn
     lifetime: 1
-  - type: StaminaDamageOnCollide
-    damage: 10
+  - type: APDamageOnHit
+    damage:
+      types:
+        Piercing: 15
 
 - type: Tag
   id: MedievalBullet
@@ -311,6 +313,7 @@
     maxAngle: 8
   - type: BallisticAmmoProvider
     capacity: 1
+    cycleable: false
     proto: MedievalPowderCartridgeHeavy
   - type: MedievalGun
     loadTime: 1.5
@@ -349,6 +352,7 @@
     maxAngle: 10
   - type: BallisticAmmoProvider
     capacity: 2
+    cycleable: false
     proto: MedievalPowderCartridgeHeavy
   - type: MedievalGun
     loadTime: 1.5
