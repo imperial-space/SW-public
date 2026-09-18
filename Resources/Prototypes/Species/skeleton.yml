@@ -10,6 +10,10 @@
   femaleFirstNames: NamesSkeletonFirst
   dollPrototype: MobSkeletonPersonDummy
   skinColoration: SkeletonColors
+  minAge: 18
+  maxAge: 999
+  oldAge: 666
+  youngAge: 333
 
 - type: speciesBaseSprites
   id: MobSkeletonSprites
