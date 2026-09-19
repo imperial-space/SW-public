@@ -35,7 +35,7 @@
   - type: DamageContacts
     damage:
       types:
-        Heat: 10
+        Heat: 20
   - type: IgniteOnCollide
     fixtureId: fix1
     fireStacks: 2
