@@ -115,6 +115,15 @@
   result: MedievalDecorMogila1Craft
 
 - type: CP14Recipe
+  id: MedievalScrollBarrierNovice
+  craftTime: 8
+  stacks:
+    MedievalAstrolitPiece: 1
+  entities:
+    MedievalPaper: 1
+  result: MedievalScrollBarrierNovice
+
+- type: CP14Recipe
   id: MedievalScrollBarrier
   craftTime: 8
   stacks:
@@ -122,6 +131,27 @@
   entities:
     MedievalPaper: 1
   result: MedievalScrollBarrier
+
+- type: CP14Recipe
+  id: MedievalScrollBarrierOverclocked
+  craftTime: 16
+  stacks:
+    MedievalAstrolit: 2
+    MedievalMagicDust: 10
+  entities:
+    MedievalScrollBarrierDecoded: 1
+    ShardCrystalRed: 2
+  result: MedievalScrollBarrierOverclocked
+
+- type: CP14Recipe
+  id: MedievalScrollBarrierUnstable
+  craftTime: 16
+  stacks:
+    MedievalAstrolit: 4
+  entities:
+    MedievalScrollBarrierDecoded: 1
+    ShardCrystalRed: 2
+  result: MedievalScrollBarrierUnstable
 
 - type: CP14Recipe
   id: MedievalAstrolit

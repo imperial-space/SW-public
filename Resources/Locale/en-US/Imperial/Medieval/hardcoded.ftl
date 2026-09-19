@@ -1,9 +1,3 @@
-medieval-magic-barrier-examine-stability = [color=red]Current barrier stability: {$stability} of {$maxStability}[/color]
-medieval-magic-barrier-examine-drain = [color=cyan]Current drain: {$drain} stability per minute[/color]
-medieval-magic-barrier-examine-cursed-growths-sector = {$amount} cursed growths in sector {$sector}
-medieval-magic-barrier-examine-cursed-growths-unknown = {$amount} cursed growths are hidden somewhere unknown beneath the earth
-medieval-magic-barrier-examine-rifts-sector = {$amount} rifts in sector {$sector}
-medieval-magic-barrier-examine-rifts-unknown = {$amount} rifts are hidden somewhere unknown beneath the earth
 
 medieval-sending-crystal-examine-unclaimed = [color=gray]The crystal is unclaimed.[/color]
 medieval-sending-crystal-examine-owner = [color=gray]Owner: {$owner}[/color]
@@ -84,10 +78,6 @@ medieval-cult-cursed-examine-bond = Has a [color=red]bond with the cult[/color].
 medieval-cult-cursed-examine-severed = [color=red]Severed[/color] their bond with the cult, sinner!
 medieval-cult-cursed-examine-also-bound = Also has a [color=red]bond with the cult[/color].
 medieval-cult-not-enough-cultists = The rune is correct, but there are not enough cult members for the rite. Minimum required: {$required}
-
-medieval-magic-barrier-sender = Barrier
-medieval-magic-barrier-rift-opened = An elemental rift has opened!
-medieval-magic-barrier-rift-destroyed = The elemental rift has been destroyed. The barrier's stability is restored.
 
 medieval-nocturn-popup-filthy-blood = Such filthy blood... vile.
 medieval-nocturn-popup-taste = Taste: {$taste}

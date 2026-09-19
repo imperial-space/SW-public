@@ -3,8 +3,8 @@ using Robust.Shared.Serialization;
 //=========================================================================
 // MagicRunes.cs
 //=========================================================================
-// Purpose: Defines magic rune types, symbols, and meanings
-// Author: rhailrake
+// Purpose: Defines magic rune types, symbols, meanings, and rune pairs
+// Author: rhailrake, edited by Bladefire5
 //=========================================================================
 
 namespace Content.Shared.Imperial.Medieval.MagicRunes.Data;
@@ -22,6 +22,13 @@ public enum MagicRune : byte
     Mira  = 7,
 }
 
+[Serializable, NetSerializable]
+public sealed class MagicRunePair(MagicRune first, MagicRune second)
+{
+    public MagicRune First = first;
+    public MagicRune Second = second;
+}
+
 public static class MagicRuneData
 {
     private static readonly Dictionary<MagicRune, string> RuneSymbols = new()
@@ -36,22 +43,41 @@ public static class MagicRuneData
         { MagicRune.Mira, "⚵" }
     };
 
-    private static readonly Dictionary<MagicRune, string> RuneMeanings = new()
+    private static readonly Dictionary<MagicRune, string> RuneMeaningLocKeys = new()
     {
-        { MagicRune.Kael, "Огонь / разрушение" },
-        { MagicRune.Ryn, "Вода / адаптация" },
-        { MagicRune.Vel, "Тень / наведение" },
-        { MagicRune.Oth, "Иллюзия / магия" },
-        { MagicRune.Thar, "Пустота / ничто" },
-        { MagicRune.Lun, "Тьма / звезда смерти" },
-        { MagicRune.Seth, "Яд / проклятие" },
-        { MagicRune.Mira, "Защита / барьер" }
+        { MagicRune.Kael, "magic-rune-meaning-kael" },
+        { MagicRune.Ryn, "magic-rune-meaning-ryn" },
+        { MagicRune.Vel, "magic-rune-meaning-vel" },
+        { MagicRune.Oth, "magic-rune-meaning-oth" },
+        { MagicRune.Thar, "magic-rune-meaning-thar" },
+        { MagicRune.Lun, "magic-rune-meaning-lun" },
+        { MagicRune.Seth, "magic-rune-meaning-seth" },
+        { MagicRune.Mira, "magic-rune-meaning-mira" }
     };
+
+    // Every unique two-rune combination. With 8 runes this gives 28 pairs.
+    public static List<MagicRunePair> GetAllPairs()
+    {
+        var runes = Enum.GetValues<MagicRune>();
+        var pairs = new List<MagicRunePair>();
+
+        for (var i = 0; i < runes.Length; i++)
+        {
+            for (var j = i + 1; j < runes.Length; j++)
+            {
+                pairs.Add(new MagicRunePair(runes[i], runes[j]));
+            }
+        }
+
+        return pairs;
+    }
 
     public static string GetSymbol(MagicRune rune) =>
         RuneSymbols.GetValueOrDefault(rune, "?");
 
-    public static string GetMeaning(MagicRune rune) =>
-        RuneMeanings.GetValueOrDefault(rune, "???");
-}
+    public static string? GetMeaningLocKey(MagicRune rune) =>
+        RuneMeaningLocKeys.GetValueOrDefault(rune);
 
+    public static string GetPairDisplay(MagicRunePair pair) =>
+        $"{GetSymbol(pair.First)} + {GetSymbol(pair.Second)}";
+}

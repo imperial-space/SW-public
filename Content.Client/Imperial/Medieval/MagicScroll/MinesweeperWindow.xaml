@@ -2,36 +2,61 @@
 <!-- MinesweeperWindow.xaml -->
 <!-- ===================================================================== -->
 <!-- Purpose: XAML layout for minesweeper rune decryption game -->
-<!-- Author: rhailrake -->
+<!-- Author: rhailrake, edited by Bladefire5 -->
 <!-- ===================================================================== -->
 
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
-               Title="Расшифровка Руны - Сапёр"
+               Title="{Loc 'magic-scroll-minesweeper-title'}"
                MinSize="500 400">
     <BoxContainer Orientation="Vertical" Margin="10">
-        <Label Name="RuneLabel" Text="Расшифровка руны: ⚵" HorizontalAlignment="Center" Margin="0 0 0 10"/>
+        <Label Name="RuneLabel"
+               Text="{Loc 'magic-scroll-minesweeper-deciphering-placeholder'}"
+               HorizontalAlignment="Center"
+               Margin="0 0 0 10"/>
 
         <customControls:HSeparator Margin="0 10"/>
 
         <BoxContainer Orientation="Vertical">
-            <Label Name="StatusLabel" Text="Найдите все безопасные клетки!" HorizontalAlignment="Center"/>
-            <Label Name="InfoLabel" Text="ЛКМ - открыть/поставить флаг | Чтобы поставить флаг, включите режим флага" HorizontalAlignment="Center" Margin="0 5"/>
+            <Label Name="StatusLabel"
+                   Text="{Loc 'magic-scroll-minesweeper-start-prompt'}"
+                   HorizontalAlignment="Center"/>
+            <Label Name="InfoLabel"
+                   Text="{Loc 'magic-scroll-minesweeper-controls'}"
+                   HorizontalAlignment="Center"
+                   Margin="0 5"/>
         </BoxContainer>
 
-        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
-            <Label Name="MinesLabel" Text="Мины: 5" />
-            <Label Name="OpenedLabel" Text="Открыто: 0/20" Margin="10 0 0 0"/>
-            <Button Name="HintButton" Text="Подсказка" Margin="10 0 0 0"/>
-            <Button Name="RestartButton" Text="Начать с начала" Margin="10 0 0 0"/>
+        <BoxContainer Orientation="Horizontal"
+                     HorizontalAlignment="Center"
+                     Margin="0 10">
+            <Label Name="MinesLabel" Text="{Loc 'magic-scroll-minesweeper-mines-placeholder'}"/>
+            <Label Name="OpenedLabel" Text="{Loc 'magic-scroll-minesweeper-revealed-placeholder'}" Margin="10 0 0 0"/>
+            <Label Name="TimerLabel" Text="{Loc 'magic-scroll-minesweeper-time-none'}" Margin="10 0 0 0"/>
+            <Button Name="HintButton" Text="{Loc 'magic-scroll-minesweeper-hint-placeholder'}" Margin="10 0 0 0"/>
         </BoxContainer>
 
-        <GridContainer Name="MinesweeperGrid" Columns="5" HSeparationOverride="2" VSeparationOverride="2" Margin="0 10">
+        <BoxContainer Orientation="Horizontal"
+                     HorizontalAlignment="Center"
+                     Margin="0 0 0 10">
+            <Button Name="StartButton"
+                    Text="{Loc 'magic-scroll-minesweeper-start'}"
+                    Margin="0 0 10 0"/>
+            <Button Name="RestartButton"
+                    Text="{Loc 'magic-scroll-minesweeper-restart'}"
+                    Margin="0 0 10 0"
+                    Disabled="True"/>
+            <Button Name="CloseButto"
+                    Text="{Loc 'magic-scroll-minesweeper-close'}"/>
+        </BoxContainer>
+
+        <GridContainer Name="MinesweeperGrid"
+                       Columns="5"
+                       HorizontalAlignment="Center"
+                       HSeparationOverride="2"
+                       VSeparationOverride="2"
+                       Margin="0 10">
         </GridContainer>
-
-        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
-            <Button Name="CloseButto" Text="Закрыть" Margin="10 0 0 0"/>
-        </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

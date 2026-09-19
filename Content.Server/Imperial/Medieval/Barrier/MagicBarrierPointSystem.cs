@@ -115,33 +115,49 @@ namespace Content.Server.MagicBarrier
         {
             if (!args.CanReach)
                 return;
-            OnUse(args.Target, args.User, args.Used, comp);
+            if (OnUse(args.Target, args.User, args.Used, comp))
+                args.Handled = true;
         }
 
-        public void OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
+        public bool OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
         {
             if (target == null)
-                return;
+                return false;
 
             if (TryComp<MagicBarrierComponent>(target, out var barrier))
             {
                 barrier.Stability += comp.Power;
-                _audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), target.Value);
+
+                _audio.PlayPvs(
+                new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd),
+                target.Value);
+
                 QueueDel(used);
 
-                _achievement.TryUpdateProgressAndGrant(user, new BarrierRefilledContext(),
-                    ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
-                return;
+                _achievement.TryUpdateProgressAndGrant(
+                user,
+                new BarrierRefilledContext(),
+                ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
+
+                return true;
             }
 
             if (TryComp<MagicSpellcraftComponent>(target, out var magicSpellcraft))
             {
                 magicSpellcraft.Charge += comp.Power;
 
-                _audio.PlayPvs(new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd), target.Value);
+                _audio.PlayPvs(
+                new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd),
+                target.Value);
+
                 QueueDel(used);
+
+                return true;
             }
+
+            return false;
         }
+
 
         public void OnStart(EntityUid uid, MagicBarrierComponent component, ComponentStartup args)
         {
@@ -176,20 +192,35 @@ namespace Content.Server.MagicBarrier
             _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-wart"), playSound: false, colorOverride: Color.LimeGreen, sender: Loc.GetString("medieval-hm-barrier-barrier"));
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
-                comp.Lose *= 0.72f;
+                var growthCount = EntityManager.EntityQuery<MagicBarrierCurseComponent>().Count();
+                //comp.MagicBarrierCursePE++;
+                if (growthCount < 10)
+                {
+                    comp.MagicBarrierCurseEffect += comp.MagicBarrierCurseEM;
+                }
                 comp.Stability += 4f;
             }
         }
 
-        private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
+
+        private void RecalculateLose(MagicBarrierComponent comp)
         {
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-stability",
-                ("stability", Math.Round(component.Stability, 2)),
-                ("maxStability", component.MaxStability)), 1);
-            var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
-            var riftLoss = component.ElementalRiftStabilityLossPerMinute * riftCount;
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-drain",
-                ("drain", Math.Round(component.Lose + riftLoss, 2))), 0);
+            var growthCount = EntityQuery<MagicBarrierCurseComponent>().Count();
+            var riftCount = EntityQuery<MagicBarrierRiftComponent>().Count();
+
+            comp.Lose = MagicBarrierDrainCalculator.Calculate(comp, growthCount, riftCount);
+            comp.LastLoseCalculateTime = _timing.CurTime;
+        }
+        private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
+        {    /* TimeSpan.FromSeconds(5) is the time bettween every check to prevent spamming
+                TimeSpan.FromSeconds(5) — интервал между проверками, чтобы предотвратить спам */
+            if (_timing.CurTime >= component.LastLoseCalculateTime + TimeSpan.FromSeconds(5))
+            {
+                RecalculateLose(component);
+            }
+
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-stability", ("current", Math.Round(component.Stability, 2)), ("max", component.MaxStability)), 1);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-drain", ("drain", Math.Round(component.Lose, 2))), 0);
             int sector1 = 0;
             int sector2 = 0;
             int sector3 = 0;
@@ -242,16 +273,16 @@ namespace Content.Server.MagicBarrier
                 }
                 else sector0++;
             }
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector1), ("sector", 1)), -1);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector2), ("sector", 2)), -2);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector3), ("sector", 3)), -3);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector4), ("sector", 4)), -4);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector5), ("sector", 5)), -5);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector6), ("sector", 6)), -6);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector7), ("sector", 7)), -7);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector8), ("sector", 8)), -8);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-sector", ("amount", sector9), ("sector", 9)), -9);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-cursed-growths-unknown", ("amount", sector0)), -10);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-1", ("count", sector1)), -1);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-2", ("count", sector2)), -2);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-3", ("count", sector3)), -3);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-4", ("count", sector4)), -4);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-5", ("count", sector5)), -5);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-6", ("count", sector6)), -6);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-7", ("count", sector7)), -7);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-8", ("count", sector8)), -8);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-9", ("count", sector9)), -9);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-growth-sector-unknown", ("count", sector0)), -10);
 
             int riftSector1 = 0;
             int riftSector2 = 0;
@@ -309,16 +340,16 @@ namespace Content.Server.MagicBarrier
                 }
             }
 
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector1), ("sector", 1)), -11);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector2), ("sector", 2)), -12);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector3), ("sector", 3)), -13);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector4), ("sector", 4)), -14);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector5), ("sector", 5)), -15);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector6), ("sector", 6)), -16);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector7), ("sector", 7)), -17);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector8), ("sector", 8)), -18);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-sector", ("amount", riftSector9), ("sector", 9)), -19);
-            args.PushMarkup(Loc.GetString("medieval-magic-barrier-examine-rifts-unknown", ("amount", riftSector0)), -20);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-1", ("count", riftSector1)), -11);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-2", ("count", riftSector2)), -12);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-3", ("count", riftSector3)), -13);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-4", ("count", riftSector4)), -14);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-5", ("count", riftSector5)), -15);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-6", ("count", riftSector6)), -16);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-7", ("count", riftSector7)), -17);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-8", ("count", riftSector8)), -18);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-9", ("count", riftSector9)), -19);
+            args.PushMarkup(Loc.GetString("medieval-magic-barrier-rift-sector-unknown", ("count", riftSector0)), -20);
         }
 
         public override void Update(float frameTime)
@@ -333,22 +364,26 @@ namespace Content.Server.MagicBarrier
                     var xform = Transform(comp.Owner);
                     var coords = xform.Coordinates;
 
-
-                    if (comp.Stability <= 10f && comp.Stability > 5f)
+                    if (comp.Stability <= 100f && comp.Stability > 50f)
                     {
-                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-lowstab"), playSound: false, colorOverride: Color.GreenYellow, sender: Loc.GetString("medieval-hm-barrier-barrier"));
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-lowstab"), playSound: false, colorOverride: Color.GreenYellow, sender: Loc.GetString("magic-barrier-announcement-sender"));
                     }
-                    if (comp.Stability <= 5f)
+                    if (comp.Stability <= 50f)
                     {
                         _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-verylowstab"), playSound: false, colorOverride: Color.IndianRed, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                     }
 
                     if (comp.Stability > 0f)
                     {
+                        var growthCount = EntityQuery<MagicBarrierCurseComponent>().Count();
+                        var riftCount = EntityQuery<MagicBarrierRiftComponent>().Count();
+
+                        comp.Lose = MagicBarrierDrainCalculator.Calculate(
+                         comp,
+                         growthCount,
+                         riftCount);
+
                         comp.Stability -= comp.Lose;
-                        var riftCount = EntityManager.EntityQuery<MagicBarrierRiftComponent>().Count();
-                        if (riftCount > 0)
-                            comp.Stability -= comp.ElementalRiftStabilityLossPerMinute * riftCount;
                     }
                     else
                     {
@@ -364,9 +399,8 @@ namespace Content.Server.MagicBarrier
                     }
 
                     comp.Cycle += 1;
-                    if (comp.Cycle % 17 == 0)
+                    if (comp.Cycle % 10 == 0)
                     {
-                        comp.Lose = comp.Lose * comp.Rate;
                         var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
                         if (cursespawners.Length > 0)
                         {
@@ -374,7 +408,7 @@ namespace Content.Server.MagicBarrier
                             var cursexform = Transform(choosenSpawner.Owner);
                             var cursecoords = cursexform.Coordinates;
                             Spawn("MedievalBarrierCurse", cursecoords);
-                            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-decreaserateincreased"), playSound: false, colorOverride: Color.DeepPink, sender: Loc.GetString("medieval-hm-barrier-barrier"));
+                            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-drain-increased"), playSound: false, colorOverride: Color.DeepPink, sender: Loc.GetString("magic-barrier-announcement-sender"));
                             Spawn("ShockWaveEffect", cursecoords);
                             Spawn("ShockWaveEffect", coords);
                         }
@@ -448,7 +482,7 @@ namespace Content.Server.MagicBarrier
                 if (TryComp<MagicBarrierRiftComponent>(rift, out var riftComponent))
                     riftComponent.Spawner = chosenSpawner.Owner;
                 chosenSpawner.Occupied = true;
-                _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-magic-barrier-rift-opened"), playSound: false, colorOverride: Color.DeepSkyBlue, sender: Loc.GetString("medieval-magic-barrier-sender"));
+                _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-magic-barrier-rift-opened"), playSound: false, colorOverride: Color.DeepSkyBlue, sender: Loc.GetString("magic-barrier-announcement-sender"));
                 Spawn("ShockWaveEffect", riftCoords);
                 return;
             }
@@ -536,10 +570,9 @@ namespace Content.Server.MagicBarrier
             foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
                 barrier.Stability += 4f;
-                barrier.Lose *= 0.76f;
             }
 
-            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-magic-barrier-rift-destroyed"), playSound: false, colorOverride: Color.LimeGreen, sender: Loc.GetString("medieval-magic-barrier-sender"));
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-magic-barrier-rift-destroyed"), playSound: false, colorOverride: Color.LimeGreen, sender: Loc.GetString("magic-barrier-announcement-sender"));
         }
     }
 
