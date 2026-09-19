@@ -6168,8 +6168,6 @@
   - TravellerBeaty4
   - TravellerBeaty5
   - TravellerBeaty6
-  - TravellerBeaty7
-  - TravellerBeaty8
   - TravellerBeaty9
   - TravellerBeaty9_2
   - TravellerBeaty10
@@ -6222,8 +6220,6 @@
   - TravellerBeaty4
   - TravellerBeaty5
   - TravellerBeaty6
-  - TravellerBeaty7
-  - TravellerBeaty8
   - TravellerBeaty9
   - TravellerBeaty9_2
   - TravellerBeaty10
@@ -6249,6 +6245,94 @@
   - TravellerVillage5
   - TravellerVillage6
 
+- type: loadoutGroup
+  id: TravellerJumpsuitVillageRegular
+  name: loadout-group-traveller-jumpsuit
+  loadouts:
+  - TravellerFine5Village
+  - TravellerDefault
+  - TravellerDefault2
+  - TravellerFine1
+  - TravellerFine2
+  - TravellerFine3Village
+  - TravellerFine4
+  - TravellerFine6Village
+  - TravellerFine7
+  - TravellerFine8
+  - TravellerFine9
+  - TravellerFine10
+  - TravellerFine11
+  - TravellerFine12
+  - TravellerFine13
+  - TravellerFine14
+  - TravellerFine15
+  - TravellerBeaty1
+  - TravellerBeaty2
+  - TravellerBeaty3
+  - TravellerBeaty4
+  - TravellerBeaty5
+  - TravellerBeaty6
+  - TravellerBeaty9
+  - TravellerBeaty9_2
+  - TravellerBeaty10
+  - TravellerBeaty11
+  - TravellerBeaty12
+  - TravellerBeaty13
+  - TravellerBeaty14
+  - TravellerBeaty15
+  - TravellerBeaty16
+  - TravellerBeaty17
+  - TravellerBeaty18
+  - TravellerBeaty19
+  - TravellerBeaty20
+  - TravellerBeaty21
+  - TravellerGold
+  - TravellerGold2
+  - TravellerGold3
+  - TravellerGold4
+  - TravellerVillage1
+  - TravellerVillage2
+  - TravellerVillage3
+  - TravellerVillage4
+  - TravellerVillage5
+  - TravellerVillage6
+
+- type: loadout
+  id: TravellerFine3Village
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
+
+- type: loadout
+  id: TravellerFine6Village
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth11
+
+- type: loadout
+  id: TravellerFine5Village
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth8
+
+- type: loadoutGroup
+  id: MedievalShoesVillage
+  name: loadout-group-medieval-shoes
+  loadouts:
+  - MedievalBastShoesVillage
+  - MedievalShoesSapogi
+  - MedievalClothingShoesLeather
+  - MedievalShoesSapogiHigh
+  - ClothingShoesBootsWork
+  - ClothingShoesBootsSalvage
+  - MedievalShoesSapogiRobin
+  - ClothingShoesCult
+  - ClothingShoesBootsCowboyBlack
+  - ClothingShoesBootsCowboyBrown
+  - MedievalShoesValenki
+  - ClothingShoesBootsLaceup
+
+- type: loadout
+  id: MedievalBastShoesVillage
+  equipment:
+    shoes: MedievalBastShoes
 
 # ==========================================
 # MEDIEVAL CITIZEN (Обычный житель)
@@ -6300,7 +6384,7 @@
   id: JobMedievalCitizen
   groups:
   - TravellerHead
-  - TravellerJumpsuitVillage
+  - TravellerJumpsuit
   - MedievalNeck
   - MedievalBackpack
   - MedievalShoes
@@ -6367,93 +6451,3 @@
   - MedievalTrinkets
   - MedievalGloves
   - MedievalRepair
-- type: loadoutGroup
-  id: TravellerJumpsuitVillageRegular
-  name: loadout-group-traveller-jumpsuit
-  loadouts:
-  - TravellerFine5Village
-  - TravellerDefault
-  - TravellerDefault2
-  - TravellerFine1
-  - TravellerFine2
-  - TravellerFine3Village
-  - TravellerFine4
-  - TravellerFine6Village
-  - TravellerFine7
-  - TravellerFine8
-  - TravellerFine9
-  - TravellerFine10
-  - TravellerFine11
-  - TravellerFine12
-  - TravellerFine13
-  - TravellerFine14
-  - TravellerFine15
-  - TravellerBeaty1
-  - TravellerBeaty2
-  - TravellerBeaty3
-  - TravellerBeaty4
-  - TravellerBeaty5
-  - TravellerBeaty6
-  - TravellerBeaty7
-  - TravellerBeaty8
-  - TravellerBeaty9
-  - TravellerBeaty9_2
-  - TravellerBeaty10
-  - TravellerBeaty11
-  - TravellerBeaty12
-  - TravellerBeaty13
-  - TravellerBeaty14
-  - TravellerBeaty15
-  - TravellerBeaty16
-  - TravellerBeaty17
-  - TravellerBeaty18
-  - TravellerBeaty19
-  - TravellerBeaty20
-  - TravellerBeaty21
-  - TravellerGold
-  - TravellerGold2
-  - TravellerGold3
-  - TravellerGold4
-  - TravellerVillage1
-  - TravellerVillage2
-  - TravellerVillage3
-  - TravellerVillage4
-  - TravellerVillage5
-  - TravellerVillage6
-
-- type: loadout
-  id: TravellerFine3Village
-  equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
-
-- type: loadout
-  id: TravellerFine6Village
-  equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth11
-
-- type: loadout
-  id: TravellerFine5Village
-  equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth8
-
-- type: loadoutGroup
-  id: MedievalShoesVillage
-  name: loadout-group-medieval-shoes
-  loadouts:
-  - MedievalBastShoesVillage
-  - MedievalShoesSapogi
-  - MedievalClothingShoesLeather
-  - MedievalShoesSapogiHigh
-  - ClothingShoesBootsWork
-  - ClothingShoesBootsSalvage
-  - MedievalShoesSapogiRobin
-  - ClothingShoesCult
-  - ClothingShoesBootsCowboyBlack
-  - ClothingShoesBootsCowboyBrown
-  - MedievalShoesValenki
-  - ClothingShoesBootsLaceup
-
-- type: loadout
-  id: MedievalBastShoesVillage
-  equipment:
-    shoes: MedievalBastShoes
