@@ -68,6 +68,18 @@ public sealed class OrcAccentSystem : EntitySystem
         return dest;
     }
 
+    // Перед текущим словом либо ничего, либо конец прошлого предложения.
+    public static bool AtSentenceStart(StringBuilder text)
+    {
+        for (var i = text.Length - 1; i >= 0; i--)
+        {
+            if (char.IsWhiteSpace(text[i]))
+                continue;
+            return text[i] is '.' or '!' or '?';
+        }
+        return true;
+    }
+
     public string ToInfinitive(string word)
     {
         var lower = word.ToLower();
@@ -132,6 +144,14 @@ public sealed class OrcAccentSystem : EntitySystem
             {
                 var pronoun = name == null ? "моя" : name;
                 result.Append(MatchCase(element, pronoun.Substring(0, 1))).Append(pronoun.Substring(1));
+                continue;
+            }
+
+            // Замена "I": SanitizeMessageCapitalizeTheWordI всегда приводит его к заглавному, поэтому регистр берём из позиции в предложении, а не из исходного слова.
+            if (element is "I" or "i")
+            {
+                var pronoun = name ?? "me";
+                result.Append(AtSentenceStart(result) ? char.ToUpper(pronoun[0]) : pronoun[0]).Append(pronoun[1..]);
                 continue;
             }
 
