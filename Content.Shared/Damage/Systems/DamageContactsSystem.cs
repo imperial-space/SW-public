@@ -68,6 +68,10 @@ public sealed class DamageContactsSystem : EntitySystem
         if (_whitelistSystem.IsWhitelistPass(component.IgnoreWhitelist, otherUid))
             return;
 
+        var incoming = new BeforeAttackEffectsEvent(uid, null, AttackDelivery.Contact);
+        RaiseLocalEvent(otherUid, ref incoming);
+        if (incoming.Cancelled)
+            return;
         var damagedByContact = EnsureComp<DamagedByContactComponent>(otherUid);
         damagedByContact.Damage = component.Damage;
     }

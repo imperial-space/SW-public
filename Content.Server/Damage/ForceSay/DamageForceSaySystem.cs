@@ -50,6 +50,10 @@ public sealed class DamageForceSaySystem : EntitySystem
 
     public void TryForceSay(EntityUid uid, DamageForceSayComponent component, bool useSuffix=true)
     {
+        var reaction = new PainReactionAttemptEvent();
+        RaiseLocalEvent(uid, ref reaction);
+        if (reaction.Cancelled)
+            return;
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
 

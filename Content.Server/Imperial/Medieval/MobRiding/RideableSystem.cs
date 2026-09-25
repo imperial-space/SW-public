@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration;
+using Content.Server.Administration;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared.Buckle;
@@ -535,7 +535,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             if (!skills.Levels.TryGetValue("Agility", out var agility))
                 return false;
 
-            if (agility < 9)
+            if (agility < 8)
                 return false;
 
             return true;

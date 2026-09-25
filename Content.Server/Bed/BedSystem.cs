@@ -68,14 +68,15 @@ namespace Content.Server.Bed
             if (HasComp<HealOnBuckleHealingComponent>(args.Buckle))
                 return;
             EnsureComp<HealOnBuckleHealingComponent>(bed);
-            if (_inventorySystem.TryGetSlotEntity(args.Buckle.Owner, "outerClothing", out var existingOutfit) && !HasComp<AllowArmorSleepComponent>(existingOutfit.Value))
+            var armorSleep = TryComp<SkillsComponent>(args.Buckle, out var enduranceSkills) && SkillScaling.Level(enduranceSkills, SharedSkillsSystem.EnduranceId) >= SkillScaling.Master;
+            if (!armorSleep && _inventorySystem.TryGetSlotEntity(args.Buckle.Owner, "outerClothing", out var existingOutfit) && !HasComp<AllowArmorSleepComponent>(existingOutfit.Value))
             {
                 var meta = EntityManager.GetComponent<MetaDataComponent>(existingOutfit.Value);
                 _popup.PopupEntity(Loc.GetString("Как неудобно спать в " + meta.EntityName), args.Buckle.Owner);
                 return;
             }
 
-            if (_inventorySystem.TryGetSlotEntity(args.Buckle.Owner, "head", out var existingHead) && !HasComp<AllowArmorSleepComponent>(existingHead.Value))
+            if (!armorSleep && _inventorySystem.TryGetSlotEntity(args.Buckle.Owner, "head", out var existingHead) && !HasComp<AllowArmorSleepComponent>(existingHead.Value))
             {
                 var meta = EntityManager.GetComponent<MetaDataComponent>(existingHead.Value);
                 _popup.PopupEntity(Loc.GetString("Как неудобно спать в " + meta.EntityName), args.Buckle.Owner);

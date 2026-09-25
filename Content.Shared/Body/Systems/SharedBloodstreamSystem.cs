@@ -75,7 +75,9 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             // Adds blood to their blood level if it is below the maximum; Blood regeneration. Must be alive.
             if (bloodSolution.Volume < bloodSolution.MaxVolume && !_mobStateSystem.IsDead(uid))
             {
-                TryModifyBloodLevel((uid, bloodstream), bloodstream.BloodRefreshAmount);
+                var regeneration = new GetBloodRegenModifiersEvent(1f);
+                RaiseLocalEvent(uid, ref regeneration);
+                TryModifyBloodLevel((uid, bloodstream), bloodstream.BloodRefreshAmount * regeneration.Modifier);
             }
 
             // Removes blood from the bloodstream based on bleed amount (bleed rate)
@@ -370,10 +372,6 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
         if (amount >= 0)
         {
-            // Imperial Medieval Skills start
-            var ev = new GetBloodRegenModifiersEvent(1f);
-            RaiseLocalEvent(ent.Owner, ref ev);
-            // Imperial Medieval Skills end
             return SolutionContainer.TryAddReagent(ent.Comp.BloodSolution.Value, ent.Comp.BloodReagent, amount, null, GetEntityBloodData(ent));
         }
         // Removal is more involved,

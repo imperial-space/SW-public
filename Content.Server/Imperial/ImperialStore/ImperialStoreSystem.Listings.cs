@@ -69,6 +69,8 @@ public sealed partial class ImperialStoreSystem
     /// <returns>The available listings.</returns>
     public IEnumerable<ImperialListingData> GetAvailableListings(EntityUid buyer, EntityUid store, ImperialStoreComponent component)
     {
+        var refresh = new ImperialStoreRefreshListingsEvent(buyer, component);
+        RaiseLocalEvent(store, ref refresh);
         return GetAvailableListings(buyer, component.Listings, component.Categories, store);
     }
 

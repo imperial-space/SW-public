@@ -61,6 +61,7 @@ public abstract partial class SharedGunSystem
             _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.CartridgeFillDelay, new CartridgeReloadDoAfterEvent(), used: args.Used, target: uid, eventTarget: uid)
             {
                 BreakOnMove = true,
+                AllowMovementAssistance = true,
                 BreakOnDamage = true,
                 NeedHand = true,
             });
@@ -97,6 +98,7 @@ public abstract partial class SharedGunSystem
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.FillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid)
         {
             BreakOnMove = true,
+                AllowMovementAssistance = true,
             BreakOnDamage = false,
             NeedHand = true,
         });

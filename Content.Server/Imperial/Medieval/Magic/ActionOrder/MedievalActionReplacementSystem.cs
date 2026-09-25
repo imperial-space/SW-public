@@ -23,7 +23,8 @@ public sealed class MedievalActionReplacementSystem : EntitySystem
         ActionsContainerComponent component,
         ActionRemovedEvent args)
     {
-        if (args.Component.AttachedEntity is not { } performer ||
+        if (TerminatingOrDeleted(uid) ||
+            args.Component.AttachedEntity is not { } performer || TerminatingOrDeleted(performer) ||
             !HasComp<GrimoireOwnerComponent>(performer) ||
             !TryComp<ActionUpgradeComponent>(args.Action, out var upgrade))
         {

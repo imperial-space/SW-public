@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
@@ -21,65 +20,26 @@ public abstract partial class SharedSkillsSystem
     {
         if (!args.RaisedOnUser)
             return;
-
         var (proto, level) = GetSkill(uid, StrengthId);
-
-        if (level == 10)
-            return;
-
-        var positive = level > 10;
-
-        var diff = Math.Abs(level - 10);
-
-        var modifier = positive switch
-        {
-            true => (args.Weapon == args.User ? proto.Modifiers["FistPositiveDamageModifier"] : proto.Modifiers["WeaponPositiveDamageModifier"]) * diff,
-            false => (args.Weapon == args.User ? proto.Modifiers["FistNegativeDamageModifier"] : proto.Modifiers["WeaponNegativeDamageModifier"]) * diff
-        };
-
-        args.Damage *= 1 + modifier;
-
-        if (level >= 20)
-            args.Damage *= 1 + (args.Weapon == args.User ? proto.Modifiers["FistMaxDamageModifier"] : proto.Modifiers["WeaponMaxDamageModifier"]);
-
-        if (level > 16 && args.Damage.DamageDict.ContainsKey("Structural"))
-            args.Damage.DamageDict["Structural"] *= 1.35f;
+        args.Damage *= SkillScaling.Multiplier(level, proto.Modifiers[
+            args.Weapon == args.User ? "FistDamagePerLevel" : "WeaponDamagePerLevel"]);
+        if (level >= SkillScaling.Master && args.Damage.DamageDict.TryGetValue("Structural", out var structural))
+            args.Damage.DamageDict["Structural"] = structural * proto.Modifiers["StructuralDamageMultiplier"];
     }
 
     private void OnModifyUncuffDuration(EntityUid uid, SkillsComponent comp, ref ModifyUncuffDurationEvent args)
     {
         if (args.User != uid || args.Target != uid)
             return;
-
         var (proto, level) = GetSkill(uid, StrengthId);
-
-        if (level == 10)
-            return;
-
-        var positive = level > 10;
-
-        var diff = Math.Abs(level - 10);
-
-        var modifier = positive switch
-        {
-            true => proto.Modifiers["PositiveUncuffDurationModifier"] * diff,
-            false => proto.Modifiers["NegativeUncuffDurationModifier"] * diff
-        };
-
-        args.Duration *= Math.Clamp(1 + modifier, 0.2f, 3f);
+        args.Duration /= SkillScaling.Multiplier(level, proto.Modifiers["ForceSpeedPerLevel"]);
     }
 
     private void OnWieldAttempt(EntityUid uid, SkillsComponent comp, ref WieldAttemptEvent args)
     {
-        if (args.User != uid)
+        if (args.User != uid || SkillScaling.Level(comp, StrengthId) >= SkillScaling.Basic)
             return;
-
-        var (_, level) = GetSkill(uid, StrengthId);
-
-        if (level >= 5)
-            return;
-
         args.Cancel();
-        _popup.PopupPredicted("Вы слишком слабы, чтобы использовать это.", null, args.User, args.User, PopupType.Medium);
+        _popup.PopupPredicted(Loc.GetString("skills-require-strength-4"), null, args.User, args.User, PopupType.Medium);
     }
 }

@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Skills;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
@@ -583,6 +584,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (before.Cancelled) return;
         targets = before.HitEntities;
 
+        if (!targets.Contains(target.Value))
+            return;
+        var incoming = new BeforeAttackEffectsEvent(meleeUid, user, AttackDelivery.Melee);
+        RaiseLocalEvent(target.Value, ref incoming);
+        if (incoming.Cancelled)
+            return;
 
         var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, null);
         RaiseLocalEvent(meleeUid, hitEvent);
@@ -610,7 +617,15 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + totalBonus, hitEvent.ModifiersList);
         // ---------------------------------------------------------
+        var physical = new PhysicalStrikeEvent(target.Value, weapon, modifiedDamage);
+        RaiseLocalEvent(user, ref physical);
+        modifiedDamage = physical.Damage;
         var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin:user, ignoreResistances:resistanceBypass);
+        if (damageResult != null && damageResult.GetTotal() > 0)
+        {
+            var landed = new PhysicalStrikeLandedEvent(target.Value, physical.Empowered);
+            RaiseLocalEvent(user, ref landed);
+        }
         // [IMPERIAL]
         var bypassResult = _imperial.ApplySkillEffects(target.Value, user, meleeUid, skillEffects, damageResult, component);
         if ((damageResult == null || damageResult.Empty) && (bypassResult != null && !bypassResult.Empty))
@@ -748,6 +763,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 !damageQuery.HasComponent(entity))
                 continue;
 
+            if (!Blocker.CanAttack(user, entity, (meleeUid, component)))
+                continue;
+            var incoming = new BeforeAttackEffectsEvent(meleeUid, user, AttackDelivery.Melee);
+            RaiseLocalEvent(entity, ref incoming);
+            if (incoming.Cancelled)
+                continue;
             targets.Add(entity);
         }
 
@@ -799,7 +820,15 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + totalBonus, hitEvent.ModifiersList);
             // [IMPERIAL]
 
+            var physical = new PhysicalStrikeEvent(entity, weapon, modifiedDamage);
+            RaiseLocalEvent(user, ref physical);
+            modifiedDamage = physical.Damage;
             var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
+            if (damageResult != null && damageResult.GetTotal() > 0)
+            {
+                var landed = new PhysicalStrikeLandedEvent(entity, physical.Empowered);
+                RaiseLocalEvent(user, ref landed);
+            }
 
             if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero)
             {

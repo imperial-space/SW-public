@@ -123,18 +123,21 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     }
 
     private void OnRejuvenate(Entity<StaminaComponent> entity, ref RejuvenateEvent args)
-    {
-        if (entity.Comp.StaminaDamage >= entity.Comp.CritThreshold)
-        {
-            ExitStamCrit(entity, entity.Comp);
-        }
+        => RestoreStamina(entity.Owner, entity.Comp);
 
-        entity.Comp.StaminaDamage = 0;
-        AdjustStatus(entity.Owner);
-        RemComp<ActiveStaminaComponent>(entity);
-        _status.TryRemoveStatusEffect(entity, StaminaLow);
-        UpdateStaminaVisuals(entity);
-        Dirty(entity);
+    /// <summary>Fully restores stamina, including while in stamina critical state. Does not heal or wake the entity.</summary>
+    public void RestoreStamina(EntityUid uid, StaminaComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return;
+        ExitStamCrit(uid, component);
+        component.StaminaDamage = 0;
+        component.AfterCritical = false;
+        component.NextUpdate = Timing.CurTime;
+        RemComp<ActiveStaminaComponent>(uid);
+        _status.TryRemoveStatusEffect(uid, StaminaLow);
+        UpdateStaminaVisuals((uid, component));
+        Dirty(uid, component);
     }
 
     private void OnDisarmed(EntityUid uid, StaminaComponent component, ref DisarmedEvent args)
@@ -429,11 +432,12 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         RaiseLocalEvent(uid, ref ev);
         // Imperial Medieval Skills end
 
-        if (StunSystem.TryUpdateParalyzeDuration(uid, component.StunTime * ev.Modifier))
+        var stunTime = component.StunTime * Math.Max(0.05f, ev.Modifier);
+        if (StunSystem.TryUpdateParalyzeDuration(uid, stunTime))
             StunSystem.TrySeeingStars(uid);   // Imperial Medieval - modifier added
 
         // Give them buffer before being able to be re-stunned
-        component.NextUpdate = Timing.CurTime + component.StunTime + StamCritBufferTime;
+        component.NextUpdate = Timing.CurTime + stunTime + StamCritBufferTime;
         EnsureComp<ActiveStaminaComponent>(uid);
         Dirty(uid, component);
         _adminLogger.Add(LogType.Stamina, LogImpact.Medium, $"{ToPrettyString(uid):user} entered stamina crit");

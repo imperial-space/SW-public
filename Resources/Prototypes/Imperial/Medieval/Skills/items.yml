@@ -1,0 +1,29 @@
+- type: entity
+  parent: MedievalLockpick
+  id: MedievalImprovisedLockpick
+  name: одноразовая отмычка
+  description: Сделана из одного простого предмета. Может сломаться; после успешного вскрытия расходуется.
+  components:
+  - type: UniversalLockpick
+    consumable: true
+    breakChance: 0.35
+    hackTime: 3
+
+- type: entity
+  parent: MaterialWoodPlank1
+  id: MedievalSkillStick
+  name: деревянная палка
+  description: Простая тонкая палка. Ловкие руки могут превратить её в одноразовую отмычку.
+  components:
+  - type: Stack
+    stackType: SkillWoodenStick
+    count: 1
+  - type: Item
+    size: Small
+
+- type: stack
+  id: SkillWoodenStick
+  name: skills-wooden-stick
+  icon: { sprite: Objects/Materials/materials.rsi, state: wood }
+  spawn: MedievalSkillStick
+  maxCount: 30

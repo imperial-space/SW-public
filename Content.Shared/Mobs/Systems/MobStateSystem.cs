@@ -81,7 +81,15 @@ public partial class MobStateSystem : EntitySystem
     {
         if (!_mobStateQuery.Resolve(target, ref component, false))
             return false;
-        return component.CurrentState is MobState.Critical or MobState.Dead;
+        return component.CurrentState == MobState.Dead ||
+               component.CurrentState == MobState.Critical && !CanActInCritical(target);
+    }
+
+    public bool CanActInCritical(EntityUid target)
+    {
+        var ev = new CanActInCriticalEvent();
+        RaiseLocalEvent(target, ref ev);
+        return ev.Allowed;
     }
 
     /// <summary>

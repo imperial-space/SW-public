@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Skills;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
@@ -74,7 +75,9 @@ public sealed class HungerSystem : EntitySystem
     public float GetHunger(HungerComponent component)
     {
         var dt = _timing.CurTime - component.LastAuthoritativeHungerChangeTime;
-        var value = component.LastAuthoritativeHungerValue - (float)dt.TotalSeconds * component.ActualDecayRate;
+        var decay = new NeedsDecayEvent(1f);
+        RaiseLocalEvent(component.Owner, ref decay);
+        var value = component.LastAuthoritativeHungerValue - (float)dt.TotalSeconds * component.ActualDecayRate * decay.Multiplier;
         return ClampHungerWithinThresholds(component, value);
     }
 

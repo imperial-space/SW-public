@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Skills;
 using System.Linq;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
@@ -259,7 +260,7 @@ public abstract class SharedWieldableSystem : EntitySystem
             return false;
         }
 
-        if (_hands.CountFreeableHands((user, hands)) < component.FreeHandsRequired)
+        if (_hands.CountFreeableHands((user, hands)) < GetHandRequirement(user, uid, component).Hands)
         {
             if (!quiet)
             {
@@ -312,7 +313,7 @@ public abstract class SharedWieldableSystem : EntitySystem
 
         //This section handles spawning the virtual item(s) to occupy the required additional hand(s).
         var virtuals = new ValueList<EntityUid>();
-        for (var i = 0; i < component.FreeHandsRequired; i++)
+        for (var i = 0; i < GetHandRequirement(user, used, component).Hands; i++)
         {
             // don't show a popup when dropping items because it will overlap with the popup for wielding
             if (_virtualItem.TrySpawnVirtualItemInHand(used, user, out var virtualItem, true, silent: true))
@@ -429,6 +430,14 @@ public abstract class SharedWieldableSystem : EntitySystem
         if (!wield.Wielded)
             return;
 
-        args.Damage += component.BonusDamage;
+        if (!GetHandRequirement(args.User, uid, wield).SuppressDamageBonus)
+            args.Damage += component.BonusDamage;
     }
+    private GetWieldHandRequirementEvent GetHandRequirement(EntityUid user, EntityUid item, WieldableComponent wield)
+    {
+        var ev = new GetWieldHandRequirementEvent(item, wield.FreeHandsRequired);
+        RaiseLocalEvent(user, ref ev);
+        return ev;
+    }
+
 }

@@ -85,6 +85,8 @@ public sealed partial class ManaSystem : EntitySystem
         }
         component.ModifiersApplied = true;
         component.Mana = component.MaxMana;
+        var initialized = new ManaInitializedEvent();
+        RaiseLocalEvent(uid, ref initialized);
     }
 
     private void OnRejuvenate(EntityUid uid, ManaComponent component, RejuvenateEvent args)

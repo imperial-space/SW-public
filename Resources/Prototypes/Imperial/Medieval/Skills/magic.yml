@@ -1,0 +1,76 @@
+- type: entity
+  parent: MedievalSpellBookBase
+  id: SkillLearningGrimoire
+  name: учебный гримуар
+  description: Одно базовое заклинание бесплатно, остальные стоят на 100 эссенции дороже. Привязка свободного обычного гримуара перенесёт в него накопленную эссенцию, а эту книгу обратит в пепел.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SkillLearningStore
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 0
+      MagicMedievalLight: 0
+      MagicMedievalVodka: 0
+      MagicMedievalEarth: 0
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 0
+
+- type: imperialListing
+  id: SkillArchmagicFire
+  name: skills-buy-archmagic
+  description: skills-buy-archmagic-desc
+  icon: { sprite: Imperial/Medieval/Misc/magic_book.rsi, state: icon }
+  cost:
+    MagicMedievalFire: 200
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:SkillArchmagicCondition
+
+- type: imperialListing
+  id: SkillArchmagicLight
+  name: skills-buy-archmagic
+  description: skills-buy-archmagic-desc
+  icon: { sprite: Imperial/Medieval/Misc/magic_book.rsi, state: icon }
+  cost:
+    MagicMedievalLight: 200
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:SkillArchmagicCondition
+
+- type: imperialListing
+  id: SkillArchmagicVodka
+  name: skills-buy-archmagic
+  description: skills-buy-archmagic-desc
+  icon: { sprite: Imperial/Medieval/Misc/magic_book.rsi, state: icon }
+  cost:
+    MagicMedievalVodka: 200
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:SkillArchmagicCondition
+
+- type: imperialListing
+  id: SkillArchmagicEarth
+  name: skills-buy-archmagic
+  description: skills-buy-archmagic-desc
+  icon: { sprite: Imperial/Medieval/Misc/magic_book.rsi, state: icon }
+  cost:
+    MagicMedievalEarth: 200
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:SkillArchmagicCondition
+
+- type: imperialListing
+  id: SkillArchmagicDarkness
+  name: skills-buy-archmagic
+  description: skills-buy-archmagic-desc
+  icon: { sprite: Imperial/Medieval/Misc/magic_book.rsi, state: icon }
+  cost:
+    MagicMedievalDarkness: 200
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:SkillArchmagicCondition

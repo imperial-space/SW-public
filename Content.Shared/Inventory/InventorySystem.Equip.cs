@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Skills;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Armor;
 using Content.Shared.Clothing.Components;
@@ -269,6 +270,9 @@ public abstract partial class InventorySystem
         var fittingInPocket = slotDefinition.SlotFlags.HasFlag(SlotFlags.POCKET) &&
                               item != null &&
                               _item.GetSizePrototype(item.Size) <= _item.GetSizePrototype(PocketableItemSize);
+        var fit = new AdditionalSlotFitEvent(itemUid, slotDefinition.SlotFlags);
+        RaiseLocalEvent(target, ref fit);
+        fittingInPocket |= fit.Allowed;
         if (clothing == null && !fittingInPocket
             || clothing != null && !clothing.Slots.HasFlag(slotDefinition.SlotFlags) && !fittingInPocket)
         {

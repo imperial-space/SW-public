@@ -107,7 +107,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
         }
         // --- IMPERIAL MEDIEVAL END ---
 
-        var startEvent = new MeleeThrowOnHitStartEvent(ent.Owner, user, ent.Comp.Distance); // Imperial Medieval - distance added
+        var startEvent = new MeleeThrowOnHitStartEvent(ent.Owner, user, distance); // Imperial Medieval - distance added
         RaiseLocalEvent(target, ref startEvent);
 
         if (ent.Comp.StunTime != null)

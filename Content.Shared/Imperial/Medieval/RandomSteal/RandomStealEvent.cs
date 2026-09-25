@@ -9,6 +9,8 @@ public sealed partial class StealDoAfterArgs : SimpleDoAfterEvent
     [NonSerialized]
     public List<EntityUid> Entities;
 
+    public bool Selected;
+
     public StealDoAfterArgs(List<EntityUid> ents)
     {
         Entities = ents;

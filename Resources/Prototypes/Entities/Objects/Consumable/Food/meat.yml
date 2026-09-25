@@ -565,6 +565,8 @@
           Quantity: 5
         - ReagentId: GastroToxin
           Quantity: 4
+          data:
+          - !type:FoodSpoilageData {}
         - ReagentId: Fat
           Quantity: 4
   # Imperial Medieval Start

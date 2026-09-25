@@ -4,6 +4,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.UniversalSecurity;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
+using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -23,6 +24,7 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
     [Dependency] private readonly SharedSkillsSystem _skillsSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -35,7 +37,8 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
 
     private void OnLockpickAfterInteract(Entity<UniversalLockpickComponent> lockpickEntity, ref AfterInteractEvent args)
     {
-        if (args.Handled || args.Target is not { } lockableUid)
+        if (args.Handled || args.Target is not { } lockableUid || !args.CanReach
+            || !_hands.IsHolding(args.User, lockpickEntity.Owner))
             return;
 
         if (!TryComp<UniversalLockableComponent>(lockableUid, out var lockableComponent))
@@ -69,10 +72,11 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
         if (lockpickEntity.Comp.LockUid is not { } lockUid || !Exists(lockUid) ||
             lockpickEntity.Comp.LockableUid is not { } lockableUid || !Exists(lockableUid) ||
             lockpickEntity.Comp.User is not { } user || !Exists(user) ||
+            args.Actor != user || !_hands.IsHolding(user, lockpickEntity.Owner) ||
             !TryComp<UniversalLockComponent>(lockUid, out var lockComponent) ||
-            !TryComp<SkillsComponent>(user, out var skillComponent) ||
+            !TryComp<SkillsComponent>(user, out _) || _skillsSystem.IntelligenceMin(user) ||
             !lockComponent.IsSetuped ||
-            !_itemSlots.TryGetSlot(lockableUid, "lockSlot", out var slot))
+            !_itemSlots.TryGetSlot(lockableUid, "lockSlot", out var slot) || slot.Item != lockUid)
         {
             _uiSystem.CloseUi(lockpickEntity.Owner, UniversalSecurityUiKey.Lockpick);
             return;
@@ -90,17 +94,17 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
             return;
         }
 
-        float agility = skillComponent.Levels["Agility"];
-        if (agility <= 0) agility = 1f;
-
         var ev = new UniversalLockpickHackDoAfterEvent
         {
-            NewCode = args.NewCode
+            Lock = GetNetEntity(lockUid),
+            NewCode = (int[]) args.NewCode.Clone()
         };
 
-        var doAfterTime = Math.Max(0.1f, lockpickEntity.Comp.HackTime / (agility / 5f));
+        var speed = new Content.Shared.Imperial.Medieval.Inventory.GetEquipDelayModifiersEvent(1f);
+        RaiseLocalEvent(user, ref speed);
+        var doAfterTime = Math.Max(0.1f, lockpickEntity.Comp.HackTime * speed.Modifier);
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(doAfterTime), ev, lockpickEntity, lockpickEntity, lockableUid)
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(doAfterTime), ev, lockpickEntity, lockableUid, lockpickEntity)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -127,10 +131,14 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
         if (lockpickEntity.Comp.LockUid is not { } lockUid || !Exists(lockUid) ||
             lockpickEntity.Comp.LockableUid is not { } lockableUid || !Exists(lockableUid) ||
             lockpickEntity.Comp.User is not { } user || !Exists(user) ||
+            args.User != user || args.Target != lockableUid || args.Used != lockpickEntity.Owner ||
+            args.Lock != GetNetEntity(lockUid) || !_hands.IsHolding(user, lockpickEntity.Owner) ||
+            !_interactionSystem.InRangeUnobstructed(user, lockableUid) ||
+            !TryComp<UniversalLockableComponent>(lockableUid, out var lockableComponent) ||
             !TryComp<UniversalLockComponent>(lockUid, out var lockComponent) ||
-            !TryComp<SkillsComponent>(user, out var skillComponent) ||
+            !TryComp<SkillsComponent>(user, out var skillComponent) || _skillsSystem.IntelligenceMin(user) ||
             !lockComponent.IsSetuped ||
-            !_itemSlots.TryGetSlot(lockableUid, "lockSlot", out var slot) ||
+            !_itemSlots.TryGetSlot(lockableUid, "lockSlot", out var slot) || slot.Item != lockUid ||
             args.NewCode == null || args.NewCode.Length != lockComponent.Length)
         {
             _uiSystem.CloseUi(lockpickEntity.Owner, UniversalSecurityUiKey.Lockpick);
@@ -163,14 +171,20 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
 
         if (args.NewCode.SequenceEqual(lockComponent.Code))
         {
-            _lockableSystem.OnUsedKeySuccess((lockUid, lockComponent), (lockableUid, Comp<UniversalLockableComponent>(lockableUid)), slot, user);
+            _lockableSystem.OnUsedKeySuccess((lockUid, lockComponent), (lockableUid, lockableComponent), slot, user);
             _audioSystem.PlayPvs(new SoundPathSpecifier(lockpickEntity.Comp.EffectSoundOnSucces), lockUid);
 
-            //_uiSystem.CloseUi(lockpickEntity.Owner, UniversalSecurityUiKey.Lockpick);
+            _uiSystem.CloseUi(lockpickEntity.Owner, UniversalSecurityUiKey.Lockpick);
 
             lockpickEntity.Comp.LockUid = null;
             lockpickEntity.Comp.LockableUid = null;
             lockpickEntity.Comp.User = null;
+
+            if (lockpickEntity.Comp.Consumable)
+            {
+                _uiSystem.CloseUi(lockpickEntity.Owner, UniversalSecurityUiKey.Lockpick);
+                QueueDel(lockpickEntity.Owner);
+            }
 
             args.Handled = true;
             return;
@@ -184,7 +198,10 @@ public sealed partial class UniversalLockpickServerSystem : EntitySystem
         if (agility <= 0)
             agility = 1f;
 
-        var breakChance = Math.Clamp(lockpickEntity.Comp.BreakChance / MathF.Max(0.1f, agility / 10f), 0.01f, 0.75f);
+        var modifiers = new Content.Shared.MedievalLockpick.Components.GetLockpickChanceModifiersEvent(1f);
+        RaiseLocalEvent(user, ref modifiers);
+        var breakChance = agility >= SkillScaling.Legendary && !lockpickEntity.Comp.Consumable ? 0f :
+            Math.Clamp(lockpickEntity.Comp.BreakChance / Math.Max(0.1f, modifiers.Modifier), 0.01f, 0.75f);
         if (_random.Prob(breakChance))
             OnLockpickBreak(lockpickEntity);
 

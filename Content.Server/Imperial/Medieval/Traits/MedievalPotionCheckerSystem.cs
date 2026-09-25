@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Server.MedievalPotionChecker.Components;
 using Content.Shared.Examine;
 
@@ -13,7 +14,7 @@ namespace Content.Server.MedievalPotionChecker
         }
         private void OnExamine(EntityUid uid, MedievalPotionCheckAbleComponent component, ExaminedEvent args)
         {
-            if (HasComp<MedievalPotionCheckerComponent>(args.Examiner))
+            if ((HasComp<MedievalPotionCheckerComponent>(args.Examiner) || TryComp<SkillsComponent>(args.Examiner, out var skills) && SkillScaling.Level(skills, SharedSkillsSystem.IntelligenceId) >= SkillScaling.Expert))
                 args.PushMarkup(component.DescriptionSucces);
             else
                 args.PushMarkup(component.DescriptionUnknown);

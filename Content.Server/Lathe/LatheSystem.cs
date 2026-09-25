@@ -482,6 +482,8 @@ namespace Content.Server.Lathe
 
         private void OnLatheQueueRecipeMessage(EntityUid uid, LatheComponent component, LatheQueueRecipeMessage args)
         {
+            if (!EntityManager.System<Content.Shared.Imperial.Medieval.Skills.SkillWorkbenchSystem>().CanUse(args.Actor, uid))
+                return;
             if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe))
             {
                 if (TryAddToQueue(uid, recipe, args.Quantity, component))

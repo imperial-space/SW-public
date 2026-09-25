@@ -305,6 +305,20 @@ public sealed class MobThresholdSystem : EntitySystem
     }
 
     /// <summary>
+    /// Replaces all thresholds before checking mob state, avoiding intermediate overlapping thresholds.
+    /// </summary>
+    public void SetThresholds(EntityUid uid, SortedDictionary<FixedPoint2, MobState> thresholds,
+        MobThresholdsComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        component.Thresholds = new(thresholds);
+        Dirty(uid, component);
+        VerifyThresholds(uid, component);
+    }
+
+    /// <summary>
     /// Checks to see if we should change states based on thresholds.
     /// Call this if you change the amount of damagable without triggering a damageChangedEvent or if you change
     /// </summary>

@@ -5,6 +5,14 @@ namespace Content.Server.Imperial.ImperialStore;
 
 public sealed partial class ImperialStoreSystem
 {
+    /// <summary>Reconnect purchases after their store was restored or replaced.</summary>
+    public void RebindPurchases(EntityUid uid, ImperialStoreComponent store)
+    {
+        foreach (var purchase in store.BoughtEntities)
+            if (TryComp<ImperialStoreRefundComponent>(purchase, out var refund))
+                refund.StoreEntity = uid;
+    }
+
     private void InitializeRefund()
     {
         SubscribeLocalEvent<ImperialStoreComponent, EntityTerminatingEvent>(OnStoreTerminating);

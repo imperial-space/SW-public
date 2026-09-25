@@ -4,6 +4,7 @@ using Robust.Shared.Serialization;
 [Serializable, NetSerializable]
 public sealed partial class UniversalLockpickHackDoAfterEvent : DoAfterEvent
 {
+    public NetEntity Lock;
     public int[] NewCode;
     public override DoAfterEvent Clone() => this;
 }

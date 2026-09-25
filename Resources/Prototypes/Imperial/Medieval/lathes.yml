@@ -5,6 +5,7 @@
   name: MedievalStoneWorkerPlace
   description: MedievalStoneWorkerPlace
   components:
+  - type: SkillWorkbench
   - type: ApcPowerReceiver
     needsPower: false
   - type: Sprite
@@ -381,6 +382,7 @@
   noSpawn: true
   description: MedievalKeybench
   components:
+  - type: SkillWorkbench
   - type: ApcPowerReceiver
     needsPower: false
   - type: Sprite
@@ -819,6 +821,7 @@
   name: LeatherWorkingPlace
   description: It produces armor and weapon using leather wood and steel.
   components:
+  - type: SkillWorkbench
   - type: MedievalRepairStation
     repairType: Sewing
   - type: Sprite
@@ -898,6 +901,7 @@
   name: MedievalWoodWorkerPlace
   description: It produces aroows and range weapon using steel leather and wood.
   components:
+  - type: SkillWorkbench
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/wood_worker.rsi
     state: icon
@@ -983,6 +987,7 @@
   name: foundry
   description: It produces sheets and ingots using ores.
   components:
+  - type: SkillWorkbench
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/foundry_mines.rsi
     state: icon
@@ -1002,6 +1007,7 @@
   name: foundry
   description: It produces sheets and ingots using ores.
   components:
+  - type: SkillWorkbench
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/foundry.rsi
     state: icon
@@ -1059,6 +1065,7 @@
   name: MedievalWizardBlacksmith
   description: MedievalWizardBlacksmith
   components:
+  - type: SkillWorkbench
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/wizard_blacksmith.rsi
     state: icon
@@ -1186,6 +1193,7 @@
   name: BlackSmith
   description: It produces armor and weapon using steel and wood.
   components:
+  - type: SkillWorkbench
   - type: MedievalRepairStation
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/wood_worker.rsi
@@ -1394,6 +1402,7 @@
   name: ClothWorkingPlace
   description: It produces clothing using leather wood and steel.
   components:
+  - type: SkillWorkbench
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/clothing_workspace.rsi
     state: icon

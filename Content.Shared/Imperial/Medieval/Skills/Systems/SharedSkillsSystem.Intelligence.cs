@@ -26,12 +26,7 @@ public abstract partial class SharedSkillsSystem
     {
         var (proto, level) = GetSkill(uid, IntelligenceId);
 
-        if (level == 10)
-            return;
-
-        var diff = Math.Abs(level - 10);
-
-        args.Modifier += (level > 10 ? proto.Modifiers["PositiveConstructionSpeedModifier"] : proto.Modifiers["NegativeConstructionSpeedModifier"]) * diff;
+        args.Modifier /= SkillScaling.Multiplier(level, proto.Modifiers["WorkSpeedPerLevel"]);
     }
 
     private void OnCanWrite(EntityUid uid, SkillsComponent comp, ref PaperWriteAttemptEvent args)
@@ -103,13 +98,18 @@ public abstract partial class SharedSkillsSystem
         var (_, otherLevel) = GetSkill(uid, IntelligenceId);
 
         // в идеале конечно для резонатов перенести в их систему, ведь иначе будет путаница, но
-        if ((self >= 20 || HasComp<IllitidComponent>(args.User)) && otherLevel < 14)
+        if ((self >= SkillScaling.Legendary || HasComp<IllitidComponent>(args.User)) && otherLevel < SkillScaling.Master)
         {
             var verb = new ExamineVerb
             {
                 Act = () =>
                 {
                     if (_netMan.IsClient)
+                        return;
+
+                    if (!_examineSystem.CanExamine(args.User, uid)
+                        || GetSkill(args.User, IntelligenceId).Item2 < SkillScaling.Legendary && !HasComp<IllitidComponent>(args.User)
+                        || GetSkill(uid, IntelligenceId).Item2 >= SkillScaling.Master)
                         return;
 
                     var ev = new GetEnteredChatMessageMessage(GetNetEntity(uid), GetNetEntity(args.User));
@@ -129,7 +129,7 @@ public abstract partial class SharedSkillsSystem
     {
         var (_, level) = GetSkill(uid, IntelligenceId);
 
-        if (level < 5)
+        if (level < SkillScaling.Basic)
             return false;
 
         return true;
@@ -138,7 +138,7 @@ public abstract partial class SharedSkillsSystem
     {
         var (_, level) = GetSkill(uid, IntelligenceId);
 
-        if (level > 5)
+        if (level >= SkillScaling.Basic)
             return false;
 
         return true;
@@ -195,7 +195,7 @@ public abstract partial class SharedSkillsSystem
             <= 8 => "examine-skills-substantially-higher",
             <= 10 => "examine-skills-much-higher",
             <= 12 => "examine-skills-significantly-higher",
-            <= 25 => "examine-skills-immensely-higher"
+            _ => "examine-skills-immensely-higher"
         };
     }
 }

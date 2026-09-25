@@ -126,7 +126,11 @@ public sealed partial class ImperialStoreSystem
     /// </summary>
     private void OnBuyRequest(EntityUid uid, ImperialStoreComponent component, ImperialStoreBuyListingMessage msg)
     {
-        var listing = component.Listings.FirstOrDefault(x => x.Equals(msg.Listing));
+        if (component.OwnerOnly && component.AccountOwner != msg.Actor)
+            return;
+        var refresh = new ImperialStoreRefreshListingsEvent(msg.Actor, component);
+        RaiseLocalEvent(uid, ref refresh);
+        var listing = component.Listings.FirstOrDefault(x => x.ID == msg.Listing.ID);
 
         if (listing == null) //make sure this listing actually exists
         {
@@ -135,6 +139,10 @@ public sealed partial class ImperialStoreSystem
         }
 
         var buyer = msg.Actor;
+        var attempt = new ImperialStorePurchaseAttemptEvent(buyer, listing);
+        RaiseLocalEvent(uid, ref attempt);
+        if (attempt.Cancelled)
+            return;
 
         //verify that we can actually buy this listing and it wasn't added
         if (!ListingHasCategory(listing, component.Categories))
@@ -149,6 +157,15 @@ public sealed partial class ImperialStoreSystem
             if (!conditionsMet)
                 return;
         }
+
+        // Upgrade-only entries must still refer to the previously bought action.
+        // A missing link must not turn the purchase into paying for no spell.
+        var upgradeOnly = listing.ProductAction == null && listing.ProductEntity == null
+            && listing.ProductEvent == null && listing.ProductUpgradeId.Count > 0;
+        if (upgradeOnly && (listing.ProductActionEntity is not { } sourceAction
+            || TerminatingOrDeleted(sourceAction) || EntityManager.IsQueuedForDeletion(sourceAction)
+            || !HasComp<ActionUpgradeComponent>(sourceAction) || _actions.GetAction(sourceAction) == null))
+            return;
 
         //check that we have enough money
         foreach (var currency in listing.Cost)
@@ -225,13 +242,11 @@ public sealed partial class ImperialStoreSystem
         {
             if (!TryComp<ActionUpgradeComponent>(listing.ProductActionEntity, out var actionUpgradeComponent))
             {
-                if (listing.ProductActionEntity != null) HandleRefundComp(uid, component, listing.ProductActionEntity.Value);
-
+                RefundFailedUpgrade();
                 return;
             }
 
-            if (listing.ProductActionEntity != null)
-                component.BoughtEntities.Remove(listing.ProductActionEntity.Value);
+            var previousAction = listing.ProductActionEntity.Value;
 
             if (
                 !_actionUpgrade.TryUpgradeAction(
@@ -239,14 +254,14 @@ public sealed partial class ImperialStoreSystem
                     out var upgradeActionId,
                     actionUpgradeComponent,
                     actionUpgradeComponent.Level + listing.ActionLevelUp
-                )
+                ) || upgradeActionId == null
             )
             {
-                if (listing.ProductActionEntity != null) HandleRefundComp(uid, component, listing.ProductActionEntity.Value);
-
+                RefundFailedUpgrade();
                 return;
             }
 
+            component.BoughtEntities.Remove(previousAction);
             listing.ProductActionEntity = upgradeActionId;
 
             if (upgradeActionId != null)
@@ -277,10 +292,22 @@ public sealed partial class ImperialStoreSystem
             LogImpact.Low,
             $"{ToPrettyString(buyer):player} purchased listing \"{ImperialListingLocalisationHelpers.GetLocalisedNameOrEntityName(listing, _proto)}\" from {ToPrettyString(uid)}");
 
+        var purchased = new ImperialStorePurchasedEvent(buyer, listing);
+        RaiseLocalEvent(uid, ref purchased);
         listing.PurchaseAmount++; //track how many times something has been purchased
         _audio.PlayEntity(component.BuySuccessSound, msg.Actor, uid); //cha-ching!
 
         UpdateUserInterface(buyer, uid, component);
+
+        void RefundFailedUpgrade()
+        {
+            foreach (var (currency, value) in listing.Cost)
+            {
+                component.Balance[currency] += value;
+                component.BalanceSpent[currency] -= value;
+            }
+            UpdateUserInterface(buyer, uid, component);
+        }
     }
 
     /// <summary>

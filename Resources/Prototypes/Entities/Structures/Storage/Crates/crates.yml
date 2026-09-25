@@ -3,6 +3,14 @@
   id: CrateGenericSteel
   name: crate
   components:
+  - type: SkillHeavyCargo
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
   - type: Icon
     sprite: Structures/Storage/Crates/generic.rsi
   - type: Sprite

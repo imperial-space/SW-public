@@ -1,4 +1,5 @@
-﻿using Content.Shared.Trigger.Components.Triggers;
+using Content.Shared.Damage;
+using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Physics.Events;
 
@@ -24,6 +25,10 @@ public sealed partial class TriggerSystem
             && (ent.Comp.MaxTriggers == null || ent.Comp.MaxTriggers > 0)
         )
         {
+            var incoming = new BeforeAttackEffectsEvent(ent.Owner, null, AttackDelivery.Contact);
+            RaiseLocalEvent(args.OtherEntity, ref incoming);
+            if (incoming.Cancelled)
+                return;
             if (ent.Comp.MaxTriggers != null)
             {
                 ent.Comp.MaxTriggers--;
@@ -42,6 +47,10 @@ public sealed partial class TriggerSystem
 
     private void OnTimedCollide(Entity<TriggerOnTimedCollideComponent> ent, ref StartCollideEvent args)
     {
+        var incoming = new BeforeAttackEffectsEvent(ent.Owner, null, AttackDelivery.Contact);
+        RaiseLocalEvent(args.OtherEntity, ref incoming);
+        if (incoming.Cancelled)
+            return;
         //Ensures the trigger entity will have an active component
         EnsureComp<ActiveTriggerOnTimedCollideComponent>(ent);
         var otherUID = args.OtherEntity;
