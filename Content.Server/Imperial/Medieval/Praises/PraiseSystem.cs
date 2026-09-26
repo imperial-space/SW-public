@@ -205,29 +205,36 @@ public sealed class PraiseSystem : EntitySystem
 
     private void OnPraiseRatingOpened(PraiseRatingOpenedMessage ev, EntitySessionEventArgs args)
     {
-        Log.Debug("rating: Received 'PraiseRatingOpenedMessage' from client.");
-        if (!_adminMan.IsAdmin(args.SenderSession))
+        try
         {
-            Log.Debug($"rating: '{args.SenderSession.Name}' is not an admin, request refused.");
-            return;
-        }
-
-        Log.Debug($"rating: Creating a rating; Total of {_praiseRating.Count} players registered");
-        PraiseRatingMessage msg = new();
-        msg.Rating = new();
-        foreach ((NetUserId id, int weight) in _praiseRating)
-        {
-            if (!_playerMan.TryGetSessionById(id, out var player))
+            Log.Debug("rating: Received 'PraiseRatingOpenedMessage' from client.");
+            if (!_adminMan.IsAdmin(args.SenderSession))
             {
-                Log.Debug($"rating: Player {id} disconnected, not adding to rating.");
+                Log.Debug($"rating: '{args.SenderSession.Name}' is not an admin, request refused.");
                 return;
             }
 
-            msg.Rating.Add((player.Name, weight));
-        }
+            Log.Debug($"rating: Creating a rating; Total of {_praiseRating.Count} players registered.");
+            PraiseRatingMessage msg = new();
+            msg.Rating = new();
+            foreach ((NetUserId id, int weight) in _praiseRating)
+            {
+                if (!_playerMan.TryGetSessionById(id, out var player))
+                {
+                    Log.Debug($"rating: Player {id} disconnected, not adding to rating.");
+                    return;
+                }
 
-        Log.Debug("rating: Sending 'PraiseRatingMessage' to client.");
-        RaiseNetworkEvent(msg, args.SenderSession);
+                msg.Rating.Add((player.Name, weight));
+            }
+
+            Log.Debug("rating: Sending 'PraiseRatingMessage' to client.");
+            RaiseNetworkEvent(msg, args.SenderSession);
+        }
+        catch (Exception ex)
+        {
+            Log.Debug($"rating: Caught an exception serverside: {ex.Message}");
+        }
     }
 
     private async void OnPraiseViewOpened(PraiseViewOpenedMessage msg, EntitySessionEventArgs args)

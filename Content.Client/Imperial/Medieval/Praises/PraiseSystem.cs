@@ -41,17 +41,24 @@ public sealed class PraiseSystem : EntitySystem
 
     private void OnPraiseRatingMessage(PraiseRatingMessage ev)
     {
-        Log.Debug($"rating: Received 'PraiseRatingMessage', {ev.Rating.Count} items in rating.");
-
-        if (_ratingWindow != null && !_ratingWindow.Disposed)
+        try
         {
-            Log.Debug("rating: Window is not closed, doing it now.");
-            _ratingWindow.Dispose();
-        }
+            Log.Debug($"rating: Received 'PraiseRatingMessage', {ev.Rating.Count} items in rating.");
 
-        Log.Debug("rating: Opening window.");
-        _ratingWindow = new(ev.Rating);
-        _ratingWindow.OpenCentered();
+            if (_ratingWindow != null && !_ratingWindow.Disposed)
+            {
+                Log.Debug("rating: Window is not closed, doing it now.");
+                _ratingWindow.Dispose();
+            }
+
+            Log.Debug("rating: Opening window.");
+            _ratingWindow = new(ev.Rating);
+            _ratingWindow.OpenCentered();
+        }
+        catch (Exception ex)
+        {
+            Log.Debug($"rating: Caught an exception clientside: {ex.Message}");
+        }
     }
 
     public void OpenView(NetUserId target)
