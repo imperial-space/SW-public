@@ -427,3 +427,13 @@
   components:
   - type: MedievalJobSpawnTraveller
     spawnType: InsurgencyTrader
+
+- type: trait
+  id: SpawnPriorityVillage
+  name: Village
+  description: Spawn in the village if possible
+  category: SpawnPriority
+  cost: 1
+  components:
+  - type: MedievalJobSpawnTraveller
+    spawnType: Village
