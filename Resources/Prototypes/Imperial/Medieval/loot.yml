@@ -1939,6 +1939,24 @@
         prob: 0.065
       - id: MedievalShortSwordRusty
         prob: 0.065
+      - id: MedievalPlushieRUCommunityAgata
+        prob: 0.03
+      - id: MedievalPlushieRUCommunityCopperKnight
+        prob: 0.03
+      - id: MedievalPlushieRUCommunityDantanat
+        prob: 0.03
+      - id: MedievalPlushieRUCommunityGoldur
+        prob: 0.03
+      - id: MedievalPlushieRUCommunityHansBrown
+        prob: 0.03
+      - id: MedievalPlushieRUCommunityKateBaker
+        prob: 0.03
+      - id: MedievalPlushieRUCommunityLecklerDeTrumple
+        prob: 0.03
+      - id: MedievalPlushieRUCommunityNiganHarington
+        prob: 0.03
+      - id: MedievalPlushieRUCommunitySheiLa
+        prob: 0.03
 
 - type: entity
   parent: MedievalCrateGeneric
