@@ -604,6 +604,12 @@ namespace Content.Server.Voting.Managers
 
                 presets[preset.ID] = preset.ModeTitle;
             }
+
+            // imperial medieval - same mode can't win two rounds in a row, unless it's the only option left
+            var last = _entityManager.System<GameTicker>().LastRoundPreset?.ID;
+            if (last != null && presets.Count > 1)
+                presets.Remove(last);
+
             return presets;
         }
     }
