@@ -16,6 +16,7 @@ public sealed class ViewPraiseRatingCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        shell.WriteLine("rating: Executing...");
         _entMan.EntitySysManager.GetEntitySystem<PraiseSystem>().OpenRating();
     }
 }

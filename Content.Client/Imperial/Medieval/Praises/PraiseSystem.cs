@@ -41,9 +41,15 @@ public sealed class PraiseSystem : EntitySystem
 
     private void OnPraiseRatingMessage(PraiseRatingMessage ev)
     {
-        if (_ratingWindow != null && !_ratingWindow.Disposed)
-            _ratingWindow.Dispose();
+        Log.Debug($"rating: Received 'PraiseRatingMessage', {ev.Rating.Count} items in rating.");
 
+        if (_ratingWindow != null && !_ratingWindow.Disposed)
+        {
+            Log.Debug("rating: Window is not closed, doing it now.");
+            _ratingWindow.Dispose();
+        }
+
+        Log.Debug("rating: Opening window.");
         _ratingWindow = new(ev.Rating);
         _ratingWindow.OpenCentered();
     }
@@ -61,6 +67,7 @@ public sealed class PraiseSystem : EntitySystem
 
     public void OpenRating()
     {
+        Log.Debug("rating: Sending 'PraiseRatingOpenedMessage' to server.");
         RaiseNetworkEvent(new PraiseRatingOpenedMessage());
     }
 
