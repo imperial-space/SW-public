@@ -365,6 +365,8 @@
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakBib]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakBib]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
+    MedievalClothingOuterArmorCharmerNeutral: [MedievalClothingOuterArmorCharmerLightBib]
+    MedievalClothingHeadHelmetCharmerNeutral: [MedievalClothingHeadHelmetCharmerLightBib]
     MedievalSpearT3: [MedievalSpearT3Bib]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth78]
     MedievalShoesChamber: [MedievalShoesChamberBib]
