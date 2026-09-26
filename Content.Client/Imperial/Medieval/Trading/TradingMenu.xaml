@@ -14,6 +14,8 @@
             <Button Name="UniqueButton" Text="{Loc trading-ui-unique-button}" MinWidth="140" Margin="6 0 0 0" />
             <Button Name="ManagementButton" Text="{Loc trading-ui-management-button}" MinWidth="210" Margin="6 0 0 0" Visible="False" />
             <Button Name="ArchiveButton" Text="{Loc trading-ui-archive-button}" MinWidth="140" Margin="6 0 0 0" Visible="False" />
+            <Button Name="PublicBrowseButton" Text="{Loc trading-ui-public-browse-button}" MinWidth="140" Margin="6 0 0 0" Visible="False" />
+            <Button Name="PublicSellButton" Text="{Loc trading-ui-public-sell-button}" MinWidth="160" Margin="6 0 0 0" Visible="False" />
         </BoxContainer>
         <LineEdit Name="SearchBar" PlaceHolder="{Loc trading-ui-market-search-placeholder}" HorizontalExpand="True" Margin="0 0 0 6" />
         <BoxContainer Name="MarketView" Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
@@ -55,6 +57,17 @@
             <BoxContainer Orientation="Vertical" HorizontalExpand="True">
                 <Label Text="{Loc trading-ui-archive-title}" Margin="4" />
                 <BoxContainer Name="ArchiveContainer" Orientation="Vertical" HorizontalExpand="True" />
+            </BoxContainer>
+        </ScrollContainer>
+        <ScrollContainer Name="PublicSellView" HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" Visible="False">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Text="{Loc trading-ui-public-sell-hint}" Margin="4" />
+                <Label Text="{Loc trading-ui-public-staged-items-title}" Margin="4 8 4 4" />
+                <BoxContainer Name="PublicStagedItemsContainer" Orientation="Vertical" HorizontalExpand="True" />
+                <Label Text="{Loc trading-ui-public-listings-title}" Margin="4 12 4 4" />
+                <BoxContainer Name="PublicListingsContainer" Orientation="Vertical" HorizontalExpand="True" />
+                <Label Text="{Loc trading-ui-public-pending-sales-title}" Margin="4 12 4 4" />
+                <BoxContainer Name="PublicPendingSalesContainer" Orientation="Vertical" HorizontalExpand="True" />
             </BoxContainer>
         </ScrollContainer>
         <PanelContainer Name="OfferCreationPanel" Margin="0 6 0 0" Visible="False">

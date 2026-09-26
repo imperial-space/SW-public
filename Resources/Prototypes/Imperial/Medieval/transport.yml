@@ -401,10 +401,10 @@
     maxSpeedModifier: 1.4
     riderDamageOnCollide:
       types:
-        Blunt: 12
+        Blunt: 45
     damageOnCollide:
       types:
-        Blunt: 16
+        Blunt: 45
 
 - type: entity
   parent: MedievalHorseTransport
@@ -495,7 +495,7 @@
         Blunt: 12
     damageOnCollide:
       types:
-        Blunt: 7
+        Blunt: 25
 
 - type: entity
   parent: MedievalHorseTransport
@@ -519,10 +519,10 @@
     maxSpeedModifier: 2
     riderDamageOnCollide:
       types:
-        Blunt: 45
+        Blunt: 20
     damageOnCollide:
       types:
-        Blunt: 4
+        Blunt: 35
 
 - type: entity
   parent: MedievalHorseTransport
@@ -554,4 +554,4 @@
         Blunt: 4
     damageOnCollide:
       types:
-        Blunt: 28
+        Blunt: 40

@@ -6,7 +6,9 @@ using Content.Shared.Examine;
 using Content.Shared.Imperial.Dash;
 using Content.Shared.Imperial.Medieval.Sprint;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee.Events;
@@ -111,6 +113,8 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
 
             var buff = MyrmexBuff.MultiplyBuffs(comp.Buffs);
             args.Value *= buff.Stamina;
+            // imperial medieval - per-caste stamina resist, 1 = none
+            args.Value *= comp.CasteStaminaDamageResist;
         }
 
         private void OnModifySprintStaminaCost(EntityUid uid, MyrmexHungerComponent comp, ref GetSprintStaminaDamageModifiersEvent args)
@@ -179,6 +183,16 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
             {
                 _alertsSystem.ClearAlert(uid, "MyrmexHungry");
             }
+
+            // imperial medieval - hive members drag each other easily
+            if (TryComp<PullerComponent>(uid, out var puller)
+                && puller.Pulling is { } pulled
+                && HasComp<MyrmexHungerComponent>(pulled)
+                && TryComp<HeldSpeedModifierComponent>(pulled, out var heavy))
+            {
+                args.ModifySpeed(comp.HiveDragSpeedModifier / heavy.WalkModifier,
+                    comp.HiveDragSpeedModifier / heavy.SprintModifier);
+            }
         }
         // imperial medieval - applies mushroom stew's temporary speed burst while the marker
         // (added/remove autimatically by StatusEffectsSystem) is present on this entity.
@@ -202,9 +216,23 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
         {
             base.Update(frameTime);
 
+            var now = _gameTiming.CurTime;
             var query = EntityQueryEnumerator<MyrmexHungerComponent>();
             while (query.MoveNext(out var uid, out var hunger))
             {
+                // imperial medieval - refresh speed only when hunger flips; per-tick refreshes desync movement prediction
+                if (now < hunger.NextHungerCheck)
+                    continue;
+
+                hunger.NextHungerCheck = now + TimeSpan.FromSeconds(1);
+
+                var diff = now - hunger.LastEaten;
+                var isHungry = diff.HasValue && diff.Value.Duration() > TimeSpan.FromSeconds(hunger.SecondsToHungry);
+
+                if (isHungry == hunger.WasHungry)
+                    continue;
+
+                hunger.WasHungry = isHungry;
                 _speedModifier.RefreshMovementSpeedModifiers(uid);
             }
         }

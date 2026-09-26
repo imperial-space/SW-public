@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Audio;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Medieval.Myrmex
@@ -7,7 +7,7 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
     public sealed partial class MyrmexStewComponent : Component
     {
         [DataField]
-        public int Uses = 3;
+        public int Uses = 4;
 
         [DataField]
         public MyrmexBuff? Buff;

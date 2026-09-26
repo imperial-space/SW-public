@@ -4,5 +4,5 @@ namespace Content.Server.Myrmex.Structures;
 public sealed partial class MyrmexLifeSourceComponent : MyrmexPowerStructureComponent
 {
     [DataField]
-    public float HealthMultiplierIncrease = 0.2f;
+    public float HealthMultiplierIncrease = 0.27f;
 }

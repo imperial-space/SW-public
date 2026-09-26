@@ -224,6 +224,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
         // Imperial Medieval npc-obstacle-handling Start
         ResetArrival(component, Transform(uid).Coordinates);
+        component.LastObstacleProgress = _timing.CurTime;
         component.ObstacleFailCount = 0;
         component.ClearingObstacle = false;
         component.BlockedNodes.Clear();
@@ -399,6 +400,11 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         RaiseLocalEvent(uid, ref ev);
         // If seek has arrived at the target node for example then immediately re-steer.
         var forceSteer = true;
+
+        // Imperial Medieval start
+        if (!steering.CanSeek)
+            ResetArrival(steering, xform.Coordinates);
+        // Imperial Medieval end
 
         if (steering.CanSeek && !TrySeek(uid, mover, steering, body, xform, offsetRot, moveSpeed, interest, frameTime, ref forceSteer))
         {

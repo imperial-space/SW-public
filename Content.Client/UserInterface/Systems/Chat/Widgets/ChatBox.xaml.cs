@@ -79,7 +79,7 @@ public partial class ChatBox : UIWidget
 
         var formatted = BuildLine(msg.WrappedMessage ?? string.Empty, color);
 
-        _repeatQueue.Enqueue(new RepeatedChatMessage(Contents.EntryCount, formatted, msg.Message, msg.Channel));
+        _repeatQueue.Enqueue(new RepeatedChatMessage(Contents.EntryCount, formatted, msg.Message, msg.Channel, msg.SenderEntity));
 
         while (_repeatQueue.Count > RepeatHistory)
         {
@@ -98,7 +98,8 @@ public partial class ChatBox : UIWidget
         foreach (var old in _repeatQueue)
         {
             // msg.Message can be null; string.Equals handles that without throwing
-            if (old.Channel != msg.Channel || !string.Equals(old.Text, msg.Message, StringComparison.Ordinal))
+            var sameAuthor = old.Channel == ChatChannel.OOC || old.Sender == msg.SenderEntity;
+            if (old.Channel != msg.Channel || !sameAuthor || !string.Equals(old.Text, msg.Message, StringComparison.Ordinal))
                 continue;
 
             // Bounds guard only. Correctness relies on the queue being cleared whenever the panel is,

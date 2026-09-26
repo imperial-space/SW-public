@@ -25,17 +25,9 @@ public sealed partial class MyrmexLifeSourceSystem : EntitySystem
 
     private void OnPowerChanged(Entity<MyrmexLifeSourceComponent> ent, ref PowerChangedEvent args)
     {
-        var wasPowered = ent.Comp.Powered;
+        // imperial medieval - ApplyBuffs is idempotent, so just follow the actual power state
         ent.Comp.Powered = args.Powered;
-
-        if (args.Powered && !wasPowered)
-        {
-            ApplyBuffs(ent, true);
-        }
-        else if (!args.Powered && wasPowered)
-        {
-            ApplyBuffs(ent, false);
-        }
+        ApplyBuffs(ent, args.Powered);
     }
 
     private void OnShutdown(Entity<MyrmexLifeSourceComponent> ent, ref ComponentShutdown args)

@@ -89,8 +89,8 @@ public sealed partial class SharedMyrmexHiveSystem : EntitySystem
 
     public void RecalculateHealthMultiplier(Entity<MyrmexHiveComponent> hive)
     {
+        // imperial medieval - HP scales with life sources only; altars raise the buff cap
         var newMultiplier = hive.Comp.BaseHealthMultiplier
-                            + hive.Comp.ActiveAltars * hive.Comp.AltarHealthMultiplierStep
                             + hive.Comp.LifeSourceHealthBonus;
 
         if (MathF.Abs(hive.Comp.HealthMultiplier - newMultiplier) < 0.0001f)

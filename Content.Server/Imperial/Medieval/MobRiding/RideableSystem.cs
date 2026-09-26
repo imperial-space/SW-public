@@ -1,4 +1,5 @@
-﻿using Content.Server.NPC.HTN;
+﻿using Content.Server.Administration;
+using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
@@ -8,6 +9,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Verbs;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Damage;
 using Content.Shared.Hands.EntitySystems;
@@ -23,8 +25,10 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.MobRiding
 {
@@ -44,6 +48,9 @@ namespace Content.Server.Imperial.Medieval.MobRiding
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedWieldableSystem _wieldable = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
+        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
         #region Const
         private readonly string[] _clashOne = new[] {
@@ -81,6 +88,41 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
             SubscribeLocalEvent<BuckleComponent, PullAttemptEvent>(OnTryPullRider);
             SubscribeLocalEvent<BuckleComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
+
+            SubscribeLocalEvent<RideableComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
+        }
+
+        private void OnGetAlternativeVerbs(EntityUid uid, RideableComponent component, ref GetVerbsEvent<AlternativeVerb> args)
+        {
+            if (!args.CanAccess || !args.CanInteract)
+                return;
+
+            var user = args.User;
+
+            AlternativeVerb verb = new()
+            {
+                Text = Loc.GetString("imperial-medieval-rideable-verb-rename"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/rename.png")),
+                Act = () =>
+                {
+                    if (!_playerManager.TryGetSessionByEntity(user, out var session))
+                        return;
+
+                    _quickDialog.OpenDialog(session,
+                        Loc.GetString("imperial-medieval-rideable-verb-rename"),
+                        Loc.GetString("imperial-medieval-rideable-rename-prompt"),
+                        (string newName) =>
+                        {
+                            newName = newName.Trim();
+                            if (string.IsNullOrEmpty(newName) || newName.Length > 32)
+                                return;
+
+                            _metaData.SetEntityName(uid, newName);
+                        });
+                },
+                Priority = 10
+            };
+            args.Verbs.Add(verb);
         }
 
         #region Pikes

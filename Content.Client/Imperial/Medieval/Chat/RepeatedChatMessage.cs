@@ -1,4 +1,5 @@
 using Content.Shared.Chat;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.Medieval.Chat;
@@ -26,13 +27,16 @@ public sealed class RepeatedChatMessage
 
     public readonly ChatChannel Channel;
 
+    public readonly NetEntity Sender;
+
     public int Count = 1;
 
-    public RepeatedChatMessage(int index, FormattedMessage original, string text, ChatChannel channel)
+    public RepeatedChatMessage(int index, FormattedMessage original, string text, ChatChannel channel, NetEntity sender)
     {
         Index = index;
         Original = original;
         Text = text;
         Channel = channel;
+        Sender = sender;
     }
 }

@@ -45,6 +45,7 @@ public sealed partial class TradingSystem
 
         var uid = Spawn(null, new EntityCoordinates(map, 0f, 0f));
         var market = EnsureComp<TradingMarketComponent>(uid);
+        EnsureComp<PublicListingBoardComponent>(uid);
         _market = uid;
 
         var config = _prototypeManager.Index(market.Config);

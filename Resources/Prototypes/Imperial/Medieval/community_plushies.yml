@@ -1,0 +1,150 @@
+
+- type: entity
+  parent: BasePlushie
+  id: MedievalPlushieCommunityBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/community_plushies.rsi
+
+############### RU
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunityAgata
+  components:
+  - type: Sprite
+    state: plushie_agata
+  - type: Currency
+    price:
+      Revent: 2
+  - type: MedievalCurrency
+    price:
+      Revent: 2
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunityCopperKnight
+  components:
+  - type: Sprite
+    state: plushie_copper_knight
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunityDantanat
+  components:
+  - type: Sprite
+    state: plushie_dantanat
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunityGoldur
+  components:
+  - type: Sprite
+    state: plushie_goldur_smart
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunityHansBrown
+  components:
+  - type: Sprite
+    state: plushie_hans_brown
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunityKateBaker
+  components:
+  - type: Sprite
+    state: plushie_kate_baker
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunityLecklerDeTrumple
+  components:
+  - type: Sprite
+    state: plushie_leckler_du_trumple
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunityNiganHarington
+  components:
+  - type: Sprite
+    state: plushie_nigan_harington
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieRUCommunitySheiLa
+  components:
+  - type: Sprite
+    state: plushie_shei_la
+
+######## EN
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunityBlortBalgrum
+  components:
+  - type: Sprite
+    state: plushie_blort_bagum_the_stinky
+  - type: Currency
+    price:
+      Revent: 1
+  - type: MedievalCurrency
+    price:
+      Revent: 1
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunityBrittanyNightwish
+  components:
+  - type: Sprite
+    state: plushie_brittany_nightwish
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunityCeyrielNarilkhard
+  components:
+  - type: Sprite
+    state: plushie_ceyriel_narilkhard
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunityHazelToeva
+  components:
+  - type: Sprite
+    state: plushie_hazel_toeva
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunityIskrenBlanco
+  components:
+  - type: Sprite
+    state: plushie_iskren_blanco
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunityLicksTheVials
+  components:
+  - type: Sprite
+    state: plushie_licks_the_vials
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunityLilyPie
+  components:
+  - type: Sprite
+    state: plushie_lily_pie
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunityMachDesei
+  components:
+  - type: Sprite
+    state: plushie_mach-deesei
+
+- type: entity
+  parent: MedievalPlushieCommunityBase
+  id: MedievalPlushieENCommunitySophiePurple
+  components:
+  - type: Sprite
+    state: plushie_sophie_purple

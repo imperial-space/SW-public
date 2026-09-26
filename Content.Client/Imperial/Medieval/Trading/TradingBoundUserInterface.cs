@@ -11,6 +11,7 @@ public sealed class TradingBoundUserInterface : BoundUserInterface
     private readonly TradingExamineSystem _examineSystem;
     private bool _isOwner;
     private bool _canBuy;
+    private bool _isPublic;
 
     public TradingBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -49,6 +50,14 @@ public sealed class TradingBoundUserInterface : BoundUserInterface
             SendMessage(new TradingExamineCommodityMessage(commodity));
         };
         _menu.OnWithdraw += amount => SendOwnerMessage(new TradingRequestWithdrawMessage(amount));
+        _menu.OnBuyPublicListing += listing => SendPublicMessage(new TradingBuyPublicListingMessage(listing));
+        _menu.OnCancelPublicListing += listing => SendPublicMessage(new TradingCancelPublicListingMessage(listing));
+        _menu.OnListStagedItem += (stagedItem, price) =>
+            SendPublicMessage(new TradingListStagedItemMessage(stagedItem, price));
+        _menu.OnSellStagedItem += stagedItem => SendPublicMessage(new TradingSellStagedItemMessage(stagedItem));
+        _menu.OnFulfillStagedItem += stagedItem => SendPublicMessage(new TradingFulfillStagedItemMessage(stagedItem));
+        _menu.OnWithdrawStagedItem += stagedItem => SendPublicMessage(new TradingWithdrawStagedItemMessage(stagedItem));
+        _menu.OnCollectPublicSaleRevenue += sale => SendPublicMessage(new TradingCollectPublicSaleRevenueMessage(sale));
         SendMessage(new TradingRequestUpdateInterfaceMessage());
     }
 
@@ -59,6 +68,7 @@ public sealed class TradingBoundUserInterface : BoundUserInterface
         {
             _isOwner = update.IsOwner;
             _canBuy = update.IsOwner || update.IsPublic;
+            _isPublic = update.IsPublic;
             _menu?.UpdateState(update);
         }
     }
@@ -70,6 +80,7 @@ public sealed class TradingBoundUserInterface : BoundUserInterface
         {
             _isOwner = update.State.IsOwner;
             _canBuy = update.State.IsOwner || update.State.IsPublic;
+            _isPublic = update.State.IsPublic;
             _menu?.UpdateState(update.State);
         }
         else if (message is TradingExamineInfoMessage examine)
@@ -114,6 +125,12 @@ public sealed class TradingBoundUserInterface : BoundUserInterface
     private void SendPurchaseMessage(BoundUserInterfaceMessage message)
     {
         if (_canBuy)
+            SendMessage(message);
+    }
+
+    private void SendPublicMessage(BoundUserInterfaceMessage message)
+    {
+        if (_isPublic)
             SendMessage(message);
     }
 }

@@ -3163,6 +3163,15 @@
     sprite: Imperial/Medieval/Clothing/Shoes/foxei_boots.rsi
 
 - type: entity
+  parent: MedievalClothingFeetSteel
+  id: MedievalClothingFeetSteelMcDonalds
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/mcdonalds_shoes.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/mcdonalds_shoes.rsi
+
+- type: entity
   parent: MedievalIronGloves
   id: MedievalIronGlovesFoxei
   name: MedievalIronGlovesFoxei
@@ -3377,6 +3386,182 @@
     sprite: Imperial/Medieval/Clothing/Gloves/zablik_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/zablik_gloves.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesMcDonalds
+  name: MedievalIronGlovesMcDonalds
+  description: MedievalIronGlovesMcDonalds
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/mcdonalds_gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/mcdonalds_gloves.rsi
+
+- type: entity
+  parent: ClothingOuterArmorPodWars
+  id: ClothingOuterArmorPodWarsMcDonalds
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirassLight
+  id: MedievalClothingOuterArmorIronCuirassLightMcDonalds
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalClothingOuterArmorBrigantinMcDonalds
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassMcDonalds
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalClothingOuterArmorChainMailMcDonalds
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMailLight
+  id: MedievalClothingOuterArmorChainMailLightMcDonalds
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIron
+  id: MedievalClothingOuterArmorIronMcDonalds
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesCrookLv
+  name: MedievalIronGlovesCrookLv
+  description: MedievalIronGlovesCrookLv
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/crook_gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/crook_gloves.rsi
+
+- type: entity
+  parent: ClothingOuterArmorPodWars
+  id: ClothingOuterArmorPodWarsCrookLv
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirassLight
+  id: MedievalClothingOuterArmorIronCuirassLightCrookLv
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalClothingOuterArmorBrigantinCrookLv
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassCrookLv
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalClothingOuterArmorChainMailCrookLv
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMailLight
+  id: MedievalClothingOuterArmorChainMailLightCrookLv
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIron
+  id: MedievalClothingOuterArmorIronCrookLv
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
 
 - type: entity
   parent: MedievalIronGloves

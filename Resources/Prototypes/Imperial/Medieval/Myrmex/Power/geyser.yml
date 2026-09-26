@@ -48,7 +48,7 @@
         nodeGroupID: HVPower
   - type: MyrmexPipeEndpoint
   - type: PowerSupplier
-    supplyRate: 1000
+    supplyRate: 2000
     voltage: High
   - type: Appearance
   - type: Clickable
@@ -87,7 +87,7 @@
         !type:MyrmexDeviceNode
         nodeGroupID: Apc
   - type: PowerSupplier
-    supplyRate: 1000
+    supplyRate: 2000
     voltage: Apc
 
 - type: entity
@@ -108,5 +108,5 @@
         !type:MyrmexDeviceNode
         nodeGroupID: MVPower
   - type: PowerSupplier
-    supplyRate: 1000
+    supplyRate: 2000
     voltage: Medium

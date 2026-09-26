@@ -175,6 +175,97 @@ public sealed class TradingPendingSaleState
     }
 }
 
+/// <summary>
+/// An item listed by a player on the public listing board.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class PublicListingState
+{
+    public Guid Id;
+    public EntProtoId ProductEntity;
+    public string DisplayName;
+    public int Price;
+    public string SellerName;
+    public bool IsOwn;
+    public NetEntity? PreviewEntity;
+
+    public PublicListingState(
+        Guid id,
+        EntProtoId productEntity,
+        string displayName,
+        int price,
+        string sellerName,
+        bool isOwn,
+        NetEntity? previewEntity)
+    {
+        Id = id;
+        ProductEntity = productEntity;
+        DisplayName = displayName;
+        Price = price;
+        SellerName = sellerName;
+        IsOwn = isOwn;
+        PreviewEntity = previewEntity;
+    }
+}
+
+/// <summary>
+/// Revenue from a sold public listing, collectable at any public pit.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class PublicPendingSaleState
+{
+    public Guid Id;
+    public string ItemName;
+    public string BuyerName;
+    public int Price;
+
+    public PublicPendingSaleState(Guid id, string itemName, string buyerName, int price)
+    {
+        Id = id;
+        ItemName = itemName;
+        BuyerName = buyerName;
+        Price = price;
+    }
+}
+
+/// <summary>
+/// An item a player placed in a public pit but has not listed or sold yet.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class PublicStagedItemState
+{
+    public Guid Id;
+    public EntProtoId ProductEntity;
+    public string DisplayName;
+    public NetEntity? PreviewEntity;
+
+    /// <summary>
+    /// Instant-sell payout (half of the item value).
+    /// </summary>
+    public int InstantSellValue;
+
+    /// <summary>
+    /// Price of the best matching merchant buy order, if any.
+    /// </summary>
+    public int? FulfillableBuyOrderPrice;
+
+    public PublicStagedItemState(
+        Guid id,
+        EntProtoId productEntity,
+        string displayName,
+        NetEntity? previewEntity,
+        int instantSellValue,
+        int? fulfillableBuyOrderPrice)
+    {
+        Id = id;
+        ProductEntity = productEntity;
+        DisplayName = displayName;
+        PreviewEntity = previewEntity;
+        InstantSellValue = instantSellValue;
+        FulfillableBuyOrderPrice = fulfillableBuyOrderPrice;
+    }
+}
+
 [Serializable, NetSerializable]
 public sealed class TradingUpdateState : BoundUserInterfaceState
 {
@@ -187,6 +278,10 @@ public sealed class TradingUpdateState : BoundUserInterfaceState
     public ProtoId<CurrencyPrototype> Currency;
     public bool IsOwner;
     public bool IsPublic;
+    public List<PublicListingState> PublicListings;
+    public List<PublicPendingSaleState> PublicPendingSales;
+    public List<PublicStagedItemState> PublicStagedItems;
+    public bool IsMerchantOnline;
 
     public TradingUpdateState(
         List<TradingMarketItemState> items,
@@ -197,7 +292,11 @@ public sealed class TradingUpdateState : BoundUserInterfaceState
         int balance,
         ProtoId<CurrencyPrototype> currency,
         bool isOwner,
-        bool isPublic)
+        bool isPublic,
+        List<PublicListingState> publicListings,
+        List<PublicPendingSaleState> publicPendingSales,
+        List<PublicStagedItemState> publicStagedItems,
+        bool isMerchantOnline)
     {
         Items = items;
         Offers = offers;
@@ -208,6 +307,10 @@ public sealed class TradingUpdateState : BoundUserInterfaceState
         Currency = currency;
         IsOwner = isOwner;
         IsPublic = isPublic;
+        PublicListings = publicListings;
+        PublicPendingSales = publicPendingSales;
+        PublicStagedItems = publicStagedItems;
+        IsMerchantOnline = isMerchantOnline;
     }
 }
 
@@ -366,4 +469,47 @@ public sealed class TradingExecuteExamineVerbMessage(
 public sealed class TradingRequestWithdrawMessage(int amount) : BoundUserInterfaceMessage
 {
     public int Amount = amount;
+}
+
+[Serializable, NetSerializable]
+public sealed class TradingBuyPublicListingMessage(Guid listingId) : BoundUserInterfaceMessage
+{
+    public Guid ListingId = listingId;
+}
+
+[Serializable, NetSerializable]
+public sealed class TradingCancelPublicListingMessage(Guid listingId) : BoundUserInterfaceMessage
+{
+    public Guid ListingId = listingId;
+}
+
+[Serializable, NetSerializable]
+public sealed class TradingListStagedItemMessage(Guid stagedItemId, int price) : BoundUserInterfaceMessage
+{
+    public Guid StagedItemId = stagedItemId;
+    public int Price = price;
+}
+
+[Serializable, NetSerializable]
+public sealed class TradingSellStagedItemMessage(Guid stagedItemId) : BoundUserInterfaceMessage
+{
+    public Guid StagedItemId = stagedItemId;
+}
+
+[Serializable, NetSerializable]
+public sealed class TradingFulfillStagedItemMessage(Guid stagedItemId) : BoundUserInterfaceMessage
+{
+    public Guid StagedItemId = stagedItemId;
+}
+
+[Serializable, NetSerializable]
+public sealed class TradingWithdrawStagedItemMessage(Guid stagedItemId) : BoundUserInterfaceMessage
+{
+    public Guid StagedItemId = stagedItemId;
+}
+
+[Serializable, NetSerializable]
+public sealed class TradingCollectPublicSaleRevenueMessage(Guid saleId) : BoundUserInterfaceMessage
+{
+    public Guid SaleId = saleId;
 }

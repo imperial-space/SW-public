@@ -81,7 +81,17 @@ public sealed partial class CalendarEventPrototype : IPrototype
     /// </summary>
 
     [DataField("spawns")]
-    public Dictionary<EntProtoId, List<string>>? Spawns { get; private set; }
+    public Dictionary<EntProtoId, List<CalendarSpawnEntry>>? Spawns { get; private set; }
+
+    [DataDefinition]
+    public readonly partial record struct CalendarSpawnEntry
+    {
+        [DataField("marker", required: true)]
+        public string Marker { get; init; } = string.Empty;
+
+        [DataField("amount")]
+        public int Amount { get; init; } = 1;
+    }
 }
 
 public enum CalendarDayType : byte

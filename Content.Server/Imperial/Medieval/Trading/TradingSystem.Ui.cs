@@ -208,6 +208,15 @@ public sealed partial class TradingSystem
                 sale.SellerRevenue))
             .ToList();
 
+        BuildPublicListingsState(
+            market,
+            user,
+            isPublic,
+            component.Currency,
+            out var publicListings,
+            out var publicPendingSales,
+            out var publicStagedItems);
+
         _ui.ServerSendUiMessage(
             store,
             TradingUiKey.Key,
@@ -223,7 +232,11 @@ public sealed partial class TradingSystem
                         : isOwner ? component.Balance : 0,
                     component.Currency,
                     isOwner,
-                    isPublic)),
+                    isPublic,
+                    publicListings,
+                    publicPendingSales,
+                    publicStagedItems,
+                    IsListingBlockedFor(user))),
             user);
     }
 
@@ -233,7 +246,11 @@ public sealed partial class TradingSystem
     {
         var isPublic = HasComp<PublicTradingPitComponent>(pit.Owner);
         if (IsTradingPitOwner(args.Actor, pit.Comp) ||
-            isPublic && args.Message is (TradingBuyMessage or TradingBuyOfferMessage) ||
+            isPublic && args.Message is (TradingBuyMessage or TradingBuyOfferMessage or
+                TradingBuyPublicListingMessage or TradingCancelPublicListingMessage or
+                TradingListStagedItemMessage or TradingSellStagedItemMessage or
+                TradingFulfillStagedItemMessage or TradingWithdrawStagedItemMessage or
+                TradingCollectPublicSaleRevenueMessage) ||
             args.Message is OpenBoundInterfaceMessage or
                 TradingRequestUpdateInterfaceMessage or
                 TradingSelectCommodityMessage or
@@ -1360,6 +1377,20 @@ public sealed partial class TradingSystem
             .Select(item => item!.Value)
             .ToHashSet();
 
+        if (isPublic && TryComp<PublicListingBoardComponent>(market.Owner, out var board))
+        {
+            desired.UnionWith(board.Listings.Values
+                .Where(listing => Exists(listing.Item))
+                .Select(listing => listing.Item));
+
+            if (_mind.TryGetMind(user, out var viewerMindId, out _))
+            {
+                desired.UnionWith(board.StagedItems.Values
+                    .Where(staged => staged.OwnerMindId == viewerMindId && Exists(staged.Item))
+                    .Select(staged => staged.Item));
+            }
+        }
+
         if (isOwner)
         {
             desired.UnionWith(market.Comp.Offers.Values
@@ -1468,7 +1499,16 @@ public sealed partial class TradingSystem
         TradingComponent component,
         string message)
     {
-        _popup.PopupCursor(Loc.GetString(message), actor);
+        ShowTradingSuccessMessage(actor, pit, component, Loc.GetString(message));
+    }
+
+    private void ShowTradingSuccessMessage(
+        EntityUid actor,
+        EntityUid pit,
+        TradingComponent component,
+        string formattedMessage)
+    {
+        _popup.PopupCursor(formattedMessage, actor);
         _audio.PlayEntity(component.BuySuccessSound, actor, pit);
     }
 

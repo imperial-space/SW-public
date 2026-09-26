@@ -504,7 +504,7 @@
     cPSwingBeverage: true
     cPAnimationOffset: 1
     clickDamageModifier: 0.8
-    attackRate: 1.45
+    attackRate: 1.7
     range: 1
     damage:
       types:
@@ -646,7 +646,7 @@
     cPAnimationOffset: 2
     clickDamageModifier: 1.32
     wideAnimationRotation: -140
-    attackRate: 0.65
+    attackRate: 1
     range: 2.75
     damage:
       types:
@@ -707,7 +707,7 @@
 
 - type: entity
   name: iron halberd
-  parent: [ BaseItem, BaseTwoHandedCharged ]
+  parent: [ BaseItem, BaseSekirCharged ]
   id: MedievalIronSekirCult
   description: A medieval poleaxe.
   components:
@@ -732,7 +732,7 @@
     animation: CP14WeaponArcThrust
     wideAnimation: CP14WeaponArcSlash
     cPSwingBeverage: false
-    angle: 120
+    angle: -120
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
@@ -794,10 +794,10 @@
     range: 1.45
     clickDamageModifier: 0.6
     wideAnimationRotation: -140
-    attackRate: 1.05
+    attackRate: 1.3
     damage:
       types:
-        Slash: 19.5
+        Slash: 20
         ParryAble: 1
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg

@@ -411,10 +411,14 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         _mobThreshold.SetMobStateThreshold(uid, args.Crit, Shared.Mobs.MobState.Critical);
     }
 
-    private void OnSelectForm(SelectWerewolfFormEvent args)
+    private void OnSelectForm(SelectWerewolfFormEvent args, EntitySessionEventArgs session)
     {
-        var uid = GetEntity(args.Ent);
-        if (!TryComp<LycantropyComponent>(uid, out var comp))
+        if (session.SenderSession.AttachedEntity is not { } uid || GetEntity(args.Ent) != uid)
+            return;
+
+        if (!TryComp<LycantropyComponent>(uid, out var comp)
+            || comp.SelectedForm != null
+            || !comp.AllowedPolymorphs.ContainsValue(args.Proto))
             return;
 
         comp.SelectedForm = args.Proto;

@@ -95,7 +95,7 @@
       - !type:HealthChange
         damage:
           types:
-            Blunt: -1
+            Blunt: -0.3
       - !type:SatiateHunger
 
 - type: Tag

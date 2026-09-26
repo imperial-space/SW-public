@@ -1,3 +1,11 @@
+# imperial medieval - short raffle so myrmex ghost roles aren't a click race
+- type: ghostRoleRaffleSettings
+  id: MedievalMyrmexRaffle
+  settings:
+    initialDuration: 6
+    joinExtendsDurationBy: 2
+    maxDuration: 12
+
 - type: tile
   id: MedievalMyrmexFloor1
   name: смола мирмексов
@@ -506,9 +514,19 @@
     factions:
     - Dragon
   - type: IgnoreSpiderWeb
+  # imperial medieval - heavy to drag; other myrmex are compensated in SharedMyrmexHungerSystem
+  - type: HeldSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+    mirrorClothingModifier: false
   - type: Bloodstream
     bloodReagent: CopperBlood
     bloodMaxVolume: 200
+    # imperial medieval - myrmex tolerate blood loss better than humanoids
+    bloodlossThreshold: 0.65
+    bloodRefreshAmount: 2.0
+    bleedReductionAmount: 0.6
+    maxBleedAmount: 8.0
   - type: Puller
   - type: Appearance
   - type: Speech
@@ -640,13 +658,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      65: Critical
-      140: Dead
+      80: Critical
+      170: Dead
   - type: Stamina
     critThreshold: 130 
     stunTime: 5
     cooldown: 2.5
-    decay: 4.8
+    decay: 5.76
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
@@ -654,11 +672,10 @@
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      40: 1
-      50: 0.8
-      60: 0.7
-      70: 0.6
-      80: 0.5
+      45: 1
+      55: 0.85
+      68: 0.75
+      78: 0.7
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -666,6 +683,8 @@
     damage: 4
   - type: GhostRole
     makeSentient: true
+    raffle:
+      settings: MedievalMyrmexRaffle
     name: ghost-role-information-myrmex-worker-name
     description: ghost-role-information-myrmex-worker-description
     rules: ghost-role-information-myrmex-rules
@@ -730,7 +749,7 @@
     critThreshold: 125
     stunTime: 5
     cooldown: 2.5
-    decay: 4.9
+    decay: 5.88
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.4
@@ -738,11 +757,10 @@
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      80: 1
-      95: 0.8
-      110: 0.7
-      120: 0.6
-      130: 0.5
+      55: 1
+      70: 0.85
+      85: 0.75
+      95: 0.7
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -750,6 +768,8 @@
     damage: 7
   - type: GhostRole
     makeSentient: true
+    raffle:
+      settings: MedievalMyrmexRaffle
     name: ghost-role-information-myrmex-spitter-name
     description: ghost-role-information-myrmex-spitter-description
     rules: ghost-role-information-myrmex-rules
@@ -800,14 +820,14 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 18
+        Brute: 19
       types:
         ParryAble: 1
-        Structural: 10
+        Structural: 100
   - type: APDamageOnHit
     damage:
       types:
-        Blunt: 8
+        Blunt: 6
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -817,7 +837,7 @@
     critThreshold: 180
     stunTime: 4
     cooldown: 2.5
-    decay: 5.3 
+    decay: 6.36
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
@@ -825,11 +845,10 @@
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      120: 1
-      130: 0.8
-      170: 0.7
-      210: 0.6
-      230: 0.5
+      180: 1
+      230: 0.9
+      270: 0.85
+      300: 0.8
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -837,6 +856,8 @@
     damage: 6
   - type: GhostRole
     makeSentient: true
+    raffle:
+      settings: MedievalMyrmexRaffle
     name: ghost-role-information-myrmex-elite-name
     description: ghost-role-information-myrmex-elite-description
     rules: ghost-role-information-myrmex-rules
@@ -890,7 +911,7 @@
     critThreshold: 165
     stunTime: 5
     cooldown: 2.5
-    decay: 5.2
+    decay: 6.24
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.2
@@ -898,11 +919,10 @@
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      80: 1
-      130: 0.8
-      150: 0.7
-      170: 0.6
-      180: 0.5
+      90: 1
+      115: 0.85
+      135: 0.78
+      150: 0.72
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -910,6 +930,8 @@
     damage: 3
   - type: GhostRole
     makeSentient: true
+    raffle:
+      settings: MedievalMyrmexRaffle
     name: ghost-role-information-myrmex-warrior-name
     description: ghost-role-information-myrmex-warrior-description
     rules: ghost-role-information-myrmex-rules
@@ -940,6 +962,8 @@
       amount: 1
   - type: GhostRole
     makeSentient: true
+    raffle:
+      settings: MedievalMyrmexRaffle
     allowSpeech: true
     allowMovement: true
     name: ghost-role-information-myrmex-larva-name
@@ -1017,7 +1041,9 @@
   - type: MyrmexQueen
   # imperial medieval - queen resists incoming stamina damage more than other castes
   - type: MyrmexHunger
-    casteStaminaDamageResist: 0.65
+    casteStaminaDamageResist: 0.55
+  # imperial medieval - immune to the sleep spell
+  - type: ForcedSleepImmune
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_queen.rsi
@@ -1041,7 +1067,7 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 21
+        Brute: 20
         Airloss: 2
       types:
         ParryAble: 0.7
@@ -1050,7 +1076,7 @@
   - type: APDamageOnHit
     damage: 
       types: 
-        Blunt: 9
+        Blunt: 8
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1060,7 +1086,7 @@
     critThreshold: 220
     stunTime: 3
     cooldown: 2.0
-    decay: 5.5
+    decay: 6.6
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
@@ -1068,12 +1094,10 @@
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      300: 1
-      350: 0.8
-      400: 0.7
-      450: 0.6
-      500: 0.5
-      530: 0.4
+      400: 1
+      500: 0.9
+      620: 0.85
+      720: 0.8
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -1093,6 +1117,8 @@
       #Elf: Speak
   - type: GhostRole
     makeSentient: true
+    raffle:
+      settings: MedievalMyrmexRaffle
     name: ghost-role-information-myrmex-queen-name
     description: ghost-role-information-myrmex-queen-description
     rules: ghost-role-information-myrmex-rules
@@ -1239,8 +1265,8 @@
 - type: damageModifierSet
   id: MyrmexArmorOn
   coefficients:
-    Blunt: 0.35
-    Slash: 0.35
-    Piercing: 0.35
-    Heat: 0.35
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.5
+    Heat: 0.5
 

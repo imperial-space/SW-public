@@ -52,6 +52,7 @@ public sealed partial class TradingSystem : EntitySystem
         InitializeUi();
         InitializeBidReceipts();
         InitializePublicTrading();
+        InitializePublicListings();
     }
 
     public override void Shutdown()

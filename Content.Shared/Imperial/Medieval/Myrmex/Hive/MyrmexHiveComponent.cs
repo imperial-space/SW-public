@@ -27,9 +27,6 @@ public sealed partial class MyrmexHiveComponent : Component
     public float HealthMultiplier = 1.0f;
 
     [DataField]
-    public float AltarHealthMultiplierStep = 0.2f;
-
-    [DataField]
     public float LifeSourceHealthBonus;
 
     [DataField]

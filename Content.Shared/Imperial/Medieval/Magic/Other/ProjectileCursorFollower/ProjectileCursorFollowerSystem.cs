@@ -61,6 +61,10 @@ public sealed partial class ProjectileCursorFollowerSystem : EntitySystem
         var cursorPosition = _transformSystem.ToMapCoordinates(args.MousePosition).Position;
 
         var direction = cursorPosition - projectilePosition;
+
+        if (direction.LengthSquared() < 1e-6f)
+            return;
+
         var impulse = direction * component.LinearVelocityIntensy;
         var rotation = direction.ToAngle() - component.RelativeAngle - gridRotation;
 

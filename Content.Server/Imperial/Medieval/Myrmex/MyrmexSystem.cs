@@ -12,6 +12,8 @@ using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Imperial.Zlevels;
 using Content.Shared.Imperial.Medieval.Myrmex; // imperial medieval - MyrmexHungerComponent
+using Content.Server.Imperial.Medieval.Language;
+using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Inventory;
 using Content.Shared.Jittering;
 using Content.Shared.Maps;
@@ -46,6 +48,7 @@ namespace Content.Server.Myrmex
         [Dependency] private readonly ActionsSystem _actions = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly LanguageSystem _language = default!;
 
         private const float UpdateInterval = 15f;
         private const float EggJitterThreshold = 200f;
@@ -56,6 +59,7 @@ namespace Content.Server.Myrmex
         public override void Initialize()
         {
             SubscribeLocalEvent<MyrmexComponent, ComponentStartup>(OnMyrmexStartup);
+            SubscribeLocalEvent<MyrmexComponent, MapInitEvent>(OnMyrmexMapInit);
             SubscribeLocalEvent<MyrmexHungerComponent, BeforeDamageChangedEvent>(OnFriendlyFirePrevention); //imperial medieval - backstop for indirect damage (acid,turret)
             SubscribeLocalEvent<MyrmexEggComponent, ExaminedEvent>(OnEggExamined);
             SubscribeLocalEvent<MyrmexEggComponent, ComponentStartup>(OnEggStartup);
@@ -81,6 +85,19 @@ namespace Content.Server.Myrmex
             {
                 _actions.AddAction(myrmex, action);
             }
+        }
+
+        // imperial medieval - spawn speaking Hissing; language priority would pick telepathic Myrmex
+        private void OnMyrmexMapInit(Entity<MyrmexComponent> myrmex, ref MapInitEvent args)
+        {
+            if (!TryComp<LanguageSpeakerComponent>(myrmex, out var speaker))
+                return;
+
+            if (!speaker.Languages.ContainsKey("Hissing"))
+                return;
+
+            speaker.CurrentLanguage = "Hissing";
+            _language.UpdateUi(myrmex);
         }
 
         private void OnHoleStartup(EntityUid uid, MyrmexHoleComponent comp, ComponentStartup args)

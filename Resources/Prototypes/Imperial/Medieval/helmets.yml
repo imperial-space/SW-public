@@ -2699,6 +2699,80 @@
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetCrusaderMcDonalds
+  name: MedievalClothingHeadHelmetCrusaderMcDonalds
+  description: MedievalClothingHeadHelmetCrusaderMcDonalds
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/mcdonalds_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/mcdonalds_head.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetCrusaderCrookLv
+  name: MedievalClothingHeadHelmetCrusaderCrookLv
+  description: MedievalClothingHeadHelmetCrusaderCrookLv
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/crook_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/crook_head.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmeCollegiumPurpleHatCrookLv
+  name: Collegium White Hat.
+  description: The white magic hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/crook_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/crook_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightCrookLv
+  name: MedievalClothingHeadHelmetCharmerLightCrookLv
+  description: MedievalClothingHeadHelmetCharmerLightCrookLv
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/crook_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/crook_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakCrookLv
+  name: MedievalClothingHeadHelmetCharmerWeakCrookLv
+  description: MedievalClothingHeadHelmetCharmerWeakCrookLv
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/crook_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/crook_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerCrookLv
+  name: MedievalClothingHeadHelmetCharmerCrookLv
+  description: MedievalClothingHeadHelmetCharmerCrookLv
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/crook_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/crook_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
   id: MedievalClothingHeadHelmetDraconic
   name: MedievalClothingHeadHelmetDraconic
   description: MedievalClothingHeadHelmetDraconic

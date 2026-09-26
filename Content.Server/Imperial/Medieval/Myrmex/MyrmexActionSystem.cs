@@ -43,6 +43,7 @@ public sealed partial class MyrmexSystem : EntitySystem
         SubscribeLocalEvent<MyrmexComponent, ActionMyrmexHealEvent>(OnHeal);
 
         SubscribeLocalEvent<MyrmexComponent, MeleeHitEvent>(OnHit);
+        SubscribeLocalEvent<MyrmexComponent, BeforeMeleeHitEvent>(OnBeforeHit);
         SubscribeLocalEvent<MyrmexComponent, ActionMyrmexSpawnDoAfterEvent>(OnSpawnDoAfter);
     }
 
@@ -127,6 +128,14 @@ public sealed partial class MyrmexSystem : EntitySystem
             moveSpeed.BaseSprintSpeed * realMultiplier,
             moveSpeed.BaseAcceleration * realMultiplier,
             moveSpeed);
+    }
+
+    // imperial medieval - reliable friendly-fire guard for BOTH light and wide (right-click) swings.
+    // The wide swing's damage pass wasn't reliably cancelled by the AttackAttempt subscription, so
+    // strip friendly myrmex out of the hit list here, before any damage or effect is applied.
+    private void OnBeforeHit(Entity<MyrmexComponent> ent, ref BeforeMeleeHitEvent args)
+    {
+        args.HitEntities.RemoveAll(HasComp<MyrmexHungerComponent>);
     }
 
     private void OnHit(Entity<MyrmexComponent> ent, ref MeleeHitEvent args)

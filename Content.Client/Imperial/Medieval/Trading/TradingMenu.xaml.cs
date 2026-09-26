@@ -52,6 +52,13 @@ public sealed partial class TradingMenu : DefaultWindow
     public event Action<NetEntity>? OnExamineItem;
     public event Action<Guid, EntProtoId>? OnExamineCommodity;
     public event Action<int>? OnWithdraw;
+    public event Action<Guid>? OnBuyPublicListing;
+    public event Action<Guid>? OnCancelPublicListing;
+    public event Action<Guid, int>? OnListStagedItem;
+    public event Action<Guid>? OnSellStagedItem;
+    public event Action<Guid>? OnFulfillStagedItem;
+    public event Action<Guid>? OnWithdrawStagedItem;
+    public event Action<Guid>? OnCollectPublicSaleRevenue;
 
     private TradingUpdateState? _state;
     private TradingMarketSection _section = TradingMarketSection.Common;
@@ -68,6 +75,8 @@ public sealed partial class TradingMenu : DefaultWindow
     private TradingHelpWindow? _helpWindow;
     private bool _management;
     private bool _archive;
+    private bool _publicSellView;
+    private readonly Dictionary<Guid, string> _stagedPriceText = new();
     private string? _heldItemName;
     private bool _trackingHands = true;
     private readonly Dictionary<EntProtoId, EntityUid> _prototypeExamineEntities = new();
@@ -95,6 +104,8 @@ public sealed partial class TradingMenu : DefaultWindow
         CreateSellOfferButton.OnPressed += _ => SubmitPrice(HeldPrice.Text, OnCreateSellOffer, true);
         CreateUnitSellOfferButton.OnPressed += _ => SubmitPrice(HeldPrice.Text, OnPrepareUnitSellOffer, true);
         CreateHeldBuyOrderButton.OnPressed += _ => SubmitPrice(HeldPrice.Text, OnCreateBuyOfferFromHeld);
+        PublicBrowseButton.OnPressed += _ => SelectSection(TradingMarketSection.Common);
+        PublicSellButton.OnPressed += _ => SelectPublicSell();
         OnResized += UpdateColumns;
     }
 
@@ -164,6 +175,7 @@ public sealed partial class TradingMenu : DefaultWindow
         RebuildSelected();
         RebuildManagement();
         RebuildArchive();
+        RebuildPublicSell();
         UpdateSectionVisibility();
         UpdateHeldItem();
         UpdateBidReceiptWindow();
@@ -173,6 +185,7 @@ public sealed partial class TradingMenu : DefaultWindow
     {
         _management = false;
         _archive = false;
+        _publicSellView = false;
         _section = section;
         _category = null;
         _selected = _state?.Items.FirstOrDefault(item => HasSection(item, section))?.CommodityId;
@@ -190,6 +203,7 @@ public sealed partial class TradingMenu : DefaultWindow
     {
         _management = true;
         _archive = false;
+        _publicSellView = false;
         RebuildManagement();
         UpdateSectionVisibility();
     }
@@ -198,7 +212,17 @@ public sealed partial class TradingMenu : DefaultWindow
     {
         _management = false;
         _archive = true;
+        _publicSellView = false;
         RebuildArchive();
+        UpdateSectionVisibility();
+    }
+
+    private void SelectPublicSell()
+    {
+        _management = false;
+        _archive = false;
+        _publicSellView = true;
+        RebuildPublicSell();
         UpdateSectionVisibility();
     }
 
@@ -217,10 +241,11 @@ public sealed partial class TradingMenu : DefaultWindow
             _archive = false;
         }
 
-        var marketVisible = !_management && !_archive;
+        var marketVisible = !_management && !_archive && !_publicSellView;
         MarketView.Visible = marketVisible;
         ManagementView.Visible = _management;
         ArchiveView.Visible = _archive;
+        PublicSellView.Visible = _publicSellView;
         SearchBar.Visible = marketVisible;
         BalancePanel.Visible = _state is { IsOwner: true } or { IsPublic: true };
         HelpButton.Visible = _state?.IsOwner == true;
@@ -229,6 +254,8 @@ public sealed partial class TradingMenu : DefaultWindow
         UniqueButton.Visible = _state?.IsPublic != true;
         ManagementButton.Visible = _state?.IsOwner == true;
         ArchiveButton.Visible = _state?.IsOwner == true;
+        PublicBrowseButton.Visible = _state?.IsPublic == true;
+        PublicSellButton.Visible = _state?.IsPublic == true;
         OfferCreationPanel.Visible = marketVisible && _state?.IsOwner == true;
         BuyOrderPanel.Visible = _state?.IsOwner == true;
         CategoryPanel.Visible = marketVisible &&
@@ -329,12 +356,80 @@ public sealed partial class TradingMenu : DefaultWindow
             ItemsGrid.AddChild(CreateCard(item));
         }
 
+        if (_state.IsPublic)
+        {
+            var filteredListings = _state.PublicListings
+                .Where(listing => string.IsNullOrEmpty(search) ||
+                                   listing.DisplayName.Contains(search, StringComparison.CurrentCultureIgnoreCase))
+                .OrderBy(listing => listing.DisplayName);
+
+            foreach (var listing in filteredListings)
+            {
+                ItemsGrid.AddChild(CreatePublicListingCard(listing));
+            }
+        }
+
         UpdateColumns();
     }
 
-    private Control CreateCard(TradingMarketItemState item)
+    private Control CreatePublicListingCard(PublicListingState listing)
     {
-        var panel = new PanelContainer
+        var panel = CreateCardPanel("#4e4638");
+        var content = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            HorizontalExpand = true,
+            VerticalExpand = true,
+        };
+        var previewSlot = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            HorizontalExpand = true,
+            MinHeight = 100,
+            SetHeight = 100,
+            Align = BoxContainer.AlignMode.Center,
+        };
+        var preview = CreateItemPreview(listing.ProductEntity, listing.PreviewEntity, new Vector2(80, 80), null);
+        preview.HorizontalAlignment = HAlignment.Center;
+        previewSlot.AddChild(preview);
+        content.AddChild(previewSlot);
+        content.AddChild(CreateCardNamePanel(
+            listing.DisplayName,
+            Loc.GetString("trading-ui-public-listing-seller", ("seller", listing.SellerName)),
+            Color.White));
+
+        var actions = CreateCardActionsRow();
+        if (listing.IsOwn)
+        {
+            var cancel = new Button
+            {
+                Text = Loc.GetString("trading-ui-cancel-button"),
+                HorizontalExpand = true,
+            };
+            cancel.OnPressed += _ => OnCancelPublicListing?.Invoke(listing.Id);
+            actions.AddChild(cancel);
+        }
+        else
+        {
+            var buy = new Button
+            {
+                Text = listing.Price.ToString(),
+                Disabled = listing.Price > _state!.Balance,
+                HorizontalExpand = true,
+                StyleBoxOverride = CreateActionButtonStyle("#c79612", "#f0d36f"),
+            };
+            buy.Label.FontColorOverride = Color.White;
+            buy.OnPressed += _ => OnBuyPublicListing?.Invoke(listing.Id);
+            actions.AddChild(buy);
+        }
+        content.AddChild(actions);
+        panel.AddChild(content);
+        return panel;
+    }
+
+    private static PanelContainer CreateCardPanel(string borderColor)
+    {
+        return new PanelContainer
         {
             SetSize = new Vector2(176, 200),
             MinSize = new Vector2(176, 200),
@@ -342,7 +437,7 @@ public sealed partial class TradingMenu : DefaultWindow
             PanelOverride = new StyleBoxFlat
             {
                 BackgroundColor = Color.FromHex("#171512"),
-                BorderColor = _selected == item.CommodityId ? Color.FromHex("#d1a64b") : Color.FromHex("#4e4638"),
+                BorderColor = Color.FromHex(borderColor),
                 BorderThickness = new Thickness(1),
                 ContentMarginLeftOverride = 5,
                 ContentMarginRightOverride = 5,
@@ -350,6 +445,57 @@ public sealed partial class TradingMenu : DefaultWindow
                 ContentMarginBottomOverride = 5,
             },
         };
+    }
+
+    private static PanelContainer CreateCardNamePanel(string displayName, string toolTip, Color color)
+    {
+        var namePanel = new PanelContainer
+        {
+            MinHeight = 48,
+            SetHeight = 48,
+            HorizontalExpand = true,
+            Margin = new Thickness(0, 3, 0, 0),
+            PanelOverride = new StyleBoxFlat
+            {
+                BackgroundColor = Color.FromHex("#29251f"),
+                BorderColor = Color.FromHex("#554b3d"),
+                BorderThickness = new Thickness(1),
+                ContentMarginLeftOverride = 4,
+                ContentMarginRightOverride = 4,
+                ContentMarginTopOverride = 2,
+                ContentMarginBottomOverride = 2,
+            },
+        };
+        var name = new RichTextLabel
+        {
+            ToolTip = toolTip,
+            MinSize = new Vector2(154, 42),
+            SetSize = new Vector2(154, 42),
+            HorizontalExpand = true,
+            HorizontalAlignment = HAlignment.Center,
+            VerticalAlignment = VAlignment.Center,
+            RectClipContent = true,
+        };
+        name.SetMessage(displayName, defaultColor: color);
+        namePanel.AddChild(name);
+        return namePanel;
+    }
+
+    private static BoxContainer CreateCardActionsRow()
+    {
+        return new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Horizontal,
+            HorizontalExpand = true,
+            MinHeight = 30,
+            SetHeight = 30,
+            Margin = new Thickness(0, 4, 0, 0),
+        };
+    }
+
+    private Control CreateCard(TradingMarketItemState item)
+    {
+        var panel = CreateCardPanel(_selected == item.CommodityId ? "#d1a64b" : "#4e4638");
         var content = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
@@ -373,47 +519,12 @@ public sealed partial class TradingMenu : DefaultWindow
             RebuildSelected();
         };
         content.AddChild(select);
-        var namePanel = new PanelContainer
-        {
-            MinHeight = 48,
-            SetHeight = 48,
-            HorizontalExpand = true,
-            Margin = new Thickness(0, 3, 0, 0),
-            PanelOverride = new StyleBoxFlat
-            {
-                BackgroundColor = Color.FromHex("#29251f"),
-                BorderColor = Color.FromHex("#554b3d"),
-                BorderThickness = new Thickness(1),
-                ContentMarginLeftOverride = 4,
-                ContentMarginRightOverride = 4,
-                ContentMarginTopOverride = 2,
-                ContentMarginBottomOverride = 2,
-            },
-        };
-        var name = new RichTextLabel
-        {
-            ToolTip = item.DisplayName,
-            MinSize = new Vector2(154, 42),
-            SetSize = new Vector2(154, 42),
-            HorizontalExpand = true,
-            HorizontalAlignment = HAlignment.Center,
-            VerticalAlignment = VAlignment.Center,
-            RectClipContent = true,
-        };
-        name.SetMessage(
+        content.AddChild(CreateCardNamePanel(
             item.DisplayName,
-            defaultColor: item.IsDamagedEquipment ? Color.FromHex("#e65353") : Color.White);
-        namePanel.AddChild(name);
-        content.AddChild(namePanel);
+            item.DisplayName,
+            item.IsDamagedEquipment ? Color.FromHex("#e65353") : Color.White));
 
-        var actions = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Horizontal,
-            HorizontalExpand = true,
-            MinHeight = 30,
-            SetHeight = 30,
-            Margin = new Thickness(0, 4, 0, 0),
-        };
+        var actions = CreateCardActionsRow();
         var buy = new Button
         {
             Text = item.LowestSellPrice?.ToString() ?? "—",
@@ -783,6 +894,190 @@ public sealed partial class TradingMenu : DefaultWindow
                 ClipText = true,
                 Margin = new Thickness(4, 2),
             });
+        }
+    }
+
+    private void RebuildPublicSell()
+    {
+        PublicStagedItemsContainer.DisposeAllChildren();
+        PublicListingsContainer.DisposeAllChildren();
+        PublicPendingSalesContainer.DisposeAllChildren();
+        if (_state == null)
+            return;
+
+        BuildStagedItemRows(_state);
+        BuildOwnListingRows(_state);
+        BuildPendingSaleRows(_state);
+    }
+
+    private void BuildStagedItemRows(TradingUpdateState state)
+    {
+        _stagedPriceText.Keys.Where(id => state.PublicStagedItems.All(staged => staged.Id != id)).ToList()
+            .ForEach(id => _stagedPriceText.Remove(id));
+
+        if (state.PublicStagedItems.Count == 0)
+        {
+            PublicStagedItemsContainer.AddChild(new Label { Text = Loc.GetString("trading-ui-no-staged-items") });
+            return;
+        }
+
+        foreach (var staged in state.PublicStagedItems)
+        {
+            PublicStagedItemsContainer.AddChild(CreateStagedItemRow(staged, state.IsMerchantOnline));
+        }
+    }
+
+    private BoxContainer CreateStagedItemRow(PublicStagedItemState staged, bool listingBlocked)
+    {
+        var stagedId = staged.Id;
+        var row = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Horizontal,
+            HorizontalExpand = true,
+            Margin = new Thickness(4),
+        };
+        row.AddChild(CreateItemPreview(staged.ProductEntity, staged.PreviewEntity, new Vector2(54, 54), null));
+
+        var labels = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            HorizontalExpand = true,
+            VerticalAlignment = VAlignment.Center,
+            Margin = new Thickness(8, 0),
+        };
+        labels.AddChild(new Label { Text = staged.DisplayName, ClipText = true });
+        row.AddChild(labels);
+
+        var priceEdit = new LineEdit
+        {
+            PlaceHolder = Loc.GetString("trading-ui-price-placeholder"),
+            Text = _stagedPriceText.GetValueOrDefault(stagedId, string.Empty),
+            MinWidth = 110,
+            HorizontalExpand = false,
+        };
+        priceEdit.OnTextChanged += args => _stagedPriceText[stagedId] = args.Text;
+        row.AddChild(priceEdit);
+
+        var listButton = new Button
+        {
+            Text = Loc.GetString("trading-ui-list-public-item-button"),
+            MinWidth = 130,
+            Margin = new Thickness(4, 0, 0, 0),
+            Disabled = listingBlocked,
+            ToolTip = listingBlocked ? Loc.GetString("trading-ui-merchant-online-blocked") : null,
+        };
+        listButton.OnPressed += _ =>
+        {
+            if (!TryParsePrice(priceEdit.Text, out var price))
+            {
+                ShowInvalidOfferPricePopup();
+                return;
+            }
+
+            OnListStagedItem?.Invoke(stagedId, price);
+        };
+        row.AddChild(listButton);
+
+        if (staged.InstantSellValue > 0)
+        {
+            var sellButton = new Button
+            {
+                Text = Loc.GetString("trading-ui-instant-sell-button-value", ("value", staged.InstantSellValue)),
+                MinWidth = 170,
+                Margin = new Thickness(4, 0, 0, 0),
+                ToolTip = Loc.GetString("trading-ui-instant-sell-tooltip"),
+            };
+            sellButton.OnPressed += _ => OnSellStagedItem?.Invoke(stagedId);
+            row.AddChild(sellButton);
+        }
+
+        if (staged.FulfillableBuyOrderPrice is { } fulfillPrice)
+        {
+            var fulfillButton = new Button
+            {
+                Text = Loc.GetString("trading-ui-fulfill-button-value", ("value", fulfillPrice)),
+                MinWidth = 170,
+                Margin = new Thickness(4, 0, 0, 0),
+                StyleBoxOverride = CreateActionButtonStyle("#2c7a4b", "#5fd18d"),
+            };
+            fulfillButton.Label.FontColorOverride = Color.White;
+            fulfillButton.OnPressed += _ => OnFulfillStagedItem?.Invoke(stagedId);
+            row.AddChild(fulfillButton);
+        }
+
+        var withdrawButton = new Button
+        {
+            Text = "×",
+            MinWidth = 28,
+            Margin = new Thickness(4, 0, 0, 0),
+            ToolTip = Loc.GetString("trading-ui-withdraw-staged-item-button"),
+        };
+        withdrawButton.OnPressed += _ => OnWithdrawStagedItem?.Invoke(stagedId);
+        row.AddChild(withdrawButton);
+
+        return row;
+    }
+
+    private void BuildOwnListingRows(TradingUpdateState state)
+    {
+        var ownListings = state.PublicListings.Where(listing => listing.IsOwn).ToList();
+        if (ownListings.Count == 0)
+        {
+            PublicListingsContainer.AddChild(new Label { Text = Loc.GetString("trading-ui-no-public-listings") });
+            return;
+        }
+
+        foreach (var listing in ownListings)
+        {
+            var status = Loc.GetString("trading-ui-public-listing-status", ("price", listing.Price));
+            var row = CreateManagementRow(listing.ProductEntity, listing.PreviewEntity, null, listing.DisplayName, status);
+            var cancel = new Button
+            {
+                Text = Loc.GetString("trading-ui-cancel-button"),
+                MinWidth = 150,
+            };
+            cancel.OnPressed += _ => OnCancelPublicListing?.Invoke(listing.Id);
+            row.AddChild(cancel);
+            PublicListingsContainer.AddChild(row);
+        }
+    }
+
+    private void BuildPendingSaleRows(TradingUpdateState state)
+    {
+        if (state.PublicPendingSales.Count == 0)
+        {
+            PublicPendingSalesContainer.AddChild(new Label { Text = Loc.GetString("trading-ui-no-pending-sales") });
+            return;
+        }
+
+        foreach (var sale in state.PublicPendingSales)
+        {
+            var message = Loc.GetString(
+                "trading-ui-pending-sale-entry",
+                ("item", sale.ItemName),
+                ("trader", sale.BuyerName),
+                ("price", sale.Price));
+            var row = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+                Margin = new Thickness(4),
+            };
+            row.AddChild(new Label
+            {
+                Text = message,
+                ToolTip = message,
+                HorizontalExpand = true,
+                ClipText = true,
+            });
+            var collect = new Button
+            {
+                Text = Loc.GetString("trading-ui-collect-sale-revenue-button"),
+                MinWidth = 150,
+            };
+            collect.OnPressed += _ => OnCollectPublicSaleRevenue?.Invoke(sale.Id);
+            row.AddChild(collect);
+            PublicPendingSalesContainer.AddChild(row);
         }
     }
 

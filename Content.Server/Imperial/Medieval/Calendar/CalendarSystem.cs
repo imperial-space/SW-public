@@ -48,24 +48,49 @@ public sealed class CalendarSystem : EntitySystem
         if (args.Prototype.Spawns == null || args.Prototype.Spawns.Count == 0)
             return;
 
-        foreach (var (entProto, targetMarkers) in args.Prototype.Spawns)
+
+        var markerToSpawns = new Dictionary<string, List<(EntProtoId Proto, int Amount)>>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var (entProto, entries) in args.Prototype.Spawns)
         {
-            foreach (var markerId in targetMarkers)
+            foreach (var entry in entries)
             {
-                if (string.IsNullOrWhiteSpace(markerId) || markerId.Equals("Global", StringComparison.OrdinalIgnoreCase))
-                    Spawn(entProto, MapCoordinates.Nullspace);
+                if (entry.Amount <= 0)
+                    continue;
+
+                if (string.IsNullOrWhiteSpace(entry.Marker) || entry.Marker.Equals("Global", StringComparison.OrdinalIgnoreCase))
+                {
+                    for (var i = 0; i < entry.Amount; i++)
+                    {
+                        Spawn(entProto, MapCoordinates.Nullspace);
+                    }
+                    continue;
+                }
+
+                if (!markerToSpawns.TryGetValue(entry.Marker, out var list))
+                {
+                    list = new List<(EntProtoId, int)>();
+                    markerToSpawns[entry.Marker] = list;
+                }
+
+                list.Add((entProto, entry.Amount));
             }
         }
 
+        if (markerToSpawns.Count == 0)
+            return;
+
         var query = EntityQueryEnumerator<CalendarSpawnMarkerComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var marker, out var xform))
+        while (query.MoveNext(out _, out var marker, out var xform))
         {
-            foreach (var (entProto, targetMarkers) in args.Prototype.Spawns)
+            if (!markerToSpawns.TryGetValue(marker.MarkerId, out var spawns))
+                continue;
+
+            foreach (var (proto, amount) in spawns)
             {
-                foreach (var targetMarkerId in targetMarkers)
+                for (var i = 0; i < amount; i++)
                 {
-                    if (targetMarkerId == marker.MarkerId)
-                        Spawn(entProto, xform.Coordinates);
+                    Spawn(proto, xform.Coordinates);
                 }
             }
         }

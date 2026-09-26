@@ -25,17 +25,9 @@ public sealed partial class MyrmexAltarSystem : EntitySystem
 
     private void OnPowerChanged(Entity<MyrmexAltarComponent> ent, ref PowerChangedEvent args)
     {
-        var wasPowered = ent.Comp.Powered;
+        // imperial medieval - ApplyBuffs is idempotent, so just follow the actual power state
         ent.Comp.Powered = args.Powered;
-
-        if (args.Powered && !wasPowered)
-        {
-            ApplyBuffs(ent, true);
-        }
-        else if (!args.Powered && wasPowered)
-        {
-            ApplyBuffs(ent, false);
-        }
+        ApplyBuffs(ent, args.Powered);
     }
 
     private void OnShutdown(Entity<MyrmexAltarComponent> ent, ref ComponentShutdown args)
@@ -75,7 +67,5 @@ public sealed partial class MyrmexAltarSystem : EntitySystem
             hive.Value.Comp.ActiveAltars--;
             _hive.ModifyAltarBuffBonus(hive.Value, -ent.Comp.BuffsIncrease);
         }
-
-        _hive.RecalculateHealthMultiplier(hive.Value);
     }
 }

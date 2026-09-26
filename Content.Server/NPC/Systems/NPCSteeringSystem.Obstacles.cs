@@ -432,9 +432,6 @@ public sealed partial class NPCSteeringSystem
             return false;
         }
 
-        if (meleeWeapon.NextAttack > _timing.CurTime)
-            return true;
-
         if (!CanSmashAnything(uid, GetSmashSettings(uid)))
             return false;
 
@@ -445,6 +442,9 @@ public sealed partial class NPCSteeringSystem
 
         if (ents.Count == 0)
             return false;
+
+        if (meleeWeapon.NextAttack > _timing.CurTime)
+            return true;
 
         var heading = direction.LengthSquared() > 0f ? direction.Normalized() : Vector2.Zero;
 

@@ -1,6 +1,7 @@
 using System.Threading;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
@@ -9,6 +10,9 @@ public sealed partial class BossComponent : Component
 {
     [DataField]
     public bool Active = false;
+
+    [DataField]
+    public ResPath MapPath = new ResPath("/Maps/Imperial/Medieval/boss-test-arena2.yml");
 
     [DataField(required: true)]
     public Dictionary<int, BossStageData> Stages = new();

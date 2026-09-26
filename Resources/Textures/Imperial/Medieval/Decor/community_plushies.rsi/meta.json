@@ -1,0 +1,65 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by community",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "plushie_agata"
+        },
+        {
+            "name": "plushie_blort_bagum_the_stinky"
+        },
+        {
+            "name": "plushie_brittany_nightwish"
+        },
+        {
+            "name": "plushie_ceyriel_narilkhard"
+        },
+        {
+            "name": "plushie_copper_knight"
+        },
+        {
+            "name": "plushie_dantanat"
+        },
+        {
+            "name": "plushie_goldur_smart"
+        },
+        {
+            "name": "plushie_hans_brown"
+        },
+        {
+            "name": "plushie_hazel_toeva"
+        },
+        {
+            "name": "plushie_iskren_blanco"
+        },
+        {
+            "name": "plushie_kate_baker"
+        },
+        {
+            "name": "plushie_leckler_du_trumple"
+        },
+        {
+            "name": "plushie_licks_the_vials"
+        },
+        {
+            "name": "plushie_lily_pie"
+        },
+        {
+            "name": "plushie_mach-deesei"
+        },
+        {
+            "name": "plushie_nigan_harington"
+        },
+        {
+            "name": "plushie_shei_la"
+        },
+        {
+            "name": "plushie_sophie_purple"
+        }
+    ]
+}

@@ -59,6 +59,14 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
         while (query.MoveNext(out var uid, out var recoil, out var eye))
         {
             var magnitude = recoil.CurrentKick.Length();
+            // Imperial Mevieval start
+            if (!float.IsFinite(magnitude))
+            {
+                Log.Error($"Non-finite camera kick {recoil.CurrentKick} on {ToPrettyString(uid)}, resetting it.");
+                recoil.CurrentKick = Vector2.Zero;
+                magnitude = 0f;
+            }
+            // Imperial Medieval end
             if (magnitude <= 0.005f)
             {
                 recoil.CurrentKick = Vector2.Zero;

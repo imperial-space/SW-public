@@ -1,4 +1,4 @@
-﻿using Content.Shared.Damage;
+using Content.Shared.Damage;
 
 namespace Content.Shared.Imperial.Medieval
 {
@@ -11,7 +11,7 @@ namespace Content.Shared.Imperial.Medieval
         {
             DamageDict = new()
             {
-                { "Piercing", 14 },
+                { "Piercing", 30 },
             }
         };
     }

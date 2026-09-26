@@ -125,9 +125,30 @@ trading-ui-archive-buy-entry = Your order for “{$item}” was fulfilled by {$t
 trading-personal-pit-name = personal trading pit
 
 ent-MedievalPublicShopHole = public trading pit
-    .desc = A shared market where anyone can buy lots listed by merchants.
+    .desc = A shared market where anyone can buy listed lots and sell items.
     .suffix = { "Medieval" }
 
 ent-MedievalBidReceipt = lot receipt
     .desc = A receipt assigning part of the proceeds from a lot.
+
+trading-ui-public-browse-button = Market
+trading-ui-public-sell-button = Sell
+trading-ui-public-listings-title = Your active listings
+trading-ui-public-pending-sales-title = Revenue from sold listings
+trading-ui-no-public-listings = You have no active listings
+trading-ui-public-listing-seller = Listed by {$seller}
+trading-ui-public-listing-status = Listed for {$price} revents
+trading-ui-list-public-item-button = List for sale
+trading-ui-instant-sell-button-value = Sell instantly · {$value}
+trading-ui-instant-sell-tooltip = Merchants pay more than the public trading pit.
+trading-ui-fulfill-button-value = Fulfil order · {$value}
+trading-ui-public-listing-created = Item listed for sale
+trading-ui-public-instant-sell-success = Sold for {$amount} revents (half of its value)
+trading-ui-public-fulfill-success = Sold to fulfil a merchant's order for {$amount} revents
+trading-ui-merchant-online-blocked = A merchant is active. Only merchants can list items.
+trading-ui-public-item-inserted = You place {$item} into the trading pit.
+trading-ui-public-sell-hint = Click the trading pit with an item to place it here.
+trading-ui-public-staged-items-title = Items you've placed
+trading-ui-no-staged-items = You haven't placed any items yet
+trading-ui-withdraw-staged-item-button = Take back
 

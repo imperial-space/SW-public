@@ -1,10 +1,16 @@
 using System.Numerics;
+using Content.Client.Gameplay;
+using Content.Client.GameTicking.Managers;
+using Content.Shared.CCVar;
+using Content.Shared.GameTicking;
 using Content.Shared.Light.Components;
 using Content.Shared.Weather;
 using Robust.Client.Audio;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Client.State;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -19,16 +25,31 @@ public sealed class WeatherSystem : SharedWeatherSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IStateManager _stateManager = default!;
+
+    private float _weatherGain;
+    private bool IsInGameplay => _stateManager.CurrentState is GameplayState;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        Subs.CVar(_cfg, CCVars.AmbienceVolume, value => _weatherGain = value, true);
+
         SubscribeLocalEvent<WeatherComponent, ComponentHandleState>(OnWeatherHandleState);
     }
 
     protected override void Run(EntityUid uid, WeatherData weather, WeatherPrototype weatherProto, float frameTime)
     {
         base.Run(uid, weather, weatherProto, frameTime);
+
+        if (!IsInGameplay)
+        {
+            if (weather.Stream != null)
+                weather.Stream = _audio.Stop(weather.Stream);
+            return;
+        }
 
         var ent = _playerManager.LocalEntity;
 
@@ -118,6 +139,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
 
         var alpha = GetPercent(weather, uid);
         alpha *= SharedAudioSystem.VolumeToGain(weatherProto.Sound.Params.Volume);
+        alpha *= _weatherGain;
         _audio.SetGain(weather.Stream, alpha, comp);
         comp.Occlusion = occlusion;
     }
@@ -128,6 +150,9 @@ public sealed class WeatherSystem : SharedWeatherSystem
             return false;
 
         if (!Timing.IsFirstTimePredicted)
+            return true;
+
+        if (!IsInGameplay)
             return true;
 
         // TODO: Fades (properly)

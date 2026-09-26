@@ -86,7 +86,7 @@
     itemIconStyle: BigAction
     icon: Imperial/Medieval/Myrmex/Icons/heal.png
     priority: -12
-    useDelay: 40
+    useDelay: 32
   - type: TargetAction
     range: 2
     checkCanAccess: false

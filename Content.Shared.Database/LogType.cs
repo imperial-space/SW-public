@@ -483,4 +483,9 @@ public enum LogType
     /// Medieval factions relations interactions.
     /// </summary>
     MedievalFactionRelations = 104,
+
+    /// <summary>
+    /// Medieval faction recruitment (offers, accepts and declines)
+    /// </summary>
+    MedievalFactionRecruit = 105,
 }

@@ -10,6 +10,7 @@
     Legion: Trading
     Miner: Trading
   envelopeProto: MedievalPaperEnvelopeVillage
+  recruitJob: MedievalVillager
 
 - type: medievalFaction
   id: Legion
@@ -29,6 +30,10 @@
     #Bandit: War
     #Kayot: War
   envelopeProto: MedievalPaperEnvelopeLegion
+  recruitJob: MedievalLegionRecruit
+  recruitCrystal: MedievalCommsCrystallLeg
+  recruitKey: MedievalLeatherKey
+  recruitCloak: MedievalClothingNeckCloakClanEagle
 
 - type: medievalFaction
   id: Insurgency
@@ -48,6 +53,10 @@
     #Kayot: War
     Cult: War
   envelopeProto: MedievalPaperEnvelopeRebel
+  recruitJob: MedievalInsurgencyRecruit
+  recruitCrystal: MedievalCommsCrystallIns
+  recruitKey: MedievalKeyGuard
+  recruitCloak: MedievalClothingNeckCloakClanFox
 
 - type: medievalFaction
   id: Bandit
@@ -64,6 +73,10 @@
   #blockedRelations:
   #  - Kayot
   envelopeProto: MedievalPaperEnvelopeBandit
+  recruitJob: MedievalBanditRecruit
+  recruitCrystal: MedievalCommsCrystallBand
+  recruitKey: MedievalKeyAlchem
+  recruitCloak: MedievalClothingNeckCloakClanWolf
 
 #- type: medievalFaction
 #  id: Kayot
@@ -91,6 +104,10 @@
     Insurgency: Trading
     Legion: Trading
   envelopeProto: MedievalPaperEnvelopeMerc
+  recruitJob: MedievalMerc
+  recruitCrystal: MedievalCommsCrystallMerc
+  recruitKey: MedievalFarmerKey
+  recruitCloak: MedievalClothingNeckCloakClanMerc
 
 - type: medievalFaction
   id: Collegium
@@ -104,6 +121,10 @@
   blockedRelations:
     - Cult
   envelopeProto: MedievalPaperEnvelopeCollegium
+  recruitJob: MedievalCollegiumRecruit
+  recruitCrystal: MedievalCommsCrystallColl
+  recruitKey: MedievalKeyWizard
+  recruitCloak: MedievalClothingNeckCloakClanWiz
 
 - type: medievalFaction
   id: Miner
@@ -118,6 +139,10 @@
     Insurgency: Trading
     Village: Trading
   envelopeProto: MedievalPaperEnvelopeMiner
+  recruitJob: MedievalMiner
+  recruitCrystal: MedievalCommsCrystallMine
+  recruitKey: MedievalWoodKey
+  recruitCloak: MedievalClothingNeckCloakClanMine
 
 #- type: medievalFaction
 #  id: Tribe
@@ -137,6 +162,9 @@
   blockedRelations:
     - Collegium
   envelopeProto: MedievalPaperEnvelopeCult
+  recruitJob: MedievalCult
+  recruitKey: MedievalKeyKing
+  recruitCloak: MedievalClothingNeckCloakClanCult
 
 - type: factionRelations
   id: Neutral

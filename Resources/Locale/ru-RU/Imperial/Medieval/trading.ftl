@@ -111,8 +111,29 @@ trading-ui-archive-buy-entry = Ваш заказ «{$item}» был выполн
 trading-personal-pit-name = личная торговая яма
 
 ent-MedievalPublicShopHole = общая торговая яма
-    .desc = Общий рынок, где любой желающий может покупать лоты, выставленные торговцами.
+    .desc = Общий рынок, где любой желающий может покупать выставленные лоты и продавать предметы.
     .suffix = { "Средневековье" }
 
 ent-MedievalBidReceipt = выписка на лот
     .desc = Выписка, закрепляющая часть выручки с продажи лота.
+
+trading-ui-public-browse-button = Рынок
+trading-ui-public-sell-button = Продать
+trading-ui-public-listings-title = Ваши активные объявления
+trading-ui-public-pending-sales-title = Выручка с проданных объявлений
+trading-ui-no-public-listings = У вас нет активных объявлений
+trading-ui-public-listing-seller = Продавец: {$seller}
+trading-ui-public-listing-status = Выставлено за {$price} ревентов
+trading-ui-list-public-item-button = Выставить на продажу
+trading-ui-instant-sell-button-value = Продать сразу · {$value}
+trading-ui-instant-sell-tooltip = Торговцы платят больше, чем общая торговая яма.
+trading-ui-fulfill-button-value = Выполнить заказ · {$value}
+trading-ui-public-listing-created = Предмет выставлен на продажу
+trading-ui-public-instant-sell-success = Продано за {$amount} ревентов (половина стоимости)
+trading-ui-public-fulfill-success = Продано для выполнения заказа торговца за {$amount} ревентов
+trading-ui-merchant-online-blocked = Есть активный торговец. Выставлять предметы могут только торговцы.
+trading-ui-public-item-inserted = Вы кладёте {$item} в торговую яму.
+trading-ui-public-sell-hint = Кликните по торговой яме с предметом, чтобы положить его сюда.
+trading-ui-public-staged-items-title = Ваши положенные предметы
+trading-ui-no-staged-items = Вы ещё ничего не положили
+trading-ui-withdraw-staged-item-button = Забрать обратно
