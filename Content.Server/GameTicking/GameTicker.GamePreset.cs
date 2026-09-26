@@ -29,6 +29,11 @@ public sealed partial class GameTicker
     public GamePresetPrototype? CurrentPreset { get; private set; }
 
     /// <summary>
+    /// imperial medieval - the preset the previous round was played on, kept out of the next preset vote.
+    /// </summary>
+    public GamePresetPrototype? LastRoundPreset { get; private set; }
+
+    /// <summary>
     /// Countdown to the preset being reset to the server default.
     /// </summary>
     public int? ResetCountdown;
