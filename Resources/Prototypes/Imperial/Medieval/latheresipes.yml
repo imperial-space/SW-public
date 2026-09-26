@@ -140,7 +140,7 @@
     MedievalMagicDust: 10
   entities:
     MedievalScrollBarrierDecoded: 1
-    ShardCrystalRed: 2
+    ShardCrystalRed: 1
   result: MedievalScrollBarrierOverclocked
 
 - type: CP14Recipe
@@ -150,7 +150,7 @@
     MedievalAstrolit: 4
   entities:
     MedievalScrollBarrierDecoded: 1
-    ShardCrystalRed: 2
+    ShardCrystalRed: 1
   result: MedievalScrollBarrierUnstable
 
 - type: CP14Recipe
