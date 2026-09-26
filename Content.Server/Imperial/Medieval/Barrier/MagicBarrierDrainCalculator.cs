@@ -12,7 +12,7 @@ public static class MagicBarrierDrainCalculator
         var lowHardCap = comp.HLCurseLimit;
         var highHardCap = comp.HHCurseLimit;
 
-        if (playerCount < 30)
+        if (playerCount < 45)
         {
             baseCurseDrain = 0.5f;
             riftCurseDrain = 1f;
