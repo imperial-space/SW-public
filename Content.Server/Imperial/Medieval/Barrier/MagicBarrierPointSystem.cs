@@ -24,6 +24,7 @@ using Content.Server.Imperial.Medieval.GameTicking.Rules;
 using Content.Shared.GameTicking;
 using Content.Server.Cult.Components;
 using Content.Server.GameTicking;
+using Robust.Server.Player;
 
 namespace Content.Server.MagicBarrier
 {
@@ -41,6 +42,7 @@ namespace Content.Server.MagicBarrier
         [Dependency] private readonly AchievementSystem _achievement = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly AncientNocturneSpawnRuleSystem _ancientNocturne = default!;
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
 
         public static bool IsBarrierActive = true;
         private static readonly string[] ElementalRiftPrototypes =
@@ -208,7 +210,7 @@ namespace Content.Server.MagicBarrier
             var growthCount = EntityQuery<MagicBarrierCurseComponent>().Count();
             var riftCount = EntityQuery<MagicBarrierRiftComponent>().Count();
 
-            comp.Lose = MagicBarrierDrainCalculator.Calculate(comp, growthCount, riftCount);
+            comp.Lose = MagicBarrierDrainCalculator.Calculate(comp, growthCount, riftCount, _playerManager.PlayerCount);
             comp.LastLoseCalculateTime = _timing.CurTime;
         }
         private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
@@ -381,7 +383,8 @@ namespace Content.Server.MagicBarrier
                         comp.Lose = MagicBarrierDrainCalculator.Calculate(
                          comp,
                          growthCount,
-                         riftCount);
+                         riftCount,
+                         _playerManager.PlayerCount);
 
                         comp.Stability -= comp.Lose;
                     }
