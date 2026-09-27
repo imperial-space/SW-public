@@ -143,10 +143,12 @@ public sealed class MedievalArmorIntegritySystem : EntitySystem
 
     private void OnCharacterExamined(Entity<InventoryComponent> ent, ref ExaminedEvent args)
     {
+        if (!args.IsInDetailsRange && !HasComp<GhostComponent>(args.Examiner) && _skills.GetSkillLevel(args.Examiner, SharedSkillsSystem.IntelligenceId) < SkillScaling.Master)
+            return;
         var intelligence = HasComp<GhostComponent>(args.Examiner)
             ? 20
             : _skills.GetSkillLevel(args.Examiner, SharedSkillsSystem.IntelligenceId);
-        if (intelligence <= 8)
+        if (intelligence < SkillScaling.Trained)
             return;
 
         var equippedArmor = GetEquippedArmor(ent.Comp, includeBroken: true);
@@ -166,7 +168,7 @@ public sealed class MedievalArmorIntegritySystem : EntitySystem
             ? 0f
             : Math.Clamp(currentArmorHp / maxArmorHp * 100f, 0f, 100f);
 
-        if (intelligence >= 20)
+        if (intelligence >= SkillScaling.Expert)
         {
             args.PushMarkup(Loc.GetString("armor-integrity-exact",
                 ("percentage", (int)MathF.Round(percentage))));

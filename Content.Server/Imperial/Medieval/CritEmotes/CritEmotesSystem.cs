@@ -5,6 +5,7 @@ using Content.Shared.Chat;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Events;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
 
@@ -31,7 +32,10 @@ public sealed class CritEmotesSystem : EntitySystem
                 if (damageable.Damage.GetTotal() < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)
                     continue;
 
-                _chat.TryEmoteWithChat(uid, _random.Pick(crit.Emotes), ChatTransmitRange.HideChat, ignoreActionBlocker: true);
+                var reaction = new PainReactionAttemptEvent();
+                RaiseLocalEvent(uid, ref reaction);
+                if (!reaction.Cancelled)
+                    _chat.TryEmoteWithChat(uid, _random.Pick(crit.Emotes), ChatTransmitRange.HideChat, ignoreActionBlocker: true);
             }
             if (_gameTiming.CurTime >= crit.NextHeartbeatUpdate && crit.Heartbeat)
             {

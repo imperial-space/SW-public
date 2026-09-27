@@ -35,6 +35,9 @@ bld/
 *.VisualState.xml
 TestResult.xml
 
+# Local skill progression regression tests
+/Content.IntegrationTests/Tests/Imperial/Medieval/Skills/SkillProgressionTest.cs
+
 # Build Results of an ATL Project
 [Dd]ebugPS/
 [Rr]eleasePS/

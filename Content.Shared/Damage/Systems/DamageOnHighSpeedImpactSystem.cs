@@ -27,6 +27,8 @@ public sealed class DamageOnHighSpeedImpactSystem : EntitySystem
 
     private void HandleCollide(EntityUid uid, DamageOnHighSpeedImpactComponent component, ref StartCollideEvent args)
     {
+        if (TryComp<Content.Shared.Imperial.Medieval.Skills.SkillProgressionComponent>(uid, out var jumping) && jumping.JumpUntil > _gameTiming.CurTime)
+            return;
         if (!args.OurFixture.Hard || !args.OtherFixture.Hard)
             return;
 

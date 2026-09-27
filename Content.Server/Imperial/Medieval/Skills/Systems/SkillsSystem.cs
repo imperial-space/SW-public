@@ -9,6 +9,7 @@ using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
+using Content.Shared.Damage.Components;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Roles;
@@ -27,8 +28,6 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MobThresholdSystem _threshold = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StunSystem _stun = default!;
@@ -72,11 +71,6 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             case AgilityId:
                 AgilityLevelSet(uid, args.Level, args.OldLevel);
                 break;
-            case StrengthId:
-                StrengthLevelSet(uid, args.Level, args.OldLevel);
-                break;
-            default:
-                break;
         }
     }
 
@@ -88,20 +82,16 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             !protoJob.ApplySkills)
             return;
 
-        var sum = Points + 1;
-        foreach (var skill in args.Profile.Skills)
-        {
-            sum += GetPointsCost(skill.Value);
-        }
-        if (sum < 0)
-        {
-            _ban.CreateServerBan(args.Player.UserId, args.Player.Name, null, null, null, 0, Shared.Database.NoteSeverity.High, Loc.GetString("skills-autoban-points"));
-            return;
-        }
-
-        SetSkills(args.Mob, args.Profile.Skills);
-
-        TryGetMagicRuneComp(args.Mob);
+        // Existing saved profiles may predate the point-cost rebalance. Never ban for migration.
+        var valid = TryValidateSkillLevels(_proto, args.Profile.Skills, out var validated);
+        if (!valid)
+            _popup.PopupEntity(Loc.GetString("skills-profile-migrated"), args.Mob, args.Mob);
+        var levels = valid
+            ? validated
+            : GetDefaultSkillLevels(_proto);
+        EntityManager.System<Content.Server.Imperial.Medieval.Skills.Progression.SkillMagicSystem>().RegisterProfession(args.Mob, args.JobId);
+        SetSkills(args.Mob, levels);
+        EntityManager.System<Content.Server.Imperial.Medieval.Skills.Progression.SkillMagicSystem>().GrantStartingGrimoire(args.Mob);
     }
 
     private void OnSetSkillLevel(SetSkillLevelMessage msg, EntitySessionEventArgs args)
@@ -114,7 +104,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         var uid = GetEntity(msg.Target);
         var comp = EnsureComp<SkillsComponent>(uid);
 
-        var dict = comp.Levels;
+        var dict = new Dictionary<string, int>(comp.Levels);
         dict[msg.Skill] = msg.Level;
         SetSkills(uid, dict);
     }
@@ -122,23 +112,32 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     public void SetSkills(EntityUid uid, Dictionary<string, int> skills)
     {
         var comp = EnsureComp<SkillsComponent>(uid);
+        EnsureComp<SkillProgressionComponent>(uid);
+        var requested = new Dictionary<string, int>(skills);
+        var previous = new Dictionary<string, int>(comp.Levels);
+
+        // Publish the whole new profile before handlers inspect other attributes.
+        foreach (var skill in _proto.EnumeratePrototypes<SkillPrototype>())
+            comp.Levels[skill.ID] = Math.Clamp(requested.GetValueOrDefault(skill.ID, 10), 1, 20);
 
         foreach (var skill in _proto.EnumeratePrototypes<SkillPrototype>())
         {
-            var oldLevel = comp.Levels.GetValueOrDefault(skill.ID, 10);
-
-            comp.Levels[skill.ID] = Math.Clamp(skills.GetValueOrDefault(skill.ID, 10), 1, 20);
+            var oldLevel = previous.GetValueOrDefault(skill.ID, 10);
             var ev = new SkillLevelChangedEvent(skill.ID, comp.Levels[skill.ID], oldLevel);
             RaiseLocalEvent(uid, ref ev);
         }
 
         Dirty(uid, comp);
+        var changed = new SkillProfileChangedEvent(uid);
+        RaiseLocalEvent(ref changed);
     }
 
     public void ApplySkills(EntityUid uid, Dictionary<string, int> skills)
     {
+        var magic = EntityManager.System<Content.Server.Imperial.Medieval.Skills.Progression.SkillMagicSystem>();
+        magic.RegisterProfession(uid, null);
         SetSkills(uid, skills);
-        TryGetMagicRuneComp(uid);
+        magic.GrantStartingGrimoire(uid);
     }
 
     public override void Update(float frameTime)
@@ -150,15 +149,6 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1f);
 
         UpdateAgility(frameTime);
-        UpdateVitality(frameTime);
     }
 
-    private void TryGetMagicRuneComp(EntityUid uid)
-    {
-        if (!TryComp<SkillsComponent>(uid, out var comp))
-            return;
-
-        if (comp.Levels["Intelligence"] >= 15)
-            EnsureComp<MagicRuneKnowledgeComponent>(uid);
-    }
 }

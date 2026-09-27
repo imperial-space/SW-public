@@ -1,10 +1,8 @@
-using System.Windows.Input;
 using Content.Shared.Examine;
 using Content.Shared.Imperial.Medieval.Construction;
 using Content.Shared.Imperial.Medieval.Illitid;
 using Content.Shared.Paper;
 using Content.Shared.Verbs;
-using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
@@ -26,12 +24,7 @@ public abstract partial class SharedSkillsSystem
     {
         var (proto, level) = GetSkill(uid, IntelligenceId);
 
-        if (level == 10)
-            return;
-
-        var diff = Math.Abs(level - 10);
-
-        args.Modifier += (level > 10 ? proto.Modifiers["PositiveConstructionSpeedModifier"] : proto.Modifiers["NegativeConstructionSpeedModifier"]) * diff;
+        args.Modifier /= SkillScaling.Multiplier(level, proto.Modifiers["WorkSpeedPerLevel"]);
     }
 
     private void OnCanWrite(EntityUid uid, SkillsComponent comp, ref PaperWriteAttemptEvent args)
@@ -47,7 +40,7 @@ public abstract partial class SharedSkillsSystem
     private void OnSkillsExamined(EntityUid uid, SkillsComponent component, GetVerbsEvent<ExamineVerb> args)
     {
         var user = args.User;
-        var detailsRange = _examineSystem.IsInDetailsRange(args.User, uid);
+        var canCompare = CanCompareSkills(user, uid);
 
         if (uid != user)
         {
@@ -55,36 +48,24 @@ public abstract partial class SharedSkillsSystem
             {
                 Text = Loc.GetString("examine-skills-differance"),
                 Category = VerbCategory.Examine,
-                Disabled = !detailsRange,
+                Disabled = !canCompare,
+                Message = canCompare ? null : Loc.GetString("detail-examinable-verb-disabled"),
 
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")),
 
                 Act = () =>
                 {
+                    if (!CanCompareSkills(user, uid))
+                        return;
+
                     var message = new FormattedMessage();
 
                     foreach (var level in component.Levels)
                     {
-                        message.AddText($"{Loc.GetString($"skill-{level.Key.ToLower()}-name")}: ");
+                        message.AddText($"{Loc.GetString($"skill-{level.Key.ToLowerInvariant()}-name")}: ");
 
-                        string hex = GetColorForDiff(0);
-
-                        Dictionary<string, int> levels = new()
-                        {
-                            ["Agility"] = 10,
-                            ["Strength"] = 10,
-                            ["Vitality"] = 10,
-                            ["Endurance"] = 10,
-                            ["Intelligence"] = 10
-                        };
-
-                        if (TryComp<SkillsComponent>(user, out var examinerComp))
-                            levels = examinerComp.Levels;
-
-                        var diff = component.Levels[level.Key] - levels[level.Key];
-
-                        hex = GetColorForDiff(diff);
-                        message.PushColor(Color.FromHex(hex));
+                        var diff = level.Value - GetSkill(user, level.Key).Item2;
+                        message.PushColor(Color.FromHex(GetColorForDiff(diff)));
                         message.AddText(Loc.GetString(GetTextForDiff(diff)));
                         message.Pop();
                         message.AddText($"\n");
@@ -103,13 +84,18 @@ public abstract partial class SharedSkillsSystem
         var (_, otherLevel) = GetSkill(uid, IntelligenceId);
 
         // в идеале конечно для резонатов перенести в их систему, ведь иначе будет путаница, но
-        if ((self >= 20 || HasComp<IllitidComponent>(args.User)) && otherLevel < 14)
+        if ((self >= SkillScaling.Legendary || HasComp<IllitidComponent>(args.User)) && otherLevel < SkillScaling.Master)
         {
             var verb = new ExamineVerb
             {
                 Act = () =>
                 {
                     if (_netMan.IsClient)
+                        return;
+
+                    if (!_examineSystem.CanExamine(args.User, uid)
+                        || GetSkill(args.User, IntelligenceId).Item2 < SkillScaling.Legendary && !HasComp<IllitidComponent>(args.User)
+                        || GetSkill(uid, IntelligenceId).Item2 >= SkillScaling.Master)
                         return;
 
                     var ev = new GetEnteredChatMessageMessage(GetNetEntity(uid), GetNetEntity(args.User));
@@ -125,11 +111,15 @@ public abstract partial class SharedSkillsSystem
         }
     }
 
+    private bool CanCompareSkills(EntityUid user, EntityUid target) =>
+        _examineSystem.CanExamine(user, target)
+        && (GetSkill(user, IntelligenceId).Item2 >= SkillScaling.Master || _examineSystem.IsInDetailsRange(user, target));
+
     public bool CanRead(EntityUid uid)
     {
         var (_, level) = GetSkill(uid, IntelligenceId);
 
-        if (level < 5)
+        if (level < SkillScaling.Basic)
             return false;
 
         return true;
@@ -138,7 +128,7 @@ public abstract partial class SharedSkillsSystem
     {
         var (_, level) = GetSkill(uid, IntelligenceId);
 
-        if (level > 5)
+        if (level >= SkillScaling.Basic)
             return false;
 
         return true;
@@ -195,7 +185,7 @@ public abstract partial class SharedSkillsSystem
             <= 8 => "examine-skills-substantially-higher",
             <= 10 => "examine-skills-much-higher",
             <= 12 => "examine-skills-significantly-higher",
-            <= 25 => "examine-skills-immensely-higher"
+            _ => "examine-skills-immensely-higher"
         };
     }
 }

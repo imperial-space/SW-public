@@ -1,0 +1,11 @@
+skills-construction-requirement = Requires { $skill }: { $level }.
+skills-construction-lockpick-fork = Improvised lockpick from a fork
+skills-construction-lockpick-spoon = Improvised lockpick from a spoon
+skills-construction-lockpick-bone = Improvised lockpick from a bone
+skills-construction-lockpick-iron = Improvised lockpick from an iron plate
+skills-construction-lockpick-stick = Improvised lockpick from a stick
+skills-construction-lockpick-description = A simple lockpick made from one item. It can break and is consumed after a successful pick. Requires agility 16.
+skills-construction-material-fork = metal fork
+skills-construction-material-spoon = metal spoon
+skills-construction-stick = Wooden stick
+skills-construction-stick-description = A thin stick made from one unit of wood. Can be used to make an improvised lockpick.

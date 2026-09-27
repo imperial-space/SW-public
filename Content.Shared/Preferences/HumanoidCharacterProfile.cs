@@ -821,24 +821,18 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithSkill(string id, int level, out bool success)
         {
             success = false;
-            Skills.TryAdd(id, 10);
+            var prototypes = IoCManager.Resolve<IPrototypeManager>();
+            if (level is < 1 or > 20 || !prototypes.HasIndex<SkillPrototype>(id))
+                return new(this);
 
-            var sum = SharedSkillsSystem.Points;
-            foreach (var item in IoCManager.Resolve<IPrototypeManager>().EnumeratePrototypes<SkillPrototype>())
-            {
-                sum += item.ID == id ? SharedSkillsSystem.GetPointsCost(level) : Skills.GetValueOrDefault(item.ID, 10);
-            }
-
-            if (sum < 0 || level < 1)
+            var skills = new Dictionary<string, int>(Skills) { [id] = level };
+            if (SharedSkillsSystem.GetRemainingPoints(prototypes, skills) < 0)
                 return new(this);
 
             success = true;
             return new(this)
             {
-                Skills = new(Skills)
-                {
-                    [id] = level
-                }
+                Skills = skills,
             };
         }
         // imperial medieval end

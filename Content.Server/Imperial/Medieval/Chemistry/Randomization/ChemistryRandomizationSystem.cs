@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Server.GameTicking.Events;
 using Content.Shared.Imperial.Medieval.Chemistry;
 using Content.Shared.Imperial.Medieval.ChemistryRandomization;
@@ -35,7 +36,7 @@ public sealed partial class ChemistryRandomizationSystem : EntitySystem
     }
     public void OnExamine(EntityUid uid, SolutionContainerManagerComponent component, ExaminedEvent args)
     {
-        if (!HasComp<MedievalPotionCheckerComponent>(args.Examiner))
+        if (!(HasComp<MedievalPotionCheckerComponent>(args.Examiner) || TryComp<SkillsComponent>(args.Examiner, out var skills) && SkillScaling.Level(skills, SharedSkillsSystem.IntelligenceId) >= SkillScaling.Expert))
             return;
         if (!TryComp<ContainerManagerComponent>(uid, out var contman))
             return;

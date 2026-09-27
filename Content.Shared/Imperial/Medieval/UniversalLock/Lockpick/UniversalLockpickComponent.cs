@@ -7,6 +7,10 @@ public sealed partial class UniversalLockpickComponent : Component
     [DataField]
     public float HackTime = 1f;
 
+    /// <summary>Improvised picks can always break and are consumed after a successful opening.</summary>
+    [DataField]
+    public bool Consumable;
+
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public string EffectSoundOnOpen = "/Audio/Imperial/Medieval/lockpick_open.ogg";
 

@@ -1,0 +1,13 @@
+- type: entity
+  id: ActionSkillRecovery
+  name: Второе дыхание
+  description: Восстанавливает всю стамину, снимает оглушение, сбитие и обычный захват. На три секунды защищает от их повторного наложения. Перезарядка — три минуты.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Medieval/Interface/Skills/endurance.rsi
+      state: best
+  - type: InstantAction
+    event: !type:SkillRecoveryActionEvent

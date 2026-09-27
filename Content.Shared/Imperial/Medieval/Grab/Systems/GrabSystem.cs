@@ -294,7 +294,7 @@ public sealed class GrabSystem : EntitySystem
         if (component.GrabbedEntity == null)
             return;
 
-        if (TryComp<GrabbableComponent>(component.GrabbedEntity, out var comp) && (args.State == MobState.Critical || args.State == MobState.Dead))
+        if (TryComp<GrabbableComponent>(component.GrabbedEntity, out var comp) && (args.State == MobState.Critical && !(TryComp<SkillsComponent>(uid, out var skills) && SkillScaling.Level(skills, SharedSkillsSystem.VitalityId) >= 20) || args.State == MobState.Dead))
         {
             TryStopGrab(component.GrabbedEntity.Value, comp);
         }
@@ -513,7 +513,9 @@ public sealed class GrabSystem : EntitySystem
 
         chance = Math.Clamp(chance, 0, 100);
 
-        var doAfterArgs = new DoAfterArgs(new DoAfterArgs(EntityManager, grabberUid, TimeSpan.FromSeconds(1), new GrabDoAfterEvent(GetNetEntity(grabbable), chance), grabberUid, grabbable, grabberUid))
+        var grabDelay = new ForceActionDelayEvent(1f);
+        RaiseLocalEvent(grabberUid, ref grabDelay);
+        var doAfterArgs = new DoAfterArgs(new DoAfterArgs(EntityManager, grabberUid, TimeSpan.FromSeconds(grabDelay.Seconds), new GrabDoAfterEvent(GetNetEntity(grabbable), chance), grabberUid, grabbable, grabberUid))
         {
             BreakOnMove = false,
             BreakOnDamage = false,

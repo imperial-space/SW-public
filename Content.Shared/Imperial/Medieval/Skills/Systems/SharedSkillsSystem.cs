@@ -1,4 +1,3 @@
-using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Popups;
 using System.Linq;
 using Robust.Shared.Network;
@@ -26,14 +25,6 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         InitializeVitality();
 
         InitializeDesc();
-
-        SubscribeLocalEvent<SkillsComponent, ModifyClothingMovespeedModifierEvent>(OnModifyClothingSpeedMod);
-    }
-
-    private void OnModifyClothingSpeedMod(EntityUid uid, SkillsComponent comp, ref ModifyClothingMovespeedModifierEvent args)
-    {
-        //VitalityModifyClothingSpeedMod(uid, comp, ref args);
-        //EnduranceModifyClothingSpeedMod(uid, comp, ref args);
     }
 
     protected (SkillPrototype, int) GetSkill(EntityUid uid, string id)
@@ -46,42 +37,7 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         return (proto, skillComponent.Levels.TryGetValue(id, out var val) ? val : 10);
     }
 
-    public static int GetPointsCost(int level)
-    {
-        if (level == 10)
-            return 0;
-        var sum = 0;
-
-        if (level > 10)
-        {
-            for (var i = 0; i < level; i++)
-            {
-                sum += i switch
-                {
-                    <= 9 => 0,
-                    >= 19 => -4,
-                    >= 17 => -3,
-                    >= 14 => -2,
-                    >= 10 => -1,
-                };
-            }
-        }
-        else
-        {
-            for (var i = 9; i >= level; i--)
-            {
-                sum += (i - level) switch
-                {
-                    <= 0 => 1,
-                    <= 4 => 2,
-                    <= 7 => 2,
-                    >= 8 => 3,
-                };
-            }
-        }
-
-        return sum;
-    }
+    public static int GetPointsCost(int level) => SkillScaling.PointCost(level);
 
     public static Dictionary<string, int> GetDefaultSkillLevels(IPrototypeManager prototypes)
     {
@@ -126,6 +82,24 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         if (!TryComp<SkillsComponent>(uid, out var skillComponent))
             return 1;
         return skillComponent.Levels.GetValueOrDefault(skill, 1);
+    }
+
+    /// <summary>Changes one level while keeping resource, equipment and perk subscribers in sync.</summary>
+    public void SetSkillLevel(EntityUid uid, string skill, int level)
+    {
+        if (!_proto.HasIndex<SkillPrototype>(skill) || !TryComp<SkillsComponent>(uid, out var skills))
+            return;
+        var previous = SkillScaling.Level(skills, skill);
+        level = Math.Clamp(level, 1, 20);
+        if (level == previous)
+            return;
+        EnsureComp<SkillProgressionComponent>(uid);
+        skills.Levels[skill] = level;
+        var changed = new SkillLevelChangedEvent(skill, level, previous);
+        RaiseLocalEvent(uid, ref changed);
+        Dirty(uid, skills);
+        var profile = new SkillProfileChangedEvent(uid);
+        RaiseLocalEvent(ref profile);
     }
 
     public bool HasSkill(EntityUid uid, string skill)

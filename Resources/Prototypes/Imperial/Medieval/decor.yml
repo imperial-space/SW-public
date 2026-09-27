@@ -210,12 +210,29 @@
   parent: CrateCoffin
   id: MedievalCrateCoffin
   name: CrateCoffin
+  components:
+  - type: SkillHeavyCargo
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
 
 - type: entity
   parent: CrateGeneric
   id: MedievalChest
   name: MedievalChest
   components:
+  - type: SkillHeavyCargo
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
   - type: EntityStorage
     closeSound:
       path: /Audio/Imperial/Medieval/Chest/chest_close.ogg
@@ -274,6 +291,14 @@
   id: MedievalChest2
   name: MedievalChest2
   components:
+  - type: SkillHeavyCargo
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
   - type: EntityStorage
     closeSound:
       path: /Audio/Imperial/Medieval/Chest/chest_close.ogg
@@ -332,6 +357,14 @@
   id: MedievalChest3
   name: MedievalChest3
   components:
+  - type: SkillHeavyCargo
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
   - type: EntityStorage
     closeSound:
       path: /Audio/Imperial/Medieval/Chest/chest_close.ogg
@@ -390,6 +423,14 @@
   id: MedievalChest4
   name: MedievalChest4
   components:
+  - type: SkillHeavyCargo
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
   - type: EntityStorage
     closeSound:
       path: /Audio/Imperial/Medieval/Chest/chest_close.ogg
@@ -538,6 +579,14 @@
     snap:
     - Wall
   components:
+  - type: SkillHeavyCargo
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -594,6 +643,14 @@
     snap:
     - Wall
   components:
+  - type: SkillHeavyCargo
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
   - type: SolutionContainerManager
     solutions:
       tank:

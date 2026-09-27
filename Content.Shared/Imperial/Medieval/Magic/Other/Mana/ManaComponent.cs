@@ -4,6 +4,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Magic.Mana;
 
+/// <summary>Raised after startup applies racial and profession mana modifiers.</summary>
+[ByRefEvent]
+public readonly record struct ManaInitializedEvent;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ManaComponent : Component
@@ -27,6 +30,13 @@ public sealed partial class ManaComponent : Component
 
     [DataField, AutoNetworkedField]
     public float RegenMultiplier = DefaultRegenMultiplier;
+
+    // Remember only the skill contribution, so reapplying a profile cannot compound it.
+    [DataField, AutoNetworkedField]
+    public float SkillMaximumMultiplier = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float SkillRegenerationMultiplier = 1f;
 
 
     [DataField]

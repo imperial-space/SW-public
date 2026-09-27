@@ -1594,6 +1594,7 @@
   name: satchel
   description: A trendy looking satchel.
   components:
+  - type: SkillBeltBackpack
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Backpack/traveller.rsi
     state: icon
@@ -1677,6 +1678,7 @@
   name: satchel
   description: A trendy looking satchel.
   components:
+  - type: SkillBeltBackpack
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Backpack/leather.rsi
     state: icon
@@ -1736,6 +1738,7 @@
   name: satchel
   description: A trendy looking satchel.
   components:
+  - type: SkillBeltBackpack
   - type: Sprite
     sprite: Clothing/Back/Backpacks/salvage.rsi
     state: icon
@@ -1765,6 +1768,7 @@
   name: satchel
   description: A trendy looking satchel.
   components:
+  - type: SkillBeltBackpack
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Backpack/box.rsi
     state: icon

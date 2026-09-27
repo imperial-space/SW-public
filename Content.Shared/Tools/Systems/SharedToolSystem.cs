@@ -173,6 +173,8 @@ public abstract partial class SharedToolSystem : EntitySystem
         {
             BreakOnDamage = true,
             BreakOnMove = true,
+            AllowMovementAssistance = target != null && HasComp<Content.Shared.Item.ItemComponent>(target),
+            DistanceThreshold = 2f,
             BreakOnWeightlessMove = false,
             NeedHand = tool != user,
             AttemptFrequency = fuel > 0 ? AttemptFrequency.EveryTick : AttemptFrequency.Never

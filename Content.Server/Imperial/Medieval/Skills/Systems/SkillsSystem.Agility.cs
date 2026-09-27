@@ -22,72 +22,37 @@ public sealed partial class SkillsSystem
     private void OnGetSpreadMod(EntityUid uid, SkillsComponent component, ref GetGunSpreadModifiersEvent args)
     {
         var (proto, level) = GetSkill(uid, AgilityId);
-
-        if (level == 10)
-            return;
-
-        var diff = Math.Abs(level - 10);
-
-        // level > 10 — навык высокий, разброс уменьшается (PositiveSpreadModifier: -0.2)
-        // level < 10 — навык низкий, разброс увеличивается (NegativeSpreadModifier: 0.15)
-        float modifier = level > 10
-            ? proto.Modifiers["PositiveSpreadModifier"]  // -0.2
-            : proto.Modifiers["NegativeSpreadModifier"];  // 0.15
-
-        // Формула: args.Modifier * (1 + modifier * diff)
-        args.Modifier *= (1f + modifier * diff);
-        args.Modifier = Math.Max(args.Modifier, 0f);
+        args.Modifier *= SkillScaling.Multiplier(level, proto.Modifiers["SpreadPerLevel"]);
     }
 
     private void OnGetStealChanceMod(EntityUid uid, SkillsComponent component, ref GetStealChanceModifiersEvent args)
     {
         var (proto, level) = GetSkill(uid, AgilityId);
-
-        if (level == 10)
-            return;
-
-        if (level <= 1)
-        {
-            args.Modifier = 0f;
-            return;
-        }
-
-        var diff = Math.Abs(level - 10);
-
-        args.Modifier += (level > 10 ? proto.Modifiers["PositiveStealChanceModifier"] : proto.Modifiers["NegativeStealChanceModifier"]) * diff;
+        args.Modifier *= SkillScaling.Multiplier(level, proto.Modifiers["StealChancePerLevel"]);
+        if (level >= SkillScaling.Legendary)
+            args.Modifier += proto.Modifiers["LegendaryStealBonus"];
     }
 
     private void OnTryGetAdditionalStealTarget(EntityUid uid, SkillsComponent component, ref TryGetAdditionalStealTargetEvent args)
     {
-        var (_, level) = GetSkill(uid, AgilityId);
-
-        if (level < 20)
-            return;
-
-        args.Success = true;
+        args.Success |= SkillScaling.Level(component, AgilityId) >= SkillScaling.Legendary;
     }
 
     private void OnModifyLockpickLossChance(EntityUid uid, SkillsComponent component, ref ModifyLockpickLossChanceEvent args)
     {
-        var (proto, level) = GetSkill(uid, AgilityId);
-
-        if (level < 10)
-            return;
-
-        var diff = Math.Abs(level - 10);
-        args.Modifier = Math.Clamp(args.Modifier + diff * proto.Modifiers["PositiveLockpickLossModifier"], 0f, 1f);
+        var (_, level) = GetSkill(uid, AgilityId);
+        args.Modifier = level >= SkillScaling.Legendary ? 0f :
+            Math.Clamp(args.Modifier / SkillScaling.Multiplier(level, 0.03f), 0f, 1f);
     }
 
     private void AgilityLevelSet(EntityUid uid, int level, int oldLevel)
     {
-        if (level == 10)
-            return;
         Comp<SkillsComponent>(uid).Timers.Remove("AgilityFall");
         Comp<SkillsComponent>(uid).Timers.Remove("AgilityDrop");
 
         if (level <= 1)
             Comp<SkillsComponent>(uid).Timers.Add("AgilityDrop", _timing.CurTime + TimeSpan.FromSeconds(60f));
-        if (level < 5)
+        if (level < SkillScaling.Basic)
             Comp<SkillsComponent>(uid).Timers.Add("AgilityFall", _timing.CurTime + TimeSpan.FromSeconds(120f));
     }
 
@@ -103,7 +68,7 @@ public sealed partial class SkillsSystem
                 if (mover.HeldMoveButtons == MoveButtons.None)
                     continue;
 
-                if (GetSkill(uid, AgilityId).Item2 > 5)
+                if (GetSkill(uid, AgilityId).Item2 >= SkillScaling.Basic)
                     continue;
 
                 if (!_random.Prob(0.01f))

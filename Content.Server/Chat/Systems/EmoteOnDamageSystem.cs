@@ -3,6 +3,7 @@ namespace Content.Server.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -25,6 +26,11 @@ public sealed class EmoteOnDamageSystem : EntitySystem
     private void OnDamage(EntityUid uid, EmoteOnDamageComponent emoteOnDamage, DamageChangedEvent args)
     {
         if (!args.DamageIncreased)
+            return;
+
+        var reaction = new PainReactionAttemptEvent();
+        RaiseLocalEvent(uid, ref reaction);
+        if (reaction.Cancelled)
             return;
 
         // Imperial Medieval Start

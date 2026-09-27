@@ -1,0 +1,11 @@
+skills-construction-requirement = Требуется { $skill }: { $level }.
+skills-construction-lockpick-fork = Одноразовая отмычка из вилки
+skills-construction-lockpick-spoon = Одноразовая отмычка из ложки
+skills-construction-lockpick-bone = Одноразовая отмычка из кости
+skills-construction-lockpick-iron = Одноразовая отмычка из железной пластинки
+skills-construction-lockpick-stick = Одноразовая отмычка из палки
+skills-construction-lockpick-description = Простая отмычка из одного предмета. Может сломаться и расходуется после успешного вскрытия. Требуется ловкость 16.
+skills-construction-material-fork = металлическая вилка
+skills-construction-material-spoon = металлическая ложка
+skills-construction-stick = Деревянная палка
+skills-construction-stick-description = Тонкая палка из одной единицы древесины. Подходит для изготовления одноразовой отмычки.

@@ -1,0 +1,27 @@
+# User-selected playtest: Sector8 only, MedievalDevelop, no extra sectors or round rules.
+# Start with "+forcepreset MedievalDevelop"; automatic lobby votes must stay disabled.
+[net]
+bindto = "127.0.0.1"
+port = 1212
+[status]
+enabled = false
+[hub]
+advertise = false
+[auth]
+mode = 2
+[console]
+loginlocal = true
+[game]
+hostname = "Spellward - abilities TEST MAP"
+defaultpreset = "MedievalDevelop"
+map = "MedievalStationLowOnline"
+map_rotation = false
+lobbyenabled = true
+lobbyduration = 5
+[vote]
+autostartinlobby = false
+[log]
+enabled = true
+path = "logs"
+[ic]
+random_characters = false

@@ -84,6 +84,9 @@ public sealed class HealingSystem : EntitySystem
             _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), healing.ModifyBloodLevel);
 
         DamageSpecifier heal = healing.Damage;
+        var healingPower = new Content.Shared.Imperial.Medieval.Medical.GetMedicalHealingMultiplierEvent(1f);
+        RaiseLocalEvent(args.User, ref healingPower);
+        heal *= healingPower.Multiplier;
 
         // Start Imperial Forged
         ProtoId<TagPrototype> tag = "ForgedHealItem";
@@ -140,7 +143,7 @@ public sealed class HealingSystem : EntitySystem
 
         // Update our self heal delay so it shortens as we heal more damage.
         if (args.User == target.Owner)
-            args.Args.Delay = GetHealingDelay(args.User, target.Owner, healing); // imperial medieval edit
+            args.Args.Delay = GetHealingDelay(args.User, target.Owner, healing) / EntityManager.System<SkillActionSystem>().CriticalSpeed(args.User); // imperial medieval edit
     }
 
     private bool HasDamage(Entity<HealingComponent> healing, Entity<DamageableComponent> target)
@@ -195,6 +198,14 @@ public sealed class HealingSystem : EntitySystem
 
     private bool TryHeal(Entity<HealingComponent> healing, Entity<DamageableComponent?> target, EntityUid user)
     {
+        var attempt = new MedicalTreatmentAttemptEvent(healing, target);
+        RaiseLocalEvent(user, ref attempt);
+        if (attempt.Cancelled)
+        {
+            if (attempt.Reason is { } reason)
+                _popupSystem.PopupClient(Loc.GetString(reason), user, user);
+            return false;
+        }
         if (!Resolve(target, ref target.Comp, false))
             return false;
 
@@ -235,6 +246,7 @@ public sealed class HealingSystem : EntitySystem
                 NeedHand = true,
                 BreakOnMove = true,
                 BreakOnWeightlessMove = false,
+                AllowMovementAssistance = true,
             };
 
         _doAfter.TryStartDoAfter(doAfterEventArgs);
@@ -247,8 +259,9 @@ public sealed class HealingSystem : EntitySystem
             ? healing.Delay
             : healing.Delay * GetScaledHealingPenalty(target, healing.SelfHealPenaltyMultiplier);
 
-        if (TryComp<SkillsComponent>(user, out var skills))
-            delay -= TimeSpan.FromSeconds((skills.Levels["Intelligence"] - 10) * 0.25f);
+        var modifiers = new Content.Shared.Imperial.Medieval.Medical.GetHealingSpeedModifiersEvent(user != target);
+        RaiseLocalEvent(user, ref modifiers);
+        delay *= Math.Max(0.05f, modifiers.Modifier);
 
         return delay;
     }

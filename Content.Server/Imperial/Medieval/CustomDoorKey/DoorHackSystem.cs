@@ -134,15 +134,18 @@ namespace Content.Server.CustomDoorKey
                 {
                     var lossProbEv = new ModifyLockpickLossChanceEvent(1f);
                     RaiseLocalEvent(senderEntity, ref lossProbEv);
+                    lossProb = Math.Clamp(lossProbEv.Modifier, 0f, 1f);
                 }
 
-                if (_random.Prob(lossProb))
+                var lostUse = _random.Prob(lossProb);
+                if (lostUse)
                     comp.UseCount--;
 
                 int rightNumber = door.Numbers[door.LockPickProgress];
                 if (number == rightNumber)
                 {
-                    comp.UseCount++;
+                    if (lostUse)
+                        comp.UseCount++;
                     door.LockPickProgress++;
                     if (door.LockPickProgress < door.NumberCount)
                     {

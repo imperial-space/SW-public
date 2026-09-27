@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Server.Administration.Logs;
 using Content.Server.Damage.Components;
 using Content.Server.Weapons.Ranged.Systems;
@@ -13,6 +14,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Wires;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Damage.Systems
 {
@@ -24,6 +26,7 @@ namespace Content.Server.Damage.Systems
         [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
         [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
         [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
 
         public override void Initialize()
         {
@@ -36,8 +39,18 @@ namespace Content.Server.Damage.Systems
         {
             if (TerminatingOrDeleted(args.Target))
                 return;
+            if (TryComp<SkillProgressionComponent>(uid, out var jumping) && jumping.JumpUntil > _timing.CurTime)
+                return;
 
-            var dmg = _damageable.TryChangeDamage(args.Target, component.Damage * _damageable.UniversalThrownDamageModifier, component.IgnoreResistances, origin: args.Component.Thrower);
+            var strike = new PhysicalStrikeEvent(args.Target, uid, component.Damage * _damageable.UniversalThrownDamageModifier, Thrown: true);
+            if (args.Component.Thrower is { } thrower)
+                RaiseLocalEvent(thrower, ref strike);
+            var dmg = _damageable.TryChangeDamage(args.Target, strike.Damage, component.IgnoreResistances, origin: args.Component.Thrower);
+            if (dmg != null && dmg.GetTotal() > 0 && args.Component.Thrower is { } attacker)
+            {
+                var landed = new PhysicalStrikeLandedEvent(args.Target, strike.Empowered);
+                RaiseLocalEvent(attacker, ref landed);
+            }
 
             // Log damage only for mobs. Useful for when people throw spears at each other, but also avoids log-spam when explosions send glass shards flying.
             if (dmg != null && HasComp<MobStateComponent>(args.Target))

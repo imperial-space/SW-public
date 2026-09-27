@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Client.Lobby;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
+using Content.Shared.Construction.Conditions;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
 using Robust.Client.GameObjects;
@@ -40,6 +41,7 @@ namespace Content.Client.Construction.UI
         private List<ConstructionPrototype> _favoritedRecipes = [];
         private readonly Dictionary<string, ContainerButton> _recipeButtons = new();
         private string _selectedCategory = string.Empty;
+        private string _search = string.Empty;
 
         private const string FavoriteCatName = "construction-category-favorites";
         private const string ForAllCategoryName = "construction-category-all";
@@ -67,6 +69,7 @@ namespace Content.Client.Construction.UI
             {
                 if (value && CraftingAvailable)
                 {
+                    OnViewPopulateRecipes(_constructionView, (_search, _selectedCategory));
                     if (_constructionView.IsOpen)
                         _constructionView.MoveToFront();
                     else
@@ -264,6 +267,7 @@ namespace Content.Client.Construction.UI
             var recipes = new List<ConstructionMenu.ConstructionMenuListData>();
 
             var (search, category) = args;
+            _search = search;
             var isEmptyCategory = string.IsNullOrEmpty(category) || category == ForAllCategoryName;
             _selectedCategory = isEmptyCategory ? string.Empty : category;
 
@@ -275,6 +279,10 @@ namespace Content.Client.Construction.UI
                 if (_playerManager.LocalSession == null
                     || _playerManager.LocalEntity == null
                     || _whitelistSystem.IsWhitelistFail(recipe.EntityWhitelist, _playerManager.LocalEntity.Value))
+                    continue;
+
+                if (recipe.Conditions.OfType<IConstructionAvailabilityCondition>()
+                    .Any(condition => !condition.IsAvailable(_playerManager.LocalEntity.Value)))
                     continue;
 
                 if (!string.IsNullOrEmpty(search) && (recipe.Name is { } name &&

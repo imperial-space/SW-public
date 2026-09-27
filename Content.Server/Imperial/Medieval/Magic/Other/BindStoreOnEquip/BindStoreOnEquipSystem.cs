@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Imperial.ImperialStore;
+using Content.Server.Imperial.Medieval.Skills.Progression;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands;
@@ -80,15 +81,25 @@ public sealed partial class BindStoreOnEquipSystem : EntitySystem
         EntityUid grimoireUid,
         EntityUid ownerUid,
         BindStoreOnEquipComponent? grimoire = null,
-        ImperialStoreComponent? store = null)
+        ImperialStoreComponent? store = null,
+        bool startingGrimoire = false)
     {
         if (!Resolve(grimoireUid, ref grimoire, ref store) ||
+            TerminatingOrDeleted(grimoireUid) || EntityManager.IsQueuedForDeletion(grimoireUid) ||
             grimoire.OwnerUid != null ||
-            HasComp<GrimoireOwnerComponent>(ownerUid) ||
             MetaData(grimoireUid).EntityPrototype?.ID is not { } prototype)
         {
             return false;
         }
+
+        if (HasComp<SkillLearningStoreComponent>(grimoireUid)
+            && (!startingGrimoire || HasComp<GrimoireOwnerComponent>(ownerUid)
+                || !TryComp<SkillMagicComponent>(ownerUid, out var magic) || !magic.ProfessionKnown || magic.ProfessionMage
+                || !EntityManager.System<SkillMagicSystem>().Qualified(ownerUid)))
+            return false;
+
+        if (TryComp<GrimoireOwnerComponent>(ownerUid, out var existing))
+            return TryUpgradeGrimoire(ownerUid, existing, grimoireUid, prototype, grimoire, store);
 
         grimoire.OwnerUid = ownerUid;
 
@@ -97,6 +108,7 @@ public sealed partial class BindStoreOnEquipSystem : EntitySystem
         owner.GrimoirePrototype = prototype;
         SaveStoreState(owner, store);
         _storeSystem.BindMind(grimoireUid, ownerUid, store);
+        EntityManager.System<SkillMagicSystem>().Refresh(ownerUid);
         return true;
     }
 
@@ -121,6 +133,7 @@ public sealed partial class BindStoreOnEquipSystem : EntitySystem
         owner.GrimoireUid = grimoireUid;
         RestoreStoreState(grimoireUid, owner, store);
         _storeSystem.BindMind(grimoireUid, ownerUid, store);
+        EntityManager.System<SkillMagicSystem>().Refresh(ownerUid);
         return true;
     }
 
@@ -230,6 +243,7 @@ public sealed partial class BindStoreOnEquipSystem : EntitySystem
         store.Listings = CloneListings(owner.Listings);
         store.LastAvailableListings.Clear();
         store.BoughtEntities = new List<EntityUid>(owner.BoughtEntities);
+        _storeSystem.RebindPurchases(grimoireUid, store);
         store.BalanceSpent = new Dictionary<ProtoId<ImperialCurrencyPrototype>, FixedPoint2>(owner.BalanceSpent);
         store.RefundAllowed = owner.RefundAllowed;
         store.OwnerOnly = owner.OwnerOnly;

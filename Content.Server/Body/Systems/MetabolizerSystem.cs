@@ -1,3 +1,4 @@
+using Content.Server.Imperial.Medieval.Skills.Progression;
 using Content.Server.Body.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Events;
@@ -212,7 +213,11 @@ namespace Content.Server.Body.Systems
                             );
                         }
 
-                        effect.Effect(args);
+                        var permission = new MetabolismEffectAttemptEvent(proto.ID, group.Id.ToString(), effect,
+                            solution.GetTotalPrototypeQuantity(proto.ID));
+                        RaiseLocalEvent(actualEntity, ref permission);
+                        if (!permission.Cancelled)
+                            effect.Effect(args);
                     }
                 }
 

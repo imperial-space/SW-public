@@ -14,6 +14,7 @@ public sealed class SurrenderSystem : EntitySystem
     [Dependency] private readonly IGameTiming _tick = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly Content.Shared.StatusEffect.StatusEffectsSystem _status = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<CanSurrenderComponent, ComponentInit>(CompInit);
@@ -32,7 +33,9 @@ public sealed class SurrenderSystem : EntitySystem
         if (HasComp<PacifiedComponent>(uid))
             return;
         //_actions.SetCooldown((args.Action.Owner, args.Action.Comp), component.SurrenderTime); poshel nahui
-        EnsureComp<PacifiedComponent>(uid);
+        var status = EnsureComp<Content.Shared.StatusEffect.StatusEffectsComponent>(uid);
+        status.AllowedEffects.Add("Pacified");
+        _status.TryAddStatusEffect<PacifiedComponent>(uid, "Pacified", component.SurrenderTime, true, status);
         component.SurrenderActive = true;
         component.Unsurrender = _tick.CurTime + component.SurrenderTime;
         _appearance.SetData(uid, SurrenderVisuals.Key, true);
@@ -48,7 +51,6 @@ public sealed class SurrenderSystem : EntitySystem
                 continue;
             if (_tick.CurTime < component.Unsurrender)
                 continue;
-            RemComp<PacifiedComponent>(component.Owner);
             component.SurrenderActive = false;
             _appearance.SetData(component.Owner, SurrenderVisuals.Key, false);
             Dirty(component.Owner, component);

@@ -1,4 +1,6 @@
 using Content.Shared.Examine;
+using Content.Shared.Armor;
+using Content.Shared.Imperial.Medieval.ArmorIntegrity;
 using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle;
@@ -63,20 +65,15 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
         if (component.Standing != null && !_standing.IsMatchingState(args.Owner, component.Standing.Value))
             return;
 
-    {
-            // Imperial Medieval Skills start
-            var (walk, sprint) = (component.WalkModifier, component.SprintModifier);
-            if (_container.TryGetContainingContainer((uid, null, null), out var container))
-            {
-                var ev = new ModifyClothingMovespeedModifierEvent(component.WalkModifier, component.SprintModifier);
-                RaiseLocalEvent(container.Owner, ref ev);
-                (walk, sprint) = (ev.Walk, ev.Sprint);
-            }
-            // Imperial Medieval Skills end
-
-            args.Args.ModifySpeed(walk, sprint);  // Imperial Medieval - modifiers added
+        var (walk, sprint) = (component.WalkModifier, component.SprintModifier);
+        if (_container.TryGetContainingContainer((uid, null, null), out var container))
+        {
+            var ev = new ModifyClothingMovespeedModifierEvent(component.WalkModifier, component.SprintModifier);
+            RaiseLocalEvent(container.Owner, ref ev);
+            (walk, sprint) = (ev.Walk, ev.Sprint);
         }
-
+        var armor = HasComp<ArmorComponent>(uid) || HasComp<MedievalArmorIntegrityComponent>(uid);
+        args.Args.ModifySpeed(walk, sprint, convertible: !armor);
     }
 
     private void OnClothingVerbExamine(EntityUid uid, ClothingSpeedModifierComponent component, GetVerbsEvent<ExamineVerb> args)

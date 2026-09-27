@@ -18,11 +18,7 @@ public sealed partial class HumanoidProfileEditor
 
         TabContainer.SetTabTitle(1, "Характеристики");
 
-        var sum = SharedSkillsSystem.Points;
-        foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
-        {
-            sum += SharedSkillsSystem.GetPointsCost(Profile.Skills.GetValueOrDefault(item.ID, 10));
-        }
+        var sum = SharedSkillsSystem.GetRemainingPoints(_prototypeManager, Profile.Skills);
 
         SkillPointsCountLabel.Text = $"Доступно очков: {sum}";
         SetDefaultSkillsButton.OnPressed += args =>
@@ -47,7 +43,7 @@ public sealed partial class HumanoidProfileEditor
             var icon = item.Icons[item.Icons.Keys.Where(x => x <= level).Max()];
 
             var entry = new SkillEntry(item.ID, Loc.GetString(item.Name), level, new SpriteSpecifier.Rsi(new(item.RsiPath), icon), item.Color, _prototypeManager);
-            entry.IncreaseButton.Disabled = sum <= 0;
+            entry.IncreaseButton.Disabled = !CanIncreaseSkill(level, sum);
 
             SkillsContainer.AddChild(entry);
             entry.LevelSet += level =>
@@ -62,16 +58,17 @@ public sealed partial class HumanoidProfileEditor
 
                 entry.Level = level;
 
-                var sum = SharedSkillsSystem.Points;
-                foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
-                    sum += SharedSkillsSystem.GetPointsCost(Profile.Skills.GetValueOrDefault(item.ID, 10));
+                var sum = SharedSkillsSystem.GetRemainingPoints(_prototypeManager, Profile.Skills);
 
                 SkillsContainer.Children.OfType<SkillEntry>().ToList()
-                        .ForEach(x => x.IncreaseButton.Disabled = sum <= 0);
+                        .ForEach(x => x.IncreaseButton.Disabled = !CanIncreaseSkill(x.Level, sum));
 
                 SkillPointsCountLabel.Text = $"Доступно очков: {sum}";
                 SetDirty();
             };
         }
     }
+
+    private static bool CanIncreaseSkill(int level, int points) => level < 20
+        && points >= SharedSkillsSystem.GetPointsCost(level) - SharedSkillsSystem.GetPointsCost(level + 1);
 }

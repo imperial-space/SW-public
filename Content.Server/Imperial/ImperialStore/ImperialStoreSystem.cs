@@ -144,7 +144,7 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
         {
             FixedPoint2 value1 = currency1.GetValueOrDefault(currency);
             FixedPoint2 value2 = currency2.GetValueOrDefault(currency);
-            result[currency] = subtract ? value1 - value1 : value1 + value2;
+            result[currency] = subtract ? value1 - value2 : value1 + value2;
         }
 
         return result;

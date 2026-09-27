@@ -1,0 +1,144 @@
+- type: Tag
+  id: SkillLockpickFork
+
+- type: Tag
+  id: SkillLockpickSpoon
+
+# Separate recipes let the normal construction menu select the material to consume.
+- type: construction
+  id: MedievalImprovisedLockpickFork
+  name: skills-construction-lockpick-fork
+  description: skills-construction-lockpick-description
+  graph: MedievalImprovisedLockpick
+  startNode: fork
+  targetNode: lockpick
+  category: construction-category-tools
+  objectType: Item
+  conditions:
+  - !type:SkillConstructionCondition
+    skill: Agility
+    level: 16
+
+- type: construction
+  id: MedievalImprovisedLockpickSpoon
+  name: skills-construction-lockpick-spoon
+  description: skills-construction-lockpick-description
+  graph: MedievalImprovisedLockpick
+  startNode: spoon
+  targetNode: lockpick
+  category: construction-category-tools
+  objectType: Item
+  conditions:
+  - !type:SkillConstructionCondition
+    skill: Agility
+    level: 16
+
+- type: construction
+  id: MedievalImprovisedLockpickBone
+  name: skills-construction-lockpick-bone
+  description: skills-construction-lockpick-description
+  graph: MedievalImprovisedLockpick
+  startNode: bone
+  targetNode: lockpick
+  category: construction-category-tools
+  objectType: Item
+  conditions:
+  - !type:SkillConstructionCondition
+    skill: Agility
+    level: 16
+
+- type: construction
+  id: MedievalImprovisedLockpickIron
+  name: skills-construction-lockpick-iron
+  description: skills-construction-lockpick-description
+  graph: MedievalImprovisedLockpick
+  startNode: iron
+  targetNode: lockpick
+  category: construction-category-tools
+  objectType: Item
+  conditions:
+  - !type:SkillConstructionCondition
+    skill: Agility
+    level: 16
+
+- type: construction
+  id: MedievalImprovisedLockpickStick
+  name: skills-construction-lockpick-stick
+  description: skills-construction-lockpick-description
+  graph: MedievalImprovisedLockpick
+  startNode: stick
+  targetNode: lockpick
+  category: construction-category-tools
+  objectType: Item
+  conditions:
+  - !type:SkillConstructionCondition
+    skill: Agility
+    level: 16
+
+- type: constructionGraph
+  id: MedievalImprovisedLockpick
+  start: fork
+  graph:
+  - node: fork
+    edges:
+    - to: lockpick
+      steps:
+      - tag: SkillLockpickFork
+        name: skills-construction-material-fork
+        icon: { sprite: Objects/Misc/utensils.rsi, state: fork }
+        doAfter: 3
+  - node: spoon
+    edges:
+    - to: lockpick
+      steps:
+      - tag: SkillLockpickSpoon
+        name: skills-construction-material-spoon
+        icon: { sprite: Objects/Misc/utensils.rsi, state: spoon }
+        doAfter: 3
+  - node: bone
+    edges:
+    - to: lockpick
+      steps:
+      - material: Bones
+        amount: 1
+        doAfter: 3
+  - node: iron
+    edges:
+    - to: lockpick
+      steps:
+      - material: MedievalIronPlateSmall
+        amount: 1
+        doAfter: 3
+  - node: stick
+    edges:
+    - to: lockpick
+      steps:
+      - material: SkillWoodenStick
+        amount: 1
+        doAfter: 3
+  - node: lockpick
+    entity: MedievalImprovisedLockpick
+
+- type: construction
+  id: MedievalSkillStick
+  name: skills-construction-stick
+  description: skills-construction-stick-description
+  graph: MedievalSkillStick
+  startNode: start
+  targetNode: stick
+  category: construction-category-tools
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalSkillStick
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: stick
+      steps:
+      - material: WoodPlank
+        amount: 1
+        doAfter: 0.1
+  - node: stick
+    entity: MedievalSkillStick

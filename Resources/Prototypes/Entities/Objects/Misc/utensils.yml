@@ -39,6 +39,7 @@
     tags:
     - Hoe
     - Metal
+    - SkillLockpickFork
   - type: Sprite
     state: fork
   - type: Utensil
@@ -72,6 +73,7 @@
   - type: Tag
     tags:
     - Metal
+    - SkillLockpickSpoon
   - type: Sprite
     state: spoon
   - type: Item

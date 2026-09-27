@@ -7,6 +7,7 @@ using Content.Server.Speech;
 using Content.Server.Speech.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.Language;
+using Content.Shared.Imperial.Medieval.Illitid;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Content.Shared.Imperial.Medieval.Medical;
@@ -24,86 +25,48 @@ public sealed partial class SkillsSystem
 
     private void InitializeIntelligence()
     {
-        SubscribeLocalEvent<SkillsComponent, GetHealingSpeedModifiersEvent>(OnGetHealingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, CheckWorkbenchCraftSpeedModifiersEvent>(OnGetCraftingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, AccentGetEvent>(OnAccent);
 
         SubscribeNetworkEvent<GetEnteredChatTextResponseMessage>(OnGetMessage);
     }
 
-    private void OnGetHealingSpeedModifiers(EntityUid uid, SkillsComponent comp, ref GetHealingSpeedModifiersEvent args)
-    {
-        var (proto, level) = GetSkill(uid, IntelligenceId);
-
-        if (level == 10)
-            return;
-
-        var diff = Math.Abs(level - 10);
-
-        args.Modifier += (level > 10 ? proto.Modifiers["PositiveHealingSpeedModifier"] : proto.Modifiers["NegativeHealingSpeedModifier"]) * diff;
-    }
-
     private void OnGetCraftingSpeedModifiers(EntityUid uid, SkillsComponent comp, ref CheckWorkbenchCraftSpeedModifiersEvent args)
     {
         if (args.User != uid)
             return;
-
         var (proto, level) = GetSkill(uid, IntelligenceId);
-
-        if (level == 10)
-            return;
-
-        var diff = Math.Abs(level - 10);
-
-        args.Modifier += (level > 10 ? proto.Modifiers["PositiveConstructionSpeedModifier"] : proto.Modifiers["NegativeConstructionSpeedModifier"]) * diff;
+        args.Modifier /= SkillScaling.Multiplier(level, proto.Modifiers["WorkSpeedPerLevel"]);
     }
 
     private void IntelligenceLevelSet(EntityUid uid, int level, int oldLevel)
     {
-        var (proto, _) = GetSkill(uid, IntelligenceId);
-
-        var diff = Math.Abs(level - oldLevel);
-
-        var mana = CompOrNull<ManaComponent>(uid);
-        if (mana == null && oldLevel == 1 && level != 1)
-            mana = EnsureComp<ManaComponent>(uid);
-
-        if (mana != null && level == 1)
-        {
-            mana = null;
-            RemComp<ManaComponent>(uid);
-        }
-
-        if (mana != null)
-        {
-            mana.MaxMana *= 1 + ((level > 10 ? proto.Modifiers["PositiveManaModifier"] : proto.Modifiers["NegativeManaModifier"]) * diff);
-            mana.Mana = mana.MaxMana;
-            Dirty(uid, mana);
-        }
-
-        var skills = EnsureComp<SkillsComponent>(uid);
-        if (skills.LanguagesGain)
+        if (!TryComp<LanguageSpeakerComponent>(uid, out var languages))
             return;
-
-        if (level <= 16)
-            return;
-
-        skills.LanguagesGain = true;
-        var langs = _proto.EnumeratePrototypes<LanguagePrototype>().Where(x => x.HighIntelligenceAllowed && !_lang.CanSpeak(uid, x)).ToList();
-        for (var i = 0; i < 2; i++)
+        var state = EnsureComp<SkillProgressionComponent>(uid);
+        if (level >= SkillScaling.Master && !state.LanguagesSelected)
         {
-            if (langs.Count <= i)
-                break;
-
-            _lang.AddSpokenLanguage(uid, _random.PickAndTake(langs).ID, LanguageKnowledge.BadSpeak);
+            state.LanguagesSelected = true;
+            var candidates = _proto.EnumeratePrototypes<LanguagePrototype>()
+                .Where(x => x.HighIntelligenceAllowed && !languages.Languages.ContainsKey(x.ID)).ToList();
+            for (var i = 0; i < 2 && candidates.Count > 0; i++)
+                state.RandomLanguages.Add(_random.PickAndTake(candidates).ID);
         }
-
-        if (level < 20)
-            return;
-
-        foreach (var item in _proto.EnumeratePrototypes<LanguagePrototype>().Where(x => x.HighIntelligenceAllowed && !_lang.CanSpeak(uid, x)))
+        if (level >= SkillScaling.Master)
         {
-            _lang.AddSpokenLanguage(uid, item.ID, LanguageKnowledge.Speak);
+            foreach (var language in state.RandomLanguages)
+            {
+                if (!languages.Languages.TryGetValue(language, out var knowledge) || knowledge < LanguageKnowledge.Speak)
+                    _lang.AddSpokenLanguage(uid, language, LanguageKnowledge.Speak);
+            }
+        }
+        if (level >= SkillScaling.Legendary)
+        {
+            foreach (var language in _proto.EnumeratePrototypes<LanguagePrototype>().Where(x => x.HighIntelligenceAllowed))
+            {
+                if (!languages.Languages.TryGetValue(language.ID, out var knowledge) || knowledge < LanguageKnowledge.Speak)
+                    _lang.AddSpokenLanguage(uid, language.ID, LanguageKnowledge.Speak);
+            }
         }
     }
 
@@ -111,7 +74,7 @@ public sealed partial class SkillsSystem
     {
         var (proto, level) = GetSkill(uid, IntelligenceId);
 
-        if (level >= 5)
+        if (level >= SkillScaling.Basic)
             return;
 
         var prob = proto.Modifiers["LowStupidityChance"];
@@ -122,9 +85,16 @@ public sealed partial class SkillsSystem
         args.Message = Accentuate(args.Message, prob);
     }
 
-    private void OnGetMessage(GetEnteredChatTextResponseMessage message)
+    private void OnGetMessage(GetEnteredChatTextResponseMessage message, EntitySessionEventArgs args)
     {
-        _examine.SendExamineTooltip(GetEntity(message.User), GetEntity(message.Target), FormattedMessage.FromUnformatted(message.Text != string.Empty ? $"По глазам легко читается - '{message.Text}'." : $"Кажется, {Identity.Name(GetEntity(message.Target), EntityManager, GetEntity(message.User))} не планирует ничего говорить."), false, false);
+        var target = GetEntity(message.Target);
+        var user = GetEntity(message.User);
+        if (args.SenderSession.AttachedEntity != target || !Exists(user) || !Exists(target)
+            || !_examine.CanExamine(user, target)
+            || GetSkill(user, IntelligenceId).Item2 < SkillScaling.Legendary && !HasComp<IllitidComponent>(user)
+            || GetSkill(target, IntelligenceId).Item2 >= SkillScaling.Master)
+            return;
+        _examine.SendExamineTooltip(user, target, FormattedMessage.FromUnformatted(message.Text != string.Empty ? $"По глазам легко читается - '{message.Text}'." : $"Кажется, {Identity.Name(target, EntityManager, user)} не планирует ничего говорить."), false, false);
     }
 
     private string Accentuate(string message, float scale)
@@ -145,6 +115,7 @@ public sealed partial class SkillsSystem
                     if (!_random.Prob(scale))
                     {
                         builder.Append(message.Substring(wordBeginIndex, wordLength));
+                        wordBeginIndex = i + 1;
                         continue;
                     }
 

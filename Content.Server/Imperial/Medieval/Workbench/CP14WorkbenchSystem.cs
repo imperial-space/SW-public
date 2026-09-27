@@ -66,6 +66,9 @@ public sealed partial class CP14WorkbenchSystem : SharedCP14WorkbenchSystem
         if (args.Cancelled || args.Handled)
             return;
 
+        if (!EntityManager.System<Content.Shared.Imperial.Medieval.Skills.SkillWorkbenchSystem>().CanUse(args.User, ent))
+            return;
+
         if (!_proto.TryIndex(args.Recipe, out var recipe))
             return;
 

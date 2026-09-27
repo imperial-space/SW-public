@@ -5,28 +5,24 @@
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/agility.rsi
   icons:
     1: worst
-    5: bad
+    4: bad
     8: ok
-    15: good
+    12: good
+    16: good
     20: best
   modifiers:
-    PositiveAttackRate: 0.025
-    NegativeAttackRate: -0.055
-    PositiveDashCooldownBonus: -0.1
-    NegativeDashCooldownBonus: 0.5
-    PositiveDashDistanceBonus: 0.05
-    NegativeDashDistanceBonus: -0.09
-    PositiveClimbDelayModifier: -0.1
-    NegativeClimbDelayModifier: 0.1
-    PositiveLockpickChanceModifier: 0.1
-    NegativeLockpickChanceModifier: 0
-    PositiveEquipDelayModifier: -0.07
-    NegativeEquipDelayModifier: 0.07
-    PositiveSpreadModifier: -0.25
-    NegativeSpreadModifier: 0.1
-    PositiveStealChanceModifier: 0.04
-    NegativeStealChanceModifier: -0.15
-    PositiveLockpickLossModifier: -0.09
+    AttackRatePerLevel: 0.02
+    DashCooldownPerLevel: -0.03
+    DashDistancePerLevel: 0.03
+    PrecisionSpeedPerLevel: 0.03
+    LockpickChancePerLevel: 0.02
+    SpreadPerLevel: -0.03
+    StealChancePerLevel: 0.03
+    LegendaryStealBonus: 0.8
+    HiddenTheftCooldown: 180
+    DodgeCooldown: 180
+    JumpDistance: 3
+    JumpCooldown: 6
 
 - type: skill
   id: Strength
@@ -35,21 +31,21 @@
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/strength.rsi
   icons:
     1: worst
-    5: bad
+    4: bad
     8: ok
-    15: good
+    12: good
+    16: good
     20: best
   modifiers:
-    FistPositiveDamageModifier: 0.06
-    FistNegativeDamageModifier: -0.03
-    WeaponPositiveDamageModifier: 0.01
-    WeaponNegativeDamageModifier: -0.02
-    PositiveUncuffDurationModifier: -0.2
-    NegativeUncuffDurationModifier: 0.2
-    FistMaxDamageModifier: 0.2
-    WeaponMaxDamageModifier: 0.07
-    PositiveGateInteractionTimeModifier: -0.07
-    NegativeGateInteractionTimeModifier: 0.1
+    FistDamagePerLevel: 0.04
+    WeaponDamagePerLevel: 0.02
+    ForceSpeedPerLevel: 0.03
+    StructuralDamageMultiplier: 1.35
+    KnockbackDistance: 0.12
+    HeavyHitBonus: 0.5
+    HeavyHitCooldown: 60
+    LargeThrowMultiplier: 3
+    PersonPickupDelay: 0.5
 
 - type: skill
   id: Vitality
@@ -58,21 +54,25 @@
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/vitality.rsi
   icons:
     1: worst
-    5: bad
+    4: bad
     8: ok
-    15: good
+    12: good
+    16: good
     20: best
   modifiers:
-    AliveHealthPerLevel: 3
-    WoundedHealthPerLevel: 4
-    MaxHealthBonus: 12
-    PositiveSlowdownModifier: 0.03
-    PositiveSleepEffeciencyModifier: -0.03
-    NegativeSleepEffeciencyModifier: 0.03
-    PositiveSuffocationDamageModifier: -0.03
-    NegativeSuffocationDamageModifier: 0.02
-    PositiveBloodRegenModifier: 0.06
-    NegativeBloodRegenModifier: -0.06
+    HealthPerLevel: 0.025
+    BloodRegenPerLevel: 0.04
+    SleepRecoveryPerLevel: 0.04
+    SuffocationDamagePerLevel: -0.03
+    LowHealingReceivedPerLevel: 0.05
+    HealingReceivedPerLevel: 0.015
+    CriticalSpeed: 0.35
+    FallDamage: 5
+    DirtyIllnessChance: 0.05
+    DirtyFoodChance: 0.1
+    FragileFoodChance: 0.02
+    IllnessCooldown: 300
+    MedicinalOverdoseThresholdMultiplier: 2
 
 - type: skill
   id: Endurance
@@ -81,20 +81,24 @@
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/endurance.rsi
   icons:
     1: worst
-    5: bad
+    4: bad
     8: ok
-    15: good
+    12: good
+    16: good
     20: best
   modifiers:
-    PositiveSprintStaminaDamageModifier: -0.05
-    NegativeSprintStaminaDamageModifier: 0.03
-    PositiveSlowdownModifier: 0.01
-    PositiveStaminaRegenModifier: 0.015
-    NegativeStaminaRegenModifier: -0.015
-    PositiveStaminaCritModifier: -0.03
-    NegativeStaminaCritModifier: 0.03
-    MaxStaminaDamageModifier: 0.3
-    HighMeleeThrowDistanceModifier: 0.4
+    StaminaMaxPerLevel: 0.03
+    StaminaRegenPerLevel: 0.02
+    StaminaCritDurationPerLevel: -0.03
+    LegendaryStaminaDamageMultiplier: 0.3
+    SprintCostPerLevel: -0.04
+    NeedsMultiplier: 0.25
+    ControlStaminaThreshold: 0.2
+    SlowStaminaPerSecond: 10
+    StunStaminaPerSecond: 20
+    ConvertedStunSpeed: 0.2
+    RecoveryCooldown: 180
+    RecoveryProtection: 3
 
 - type: skill
   id: Intelligence
@@ -103,15 +107,18 @@
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/intelligence.rsi
   icons:
     1: worst
-    5: bad
+    4: bad
     8: ok
-    15: good
+    12: good
+    16: good
     20: best
   modifiers:
-    PositiveConstructionSpeedModifier: -0.1
-    NegativeConstructionSpeedModifier: 0.1
-    PositiveHealingSpeedModifier: -0.07
-    NegativeHealingSpeedModifier: 0.14
-    PositiveManaModifier: 0.05
-    NegativeManaModifier: -0.09
+    WorkSpeedPerLevel: 0.03
+    HealingSpeedPerLevel: 0.03
+    MedicalPowerPerLevel: 0.015
+    ManaPerLevel: 0.04
+    ManaRegenPerLevel: 0.02
     LowStupidityChance: 0.2
+    SpellSurcharge: 100
+    MageEssence: 60
+    ArchmagicCost: 200

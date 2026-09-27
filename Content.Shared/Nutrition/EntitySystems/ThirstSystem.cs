@@ -210,7 +210,9 @@ public sealed class ThirstSystem : EntitySystem
 
             thirst.NextUpdateTime += thirst.UpdateRate;
 
-            ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            var decay = new NeedsDecayEvent(1f);
+            RaiseLocalEvent(uid, ref decay);
+            ModifyThirst(uid, thirst, -thirst.ActualDecayRate * decay.Multiplier);
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)

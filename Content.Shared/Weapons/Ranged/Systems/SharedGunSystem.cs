@@ -265,6 +265,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (gun.SelectedMode == SelectiveFire.Burst || gun.BurstActivated)
             fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRate);
 
+        fireRate /= EntityManager.System<Content.Shared.Imperial.Medieval.Skills.SkillActionSystem>().CriticalSpeed(user);
+
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
         // curTime - fireRate is insufficient because if you time it just right you can get a 3rd shot out slightly quicker.

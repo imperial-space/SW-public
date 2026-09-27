@@ -60,6 +60,8 @@ public partial class MobStateSystem
 
     private void CheckConcious(Entity<MobStateComponent> ent, ref ConsciousAttemptEvent args)
     {
+        if (ent.Comp.CurrentState == MobState.Critical && CanActInCritical(ent.Owner))
+            return;
         switch (ent.Comp.CurrentState)
         {
             case MobState.Dead:
@@ -106,7 +108,8 @@ public partial class MobStateSystem
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
                 break;
             case MobState.Critical:
-                _standing.Down(target);
+                if (!CanActInCritical(target))
+                    _standing.Down(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
                 break;
             case MobState.Dead:
@@ -152,6 +155,8 @@ public partial class MobStateSystem
 
     private void CheckAct(EntityUid target, MobStateComponent component, CancellableEntityEventArgs args)
     {
+        if (component.CurrentState == MobState.Critical && CanActInCritical(target))
+            return;
         switch (component.CurrentState)
         {
             case MobState.Dead:

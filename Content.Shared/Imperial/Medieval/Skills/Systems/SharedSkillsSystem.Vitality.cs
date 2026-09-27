@@ -1,5 +1,5 @@
+using System.Linq;
 using Content.Shared.Damage;
-using Content.Shared.Imperial.Medieval.Clothing;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
 
@@ -9,32 +9,29 @@ public abstract partial class SharedSkillsSystem
 
     private void InitializeVitality()
     {
-        SubscribeLocalEvent<SkillsComponent, DamageModifyEvent>(OnGetDamageModifiers);
+        SubscribeLocalEvent<SkillsComponent, HealingModifyEvent>(OnGetDamageModifiers);
+        SubscribeLocalEvent<SkillsComponent, DamageModifyEvent>(OnPoisonDamage);
     }
 
-    private void OnGetDamageModifiers(EntityUid uid, SkillsComponent comp, ref DamageModifyEvent args)
+    private void OnPoisonDamage(EntityUid uid, SkillsComponent comp, DamageModifyEvent args)
     {
-        var (proto, level) = GetSkill(uid, VitalityId);
-
-        if (level < 20)
+        if (SkillScaling.Level(comp, VitalityId) < SkillScaling.Legendary
+            || !args.Damage.DamageDict.TryGetValue("Poison", out var poison) || poison <= 0)
             return;
-
-        if (args.Damage.DamageDict.TryGetValue("Poison", out var poisonDamage) && poisonDamage > 0)
-            args.Damage.DamageDict.Remove("Poison");
+        args.Damage *= 1f;
+        args.Damage.DamageDict.Remove("Poison");
     }
 
-    private void VitalityModifyClothingSpeedMod(EntityUid uid, SkillsComponent comp, ref ModifyClothingMovespeedModifierEvent args)
+    private void OnGetDamageModifiers(EntityUid uid, SkillsComponent comp, ref HealingModifyEvent args)
     {
         var (proto, level) = GetSkill(uid, VitalityId);
-
-        if (level <= 10)
-            return;
-
-        if (args.Walk >= 1f || args.Sprint >= 1f)
-            return;
-
-        var diff = Math.Abs(level - 10);
-        args.Walk = Math.Clamp(args.Walk + proto.Modifiers["PositiveSlowdownModifier"] * diff, 0f, 1f);
-        args.Sprint = Math.Clamp(args.Sprint + proto.Modifiers["PositiveSlowdownModifier"] * diff, 0f, 1f);
+        var multiplier = SkillScaling.HealingReceived(level,
+            proto.Modifiers["LowHealingReceivedPerLevel"], proto.Modifiers["HealingReceivedPerLevel"]);
+        args.Damage *= 1f; // Never modify a cached reagent/item damage specification.
+        foreach (var (type, amount) in args.Damage.DamageDict.ToArray())
+        {
+            if (amount < 0)
+                args.Damage.DamageDict[type] = amount * multiplier;
+        }
     }
 }
