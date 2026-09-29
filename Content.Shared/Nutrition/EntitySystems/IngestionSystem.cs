@@ -294,10 +294,10 @@ public sealed partial class IngestionSystem : EntitySystem
 
     private void OnEatingDoAfter(Entity<BodyComponent> entity, ref EatingDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null)
+        if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null || args.Used == null)
             return;
 
-        var food = args.Target.Value;
+        var food = args.Used.Value;
 
         var blockerEv = new IngestibleEvent();
         RaiseLocalEvent(food, ref blockerEv);
@@ -412,11 +412,19 @@ public sealed partial class IngestionSystem : EntitySystem
     {
         var forceFeed = user != target;
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, delay, new EatingDoAfterEvent(), target, food)
+        var doAfterArgs = new DoAfterArgs(
+            EntityManager,
+            user,
+            delay,
+            new EatingDoAfterEvent(),
+            eventTarget: target,
+            target: target,
+            used: food)
         {
             BreakOnHandChange = false,
             BreakOnMove = forceFeed,
             BreakOnDamage = true,
+            DuplicateCondition = DuplicateConditions.SameTool | DuplicateConditions.SameEvent,
             MovementThreshold = 0.01f,
             DistanceThreshold = MaxFeedDistance,
             // do-after will stop if item is dropped when trying to feed someone else
