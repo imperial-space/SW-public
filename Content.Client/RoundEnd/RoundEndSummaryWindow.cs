@@ -157,7 +157,8 @@ namespace Content.Client.RoundEnd
                                 ("playerOOCName", playerInfo.PlayerOOCName),
                                 ("icNameColor", icNameColor),
                                 ("playerICName", playerInfo.PlayerICName),
-                                ("playerRole", Loc.GetString(playerInfo.Role))));
+                                ("playerRole", Loc.GetString(playerInfo.Role)),
+                                ("mugClinkCount", playerInfo.MugClinkCount)));
                     }
                 }
                 hBox.AddChild(playerInfoText);
@@ -170,7 +171,7 @@ namespace Content.Client.RoundEnd
             return playerManifestTab;
         }
 
-        // Imperial Medieval Last Words Start 
+        // Imperial Medieval Last Words Start
         private BoxContainer MakeLastWordsTab(string[] lastWords)
         {
             var lastWordsTab = new BoxContainer
@@ -234,6 +235,6 @@ namespace Content.Client.RoundEnd
         }
 
     }
-    // Imperial Medieval Last Words End 
+    // Imperial Medieval Last Words End
 
 }
