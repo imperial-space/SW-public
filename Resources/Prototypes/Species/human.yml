@@ -8,6 +8,10 @@
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
   femaleLastNames: NamesLastFemale #Imperial
+  minAge: 18
+  maxAge: 90
+  oldAge: 60
+  youngAge: 30
 
 # The lack of a layer means that
 # this person cannot have round-start anything

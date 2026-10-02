@@ -339,6 +339,10 @@
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
+  minAge: 18
+  maxAge: 999
+  oldAge: 900
+  youngAge: 100
 
 - type: entity
   id: MobAncientDrou
