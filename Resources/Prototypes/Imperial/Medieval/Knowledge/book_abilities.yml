@@ -1,0 +1,629 @@
+- type: medievalKnowledge
+  id: BookDiceCheat
+  bookTitle: book-story-dice-title
+  bookText: book-story-dice-text
+  originalBook: MedievalKnowledgeBookDiceCheat
+  name: book-knowledge-dice-cheat-name
+  description: book-knowledge-dice-cheat-desc
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: dice_cheat
+  actions: [ActionBookDiceCheat]
+
+- type: medievalKnowledge
+  id: BookLipReading
+  bookTitle: book-story-lips-title
+  bookText: book-story-lips-text
+  originalBook: MedievalKnowledgeBookLipReading
+  name: book-knowledge-lip-reading-name
+  description: book-knowledge-lip-reading-desc
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: lip_reading
+
+- type: medievalKnowledge
+  id: BookPorter
+  bookTitle: book-story-porter-title
+  bookText: book-story-porter-text
+  originalBook: MedievalKnowledgeBookPorter
+  name: book-knowledge-porter-name
+  description: book-knowledge-porter-desc
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: porter
+  actions: [ActionBookPorter]
+
+- type: medievalKnowledge
+  id: BookTrapDisarm
+  bookTitle: book-story-traps-title
+  bookText: book-story-traps-text
+  originalBook: MedievalKnowledgeBookTrapDisarm
+  name: book-knowledge-trap-disarm-name
+  description: book-knowledge-trap-disarm-desc
+  tier: 2
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: trap_disarm
+  actions: [ActionBookTrapDisarm]
+
+- type: medievalKnowledge
+  id: BookExtractReagent
+  bookTitle: book-story-mixtures-title
+  bookText: book-story-mixtures-text
+  originalBook: MedievalKnowledgeBookExtractReagent
+  name: book-knowledge-extract-reagent-name
+  description: book-knowledge-extract-reagent-desc
+  tier: 2
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: extract_reagent
+  actions: [ActionBookExtractReagent]
+
+- type: medievalKnowledge
+  id: BookPackWorkbench
+  bookTitle: book-story-workshop-title
+  bookText: book-story-workshop-text
+  originalBook: MedievalKnowledgeBookPackWorkbench
+  name: book-knowledge-pack-workbench-name
+  description: book-knowledge-pack-workbench-desc
+  tier: 2
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: pack_workbench
+  actions: [ActionBookPackWorkbench]
+
+- type: medievalKnowledge
+  id: BookEscapeBonds
+  bookTitle: book-story-bonds-title
+  bookText: book-story-bonds-text
+  originalBook: MedievalKnowledgeBookEscapeBonds
+  name: book-knowledge-escape-bonds-name
+  description: book-knowledge-escape-bonds-desc
+  tier: 2
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: escape_bonds
+  actions: [ActionBookEscapeBonds]
+
+- type: medievalKnowledge
+  id: BookTransplant
+  bookTitle: book-story-transplant-title
+  bookText: book-text-sun
+  originalBook: BookSun
+  name: book-knowledge-transplant-name
+  description: book-knowledge-transplant-desc
+  tier: 2
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: transplant
+  actions: [ActionBookTransplant]
+
+- type: medievalKnowledge
+  id: BookCartography
+  bookTitle: book-story-maps-title
+  bookText: book-story-maps-text
+  originalBook: MedievalKnowledgeBookCartography
+  name: book-knowledge-cartography-name
+  description: book-knowledge-cartography-desc
+  tier: 2
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: cartography
+  actions: [ActionBookSurvey]
+
+- type: medievalKnowledge
+  id: BookTaming
+  bookTitle: book-story-taming-title
+  bookText: book-text-ian-wolfpup
+  originalBook: BookIanLostWolfPup
+  name: book-knowledge-taming-name
+  description: book-knowledge-taming-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: taming
+  actions: [ActionBookTaming]
+
+- type: medievalKnowledge
+  id: BookMagicTraces
+  bookTitle: book-story-traces-title
+  bookText: book-story-traces-text
+  originalBook: MedievalKnowledgeBookMagicTraces
+  name: book-knowledge-magic-traces-name
+  description: book-knowledge-magic-traces-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: magic_traces
+  actions: [ActionBookReadTraces]
+
+- type: medievalKnowledge
+  id: BookVentriloquism
+  bookTitle: book-story-voices-title
+  bookText: book-story-voices-text
+  originalBook: MedievalKnowledgeBookVentriloquism
+  name: book-knowledge-ventriloquism-name
+  description: book-knowledge-ventriloquism-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: ventriloquism
+  actions: [ActionBookVentriloquism]
+
+- type: medievalKnowledge
+  id: BookDisarmingRiposte
+  bookTitle: book-story-riposte-title
+  bookText: book-story-riposte-text
+  originalBook: MedievalKnowledgeBookDisarmingRiposte
+  name: book-knowledge-disarming-riposte-name
+  description: book-knowledge-disarming-riposte-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: disarming_riposte
+
+- type: medievalKnowledge
+  id: BookBreakGuard
+  bookTitle: book-story-guard-title
+  bookText: book-story-guard-text
+  originalBook: MedievalKnowledgeBookBreakGuard
+  name: book-knowledge-break-guard-name
+  description: book-knowledge-break-guard-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: break_guard
+  actions: [ActionBookBreakGuard]
+
+- type: medievalKnowledge
+  id: BookParryProjectile
+  bookTitle: book-story-arrows-title
+  bookText: book-story-arrows-text
+  originalBook: MedievalKnowledgeBookParryProjectile
+  name: book-knowledge-parry-projectile-name
+  description: book-knowledge-parry-projectile-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: parry_projectile
+
+- type: medievalKnowledge
+  id: BookMobileBlock
+  bookTitle: book-story-march-title
+  bookText: book-story-march-text
+  originalBook: MedievalKnowledgeBookMobileBlock
+  name: book-knowledge-mobile-block-name
+  description: book-knowledge-mobile-block-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: mobile_block
+
+- type: medievalKnowledge
+  id: BookPiercingShot
+  bookTitle: book-story-shot-title
+  bookText: book-story-shot-text
+  originalBook: MedievalKnowledgeBookPiercingShot
+  name: book-knowledge-piercing-shot-name
+  description: book-knowledge-piercing-shot-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: piercing_shot
+  actions: [ActionBookPiercingShot]
+
+- type: medievalKnowledge
+  id: BookEscapeGrab
+  bookTitle: book-story-grip-title
+  bookText: book-story-grip-text
+  originalBook: MedievalKnowledgeBookEscapeGrab
+  name: book-knowledge-escape-grab-name
+  description: book-knowledge-escape-grab-desc
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: escape_grab
+  actions: [ActionBookEscapeGrab]
+
+- type: medievalKnowledge
+  id: BookSpellScribing
+  bookTitle: book-story-scribing-title
+  bookText: book-story-scribing-text
+  originalBook: MedievalKnowledgeBookSpellScribing
+  name: book-knowledge-spell-scribing-name
+  description: book-knowledge-spell-scribing-desc
+  tier: 4
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: spell_scribing
+  actions: [ActionBookSpellScribing]
+
+- type: entity
+  id: ActionBookAbilitiesMenu
+  name: Способности
+  description: Открыть изученные способности и знания.
+  components:
+  - type: Action
+    raiseOnUser: true
+    clientExclusive: true
+    checkCanInteract: false
+    checkConsciousness: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: menu
+  - type: InstantAction
+    event: !type:BookOpenAbilitiesMenuEvent
+
+- type: entity
+  id: ActionBookDiceCheat
+  name: Нечестная кость
+  description: Незаметно подготовить результат следующего броска кости в руке.
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: dice_cheat
+  - type: InstantAction
+    event: !type:BookDiceCheatActionEvent
+
+- type: entity
+  id: ActionBookExtractReagent
+  name: Разделение составов
+  description: Выделить одно вещество из смеси. Держите смесь и пустую открытую ёмкость в руках.
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: extract_reagent
+  - type: InstantAction
+    event: !type:BookExtractReagentActionEvent
+
+- type: entity
+  abstract: true
+  id: BaseActionBookTargetAbility
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: menu
+  - type: TargetAction
+    range: 2
+    repeat: false
+    checkCanAccess: true
+  - type: EntityTargetAction
+    canTargetSelf: false
+
+- type: entity
+  parent: BaseActionBookTargetAbility
+  id: ActionBookPorter
+  name: Укладка дорожного груза
+  description: Выберите переносной ящик, чтобы превратить его в тяжёлую поклажу. Разверните её кликом.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: porter
+  - type: EntityTargetAction
+    event: !type:BookPorterActionEvent
+
+- type: entity
+  parent: BaseActionBookTargetAbility
+  id: ActionBookPackWorkbench
+  name: Мастерская в дороге
+  description: Выберите станок, чтобы упаковать его для перевозки. Разверните поклажу кликом.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: pack_workbench
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - BookPackableWorkbench
+    event: !type:BookPackWorkbenchActionEvent
+
+- type: entity
+  parent: BaseActionBookTargetAbility
+  id: ActionBookTrapDisarm
+  name: Механизмы древних руин
+  description: Выберите ловушку, чтобы обезвредить и упаковать её. Разверните поклажу кликом для установки.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: trap_disarm
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - SpikeTrapVisual
+    event: !type:BookTrapDisarmActionEvent
+
+- type: entity
+  parent: BaseActionBookTargetAbility
+  id: ActionBookTransplant
+  name: Живые корни
+  description: Выберите грядку с растением, чтобы выкопать его для пересадки. Разверните кликом.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: transplant
+  - type: EntityTargetAction
+    event: !type:BookTransplantActionEvent
+
+- type: entity
+  parent: BaseActionBookTargetAbility
+  id: ActionBookTaming
+  name: Договор с хищником
+  description: Держите корм и выберите ослабленного зверя в пределах 6 клеток без преград между вами. Приручение занимает 30 секунд и расходует корм при успехе. Нажатие движения, прямое попадание атаки, потеря корма или дистанции прервут его. Яд и кровопотеря его не прерывают. Можно иметь одного живого спутника.
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: taming
+  - type: TargetAction
+    range: 6
+  - type: EntityTargetAction
+    event: !type:BookTamingActionEvent
+
+- type: entity
+  id: ActionBookCancelTaming
+  name: Прервать приручение
+  description: Отпустить зверя и прекратить приручение. Зверь вновь нападёт.
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: cancel_taming
+  - type: InstantAction
+    event: !type:BookCancelTamingActionEvent
+
+- type: entity
+  parent: BaseActionBookTargetAbility
+  id: ActionBookSpellScribing
+  name: Пойманное заклинание
+  description: Держите перо и выберите чистую бумагу, затем выберите заклинание для записи.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: spell_scribing
+  - type: EntityTargetAction
+    event: !type:BookSpellScribingActionEvent
+
+- type: entity
+  id: ActionBookEscapeBonds
+  name: Путы и узлы
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 2
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: escape_bonds
+  - type: InstantAction
+    event: !type:BookEscapeBondsActionEvent
+
+- type: entity
+  id: ActionBookEscapeGrab
+  name: Из железных объятий
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 30
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: escape_grab
+  - type: InstantAction
+    event: !type:BookEscapeGrabActionEvent
+
+- type: entity
+  id: ActionBookBreakGuard
+  name: Разомкнуть защиту
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 20
+    checkCanInteract: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: break_guard
+  - type: InstantAction
+    event: !type:BookBreakGuardActionEvent
+
+- type: entity
+  id: ActionBookPiercingShot
+  name: Пробивной выстрел
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 20
+    checkCanInteract: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: piercing_shot
+  - type: InstantAction
+    event: !type:BookPiercingShotActionEvent
+
+- type: entity
+  id: ActionBookSurvey
+  name: Отметить место на карте
+  description: Держите чистую бумагу и перо в руках. Через восемь секунд лист станет полевой картой с отметкой вашего места. На готовой полевой карте того же региона добавляется новая точка; пометке можно дать название.
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 10
+    checkCanInteract: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: cartography
+  - type: InstantAction
+    event: !type:BookSurveyActionEvent
+
+- type: entity
+  id: ActionBookCompanionFollow
+  name: "Спутники: следовать"
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 1
+    checkCanInteract: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: companion_follow
+  - type: InstantAction
+    event: !type:BookCompanionOrderEvent
+      order: follow
+
+- type: entity
+  id: ActionBookCompanionStay
+  name: "Спутники: ждать"
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 1
+    checkCanInteract: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: companion_stay
+  - type: InstantAction
+    event: !type:BookCompanionOrderEvent
+      order: stay
+
+- type: entity
+  id: ActionBookCompanionGuard
+  name: "Спутники: охранять"
+  description: Выберите персонажа или предмет. Спутники будут держаться рядом и защищать его от нападающих. Можно выбрать себя.
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 1
+    checkCanInteract: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: companion_guard
+  - type: TargetAction
+    range: 12
+  - type: EntityTargetAction
+    canTargetSelf: true
+    whitelist:
+      components:
+      - Damageable
+    event: !type:BookCompanionGuardEvent
+
+- type: entity
+  id: ActionBookCompanionRetreat
+  name: "Спутники: отступить"
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 1
+    checkCanInteract: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: companion_retreat
+  - type: InstantAction
+    event: !type:BookCompanionOrderEvent
+      order: retreat
+
+- type: entity
+  id: ActionBookCompanionAttack
+  name: Спутники — атаковать цель
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 1
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: companion_attack
+  - type: TargetAction
+    range: 12
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:BookCompanionAttackEvent
+
+- type: entity
+  id: ActionBookReadTraces
+  name: Прочитать следы колдовства
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 3
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: magic_traces
+  - type: InstantAction
+    event: !type:BookReadTracesActionEvent
+
+- type: entity
+  id: ActionBookVentriloquism
+  name: Голос без уст
+  description: Выберите предмет или человека в пределах видимости и введите фразу, которая прозвучит оттуда.
+  components:
+  - type: BookAbilityAction
+  - type: Action
+    autoPopulate: false
+    raiseOnUser: true
+    useDelay: 2
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+      state: ventriloquism
+  - type: TargetAction
+    range: 8
+    checkCanAccess: false
+  - type: EntityTargetAction
+    canTargetSelf: true
+    event: !type:BookVentriloquismActionEvent
+
+- type: entity
+  id: MedievalBookMagicTrace
+  name: след колдовства
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BookMagicTrace
+  - type: TimedDespawn
+    lifetime: 600
+
+
+

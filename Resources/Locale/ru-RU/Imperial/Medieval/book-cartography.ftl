@@ -1,0 +1,12 @@
+ent-MedievalSurveyMap = полевая карта
+    .desc = Карта одного региона с пронумерованными местами и путевыми заметками путешественника.
+book-cartography-requirements = Возьмите перо в одну руку, а чистый лист бумаги или полевую карту текущего региона — в другую. На карте должно оставаться место для пометок.
+book-cartography-wrong-region = Эта полевая карта относится к другому региону. Для нового региона нужен чистый лист бумаги.
+book-cartography-place-hint = Текущее место уже отмечено на карте. Можно дать точке название.
+book-cartography-title-placeholder = Название пометки
+book-cartography-save-title = Сохранить название
+book-cartography-unsupported-map = Это место не изображено на этой карте.
+book-cartography-read-hint = Выберите номер на карте или запись ниже, чтобы прочитать полевые заметки.
+book-cartography-observation = Координаты: ({ $x }, { $y }). Видимые ориентиры: { $landmarks }.
+book-cartography-no-landmarks = нет
+book-cartography-default-title = Наблюдение { $number }

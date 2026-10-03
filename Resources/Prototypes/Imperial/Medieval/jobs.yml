@@ -2042,6 +2042,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: InitialKnowledge
+      knowledge: [BookDecipherer]
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: MedievalJobSpawn

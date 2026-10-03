@@ -1013,6 +1013,11 @@ public sealed class CheckIgnoreSpeechBlockerEvent : EntityEventArgs
 public sealed class EntitySpokeEvent : EntityEventArgs
 {
     public readonly EntityUid Source;
+    /// <summary>Physical origin of the voice, which may differ from its actor during ventriloquism.</summary>
+    public EntityUid SoundSource;
+    /// <summary>Use the supplied speech sound instead of the speaker's voice; null means silence.</summary>
+    public bool OverrideSpeechSound;
+    public SoundSpecifier? SpeechSound;
     public readonly string Message;
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
     /// <summary>
@@ -1027,6 +1032,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public EntitySpokeEvent(EntityUid source, string message, LanguagePrototype language, RadioChannelPrototype? channel, string? obfuscatedMessage, bool whisper = false, bool checkNrp = true)  // imperial medieval languages tweaked
     {
         Source = source;
+        SoundSource = source;
         Message = message;
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;

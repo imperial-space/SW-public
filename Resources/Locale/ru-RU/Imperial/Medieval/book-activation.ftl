@@ -1,0 +1,9 @@
+book-activation-need-die = Возьмите кость в руку. Если кости в обеих руках, используется правая.
+book-activation-die-title = Нечестная кость — следующий результат
+book-activation-need-vessels = Нужны две открытые ёмкости в руках: со смесью и пустая.
+book-activation-small-vessel = Пустая ёмкость слишком мала для выделения любого из веществ.
+book-activation-extract-title = Разделение составов — выбрать вещество
+book-activation-need-paper-pen = Держите перо и выберите чистую доступную бумагу.
+book-activation-no-spells = У вас нет изученного заклинания со снарядом для записи.
+book-activation-scribe-title = Пойманное заклинание — выбрать заклинание
+book-activation-choice-expired = Условия изменились. Снова активируйте умение и проверьте предметы.

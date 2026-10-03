@@ -13,6 +13,9 @@
   id: BookshelfEntityTable
   table: !type:AllSelector
     children:
+    - !type:NestedSelector
+      tableId: MedievalRareKnowledgeBooks
+      prob: 0.08
     # Randomly generated books
     - id: RandomCreationsBook
       amount: !type:RangeNumberSelector
@@ -44,9 +47,11 @@
     - id: BookIanCity
     - id: BookIanDesert
     - id: BookIanLostWolfPup
+      weight: 0.1 # Rare knowledge-bearing editions.
     - id: BookIanMountain
     - id: BookIanOcean
     - id: BookIanRanch
+      weight: 0.1
     - id: BookInspiration
     - id: BookJourney
     - id: BookMap
@@ -61,6 +66,7 @@
     - id: BookSlothClownSSS
     - id: BookStruck
     - id: BookSun
+      weight: 0.25
     - id: BookTemple
     - id: BookTruth
     - id: BookWatched

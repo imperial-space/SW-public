@@ -1,0 +1,327 @@
+# Fictional originals. Existing matching books are reused by medievalKnowledge.originalBook.
+
+- type: entity
+  id: MedievalKnowledgeBookDiceCheat
+  parent: MedievalKnowledgeBook
+  name: Последняя партия в «Трёх гусях»
+  components:
+  - type: LearnableBook
+    knowledge: BookDiceCheat
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookLipReading
+  parent: MedievalKnowledgeBook
+  name: Разговор за стеклом
+  components:
+  - type: LearnableBook
+    knowledge: BookLipReading
+    language: Elf
+
+- type: entity
+  id: MedievalKnowledgeBookPorter
+  parent: MedievalKnowledgeBook
+  name: Сундук на перевале
+  components:
+  - type: LearnableBook
+    knowledge: BookPorter
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookTrapDisarm
+  parent: MedievalKnowledgeBook
+  name: Капкан охотника Руга
+  components:
+  - type: LearnableBook
+    knowledge: BookTrapDisarm
+    language: Orc
+
+- type: entity
+  id: MedievalKnowledgeBookExtractReagent
+  parent: MedievalKnowledgeBook
+  name: Две склянки вдовы
+  components:
+  - type: LearnableBook
+    knowledge: BookExtractReagent
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookPackWorkbench
+  parent: MedievalKnowledgeBook
+  name: Кузница, которая ушла
+  components:
+  - type: LearnableBook
+    knowledge: BookPackWorkbench
+    language: Orc
+
+- type: entity
+  id: MedievalKnowledgeBookEscapeBonds
+  parent: MedievalKnowledgeBook
+  name: Верёвка переправщика
+  components:
+  - type: LearnableBook
+    knowledge: BookEscapeBonds
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookCartography
+  parent: MedievalKnowledgeBook
+  name: Башня, которой не было
+  components:
+  - type: LearnableBook
+    knowledge: BookCartography
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookMagicTraces
+  parent: MedievalKnowledgeBook
+  name: Пепел на синем снегу
+  components:
+  - type: LearnableBook
+    knowledge: BookMagicTraces
+    language: Ancient
+
+- type: entity
+  id: MedievalKnowledgeBookVentriloquism
+  parent: MedievalKnowledgeBook
+  name: Свидетель в пустой бочке
+  components:
+  - type: LearnableBook
+    knowledge: BookVentriloquism
+    language: Elf
+
+- type: entity
+  id: MedievalKnowledgeBookDisarmingRiposte
+  parent: MedievalKnowledgeBook
+  name: Пустая ладонь мастера
+  components:
+  - type: LearnableBook
+    knowledge: BookDisarmingRiposte
+    language: Orc
+
+- type: entity
+  id: MedievalKnowledgeBookBreakGuard
+  parent: MedievalKnowledgeBook
+  name: Трещина в дубовом щите
+  components:
+  - type: LearnableBook
+    knowledge: BookBreakGuard
+    language: Orc
+
+- type: entity
+  id: MedievalKnowledgeBookParryProjectile
+  parent: MedievalKnowledgeBook
+  name: Дождь над учебным двором
+  components:
+  - type: LearnableBook
+    knowledge: BookParryProjectile
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookMobileBlock
+  parent: MedievalKnowledgeBook
+  name: Последние шаги знаменосца
+  components:
+  - type: LearnableBook
+    knowledge: BookMobileBlock
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookPiercingShot
+  parent: MedievalKnowledgeBook
+  name: Две тени в воротах
+  components:
+  - type: LearnableBook
+    knowledge: BookPiercingShot
+    language: Elf
+
+- type: entity
+  id: MedievalKnowledgeBookEscapeGrab
+  parent: MedievalKnowledgeBook
+  name: Поединок у прачечной
+  components:
+  - type: LearnableBook
+    knowledge: BookEscapeGrab
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookSpellScribing
+  parent: MedievalKnowledgeBook
+  name: Чернила после полуночи
+  components:
+  - type: LearnableBook
+    knowledge: BookSpellScribing
+    language: Ancient
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageCommon
+  parent: MedievalKnowledgeBook
+  name: Цена одного слова
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageCommon
+    language: Elf
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageElf
+  parent: MedievalKnowledgeBook
+  name: Гость под рябиной
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageElf
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageOrc
+  parent: MedievalKnowledgeBook
+  name: Ужин у северных ворот
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageOrc
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageGoblin
+  parent: MedievalKnowledgeBook
+  name: Счёт за дырявый котёл
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageGoblin
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageTribe
+  parent: MedievalKnowledgeBook
+  name: Имена дождя
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageTribe
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageAncient
+  parent: MedievalKnowledgeBook
+  name: Завещание без наследников
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageAncient
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageCursed
+  parent: MedievalKnowledgeBook
+  name: Письмо на обороте молитвы
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageCursed
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageGrowling
+  parent: MedievalKnowledgeBook
+  name: Ночь у звериного костра
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageGrowling
+    language: Common
+
+- type: entity
+  id: MedievalKnowledgeBookLanguageHissing
+  parent: MedievalKnowledgeBook
+  name: Лавка за шёлковой занавесью
+  components:
+  - type: LearnableBook
+    knowledge: BookLanguageHissing
+    language: Common
+
+- type: entityTable
+  id: MedievalRareKnowledgeBooks
+  table: !type:GroupSelector
+    children:
+
+    - id: MedievalKnowledgeBook
+      weight: 5
+
+    - id: MedievalKnowledgeBookDiceCheat
+      weight: 8
+
+    - id: MedievalKnowledgeBookLipReading
+      weight: 8
+
+    - id: MedievalKnowledgeBookPorter
+      weight: 8
+
+    - id: MedievalKnowledgeBookTrapDisarm
+      weight: 5
+
+    - id: MedievalKnowledgeBookExtractReagent
+      weight: 5
+
+    - id: MedievalKnowledgeBookPackWorkbench
+      weight: 5
+
+    - id: MedievalKnowledgeBookEscapeBonds
+      weight: 5
+
+    - id: MedievalKnowledgeBookCartography
+      weight: 5
+
+    - id: BookIanLostWolfPup
+      weight: 2
+
+    - id: BookSun
+      weight: 5
+
+    - id: MedievalKnowledgeBookMagicTraces
+      weight: 2
+
+    - id: MedievalKnowledgeBookVentriloquism
+      weight: 2
+
+    - id: MedievalKnowledgeBookDisarmingRiposte
+      weight: 2
+
+    - id: MedievalKnowledgeBookBreakGuard
+      weight: 2
+
+    - id: MedievalKnowledgeBookParryProjectile
+      weight: 2
+
+    - id: MedievalKnowledgeBookMobileBlock
+      weight: 2
+
+    - id: MedievalKnowledgeBookPiercingShot
+      weight: 2
+
+    - id: MedievalKnowledgeBookEscapeGrab
+      weight: 2
+
+    - id: MedievalKnowledgeBookSpellScribing
+      weight: 1
+
+    - id: MedievalKnowledgeBookLanguageCommon
+      weight: 8
+
+    - id: MedievalKnowledgeBookLanguageElf
+      weight: 8
+
+    - id: MedievalKnowledgeBookLanguageOrc
+      weight: 8
+
+    - id: MedievalKnowledgeBookLanguageGoblin
+      weight: 8
+
+    - id: MedievalKnowledgeBookLanguageTribe
+      weight: 8
+
+    - id: MedievalKnowledgeBookLanguageAncient
+      weight: 5
+
+    - id: MedievalKnowledgeBookLanguageCursed
+      weight: 2
+
+    - id: MedievalKnowledgeBookLanguageGrowling
+      weight: 8
+
+    - id: MedievalKnowledgeBookLanguageHissing
+      weight: 8

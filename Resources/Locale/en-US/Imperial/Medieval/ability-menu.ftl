@@ -1,0 +1,10 @@
+book-abilities-menu-title = Abilities
+book-abilities-menu-hint = Click an ability to use it. Drag its icon onto the action bar or press "Add to bar". If it needs a target, select it in the world. Passive knowledge works automatically.
+book-abilities-menu-pin = Add to bar
+book-abilities-menu-pinned = On bar
+book-abilities-menu-pin-hint = Add this ability to the action bar. Right-click its bar icon to remove it.
+book-abilities-menu-active = Active abilities
+book-abilities-menu-passive = Passive knowledge
+book-abilities-menu-no-active = No active abilities learned yet.
+book-abilities-menu-cooldown = { $ability } — { $seconds } s
+book-abilities-choice-cancel = Cancel

@@ -1,0 +1,12 @@
+ent-MedievalSurveyMap = field map
+    .desc = A survey of one region, with numbered locations and the traveller's field notes.
+book-cartography-requirements = Hold a pen in one hand and a blank sheet of paper or a field map of your current region in the other. The map needs room for another annotation.
+book-cartography-wrong-region = This field map depicts a different region. Use a blank sheet of paper to map a new region.
+book-cartography-place-hint = Your current location is already marked on the map. You can name the marker.
+book-cartography-title-placeholder = Annotation title
+book-cartography-save-title = Save title
+book-cartography-unsupported-map = This location is not shown on this map.
+book-cartography-read-hint = Select a number on the map or an entry below to read its field notes.
+book-cartography-observation = Coordinates: ({ $x }, { $y }). Visible landmarks: { $landmarks }.
+book-cartography-no-landmarks = none
+book-cartography-default-title = Observation { $number }

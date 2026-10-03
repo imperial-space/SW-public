@@ -145,6 +145,9 @@ public sealed partial class BlockingSystem : EntitySystem
         if (component.IsBlocking)
             return false;
 
+        var parameters = new GetBlockingParametersEvent(item);
+        RaiseLocalEvent(user, ref parameters);
+
         var xform = Transform(user);
 
         var shieldName = Name(item);
@@ -184,8 +187,9 @@ public sealed partial class BlockingSystem : EntitySystem
         }
 
         //Don't allow someone to block if they're somehow not anchored.
-        _transformSystem.AnchorEntity(user, xform);
-        if (!xform.Anchored)
+        if (parameters.RequiresAnchoring)
+            _transformSystem.AnchorEntity(user, xform);
+        if (parameters.RequiresAnchoring && !xform.Anchored)
         {
             CantBlockError(user);
             return false;

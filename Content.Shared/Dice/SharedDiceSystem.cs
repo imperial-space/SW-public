@@ -33,7 +33,7 @@ public abstract class SharedDiceSystem : EntitySystem
 
     private void OnLand(Entity<DiceComponent> entity, ref LandEvent args)
     {
-        Roll(entity);
+        Roll(entity, args.User, predicted: false);
     }
 
     private void OnExamined(Entity<DiceComponent> entity, ref ExaminedEvent args)
@@ -70,17 +70,20 @@ public abstract class SharedDiceSystem : EntitySystem
         SetCurrentSide(entity, value / entity.Comp.Multiplier + entity.Comp.Offset);
     }
 
-    private void Roll(Entity<DiceComponent> entity, EntityUid? user = null)
+    private void Roll(Entity<DiceComponent> entity, EntityUid? user = null, bool predicted = true)
     {
         var rand = new System.Random((int)_timing.CurTick.Value);
 
-        var roll = rand.Next(1, entity.Comp.Sides + 1);
-        SetCurrentSide(entity, roll);
+        var roll = new DiceRollEvent(user, entity.Comp.Sides, rand.Next(1, entity.Comp.Sides + 1));
+        RaiseLocalEvent(entity, ref roll);
+        SetCurrentSide(entity, roll.Result);
 
         var popupString = Loc.GetString("dice-component-on-roll-land",
             ("die", entity),
             ("currentSide", entity.Comp.CurrentValue));
-        _popup.PopupPredicted(popupString, entity, user);
-        _audio.PlayPredicted(entity.Comp.Sound, entity, user);
+        // Landing is not predicted; the thrower must receive the server result as well.
+        var recipient = predicted ? user : null;
+        _popup.PopupPredicted(popupString, entity, recipient);
+        _audio.PlayPredicted(entity.Comp.Sound, entity, recipient);
     }
 }

@@ -29,6 +29,9 @@
   id: BookshelfCreationsEntityTable
   table: !type:AllSelector
     children:
+    - !type:NestedSelector
+      tableId: MedievalRareKnowledgeBooks
+      prob: 0.08
     - id: RandomCreationsBook
       amount: !type:RangeNumberSelector
         range: 9, 16

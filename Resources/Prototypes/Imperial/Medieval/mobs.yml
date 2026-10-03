@@ -2172,6 +2172,7 @@
   id: MedievalMobSpiderKing
   description: They're a golem.
   components:
+  - type: MedievalUntameable
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/spider_king.rsi

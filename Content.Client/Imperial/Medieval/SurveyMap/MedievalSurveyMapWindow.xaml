@@ -1,0 +1,26 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:map="clr-namespace:Content.Client.Imperial.Medieval.SurveyMap"
+    Title="{Loc 'medieval-map-window'}"
+    MinSize="900 900"
+    MaxSize="900 900"
+    SetSize="900 900"
+    Resizable="false"
+    MouseFilter="Pass"
+>
+    <BoxContainer Orientation="Vertical" SeparationOverride="5">
+        <map:MedievalSurveyMapControl Name="MapBackground" HorizontalExpand="True" VerticalExpand="True" />
+        <Label Name="MapUnavailable" Text="{Loc 'book-cartography-unsupported-map'}" Visible="False" HorizontalAlignment="Center" VerticalExpand="True" />
+        <BoxContainer Name="AnnotationEditor" Orientation="Vertical" Visible="False">
+            <Label Text="{Loc 'book-cartography-place-hint'}" />
+            <BoxContainer Orientation="Horizontal" SeparationOverride="5">
+                <LineEdit Name="AnnotationTitle" PlaceHolder="{Loc 'book-cartography-title-placeholder'}" HorizontalExpand="True" />
+                <Button Name="SaveAnnotationTitle" Text="{Loc 'book-cartography-save-title'}" />
+            </BoxContainer>
+        </BoxContainer>
+        <RichTextLabel Name="SurveyDescription" MaxHeight="95" />
+        <ScrollContainer Name="AnnotationListContainer" MinHeight="70" MaxHeight="140" HorizontalExpand="True">
+            <BoxContainer Name="AnnotationList" Orientation="Vertical" HorizontalExpand="True" />
+        </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>

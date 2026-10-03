@@ -1,0 +1,14 @@
+- type: entity
+  id: MedievalSurveyMap
+  parent: BaseItem
+  name: field map
+  description: A survey of one region, with numbered locations and the traveller's field notes.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: map
+  - type: UserInterface
+    interfaces:
+      enum.MedievalSurveyMapUiKey.Key:
+        type: MedievalSurveyMapBoundUserInterface
+  - type: MedievalSurveyMap

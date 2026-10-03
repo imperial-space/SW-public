@@ -26,12 +26,17 @@ namespace Content.Server.Speech
 
         public SoundSpecifier? GetSpeechSound(Entity<SpeechComponent> ent, string message)
         {
-            if (ent.Comp.SpeechSounds == null)
+            if (ent.Comp.SpeechSounds is not { } speechSounds)
                 return null;
 
+            return GetSpeechSound(speechSounds, ent.Comp.AudioParams, message);
+        }
+
+        public SoundSpecifier GetSpeechSound(ProtoId<SpeechSoundsPrototype> speechSounds, AudioParams audioParams, string message)
+        {
             // Play speech sound
             SoundSpecifier? contextSound;
-            var prototype = _protoManager.Index<SpeechSoundsPrototype>(ent.Comp.SpeechSounds);
+            var prototype = _protoManager.Index(speechSounds);
 
             // Different sounds for ask/exclaim based on last character
             contextSound = message[^1] switch
@@ -54,13 +59,13 @@ namespace Content.Server.Speech
             }
 
             var scale = (float) _random.NextGaussian(1, prototype.Variation);
-            contextSound.Params = ent.Comp.AudioParams.WithPitchScale(scale);
+            contextSound.Params = audioParams.WithPitchScale(scale);
             return contextSound;
         }
 
         private void OnEntitySpoke(EntityUid uid, SpeechComponent component, EntitySpokeEvent args)
         {
-            if (component.SpeechSounds == null)
+            if (!args.OverrideSpeechSound && component.SpeechSounds == null)
                 return;
 
             var currentTime = _gameTiming.CurTime;
@@ -70,9 +75,11 @@ namespace Content.Server.Speech
             if (currentTime - component.LastTimeSoundPlayed < cooldown)
                 return;
 
-            var sound = GetSpeechSound((uid, component), args.Message);
+            var sound = args.OverrideSpeechSound ? args.SpeechSound : GetSpeechSound((uid, component), args.Message);
+            if (sound == null)
+                return;
             component.LastTimeSoundPlayed = currentTime;
-            _audio.PlayPvs(sound, uid);
+            _audio.PlayPvs(sound, args.SoundSource);
         }
     }
 }

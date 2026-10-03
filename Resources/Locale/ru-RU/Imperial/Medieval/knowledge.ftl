@@ -1,0 +1,33 @@
+knowledge-read = Прочитать
+knowledge-study = Изучить
+knowledge-cannot-read = Вы не можете прочитать эту книгу сейчас.
+knowledge-unknown-language = Сначала нужно самостоятельно изучить язык этой книги.
+knowledge-already-known = Вы уже владеете этим знанием. Книга остаётся пригодной для обучения другого читателя.
+knowledge-book-spent = Возможность обучения уже использована.
+knowledge-book-encrypted = Зашифровано: требуется подготовить расшифрованную редакцию.
+knowledge-book-original = Редкий оригинал. Ценен для торговца даже после изучения или перевода.
+knowledge-book-translation = Переводная рукопись. Торговец не покупает её как редкий оригинал.
+knowledge-book-examine = Тир: { $tier }. Язык издания: { $language }.
+knowledge-learned = Вы освоили: { $knowledge }.
+knowledge-translation-heading = Расшифровка и перевод: оригинал и язык новой редакции
+knowledge-translate = Написать переводную редакцию
+knowledge-translation-requirements = Нужны Дешифратор, знание обоих языков, перо в руке и доступные оригинал с чистой книгой. Оригинал должен сохранять возможность обучения.
+knowledge-translation-complete = Редакция завершена. В неё перенесена единственная возможность обучения оригинала.
+knowledge-translated-title = { $title } — переводная редакция
+knowledge-edition-content = { $title }
+    { $description }
+    Расшифровка и перевод: { $author }.
+knowledge-original-description = Редкий подлинник. Содержит одну возможность обучения; после её использования сохраняет коллекционную ценность.
+knowledge-encrypted-content = Запись скрыта сложным шифром. Для подготовки читаемой редакции потребуются Дешифратор, знание исходного языка, чистая книга и перо.
+knowledge-decipherer-name = Ключи к тайному письму
+knowledge-decipherer-description = Позволяет расшифровывать и переводить учебные оригиналы через написание новой книги. Положите книги рядом, возьмите перо и откройте редактор чистой книги. Нужно знать исходный язык и язык перевода.
+knowledge-language-description = Учебник позволяет свободно говорить на изучаемом языке. Язык пояснений указан отдельно на издании.
+knowledge-language-common-name = Самоучитель общего языка
+knowledge-language-elf-name = Самоучитель эльфийского языка
+knowledge-language-orc-name = Самоучитель орочьего языка
+knowledge-language-goblin-name = Самоучитель гоблинского языка
+knowledge-language-tribe-name = Самоучитель племенного языка
+knowledge-language-ancient-name = Самоучитель древнего языка
+knowledge-language-cursed-name = Самоучитель проклятого языка
+knowledge-language-growling-name = Самоучитель рычащего языка
+knowledge-language-hissing-name = Самоучитель шипящего языка

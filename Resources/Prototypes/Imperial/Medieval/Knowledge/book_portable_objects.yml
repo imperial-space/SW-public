@@ -1,0 +1,91 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: MedievalBookPortableBase
+  name: packed object
+  description: A carefully packed load. Activate it to set it up again.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    state: box
+  - type: Item
+    size: Huge
+  - type: Clothing
+    slots: BACK
+  - type: ContainerContainer
+    containers:
+      packed-object: !type:ContainerSlot
+  - type: BookPackedObject
+  - type: RDWeight
+    value: 2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+
+- type: entity
+  parent: MedievalBookPortableBase
+  id: MedievalBookPackedCrate
+  name: packed crate
+  description: A crate secured for carrying, with all its contents. Activate it to unpack.
+  components:
+  - type: BookPackedObject
+    ability: BookPorter
+
+- type: entity
+  parent: MedievalBookPortableBase
+  id: MedievalBookPackedWorkbench
+  name: dismantled workbench
+  description: A dismantled workbench. Its parts and materials make a heavy load. Activate it to assemble.
+  components:
+  - type: RDWeight
+    value: 42
+  - type: Sprite
+    sprite: Objects/Materials/materials.rsi
+    state: wood
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: HeldSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: BookPackedObject
+    ability: BookPackWorkbench
+
+- type: entity
+  parent: MedievalBookPortableBase
+  id: MedievalBookPackedTrap
+  name: packed spike trap
+  description: A safely dismantled spike trap. Activate it to install and arm it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/spiketrap.rsi
+    state: deactive
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: BookPackedObject
+    ability: BookTrapDisarm
+
+- type: entity
+  parent: MedievalBookPortableBase
+  id: MedievalBookPackedRoots
+  name: plant with wrapped roots
+  description: A living plant packed with its soil and roots. Activate it to replant.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/seeds.rsi
+    state: produce
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: BookPackedObject
+    ability: BookTransplant

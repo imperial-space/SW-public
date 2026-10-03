@@ -3525,6 +3525,7 @@
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
+  - type: BookPackableWorkbench
   - type: Sprite
     sprite: Imperial/Medieval/Lathe/wizard_potion.rsi
     snapCardinals: true

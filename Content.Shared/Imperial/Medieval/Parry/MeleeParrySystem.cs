@@ -326,6 +326,9 @@ namespace Content.Shared.MeleeParry
 
             Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
 
+            var parried = new MeleeParrySucceededEvent(attacker);
+            RaiseLocalEvent(uid, ref parried);
+
             return true;
         }
 

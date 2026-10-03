@@ -1308,6 +1308,9 @@
   id: MedievalSpikeDeactivateEffect
   noSpawn: true
   components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: SpikeTrapVisual
   - type: Sprite
     drawdepth: FloorTiles
     sprite: /Textures/Imperial/Medieval/Misc/spiketrap.rsi
@@ -1324,6 +1327,9 @@
   id: MedievalSpikeActivateEffect
   noSpawn: true
   components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: SpikeTrapVisual
   - type: Sprite
     drawdepth: FloorTiles
     sprite: /Textures/Imperial/Medieval/Misc/spiketrap.rsi

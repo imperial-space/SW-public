@@ -44,6 +44,7 @@
   name: foundry
   description: It produces sheets and ingots using ores.
   components:
+  - type: BookPackableWorkbench
   - type: Sprite
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/autolathe.rsi
     layers:

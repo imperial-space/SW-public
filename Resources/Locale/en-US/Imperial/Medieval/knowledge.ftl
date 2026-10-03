@@ -1,0 +1,33 @@
+knowledge-read = Read
+knowledge-study = Study
+knowledge-cannot-read = You cannot read this book right now.
+knowledge-unknown-language = You must personally understand the language of this edition.
+knowledge-already-known = You already possess this knowledge. This copy can still teach somebody else.
+knowledge-book-spent = This copy's lesson has been used.
+knowledge-book-encrypted = Encrypted: a deciphered edition must be written first.
+knowledge-book-original = Rare original. Valuable to merchants even after learning or translation.
+knowledge-book-translation = Translated manuscript. Merchants do not purchase it as a rare original.
+knowledge-book-examine = Tier: { $tier }. Edition language: { $language }.
+knowledge-learned = You learned: { $knowledge }.
+knowledge-translation-heading = Decipher and translate: original and output language
+knowledge-translate = Write a translated edition
+knowledge-translation-requirements = You need Decipherer, personal understanding of both languages, a held pen, an accessible original with an unused lesson, and a blank book.
+knowledge-translation-complete = Edition completed. The original's single lesson has been transferred into it.
+knowledge-translated-title = { $title } — translated edition
+knowledge-edition-content = { $title }
+    { $description }
+    Deciphered and translated by { $author }.
+knowledge-original-description = A rare original containing a single lesson. It retains its collector value after use.
+knowledge-encrypted-content = A complex cipher conceals the writing. A readable edition requires Decipherer, understanding of the original language, a blank book and a pen.
+knowledge-decipherer-name = Keys to Secret Writing
+knowledge-decipherer-description = Allows deciphering and translating rare originals by writing a new book. Place both books nearby, hold a pen and open the blank book's editor. You must know the original and output languages.
+knowledge-language-description = Teaches fluent use of the target language. The language of the explanations is specified on the edition separately.
+knowledge-language-common-name = Common Language Primer
+knowledge-language-elf-name = Elven Language Primer
+knowledge-language-orc-name = Orcish Language Primer
+knowledge-language-goblin-name = Goblin Language Primer
+knowledge-language-tribe-name = Tribal Language Primer
+knowledge-language-ancient-name = Ancient Language Primer
+knowledge-language-cursed-name = Cursed Language Primer
+knowledge-language-growling-name = Growling Language Primer
+knowledge-language-hissing-name = Hissing Language Primer

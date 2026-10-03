@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Original book-ability pixel art drawn programmatically for Spellward, 2026.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "menu"
+    },
+    {
+      "name": "dice_cheat"
+    },
+    {
+      "name": "lip_reading"
+    },
+    {
+      "name": "porter"
+    },
+    {
+      "name": "trap_disarm"
+    },
+    {
+      "name": "extract_reagent"
+    },
+    {
+      "name": "pack_workbench"
+    },
+    {
+      "name": "escape_bonds"
+    },
+    {
+      "name": "transplant"
+    },
+    {
+      "name": "cartography"
+    },
+    {
+      "name": "taming"
+    },
+    {
+      "name": "magic_traces"
+    },
+    {
+      "name": "ventriloquism"
+    },
+    {
+      "name": "disarming_riposte"
+    },
+    {
+      "name": "break_guard"
+    },
+    {
+      "name": "parry_projectile"
+    },
+    {
+      "name": "mobile_block"
+    },
+    {
+      "name": "piercing_shot"
+    },
+    {
+      "name": "escape_grab"
+    },
+    {
+      "name": "spell_scribing"
+    },
+    {
+      "name": "decipherer"
+    },
+    {
+      "name": "language_common"
+    },
+    {
+      "name": "language_elf"
+    },
+    {
+      "name": "language_orc"
+    },
+    {
+      "name": "language_goblin"
+    },
+    {
+      "name": "language_tribe"
+    },
+    {
+      "name": "language_ancient"
+    },
+    {
+      "name": "language_cursed"
+    },
+    {
+      "name": "language_growling"
+    },
+    {
+      "name": "language_hissing"
+    },
+    {
+      "name": "cancel_taming"
+    },
+    {
+      "name": "companion_follow"
+    },
+    {
+      "name": "companion_stay"
+    },
+    {
+      "name": "companion_guard"
+    },
+    {
+      "name": "companion_retreat"
+    },
+    {
+      "name": "companion_attack"
+    }
+  ]
+}

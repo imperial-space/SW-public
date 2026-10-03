@@ -1,0 +1,144 @@
+- type: entity
+  id: MedievalKnowledgeBook
+  parent: BookBase
+  name: Семь писем без подписи
+  description: Редкая книга с единственной возможностью обучения. Оригиналы высоко ценятся торговцами.
+  components:
+  - type: LearnableBook
+    knowledge: BookDecipherer
+    language: Common
+  - type: Currency
+    price:
+      Revent: 400
+  - type: MedievalCurrency
+    price:
+      Revent: 400
+
+- type: medievalKnowledge
+  id: BookDecipherer
+  bookTitle: book-story-decipherer-title
+  bookText: book-story-decipherer-text
+  originalBook: MedievalKnowledgeBook
+  name: knowledge-decipherer-name
+  description: knowledge-decipherer-description
+  tier: 2
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: decipherer
+
+- type: medievalKnowledge
+  id: BookLanguageCommon
+  bookTitle: book-story-common-title
+  bookText: book-story-common-text
+  originalBook: MedievalKnowledgeBookLanguageCommon
+  name: knowledge-language-common-name
+  description: knowledge-language-description
+  language: Common
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_common
+
+- type: medievalKnowledge
+  id: BookLanguageElf
+  bookTitle: book-story-elf-title
+  bookText: book-story-elf-text
+  originalBook: MedievalKnowledgeBookLanguageElf
+  name: knowledge-language-elf-name
+  description: knowledge-language-description
+  language: Elf
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_elf
+
+- type: medievalKnowledge
+  id: BookLanguageOrc
+  bookTitle: book-story-orc-title
+  bookText: book-story-orc-text
+  originalBook: MedievalKnowledgeBookLanguageOrc
+  name: knowledge-language-orc-name
+  description: knowledge-language-description
+  language: Orc
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_orc
+
+- type: medievalKnowledge
+  id: BookLanguageGoblin
+  bookTitle: book-story-goblin-title
+  bookText: book-story-goblin-text
+  originalBook: MedievalKnowledgeBookLanguageGoblin
+  name: knowledge-language-goblin-name
+  description: knowledge-language-description
+  language: Goblin
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_goblin
+
+- type: medievalKnowledge
+  id: BookLanguageTribe
+  bookTitle: book-story-tribe-title
+  bookText: book-story-tribe-text
+  originalBook: MedievalKnowledgeBookLanguageTribe
+  name: knowledge-language-tribe-name
+  description: knowledge-language-description
+  language: Tribe
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_tribe
+
+- type: medievalKnowledge
+  id: BookLanguageAncient
+  bookTitle: book-story-ancient-title
+  bookText: book-story-ancient-text
+  originalBook: MedievalKnowledgeBookLanguageAncient
+  name: knowledge-language-ancient-name
+  description: knowledge-language-description
+  language: Ancient
+  tier: 2
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_ancient
+
+- type: medievalKnowledge
+  id: BookLanguageCursed
+  bookTitle: book-story-cursed-title
+  bookText: book-story-cursed-text
+  originalBook: MedievalKnowledgeBookLanguageCursed
+  name: knowledge-language-cursed-name
+  description: knowledge-language-description
+  language: Cursed
+  tier: 3
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_cursed
+
+- type: medievalKnowledge
+  id: BookLanguageGrowling
+  bookTitle: book-story-growling-title
+  bookText: book-story-growling-text
+  originalBook: MedievalKnowledgeBookLanguageGrowling
+  name: knowledge-language-growling-name
+  description: knowledge-language-description
+  language: Growling
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_growling
+
+- type: medievalKnowledge
+  id: BookLanguageHissing
+  bookTitle: book-story-hissing-title
+  bookText: book-story-hissing-text
+  originalBook: MedievalKnowledgeBookLanguageHissing
+  name: knowledge-language-hissing-name
+  description: knowledge-language-description
+  language: Hissing
+  tier: 1
+  icon:
+    sprite: Imperial/Medieval/Interface/Actions/book_abilities.rsi
+    state: language_hissing

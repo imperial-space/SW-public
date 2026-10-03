@@ -1,0 +1,10 @@
+book-abilities-menu-title = Способности
+book-abilities-menu-hint = Нажмите на способность для применения. Перетащите её значок на общую панель или нажмите «На панель». Если нужна цель, выберите её в мире. Пассивные знания действуют автоматически.
+book-abilities-menu-pin = На панель
+book-abilities-menu-pinned = На панели
+book-abilities-menu-pin-hint = Добавить способность на общую панель действий. Убрать её с панели можно правой кнопкой мыши.
+book-abilities-menu-active = Активные способности
+book-abilities-menu-passive = Пассивные знания
+book-abilities-menu-no-active = Активные способности пока не изучены.
+book-abilities-menu-cooldown = { $ability } — { $seconds } с
+book-abilities-choice-cancel = Отмена

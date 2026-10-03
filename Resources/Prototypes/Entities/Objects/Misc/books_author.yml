@@ -179,6 +179,9 @@
   name: reaching for the sun - a plant's quest for life
   description: The book is new, with a bright and vibrant cover featuring a plant stretching its leaves towards the sun. The title, "Reaching for the Sun - A Plant's Quest for Life," is written in bold, green letters, with an image of the sun rising behind the plant. The cover evokes a sense of growth, energy, and the beauty of nature.
   components:
+    - type: LearnableBook
+      knowledge: BookTransplant
+      language: Common
     - type: Sprite
       sprite: Objects/Misc/books.rsi
       layers:
@@ -261,6 +264,9 @@
   name: the adventures of ian and renault - finding the lost wolf pup
   description: The book is a new condition with a colorful cover, depicting Ian the corgi and Renault the fox on a journey through the forest, with the lost wolf pup to their feet. The title "The Adventures of Ian and Renault - Finding the Lost Wolf Pup" is prominently displayed at the top, with the author's name below. The cover has a whimsical and adventurous feel to it, attracting readers of all ages.
   components:
+    - type: LearnableBook
+      knowledge: BookTaming
+      language: Common
     - type: Sprite
       sprite: Objects/Misc/books.rsi
       layers:
@@ -281,6 +287,9 @@
   name: the adventures of ian and renault - ranch expedition
   description: The book appears to be new, with crisp pages and an unblemished cover. The cover features a colorful illustration of Ian and Renault, surrounded by various animals they encountered on the ranch, including horses, cows, and chickens. The title, "The Adventures of Ian and Renault - Ranch Expedition," is written in bold letters above the image, with the subtitle, "Helping Animals in Need," written below.
   components:
+    - type: LearnableBook
+      knowledge: BookTaming
+      language: Common
     - type: Sprite
       sprite: Objects/Misc/books.rsi
       layers:

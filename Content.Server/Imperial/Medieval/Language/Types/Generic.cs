@@ -116,7 +116,13 @@ public sealed partial class Generic : ILanguageType
         success = true;
 
         var langProto = proto.Index(Language);
-        foreach (var (session, data) in chat.GetRecipients(uid, ChatSystem.VoiceRange))
+        var sourceEvent = new ResolveLanguageSpeechSourceEvent(uid, langProto, false);
+        entMan.EventBus.RaiseLocalEvent(uid, sourceEvent);
+        var soundSource = sourceEvent.Source;
+        var recipients = new LanguageSpeechRecipientsEvent(uid, soundSource, langProto, false,
+            chat.GetRecipients(soundSource, ChatSystem.VoiceRange));
+        entMan.EventBus.RaiseEvent(EventSource.Local, recipients);
+        foreach (var (session, data) in recipients.Recipients)
         {
             EntityUid listener;
 
@@ -127,7 +133,10 @@ public sealed partial class Generic : ILanguageType
             bool condition = true;
             foreach (var item in langProto.Conditions.Where(x => x.RaiseOnListener))
             {
-                if (!item.Condition(listener, uid, entMan))
+                var attempt = new LanguageListenerConditionEvent(uid, soundSource, langProto, false, item,
+                    item.Condition(listener, soundSource, entMan));
+                entMan.EventBus.RaiseLocalEvent(listener, attempt);
+                if (!attempt.Allowed)
                     condition = false;
             }
             if (!condition)
@@ -141,7 +150,7 @@ public sealed partial class Generic : ILanguageType
             if (!lang.CanUnderstand(listener, langProto))
             {
                 var wrappedLanguageMessage = Loc.GetString(verb.Bold && Font == null ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener, true)),
+                    ("entityName", Identity.Name(soundSource, entMan, listener, true)),
                     ("verb", Loc.GetString(random.Pick(verbStrings))),
                     ("fontType", font),
                     ("fontSize", fontSize),
@@ -149,12 +158,12 @@ public sealed partial class Generic : ILanguageType
                     ("defaultSize", verb.FontSize),
                     ("message", coloredLanguageMessage));
 
-                chatMan.ChatMessageToOne(ChatChannel.Local, message, wrappedLanguageMessage, uid, entHideChat, session.Channel);
+                chatMan.ChatMessageToOne(ChatChannel.Local, message, wrappedLanguageMessage, soundSource, entHideChat, session.Channel);
             }
             else
             {
                 var wrappedMessage = Loc.GetString(verb.Bold && Font == null ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener)),
+                    ("entityName", Identity.Name(soundSource, entMan, listener)),
                     ("verb", Loc.GetString(random.Pick(verbStrings))),
                     ("fontType", font),
                     ("fontSize", fontSize),
@@ -162,7 +171,7 @@ public sealed partial class Generic : ILanguageType
                     ("defaultSize", verb.FontSize),
                     ("message", coloredMessage));
 
-                chatMan.ChatMessageToOne(ChatChannel.Local, message, wrappedMessage, uid, entHideChat, session.Channel);
+                chatMan.ChatMessageToOne(ChatChannel.Local, message, wrappedMessage, soundSource, entHideChat, session.Channel);
             }
         }
     }
@@ -204,8 +213,13 @@ public sealed partial class Generic : ILanguageType
 
         success = true;
         var langProto = proto.Index(Language);
-
-        foreach (var (session, data) in chat.GetWhisperRecipients(uid, ChatSystem.WhisperClearRange, ChatSystem.WhisperMuffledRange))
+        var sourceEvent = new ResolveLanguageSpeechSourceEvent(uid, langProto, true);
+        entMan.EventBus.RaiseLocalEvent(uid, sourceEvent);
+        var soundSource = sourceEvent.Source;
+        var recipients = new LanguageSpeechRecipientsEvent(uid, soundSource, langProto, true,
+            chat.GetWhisperRecipients(soundSource, ChatSystem.WhisperClearRange, ChatSystem.WhisperMuffledRange));
+        entMan.EventBus.RaiseEvent(EventSource.Local, recipients);
+        foreach (var (session, data) in recipients.Recipients)
         {
             EntityUid listener;
 
@@ -216,7 +230,10 @@ public sealed partial class Generic : ILanguageType
             bool condition = true;
             foreach (var item in langProto.Conditions.Where(x => x.RaiseOnListener))
             {
-                if (!item.Condition(listener, uid, entMan))
+                var attempt = new LanguageListenerConditionEvent(uid, soundSource, langProto, true, item,
+                    item.Condition(listener, soundSource, entMan));
+                entMan.EventBus.RaiseLocalEvent(listener, attempt);
+                if (!attempt.Allowed)
                     condition = false;
             }
             if (!condition)
@@ -228,28 +245,28 @@ public sealed partial class Generic : ILanguageType
             if (!data.Muffled)
             {
                 var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener, true)),
+                    ("entityName", Identity.Name(soundSource, entMan, listener, true)),
                     ("fontType", Font ?? "NotoSansDisplayItalic"),
                     ("fontSize", FontSize ?? 11),
                     ("defaultFont", "NotoSansDisplayItalic"),
                     ("defaultSize", 11),
                     ("message", lang.CanUnderstand(listener, langProto) ? accentMessage : languageMessage));
 
-                chatMan.ChatMessageToOne(ChatChannel.Whisper, message, wrappedMessage, uid, false, session.Channel);
+                chatMan.ChatMessageToOne(ChatChannel.Whisper, message, wrappedMessage, soundSource, false, session.Channel);
             }
 
             //If listener is too far, they only hear fragments of the message
-            else if (examine.InRangeUnOccluded(uid, listener, ChatSystem.WhisperMuffledRange))
+            else if (examine.InRangeUnOccluded(soundSource, listener, ChatSystem.WhisperMuffledRange))
             {
                 var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener, true)),
+                    ("entityName", Identity.Name(soundSource, entMan, listener, true)),
                     ("fontType", Font ?? "NotoSansDisplayItalic"),
                     ("fontSize", FontSize ?? 11),
                     ("defaultFont", "NotoSansDisplayItalic"),
                     ("defaultSize", 11),
                     ("message", lang.CanUnderstand(listener, langProto) ? obfuscatedMessage : obfuscatedLanguageMessage));
 
-                chatMan.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedMessage, uid, false, session.Channel);
+                chatMan.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedMessage, soundSource, false, session.Channel);
             }
 
             //If listener is too far and has no line of sight, they can't identify the whisperer's identity
@@ -262,7 +279,7 @@ public sealed partial class Generic : ILanguageType
                     ("defaultSize", 11),
                     ("message", lang.CanUnderstand(listener, langProto) ? obfuscatedMessage : obfuscatedLanguageMessage));
 
-                chatMan.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedMessage, uid, false, session.Channel);
+                chatMan.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedMessage, soundSource, false, session.Channel);
             }
         }
     }

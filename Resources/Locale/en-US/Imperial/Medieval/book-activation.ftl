@@ -1,0 +1,9 @@
+book-activation-need-die = Hold a die. If both hands hold dice, the right hand is used.
+book-activation-die-title = Loaded die — next result
+book-activation-need-vessels = Hold two open vessels: one containing the mixture and one empty.
+book-activation-small-vessel = The empty vessel is too small for any of the substances.
+book-activation-extract-title = Separation — choose a substance
+book-activation-need-paper-pen = Hold a pen and select an accessible blank sheet.
+book-activation-no-spells = You have no learned projectile spell to inscribe.
+book-activation-scribe-title = Captured spell — choose a spell
+book-activation-choice-expired = The conditions changed. Activate the ability again and check your items.
