@@ -102,7 +102,7 @@
       barrierAddicted: false
       maxCoolDown: 600
       chance: 0.5
-      spawnedEntity: MedievalChestWithLoot
+      spawnedEntity: MedievalMimicChestBronzeSpawner
     #- type: Timer
     #- type: TimedSpawner
     #  prototypes:
@@ -147,7 +147,7 @@
       barrierAddicted: false
       maxCoolDown: 600
       chance: 0.5
-      spawnedEntity: MedievalChestWithLoot2
+      spawnedEntity: MedievalMimicChestIronSpawner
     #- type: Timer
     #- type: TimedSpawner
     #  prototypes:
@@ -204,7 +204,7 @@
       barrierAddicted: false
       maxCoolDown: 600
       chance: 0.45
-      spawnedEntity: MedievalChestWithLoot3
+      spawnedEntity: MedievalMimicChestGoldSpawner
     #- type: Timer
     #- type: TimedSpawner
     #  prototypes:
@@ -246,7 +246,7 @@
       barrierAddicted: false
       maxCoolDown: 600
       chance: 0.6
-      spawnedEntity: MedievalChestWithLoot4
+      spawnedEntity: MedievalMimicChestWoodSpawner
     #- type: Timer
     #- type: TimedSpawner
     #  prototypes:
@@ -263,6 +263,73 @@
     #  minimumEntitiesSpawned: 1
     #  maximumEntitiesSpawned: 10000
 
+- type: entity
+  name: BlastDoor
+  id: MedievalMimicChestWoodSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+      - MedievalChestWithLoot4
+    chance: 1
+    offset: 0
+    rarePrototypes:
+      - MobMimicChestCloseAI
+    rareChance: 0.005
+
+- type: entity
+  name: BlastDoor
+  id: MedievalMimicChestBronzeSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+      - MedievalChestWithLoot
+    chance: 1
+    offset: 0
+    rarePrototypes:
+      - MobMimicChestCloseAI2
+    rareChance: 0.007
+
+- type: entity
+  name: BlastDoor
+  id: MedievalMimicChestIronSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+      - MedievalChestWithLoot2
+    chance: 1
+    offset: 0
+    rarePrototypes:
+      - MobMimicChestCloseAI3
+    rareChance: 0.009
+
+- type: entity
+  name: BlastDoor
+  id: MedievalMimicChestGoldSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+      - MedievalChestWithLoot3
+    chance: 1
+    offset: 0
+    rarePrototypes:
+      - MobMimicChestCloseAI4
+    rareChance: 0.011
 
 - type: entity
   parent: MedievalCrateGeneric
