@@ -454,8 +454,8 @@
 - type: entity
   id: MedievalMortar
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: mortar
-  description: From BlenderTech. Will It Blend? Let's find out!
+  name: enchanted mortar
+  description: An enchanted mortar. The pestle grinds and presses the ingredients on its own, and everything it gets goes into the vessel the mortar keeps inside itself.
   components:
   - type: ApcPowerReceiver
     needsPower: false
@@ -467,7 +467,7 @@
   - type: UserInterface
     interfaces:
       enum.ReagentGrinderUiKey.Key:
-        type: ReagentGrinderBoundUserInterface
+        type: MedievalMortarBoundUserInterface
   - type: Appearance
   - type: GenericVisualizer
     visuals:

@@ -473,8 +473,8 @@
   #- type: Anchorable
 
 - type: entity
-  name: MedievalMortarCraft
-  description: MedievalMortarCraft
+  name: enchanted mortar workpiece
+  description: Click where you want to place it with the workpiece in your active hand to build an enchanted mortar.
   id: MedievalMortarCraft
   parent: BaseItem
   components:
