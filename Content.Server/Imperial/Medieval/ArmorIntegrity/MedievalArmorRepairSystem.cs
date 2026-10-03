@@ -98,6 +98,7 @@ public sealed class MedievalArmorRepairSystem : EntitySystem
             used: repairTool.Owner)
         {
             BreakOnMove = true,
+            AllowMovementAssistance = station == null,
             BreakOnDamage = true,
             NeedHand = true,
             BreakOnDropItem = true,
@@ -159,6 +160,9 @@ public sealed class MedievalArmorRepairSystem : EntitySystem
             args.User,
             repairTool,
             args.RepairDelayModifier));
+        var speed = new Content.Shared.Actions.GetActionSpeedModifierEvent(1f);
+        RaiseLocalEvent(args.User, ref speed);
+        args.Args.Delay /= Math.Max(0.05f, speed.Multiplier);
         args.Repeat = true;
         PlayUseSound((used, repairTool), armor.Owner);
     }

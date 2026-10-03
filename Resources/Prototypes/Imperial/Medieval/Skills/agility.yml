@@ -1,0 +1,29 @@
+- type: skill
+  id: Agility
+  name: skill-agility-name
+  color: "#96fff3"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/agility.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    PositiveAttackRate: 0.025
+    NegativeAttackRate: -0.055
+    PositiveDashCooldownBonus: -0.1
+    NegativeDashCooldownBonus: 0.5
+    PositiveDashDistanceBonus: 0.05
+    NegativeDashDistanceBonus: -0.09
+    PositiveClimbDelayModifier: -0.1
+    NegativeClimbDelayModifier: 0.1
+    PositiveLockpickChanceModifier: 0.1
+    NegativeLockpickChanceModifier: 0
+    PositiveEquipDelayModifier: -0.07
+    NegativeEquipDelayModifier: 0.07
+    PositiveSpreadModifier: -0.25
+    NegativeSpreadModifier: 0.1
+    PositiveStealChanceModifier: 0.04
+    NegativeStealChanceModifier: -0.15
+    PositiveLockpickLossModifier: -0.09

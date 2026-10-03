@@ -40,7 +40,7 @@ using Content.Shared.Imperial.Medieval.Magic.Overlays; // Imperial Medieval Magi
 
 namespace Content.Client.UserInterface.Systems.Actions;
 
-public sealed class ActionUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<ActionsSystem>
+public sealed partial class ActionUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<ActionsSystem>
 {
     [Dependency] private readonly IOverlayManager _overlays = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -234,17 +234,10 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     private void TriggerAction(int index)
     {
-        if (!_actions.TryGetValue(index, out var actionId) ||
-            _actionsSystem?.GetAction(actionId) is not {} action)
-        {
+        if (!_actions.TryGetValue(index, out var actionId) || actionId == null)
             return;
-        }
 
-        // TODO: probably should have a clientside event raised for flexibility
-        if (EntityManager.TryGetComponent<TargetActionComponent>(action, out var target))
-            ToggleTargeting((action, action, target));
-        else
-            _actionsSystem?.TriggerAction(action);
+        ActivateAction(actionId.Value);
     }
 
     private void OnActionAdded(EntityUid actionId)
@@ -257,7 +250,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (action.Comp.Toggled && EntityManager.TryGetComponent<TargetActionComponent>(actionId, out var target))
             StartTargeting((action, action, target));
 
-        if (_actions.Contains(action))
+        if (_actions.Contains(action) || !action.Comp.AutoPopulate)
             return;
 
         _actions.Add(action);

@@ -1,0 +1,22 @@
+- type: skill
+  id: Vitality
+  name: skill-vitality-name
+  color: "#99ff96"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/vitality.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    AliveHealthPerLevel: 3
+    WoundedHealthPerLevel: 4
+    MaxHealthBonus: 12
+    PositiveSlowdownModifier: 0.03
+    PositiveSleepEffeciencyModifier: -0.03
+    NegativeSleepEffeciencyModifier: 0.03
+    PositiveSuffocationDamageModifier: -0.03
+    NegativeSuffocationDamageModifier: 0.02
+    PositiveBloodRegenModifier: 0.06
+    NegativeBloodRegenModifier: -0.06

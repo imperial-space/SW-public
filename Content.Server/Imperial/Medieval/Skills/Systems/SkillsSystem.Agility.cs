@@ -14,6 +14,8 @@ public sealed partial class SkillsSystem
 {
     private void InitializeAgility()
     {
+        RegisterLevelHandler(AgilityId, AgilityLevelSet);
+        RegisterUpdateHandler(UpdateAgility);
         SubscribeLocalEvent<SkillsComponent, GetGunSpreadModifiersEvent>(OnGetSpreadMod);
         SubscribeLocalEvent<SkillsComponent, GetStealChanceModifiersEvent>(OnGetStealChanceMod);
         SubscribeLocalEvent<SkillsComponent, TryGetAdditionalStealTargetEvent>(OnTryGetAdditionalStealTarget);

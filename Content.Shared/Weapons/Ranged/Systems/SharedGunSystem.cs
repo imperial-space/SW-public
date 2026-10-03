@@ -265,6 +265,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (gun.SelectedMode == SelectiveFire.Burst || gun.BurstActivated)
             fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRate);
 
+        var speed = new Content.Shared.Actions.GetActionSpeedModifierEvent(1f);
+        RaiseLocalEvent(user, ref speed);
+        fireRate /= Math.Max(0.05f, speed.Multiplier);
+
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
         // curTime - fireRate is insufficient because if you time it just right you can get a 3rd shot out slightly quicker.

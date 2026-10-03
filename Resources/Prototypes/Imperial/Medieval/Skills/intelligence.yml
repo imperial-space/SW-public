@@ -1,0 +1,19 @@
+- type: skill
+  id: Intelligence
+  name: skill-intelligence-name
+  color: "#ea96ff"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/intelligence.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    PositiveConstructionSpeedModifier: -0.1
+    NegativeConstructionSpeedModifier: 0.1
+    PositiveHealingSpeedModifier: -0.07
+    NegativeHealingSpeedModifier: 0.14
+    PositiveManaModifier: 0.05
+    NegativeManaModifier: -0.09
+    LowStupidityChance: 0.2

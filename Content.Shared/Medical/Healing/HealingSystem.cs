@@ -140,7 +140,11 @@ public sealed class HealingSystem : EntitySystem
 
         // Update our self heal delay so it shortens as we heal more damage.
         if (args.User == target.Owner)
-            args.Args.Delay = GetHealingDelay(args.User, target.Owner, healing); // imperial medieval edit
+        {
+            var speed = new Content.Shared.Actions.GetActionSpeedModifierEvent(1f);
+            RaiseLocalEvent(args.User, ref speed);
+            args.Args.Delay = GetHealingDelay(args.User, target.Owner, healing) / Math.Max(0.05f, speed.Multiplier);
+        }
     }
 
     private bool HasDamage(Entity<HealingComponent> healing, Entity<DamageableComponent> target)
@@ -235,6 +239,7 @@ public sealed class HealingSystem : EntitySystem
                 NeedHand = true,
                 BreakOnMove = true,
                 BreakOnWeightlessMove = false,
+                AllowMovementAssistance = true,
             };
 
         _doAfter.TryStartDoAfter(doAfterEventArgs);

@@ -27,6 +27,10 @@ public sealed class DamageOnHighSpeedImpactSystem : EntitySystem
 
     private void HandleCollide(EntityUid uid, DamageOnHighSpeedImpactComponent component, ref StartCollideEvent args)
     {
+        var impact = new ImpactDamageAttemptEvent();
+        RaiseLocalEvent(uid, ref impact);
+        if (impact.Cancelled)
+            return;
         if (!args.OurFixture.Hard || !args.OtherFixture.Hard)
             return;
 

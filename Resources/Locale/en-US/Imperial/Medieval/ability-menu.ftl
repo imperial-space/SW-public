@@ -1,0 +1,11 @@
+ability-menu-title = Abilities
+ability-menu-hint = Click an ability to use it. Drag its icon onto the action bar or press "Add to bar". If it needs a target, select it in the world. Passive abilities work automatically.
+ability-menu-pin = Add to bar
+ability-menu-pinned = On bar
+ability-menu-pin-hint = Add this ability to the action bar. Right-click its bar icon to remove it.
+ability-menu-active = Active abilities
+ability-menu-passive = Passive abilities
+ability-menu-no-active = No active abilities available yet.
+ability-menu-cooldown = { $ability } — { $seconds } s
+ent-ActionAbilityMenu = Abilities
+    .desc = Open your available abilities.

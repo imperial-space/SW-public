@@ -91,6 +91,11 @@ public sealed partial class MedievalDashSystem : EntitySystem
         if (_timing.CurTime < component.NextDash && !isSimulationTick)
             return false;
 
+        var attempt = new DashAttemptEvent();
+        RaiseLocalEvent(uid, ref attempt);
+        if (attempt.Cancelled && !isSimulationTick)
+            return false;
+
         if (!_actionBlockerSystem.CanMove(uid))
             return false;
 
@@ -148,6 +153,14 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var distEv = new CheckDashDistanceModifiersEvent(1f);
         RaiseLocalEvent(player, ref distEv);
 
+        var cooldownEv = new CheckDashCooldownModifiersEvent(1f);
+        RaiseLocalEvent(player, ref cooldownEv, true);
+
+        var performing = new DashOverrideEvent(component, targetRotation, distEv.Modifier, cooldownEv.Modifier);
+        RaiseLocalEvent(player, ref performing);
+        if (performing.Handled)
+            return true;
+
         // TODO модификатор расстояни
         _physicsSystem.ApplyLinearImpulse(player, impulse, null, physicsComponent);
 
@@ -156,9 +169,6 @@ public sealed partial class MedievalDashSystem : EntitySystem
         shadowComponent.ShadowUpdateRate = TimeSpan.Zero;
         shadowComponent.PositionUpdateRate = TimeSpan.Zero;
         component.DashEndTime = dashTime + _timing.CurTime;
-
-        var cooldownEv = new CheckDashCooldownModifiersEvent(1f);
-        RaiseLocalEvent(player, ref cooldownEv, true);
 
         component.NextDash = _timing.CurTime + component.DashReloadTime + TimeSpan.FromSeconds(staminaEv.Modifier);
         component.DashButtonPressedTick = _timing.CurTick;

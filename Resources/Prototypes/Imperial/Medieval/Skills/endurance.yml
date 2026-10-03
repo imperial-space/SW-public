@@ -1,0 +1,21 @@
+- type: skill
+  id: Endurance
+  name: skill-endurance-name
+  color: "#ffec96"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/endurance.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    PositiveSprintStaminaDamageModifier: -0.05
+    NegativeSprintStaminaDamageModifier: 0.03
+    PositiveSlowdownModifier: 0.01
+    PositiveStaminaRegenModifier: 0.015
+    NegativeStaminaRegenModifier: -0.015
+    PositiveStaminaCritModifier: -0.03
+    NegativeStaminaCritModifier: 0.03
+    MaxStaminaDamageModifier: 0.3
+    HighMeleeThrowDistanceModifier: 0.4

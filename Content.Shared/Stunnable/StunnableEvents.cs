@@ -1,4 +1,4 @@
-﻿using Content.Shared.Alert;
+using Content.Shared.Alert;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Robust.Shared.Serialization;
@@ -29,6 +29,7 @@ public record struct StunEndAttemptEvent(bool Cancelled);
 public record struct KnockDownAttemptEvent(bool AutoStand, bool Drop, TimeSpan? Time)
 {
     public bool Cancelled;
+    public bool BlockForced;
 }
 
 /// <summary>
@@ -93,3 +94,9 @@ public sealed partial class TryStandDoAfterEvent : SimpleDoAfterEvent;
 [Serializable, NetSerializable]
 public sealed class ForceStandUpEvent : EntityEventArgs;
 
+
+[ByRefEvent]
+public record struct CanActWhileStunnedEvent(bool Allowed = false);
+
+[ByRefEvent]
+public record struct StunAttemptEvent(bool Cancelled = false);
