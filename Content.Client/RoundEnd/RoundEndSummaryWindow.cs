@@ -157,8 +157,7 @@ namespace Content.Client.RoundEnd
                                 ("playerOOCName", playerInfo.PlayerOOCName),
                                 ("icNameColor", icNameColor),
                                 ("playerICName", playerInfo.PlayerICName),
-                                ("playerRole", Loc.GetString(playerInfo.Role)),
-                                ("mugClinkCount", playerInfo.MugClinkCount)));
+                                ("playerRole", Loc.GetString(playerInfo.Role))));
                     }
                 }
                 hBox.AddChild(playerInfoText);

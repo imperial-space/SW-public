@@ -6,7 +6,6 @@ using Content.Server.GameTicking.Events;
 using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Server.Imperial.Medieval.LastWords; // Imperial Medieval Last Words
-using Content.Server.MugClink;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -587,10 +586,7 @@ namespace Content.Server.GameTicking
                     JobPrototypes = roles.Where(role => !role.Antagonist).Select(role => role.Prototype).ToArray(),
                     AntagPrototypes = roles.Where(role => role.Antagonist).Select(role => role.Prototype).ToArray(),
                     Observer = observer,
-                    Connected = connected,
-                    MugClinkCount = entity != null && TryComp<MugClinkCountComponent>(entity.Value, out var clinkCount)
-                        ? clinkCount.Count
-                        : 0
+                    Connected = connected
                 };
                 listOfPlayerInfo.Add(playerEndRoundInfo);
             }

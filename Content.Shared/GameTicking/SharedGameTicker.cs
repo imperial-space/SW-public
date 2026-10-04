@@ -192,9 +192,6 @@ namespace Content.Shared.GameTicking
             [DataField]
             public bool Observer;
 
-            [DataField]
-            public int MugClinkCount;
-
             public bool Connected;
         }
 
