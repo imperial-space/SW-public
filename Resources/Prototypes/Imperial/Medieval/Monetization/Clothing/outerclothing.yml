@@ -252,3 +252,23 @@
   - type: Insulated
   - type: Clothing
     sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/water.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterPlague
+  name: MedievalClothingOuterPlague
+  description: MedievalClothingOuterPlague
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/plague.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Outerclothing/plague.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+  - type: ToggleableClothing
+    clothingPrototype: MedievalClothingHeadHoodPlague
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
