@@ -11,6 +11,18 @@ public sealed partial class CultCursedComponent : Component
     [DataField]
     public ProtoId<AlertPrototype> CurseAlert = "CultCurse";
 
+    /// <summary>
+    /// должны ли при сдаче крови появляться кристаллы
+    /// </summary>
+    [DataField]
+    public bool GiveCrystals = true;
+
+    /// <summary>
+    /// может ли привязанный потерять связь
+    /// </summary>
+    [DataField]
+    public bool CanLost = true;
+
     [DataField]
     public float CurseLevel = 100f;
 
