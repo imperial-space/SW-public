@@ -219,6 +219,10 @@
   markingLimits: MobOrcMarkingLimits
   dollPrototype: MobOrcDummy
   skinColoration: OrcColors
+  minAge: 18
+  maxAge: 50
+  oldAge: 40
+  youngAge: 25
 
 - type: speciesBaseSprites
   id: MobOrcSprites
