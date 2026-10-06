@@ -522,6 +522,29 @@
     resourceCount: 7
 
 - type: entity
+  name: MedievalIronHammerNecro
+  parent: MedievalIronHammer
+  id: MedievalIronHammerNecro
+  description: A medieval hammer.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/necro_hammer.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/necro_hammer.rsi
+  - type: MeleeWeapon # same as the iron hammer + caustic like the other dark follower weapons (two-handed: 1)
+    damage:
+      types:
+        Blunt: 12
+        Structural: 56
+        Caustic: 1
+        ParryAble: 1
+  - type: RadiationSource
+    intensity: 1
+    slope: 1
+
+- type: entity
   name: iron halberd
   parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdAdmin

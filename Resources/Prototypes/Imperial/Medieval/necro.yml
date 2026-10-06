@@ -475,6 +475,30 @@
   - MedievalNecroWeapon
 
 - type: listing
+  id: MagicNecroShopMedievalIronHammerNecro
+  productEntity: MedievalIronHammerNecro
+  cost:
+    UnholyMedieval: 45
+  categories:
+  - MedievalNecroWeapon
+
+- type: listing
+  id: MagicNecroShopMedievalSewingNeedle
+  productEntity: MedievalSewingNeedle
+  cost:
+    UnholyMedieval: 1
+  categories:
+  - MedievalNecroOther
+
+- type: listing
+  id: MagicNecroShopMedievalHammerBlacksmith
+  productEntity: MedievalHammerBlacksmith
+  cost:
+    UnholyMedieval: 1
+  categories:
+  - MedievalNecroOther
+
+- type: listing
   id: MagicNecroShopMedievalFalshionNecro
   productEntity: MedievalFalshionNecro
   cost:
