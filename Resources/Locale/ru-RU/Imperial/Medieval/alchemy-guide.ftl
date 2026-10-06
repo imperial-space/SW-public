@@ -1,0 +1,15 @@
+guide-entry-medieval-alchemy = Алхимия
+guide-entry-medieval-alchemy-potions = Зелья
+guide-entry-medieval-alchemy-drinks = Напитки
+alchemy-guide-products = Результат
+alchemy-guide-ingredients = Ингредиенты
+alchemy-guide-steps = Шаги
+alchemy-guide-reagent = { $name }: { $amount } ед.
+alchemy-guide-entity = { $name }: { $amount } шт.
+alchemy-guide-step = { $number }. { $operation }
+alchemy-guide-introduction = Здесь собраны постоянные алхимические рецепты. Случайные рецепты изучаются по свиткам и в таблицах не показываются.
+alchemy-guide-quantities = Количества указаны на одну порцию. Состав можно пропорционально увеличивать. Операции выполняются в указанном порядке.
+alchemy-guide-aspects-title = Получение аспектов
+alchemy-guide-aspects = Алхимик может осмотреть сырьё, чтобы узнать его аспекты и растворитель. Разотрите сырьё пестиком в ступке, перелейте жидкость в котёл и добавьте нужный растворитель: 1 единицу на каждые 4 единицы ожидаемых аспектов. Нагрейте смесь до готовности. Сырьё перерабатывается порциями по 10 единиц.
+alchemy-guide-drinks-description = Рецепты напитков не допускают посторонние вещества и предметы.
+alchemy-guide-potions-description = Постоянные рецепты первого уровня. Количества указаны на одну порцию; состав можно пропорционально увеличивать. Выполняйте операции по порядку и учитывайте недопустимость примесей.

@@ -1,0 +1,15 @@
+guide-entry-medieval-alchemy = Alchemy
+guide-entry-medieval-alchemy-potions = Potions
+guide-entry-medieval-alchemy-drinks = Drinks
+alchemy-guide-products = Products
+alchemy-guide-ingredients = Ingredients
+alchemy-guide-steps = Steps
+alchemy-guide-reagent = { $name }: { $amount } u.
+alchemy-guide-entity = { $name }: { $amount } pcs.
+alchemy-guide-step = { $number }. { $operation }
+alchemy-guide-introduction = This guide lists fixed alchemical recipes. Randomized recipes are learned from scrolls and are not shown in the tables.
+alchemy-guide-quantities = Quantities are listed per batch. Scale all ingredients proportionally to make larger batches. Perform the operations in the order shown.
+alchemy-guide-aspects-title = Extracting aspects
+alchemy-guide-aspects = An alchemist can examine raw ingredients to learn their aspects and required solvent. Grind the ingredients with a pestle in a mortar, pour the liquid into a cauldron, and add the required solvent: 1 unit for every 4 units of expected aspects. Heat the mixture until it is ready. Raw ingredients are processed in batches of 10 units.
+alchemy-guide-drinks-description = Drink recipes forbid substances and items that are not part of the recipe.
+alchemy-guide-potions-description = Fixed tier 1 recipes. Quantities are listed per batch; scale all ingredients proportionally to make larger batches. Perform the operations in order and keep the mixture free of impurities.

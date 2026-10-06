@@ -16,6 +16,7 @@
   id: MedievalKotel
   parent: BaseItem
   components:
+  - type: AlchemyVessel
   - type: RDWeight
     value: 4
   - type: MeleeWeapon
@@ -88,60 +89,6 @@
 
 
 - type: entity
-  id: MedievalFirePlate
-  name: fireplate
-  parent: BaseMachinePowered
-  description: "The descendent of the microwaves, our newest invention in beaker heating technology: the hotplate!"
-  components:
-  - type: Transform
-    anchored: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.08,-0.35,0.15,0.25"
-        mask:
-        - TabletopMachineMask
-        layer:
-        - Impassable
-        - MidImpassable
-        - LowImpassable
-        hard: false
-  - type: ApcPowerReceiver
-    needsPower: false
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-  - type: Sprite
-    sprite: Imperial/Medieval/Chem/fireplate.rsi
-    drawdepth: SmallObjects
-    snapCardinals: true
-    layers:
-    - state: icon
-    - state: on
-      map: ["enum.SolutionHeaterVisuals.IsOn"]
-      shader: unshaded
-  - type: SolutionHeater
-    heatPerSecond: 160
-  - type: ItemPlacer
-    whitelist:
-      components:
-      - FitsInDispenser
-  - type: PlaceableSurface
-    placeCentered: true
-    positionOffset: 0, 0.35
-  - type: GenericVisualizer
-    visuals:
-      enum.SolutionHeaterVisuals.IsOn:
-        enum.SolutionHeaterVisuals.IsOn:
-          True: { visible: true }
-          False: { visible: false }
-
-
-- type: entity
   name: MedievalLoot
   parent: BaseItem
   id: MedievalChemistryRecipe
@@ -156,6 +103,7 @@
     weights:
       EasyPack: 70
       MediumPack: 30
+      HardPack: 10
 
 - type: entity
   name: mortar
@@ -163,6 +111,9 @@
   id: MedievalMortarNew
   description: Medieval Mortar for crushing herbs and other plant materials.
   components:
+    - type: AlchemyVessel
+    - type: FitsInDispenser
+      solution: beaker
     - type: SolutionContainerManager
       solutions:
         beaker:

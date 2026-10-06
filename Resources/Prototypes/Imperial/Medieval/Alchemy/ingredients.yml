@@ -1,0 +1,261 @@
+- type: alchemyIngredient
+  id: MedievalFlowerVetr
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalFlowerLipad
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+
+- type: alchemyIngredient
+  id: MedievalFlowerLava
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyEarth: 10
+    AlchemyFire: 20
+
+- type: alchemyIngredient
+  id: MedievalFlowerCryo
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 20
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalFlowerLuna
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalFlowerStar
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyEarth: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalFlowerDark
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalFlowerBlood
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalFlowerWhite
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 20
+
+- type: alchemyIngredient
+  id: MedievalFlowerBlack
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+
+- type: alchemyIngredient
+  id: MedievalMushroom1
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalMushroom2
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalMushroom3
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalMushroom4
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalMushroom5
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalMushroom6
+  minYield: 2
+  maxYield: 3
+  aspectCount: 2
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalLootGoblin
+  minYield: 15
+  maxYield: 20
+  aspectCount: 4
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+    AlchemyDarkness: 5
+
+- type: alchemyIngredient
+  id: MedievalLootHog
+  minYield: 20
+  maxYield: 30
+  aspectCount: 5
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+    AlchemyDarkness: 5
+
+- type: alchemyIngredient
+  id: MedievalLootHunter
+  minYield: 25
+  maxYield: 35
+  aspectCount: 5
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+    AlchemyDarkness: 15
+
+- type: alchemyIngredient
+  id: MedievalLootCrab
+  minYield: 8
+  maxYield: 12
+  aspectCount: 3
+  aspectWeights:
+    AlchemyWater: 20
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalLootCrabDevil
+  minYield: 12
+  maxYield: 20
+  aspectCount: 3
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+    AlchemyDarkness: 15
+
+- type: alchemyIngredient
+  id: MedievalLootDevilMouse
+  minYield: 8
+  maxYield: 12
+  aspectCount: 3
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+    AlchemyDarkness: 10
+
+- type: alchemyIngredient
+  id: MedievalLootAnt
+  minYield: 6
+  maxYield: 10
+  aspectCount: 3
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+
+- type: alchemyIngredient
+  id: MedievalLootEgg
+  minYield: 8
+  maxYield: 12
+  aspectCount: 3
+  aspectWeights:
+    AlchemyWater: 10
+    AlchemyEarth: 10
+    AlchemyFire: 10
+    AlchemyLight: 10
+    AlchemyDarkness: 20
+

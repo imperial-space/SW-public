@@ -1204,7 +1204,7 @@
     totalIntensity: 60
     canCreateVacuum: false
   - type: Sprite
-    sprite: Imperial/Medieval/Misc/medieval_grenade.rsi
+    sprite: Imperial/Medieval/Misc/Bombs/Small_bomb.rsi
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
@@ -3197,6 +3197,13 @@
   id: MedievalLootGoblin
   description: MedievalLoot
   components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootGoblin
+        Quantity: 10
+  - type: AlchemyIngredient
+    profile: MedievalLootGoblin
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: goblin
@@ -3215,11 +3222,6 @@
     stealGroup: MedievalGetMedievalLootGoblin # imperial medieval
   - type: QuestItem
     contractName: "уши гоблинов"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalLootGoblin
-        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3291,6 +3293,13 @@
   id: MedievalLootHog
   description: MedievalLoot
   components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootHog
+        Quantity: 10
+  - type: AlchemyIngredient
+    profile: MedievalLootHog
   - type: RDWeight
     value: 1
   - type: Sprite
@@ -3306,11 +3315,6 @@
     size: Small
   - type: QuestItem
     contractName: "волчьи хвосты или кабаньи клыки"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalLootHog
-        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3334,6 +3338,13 @@
   id: MedievalLootHunter
   description: MedievalLoot
   components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootHunter
+        Quantity: 10
+  - type: AlchemyIngredient
+    profile: MedievalLootHunter
   - type: RDWeight
     value: 2
   - type: Sprite
@@ -3349,11 +3360,6 @@
     size: Small
   - type: QuestItem
     contractName: "клешни хантера"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalLootHunter
-        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3377,6 +3383,13 @@
   id: MedievalLootCrab
   description: MedievalLoot
   components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootCrab
+        Quantity: 10
+  - type: AlchemyIngredient
+    profile: MedievalLootCrab
   - type: RDWeight
     value: 1
   - type: Sprite
@@ -3392,11 +3405,6 @@
     size: Small
   - type: QuestItem
     contractName: "клешни краба"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalLootCrab
-        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3420,6 +3428,13 @@
   id: MedievalLootCrabDevil
   description: MedievalLoot
   components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootCrabDevil
+        Quantity: 10
+  - type: AlchemyIngredient
+    profile: MedievalLootCrabDevil
   - type: RDWeight
     value: 1
   - type: Sprite
@@ -3435,11 +3450,6 @@
     size: Small
   - type: QuestItem
     contractName: "клешни краба"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalLootCrabDevil
-        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3653,6 +3663,13 @@
   id: MedievalLootDevilMouse
   description: MedievalLoot
   components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootDevilMouse
+        Quantity: 10
+  - type: AlchemyIngredient
+    profile: MedievalLootDevilMouse
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: dmouse
@@ -3664,11 +3681,6 @@
       Revent: 3
   - type: Item
     size: Tiny
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalLootDevilMouse
-        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3692,6 +3704,13 @@
   id: MedievalLootAnt
   description: MedievalLoot
   components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootAnt
+        Quantity: 10
+  - type: AlchemyIngredient
+    profile: MedievalLootAnt
   - type: MyrmexStew
     buff:
       damage: 0.99
@@ -3711,11 +3730,6 @@
     size: Tiny
   - type: QuestItem
     contractName: "муравьиный хитин"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalLootAnt
-        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3890,6 +3904,13 @@
   id: MedievalLootEgg
   description: MedievalLoot
   components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootEgg
+        Quantity: 10
+  - type: AlchemyIngredient
+    profile: MedievalLootEgg
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: egg
@@ -3903,11 +3924,6 @@
     size: Tiny
   - type: QuestItem
     contractName: "паучьи яйца"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalLootEgg
-        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot

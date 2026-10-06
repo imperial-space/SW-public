@@ -1,0 +1,145 @@
+- type: alchemyRecipe
+  id: AlchemyWine
+  parent: BaseAlchemyRecipeDrink
+  ingredients:
+  - reagent: JuiceGrape
+    amount: 3
+  - reagent: Sugar
+    amount: 1
+  steps:
+  - operation: Infuse
+  products:
+    Wine: 4
+
+- type: alchemyRecipe
+  id: AlchemyBeer
+  parent: BaseAlchemyRecipeDrink
+  ingredients:
+  - reagent: Flour
+    amount: 1
+  - reagent: Water
+    amount: 3
+  steps:
+  - operation: Heat
+  - operation: Infuse
+  products:
+    Beer: 4
+
+- type: alchemyRecipe
+  id: AlchemyAle
+  parent: BaseAlchemyRecipeDrink
+  ingredients:
+  - reagent: Flour
+    amount: 1
+  - reagent: Water
+    amount: 2
+  - reagent: Sugar
+    amount: 1
+  steps:
+  - operation: Stir
+  - operation: Infuse
+  products:
+    Ale: 4
+
+- type: alchemyRecipe
+  id: AlchemyMead
+  parent: BaseAlchemyRecipeDrink
+  entities:
+    MedievalBeeHoneyPiece: 1
+  ingredients:
+  - reagent: Water
+    amount: 20
+  steps:
+  - operation: Infuse
+  products:
+    Mead: 20
+
+- type: alchemyRecipe
+  id: AlchemyRedMead
+  parent: BaseAlchemyRecipeDrink
+  ingredients:
+  - reagent: Mead
+    amount: 1
+  - reagent: Blood
+    amount: 1
+  steps:
+  - operation: Stir
+  products:
+    RedMead: 2
+
+- type: alchemyRecipe
+  id: AlchemyMoonshine
+  parent: BaseAlchemyRecipeDrink
+  ingredients:
+  - reagent: Ethanol
+    amount: 4
+  steps:
+  - operation: Distill
+  products:
+    Moonshine: 4
+
+- type: alchemyRecipe
+  id: AlchemyRum
+  parent: BaseAlchemyRecipeDrink
+  ingredients:
+  - reagent: Sugar
+    amount: 1
+  - reagent: Ethanol
+    amount: 1
+  - reagent: Water
+    amount: 2
+  steps:
+  - operation: Heat
+  - operation: Distill
+  products:
+    Rum: 4
+
+- type: alchemyRecipe
+  id: AlchemyVodka
+  parent: BaseAlchemyRecipeDrink
+  ingredients:
+  - reagent: Ethanol
+    amount: 1
+  - reagent: Water
+    amount: 1
+  steps:
+  - operation: Stir
+  products:
+    Vodka: 2
+
+- type: alchemyRecipe
+  id: AlchemyLiquidButter
+  parent: BaseAlchemyRecipeDrink
+  ingredients:
+  - reagent: Milk
+    amount: 15
+  steps:
+  - operation: Whip
+  products:
+    Oil: 15
+
+- type: reaction
+  id: AlchemyButterStick
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Oil:
+      amount: 15
+    Enzyme:
+      amount: 1
+  effects:
+  - !type:CreateEntityReactionEffect
+    entity: FoodButter
+
+- type: alchemyRecipe
+  id: AlchemyEthanol
+  parent: BaseAlchemyRecipeDrink
+  entities:
+    WheatBushel: 1
+  ingredients:
+  - reagent: Water
+    amount: 10
+  steps:
+  - operation: Distill
+  products:
+    Ethanol: 10

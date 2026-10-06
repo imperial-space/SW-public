@@ -98,7 +98,7 @@
     size: Normal
   - type: SpawnAfterInteract
     prototype: Medievalalchem_dispenser
-    doAfter: 22
+    doAfter: 8
     deleteOnInteract: true
   - type: Sprite
     sprite: Imperial/Medieval/CraftBosses/stockade.rsi

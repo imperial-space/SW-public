@@ -33,6 +33,8 @@ public sealed class MortarSystem : EntitySystem
     }
     public void Finished(EntityUid uid, MortarComponent component, MortarDoAfterEvent args)
     {
+        if (args.Cancelled || args.Handled)
+            return;
         if (!TryComp<StorageComponent>(uid, out var storage))
             return;
         if (!TryComp<SolutionContainerManagerComponent>(uid, out var solutioncomp))

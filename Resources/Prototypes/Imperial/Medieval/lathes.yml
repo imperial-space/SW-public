@@ -928,6 +928,7 @@
     craftSound: "/Audio/Imperial/Medieval/craft_wood.ogg"
     recipes:
     - MedievalWeaponCrossbow
+    - MedievalAlchemyWhiskCraft
     - MedievalWeaponCrossbowHeavy
     - MedievalWoodenSword
     - MedievalWoodenClaymore
@@ -1089,6 +1090,7 @@
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
     - RecycleCrystalToEssenceVodka
+    - MedievalAlchemyCoolCraft
     - RecycleCrystalToEssenceFire
     - RecycleCrystalToEssenceLight
     - RecycleCrystalToEssenceEarth
@@ -1220,6 +1222,12 @@
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
     - MedievalGear
+    - MedievalAlchemyCoolCraft
+    - MedievalAlchemyDistillCraft
+    - MedievalAlchemyRectifyCraft
+    - MedievalAlchemyExtractCraft
+    - MedievalAlchemyFilterCraft
+    - MedievalAlchemyInfuseCraft
     - MedievalChain
     - MedievalLeatherBelt
     - MedievalIronPlate
@@ -1331,6 +1339,10 @@
     - MedievalHatchet
     - BarberScissors
     - MedievalGrenade
+    - MedievalAlchemyGrenadeT1
+    - MedievalCryoGrenade
+    - MedievalAlchemyGrenadeT2
+    - MedievalAlchemyGrenadeT3
     - MedievalLintstock
     - MedievalRamrod
     - MedievalGunpowderCharge

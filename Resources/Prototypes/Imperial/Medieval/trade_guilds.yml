@@ -1728,6 +1728,20 @@
   - productEntity: MedievalWizardBlacksmithCraft
     cost: 200
     reputationForBuying: 7.3
+  - productEntity: MedievalAlchemyWhiskCraft
+    cost: 20
+  - productEntity: MedievalAlchemyCoolCraft
+    cost: 40
+  - productEntity: MedievalAlchemyDistillCraft
+    cost: 40
+  - productEntity: MedievalAlchemyRectifyCraft
+    cost: 100
+  - productEntity: MedievalAlchemyExtractCraft
+    cost: 40
+  - productEntity: MedievalAlchemyFilterCraft
+    cost: 40
+  - productEntity: MedievalAlchemyInfuseCraft
+    cost: 40
   - productEntity: MedievalWoodenFloorCraft
     cost: 10
     reputationForBuying: 0.3

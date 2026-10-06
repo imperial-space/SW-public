@@ -1164,3 +1164,43 @@
     MedievalIronIngot: 5
     WoodPlank: 7
   result: WorkpieceMedievalSaberSilver
+
+- type: CP14Recipe
+  id: MedievalAlchemyGrenadeT1
+  craftTime: 1
+  iconOverride: MedievalGrenade
+  stacks:
+    MedievalIronIngot: 2
+  entities:
+    MedievalExplosiveMixtureT1: 1
+  result: MedievalGrenade
+
+- type: CP14Recipe
+  id: MedievalCryoGrenade
+  craftTime: 1
+  iconOverride: MedievalCryoGrenade
+  stacks:
+    MedievalIronIngot: 2
+  entities:
+    MedievalCryoMixture: 1
+  result: MedievalCryoGrenade
+
+- type: CP14Recipe
+  id: MedievalAlchemyGrenadeT2
+  craftTime: 2
+  iconOverride: MedievalAlchemyGrenadeT2
+  stacks:
+    MedievalIronIngot: 4
+  entities:
+    MedievalExplosiveMixtureT2: 1
+  result: MedievalAlchemyGrenadeT2
+
+- type: CP14Recipe
+  id: MedievalAlchemyGrenadeT3
+  craftTime: 4
+  iconOverride: MedievalAlchemyGrenadeT3
+  stacks:
+    MedievalIronIngot: 6
+  entities:
+    MedievalExplosiveMixtureT3: 1
+  result: MedievalAlchemyGrenadeT3

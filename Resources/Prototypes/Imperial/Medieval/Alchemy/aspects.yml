@@ -1,0 +1,44 @@
+- type: reagent
+  id: AlchemyWater
+  name: alchemy-aspect-water
+  desc: alchemy-aspect-description
+  physicalDesc: reagent-physical-desc-glowing
+  group: Elements
+  flavor: bitter
+  color: "#458FFF"
+
+- type: reagent
+  id: AlchemyEarth
+  name: alchemy-aspect-earth
+  desc: alchemy-aspect-description
+  physicalDesc: reagent-physical-desc-glowing
+  group: Elements
+  flavor: bitter
+  color: "#927344"
+
+- type: reagent
+  id: AlchemyFire
+  name: alchemy-aspect-fire
+  desc: alchemy-aspect-description
+  physicalDesc: reagent-physical-desc-glowing
+  group: Elements
+  flavor: bitter
+  color: "#FF692F"
+
+- type: reagent
+  id: AlchemyLight
+  name: alchemy-aspect-light
+  desc: alchemy-aspect-description
+  physicalDesc: reagent-physical-desc-glowing
+  group: Elements
+  flavor: bitter
+  color: "#FFF3A0"
+
+- type: reagent
+  id: AlchemyDarkness
+  name: alchemy-aspect-darkness
+  desc: alchemy-aspect-description
+  physicalDesc: reagent-physical-desc-glowing
+  group: Elements
+  flavor: bitter
+  color: "#49305D"

@@ -1,0 +1,29 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "by fortengamer",
+    "size":  {
+                 "x":  64,
+                 "y":  64
+             },
+    "states":  [
+                   {
+                       "name":  "explosion",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          10
+                                      ]
+                                  ]
+                   }
+               ]
+}
