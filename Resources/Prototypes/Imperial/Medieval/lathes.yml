@@ -762,7 +762,7 @@
   - type: UserInterface
     interfaces:
       enum.CP14WorkbenchUiKey.Key:
-        type: CP14WorkbenchBoundUserInterface
+        type: MedievalWorkbenchBoundUserInterface
   - type: Damageable
     damageContainer: Inorganic
 
@@ -852,6 +852,7 @@
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
+    uiTheme: Leather
     recipes:
     - MedievalSewingNeedle
     - MedievalSewingPatches

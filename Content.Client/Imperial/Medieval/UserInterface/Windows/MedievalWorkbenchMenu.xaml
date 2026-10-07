@@ -1,0 +1,55 @@
+<ui:MedievalWindow
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="Content.Client.Imperial.Medieval.UserInterface.Windows.MedievalWorkbenchMenu"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:ui="clr-namespace:Content.Client.Imperial.Medieval.CapturePoint.UI.MedievalWindow"
+    Resizable="False">
+    <!-- fixed size, nothing jumps when the selection changes -->
+    <BoxContainer Orientation="Horizontal" SetSize="656 392" SeparationOverride="14">
+        <BoxContainer Orientation="Vertical" SetWidth="262" SeparationOverride="8">
+            <LineEdit Name="SearchBar" PlaceHolder="{Loc 'medieval-workbench-search'}" />
+            <PanelContainer Name="ListPanel" VerticalExpand="True">
+                <ScrollContainer Name="RecipesScroll" HScrollEnabled="False" VerticalExpand="True">
+                    <BoxContainer Name="RecipesBox" Orientation="Vertical" />
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+        <PanelContainer Name="DetailsPanel" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical">
+                <BoxContainer Orientation="Horizontal" SeparationOverride="12">
+                    <PanelContainer Name="PreviewPanel" SetSize="80 80">
+                        <TextureRect Name="ItemView"
+                                     Stretch="KeepCentered"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" />
+                    </PanelContainer>
+                    <!-- long descriptions scroll, long names wrap and push the materials down a bit -->
+                    <BoxContainer Orientation="Vertical" HorizontalExpand="True" MinHeight="80">
+                        <RichTextLabel Name="ItemName" />
+                        <ScrollContainer Name="DescriptionScroll" HScrollEnabled="False" VerticalExpand="True" MinHeight="36">
+                            <RichTextLabel Name="ItemDescription" Margin="0 0 6 0" />
+                        </ScrollContainer>
+                    </BoxContainer>
+                </BoxContainer>
+
+                <controls:HLine Name="Divider" Thickness="1" Margin="0 12 0 8" />
+
+                <Label Name="MaterialsLabel" Text="{Loc 'medieval-workbench-materials'}" />
+                <ScrollContainer Name="MaterialsScroll" HScrollEnabled="False" VerticalExpand="True" Margin="0 6 0 0">
+                    <BoxContainer Name="MaterialsBox" Orientation="Vertical" SeparationOverride="6" />
+                </ScrollContainer>
+                <Label Name="HintLabel" Text="{Loc 'medieval-workbench-hint'}" Margin="0 6 0 0" />
+
+                <ui:MedievalButton
+                    Name="CraftButton"
+                    Text="{Loc 'medieval-workbench-craft'}"
+                    HorizontalAlignment="Center"
+                    MinWidth="180"
+                    TextAlign="Center"
+                    Margin="0 8 0 0" />
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</ui:MedievalWindow>
