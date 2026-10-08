@@ -1,0 +1,183 @@
+# Rolled up: carried in a bag or on the back, can hold one rolled sleeping bag.
+- type: entity
+  parent: BaseItem
+  id: MedievalTravelTentFolded
+  name: rolled travel tent
+  description: A canvas tent rolled up around two poles. Pitch it on the ground; a sleeping bag fits inside the roll.
+  suffix: Medieval
+  components:
+  - type: MedievalTravelTentFolded
+    pitched: MedievalTravelTent
+  - type: Item
+    size: Large
+    sprite: Imperial/Medieval/TravelTent/folded.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/TravelTent/folded.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/TravelTent/folded.rsi
+    state: icon
+  - type: ItemSlots
+    slots:
+      sleeping_bag:
+        name: medieval-travel-tent-slot
+        whitelist:
+          tags:
+          - MedievalSleepingBag
+        insertSound: /Audio/Imperial/Medieval/clothing_equip.ogg
+        ejectSound: /Audio/Imperial/Medieval/clothing_unequip.ogg
+  - type: ContainerContainer
+    containers:
+      sleeping_bag: !type:ContainerSlot
+  - type: Construction
+    graph: MedievalTravelTent
+    node: MedievalTravelTent
+  - type: StaticPrice
+    price: 60
+
+# Pitched: stands on its tile and covers the one above. Canvas walls on the sides and the back
+# (low too, so crawling under them doesn't work); you get in and out only through the entrance,
+# and not while the flap is closed.
+- type: entity
+  parent: BaseStructure
+  id: MedievalTravelTent
+  name: travel tent
+  description: A light canvas tent on two poles. Lay your sleeping bag inside.
+  suffix: Medieval
+  components:
+  - type: MedievalTravelTent
+    folded: MedievalTravelTentFolded
+  - type: Sprite
+    sprite: Imperial/Medieval/TravelTent/tent.rsi
+    drawdepth: OverMobs
+    layers:
+    # 64x64, half a tile up so it covers the tile above; turns with the grid like the fixtures
+    - state: open
+      offset: 0, 0.5
+      map: ["flap"]
+  - type: Fixtures
+    fixtures:
+      wallWest:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,-0.42,0.5"
+        density: 100
+        mask:
+        - TableMask
+        layer:
+        - HighImpassable
+        - MidImpassable
+        - LowImpassable
+        - InteractImpassable
+      wallEast:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.42,-0.5,0.5,0.5"
+        density: 100
+        mask:
+        - TableMask
+        layer:
+        - HighImpassable
+        - MidImpassable
+        - LowImpassable
+        - InteractImpassable
+      back:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,0.5,0.5,1.45"
+        density: 100
+        mask:
+        - TableMask
+        layer:
+        - HighImpassable
+        - MidImpassable
+        - LowImpassable
+        - InteractImpassable
+      # blocks nothing; makes the tent clickable over its entrance instead of fading away under the mouse
+      inside:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.42,-0.42,0.42,0.5"
+        density: 1
+      entrance:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.42,-0.5,0.42,-0.42"
+        density: 100
+        hard: false
+        mask:
+        - TableMask
+        layer:
+        - HighImpassable
+        - MidImpassable
+        - LowImpassable
+        - InteractImpassable
+  - type: InteractionOutline
+  - type: SpriteFade
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        flap:
+          True: { state: closed }
+          False: { state: open }
+  - type: ItemToggle
+    onUse: false
+    verbToggleOn: medieval-travel-tent-close
+    verbToggleOff: medieval-travel-tent-open
+    soundActivate:
+      path: /Audio/Effects/rustle1.ogg
+    soundDeactivate:
+      path: /Audio/Effects/rustle2.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCloth1:
+            min: 2
+            max: 3
+          MaterialWoodPlank1:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/rustle3.ogg
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: construction
+  id: MedievalTravelTent
+  name: construction-recipe-medieval-travel-tent
+  description: construction-recipe-medieval-travel-tent-desc
+  graph: MedievalTravelTent
+  startNode: start
+  targetNode: MedievalTravelTent
+  category: construction-category-misc
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalTravelTent
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MedievalTravelTent
+      steps:
+      - material: Cloth
+        amount: 6
+        doAfter: 4
+      - material: WoodPlank
+        amount: 2
+      - material: MedievalRope
+        amount: 2
+  - node: MedievalTravelTent
+    entity: MedievalTravelTentFolded
