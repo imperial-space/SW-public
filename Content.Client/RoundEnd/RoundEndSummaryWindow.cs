@@ -170,7 +170,7 @@ namespace Content.Client.RoundEnd
             return playerManifestTab;
         }
 
-        // Imperial Medieval Last Words Start 
+        // Imperial Medieval Last Words Start
         private BoxContainer MakeLastWordsTab(string[] lastWords)
         {
             var lastWordsTab = new BoxContainer
@@ -234,6 +234,6 @@ namespace Content.Client.RoundEnd
         }
 
     }
-    // Imperial Medieval Last Words End 
+    // Imperial Medieval Last Words End
 
 }

@@ -27,6 +27,7 @@
   name: mug
   description: A mug.
   components:
+  - type: MugClinkable
   - type: Sprite
     sprite: Objects/Consumable/Drinks/mug.rsi
     layers:
