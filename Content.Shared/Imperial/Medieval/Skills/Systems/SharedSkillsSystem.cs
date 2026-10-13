@@ -1,6 +1,6 @@
-using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Popups;
 using System.Linq;
+using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -27,13 +27,8 @@ public abstract partial class SharedSkillsSystem : EntitySystem
 
         InitializeDesc();
 
-        SubscribeLocalEvent<SkillsComponent, ModifyClothingMovespeedModifierEvent>(OnModifyClothingSpeedMod);
-    }
-
-    private void OnModifyClothingSpeedMod(EntityUid uid, SkillsComponent comp, ref ModifyClothingMovespeedModifierEvent args)
-    {
-        //VitalityModifyClothingSpeedMod(uid, comp, ref args);
-        //EnduranceModifyClothingSpeedMod(uid, comp, ref args);
+        SubscribeLocalEvent<SkillsComponent, MapInitEvent>(OnSkillsMapInit);
+        SubscribeLocalEvent<SkillsComponent, AfterAutoHandleStateEvent>(OnSkillsState);
     }
 
     protected (SkillPrototype, int) GetSkill(EntityUid uid, string id)
@@ -126,6 +121,38 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         if (!TryComp<SkillsComponent>(uid, out var skillComponent))
             return 1;
         return skillComponent.Levels.GetValueOrDefault(skill, 1);
+    }
+
+    private void OnSkillsMapInit(EntityUid uid, SkillsComponent component, MapInitEvent args)
+    {
+        var changed = new SkillProfileChangedEvent(uid);
+        RaiseLocalEvent(ref changed);
+    }
+
+    private void OnSkillsState(EntityUid uid, SkillsComponent component, ref AfterAutoHandleStateEvent args)
+    {
+        var changed = new SkillProfileChangedEvent(uid);
+        RaiseLocalEvent(ref changed);
+    }
+
+    /// <summary>Changes one known attribute and notifies its independent effect systems.</summary>
+    public void SetSkillLevel(EntityUid uid, string skill, int level)
+    {
+        if (!_proto.HasIndex<SkillPrototype>(skill) || !TryComp<SkillsComponent>(uid, out var skills))
+            return;
+
+        var previous = SkillScaling.Level(skills, skill);
+        level = Math.Clamp(level, 1, SkillScaling.Legendary);
+        if (level == previous)
+            return;
+
+        skills.Levels[skill] = level;
+        var changed = new SkillLevelChangedEvent(skill, level, previous);
+        RaiseLocalEvent(uid, ref changed);
+        Dirty(uid, skills);
+
+        var profile = new SkillProfileChangedEvent(uid);
+        RaiseLocalEvent(ref profile);
     }
 
     public bool HasSkill(EntityUid uid, string skill)

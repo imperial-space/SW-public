@@ -12,6 +12,7 @@ public sealed partial class SkillsSystem
 {
     private void InitializeStrength()
     {
+        RegisterLevelHandler(StrengthId, StrengthLevelSet);
         SubscribeLocalEvent<SkillsComponent, CheckSignalSwitchActivationTimeEvent>(OnCheckSignalSwitchActivationTime);
         SubscribeLocalEvent<SkillsComponent, MeleeAttackEvent>(OnMeleeAttack);
     }

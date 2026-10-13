@@ -21,6 +21,8 @@ public sealed partial class SkillsSystem
 {
     private void InitializeVitality()
     {
+        RegisterLevelHandler(VitalityId, VitalityLevelSet);
+        RegisterUpdateHandler(UpdateVitality);
         SubscribeLocalEvent<SkillsComponent, GetSleepLevelModifiersEvent>(OnGetSleepModifiers);
         SubscribeLocalEvent<SkillsComponent, GetSuffocationDamageModifiersEvent>(OnModifySuffocationDamage);
         SubscribeLocalEvent<SkillsComponent, GetBloodRegenModifiersEvent>(OnModifyBloodRegen);

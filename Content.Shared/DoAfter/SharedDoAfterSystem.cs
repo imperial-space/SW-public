@@ -188,6 +188,14 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             return false;
         }
 
+        var preparing = new BeforeDoAfterStartEvent(args);
+        RaiseLocalEvent(args.User, ref preparing);
+        if (preparing.Cancelled)
+        {
+            id = null;
+            return false;
+        }
+
         // Duplicate blocking & cancellation.
         if (!ProcessDuplicates(args, comp))
         {

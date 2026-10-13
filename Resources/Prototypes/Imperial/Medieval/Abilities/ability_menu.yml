@@ -1,0 +1,15 @@
+- type: entity
+  id: ActionAbilityMenu
+  name: abilities
+  description: Open your available abilities.
+  components:
+  - type: Action
+    raiseOnUser: true
+    clientExclusive: true
+    checkCanInteract: false
+    checkConsciousness: true
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/ability_menu.rsi
+      state: menu
+  - type: InstantAction
+    event: !type:OpenAbilityMenuEvent

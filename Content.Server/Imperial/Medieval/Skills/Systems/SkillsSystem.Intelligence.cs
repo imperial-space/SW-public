@@ -24,11 +24,19 @@ public sealed partial class SkillsSystem
 
     private void InitializeIntelligence()
     {
+        RegisterLevelHandler(IntelligenceId, IntelligenceLevelSet);
+        SubscribeLocalEvent<SkillsComponent, SkillProfileAppliedEvent>(OnIntelligenceProfileApplied);
         SubscribeLocalEvent<SkillsComponent, GetHealingSpeedModifiersEvent>(OnGetHealingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, CheckWorkbenchCraftSpeedModifiersEvent>(OnGetCraftingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, AccentGetEvent>(OnAccent);
 
         SubscribeNetworkEvent<GetEnteredChatTextResponseMessage>(OnGetMessage);
+    }
+
+    private void OnIntelligenceProfileApplied(EntityUid uid, SkillsComponent comp, ref SkillProfileAppliedEvent args)
+    {
+        if (SkillScaling.Level(comp, IntelligenceId) >= 15)
+            EnsureComp<MagicRuneKnowledgeComponent>(uid);
     }
 
     private void OnGetHealingSpeedModifiers(EntityUid uid, SkillsComponent comp, ref GetHealingSpeedModifiersEvent args)

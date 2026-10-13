@@ -22,6 +22,10 @@ public sealed partial class DoAfterArgs
     [DataField(required: true)]
     public TimeSpan Delay;
 
+    /// <summary>Portable tasks may be performed while moving when assisted by a perk.</summary>
+    [DataField]
+    public bool AllowMovementAssistance;
+
     /// <summary>
     ///     Applicable target (if relevant)
     /// </summary>
@@ -254,6 +258,7 @@ public sealed partial class DoAfterArgs
         BreakOnHandChange = other.BreakOnHandChange;
         BreakOnDropItem = other.BreakOnDropItem;
         BreakOnMove = other.BreakOnMove;
+        AllowMovementAssistance = other.AllowMovementAssistance;
         BreakOnWeightlessMove = other.BreakOnWeightlessMove;
         MovementThreshold = other.MovementThreshold;
         DistanceThreshold = other.DistanceThreshold;

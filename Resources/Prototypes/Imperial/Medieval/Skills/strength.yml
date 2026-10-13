@@ -1,0 +1,22 @@
+- type: skill
+  id: Strength
+  name: skill-strength-name
+  color: "#ff9696"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/strength.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    FistPositiveDamageModifier: 0.06
+    FistNegativeDamageModifier: -0.03
+    WeaponPositiveDamageModifier: 0.01
+    WeaponNegativeDamageModifier: -0.02
+    PositiveUncuffDurationModifier: -0.2
+    NegativeUncuffDurationModifier: 0.2
+    FistMaxDamageModifier: 0.2
+    WeaponMaxDamageModifier: 0.07
+    PositiveGateInteractionTimeModifier: -0.07
+    NegativeGateInteractionTimeModifier: 0.1

@@ -347,12 +347,12 @@ public sealed class ForgedAbilitySystem : EntitySystem
 
                 if (!isToggled)
                 {
-                    skills.Levels["Strength"] = 20;
+                    EntityManager.System<SharedSkillsSystem>().SetSkillLevel(forgedUid, SharedSkillsSystem.StrengthId, 20);
                     module.SpeedModifier = module.BaseSpeedModifier - 0.15f;
                 }
                 else
                 {
-                    skills.Levels["Strength"] = 10;
+                    EntityManager.System<SharedSkillsSystem>().SetSkillLevel(forgedUid, SharedSkillsSystem.StrengthId, 10);
                     module.SpeedModifier = module.BaseSpeedModifier;
                 }
 
@@ -407,7 +407,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
     {
         if (!TryComp<SkillsComponent>(forgedUid, out var skills)) return;
 
-        skills.Levels["Intelligence"] = 20;
+        EntityManager.System<SharedSkillsSystem>().SetSkillLevel(forgedUid, SharedSkillsSystem.IntelligenceId, 20);
 
         Dirty(forgedUid, skills);
     }

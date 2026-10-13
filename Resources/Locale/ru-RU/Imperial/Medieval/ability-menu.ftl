@@ -1,0 +1,11 @@
+ability-menu-title = Способности
+ability-menu-hint = Нажмите на способность для применения. Перетащите её значок на общую панель или нажмите «На панель». Если нужна цель, выберите её в мире. Пассивные способности действуют автоматически.
+ability-menu-pin = На панель
+ability-menu-pinned = На панели
+ability-menu-pin-hint = Добавить способность на общую панель действий. Убрать её с панели можно правой кнопкой мыши.
+ability-menu-active = Активные способности
+ability-menu-passive = Пассивные способности
+ability-menu-no-active = Активные способности пока не доступны.
+ability-menu-cooldown = { $ability } — { $seconds } с
+ent-ActionAbilityMenu = Способности
+    .desc = Открыть доступные способности.
