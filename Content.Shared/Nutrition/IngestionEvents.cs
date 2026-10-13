@@ -21,9 +21,14 @@ public record struct IngestibleEvent(bool Cancelled = false);
 /// another entity from consuming the delicious reagents stored inside.
 /// </summary>
 /// <param name="User">The entity trying to feed us to an entity.</param>
+/// <param name="Target">The entity that will consume us.</param>
 [ByRefEvent]
-public record struct EdibleEvent(EntityUid User)
+public record struct EdibleEvent(EntityUid User, EntityUid Target)
 {
+    public EdibleEvent(EntityUid user) : this(user, user)
+    {
+    }
+
     public Entity<SolutionComponent>? Solution = null;
 
     public TimeSpan Time = TimeSpan.Zero;
