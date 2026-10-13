@@ -34,6 +34,9 @@
   description: She has very large fangs and bloodthirsty red eyes. You should not stay near her.
   categories: [ HideSpawnMenu ]
   components:
+  - type: LocalLight
+    energy: 0.4
+    radius: 6
   - type: Grammar
     attributes:
       gender: female
