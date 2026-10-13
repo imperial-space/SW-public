@@ -44,6 +44,13 @@ public sealed partial class TraitPrototype : IPrototype
     public ComponentRegistry Components { get; private set; } = default!;
 
     /// <summary>
+    /// If true, components of this trait replace the ones the entity already has (those are skipped otherwise).
+    /// A replaced component starts from its defaults plus the fields written in the trait, so write every field that matters.
+    /// </summary>
+    [DataField]
+    public bool OverrideExisting;
+
+    /// <summary>
     /// Gear that is given to the player, when they pick this trait.
     /// </summary>
     [DataField]
