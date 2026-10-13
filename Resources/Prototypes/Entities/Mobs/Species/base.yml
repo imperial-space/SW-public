@@ -305,6 +305,7 @@
       #Hissing: Speak
       #Elf: Speak
   - type: SleepingImperial
+  - type: StaminaStunArmorTarget
   - type: SoftCritEmotes
     emotes:
     - Cough
