@@ -274,6 +274,10 @@
   dollPrototype: MobIllitidDummy
   skinColoration: IllitidColors
   defaultSkinTone: "#a1889e"
+  minAge: 18
+  maxAge: 135
+  oldAge: 100
+  youngAge: 30
 
 - type: speciesBaseSprites
   id: MobIllitidSprites

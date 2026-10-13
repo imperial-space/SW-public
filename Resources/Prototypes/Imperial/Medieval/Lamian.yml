@@ -241,6 +241,10 @@
   markingLimits: MobLamianMarkingLimits
   dollPrototype: MobLamianDummy
   skinColoration: Hues
+  minAge: 18
+  maxAge: 200
+  oldAge: 160
+  youngAge: 30
 
 - type: markingPoints
   id: MobLamianMarkingLimits

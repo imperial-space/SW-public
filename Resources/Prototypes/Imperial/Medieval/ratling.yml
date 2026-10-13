@@ -218,6 +218,10 @@
   dollPrototype: MobRatlingDummy
   skinColoration: MoonwolfColors
   defaultSkinTone: "#5f5f5f"
+  minAge: 18
+  maxAge: 60
+  oldAge: 50
+  youngAge: 25
 
 - type: speciesBaseSprites
   id: MobRatlingSprites

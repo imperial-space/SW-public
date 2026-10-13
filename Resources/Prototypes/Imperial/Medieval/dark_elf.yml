@@ -232,6 +232,10 @@
   markingLimits: MobDarkElfMarkingLimits
   dollPrototype: MobDarkElfDummy
   skinColoration: DarkElfColors
+  minAge: 18
+  maxAge: 750
+  oldAge: 600
+  youngAge: 100
 
 - type: speciesBaseSprites
   id: MobDarkElfSprites
