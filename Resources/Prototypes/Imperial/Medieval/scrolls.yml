@@ -33,6 +33,11 @@
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Heat: 25
+    targetType: Magic
 
 - type: entity
   name: draft sword
@@ -62,6 +67,11 @@
       path: /Audio/Imperial/Medieval/sword_uneqip.ogg
     unequipSound:
       path: /Audio/Imperial/Medieval/sword_eqip.ogg
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Heat: 18
+    targetType: Magic
 
 - type: entity
   name: draft dagger
@@ -89,6 +99,11 @@
     slots:
     - belt
     quickEquip: false
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Heat: 10
+    targetType: Magic
 
 - type: entity
   name: MedievalDraftBaseBow
@@ -224,6 +239,7 @@
     damage:
       types:
         Piercing: 28
+        Heat: 5
   - type: TimedDespawn
     lifetime: 300    # 900 = 15 minutes
   - type: SpawnOnDespawn
@@ -294,6 +310,11 @@
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 56
+        Heat: 7
     
 - type: entity
   parent: MedievalQuiverSteel
@@ -535,6 +556,26 @@
     layers:
       - state: slime
 
+- type: entity
+  parent: BaseItem
+  id: MedievalScrollsPetMimic
+  name: mimic summoning scroll
+  description: A blueprint for some machine. It can be inserted into an autolathe.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalMobPetMimic
+    sound:
+      path: /Audio/Imperial/Medieval/scrolls/Magic_weap_ischez_4.ogg
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/scrolls.rsi
+    layers:
+      - state: mimic
+
 #CRAFTS
 - type: CP14Recipe
   id: MedievalScrollsHalberdCraft
@@ -597,3 +638,13 @@
     MedievalScrollBarrier: 1
   stacks:
     MedievalTopaz: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsPetMimicCraft
+  result: MedievalScrollsPetMimic
+  entities:
+    MedievalScrollBarrier: 1
+  stacks:
+    MedievalAdam: 1
+    MedievalEssence: 1
+

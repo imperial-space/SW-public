@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by RavenReaper, modified Niki_",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "mimike_pet_idel",
+      "directions": 4
+    },
+    {
+      "name": "mimike_pet_active",
+      "directions": 4
+    },
+    {
+      "name": "mimike_pet_action_1"
+    },
+    {
+      "name": "mimike_pet_action_2"
+    },
+    {
+      "name": "mimike_pet_walk",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    }
+  ]
+}
