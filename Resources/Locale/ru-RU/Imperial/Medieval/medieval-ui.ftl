@@ -50,3 +50,12 @@ medieval-mortar-menu-vessel-insert-tooltip = Поднесите кружку и�
 medieval-mortar-menu-vessel-eject-tooltip = Нажмите, чтобы ступка отдала сосуд
 medieval-mortar-menu-vessel-empty = Пусто
 medieval-mortar-menu-vessel-reagent = {$reagent}: {$amount}
+
+## Верстаки
+
+medieval-workbench-search = Поиск…
+medieval-workbench-can-craft = Можно сделать
+medieval-workbench-cannot-craft = Не хватает материалов
+medieval-workbench-materials = Материалы
+medieval-workbench-hint = Материалы кладутся на верстак.
+medieval-workbench-craft = Изготовить

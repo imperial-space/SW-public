@@ -28,15 +28,76 @@ public sealed class CP14WorkbenchUiCraftMessage : BoundUserInterfaceMessage
 
 
 [Serializable, NetSerializable]
-public sealed class CP14WorkbenchUiRecipesState : BoundUserInterfaceState
+public sealed class CP14WorkbenchUiRecipesState : BoundUserInterfaceState, IEquatable<CP14WorkbenchUiRecipesState>
 {
     // It's list (not hashset) BECAUSE CP14WorkbenchComponent contains list of recipes (WHY???)
     public readonly List<CP14WorkbenchUiRecipesEntry> Recipes;
 
-    public CP14WorkbenchUiRecipesState(List<CP14WorkbenchUiRecipesEntry> recipes)
+    // imperial medieval start
+    /// <summary>Entities on the workbench by prototype id.</summary>
+    public readonly Dictionary<string, int> PlacedEntities;
+
+    /// <summary>Stack counts on the workbench by stack type.</summary>
+    public readonly Dictionary<string, int> PlacedStacks;
+
+    /// <summary>Window look, see uiTheme on CP14WorkbenchComponent.</summary>
+    public readonly string Theme;
+
+    public CP14WorkbenchUiRecipesState(List<CP14WorkbenchUiRecipesEntry> recipes,
+        Dictionary<string, int>? placedEntities = null,
+        Dictionary<string, int>? placedStacks = null,
+        string theme = "")
     {
         Recipes = recipes;
+        PlacedEntities = placedEntities ?? new();
+        PlacedStacks = placedStacks ?? new();
+        Theme = theme;
     }
+
+    // lets SetUiState skip resending an unchanged state
+    public bool Equals(CP14WorkbenchUiRecipesState? other)
+    {
+        if (other is null)
+            return false;
+        if (ReferenceEquals(this, other))
+            return true;
+        if (Theme != other.Theme || Recipes.Count != other.Recipes.Count)
+            return false;
+
+        for (var i = 0; i < Recipes.Count; i++)
+        {
+            // entry Equals ignores Craftable
+            if (Recipes[i].ProtoId.Id != other.Recipes[i].ProtoId.Id || Recipes[i].Craftable != other.Recipes[i].Craftable)
+                return false;
+        }
+
+        return SameCounts(PlacedEntities, other.PlacedEntities) && SameCounts(PlacedStacks, other.PlacedStacks);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is CP14WorkbenchUiRecipesState other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Recipes.Count, PlacedEntities.Count, PlacedStacks.Count, Theme);
+    }
+
+    private static bool SameCounts(Dictionary<string, int> a, Dictionary<string, int> b)
+    {
+        if (a.Count != b.Count)
+            return false;
+
+        foreach (var (key, value) in a)
+        {
+            if (!b.TryGetValue(key, out var other) || other != value)
+                return false;
+        }
+
+        return true;
+    }
+    // imperial medieval end
 }
 
 [Serializable, NetSerializable]

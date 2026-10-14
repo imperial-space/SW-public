@@ -44,6 +44,9 @@ namespace Content.Client.Stylesheets
     // STLYE SHEETS WERE A MISTAKE. KILL ALL OF THIS WITH FIRE
     public sealed class StyleNano : StyleBase
     {
+        // imperial medieval - put on a VScrollBar to get the thin brown medieval one
+        public const string MedievalScrollBarClass = "MedievalScrollBar";
+
         public const string StyleClassBorderedWindowPanel = "BorderedWindowPanel";
         public const string StyleClassInventorySlotBackground = "InventorySlotBackground";
         public const string StyleClassHandSlotHighlight = "HandSlotHighlight";
@@ -1335,6 +1338,28 @@ namespace Content.Client.Stylesheets
                                 BackgroundColor = Color.FromHex("#303030"), ContentMarginTopOverride = 2, ContentMarginLeftOverride = 8
                             }),
                     }),
+                // imperial medieval start - thin brown scrollbar for the reworked medieval windows
+                new StyleRule(new SelectorElement(typeof(VScrollBar), new[] {MedievalScrollBarClass}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(ScrollBar.StylePropertyGrabber,
+                            new StyleBoxFlat { BackgroundColor = Color.FromHex("#5c4a3d"), ContentMarginLeftOverride = 4, ContentMarginTopOverride = 8 }),
+                    }),
+                new StyleRule(
+                    new SelectorElement(typeof(VScrollBar), new[] {MedievalScrollBarClass}, null, new[] {ScrollBar.StylePseudoClassHover}),
+                    new[]
+                    {
+                        new StyleProperty(ScrollBar.StylePropertyGrabber,
+                            new StyleBoxFlat { BackgroundColor = Color.FromHex("#8a6a3a"), ContentMarginLeftOverride = 4, ContentMarginTopOverride = 8 }),
+                    }),
+                new StyleRule(
+                    new SelectorElement(typeof(VScrollBar), new[] {MedievalScrollBarClass}, null, new[] {ScrollBar.StylePseudoClassGrabbed}),
+                    new[]
+                    {
+                        new StyleProperty(ScrollBar.StylePropertyGrabber,
+                            new StyleBoxFlat { BackgroundColor = Color.FromHex("#d4af37"), ContentMarginLeftOverride = 4, ContentMarginTopOverride = 8 }),
+                    }),
+                // imperial medieval end
                 // Imperial reconnect start
                 new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassUpper"}, null, null), new[]
                 {

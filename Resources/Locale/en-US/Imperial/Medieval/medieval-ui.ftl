@@ -50,3 +50,12 @@ medieval-mortar-menu-vessel-insert-tooltip = Bring a mug or a jug and the mortar
 medieval-mortar-menu-vessel-eject-tooltip = Click and the mortar gives the vessel back
 medieval-mortar-menu-vessel-empty = Empty
 medieval-mortar-menu-vessel-reagent = {$reagent}: {$amount}
+
+## Workbenches
+
+medieval-workbench-search = Search…
+medieval-workbench-can-craft = Can be made
+medieval-workbench-cannot-craft = Missing materials
+medieval-workbench-materials = Materials
+medieval-workbench-hint = Put the materials on the workbench.
+medieval-workbench-craft = Craft
