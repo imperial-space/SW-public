@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.ImperialStore;
 
 
 [Serializable, NetSerializable]
-public sealed class ImperialStoreUpdateState(HashSet<ImperialListingData> listings, Dictionary<ProtoId<ImperialCurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund) : BoundUserInterfaceState
+public sealed class ImperialStoreUpdateState(HashSet<ImperialListingData> listings, Dictionary<ProtoId<ImperialCurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund, List<string?>? slots = null, List<string>? selectableSchools = null) : BoundUserInterfaceState
 {
     public readonly HashSet<ImperialListingData> Listings = listings;
 
@@ -15,4 +15,9 @@ public sealed class ImperialStoreUpdateState(HashSet<ImperialListingData> listin
     public readonly bool ShowFooter = showFooter;
 
     public readonly bool AllowRefund = allowRefund;
+
+    // imperial medieval - essence slots: the school in every slot (null is empty) and the schools that can be put into a slot now
+    public readonly List<string?> Slots = slots ?? [];
+
+    public readonly List<string> SelectableSchools = selectableSchools ?? [];
 }

@@ -61,4 +61,10 @@ public sealed partial class ImperialCurrencyPrototype : IPrototype
     /// </summary>
     [DataField("canWithdraw")]
     public bool CanWithdraw { get; private set; } = true;
+
+    /// <summary>
+    /// imperial medieval - set if the currency is a school of magic that can be put into an essence slot of a grimoire.
+    /// </summary>
+    [DataField]
+    public ImperialSchoolData? School;
 }

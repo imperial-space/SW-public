@@ -6,6 +6,14 @@
   canWithdraw: false
   cash:
     1: MagicMedievalLight1
+  school:
+    order: 1
+    name: foliant-school-MagicMedievalLight
+    word: imperial-store-slot-word-light
+    color: "#FFE57E"
+    effect: ImperialStoreSlotEffectLight
+    rune: rune_light.png
+    clothColor: "#a67c24"
 
 # Entity
 

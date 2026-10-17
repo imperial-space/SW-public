@@ -22,6 +22,7 @@ public sealed partial class BindStoreOnEquipSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
         SubscribeLocalEvent<BindStoreOnEquipComponent, GotEquippedHandEvent>(OnGotEquipped);
         SubscribeLocalEvent<BindStoreOnEquipComponent, EntityTerminatingEvent>(OnGrimoireTerminating);
+        SubscribeLocalEvent<BindStoreOnEquipComponent, ImperialStoreSlotsChangedEvent>(OnSlotsChanged); // imperial medieval - essence slots
     }
 
     private void OnPlayerSpawn(PlayerSpawnCompleteEvent args)
@@ -49,6 +50,20 @@ public sealed partial class BindStoreOnEquipSystem : EntitySystem
         EntityUid uid,
         BindStoreOnEquipComponent component,
         ref EntityTerminatingEvent args)
+    {
+        if (component.OwnerUid is not { } ownerUid ||
+            !TryComp<GrimoireOwnerComponent>(ownerUid, out var owner) ||
+            owner.GrimoireUid != uid ||
+            !TryComp<ImperialStoreComponent>(uid, out var store))
+        {
+            return;
+        }
+
+        SaveStoreState(owner, store);
+    }
+
+    // imperial medieval - slots are part of the saved state, so they stay when the grimoire is taken off or replaced
+    private void OnSlotsChanged(EntityUid uid, BindStoreOnEquipComponent component, ref ImperialStoreSlotsChangedEvent args)
     {
         if (component.OwnerUid is not { } ownerUid ||
             !TryComp<GrimoireOwnerComponent>(ownerUid, out var owner) ||

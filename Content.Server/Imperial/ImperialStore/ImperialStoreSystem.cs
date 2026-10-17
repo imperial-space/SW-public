@@ -42,6 +42,7 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
         InitializeUi();
         InitializeCommand();
         InitializeRefund();
+        InitializeSlots(); // imperial medieval - essence slots
 
         Subs.CVar(_cfg, ICCVars.StoreBalanceUpdateInterval, value => BalanceUpdateInterval = value, true);
     }
@@ -236,16 +237,22 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
         {
             store.LastBonusIndex = --store.LastBonusIndex < 0 ? store.BonusCount - 1 : store.LastBonusIndex;
             store.Bonuses[store.LastBonusIndex] = currency;
-            store.BonusSum.Clear();
-
-            foreach (Dictionary<string, FixedPoint2> bonus in store.Bonuses)
-            {
-                if (bonus != null)
-                    store.BonusSum = CurrencySum(store.BonusSum, bonus);
-            }
+            RecalculateBonusSum(store);
         }
 
         return true;
+    }
+
+    // imperial medieval - the sum of the bonuses is also needed when an essence slot changes
+    private void RecalculateBonusSum(ImperialStoreComponent store)
+    {
+        store.BonusSum.Clear();
+
+        foreach (Dictionary<string, FixedPoint2> bonus in store.Bonuses)
+        {
+            if (bonus != null)
+                store.BonusSum = CurrencySum(store.BonusSum, bonus);
+        }
     }
 
     #endregion

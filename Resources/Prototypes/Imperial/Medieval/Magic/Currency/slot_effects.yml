@@ -1,0 +1,73 @@
+# Effects around the player while a school is put into an essence slot of a grimoire (3 seconds).
+# All of them are the cast circle of the fireball (fire/fireball.rsi, state beginner): it lasts exactly 3 seconds, plays once
+# (it grows slowly, holds and fades) and is tinted in the colour of the school. The lifetime is the length of the animation.
+# The colour of a child must be the colour of its school (the school.color of the currency in this folder), it is set in the sprite and in the light.
+# The categories are not inherited, every child hides itself from the spawn menu.
+
+- type: entity
+  id: ImperialStoreSlotEffectBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 1
+  - type: TimedDespawn
+    lifetime: 3.0
+
+- type: entity
+  id: ImperialStoreSlotEffectFire
+  parent: ImperialStoreSlotEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#FF5900"
+  - type: PointLight
+    color: "#FF5900"
+
+- type: entity
+  id: ImperialStoreSlotEffectLight
+  parent: ImperialStoreSlotEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#FFE57E"
+  - type: PointLight
+    color: "#FFE57E"
+
+- type: entity
+  id: ImperialStoreSlotEffectVodka
+  parent: ImperialStoreSlotEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#78C6ED"
+  - type: PointLight
+    color: "#78C6ED"
+
+- type: entity
+  id: ImperialStoreSlotEffectEarth
+  parent: ImperialStoreSlotEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#838275"
+  - type: PointLight
+    color: "#838275"
+    energy: 0.8
+
+- type: entity
+  id: ImperialStoreSlotEffectDarkness
+  parent: ImperialStoreSlotEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#B600FF"
+  - type: PointLight
+    color: "#B600FF"

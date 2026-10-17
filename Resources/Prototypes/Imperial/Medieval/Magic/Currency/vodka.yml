@@ -6,6 +6,13 @@
   canWithdraw: false
   cash:
     1: MagicMedievalVodka1
+  school:
+    order: 2
+    name: foliant-school-MagicMedievalVodka
+    word: imperial-store-slot-word-vodka
+    color: "#78C6ED"
+    effect: ImperialStoreSlotEffectVodka
+    rune: rune_water.png
 
 # Entity
 

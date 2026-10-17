@@ -1,23 +1,14 @@
-using System.Linq;
+using Content.Client.Imperial.ImperialStore.Ui.Foliant;
 using Content.Shared.Imperial.ImperialStore;
 using Robust.Client.UserInterface;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.Imperial.ImperialStore.Ui;
 
 
 public sealed class ImperialStoreBoundUserInterface : BoundUserInterface
 {
-    private IPrototypeManager _prototypeManager = default!;
-
     [ViewVariables]
-    private ImperialStoreMenu? _menu;
-
-    [ViewVariables]
-    private string _search = string.Empty;
-
-    [ViewVariables]
-    private HashSet<ImperialListingData> _listings = new();
+    private FoliantMenu? _menu;
 
     public ImperialStoreBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -27,43 +18,18 @@ public sealed class ImperialStoreBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _menu = this.CreateWindow<ImperialStoreMenu>();
+        // imperial medieval - the grimoire window, see FoliantMenu
+        _menu = this.CreateWindow<FoliantMenu>();
 
         if (EntMan.TryGetComponent<ImperialStoreComponent>(Owner, out var store))
-        {
-            _menu.Title = Loc.GetString(store.Name);
-            _menu.WithdrawButtonText = Loc.GetString(store.WithdrawText);
-            _menu.СurrencyTitle = Loc.GetString(store.CurrencyTitle);
-            _menu.UpdateWithdrawButton(store.WithdrawText);
-        }
+            _menu.SetStore(store);
 
-        _menu.OnListingButtonPressed += (_, listing) =>
-        {
-            SendMessage(new ImperialStoreBuyListingMessage(listing));
-        };
-
-        _menu.OnCategoryButtonPressed += (_, category) =>
-        {
-            _menu.CurrentCategory = category;
-            _menu?.UpdateListing();
-        };
-
-        _menu.OnWithdrawAttempt += (_, type, amount) =>
-        {
-            SendMessage(new ImperialStoreRequestWithdrawMessage(type, amount));
-        };
-
-        _menu.SearchTextUpdated += (_, search) =>
-        {
-            _search = search.Trim().ToLowerInvariant();
-            UpdateListingsWithSearchFilter();
-        };
-
-        _menu.OnRefundAttempt += (_) =>
-        {
-            SendMessage(new ImperialStoreRequestRefundMessage());
-        };
+        _menu.OnBuy += listing => SendMessage(new ImperialStoreBuyListingMessage(listing));
+        _menu.OnSetSlot += (slot, school) => SendMessage(new ImperialStoreSetSlotMessage(slot, school));
+        _menu.OnWithdraw += (type, amount) => SendMessage(new ImperialStoreRequestWithdrawMessage(type, amount));
+        _menu.OnRefund += () => SendMessage(new ImperialStoreRequestRefundMessage());
     }
+
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
@@ -71,30 +37,8 @@ public sealed class ImperialStoreBoundUserInterface : BoundUserInterface
         switch (state)
         {
             case ImperialStoreUpdateState msg:
-                _listings = msg.Listings;
-
-                _menu?.UpdateBalance(msg.Balance);
-                UpdateListingsWithSearchFilter();
-                _menu?.SetFooterVisibility(msg.ShowFooter);
-                _menu?.UpdateRefund(msg.AllowRefund);
+                _menu?.UpdateState(msg);
                 break;
         }
-    }
-
-    private void UpdateListingsWithSearchFilter()
-    {
-        if (_menu == null)
-            return;
-
-        var filteredListings = new HashSet<ImperialListingData>(_listings);
-        if (!string.IsNullOrEmpty(_search))
-        {
-            filteredListings.RemoveWhere(listingData =>
-                !ImperialListingLocalisationHelpers.GetLocalisedNameOrEntityName(listingData, _prototypeManager).Trim().ToLowerInvariant().Contains(_search) &&
-                !ImperialListingLocalisationHelpers.GetLocalisedDescriptionOrEntityDescription(listingData, _prototypeManager).Trim().ToLowerInvariant().Contains(_search)
-            );
-        }
-        _menu.PopulateStoreCategoryButtons(filteredListings);
-        _menu.UpdateListing(filteredListings.ToList());
     }
 }

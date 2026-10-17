@@ -17,6 +17,9 @@
         type: ImperialStoreBoundUserInterface
   - type: ActivatableUI
     key: enum.ImperialStoreUiKey.Key
+    # the book opens only while it is held in a hand, not from a backpack or from the floor
+    inHandsOnly: true
+    requireActiveHand: false
   - type: BindStoreOnEquip
   - type: ImperialStore
     name: medieval-store-name
@@ -45,6 +48,8 @@
       MagicMedievalDarkness: 10
       ArchmagePoints: 1
     bonusCount: 5
+    buySuccessSound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/magic_craft.ogg
 
 - type: entity
   parent: MedievalSpellBookBase
@@ -54,6 +59,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: archmage
     balance:
       MagicMedievalFire: 100
       MagicMedievalLight: 100
@@ -70,6 +76,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: wanderer
     balance:
       MagicMedievalFire: 70
       MagicMedievalLight: 70
@@ -102,6 +109,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: insurgent
     balance:
       MagicMedievalFire: 70
       MagicMedievalLight: 70
@@ -118,6 +126,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: legion
     balance:
       MagicMedievalFire: 70
       MagicMedievalLight: 70
@@ -151,6 +160,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: necro
     balance:
       MagicMedievalFire: 55
       MagicMedievalLight: 55
@@ -167,6 +177,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: student
     balance:
       MagicMedievalFire: 45
       MagicMedievalLight: 45
@@ -184,6 +195,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: student
     balance:
       MagicMedievalFire: 50
       MagicMedievalLight: 25
@@ -200,6 +212,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: student
     balance:
       MagicMedievalFire: 25
       MagicMedievalLight: 25
@@ -216,6 +229,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: student
     balance:
       MagicMedievalFire: 25
       MagicMedievalLight: 50
@@ -232,6 +246,7 @@
   suffix: Empty
   components:
   - type: ImperialStore
+    foliantTheme: student
     balance:
       MagicMedievalFire: 25
       MagicMedievalLight: 25

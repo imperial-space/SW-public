@@ -1,0 +1,20 @@
+# Window of the grimoire (Foliant)
+foliant-search = Search the records
+foliant-learn = Learn
+foliant-refund = Erase what was learned
+foliant-circle-title = Rune circle
+foliant-slot-empty = Empty
+foliant-pick-title = Whose gift to call?
+foliant-pick-select = Inscribe
+foliant-pick-lack = There is not enough power for this gift yet
+foliant-pick-clear = Dispel the gift
+foliant-school-MagicMedievalFire = Fire
+foliant-school-MagicMedievalLight = Light
+foliant-school-MagicMedievalVodka = Water
+foliant-school-MagicMedievalEarth = Earth
+foliant-school-MagicMedievalDarkness = Darkness
+foliant-seals = archmage seals
+foliant-empty = There are no records here yet
+foliant-empty-search = No such thing in the records
+foliant-ritual-hint-empty = Touch a socket to inscribe a gift
+foliant-ritual-hint-full = Touch a socket to change its gift
