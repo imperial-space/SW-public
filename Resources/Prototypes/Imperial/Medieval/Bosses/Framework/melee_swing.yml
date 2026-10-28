@@ -1,0 +1,9 @@
+- type: entity
+  id: CustomMeleeSwingLeftToRight
+  parent: CP14WeaponArcSlash
+  categories: [HideSpawnMenu]
+
+- type: entity
+  id: CustomMeleeSwingRightToLeft
+  parent: CP14WeaponArcSlash
+  categories: [HideSpawnMenu]

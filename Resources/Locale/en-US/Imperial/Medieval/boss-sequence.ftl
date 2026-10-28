@@ -1,0 +1,9 @@
+boss-sequence-release-name = { Revenant_Boss_Requiem }
+boss-sequence-preload-name = { Revenant_Boss_Sentencing }
+boss-sequence-strike-name = { Revenant_Boss_Sequence_Strike_Name }
+cmd-bosssequence-desc = { Boss_Encounter_Command_Bosssequence_Desc }
+cmd-bosssequence-help = { Boss_Encounter_Command_Bosssequence_Help }
+cmd-bosssequence-unavailable = { Boss_Encounter_Command_Bosssequence_Unavailable }
+cmd-bosssequence-started = { Boss_Encounter_Command_Bosssequence_Started }
+cmd-bosssequence-cancelled = { Boss_Encounter_Command_Bosssequence_Cancelled }
+cmd-bosssequence-no-sequence = { Boss_Encounter_Command_Bosssequence_No_Sequence }

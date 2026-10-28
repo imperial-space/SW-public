@@ -225,6 +225,8 @@ namespace Content.Client.UserInterface.Controls
         public void SetEntity(EntityUid? ent)
         {
             SpriteView.SetEntity(ent);
+
+            SpriteView.InvalidateMeasure();
             SpriteView.Visible = true;
             ProtoView.Visible = false;
             UpdateButtonTexture();
@@ -236,6 +238,7 @@ namespace Content.Client.UserInterface.Controls
         public void SetPrototype(EntProtoId? proto, bool fade)
         {
             ProtoView.SetPrototype(proto);
+            ProtoView.InvalidateMeasure();
             SpriteView.Visible = false;
             ProtoView.Visible = true;
 

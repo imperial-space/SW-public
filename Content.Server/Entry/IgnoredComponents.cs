@@ -22,6 +22,8 @@ namespace Content.Server.Entry
             "OptionsVisualizer",
             "CP14WaveShader", // Imperial medieval CP14 Wave shader,
             "AnomalyScannerScreen",
+            "PhysicsMap",
+            "MovedGrids",
             "MultipartMachineGhost"
         };
     }

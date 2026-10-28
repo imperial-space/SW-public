@@ -112,10 +112,18 @@ public record class EntityEffectBaseArgs
 
     public IEntityManager EntityManager = default!;
 
+    public EntityUid? Origin;
+
     public EntityEffectBaseArgs(EntityUid targetEntity, IEntityManager entityManager)
     {
         TargetEntity = targetEntity;
         EntityManager = entityManager;
+    }
+
+    public EntityEffectBaseArgs(EntityUid targetEntity, IEntityManager entityManager, EntityUid? origin)
+        : this(targetEntity, entityManager)
+    {
+        Origin = origin;
     }
 }
 

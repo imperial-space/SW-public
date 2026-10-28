@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "copyright": "Pjetaprovided Boss_Morbius.png for local testing.",
+    "size": {
+        "x": 128,
+        "y": 128
+    },
+    "states": [
+        {
+            "name": "idle",
+            "directions": 1
+        }
+    ]
+}

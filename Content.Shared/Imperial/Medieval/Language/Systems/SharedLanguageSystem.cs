@@ -32,7 +32,11 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     private void OnGetLanguages(EntityUid uid, LanguageSpeakerComponent comp, ref GetLanguagesEvent args)
     {
         args.Current = comp.CurrentLanguage ?? Universal;
-        args.Languages = comp.Languages;
+
+        args.Languages = HasComp<UniversalLanguageSpeakerComponent>(uid) &&
+            HasComp<Content.Shared.Imperial.Medieval.Boss.BossActorComponent>(uid)
+            ? _proto.EnumeratePrototypes<LanguagePrototype>().ToDictionary(language => language.ID, _ => LanguageKnowledge.Speak)
+            : comp.Languages;
 
         if (_container.TryGetContainer(uid, ImplanterComponent.ImplantSlotId, out var implantContainer))
         {

@@ -1,0 +1,11 @@
+boss-cast-default-name = { Revenant_Boss_Cast_Default_Name }
+boss-cast-preview-name = { Revenant_Boss_Cast_Preview_Name }
+cmd-bosscast-desc = { Boss_Encounter_Command_Bosscast_Desc }
+cmd-bosscast-help = { Boss_Encounter_Command_Bosscast_Help }
+cmd-bosscast-select-boss = { Boss_Encounter_Command_Bosscast_Select_Boss }
+cmd-bosscast-duration = { Boss_Encounter_Command_Bosscast_Duration }
+cmd-bosscast-name-too-long = { Boss_Encounter_Command_Bosscast_Name_Too_Long }
+cmd-bosscast-unavailable = { Boss_Encounter_Command_Bosscast_Unavailable }
+cmd-bosscast-started = { Boss_Encounter_Command_Bosscast_Started }
+cmd-bosscast-cancelled = { Boss_Encounter_Command_Bosscast_Cancelled }
+cmd-bosscast-no-cast = { Boss_Encounter_Command_Bosscast_No_Cast }

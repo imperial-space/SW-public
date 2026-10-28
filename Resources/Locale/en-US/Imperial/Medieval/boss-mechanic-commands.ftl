@@ -1,0 +1,16 @@
+cmd-crescentreap-desc = { Boss_Encounter_Command_Crescentreap_Desc }
+cmd-crescentreap-help = { Boss_Encounter_Command_Crescentreap_Help }
+cmd-midnightvigil-desc = { Boss_Encounter_Command_Midnightvigil_Desc }
+cmd-midnightvigil-help = { Boss_Encounter_Command_Midnightvigil_Help }
+cmd-blackout-desc = { Boss_Encounter_Command_Blackout_Desc }
+cmd-blackout-help = { Boss_Encounter_Command_Blackout_Help }
+cmd-deathsembrace-desc = { Boss_Encounter_Command_Deathsembrace_Desc }
+cmd-deathsembrace-help = { Boss_Encounter_Command_Deathsembrace_Help }
+cmd-sepulchralcross-desc = { Boss_Encounter_Command_Sepulchralcross_Desc }
+cmd-sepulchralcross-help = { Boss_Encounter_Command_Sepulchralcross_Help }
+cmd-sepulchraldivide-desc = { Boss_Encounter_Command_Sepulchraldivide_Desc }
+cmd-sepulchraldivide-help = { Boss_Encounter_Command_Sepulchraldivide_Help }
+cmd-reaperssentence-desc = { Boss_Encounter_Command_Reaperssentence_Desc }
+cmd-reaperssentence-help = { Boss_Encounter_Command_Reaperssentence_Help }
+cmd-paleconstellation-desc = { Boss_Encounter_Command_Paleconstellation_Desc }
+cmd-paleconstellation-help = { Boss_Encounter_Command_Paleconstellation_Help }

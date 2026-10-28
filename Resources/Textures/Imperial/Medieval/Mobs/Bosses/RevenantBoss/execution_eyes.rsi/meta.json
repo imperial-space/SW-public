@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "copyright": "Review-only Execution pixels generated with built-in imagegen; original sources and prompts retained. Free for anyone to use, modify and redistribute under CC0 1.0.",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "eyes",
+      "directions": 1,
+      "delays": [
+        [
+          0.96
+        ]
+      ]
+    },
+    {
+      "name": "shadow",
+      "directions": 1,
+      "delays": [
+        [
+          0.24,
+          0.24,
+          0.24,
+          0.24
+        ]
+      ]
+    }
+  ],
+  "license": "CC0-1.0"
+}

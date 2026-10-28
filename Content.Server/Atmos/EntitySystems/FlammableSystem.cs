@@ -101,6 +101,8 @@ namespace Content.Server.Atmos.EntitySystems
                 if (!TryComp<FlammableComponent>(entity, out var flammable))
                     continue;
 
+                if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksFriendlyEffect(entity, args.User))
+                    continue;
                 AdjustFireStacks(entity, component.FireStacks, flammable);
                 if (component.FireStacks >= 0)
                     Ignite(entity, args.Weapon, flammable, args.User);
@@ -118,6 +120,8 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
 
             var otherEnt = args.OtherEntity;
+            if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksFriendlyEffect(otherEnt, uid))
+                return;
 
             if (!TryComp(otherEnt, out FlammableComponent? flammable))
                 return;
@@ -302,6 +306,8 @@ namespace Content.Server.Atmos.EntitySystems
             if (!Resolve(uid, ref flammable))
                 return;
 
+            if (stacks > flammable.FireStacks && EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksFriendlyEffect(uid))
+                return;
             flammable.FireStacks = MathF.Min(MathF.Max(flammable.MinimumFireStacks, stacks), flammable.MaximumFireStacks);
 
             if (flammable.FireStacks <= 0)
@@ -339,6 +345,9 @@ namespace Content.Server.Atmos.EntitySystems
             EntityUid? ignitionSourceUser = null)
         {
             if (!Resolve(uid, ref flammable))
+                return;
+
+            if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksFriendlyEffect(uid, ignitionSourceUser ?? ignitionSource))
                 return;
 
             if (flammable.AlwaysCombustible)

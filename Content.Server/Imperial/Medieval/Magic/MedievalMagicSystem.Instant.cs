@@ -28,9 +28,9 @@ public sealed partial class MedievalMagicSystem
         };
         RaiseLocalEvent(action, ref ev);
 
-        if (ev.Cancelled) return;
+        if (ev.Cancelled || !CanSpawnArenaSpell(ev.SpawnedEntityPrototype, ev.Coordinates, performer, action)) return;
 
-        var spawndEntity = Spawn(ev.SpawnedEntityPrototype, ev.Coordinates);
+        var spawndEntity = SpawnArenaSpell(ev.SpawnedEntityPrototype, ev.Coordinates, performer);
         _handsSystem.TryPickupAnyHand(ev.Performer, spawndEntity);
 
         var spawnEv = new MedievalAfterSpawnEntityBySpellEvent()
@@ -61,9 +61,9 @@ public sealed partial class MedievalMagicSystem
         };
         RaiseLocalEvent(action, ref ev);
 
-        if (ev.Cancelled) return;
+        if (ev.Cancelled || !CanSpawnArenaSpell(ev.SpawnedEntityPrototype, ev.Coordinates, performer, action)) return;
 
-        var ent = Spawn(ev.SpawnedEntityPrototype, ev.Coordinates);
+        var ent = SpawnArenaSpell(ev.SpawnedEntityPrototype, ev.Coordinates, performer);
 
         var spawnEv = new MedievalAfterSpawnEntityBySpellEvent()
         {

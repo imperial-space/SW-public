@@ -1,3 +1,5 @@
+using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
@@ -17,6 +19,7 @@ public sealed partial class BossHealthBarUiController : UIController
 {
     [Dependency] private readonly IPlayerManager _player = default!;
 
+    [Dependency] private readonly IConfigurationManager _config = default!;
     private BossHealthBarUI? _bossBar;
 
     public override void Initialize()
@@ -68,6 +71,24 @@ public sealed partial class BossHealthBarUiController : UIController
 
         if (_bossBar == null)
             return;
+
+        if (!_config.GetCVar(BossHudCVars.Enabled))
+        {
+            _bossBar.Visible = false;
+            return;
+        }
+        var scale = BossHudLayout.Scale(_config, _bossBar.Parent?.Size.X ?? 0, 500);
+        _bossBar.SetDisplayScale(scale);
+        if (_config.GetCVar(BossHudCVars.CustomPosition)) BossHudLayout.ApplyPosition(_bossBar, _config);
+        else
+        {
+            LayoutContainer.SetAnchorPreset(_bossBar, LayoutContainer.LayoutPreset.CenterTop);
+            LayoutContainer.SetGrowHorizontal(_bossBar, LayoutContainer.GrowDirection.Both);
+            LayoutContainer.SetMarginLeft(_bossBar, -250 * scale);
+            LayoutContainer.SetMarginRight(_bossBar, 250 * scale);
+            LayoutContainer.SetMarginTop(_bossBar, 24);
+            LayoutContainer.SetMarginBottom(_bossBar, 0);
+        }
 
         if (_player.LocalEntity is not { } localPlayer ||
             !EntityManager.TryGetComponent<TransformComponent>(localPlayer, out var playerXform) ||

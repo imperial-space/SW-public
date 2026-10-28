@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "copyright": "User-provided Gate closed.png and Gate open.png for local testing. Original license was not supplied.",
+    "size": {
+        "x": 96,
+        "y": 96
+    },
+    "states": [
+        {
+            "name": "closed",
+            "directions": 1
+        },
+        {
+            "name": "open",
+            "directions": 1
+        }
+    ]
+}

@@ -28,7 +28,7 @@ public sealed partial class MedievalSpellSleepSystem : EntitySystem
     private void OnCollide(EntityUid uid, MedievalSpellSleepComponent component, ref EndCollideEvent args)
     {
         if (!_timing.IsFirstTimePredicted) return;
-        if (!CanPutToSleep(args.OtherEntity, component)) return;
+        if (!CanPutToSleep(args.OtherEntity, component, uid)) return;
 
         if (!TryComp<ProjectileComponent>(uid, out var projectileComponent)) return;
         if (projectileComponent.Shooter == null) return;
@@ -45,8 +45,8 @@ public sealed partial class MedievalSpellSleepSystem : EntitySystem
 
     private void OnLose(EntityUid uid, MedievalSleepTargetComponent component, LoseInMinigameEvent args)
     {
-        if (!component.CanPutToSleep) return;
-        if (HasComp<ForcedSleepImmuneComponent>(uid)) return;
+        if (!component.CanPutToSleep || HasComp<ForcedSleepImmuneComponent>(uid) ||
+            EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid, component.Caster)) return;
 
         var sleepComponent = EnsureComp<SleepingComponent>(uid);
 
@@ -59,10 +59,11 @@ public sealed partial class MedievalSpellSleepSystem : EntitySystem
 
     #region Helpers
 
-    private bool CanPutToSleep(EntityUid toSleep, MedievalSpellSleepComponent component)
+    private bool CanPutToSleep(EntityUid toSleep, MedievalSpellSleepComponent component, EntityUid source)
 
     {
-        if (!HasComp<MobStateComponent>(toSleep)) return false;
+        if (!HasComp<MobStateComponent>(toSleep) ||
+            EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(toSleep, source)) return false;
 
         foreach (var componentID in component.SleepBlacklistComponents.Keys)
         {
@@ -79,6 +80,9 @@ public sealed partial class MedievalSpellSleepSystem : EntitySystem
     {
         var sleepComp1 = EnsureComp<MedievalSleepTargetComponent>(uid1);
         var sleepComp2 = EnsureComp<MedievalSleepTargetComponent>(uid2);
+
+        sleepComp1.Caster = uid1;
+        sleepComp2.Caster = uid1;
 
         sleepComp1.WakeThreshold = component.WakeThreshold;
         sleepComp1.Cooldown = component.Cooldown;

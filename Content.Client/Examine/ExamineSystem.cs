@@ -1,3 +1,4 @@
+using Content.Client.Imperial.Medieval.Items;
 using System.Linq;
 using System.Numerics;
 using System.Threading;
@@ -242,6 +243,7 @@ namespace Content.Client.Examine
                 var labelMessage = FormattedMessage.FromMarkupPermissive($"[bold]{itemName}[/bold]");
                 var label = new RichTextLabel();
                 label.SetMessage(labelMessage);
+                EntityManager.System<ItemNameColorSystem>().Apply(label, target);
                 hBox.AddChild(label);
             }
             else

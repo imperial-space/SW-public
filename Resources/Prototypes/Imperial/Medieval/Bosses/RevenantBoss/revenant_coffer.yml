@@ -1,0 +1,40 @@
+- type: entityTable
+  id: RevenantBossLoot
+  table: !type:AllSelector
+    children:
+    - id: RevenantBossScythe
+    - id: PlushieThrongler
+    - id: PlushieThrongler
+
+- type: entity
+  parent: MedievalChest3
+  id: RevenantBossCoffer
+  localizationId: Revenant_Boss_Chest
+  components:
+  - type: BossEncounterReward
+  - type: BossArenaRewardStorage
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: EntityStorage
+    isCollidableWhenOpen: false
+    showContents: false
+    enteringRange: 0.75
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/RevenantBossCoffer/coffer.rsi
+    scale: 0.5, 0.5
+    offset: 0, 0.5
+    layers:
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: Imperial/Medieval/Structures/RevenantBossCoffer/coffer.rsi
+    state: closed
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: RevenantBossLoot

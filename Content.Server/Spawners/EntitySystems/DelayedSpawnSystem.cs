@@ -19,7 +19,10 @@ public sealed class DelayedSpawnSystem : EntitySystem
         {
             if (comp.IsSpawned) continue;
             if (comp.SpawnTime > _timing.CurTime) continue;
+            var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+            using var source = rules.WithSource(uid);
             var entity = Spawn(comp.Proto, Transform(uid).Coordinates);
+            rules.TagSpell(entity, uid);
             if (comp.Attached)
                 _transform.SetParent(entity, uid);
             comp.IsSpawned = true;

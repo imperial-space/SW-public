@@ -173,6 +173,12 @@ public sealed partial class GunSystem : SharedGunSystem
                             var ray = new CollisionRay(from.Position, dir, hitscan.CollisionMask);
                             var rayCastResults =
                                 Physics.IntersectRay(from.MapId, ray, hitscan.MaxLength, lastUser, false).ToList();
+                            var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+                            if ((hitscan.Damage?.AnyPositive() == true || hitscan.StaminaDamage > 0) &&
+                                arenaRules.GetSource(user ?? gunUid) is { Arena: not null } source)
+                                rayCastResults.RemoveAll(hit => arenaRules.IsArena(hit.HitEntity) &&
+                                    (HasComp<Content.Shared.Imperial.Medieval.Boss.BossArenaCenterBlockerComponent>(hit.HitEntity) ||
+                                     arenaRules.BlocksFriendlyEffect(hit.HitEntity, source)));
                             if (!rayCastResults.Any())
                                 break;
 

@@ -1,0 +1,50 @@
+- type: tile
+  id: RevenantBossArenaPitFloor
+  sprite: /Textures/Imperial/Medieval/Tiles/RevenantArena/transparent.png
+  variants: 1
+  indestructible: true
+  name: Revenant_Boss_Pit_Floor
+  baseTurf: Space
+  isSubfloor: true
+  friction: 0.8
+  heatCapacity: 700000
+
+- type: entity
+  id: RevenantBossArenaChasm
+  localizationId: Revenant_Boss_Chasm
+  placement:
+    mode: SnapgridCenter
+    snap: [Wall]
+  components:
+  - type: Transform
+    anchored: true
+  - type: BossArenaChasm
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.4
+  - type: Clickable
+  - type: Sprite
+    sprite: Tiles/Planet/Chasms/chromite_chasm.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: chasm
+  - type: Icon
+    sprite: Tiles/Planet/Chasms/chromite_chasm.rsi
+    state: full
+  - type: IconSmooth
+    key: chasm
+    additionalKeys: [walls]
+    base: chasm
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer: [WallLayer]
+        mask: [ItemMask]
+        density: 1000
+        hard: false
+  - type: Tag
+    tags: [HideContextMenu]

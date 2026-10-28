@@ -1,0 +1,4 @@
+- type: shader
+  id: RevenantCircularSweep
+  kind: source
+  path: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/circular_sweep.swsl

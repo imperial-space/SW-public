@@ -444,6 +444,10 @@ public sealed partial class ExplosionSystem
         float? fireStacksOnIgnite,
         EntityUid? cause)
     {
+        var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+        if (arenaRules.BlocksFriendlyEffect(uid))
+            return;
+
         if (originalDamage != null)
         {
             GetEntitiesToDamage(uid, originalDamage, id, intensity);
@@ -464,7 +468,7 @@ public sealed partial class ExplosionSystem
                 }
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                _damageableSystem.TryChangeDamage(entity, damage * _damageableSystem.UniversalExplosionDamageModifier, ignoreResistances: true);
+                _damageableSystem.TryChangeDamage(entity, damage * _damageableSystem.UniversalExplosionDamageModifier, ignoreResistances: true, origin: arenaRules.CurrentSource?.Player);
 
             }
         }
@@ -679,6 +683,8 @@ sealed class Explosion
     /// <summary>
     ///     Initialize a new instance for processing
     /// </summary>
+    public Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem.SpellSource? ArenaSource;
+
     public Explosion(ExplosionSystem system,
         ExplosionPrototype explosionType,
         ExplosionSpaceTileFlood? spaceData,
@@ -828,6 +834,7 @@ sealed class Explosion
     /// </summary>
     public int Process(int processingTarget)
     {
+        using var arenaSource = _entMan.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().WithSource(ArenaSource);
         // In case the explosion terminated early last tick due to exceeding the allocated processing time, use this
         // time to update the tiles.
         SetTiles();
@@ -926,4 +933,5 @@ public sealed class QueuedExplosion(ExplosionPrototype proto)
     public int MaxTileBreak;
     public bool CanCreateVacuum;
     public EntityUid? Cause; // The entity that exploded, for logging purposes.
+    public Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem.SpellSource? ArenaSource;
 }

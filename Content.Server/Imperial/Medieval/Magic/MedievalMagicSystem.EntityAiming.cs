@@ -95,9 +95,9 @@ public sealed partial class MedievalMagicSystem
             };
             RaiseLocalEvent(action, ref evBefore);
 
-            if (evBefore.Cancelled) continue;
+            if (evBefore.Cancelled || !CanSpawnArenaSpell(evBefore.SpawnedEntityPrototype, xform.Coordinates, performer, action)) continue;
 
-            var ent = Spawn(evBefore.SpawnedEntityPrototype, xform.Coordinates);
+            var ent = SpawnArenaSpell(evBefore.SpawnedEntityPrototype, xform.Coordinates, performer);
             var rotation = Angle.FromDegrees(args.Spread.Degrees / 2 - angleIncrease * i);
             var direction = targetMapCoords.Position - spawnMapCoords.Position;
 
@@ -166,9 +166,9 @@ public sealed partial class MedievalMagicSystem
             };
             RaiseLocalEvent(action, ref evBefore);
 
-            if (evBefore.Cancelled) continue;
+            if (evBefore.Cancelled || !CanSpawnArenaSpell(evBefore.SpawnedEntityPrototype, xform.Coordinates, performer, action)) continue;
 
-            var ent = Spawn(evBefore.SpawnedEntityPrototype, xform.Coordinates);
+            var ent = SpawnArenaSpell(evBefore.SpawnedEntityPrototype, xform.Coordinates, performer);
             var direction = targetMapCoords.Position - spawnMapCoords.Position;
 
             var ev = new MedievalAfterSpawnEntityBySpellEvent()
@@ -224,7 +224,7 @@ public sealed partial class MedievalMagicSystem
             args.Seed = args.Seed.HasValue ? args.Seed : args.Seed * i;
 
             if (target.HasValue)
-                args.LightningCollideEffects.ForEach(effect => effect.Effect(new EntityEffectBaseArgs(target.Value, EntityManager)));
+                args.LightningCollideEffects.ForEach(effect => ArenaRules.ApplySpellEffect(effect, new EntityEffectBaseArgs(target.Value, EntityManager, performer), performer, offensive: true));
 
             SpawnLightning(performerCoords, targetCoords.Position, args);
 
@@ -240,9 +240,9 @@ public sealed partial class MedievalMagicSystem
             };
             RaiseLocalEvent(action, ref evBefore);
 
-            if (evBefore.Cancelled) continue;
+            if (evBefore.Cancelled || !CanSpawnArenaSpell(evBefore.SpawnedEntityPrototype, targetCoords, performer, action)) continue;
 
-            var ent = Spawn(evBefore.SpawnedEntityPrototype, targetCoords);
+            var ent = SpawnArenaSpell(evBefore.SpawnedEntityPrototype, targetCoords, performer);
             var ev = new MedievalAfterSpawnEntityBySpellEvent()
             {
                 Action = action,
@@ -301,9 +301,10 @@ public sealed partial class MedievalMagicSystem
             };
             RaiseLocalEvent(action, ref entAimingSpawnedEvent);
 
-            if (spawnedEvent.Cancelled || entAimingSpawnedEvent.Cancelled) continue;
+            if (spawnedEvent.Cancelled || entAimingSpawnedEvent.Cancelled ||
+                !CanSpawnArenaSpell(args.SpawnedEntity, entAimingSpawnedEvent.Coordinates, performer, action)) continue;
 
-            var ent = Spawn(args.SpawnedEntity, entAimingSpawnedEvent.Coordinates);
+            var ent = SpawnArenaSpell(args.SpawnedEntity, entAimingSpawnedEvent.Coordinates, performer);
             var aimingEvAfter = new MedievalAfterAimingSpawnBySpellEvent()
             {
                 Action = action,

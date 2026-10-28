@@ -1,0 +1,14 @@
+boss-arena-party-full = Арена заполнена. Войти могут только 8 игроков.
+boss-arena-spell-disabled = Это заклинание запрещено на арене босса.
+boss-raid-title = Рейд
+boss-raid-hide = Скрыть
+boss-raid-show = Показ.
+boss-raid-lock = Фикс.
+boss-raid-unlock = Снять
+boss-raid-lock-tooltip = Закрепить панель рейда на месте.
+boss-raid-unlock-tooltip = Разблокировать перемещение панели рейда.
+boss-raid-locked = Панель рейда закреплена. Нажмите «Снять» для перемещения.
+boss-raid-critical = КРИТ
+boss-raid-dead = МЁРТВ
+boss-raid-offline = НЕ В СЕТИ
+boss-raid-drag = Удерживайте левую кнопку мыши на заголовке для перемещения панели рейда. Используйте − / + для изменения размера или «Фикс.» для закрепления панели.
