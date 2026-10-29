@@ -8,3 +8,7 @@
   dollPrototype: MobDwarfDummy
   skinColoration: HumanToned
   femaleLastNames: NamesLastFemale #Imperial
+  minAge: 18
+  maxAge: 350
+  oldAge: 300
+  youngAge: 50
