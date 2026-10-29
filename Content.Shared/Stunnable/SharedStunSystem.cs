@@ -4,6 +4,7 @@ using Content.Shared.Alert;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -74,7 +75,8 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     private void OnAttemptInteract(Entity<StunnedComponent> ent, ref InteractionAttemptEvent args)
     {
-        args.Cancelled = true;
+        if (!CanActWhileStunned(ent))
+            args.Cancelled = true;
     }
 
     private void OnMobStateChanged(EntityUid uid, MobStateComponent component, MobStateChangedEvent args)
@@ -122,6 +124,10 @@ public abstract partial class SharedStunSystem : EntitySystem
         if (_entityWhitelist.IsBlacklistPass(ent.Comp.Blacklist, args.OtherEntity))
             return;
 
+        var incoming = new BeforeAttackEffectsEvent(ent.Owner, null, AttackDelivery.Contact);
+        RaiseLocalEvent(args.OtherEntity, ref incoming);
+        if (incoming.Cancelled)
+            return;
         TryUpdateStunDuration(args.OtherEntity, ent.Comp.Duration);
         TryKnockdown(args.OtherEntity, ent.Comp.Duration, force: true);
     }
@@ -129,6 +135,10 @@ public abstract partial class SharedStunSystem : EntitySystem
     // TODO STUN: Make events for different things. (Getting modifiers, attempt events, informative events...)
     public bool TryAddStunDuration(EntityUid uid, TimeSpan duration)
     {
+        var attempt = new StunAttemptEvent();
+        RaiseLocalEvent(uid, ref attempt);
+        if (attempt.Cancelled)
+            return false;
         if (!_status.TryAddStatusEffectDuration(uid, StunId, duration))
             return false;
 
@@ -138,6 +148,10 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     public bool TryUpdateStunDuration(EntityUid uid, TimeSpan? duration)
     {
+        var attempt = new StunAttemptEvent();
+        RaiseLocalEvent(uid, ref attempt);
+        if (attempt.Cancelled)
+            return false;
         if (!_status.TryUpdateStatusEffectDuration(uid, StunId, duration))
             return false;
 
@@ -218,7 +232,7 @@ public abstract partial class SharedStunSystem : EntitySystem
         autoStand = evAttempt.AutoStand;
         drop = evAttempt.Drop;
 
-        return force || !evAttempt.Cancelled;
+        return !evAttempt.BlockForced && (force || !evAttempt.Cancelled);
     }
 
     /// <summary>
@@ -290,11 +304,16 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     public bool TryAddParalyzeDuration(EntityUid uid, TimeSpan duration)
     {
+        var attempt = new StunAttemptEvent();
+        RaiseLocalEvent(uid, ref attempt);
+        if (attempt.Cancelled)
+            return false;
         if (!_status.TryAddStatusEffectDuration(uid, StunId, duration))
             return false;
 
         // We can't exit knockdown when we're stunned, so this prevents knockdown lasting longer than the stun.
-        Knockdown(uid, null, false, true, true);
+        if (!CanActWhileStunned(uid))
+            Knockdown(uid, null, false, true, true);
         OnStunnedSuccessfully(uid, duration);
 
         return true;
@@ -302,11 +321,16 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     public bool TryUpdateParalyzeDuration(EntityUid uid, TimeSpan? duration)
     {
+        var attempt = new StunAttemptEvent();
+        RaiseLocalEvent(uid, ref attempt);
+        if (attempt.Cancelled)
+            return false;
         if (!_status.TryUpdateStatusEffectDuration(uid, StunId, duration))
             return false;
 
         // We can't exit knockdown when we're stunned, so this prevents knockdown lasting longer than the stun.
-        Knockdown(uid, null, false, true, true);
+        if (!CanActWhileStunned(uid))
+            Knockdown(uid, null, false, true, true);
         OnStunnedSuccessfully(uid, duration);
 
         return true;
@@ -368,11 +392,43 @@ public abstract partial class SharedStunSystem : EntitySystem
         args.Args = ev;
     }
 
+    public bool CanActWhileStunned(EntityUid uid)
+    {
+        var ev = new CanActWhileStunnedEvent();
+        RaiseLocalEvent(uid, ref ev);
+        return ev.Allowed;
+    }
+
+    public void ClearStun(EntityUid uid)
+    {
+        if (_status.TryEffectsWithComp<StunnedStatusEffectComponent>(uid, out var effects))
+            foreach (var effect in effects)
+                PredictedQueueDel(effect.Owner);
+        RemComp<StunnedComponent>(uid);
+    }
+
+    /// <summary>Ends knockdown immediately without paying the ordinary force-stand cost.</summary>
+    public void ClearKnockdown(EntityUid uid)
+    {
+        if (_status.TryEffectsWithComp<KnockdownStatusEffectComponent>(uid, out var effects))
+            foreach (var effect in effects)
+                PredictedQueueDel(effect.Owner);
+        if (!TryComp<KnockedDownComponent>(uid, out var knocked))
+            return;
+        CancelKnockdownDoAfter((uid, knocked));
+        SetKnockdownTime((uid, knocked), GameTiming.CurTime);
+        // Keep crawling under a solid obstacle until standing is physically possible.
+        if (IntersectingStandingColliders(uid))
+            SetAutoStand((uid, knocked), true);
+        else
+            RemComp<KnockedDownComponent>(uid);
+    }
+
     #region Attempt Event Handling
 
     private void OnMoveAttempt(EntityUid uid, StunnedComponent stunned, UpdateCanMoveEvent args)
     {
-        if (stunned.LifeStage > ComponentLifeStage.Running)
+        if (stunned.LifeStage > ComponentLifeStage.Running || CanActWhileStunned(uid))
             return;
 
         args.Cancel();
@@ -380,20 +436,21 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     private void OnAttempt(EntityUid uid, StunnedComponent stunned, CancellableEntityEventArgs args)
     {
-        args.Cancel();
+        if (!CanActWhileStunned(uid))
+            args.Cancel();
     }
 
     private void OnEquipAttempt(EntityUid uid, StunnedComponent stunned, IsEquippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.Equipee == uid)
+        if (args.Equipee == uid && !CanActWhileStunned(uid))
             args.Cancel();
     }
 
     private void OnUnequipAttempt(EntityUid uid, StunnedComponent stunned, IsUnequippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.Unequipee == uid)
+        if (args.Unequipee == uid && !CanActWhileStunned(uid))
             args.Cancel();
     }
 

@@ -115,6 +115,8 @@ namespace Content.Shared.Movement.Systems
 
             var ev = new RefreshMovementSpeedModifiersEvent();
             RaiseLocalEvent(uid, ev);
+            var finalized = new FinalizeMovementSpeedEvent(ev);
+            RaiseLocalEvent(uid, ref finalized);
 
             if (MathHelper.CloseTo(ev.WalkSpeedModifier, move.WalkSpeedModifier) &&
                 MathHelper.CloseTo(ev.SprintSpeedModifier, move.SprintSpeedModifier))
@@ -188,10 +190,28 @@ namespace Content.Shared.Movement.Systems
         public float WalkSpeedModifier { get; private set; } = 1.0f;
         public float SprintSpeedModifier { get; private set; } = 1.0f;
 
-        public void ModifySpeed(float walk, float sprint)
+        private float _walkWithoutSlowdown = 1f;
+        private float _sprintWithoutSlowdown = 1f;
+        public float ConvertibleWalkSlowdown { get; private set; } = 1f;
+        public float ConvertibleSprintSlowdown { get; private set; } = 1f;
+
+        public void ModifySpeed(float walk, float sprint, bool convertible = true)
         {
             WalkSpeedModifier *= walk;
             SprintSpeedModifier *= sprint;
+            _walkWithoutSlowdown *= convertible ? Math.Max(1f, walk) : walk;
+            _sprintWithoutSlowdown *= convertible ? Math.Max(1f, sprint) : sprint;
+            if (convertible)
+            {
+                ConvertibleWalkSlowdown *= Math.Min(1f, Math.Max(0.001f, walk));
+                ConvertibleSprintSlowdown *= Math.Min(1f, Math.Max(0.001f, sprint));
+            }
+        }
+
+        public void RemoveConvertibleSlowdowns()
+        {
+            WalkSpeedModifier = _walkWithoutSlowdown;
+            SprintSpeedModifier = _sprintWithoutSlowdown;
         }
 
         public void ModifySpeed(float mod)
@@ -199,6 +219,9 @@ namespace Content.Shared.Movement.Systems
             ModifySpeed(mod, mod);
         }
     }
+
+    [ByRefEvent]
+    public readonly record struct FinalizeMovementSpeedEvent(RefreshMovementSpeedModifiersEvent Modifiers);
 
     [ByRefEvent]
     public record struct RefreshWeightlessModifiersEvent

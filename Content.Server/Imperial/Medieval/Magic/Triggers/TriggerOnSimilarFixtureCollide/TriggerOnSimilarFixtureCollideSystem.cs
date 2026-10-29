@@ -1,4 +1,5 @@
 using Content.Server.Explosion.EntitySystems;
+using Content.Shared.Damage;
 using Content.Shared.Trigger;
 using Robust.Shared.Physics.Events;
 
@@ -19,6 +20,10 @@ public sealed partial class TriggerOnSimilarFixtureCollideSystem : EntitySystem
         if (args.OurFixtureId != component.FixtureID) return;
         if ((component.OtherFixtureID ?? args.OurFixtureId) != args.OtherFixtureId) return;
 
+        var incoming = new BeforeAttackEffectsEvent(uid, null, AttackDelivery.Contact);
+        RaiseLocalEvent(args.OtherEntity, ref incoming);
+        if (incoming.Cancelled)
+            return;
         var triggerEvent = new TriggerEvent(args.OtherEntity);
         RaiseLocalEvent(uid, ref triggerEvent, true);
     }

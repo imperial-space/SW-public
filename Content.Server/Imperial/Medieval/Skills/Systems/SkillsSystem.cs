@@ -8,7 +8,6 @@ using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
-using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Roles;
@@ -35,6 +34,11 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly IBanManager _ban = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
 
+    // Compatibility handlers live with their legacy skill implementation.
+    // New modules subscribe to skill events from their own systems.
+    private readonly Dictionary<string, Action<EntityUid, int, int>> _levelHandlers = new();
+    private readonly List<Action<float>> _updateHandlers = new();
+
     private TimeSpan _nextUpdate = TimeSpan.Zero;
 
     public override void Initialize()
@@ -59,25 +63,20 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         return skills.Levels.TryGetValue(skillId, out level);
     }
 
+    private void RegisterLevelHandler(string id, Action<EntityUid, int, int> handler)
+    {
+        _levelHandlers.Add(id, handler);
+    }
+
+    private void RegisterUpdateHandler(Action<float> handler)
+    {
+        _updateHandlers.Add(handler);
+    }
+
     private void OnLevelChanged(EntityUid uid, SkillsComponent comp, ref SkillLevelChangedEvent args)
     {
-        switch (args.Id)
-        {
-            case VitalityId:
-                VitalityLevelSet(uid, args.Level, args.OldLevel);
-                break;
-            case IntelligenceId:
-                IntelligenceLevelSet(uid, args.Level, args.OldLevel);
-                break;
-            case AgilityId:
-                AgilityLevelSet(uid, args.Level, args.OldLevel);
-                break;
-            case StrengthId:
-                StrengthLevelSet(uid, args.Level, args.OldLevel);
-                break;
-            default:
-                break;
-        }
+        if (_levelHandlers.TryGetValue(args.Id, out var handler))
+            handler(uid, args.Level, args.OldLevel);
     }
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
@@ -99,9 +98,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             return;
         }
 
-        SetSkills(args.Mob, args.Profile.Skills);
-
-        TryGetMagicRuneComp(args.Mob);
+        ApplySkills(args.Mob, args.Profile.Skills, args.JobId);
     }
 
     private void OnSetSkillLevel(SetSkillLevelMessage msg, EntitySessionEventArgs args)
@@ -112,33 +109,40 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             return;
         }
         var uid = GetEntity(msg.Target);
-        var comp = EnsureComp<SkillsComponent>(uid);
-
-        var dict = comp.Levels;
-        dict[msg.Skill] = msg.Level;
-        SetSkills(uid, dict);
+        EnsureComp<SkillsComponent>(uid);
+        SetSkillLevel(uid, msg.Skill, msg.Level);
     }
 
+    /// <summary>Publishes a complete profile before any effect observes another attribute.</summary>
     public void SetSkills(EntityUid uid, Dictionary<string, int> skills)
     {
         var comp = EnsureComp<SkillsComponent>(uid);
+        var requested = new Dictionary<string, int>(skills);
+        var previous = new Dictionary<string, int>(comp.Levels);
+
+        foreach (var skill in _proto.EnumeratePrototypes<SkillPrototype>())
+            comp.Levels[skill.ID] = Math.Clamp(requested.GetValueOrDefault(skill.ID, SkillScaling.Baseline), 1, SkillScaling.Legendary);
 
         foreach (var skill in _proto.EnumeratePrototypes<SkillPrototype>())
         {
-            var oldLevel = comp.Levels.GetValueOrDefault(skill.ID, 10);
-
-            comp.Levels[skill.ID] = Math.Clamp(skills.GetValueOrDefault(skill.ID, 10), 1, 20);
-            var ev = new SkillLevelChangedEvent(skill.ID, comp.Levels[skill.ID], oldLevel);
-            RaiseLocalEvent(uid, ref ev);
+            var changed = new SkillLevelChangedEvent(skill.ID, comp.Levels[skill.ID], previous.GetValueOrDefault(skill.ID, SkillScaling.Baseline));
+            RaiseLocalEvent(uid, ref changed);
         }
 
         Dirty(uid, comp);
+        var profile = new SkillProfileChangedEvent(uid);
+        RaiseLocalEvent(ref profile);
     }
 
-    public void ApplySkills(EntityUid uid, Dictionary<string, int> skills)
+    /// <summary>Applies a character profile with optional profession context for independent modules.</summary>
+    public void ApplySkills(EntityUid uid, Dictionary<string, int> skills, string? jobId = null)
     {
+        EnsureComp<SkillsComponent>(uid);
+        var applying = new SkillProfileApplyingEvent(jobId);
+        RaiseLocalEvent(uid, ref applying);
         SetSkills(uid, skills);
-        TryGetMagicRuneComp(uid);
+        var applied = new SkillProfileAppliedEvent(jobId);
+        RaiseLocalEvent(uid, ref applied);
     }
 
     public override void Update(float frameTime)
@@ -149,16 +153,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1f);
 
-        UpdateAgility(frameTime);
-        UpdateVitality(frameTime);
+        foreach (var handler in _updateHandlers)
+            handler(frameTime);
     }
 
-    private void TryGetMagicRuneComp(EntityUid uid)
-    {
-        if (!TryComp<SkillsComponent>(uid, out var comp))
-            return;
-
-        if (comp.Levels["Intelligence"] >= 15)
-            EnsureComp<MagicRuneKnowledgeComponent>(uid);
-    }
 }

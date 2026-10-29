@@ -1,9 +1,8 @@
-using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class SkillsComponent : Component
 {
     [DataField, AutoNetworkedField]

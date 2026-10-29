@@ -212,6 +212,13 @@ namespace Content.Shared.Damage
                 }
             }
 
+            if (damage.DamageDict.Values.Any(value => value < 0))
+            {
+                var healing = new HealingModifyEvent(damage);
+                RaiseLocalEvent(uid.Value, ref healing);
+                damage = healing.Damage;
+            }
+
             damage = ApplyUniversalAllModifiers(damage);
 
             // TODO DAMAGE PERFORMANCE

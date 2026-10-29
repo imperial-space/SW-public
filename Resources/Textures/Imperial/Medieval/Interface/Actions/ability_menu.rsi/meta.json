@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Original book-ability pixel art drawn programmatically for Spellward, 2026.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "menu"
+    }
+  ]
+}
