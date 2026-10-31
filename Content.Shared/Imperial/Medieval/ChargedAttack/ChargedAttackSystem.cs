@@ -19,6 +19,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.CombatMode;
+using Content.Shared.Imperial.Medieval.Weapons;
 
 namespace Content.Shared.Imperial.Medieval.ChargedAttack;
 
@@ -169,6 +170,10 @@ public sealed class ChargedAttackSystem : EntitySystem
         if (!TryComp<ChargedAttackComponent>(weaponUid, out var charged))
             return;
 
+        if (HasComp<MeleeSwingComponent>(weaponUid) &&
+            (charged.CurrentAttacking || !EntityManager.System<MeleeSwingSystem>().CanCharge(weaponUid, user)))
+            return;
+
         charged.AttackStart = _timing.CurTime;
         charged.CurrentAttacking = true;
         Dirty(weaponUid, charged);
@@ -190,6 +195,22 @@ public sealed class ChargedAttackSystem : EntitySystem
 
         if (!TryComp<MeleeWeaponComponent>(weaponUid, out var weapon))
             return;
+
+        if (HasComp<MeleeSwingComponent>(weaponUid))
+        {
+            var swings = EntityManager.System<MeleeSwingSystem>();
+            if (!swings.CanCharge(weaponUid, user))
+                return;
+            try
+            {
+                swings.TryRelease(weaponUid, user, coordinates);
+            }
+            finally
+            {
+                StopAttacking(weaponUid, charged, user);
+            }
+            return;
+        }
 
         ChargedAttack(user, coordinates, (weaponUid, weapon), charged, attackTime, args.SenderSession);
         StopAttacking(weaponUid, charged, user);

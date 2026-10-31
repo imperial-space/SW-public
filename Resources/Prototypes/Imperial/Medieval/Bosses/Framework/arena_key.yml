@@ -1,0 +1,12 @@
+- type: entity
+  id: BossArenaGateKey
+  parent: BaseItem
+  localizationId: Boss_Encounter_Key
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: unknown
+  - type: Item
+    size: Tiny
+  - type: BossArenaGateKey

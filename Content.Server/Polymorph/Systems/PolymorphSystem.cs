@@ -179,6 +179,8 @@ public sealed partial class PolymorphSystem : EntitySystem
     /// <returns>The new entity, or null if the polymorph failed.</returns>
     public EntityUid? PolymorphEntity(EntityUid uid, PolymorphConfiguration configuration)
     {
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid))
+            return null;
         // If they're morphed, check their current config to see if they can be
         // morphed again
         if (!configuration.IgnoreAllowRepeatedMorphs

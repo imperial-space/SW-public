@@ -1,0 +1,4 @@
+- type: shader
+  id: RevenantCommunionFog
+  kind: source
+  path: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/communion_fog.swsl

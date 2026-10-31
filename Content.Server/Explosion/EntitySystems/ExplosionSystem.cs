@@ -230,6 +230,9 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var posFound = _transformSystem.TryGetMapOrGridCoordinates(uid, out var gridPos, pos);
 
+        var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+        using var source = arenaRules.WithSource(arenaRules.IsArena(mapPos)
+            ? arenaRules.ResolveSource(user) ?? arenaRules.ResolveSource(uid) : null, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Explosions);
         QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, uid, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false);
 
         if (!addLog)
@@ -277,11 +280,19 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         if (addLog) // dont log if already created a separate, more detailed, log.
             _adminLogger.Add(LogType.Explosion, LogImpact.High, $"Explosion ({typeId}) spawned at {epicenter:coordinates} with intensity {totalIntensity} slope {slope}");
 
+        var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+        var arenaSource = arenaRules.IsArena(epicenter) ? arenaRules.ResolveSource(cause, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Explosions) : null;
+        if (arenaRules.RuleDenied(epicenter, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+        {
+            maxTileBreak = 0;
+            canCreateVacuum = false;
+        }
+
         // try to combine explosions on the same tile if they are the same type
         foreach (var queued in _queuedExplosions)
         {
             // ignore different types or those on different maps
-            if (queued.Proto.ID != type.ID || queued.Epicenter.MapId != epicenter.MapId)
+            if (queued.ArenaSource != arenaSource || queued.Proto.ID != type.ID || queued.Epicenter.MapId != epicenter.MapId)
                 continue;
 
             var dst2 = queued.Proto.MaxCombineDistance * queued.Proto.MaxCombineDistance;
@@ -303,7 +314,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             TileBreakScale = tileBreakScale,
             MaxTileBreak = maxTileBreak,
             CanCreateVacuum = canCreateVacuum,
-            Cause = cause
+            Cause = cause,
+            ArenaSource = arenaSource                                           // keep who set it off until the queued blast runs
         };
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
@@ -379,7 +391,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             _mapManager,
             visualEnt,
             queued.Cause,
-            _map);
+            _map) { ArenaSource = queued.ArenaSource };
     }
 
     private void CameraShake(float range, MapCoordinates epicenter, float totalIntensity)

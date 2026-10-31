@@ -45,6 +45,7 @@ public sealed class MedievalArmorIntegritySystem : EntitySystem
     private void OnDamageModify(Entity<DamageableComponent> ent, ref DamageModifyEvent args)
     {
         if (!_net.IsServer ||
+            EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().PreservesArmor(ent.Owner, args.Origin) ||
             !args.OriginalDamage.AnyPositive() ||
             !TryComp<InventoryComponent>(ent, out var inventory))
             return;

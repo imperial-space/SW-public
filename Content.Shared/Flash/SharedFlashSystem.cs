@@ -156,6 +156,8 @@ public abstract class SharedFlashSystem : EntitySystem
         TimeSpan? stunDuration = null,
         bool ignoreFlashAttempt = false) // imperial medieval edit)
     {
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(target, user ?? used))
+            return;
         if (!ignoreFlashAttempt)  // imperial medieval edit
         {
             var attempt = new FlashAttemptEvent(target, user, used);

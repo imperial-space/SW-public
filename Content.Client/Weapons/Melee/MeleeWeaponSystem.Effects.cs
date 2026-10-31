@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Weapons;
 using System.Numerics;
 using Content.Client.Animations;
 using Content.Client.Weapons.Melee.Components;
@@ -23,6 +24,7 @@ public sealed partial class MeleeWeaponSystem
         if (!Timing.IsFirstTimePredicted)
             return;
 
+        var customSwing = MeleeSwingVisuals.IsSwingAnimation(animation);
         var lunge = GetLungeAnimation(localPos);
 
         // Stop any existing lunges on the user.
@@ -34,6 +36,15 @@ public sealed partial class MeleeWeaponSystem
 
         if (!_xformQuery.TryGetComponent(user, out var userXform) || userXform.MapID == MapId.Nullspace)
             return;
+
+        if (customSwing)
+        {
+            EntityManager.System<Content.Client.Imperial.Medieval.Weapons.MeleeSwingVisualSystem>()
+                .PlaySwing(user, weapon, localPos,
+                    animation != MeleeSwingVisuals.RightToLeftAnimation);
+
+            return;
+        }
 
         var animationUid = Spawn(animation, userXform.Coordinates);
 

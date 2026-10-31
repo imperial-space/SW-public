@@ -327,6 +327,9 @@ public abstract class SharedEntityStorageSystem : EntitySystem
 
     public bool CanInsert(EntityUid toInsert, EntityUid container, EntityStorageComponent? component = null)
     {
+        var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+        if (!arenaRules.CanUseEntityStorage(toInsert, container))
+            return false;
         if (!ResolveStorage(container, ref component))
             return false;
 

@@ -1,0 +1,96 @@
+{
+    "version": 1,
+    "copyright": "Spellward Revenant player swipe derived from the approved violet/crimson cleave design. A 30% smaller effect on fixed 2px clusters, with a moving cutting head, aged trailing ribbon and independently drifting wisps. Motion study: official FFXIV Dawntrail Job Actions, Reaper at 5:17 and 5:39; official VFX interview https://eu.finalfantasyxiv.com/blog/003309.html. Source: Tools/Imperial/RevenantArena/build_scythe_swipe_reaper.py.",
+    "size": {
+        "x": 224,
+        "y": 224
+    },
+    "states": [
+        {
+            "name": "left-to-right",
+            "directions": 1,
+            "delays": [
+                [
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02
+                ]
+            ]
+        },
+        {
+            "name": "right-to-left",
+            "directions": 1,
+            "delays": [
+                [
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02,
+                    0.02
+                ]
+            ]
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+- type: entity
+  id: VeyrathMusic
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossMechanicDefinition
+    encounter: veyrath
+    bossPrototype: RevenantBoss        # keep presentation when another flow is selected
+    feature: music
+    components:
+    - type: BossMusic
+      soundtrack: destination

@@ -1,0 +1,38 @@
+- type: bossTelegraphStyle
+  id: VeyrathCommunionStyle
+  warningOverflowTiles: 1
+  warningAreaOutline: true
+  dangerColor: '#FF862F'
+  sentencingColor: '#FFFFFF'
+  markerSize: 0.85, 0.85
+  markerOffset: 0, 0.1
+  safeColor: '#57EAB8'
+  blueColor: '#4DBDFF'
+  purpleColor: '#BC66FF'
+  tankColor: '#48DEFF'
+  tankMarkerOffset: 0, 0.05
+  tankMarkerSize: 0.35, 0.35
+  tankTextureContentSize: 38, 38
+  tankTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/tank_overlay_icon.png
+  tankBusterColor: '#FF4026'
+  tankBusterBobDistance: 0.5
+  tankBusterMarkerSize: 0.5, 0.5
+  spreadColor: '#FF668D'
+  spreadHighlightColor: '#00000000'
+  spreadMarkerOffset: 0, 0.1
+  stackColor: '#F7D968'
+  stackHighlightColor: '#00000000'
+  sentencingTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/sentencing_tile.png
+  communionLanternTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/communion_lantern.rsi
+  communionFogTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/communion_fog.rsi
+  communionEdgeTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/communion_floor.rsi
+- type: entity
+  id: VeyrathCommunionMechanic
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossMechanicDefinition
+    encounter: veyrath
+    feature: Communion
+    style: VeyrathCommunionStyle
+    patterns:
+    - Stack

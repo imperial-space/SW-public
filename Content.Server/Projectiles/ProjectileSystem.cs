@@ -50,6 +50,8 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         RaiseLocalEvent(uid, ref before);
 
         if (before.Cancelled) return;
+
+        using var arenaSource = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().WithSource(uid);
         // imperial medieval rideable end
 
 

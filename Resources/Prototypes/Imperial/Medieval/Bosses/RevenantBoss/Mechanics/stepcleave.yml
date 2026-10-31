@@ -1,0 +1,49 @@
+- type: bossTelegraphStyle
+  id: VeyrathStepCleaveStyle
+  warningOverflowTiles: 1
+  warningAreaOutline: true
+  dangerColor: '#FF862F'
+  sentencingColor: '#FFFFFF'
+  markerSize: 0.85, 0.85
+  markerOffset: 0, 0.1
+  safeColor: '#57EAB8'
+  blueColor: '#4DBDFF'
+  purpleColor: '#BC66FF'
+  tankColor: '#48DEFF'
+  tankMarkerOffset: 0, 0.05
+  tankMarkerSize: 0.35, 0.35
+  tankTextureContentSize: 38, 38
+  tankTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/tank_overlay_icon.png
+  tankBusterColor: '#FF4026'
+  tankBusterBobDistance: 0.5
+  tankBusterMarkerSize: 0.5, 0.5
+  spreadColor: '#FF668D'
+  spreadHighlightColor: '#00000000'
+  spreadMarkerOffset: 0, 0.1
+  stackColor: '#F7D968'
+  stackHighlightColor: '#00000000'
+  movementArrowTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/movement_arrows.png
+  movementDestinationTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/movement_destination.png
+  cleaveLight: true
+  cleaveLightTexture: /Textures/Imperial/Medieval/Mobs/Bosses/RevenantBoss/cleave_boss_purple.png
+  cleaveLightAnchorPixels: 588, 640
+  cleaveLightRadiusPixels: 550
+  cleaveLightScale: 0.7
+  cleaveLightMovementScale: 1.0
+  cleaveLightWidth: 3.0
+  cleaveLightArc: 3.6651914
+  cleaveLightWaveWidth: 0.24
+  cleaveLightWaveArc: 3.6651914
+  cleaveLightBody: '#8837DA'
+  cleaveLightCore: '#F2D9FF'
+- type: entity
+  id: VeyrathStepCleaveMechanic
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossMechanicDefinition
+    encounter: veyrath
+    feature: StepCleave
+    style: VeyrathStepCleaveStyle
+    slot: Traversal
+    traversals:
+    - StepCleave

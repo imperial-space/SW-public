@@ -1,3 +1,4 @@
+using Content.Client.Imperial.Medieval.Items;
 using Content.Client.Items;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
@@ -115,6 +116,7 @@ public sealed partial class ItemStatusPanel : Control
         {
             ClearOldStatus();
             _entity = null;
+            _entityManager.System<ItemNameColorSystem>().Apply(ItemNameLabel, null);
 
             if (hand?.EmptyLabel is { } label)
             {
@@ -164,10 +166,12 @@ public sealed partial class ItemStatusPanel : Control
         {
             // Uses identity because we can be blocked by pulling someone
             ItemNameLabel.Text = Identity.Name(virtualItem.BlockingEntity, _entityManager);
+            _entityManager.System<ItemNameColorSystem>().Apply(ItemNameLabel, virtualItem.BlockingEntity);
         }
         else
         {
             ItemNameLabel.Text = Identity.Name(_entity.Value, _entityManager);
+            _entityManager.System<ItemNameColorSystem>().Apply(ItemNameLabel, _entity);
         }
     }
 

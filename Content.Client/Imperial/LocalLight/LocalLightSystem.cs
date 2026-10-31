@@ -27,6 +27,9 @@ public sealed class LocalLightSystem : EntitySystem
 
     private void OnLightShutdown(Entity<LocalLightComponent> ent, ref ComponentShutdown args)
     {
+        if (Terminating(ent.Owner))
+            return;
+
         RemComp<PointLightComponent>(ent);
     }
 
@@ -47,6 +50,9 @@ public sealed class LocalLightSystem : EntitySystem
 
     private void SetLightParameters(Entity<LocalLightComponent> ent)
     {
+        if (Terminating(ent.Owner))
+            return;
+
         PointLightComponent clientLight = EnsureComp<PointLightComponent>(ent);
 
         if (clientLight.NetSyncEnabled)

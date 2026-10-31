@@ -1,3 +1,4 @@
+using Content.Client.Imperial.Medieval.Items;
 using System.Numerics;
 using Content.Client.Items.Systems;
 using Content.Shared.Item;
@@ -71,10 +72,12 @@ public sealed class ItemGridPiece : Control, IEntityControl
         if (_storageController.IsDragging)
             return null;
 
-        return new Tooltip
+        var tooltip = new Tooltip
         {
             Text = _entityManager.GetComponent<MetaDataComponent>(Entity).EntityName
         };
+        _entityManager.System<ItemNameColorSystem>().ApplyTooltip(tooltip, Entity);
+        return tooltip;
     }
 
     protected override void OnThemeUpdated()

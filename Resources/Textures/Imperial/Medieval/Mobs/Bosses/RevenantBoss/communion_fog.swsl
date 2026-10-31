@@ -1,0 +1,19 @@
+light_mode unshaded;
+
+uniform highp vec2 refuge_min;
+uniform highp vec2 refuge_max;
+uniform highp float feather;
+varying highp vec2 floor_position;
+
+void vertex() {
+    floor_position = VERTEX;
+}
+
+void fragment() {
+
+    highp vec2 point = (floor(floor_position * 16.0) + vec2(0.5)) / 16.0;
+    highp vec2 outside = max(max(refuge_min - point, point - refuge_max), vec2(0.0));
+    highp float mask = smoothstep(0.0, feather, length(outside));
+    highp vec4 art = zTexture(UV);
+    COLOR = vec4(art.rgb, art.a * mask);
+}

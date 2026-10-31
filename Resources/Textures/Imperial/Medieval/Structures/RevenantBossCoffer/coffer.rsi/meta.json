@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "copyright": "Closed and open coffer sprites provided by Pjeta for RevenantBoss.",
+    "size": {
+        "x": 128,
+        "y": 128
+    },
+    "states": [
+        {
+            "name": "closed",
+            "directions": 1
+        },
+        {
+            "name": "open",
+            "directions": 1
+        }
+    ]
+}

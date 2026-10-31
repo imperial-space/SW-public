@@ -1,0 +1,232 @@
+- type: bossEncounterFlow
+  id: VeyrathDefault
+  mechanicSet: veyrath                 # installed modules used by this flow
+  openingDelay: 13                   # seconds before the first mechanic
+  entryGrace: 15                     # seconds before late entry closes
+  idleReset: 15                      # seconds without living players before reset
+  recovery: 7                        # default seconds between steps
+  tankInterval: 5                    # seconds between basic tank attacks
+  tankDamage:                        # basic attack damage
+    types:
+      Heat: 18
+  damage:                            # named amounts used by the steps below
+    buster:
+      types:
+        Slash: 500
+        ParryAble: 1
+    cleave:
+      types:
+        Slash: 60
+    vigil:
+      types:
+        Slash: 80
+        Cold: 40
+    embrace:
+      types:
+        Slash: 35
+        Cold: 35
+    cross:
+      types:
+        Cold: 70
+    sentence:
+      types:
+        Slash: 100
+    communion:
+      types:
+        Cold: 100
+    cone:
+      types:
+        Heat: 60
+    constellation:
+      types:
+        Heat: 40
+    crystalRain:
+      types:
+        Piercing: 60
+  patternDamage:
+    Stack: communion
+    CardinalCone: cone
+  tutorial:                          # opening steps, played once
+  - pattern: Sinistra
+    mechanic: Cleaves
+  - pattern: Dextra
+    mechanic: Cleaves
+  - tankBuster: true
+    mechanic: Execution
+    castTime: 5
+  - pattern: Frons
+    mechanic: Cleaves
+  - pattern: Tergum
+    mechanic: Cleaves
+  - combo: true
+    mechanic: StoredCleaves
+    queue:
+    - Sinistra
+    - Sinistra
+  - traversal: StepCleave
+    mechanic: StepCleave
+  - pattern: Cross
+    mechanic: Cross
+    damage: cross
+  - pattern: Divide
+    mechanic: Divide
+    damage: cross
+  - pattern: Spread
+    mechanic: Spread
+    castTime: 4
+    damage: sentence
+  - pattern: Stack
+    mechanic: Communion
+    castTime: 4
+    damage: sentence
+  - pattern: Rejection
+    mechanic: Rejection
+    castTime: 4
+    damage: embrace
+  - pattern: Invitation
+    mechanic: Invitation
+    castTime: 4
+    damage: embrace
+  - traversal: EdgeCone
+    mechanic: EdgeCone
+  - traversal: CrystalRain
+    mechanic: CrystalRain
+    damage: crystalRain
+    parameters:                       # settings owned by the crystal rain module
+      count: 64
+      warningTime: 3
+      sizes:
+      - 3
+      - 2
+      castTime: 1.5
+      concurrent: 16
+      maxConcurrent: 30
+      spawnInterval: 0.5
+      minSpawnInterval: 0.15
+      doubleChance: 0.5
+      rampSeconds: 60
+  - pattern: BlackoutNorthWest
+    mechanic: Vigil
+    randomCorner: true
+    castTime: 6
+    damage: vigil
+  - pattern: PurpleFirst
+    mechanic: Constellation
+    castTime: 4
+    followupDelay: 4
+    sequentialConstellation: true
+    damage: constellation
+  rotation:                          # normal repeating steps
+  - tankBuster: true
+    mechanic: Execution
+    castTime: 5
+  - combo: true
+    mechanic: StoredCleaves
+  - pattern: Rejection
+    mechanic: Rejection
+    alternate: Invitation
+    castTime: 4
+    damage: embrace
+  - traversal: StepCleave
+    mechanic: StepCleave
+  - pattern: Spread
+    mechanic: Spread
+    alternate: Stack
+    castTime: 4
+    damage: sentence
+  - pattern: Cross
+    mechanic: Cross
+    alternate: Divide
+    damage: cross
+  - traversal: StepCross
+    mechanic: StepCross
+    damage: cross
+  - traversal: EdgeCone
+    mechanic: EdgeCone
+  - combo: true
+    mechanic: StoredCleaves
+  - pattern: BlackoutNorthWest
+    mechanic: Vigil
+    randomCorner: true
+    castTime: 6
+    damage: vigil
+  - traversal: CrystalRain
+    mechanic: CrystalRain
+    damage: crystalRain
+    parameters:                       # settings owned by the crystal rain module
+      count: 96
+      warningTime: 3
+      sizes:
+      - 3
+      - 2
+      - 2
+      castTime: 1.5
+      concurrent: 16
+      maxConcurrent: 30
+      spawnInterval: 0.5
+      minSpawnInterval: 0.15
+      doubleChance: 0.5
+      rampSeconds: 60
+  - pattern: PurpleFirst
+    mechanic: Constellation
+    castTime: 4
+    followupDelay: 2
+    damage: constellation
+  escalation:                        # repeating steps after the first rotation
+  - tankBuster: true
+    mechanic: Execution
+    castTime: 5
+  - mixedSentence: true
+  - pattern: Rejection
+    mechanic: Rejection
+    alternate: Invitation
+    castTime: 4
+    damage: embrace
+  - traversal: EdgeCone
+    mechanic: EdgeCone
+    coneSpread: true
+  - traversal: StepCleave
+    mechanic: StepCleave
+  - vigilFollowup: Cross
+    alternate: Divide
+    castTime: 6
+  - pattern: PurpleFirst
+    mechanic: Constellation
+    castTime: 4
+    followupDelay: 2
+    damage: constellation
+  - traversal: StepCross
+    mechanic: StepCross
+    damage: cross
+  - mixedSentence: true
+    stackFirst: true
+  - traversal: EdgeCone
+    mechanic: EdgeCone
+    coneFlank: true
+  - traversal: CrystalRain
+    mechanic: CrystalRain
+    damage: crystalRain
+    parameters:                       # settings owned by the crystal rain module
+      count: 128
+      warningTime: 3
+      sizes:
+      - 3
+      - 2
+      - 3
+      - 2
+      castTime: 1.5
+      concurrent: 16
+      maxConcurrent: 30
+      spawnInterval: 0.5
+      minSpawnInterval: 0.15
+      doubleChance: 0.5
+      rampSeconds: 60
+  - vigilFollowup: Divide
+    alternate: Cross
+    castTime: 6
+  - pattern: Cross
+    mechanic: Cross
+    alternate: Divide
+    crossSentence: true
+    castTime: 3
+    damage: cross

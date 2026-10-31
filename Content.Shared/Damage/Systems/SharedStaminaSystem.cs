@@ -288,6 +288,9 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (!Resolve(uid, ref component, false))
             return;
 
+        if (value > 0 && EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid, source))
+            return;
+
         var ev = new BeforeStaminaDamageEvent(value, Origin: source); // Добавлен источник урона, нужен для системы парирования
         RaiseLocalEvent(uid, ref ev);
         if (ev.Cancelled)

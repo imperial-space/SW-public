@@ -1,0 +1,22 @@
+light_mode unshaded;
+
+uniform highp vec2 anchor_uv;
+uniform highp vec2 texture_size;
+uniform highp float progress;
+uniform highp float start_angle;
+uniform highp float sweep_angle;
+uniform highp float feather_angle;
+
+const highp float TAU = 6.28318530718;
+
+void fragment() {
+    highp vec4 art = zTexture(UV);
+
+    highp vec2 image_uv = vec2(UV.x, 1.0 - UV.y);
+    highp vec2 delta = (image_uv - anchor_uv) * texture_size;
+    highp float angle = atan(delta.y, delta.x);
+    highp float travel = mod(start_angle - angle + TAU, TAU);
+    highp float reveal = progress >= 1.0 ? 1.0 :
+        clamp((progress * sweep_angle - travel) / feather_angle + 1.0, 0.0, 1.0);
+    COLOR = vec4(art.rgb, art.a * reveal);
+}

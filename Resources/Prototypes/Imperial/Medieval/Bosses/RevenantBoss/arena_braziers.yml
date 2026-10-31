@@ -1,0 +1,26 @@
+- type: entity
+  id: RevenantBossBrazier
+  localizationId: Revenant_Boss_Brazier
+  components:
+  - type: Godmode
+  - type: BossArenaProtected
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/RevenantBossBrazier/brazier_empty.rsi
+    state: off
+    noRot: true
+    drawdepth: SmallObjects
+    scale: 0.5, 0.5
+    offset: 0, 0.5
+  - type: Appearance
+  - type: PointLight
+    enabled: false
+- type: entity
+  id: VeyrathBraziers
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossArenaContentDefinition
+    arenaId: revenant
+    role: brazier
+    prototype: RevenantBossBrazier

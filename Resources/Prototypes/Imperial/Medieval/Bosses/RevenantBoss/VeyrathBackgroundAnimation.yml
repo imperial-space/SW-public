@@ -1,0 +1,12 @@
+- type: entity
+  id: VeyrathBackgroundAnimation
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossArenaContentDefinition
+    arenaId: revenant
+    role: ambient
+    sceneryFile: /Maps/Imperial/Medieval/revenant-scenery.yml
+    decorations:
+    - prototype: RevenantBossArenaAmbient
+      position: 0.5,0.5
+      scenery: false

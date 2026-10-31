@@ -21,6 +21,12 @@
                 <ui:OptionColorSlider Name="HighlightsColorSlider"
                     Title="{Loc 'ui-options-highlights-color'}"
                     Example="{Loc 'ui-options-highlights-color-example'}"/>
+                <Label Text="{Loc 'ui-options-boss-hud-header'}" StyleClasses="LabelKeyText" />
+                <CheckBox Name="BossHudEnabledCheckBox" Text="{Loc 'ui-options-boss-hud-enabled'}" />
+                <ui:OptionSlider Name="BossHudScaleSlider" Title="{Loc 'ui-options-boss-hud-scale'}" />
+                <CheckBox Name="BossHudCustomPositionCheckBox" Text="{Loc 'ui-options-boss-hud-custom-position'}" />
+                <ui:OptionSlider Name="BossHudHorizontalSlider" Title="{Loc 'ui-options-boss-hud-horizontal'}" />
+                <ui:OptionSlider Name="BossHudVerticalSlider" Title="{Loc 'ui-options-boss-hud-vertical'}" />
                 <Label Text="{Loc 'ui-options-accessability-header-content'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="CensorNudityCheckBox" Text="{Loc 'ui-options-censor-nudity'}" />

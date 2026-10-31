@@ -42,6 +42,7 @@ public sealed class ShockWaveSystem : SharedShockWaveSystem
         {
             if (component.NextUpdate >= _timing.CurTime) continue;
 
+            using var arenaSource = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().WithSource(uid);
             component.NextUpdate = _timing.CurTime + component.UpdateRate;
 
             var time = (float)(_timing.CurTime - component.SpawnTime).TotalMilliseconds;
@@ -71,12 +72,14 @@ public sealed class ShockWaveSystem : SharedShockWaveSystem
 
                 foreach (var effect in component.Effects)
                 {
-                    var args = new EntityEffectBaseArgs(entity, EntityManager);
+                    var args = new EntityEffectBaseArgs(entity, EntityManager,
+                        EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().GetSource(uid)?.Player);
                     var canApplyEffect = effect.Conditions?.Aggregate(true, (acc, condition) => condition.Condition(args) && acc) ?? true;
 
                     if (!canApplyEffect) continue;
 
-                    effect.Effect(args);
+                    EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>()
+                        .ApplySpellEffect(effect, args, uid, offensive: true);
                 }
             }
         }

@@ -1,0 +1,22 @@
+- type: entity
+  id: VeyrathBossArt
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossMechanicDefinition
+    encounter: veyrath
+    bossPrototype: RevenantBoss        # keep presentation when another flow is selected
+    feature: BossArt
+    components:
+    - type: BossPresentation
+      castEffect:
+        sprite: Imperial/Medieval/SpellCastEffects/darkness/tentacles.rsi
+        state: beginner
+      preparedCastEffect:
+        sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/wave.rsi
+        state: beginner
+      castEffectScale: 3
+      castEffectColor: '#B277FF'
+      preparedCastEffectColor: '#CAEEF0'
+      body:
+        sprite: Imperial/Medieval/Mobs/Bosses/RevenantBoss/revenant_boss.rsi
+        state: idle

@@ -35,6 +35,7 @@
     <alerts:AlertsUI Name="Alerts" Access="Protected" />
     <areaMarker:AreaMarkerView SetHeight="200" SetWidth="200" Name="View"/> <!-- Imperial medieval edit -->
     <calendar:CalendarNotificationView /> <!-- Imperial medieval edit -->
+    <boss:BossEncounterHealthBarUI Name="EncounterHealthBar" Access="Public" Visible="False" />
     <boss:BossHealthBarUI Name="BossHealthBar"
                           Access="Public"
                           Visible="False" /> <!-- Imperial medieval edit -->

@@ -1,0 +1,36 @@
+- type: entity
+  id: RevenantBossVictoryExit
+  localizationId: Revenant_Boss_Return_Flame
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Effects/portal.rsi
+    noRot: true
+    drawdepth: Effects
+    layers:
+    - state: portal-artifact
+      shader: unshaded
+  - type: PointLight
+    color: '#bc68ff'
+    radius: 3
+    energy: 1.5
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: BossArenaExitTimer
+    timerKey: Revenant_Boss_Return_Timer
+    offset: 0, 26
+  - type: BossArenaGate
+    messagePrefix: Revenant_Boss_
+    open: true
+    returnToGate: true
+    entryDuration: 5
+- type: entity
+  id: VeyrathExit
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossArenaContentDefinition
+    arenaId: revenant
+    role: exit
+    prototype: RevenantBossVictoryExit

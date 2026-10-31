@@ -20,6 +20,8 @@ public sealed class ReplaceFloorOnSpawnSystem : EntitySystem
 
     private void OnMapInit(Entity<ReplaceFloorOnSpawnComponent> ent, ref MapInitEvent args)
     {
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(ent.Owner, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+            return;
         var xform = Transform(ent);
         if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
             return;

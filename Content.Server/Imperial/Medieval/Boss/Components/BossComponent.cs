@@ -21,7 +21,7 @@ public sealed partial class BossComponent : Component
     public float Health = 100f;
 
     [DataField]
-    public ComponentRegistry ComponentsOnDefeat;
+    public ComponentRegistry ComponentsOnDefeat = new();
 
     [DataField]
     public SoundSpecifier? Song;
@@ -30,10 +30,10 @@ public sealed partial class BossComponent : Component
     public float SongDuration = 240f;
 
     [DataField]
-    public SoundSpecifier DefeatSound;
+    public SoundSpecifier? DefeatSound;
 
     [DataField]
-    public SoundSpecifier LoseSound;
+    public SoundSpecifier? LoseSound;
 
     [DataField]
     public string DefeatMessage = "boss-defeated-announce";
@@ -59,6 +59,7 @@ public sealed partial class BossComponent : Component
     [DataField]
     public TimeSpan SendBackDelay = TimeSpan.FromSeconds(15); // Время до телепортации игроков обратно после поражения/победы над боссом
 
+    [ViewVariables]
     public TimeSpan? ReturnPlayersTime;
 
     [DataField]
@@ -66,4 +67,22 @@ public sealed partial class BossComponent : Component
 
     [DataField]
     public bool IsEndGame = true; // Начинать конец раунда при поражении/победе, как сейчас к морбиуса
+
+    [ViewVariables]
+    public bool Finished;
+
+    [DataField]
+    public bool TeleportPlayers = true;
+
+    [DataField]
+    public bool ReturnPlayersOnDefeat = true;
+
+    [ViewVariables]
+    public bool DeleteAfterReturn;
+
+    [DataField]
+    public bool UseDamageableHealth;
+
+    [ViewVariables]
+    public float MaxHealth;
 }

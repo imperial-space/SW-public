@@ -1,0 +1,88 @@
+- type: entity
+  id: RevenantBossAnimatedBrazier
+  localizationId: Revenant_Boss_Brazier
+  components:
+  - type: Godmode
+  - type: BossArenaProtected
+  - type: BossBrazierAnimation
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/RevenantBossBrazier/brazier.rsi
+    noRot: true
+    drawdepth: SmallObjects
+    scale: 0.5, 0.5
+    offset: 0, 0.5
+    layers:
+    - state: off
+      map:
+      - empty
+    - state: white
+      visible: false
+      shader: unshaded
+      map:
+      - white
+    - state: purple
+      visible: false
+      shader: unshaded
+      map:
+      - purple
+    - state: lit
+      visible: false
+      shader: unshaded
+      map:
+      - victory
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BossBrazierVisuals.State:
+        empty:
+          Empty:
+            visible: true
+          White:
+            visible: false
+          Purple:
+            visible: false
+          Victory:
+            visible: false
+        white:
+          Empty:
+            visible: false
+          White:
+            visible: true
+          Purple:
+            visible: false
+          Victory:
+            visible: false
+        purple:
+          Empty:
+            visible: false
+          White:
+            visible: false
+          Purple:
+            visible: true
+          Victory:
+            visible: false
+        victory:
+          Empty:
+            visible: false
+          White:
+            visible: false
+          Purple:
+            visible: false
+          Victory:
+            visible: true
+  - type: PointLight
+    enabled: false
+    radius: 4
+    energy: 3
+    color: '#BB45FF'
+- type: entity
+  id: VeyrathAnimatedBraziers
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossArenaContentDefinition
+    arenaId: revenant
+    role: brazier
+    priority: 20
+    prototype: RevenantBossAnimatedBrazier

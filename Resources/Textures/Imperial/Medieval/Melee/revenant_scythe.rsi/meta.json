@@ -1,0 +1,50 @@
+{
+    "version": 1,
+    "copyright": "User-supplied download-pixelart.png (64x64), preserved byte-for-byte. Unwielded poses use runtime scaling, mirroring and offsets only. Item state is a nearest-neighbour 42x42 rendering (approximately 65% of the original size, approximately 35% smaller) centred in the original 64x64 frame for HUD and dropped-item display. Held states use the approved native wielded v8 and one-handed carry v1 front/rear layers at their authored scale; derived from the same original scythe.",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "icon",
+            "directions": 1
+        },
+        {
+            "name": "equipped-BACKPACK",
+            "directions": 1
+        },
+        {
+            "name": "equipped-SUITSTORAGE",
+            "directions": 1
+        },
+        {
+            "name": "item",
+            "directions": 1
+        },
+        {
+            "name": "wielded-front",
+            "directions": 4
+        },
+        {
+            "name": "wielded-rear",
+            "directions": 4
+        },
+        {
+            "name": "carry-front-right",
+            "directions": 4
+        },
+        {
+            "name": "carry-rear-right",
+            "directions": 4
+        },
+        {
+            "name": "carry-front-left",
+            "directions": 4
+        },
+        {
+            "name": "carry-rear-left",
+            "directions": 4
+        }
+    ]
+}

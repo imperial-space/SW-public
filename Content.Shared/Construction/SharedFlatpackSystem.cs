@@ -61,6 +61,12 @@ public abstract class SharedFlatpackSystem : EntitySystem
             return;
 
         var xform = Transform(ent);
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(ent.Owner, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+        {
+            args.Handled = true;
+            _popup.PopupClient(Loc.GetString("Revenant_Boss_Rules_No_Building"), args.User, args.User);
+            return;
+        }
 
         if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
             return;

@@ -1,3 +1,4 @@
+using Content.Client.Imperial.Medieval.Items;
 using System.Linq;
 using Content.Client.Administration.Managers;
 using Content.Client.Administration.Systems;
@@ -110,11 +111,13 @@ namespace Content.Client.ContextMenu.UI
             {
                 Icon.SetEntity(null);
                 Text = string.Empty;
+                _entityManager.System<ItemNameColorSystem>().Apply(Label, null);
             }
             else
             {
                 Icon.SetEntity(entity);
                 Text = GetEntityDescription(entity.Value);
+                _entityManager.System<ItemNameColorSystem>().Apply(Label, entity);
             }
         }
 

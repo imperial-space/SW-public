@@ -16,6 +16,7 @@ public sealed partial class ImperialEntry
 
         prototypeManager.RegisterIgnore("stationGoal");
         prototypeManager.RegisterIgnore("ertCall");
+        prototypeManager.RegisterIgnore("bossEncounterFlow"); // fight flow runs on the server
     }
 
     public static void PostInit()

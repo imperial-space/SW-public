@@ -104,6 +104,13 @@ namespace Content.Server.Construction
             EntityCoordinates coords,
             Angle angle = default)
         {
+            var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+            var requestedPrototype = arenaRules.RuleDenied(coords, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building) ? targetNode.Entity.GetId(null, user, new(EntityManager)) : null;
+            if (requestedPrototype != null && !arenaRules.CanSpawn(requestedPrototype, coords))
+            {
+                _popup.PopupEntity(Loc.GetString("Revenant_Boss_Rules_No_Building"), user, user);
+                return null;
+            }
             // We need a place to hold our construction items!
             var container = _container.EnsureContainer<Container>(user, materialContainer, out var existed);
 
@@ -280,6 +287,11 @@ namespace Content.Server.Construction
             }
 
             var newEntityProto = graph.Nodes[edge.Target].Entity.GetId(null, user, new(EntityManager));
+            if (newEntityProto is { } prototype && !arenaRules.CanSpawn(prototype, coords))
+            {
+                FailCleanup();
+                return null;
+            }
             var newEntity = SpawnAttachedTo(newEntityProto, coords, rotation: angle);
 
             // Imperial medieval start
@@ -496,6 +508,12 @@ namespace Content.Server.Construction
             }
 
             var mapPos = _transformSystem.ToMapCoordinates(location);
+            if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(mapPos, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+            {
+                _popup.PopupEntity(Loc.GetString("Revenant_Boss_Rules_No_Building"), user, user);
+                Cleanup();
+                return;
+            }
             var predicate = GetPredicate(constructionPrototype.CanBuildInImpassable, mapPos);
 
             if (!_interactionSystem.InRangeUnobstructed(user, mapPos, predicate: predicate))

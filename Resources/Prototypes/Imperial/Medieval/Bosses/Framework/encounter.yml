@@ -1,0 +1,154 @@
+- type: bossTelegraphStyle
+  id: DefaultBossTelegraph
+
+- type: entity
+  id: BossEncounterTelegraph
+  localizationId: Boss_Encounter_Telegraph
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossTelegraph
+
+- type: entity
+  id: BossEncounterImpact
+  parent: BossEncounterTelegraph
+  localizationId: Boss_Encounter_Impact
+  components:
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  id: BaseBossEncounterMarker
+  abstract: true
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossActorMarker
+
+- type: entity
+  id: BossEncounterTankMarker
+  parent: BaseBossEncounterMarker
+  localizationId: Boss_Encounter_Tank_Marker
+  components:
+  - type: BossActorMarker
+    kind: Tank
+
+- type: entity
+  id: BossEncounterTankBusterMarker
+  parent: BaseBossEncounterMarker
+  localizationId: Boss_Encounter_Tank_Buster_Marker
+  components:
+  - type: BossActorMarker
+    kind: TankBuster
+
+- type: entity
+  id: BossEncounterSpreadMarker
+  parent: BaseBossEncounterMarker
+  localizationId: Boss_Encounter_Spread_Marker
+  components:
+  - type: BossActorMarker
+    kind: Spread
+
+- type: entity
+  id: BossEncounterStackMarker
+  parent: BaseBossEncounterMarker
+  localizationId: Boss_Encounter_Stack_Marker
+  components:
+  - type: BossActorMarker
+    kind: Stack
+
+- type: entity
+  id: BossArenaCenterBlocker
+  localizationId: Boss_Encounter_Center
+  categories: [HideSpawnMenu]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      center:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: true
+        layer: [HighImpassable, MidImpassable, LowImpassable]
+        mask: []
+  - type: BossArenaProtected
+  - type: BossArenaCenterBlocker
+
+- type: entity
+  id: BaseScriptedBoss
+  abstract: true
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      body:
+        shape: !type:PhysShapeCircle
+          radius: 1.1
+        mask: [MobMask]
+        layer: [MobLayer]
+  - type: Appearance
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Damageable
+  - type: MobState
+    allowedStates: [Alive, Dead]
+  - type: DoAfter
+  - type: BossArenaProtected
+  - type: BossArenaAttackSource
+  - type: BossTelegraphSettings
+    fixedCardinals: true
+  - type: BossEncounter
+  - type: BossHealthBar
+  - type: BossCastBar
+  - type: Boss
+    health: 10000
+    useDamageableHealth: true
+    teleportPlayers: false
+    returnPlayersOnDefeat: false
+    isEndGame: false
+    sendBackDelay: 0
+    defeatMessage: ""
+    loseMessage: ""
+    stages:
+      1:
+        threshold: 10000
+        stageDelay: 5
+        attacks: []
+
+- type: tile
+  id: BossArenaFloor
+  parent: FloorSteel
+  indestructible: true
+  weather: false
+
+- type: entity
+  id: BossArenaEntrance
+  parent: MarkerBase
+  localizationId: Boss_Arena_Arrival
+  categories: [HideSpawnMenu]
+  components:
+  - type: Transform
+    anchored: true
+  - type: BossArenaEntrance
+    arrivalOffset: 0, 0
+
+- type: entity
+  id: BossArenaSummoningTrigger
+  localizationId: Boss_Arena_Summoning_Trigger
+  categories: [HideSpawnMenu]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Objects/Specific/Xenoarchaeology/xeno_artifacts.rsi
+    state: ano30
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: DoAfter
+  - type: BossArenaProtected
+  - type: BossSummoningTrigger

@@ -42,9 +42,10 @@ public sealed partial class SpawnAtPosition : BossAttackAction
                     }
                 }
 
-                var spike = entMan.SpawnEntity(random.Pick(Prototypes), targetCoords);
+                var spike = entMan.CreateEntityUninitialized(random.Pick(Prototypes), targetCoords);
                 var comp = entMan.EnsureComponent<BossAttackComponent>(spike);
                 comp.Boss = boss;
+                entMan.InitializeAndStartEntity(spike);
             }
         }
     }

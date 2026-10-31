@@ -120,7 +120,9 @@ namespace Content.Shared.EntityEffects.Effects
                     args.TargetEntity,
                     damageSpec * scale,
                     IgnoreResistances,
-                    interruptsDoAfters: false);
+                    interruptsDoAfters: false, origin: args.EntityManager
+                        .System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().IsArena(args.TargetEntity)
+                        ? args.Origin : null);
         }
     }
 }

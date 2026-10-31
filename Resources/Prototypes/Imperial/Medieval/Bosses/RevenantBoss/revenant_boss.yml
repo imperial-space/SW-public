@@ -1,0 +1,111 @@
+- type: entity
+  id: RevenantBoss
+  localizationId: Revenant_Boss
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    noRot: true
+    drawdepth: Mobs
+    scale: 1, 1
+    offset: 0, 0.5
+    layers:
+    - state: icon
+      map:
+      - enum.BossStageVisuals.Layer
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 1.1
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: Clickable
+  - type: InteractionOutline
+  - type: LanguageSpeaker
+    currentLanguage: Universal
+    languages:
+      Universal: Speak
+  - type: UniversalLanguageSpeaker
+  - type: Damageable
+  - type: MeleeWeapon
+    hidden: true
+    damage:
+      types:
+        ParryAble: 1
+  - type: BossArenaProtected
+  - type: BossArenaAttackSource
+  - type: BossTelegraphSettings
+    fixedCardinals: true
+    captionPrefix: Revenant_Boss_
+    telegraphPrototype: RevenantBossTelegraph
+    tankMarkerPrototype: RevenantBossTankMarker
+    tankBusterMarkerPrototype: RevenantBossTankBusterMarker
+    spreadMarkerPrototype: RevenantBossSpreadMarker
+    stackMarkerPrototype: RevenantBossStackMarker
+    impactPrototype: RevenantBossImpact
+    tileImpactPrototype: RevenantBossTileHitEffect
+    style: RevenantBossTelegraphStyle
+    slashSound: /Audio/Imperial/Medieval/RevenantBoss/slash.ogg
+    tankBusterImpactSound: /Audio/Imperial/Medieval/RevenantBoss/execution_fall.ogg
+    tankBusterImpactSoundVolume: -6
+    executionLineWidth: 3
+    magicImpactSound: /Audio/Imperial/Medieval/RevenantBoss/magic_hit.ogg
+    crystalImpactSound: null
+  - type: BossPresentation
+  - type: PointLight
+    color: '#9292FF'
+    radius: 14
+    energy: 3
+    falloff: 1
+    castShadows: false
+  - type: BossEncounter
+    autoStart: false
+    flow: VeyrathDefault
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: BossHealthBar
+    showOverhead: true
+    color: '#BF1429'
+    size: 96, 8
+    offset: 0, 132
+  - type: BossCastBar
+    size: 48, 3
+    offset: 24, 122
+    borderWidth: 0.5
+    backgroundColor: '#00000000'
+  - type: BossHealthScaling
+    maxHealth: 40000
+    maxPlayers: 8
+    arenaRadius: 20
+  - type: DoAfter
+  - type: StatusEffects
+    allowed:
+    - Jitter
+  - type: Boss
+    health: 20000
+    useDamageableHealth: true
+    teleportPlayers: false
+    isEndGame: false
+    sendBackDelay: 0
+    defeatMessage: ''
+    loseMessage: ''
+    componentsOnDefeat:
+    - type: TimedDespawn
+      lifetime: 2
+    stages:
+      1:
+        threshold: 20000
+        stageDelay: 3
+        attacks: []

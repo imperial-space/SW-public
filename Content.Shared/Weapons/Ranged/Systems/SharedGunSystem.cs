@@ -433,7 +433,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         projectile.Weapon = gunUid;
         var shooter = user ?? gunUid;
         if (shooter != null)
+        {
             Projectiles.SetShooter(uid, projectile, shooter.Value);
+            EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().TagSpell(uid, shooter, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Projectiles);
+        }
 
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
     }
