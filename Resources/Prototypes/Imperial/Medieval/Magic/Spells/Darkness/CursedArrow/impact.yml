@@ -1,0 +1,37 @@
+# Hit flash for the cursed arrow family
+
+- type: entity
+  id: CursedArrowImpactEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/impact.rsi
+      state: impact
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: CursedArrowImpactEffectBig
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/impact_big.rsi
+      state: impact
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
