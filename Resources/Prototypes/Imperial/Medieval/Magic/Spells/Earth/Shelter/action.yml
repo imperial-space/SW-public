@@ -46,4 +46,4 @@
       groups:
         Burn: 5
   - type: SpellCastEffect
-    effectProto: MagicLightSpellCastEffectBeginner
+    effectProto: ShelterSpellCastEffectSenior
