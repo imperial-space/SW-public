@@ -1,0 +1,231 @@
+- type: entity
+  name: iron hammer
+  parent: [ BaseItem, BaseTwoHandedCharged, BasePoiseTwoHanded ]
+  id: MedievalIronHammer
+  description: A medieval hammer.
+  components:
+  - type: AdvancedLightAttack
+    preset: WarHammer
+  - type: PoiseDamage
+    poiseDamage: 25
+  - type: RDWeight
+    value: 11
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - FireAxe
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/hammer.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.5
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    angle: 120
+    cPAnimationOffset: 1
+    range: 1.75
+    damage:
+      types:
+        Blunt: 25.2
+        Structural: 30
+        ParryAble: 1
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalMeleeResource
+    resourceWaste: 0.7
+    safeToHitGroup: structure
+  - type: Wieldable
+    useDelayOnWield: false
+    #wieldTime: 3.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 18
+        Structural: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: Item
+    size: Huge
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 2.3
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: iron hammer
+  parent: [ BaseItem, BaseTwoHandedCharged, BasePoiseTwoHanded ]
+  id: MedievalIronHammerSteel
+  description: A medieval hammer.
+  components:
+  - type: AdvancedLightAttack
+    preset: WarHammer
+  - type: PoiseDamage
+    poiseDamage: 30
+  - type: RDWeight
+    value: 11
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - FireAxe
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/hammer.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    angle: 120
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.55
+    range: 1.75
+    damage:
+      types:
+        Blunt: 28.8
+        Structural: 40
+        ParryAble: 1
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalMeleeResource
+    resourceWaste: 0.7
+    safeToHitGroup: structure
+  - type: Wieldable
+    useDelayOnWield: false
+    #wieldTime: 3.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 21.6
+        Structural: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: Item
+    size: Huge
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 14
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 3
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0

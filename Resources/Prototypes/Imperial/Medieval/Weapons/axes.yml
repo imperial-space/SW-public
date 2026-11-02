@@ -1,0 +1,150 @@
+- type: entity
+  name: hatchet
+  parent: [ BaseItem, BaseOneHandedCharged, BasePoiseSlashLarge ]
+  id: MedievalHatchet
+  description: A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood.
+  components:
+  - type: AdvancedLightAttack
+    preset: Axe
+  - type: PoiseDamage
+    poiseDamage: 8
+  - type: RDWeight
+    value: 1
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/medieval_hatchet.rsi
+    state: icon
+    netsync: false
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    swingLeft: false
+    damage:
+      types:
+        Slash: 9.76
+        Piercing: 0
+        Structural: 12
+        ParryAble: 1
+        Blunt: 4.88
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+    resetOnHandSelected: false
+    attackRate: 0.95
+    range: 1.45
+  - type: MedievalMeleeResource
+    resourceWaste: 0.2
+    safeToHitGroup: tree
+  - type: Item
+    sprite: Imperial/Medieval/Melee/medieval_hatchet.rsi
+    size: Normal
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  #- type: EmbeddableProjectile
+    #offset: 0.1,0.1
+  - type: Tag
+    tags:
+    - Spear
+    - BotanyHatchet
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 15
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/medieval_hatchet.rsi
+    slots:
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 0.7
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 1 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedSlashLarge
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: falshion
+  parent: BaseMedievalBattleAxe
+  id: MedievalFalshionT3Fox
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Sword
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_battle_axe.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_battle_axe.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
+  - type: MeleeWeapon
+    attackRate: 0.9
+    clickDamageModifier: 1
+    range: 1.5
+    damage:
+      types:
+        Blunt: 7.5
+        Slash: 10
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 8
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedSlashLarge
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
