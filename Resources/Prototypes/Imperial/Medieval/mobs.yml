@@ -1,9 +1,13 @@
 - type: entity
   id: MedievalHorse
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   name: horse
   description: Brrr
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 8
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/horse.rsi
     layers:
@@ -97,10 +101,14 @@
 
 - type: entity
   name: fox
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobFox
   description: They're a fox.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -188,10 +196,14 @@
 
 - type: entity
   name: fox
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobAnt
   description: They're a fox.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 1
   - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
@@ -328,10 +340,14 @@
 
 - type: entity
   name: wolf
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobWolf
   description: They're a wolf.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 5
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -465,10 +481,14 @@
 
 - type: entity
   name: rabbit
-  parent: MobMouse
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, MobMouse ]
   id: MedievalMobRabbit
   description: They're a rabbit.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 1
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -570,6 +590,9 @@
   id: MedievalMobGolemLarge
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 35
   - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
@@ -680,6 +703,9 @@
   id: MedievalMobGolem
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 12
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -778,10 +804,14 @@
 
 - type: entity
   name: bear
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobBear
   description: They're a bear.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 12
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -905,10 +935,14 @@
 
 - type: entity
   name: hog
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobHog
   description: They're a hog.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 8
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -1008,10 +1042,14 @@
 
 - type: entity
   name: hog
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobAngryGhost
   description: They're a hog.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 8
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Ghosts/ghost_human.rsi
@@ -1129,9 +1167,13 @@
 - type: entity
   name: monkey
   id: MedievalMobGoblin
-  parent: [ SimpleMobBaseNoFood, StripableInventoryBase ]
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood, StripableInventoryBase ]
   description: uga buga
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: CombatMode
     disarm: null
   - type: Inventory
@@ -1282,9 +1324,13 @@
 - type: entity
   name: giga monkey
   id: MedievalMobHobGoblin
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   description: uga buga
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 10
   - type: CombatMode
     disarm: null
   - type: SlowOnDamage
@@ -1420,11 +1466,15 @@
       Common: Speak
 
 - type: entity
-  parent: MobChicken
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, MobChicken ]
   id: MedievalMobChicken
   name: MedievalMobChicken
   description: MedievalMobChicken
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 1
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -1437,11 +1487,15 @@
     id: Pet
 
 - type: entity
-  parent: MobCow
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, MobCow ]
   id: MedievalMobCow
   name: MedievalMobCow
   description: MedievalMobCow
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 6
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -1459,6 +1513,9 @@
   parent: SimpleMobBaseNoFood
   description: uga buga
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: CombatMode
     disarm: null
   - type: Inventory
@@ -1581,6 +1638,10 @@
   id: MedievalMobFire
   description: Some cultures find them terrifying, others crunchy on the teeth.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
+    rangedPoiseDamage: 2
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.5
     baseSprintSpeed: 2.5
@@ -1736,6 +1797,10 @@
   id: MedievalMobPnya
   description: Some cultures find them terrifying, others crunchy on the teeth.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
+    rangedPoiseDamage: 0
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.5
     baseSprintSpeed: 2.5
@@ -1890,6 +1955,9 @@
   description: wuewuewue
   parent: [ MobAdultSlimes, SimpleMobBaseNoFood ]
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 6
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/petslime.rsi
     layers:
@@ -2083,10 +2151,14 @@
 
 - type: entity
   name: rabbit
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobDruid
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 35
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/druid.rsi
@@ -2168,10 +2240,14 @@
 
 - type: entity
   name: rabbit
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobSpiderKing
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 25
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/spider_king.rsi
@@ -2260,10 +2336,14 @@
 
 - type: entity
   name: rabbit
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobSpider
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -2353,10 +2433,14 @@
 
 - type: entity
   name: MedievalMobSpiderCave
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobSpiderCave
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -2475,10 +2559,14 @@
 
 - type: entity
   name: MedievalMobSpiderStrongCave
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobSpiderStrongCave
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -2606,7 +2694,8 @@
     count: 80
 
 - type: entity
-  parent: [ SimpleMobBaseNoFood, MobCombat ]
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood, MobCombat ]
   abstract: true
   id: MedievalMobSkeletBase
   components:
@@ -2708,6 +2797,9 @@
   id: MedievalMobSkeletWeak
   description: Practically no threat, you can kick back even with your fists
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
@@ -2750,6 +2842,9 @@
   id: MedievalMobSkeletWeakSpell
   description: Practically no threat, you can kick back even with your fists
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
@@ -2798,6 +2893,9 @@
   id: MedievalMobSkeletMeat
   description: Slightly stronger than its previous counterpart, but still squishy.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 5
   - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
@@ -2840,6 +2938,9 @@
   id: MedievalMobSkeletMeatSpell
   description: Slightly stronger than its previous counterpart, but still squishy.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 5
   - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
@@ -2888,6 +2989,9 @@
   id: MedievalMobSkeletFighter
   description: This one's already looking serious. But 1 on 1, he can still be beaten.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 8
   - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite
@@ -2933,6 +3037,9 @@
   id: MedievalMobSkeletFighterSpell
   description: This one's already looking serious. But 1 on 1, he can still be beaten.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 8
   - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite
@@ -2982,6 +3089,9 @@
   id: MedievalMobSkeletLegion
   description: You should not approach him if you are not confident in your abilities.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 10
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -3041,6 +3151,10 @@
   id: MedievalMobSkeletArcher
   description: A fairly weak ranged skeleton that doesn't pose much of a threat.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
+    rangedPoiseDamage: 8
   - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
@@ -3099,6 +3213,10 @@
   id: MedievalMobSkeletCrossbow
   description: A pretty serious ranged opponent. It is best to avoid skirmishes with him.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
+    rangedPoiseDamage: 15
   - type: MedievalTimedDespawn
     lifetime: 210
   - type: Sprite
@@ -3154,6 +3272,9 @@
   id: MedievalMobSkeletDark
   description: Your death.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 12
   - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
@@ -3205,6 +3326,9 @@
   id: MedievalMobSkeletMace
   description: This skeleton has a mace and a shield.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 10
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -3264,6 +3388,9 @@
   id: MedievalMobSkeletSpear
   description: This skeleton has a spear.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 8
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -3322,6 +3449,9 @@
   id: MedievalMobSkeletHalberd
   description: This skeleton has a halberd.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 15
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -3383,6 +3513,9 @@
   id: MedievalMobSkeletDagger
   description: This skeleton has a daggers.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -3439,10 +3572,14 @@
 
 - type: entity
   name: MedievalMobHunter
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobHunter
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 12
   - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
@@ -3584,10 +3721,14 @@
 
 - type: entity
   name: MedievalMobDevilMouse
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobDevilMouse
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -3696,10 +3837,14 @@
 
 - type: entity
   name: MedievalMobCrab
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobCrab
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 5
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -3800,10 +3945,14 @@
 
 - type: entity
   name: MedievalMobCrabDevil
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobCrabDevil
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 6
   - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
@@ -3907,10 +4056,14 @@
 
 - type: entity
   name: vengido
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobVendigo
   description: They're a Vegnida.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 30
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/vendigo.rsi
@@ -4009,6 +4162,9 @@
   id: MedievalMobSkeletWeakGhostResp
   description: They're a fox.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 10
   - type: GhostTakeoverAvailable
   - type: GhostRole
     makeSentient: true
@@ -4039,10 +4195,15 @@
 
 - type: entity
   name: nasty growth
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobNastyGrowth
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
+    rangedPoiseDamage: 5
   - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
@@ -4129,10 +4290,14 @@
 
 - type: entity
   name: shield-slug
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobShieldSlug
   description: They're a slug.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 15
   - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
@@ -4225,10 +4390,14 @@
 
 - type: entity
   name: MedievalMobWingedShadow
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobWingedShadow
   description: MedievalMobWingedShadow
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 12
   - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
@@ -4328,10 +4497,14 @@
 
 - type: entity
   name: MedievalMobAngler
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   id: MedievalMobAngler
   description: They're a golem.
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 30
   - type: ForcedSleepImmune
   - type: MedievalTimedDespawn
     lifetime: 240
@@ -4450,8 +4623,13 @@
 
 - type: entity
   id: MedievalElementalAir
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
+    rangedPoiseDamage: 8
   - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite
@@ -4550,8 +4728,12 @@
 
 - type: entity
   id: MedievalElementalFire
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite
@@ -4648,8 +4830,12 @@
 
 - type: entity
   id: MedievalElementalEarth
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 30
   - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite
@@ -4737,8 +4923,13 @@
 
 - type: entity
   id: MedievalElementalWater
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
+    rangedPoiseDamage: 3
   - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite

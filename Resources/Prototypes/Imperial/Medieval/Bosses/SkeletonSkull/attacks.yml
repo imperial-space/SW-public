@@ -147,6 +147,10 @@
   id: SkullBossSpikes
   name: шипы
   components:
+  # outgoing poise per hit.
+  - type: PoiseImpact
+    poiseDamage: 8
+    contactFixture: fix
   - type: Transform
     anchored: True
   - type: Physics
@@ -1117,6 +1121,10 @@
   name: ы
   description:
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 0
+    rangedPoiseDamage: 5
   - type: Gun
     fireRate: 100
     projectileSpeed: 5

@@ -630,6 +630,9 @@
   id: MedievalMyrmexWorker
   description: muravey ebanniy
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 6
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_worker.rsi
@@ -700,6 +703,10 @@
   id: MedievalMyrmexSpitter
   description: muravey ebanniy
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 5
+    rangedPoiseDamage: 4
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_spitter.rsi
@@ -800,6 +807,9 @@
   id: MedievalMyrmexElite
   description: muravey ebanniy
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 15
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_elite.rsi
@@ -877,6 +887,9 @@
   id: MedievalMyrmexWarrior
   description: muravey ebanniy
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 10
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_warrior.rsi
@@ -951,6 +964,9 @@
   parent: MedievalMyrmexBase
   id: MedievalMyrmexLarva
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 1
   - type: Larva
   - type: Myrmex #imperial medieval - larvae count as myrmex for traps, friendly fire and other checks
     actions: []
@@ -1038,6 +1054,9 @@
   id: MedievalMyrmexQueen
   description: muravey ebanniy
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 20
   - type: MyrmexQueen
   # imperial medieval - queen resists incoming stamina damage more than other castes
   - type: MyrmexHunger

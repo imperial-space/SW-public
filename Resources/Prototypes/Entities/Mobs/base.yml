@@ -236,9 +236,10 @@
   - type: Flammable
     fireSpread: true
     canResistFire: true
+    firestackFade: -0.15 # Imperial medieval edit
     damage: #per second, scales with number of fire 'stacks'
       types:
-        Heat: 1.5
+        Heat: 0.75 # Imperial medieval edit
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Generic_mob_burning

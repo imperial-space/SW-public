@@ -1,4 +1,5 @@
 using Content.Shared.Imperial.Dash;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Imperial.Medieval.Climbing;
 using Content.Shared.Imperial.Medieval.Inventory;
 using Content.Shared.MedievalLockpick.Components;
@@ -12,6 +13,7 @@ public abstract partial class SharedSkillsSystem
 
     private void InitializeAgility()
     {
+        SubscribeLocalEvent<SkillsComponent, GetGunSpreadModifiersEvent>(OnGetSpreadMod);
         SubscribeLocalEvent<SkillsComponent, GetMeleeAttackRateEvent>(OnGetRate);
         SubscribeLocalEvent<SkillsComponent, CheckDashCooldownModifiersEvent>(OnGetDashCooldownModifiers);
         SubscribeLocalEvent<SkillsComponent, CheckDashDistanceModifiersEvent>(OnGetDashDistanceModifiers);
@@ -21,6 +23,27 @@ public abstract partial class SharedSkillsSystem
         SubscribeLocalEvent<SkillsComponent, GetEquipDelayModifiersEvent>(OnGetEquipDelayModifiers);
 
     }
+
+    private void OnGetSpreadMod(EntityUid uid, SkillsComponent component, ref GetGunSpreadModifiersEvent args)
+    {
+        var (proto, level) = GetSkill(uid, AgilityId);
+
+        if (level == 10)
+            return;
+
+        var diff = Math.Abs(level - 10);
+
+        // level > 10 — навык высокий, разброс уменьшается (PositiveSpreadModifier: -0.2)
+        // level < 10 — навык низкий, разброс увеличивается (NegativeSpreadModifier: 0.15)
+        float modifier = level > 10
+            ? proto.Modifiers["PositiveSpreadModifier"]  // -0.2
+            : proto.Modifiers["NegativeSpreadModifier"];  // 0.15
+
+        // Формула: args.Modifier * (1 + modifier * diff)
+        args.Modifier *= (1f + modifier * diff);
+        args.Modifier = Math.Max(args.Modifier, 0f);
+    }
+
 
     private void OnGetRate(EntityUid uid, SkillsComponent comp, ref GetMeleeAttackRateEvent args)
     {

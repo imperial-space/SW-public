@@ -26,6 +26,7 @@ using Content.Shared.Imperial.Dash;
 using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Lycantropy;
 using Content.Shared.Imperial.Medieval.Plague;
+using Content.Shared.Imperial.Medieval.Poise;
 using Content.Shared.Imperial.Medieval.Weapons;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -80,10 +81,10 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         DamageDict = new()
         {
-            { "Brute", -1.5f },
+            { "Blunt", -1.5f },
             { "Slash", -1.5f },
             { "Piercing", -1.5f },
-            { "Burn", -1.5f },
+            { "Heat", -1.5f },
         }
     };
 
@@ -394,6 +395,13 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         }
 
         Dirty(uid, weapon);
+
+        // apply the claw upgrade on the server and replicate it.
+        if (args.PoiseDamage is { } poiseDamage && TryComp<PoiseDamageComponent>(uid, out var poise))
+        {
+            poise.PoiseDamage = poiseDamage;
+            Dirty(uid, poise);
+        }
     }
 
     private void OnSetDashStrength(EntityUid uid, WerewolfComponent comp, SetWerewolfDashStrengthEvent args)
@@ -409,6 +417,13 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         _mobThreshold.SetMobStateThreshold(uid, args.Death, Shared.Mobs.MobState.Dead);
         _mobThreshold.SetMobStateThreshold(uid, args.Crit, Shared.Mobs.MobState.Critical);
+
+        // set the total so reapplying Thick Fur cannot stack its bonus.
+        if (args.PoiseThreshold is { } poiseThreshold && TryComp<PoiseComponent>(uid, out var poise))
+        {
+            poise.PoiseThreshold = poiseThreshold;
+            Dirty(uid, poise);
+        }
     }
 
     private void OnSelectForm(SelectWerewolfFormEvent args, EntitySessionEventArgs session)

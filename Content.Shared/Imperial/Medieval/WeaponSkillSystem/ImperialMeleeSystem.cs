@@ -7,6 +7,7 @@ using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Inventory;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Random;
+using Content.Shared.Imperial.Medieval.Poise;
 
 namespace Content.Shared.Imperial.Medieval.WeaponSkillSystem;
 
@@ -17,6 +18,7 @@ public sealed class ImperialMeleeSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly PoiseSystem _poiseSystem = default!;
 
     public readonly record struct ImperialSkillEffects(
         float DamageMultiplier,

@@ -1,7 +1,8 @@
 - type: entity
   name: bee
   id: MedievalBaseBee
-  parent: SimpleMobBaseNoFood
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBaseNoFood ]
   suffix: Beekeeping
   abstract: true
   components:
@@ -84,6 +85,9 @@
   parent: MedievalBaseBee
   description: bee
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 2
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -115,6 +119,9 @@
   parent: MedievalBaseBee
   description: bee
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: Sprite
     drawdepth: Mobs
     layers:
