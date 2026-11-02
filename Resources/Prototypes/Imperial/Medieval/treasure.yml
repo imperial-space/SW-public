@@ -181,7 +181,7 @@
       prob: 0.45
     - id: MedievalIronIngot
       prob: 0.4
-    - id: MedievalArrowIronPhysics
+    - id: MedievalNormalArrow
       prob: 0.4
     - id: MedievalWeaponCrossbow
       prob: 0.35

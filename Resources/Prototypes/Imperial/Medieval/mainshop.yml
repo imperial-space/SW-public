@@ -1343,7 +1343,7 @@
 
 - type: listing
   id: MdvShopMedievalArrow
-  productEntity: MedievalArrowIronPhysics
+  productEntity: MedievalNormalArrow
   cost:
     Revent: 2
   categories:

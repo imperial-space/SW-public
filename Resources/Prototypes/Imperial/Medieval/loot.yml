@@ -553,7 +553,7 @@
         prob: 0.025
       - id: MedievalClothingHeadHelmetNazal
         prob: 0.025
-      - id: MedievalArrowIronPhysics
+      - id: MedievalNormalArrow
         prob: 0.12
       - id: MedievalBolt
         prob: 0.15
@@ -1002,7 +1002,7 @@
         prob: 0.025
       - id: MedievalClothingHeadHelmetNazal
         prob: 0.025
-      - id: MedievalArrowIronPhysics
+      - id: MedievalNormalArrow
         prob: 0.4
       - id: MedievalBolt
         prob: 0.25
@@ -1571,7 +1571,7 @@
         prob: 0.025
       - id: MedievalClothingHeadHelmetNazal
         prob: 0.025
-      - id: MedievalArrowIronPhysics
+      - id: MedievalNormalArrow
         prob: 0.4
       - id: MedievalBolt
         prob: 0.25
