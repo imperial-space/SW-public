@@ -41,6 +41,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
 using Content.Shared.Imperial.Medieval.ChargedAttack;
+// Imperial medieval start
+using Content.Shared.Imperial.Medieval.Poise.LightAttack;
+// Imperial medieval end
 using Content.Shared.Imperial.Medieval.Weapons;
 using Content.Shared.Imperial.Medieval.WeaponSkillSystem; // imperial medieval
 
@@ -71,6 +74,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private readonly ChargedAttackSystem _chargedAttack = default!; // imperial charged attack
     [Dependency] private readonly InnerWeaponSystem _innerWeapon = default!; // imperial medieval inner weapon
     [Dependency] private readonly ImperialMeleeSystem _imperial = default!; // imperial medieval
+    // Imperial medieval start
+    [Dependency] private readonly AdvancedLightAttackSystem _advancedLightAttack = default!;
+    // Imperial medieval end
 
 
     private const int AttackMask = (int)(CollisionGroup.MobMask | CollisionGroup.Opaque);
@@ -88,6 +94,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        UpdatesBefore.Add(typeof(AdvancedLightAttackSystem)); // Imperial medieval edit
 
         SubscribeLocalEvent<MeleeWeaponComponent, HandSelectedEvent>(OnMeleeSelected);
         SubscribeLocalEvent<MeleeWeaponComponent, ShotAttemptedEvent>(OnMeleeShotAttempted);
@@ -135,6 +142,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnMeleeSelected(EntityUid uid, MeleeWeaponComponent component, HandSelectedEvent args)
     {
+        // Imperial medieval edit - independent prepared attacks survive selecting another hand.
+        // Only opted-in weapons get the dual-wield selection exception.
+        if (HasComp<AdvancedLightAttackComponent>(uid) &&
+            (_advancedLightAttack.IsPending(uid) || _advancedLightAttack.RefreshDualWielding(args.User)))
+            return;
         var attackRate = GetAttackRate(uid, args.User, component);
         if (attackRate.Equals(0f))
             return;
@@ -183,11 +195,18 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (user == null)
             return;
 
-        if (!TryGetWeapon(user.Value, out var weaponUid, out var weapon) ||
-            weaponUid != GetEntity(msg.Weapon))
-        {
+        // Imperial medieval edit - a release must reach an inactive held weapon too.
+        var weaponUid = GetEntity(msg.Weapon);
+        if (!TryComp<MeleeWeaponComponent>(weaponUid, out var weapon))
             return;
+        if (HasComp<AdvancedLightAttackComponent>(weaponUid))
+        {
+            if (!IsAdvancedWeaponHeldOrSelected(user.Value, weaponUid))
+                return;
+            _advancedLightAttack.ReleasePrimary(weaponUid);
         }
+        else if (!TryGetWeapon(user.Value, out var selected, out _) || selected != weaponUid)
+            return;
 
         if (!weapon.Attacking)
             return;
@@ -221,7 +240,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             return;
         }
         // imperial charge attack start
-        if (TryComp<ChargedAttackComponent>(weaponUid, out var comp))
+        // Imperial medieval edit - advanced commitments can only be consumed by their timeline.
+        if (!HasComp<AdvancedLightAttackComponent>(weaponUid) &&
+            TryComp<ChargedAttackComponent>(weaponUid, out var comp))
         {
             _chargedAttack.StopAttacking(weaponUid, comp, user);
         }
@@ -380,8 +401,19 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         return AttemptAttack(user, weaponUid, weapon, new DisarmAttackEvent(GetNetEntity(target), GetNetCoordinates(targetXform.Coordinates)), null);
     }
 
+    // Imperial medieval start - delayed charged attacks enter and complete through separate paths.
     // imperial charge attack start
     public bool AttemptHeavyAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon, EntityCoordinates coordinates)
+    {
+        // Imperial medieval edit - server/API callers receive the same minimum charge as players.
+        if (HasComp<AdvancedLightAttackComponent>(weaponUid) && HasComp<ChargedAttackComponent>(weaponUid))
+            return _advancedLightAttack.TryBeginCharged(user, weaponUid, weapon, GetNetCoordinates(coordinates));
+        return PerformHeavyAttack(user, weaponUid, weapon, coordinates, false);
+    }
+
+    // Imperial medieval edit - server hook for a scoped historical charged strike.
+    protected virtual bool PerformHeavyAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon,
+        EntityCoordinates coordinates, bool completingAdvanced)
     {
         var userXform = Transform(user);
         var targetMap = TransformSystem.ToMapCoordinates(coordinates);
@@ -396,19 +428,27 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), weapon.Angle, distance, userXform.MapID, user).ToList());
 
         if (!_playerManager.TryGetSessionByEntity(user, out var session))
-            return AttemptAttack(user, weaponUid, weapon, new HeavyAttackEvent(GetNetEntity(weaponUid), entities, GetNetCoordinates(coordinates)), null);
+            return AttemptAttack(user, weaponUid, weapon, new HeavyAttackEvent(GetNetEntity(weaponUid), entities, GetNetCoordinates(coordinates)), null, completingAdvanced);
 
-        return AttemptAttack(user, weaponUid, weapon, new HeavyAttackEvent(GetNetEntity(weaponUid), entities, GetNetCoordinates(coordinates)), session);
+        return AttemptAttack(user, weaponUid, weapon, new HeavyAttackEvent(GetNetEntity(weaponUid), entities, GetNetCoordinates(coordinates)), session, completingAdvanced);
     }
     // imperial charge attack end
+    // Imperial medieval end
+
 
     /// <summary>
-    /// Called when a windup is finished and an attack is tried.
+    /// Imperial medieval edit: Attempts an immediate melee swing through the normal combat checks.
     /// </summary>
     /// <returns>True if attack successful</returns>
-    private bool AttemptAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon, AttackEvent attack, ICommonSession? session)
+    private bool AttemptAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon,
+        AttackEvent attack, ICommonSession? session, bool completingAdvanced = false)
     {
         var curTime = Timing.CurTime;
+
+        // Imperial medieval edit - neither an extra click nor a heavy packet may bypass preparation.
+        if (_advancedLightAttack.IsAttackLocked(user) ||
+            !completingAdvanced && _advancedLightAttack.IsPending(weaponUid))
+            return false;
 
         if (weapon.NextAttack > curTime)
             return false;
@@ -450,24 +490,44 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 break;
         }
 
-        // Windup time checked elsewhere.
-        var fireRate = TimeSpan.FromSeconds(1f / GetAttackRate(weaponUid, user, weapon));
+        // Imperial medieval edit - preparation is separate from strike/recovery, including for AI callers.
+        if (!completingAdvanced && attack is LightAttackEvent advanced && HasComp<AdvancedLightAttackComponent>(weaponUid))
+            return _advancedLightAttack.TryBegin(user, weaponUid, weapon, advanced);
+
+        // Imperial medieval edit - a direct heavy packet cannot bypass the charged minimum.
+        if (!completingAdvanced && attack is HeavyAttackEvent &&
+            HasComp<AdvancedLightAttackComponent>(weaponUid) && HasComp<ChargedAttackComponent>(weaponUid))
+            return _advancedLightAttack.TryBeginCharged(user, weaponUid, weapon, attack.Coordinates);
+
+        var rate = GetAttackRate(weaponUid, user, weapon);
+        if (!float.IsFinite(rate) || rate <= 0f)
+            return false;
+        var fireRate = TimeSpan.FromSeconds(1f / rate);
         var swings = 0;
 
-        // TODO: If we get autoattacks then probably need a shotcounter like guns so we can do timing properly.
-        if (weapon.NextAttack < curTime)
-            weapon.NextAttack = curTime;
-
-        while (weapon.NextAttack <= curTime)
+        // Imperial medieval start - advanced recovery starts at the actual strike.
+        if (completingAdvanced)
         {
-            weapon.NextAttack += fireRate;
-            swings++;
+            weapon.NextAttack = curTime + fireRate;
+            swings = 1;
         }
+        else
+        {
+            if (weapon.NextAttack < curTime)
+                weapon.NextAttack = curTime;
+            while (weapon.NextAttack <= curTime)
+            {
+                weapon.NextAttack += fireRate;
+                swings++;
+            }
+        }
+        // Imperial medieval end
 
         DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
 
         // Do this AFTER attack so it doesn't spam every tick
-        var ev = new AttemptMeleeEvent();
+        // Imperial medieval edit - preserve the lance/user-aware attempt event.
+        var ev = new AttemptMeleeEvent(user);
         RaiseLocalEvent(weaponUid, ref ev);
         //CrystallEdge melee improvment
         if (weapon.CPSwingBeverage)
@@ -484,6 +544,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
 
         // Attack confirmed
+        // Imperial medieval edit - wide attacks retain their own primary/secondary release behavior.
+        if (attack is not LightAttackEvent && TryComp<AdvancedLightAttackComponent>(weaponUid, out var advancedLatch))
+        {
+            advancedLatch.UsesPrimaryLatch = false;
+            Dirty(weaponUid, advancedLatch);
+        }
         for (var i = 0; i < swings; i++)
         {
             string animation;
@@ -510,7 +576,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                     throw new NotImplementedException();
             }
 
-            DoLungeAnimation(user, weaponUid, weapon.Angle, TransformSystem.ToMapCoordinates(GetCoordinates(attack.Coordinates)), weapon.Range, animation);
+            DoLungeAnimation(user, weaponUid, weapon.Angle, TransformSystem.ToMapCoordinates(GetCoordinates(attack.Coordinates)), weapon.Range, animation, completingAdvanced); // Imperial medieval edit
         }
 
         var attackEv = new MeleeAttackEvent(weaponUid);
@@ -520,6 +586,94 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.Attacking));
         return true;
     }
+
+    // Imperial medieval edit: narrow hook into existing native/historical arc query.
+    public HashSet<EntityUid> LightAttackArcRaycast(Vector2 position, Angle angle,
+        Angle width, float range, MapId map, EntityUid user)
+        => ArcRayCast(position, angle, width, range, map, user);
+
+    // The server overrides target pose lookup inside a historical strike scope.
+    public virtual bool TryGetLightAttackTargetPosition(EntityUid user, EntityUid target, out Vector2 position)
+    {
+        position = Vector2.Zero;
+        if (!TryComp<TransformComponent>(target, out var transform) ||
+            transform.MapID != Transform(user).MapID)
+            return false;
+        position = TransformSystem.GetMapCoordinates(target).Position;
+        return true;
+    }
+
+    // Imperial medieval start
+    public bool IsAdvancedWeaponHeldOrSelected(EntityUid user, EntityUid weapon)
+    {
+        if (user == weapon || _hands.IsHolding(user, weapon))
+            return true;
+        return TryGetWeapon(user, out var selected, out _) && selected == weapon;
+    }
+
+    public bool CheckAdvancedLightAttackAttempt(EntityUid user, EntityUid weapon)
+    {
+        var attempt = new AttemptMeleeEvent(user);
+        RaiseLocalEvent(weapon, ref attempt);
+        if (!attempt.Cancelled)
+            return true;
+        if (attempt.Message != null)
+            PopupSystem.PopupClient(attempt.Message, weapon, user);
+        return false;
+    }
+
+    // Server wraps this in the EXISTING charged strike history scope.
+    protected virtual bool ExecuteAdvancedLightStrike(EntityUid user, EntityUid weaponUid,
+        MeleeWeaponComponent weapon, LightAttackEvent attack)
+    {
+        if (!TryComp<AdvancedLightAttackComponent>(weaponUid, out var advanced))
+            return false;
+        var coords = GetCoordinates(attack.Coordinates);
+        var selected = _advancedLightAttack.SelectLightRaycastTarget(user, weaponUid, weapon, coords, advanced);
+        var target = selected is { } hit ? GetNetEntity(hit) : (NetEntity?) null;
+        var resolved = new LightAttackEvent(target, attack.Weapon, attack.Coordinates, attack.AttackId);
+        _playerManager.TryGetSessionByEntity(user, out var session);
+        // The existing one-target attack path validates permission and resolves damage once.
+        return AttemptAttack(user, weaponUid, weapon, resolved, session, completingAdvanced: true);
+    }
+
+    public bool CompleteAdvancedLightAttack(EntityUid user, EntityUid weaponUid,
+        MeleeWeaponComponent weapon, LightAttackEvent attack)
+    {
+        // A public helper cannot release an unready or different commitment.
+        if (!_advancedLightAttack.TryConsumeStrike(user, weaponUid, attack, out var accepted))
+            return false;
+
+        attack = accepted;
+        var coordinates = accepted.Coordinates;
+        if (!TryGetEntity(coordinates.NetEntity, out _) || !GetCoordinates(coordinates).IsValid(EntityManager))
+            coordinates = GetNetCoordinates(Transform(user).Coordinates);
+        var finalAttack = new LightAttackEvent(null, accepted.Weapon, coordinates, attack.AttackId);
+        var result = ExecuteAdvancedLightStrike(user, weaponUid, weapon, finalAttack);
+        _advancedLightAttack.FinishPresentation(user, weaponUid, attack.AttackId); // Imperial medieval edit
+        return result;
+    }
+    public bool CompleteAdvancedChargedAttack(EntityUid user, EntityUid weaponUid,
+        MeleeWeaponComponent weapon, LightAttackEvent attack)
+    {
+        if (!TryComp<ChargedAttackComponent>(weaponUid, out var charged) ||
+            !_advancedLightAttack.TryConsumeStrike(user, weaponUid, attack, out var accepted, charged: true))
+            return false;
+        var advanced = Comp<AdvancedLightAttackComponent>(weaponUid);
+        var fractions = AdvancedLightAttackSystem.GetChargeFractions(advanced.Strikes, advanced.MinimumStrike, advanced.MaximumStrike);
+        charged.Modifier = 1f + charged.StaticModifier * fractions.Damage;
+        charged.PoiseChargeRatio = fractions.Poise;
+        Dirty(weaponUid, charged);
+        var coordinates = accepted.Coordinates;
+        if (!TryGetEntity(coordinates.NetEntity, out _) || !GetCoordinates(coordinates).IsValid(EntityManager))
+            coordinates = GetNetCoordinates(Transform(user).Coordinates);
+        // Recompute contacts at the actual strike using the latest cursor direction.
+        var result = PerformHeavyAttack(user, weaponUid, weapon, GetCoordinates(coordinates), true);
+        _chargedAttack.StopAttacking(weaponUid, charged, user);
+        _advancedLightAttack.FinishPresentation(user, weaponUid, attack.AttackId); // Imperial medieval edit
+        return result;
+    }
+    // Imperial medieval end
 
     protected abstract bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session);
 
@@ -563,28 +717,63 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             return;
         }
 
+        // Imperial medieval start
+        var targets = new List<EntityUid> { target.Value };
+        var hitTarget = target.Value;
+        var chargeModifier = TryComp<ChargedAttackComponent>(meleeUid, out var charge) ? charge.Modifier : 0f;
+        var chargeConverts = charge?.ConvertPiercingToBlunt ?? false;
+        if (TryDeferMeleeHit(user, meleeUid, targets, (confirmedTargets, poiseDamage) =>
+            ResolveLightAttackHit(user, ev, meleeUid, component, hitTarget, targetXform,
+                confirmedTargets, damage, resistanceBypass, skillEffects, poiseDamage, chargeModifier, chargeConverts)))
+        {
+            if (charge != null)
+            {
+                charge.Modifier = 0f;
+                Dirty(meleeUid, charge);
+            }
+            return;
+        }
+
+        ResolveLightAttackHit(user, ev, meleeUid, component, hitTarget, targetXform,
+            targets, damage, resistanceBypass, skillEffects, null);
+    }
+
+    /// <summary>Override on the server to confirm validated contact before committing hit consequences.</summary>
+    protected virtual bool TryDeferMeleeHit(EntityUid user, EntityUid weapon, List<EntityUid> targets,
+        Action<List<EntityUid>, int?> resolve)
+    {
+        return false;
+    }
+
+    private void ResolveLightAttackHit(EntityUid user, LightAttackEvent ev, EntityUid meleeUid,
+        MeleeWeaponComponent component, EntityUid target, TransformComponent targetXform,
+        List<EntityUid> targets, DamageSpecifier damage, bool resistanceBypass,
+        ImperialMeleeSystem.ImperialSkillEffects skillEffects, int? poiseDamageOverride,
+        float? chargeModifierOverride = null, bool chargeConvertsPiercingToBlunt = false)
+    {
+        if (!targets.Contains(target))
+            return;
         // Sawmill.Debug($"Melee damage is {damage.Total} out of {component.Damage.Total}");
 
         // Raise event before doing damage so we can cancel damage if the event is handled
-        // var hitEvent = new MeleeHitEvent(new List<EntityUid> { target.Value }, user, meleeUid, damage, null);
+        // var hitEvent = new MeleeHitEvent(new List<EntityUid> { target }, user, meleeUid, damage, null);
         // RaiseLocalEvent(meleeUid, hitEvent);
 
         // if (hitEvent.Handled)
         //     return;
 
         // imperial medieval rideable start
-        var targets = new List<EntityUid>(1)
-        {
-            target.Value
-        };
-
         var before = new BeforeMeleeHitEvent(targets, user);
         RaiseLocalEvent(meleeUid, ref before);
         if (before.Cancelled) return;
         targets = before.HitEntities;
 
 
-        var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, null);
+        var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, null)
+        {
+            ChargeModifierOverride = chargeModifierOverride,
+            ChargeConvertsPiercingToBlunt = chargeConvertsPiercingToBlunt
+        };
         RaiseLocalEvent(meleeUid, hitEvent);
 
         if (hitEvent.Handled)
@@ -601,8 +790,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         Interaction.DoContactInteraction(user, target);
 
         // For stuff that cares about it being attacked.
-        var attackedEvent = new AttackedEvent(meleeUid, user, targetXform.Coordinates);
-        RaiseLocalEvent(target.Value, attackedEvent);
+        var attackedEvent = new AttackedEvent(meleeUid, user, targetXform.Coordinates)
+        {
+            PoiseDamageOverride = poiseDamageOverride // Imperial medieval edit
+        };
+        RaiseLocalEvent(target, attackedEvent);
         // [IMPERIAL] 2. Добавляем бонусный урон
         var totalBonus = hitEvent.BonusDamage + attackedEvent.BonusDamage;
         if (skillEffects.BonusDamage != null)
@@ -612,7 +804,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // ---------------------------------------------------------
         var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin:user, ignoreResistances:resistanceBypass);
         // [IMPERIAL]
-        var bypassResult = _imperial.ApplySkillEffects(target.Value, user, meleeUid, skillEffects, damageResult, component);
+        var bypassResult = _imperial.ApplySkillEffects(target, user, meleeUid, skillEffects, damageResult, component);
         if ((damageResult == null || damageResult.Empty) && (bypassResult != null && !bypassResult.Empty))
         {
             damageResult = bypassResult;
@@ -624,11 +816,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
             if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
             {
-                _stamina.TakeStaminaDamage(target.Value, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
+                _stamina.TakeStaminaDamage(target, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
             }
 
             // Imperial Medieval start
-            var dealtEv = new MeleeDamageDealtEvent(target.Value, user, weapon, damageResult);
+            var dealtEv = new MeleeDamageDealtEvent(target, user, weapon, damageResult);
             RaiseLocalEvent(user, ref dealtEv);
             // Imperial Medieval end
 
@@ -636,18 +828,18 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             {
                 AdminLogger.Add(LogType.MeleeHit,
                     LogImpact.Medium,
-                    $"{ToPrettyString(user):actor} melee attacked (light) {ToPrettyString(target.Value):subject} using their hands and dealt {damageResult.GetTotal():damage} damage");
+                    $"{ToPrettyString(user):actor} melee attacked (light) {ToPrettyString(target):subject} using their hands and dealt {damageResult.GetTotal():damage} damage");
             }
             else
             {
                 AdminLogger.Add(LogType.MeleeHit,
                     LogImpact.Medium,
-                    $"{ToPrettyString(user):actor} melee attacked (light) {ToPrettyString(target.Value):subject} using {ToPrettyString(meleeUid):tool} and dealt {damageResult.GetTotal():damage} damage");
+                    $"{ToPrettyString(user):actor} melee attacked (light) {ToPrettyString(target):subject} using {ToPrettyString(meleeUid):tool} and dealt {damageResult.GetTotal():damage} damage");
             }
 
         }
 
-        _meleeSound.PlayHitSound(target.Value, user, GetHighestDamageSound(modifiedDamage, _protoManager), hitEvent.HitSoundOverride, component);
+        _meleeSound.PlayHitSound(target, user, GetHighestDamageSound(modifiedDamage, _protoManager), hitEvent.HitSoundOverride, component);
 
         if (damageResult?.GetTotal() > FixedPoint2.Zero)
         {
@@ -655,6 +847,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
     }
 
+    // Imperial medieval end
     protected abstract void DoDamageEffect(List<EntityUid> targets, EntityUid? user,  TransformComponent targetXform);
 
     private bool DoHeavyAttack(EntityUid user, HeavyAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
@@ -751,14 +944,48 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             targets.Add(entity);
         }
 
+        // Imperial medieval start
+        // Freeze permissions with the contact check, before any confirmation delay.
+        targets.RemoveAll(entity => !Blocker.CanAttack(user, entity, (meleeUid, component)));
+        var chargeModifier = TryComp<ChargedAttackComponent>(meleeUid, out var charge) ? charge.Modifier : 0f;
+        var chargeConverts = charge?.ConvertPiercingToBlunt ?? false;
+        if (TryDeferMeleeHit(user, meleeUid, targets, (confirmedTargets, poiseDamage) =>
+            ResolveHeavyAttackHit(user, ev, meleeUid, component, confirmedTargets, direction,
+                damage, resistanceBypass, skillEffects, poiseDamage, chargeModifier, chargeConverts)))
+        {
+            if (charge != null)
+            {
+                charge.Modifier = 0f;
+                Dirty(meleeUid, charge);
+            }
+            return true;
+        }
+
+        ResolveHeavyAttackHit(user, ev, meleeUid, component, targets, direction,
+            damage, resistanceBypass, skillEffects, null);
+        return true;
+    }
+
+    private void ResolveHeavyAttackHit(EntityUid user, HeavyAttackEvent ev, EntityUid meleeUid,
+        MeleeWeaponComponent component, List<EntityUid> targets, Vector2 direction,
+        DamageSpecifier damage, bool resistanceBypass,
+        ImperialMeleeSystem.ImperialSkillEffects skillEffects, int? poiseDamageOverride,
+        float? chargeModifierOverride = null, bool chargeConvertsPiercingToBlunt = false)
+    {
+        if (targets.Count == 0)
+            return;
         // Sawmill.Debug($"Melee damage is {damage.Total} out of {component.Damage.Total}");
 
         // Raise event before doing damage so we can cancel damage if the event is handled
-        var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, direction);
+        var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, direction)
+        {
+            ChargeModifierOverride = chargeModifierOverride,
+            ChargeConvertsPiercingToBlunt = chargeConvertsPiercingToBlunt
+        };
         RaiseLocalEvent(meleeUid, hitEvent);
 
         if (hitEvent.Handled)
-            return true;
+            return;
 
         var weapon = GetEntity(ev.Weapon);
 
@@ -779,17 +1006,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         for (var i = targets.Count - 1; i >= 0; i--)
         {
             var entity = targets[i];
-            // We raise an attack attempt here as well,
-            // primarily because this was an untargeted wideswing: if a subscriber to that event cared about
-            // the potential target (such as for pacifism), they need to be made aware of the target here.
-            // In that case, just continue.
-            if (!Blocker.CanAttack(user, entity, (weapon, component)))
+            var attackedEvent = new AttackedEvent(meleeUid, user, GetCoordinates(ev.Coordinates))
             {
-                targets.RemoveAt(i);
-                continue;
-            }
-
-            var attackedEvent = new AttackedEvent(meleeUid, user, GetCoordinates(ev.Coordinates));
+                PoiseDamageOverride = poiseDamageOverride // Imperial medieval edit
+            };
             RaiseLocalEvent(entity, attackedEvent);
             // [IMPERIAL]
             var totalBonus = hitEvent.BonusDamage + attackedEvent.BonusDamage;
@@ -832,9 +1052,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             }
         }
 
-        if (entities.Count != 0)
+        if (targets.Count != 0)
         {
-            var target = entities.First();
+            var target = targets.First();
             _meleeSound.PlayHitSound(target, user, GetHighestDamageSound(appliedDamage, _protoManager), hitEvent.HitSoundOverride, component);
         }
 
@@ -843,10 +1063,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             DoDamageEffect(targets, user, Transform(targets[0]));
         }
 
-        return true;
     }
 
-    protected HashSet<EntityUid> ArcRayCast(Vector2 position, Angle angle, Angle arcWidth, float range, MapId mapId, EntityUid ignore)
+    // Imperial medieval end
+    // Imperial medieval edit - server hook; the client retains its ordinary predicted arc.
+    protected virtual HashSet<EntityUid> ArcRayCast(Vector2 position, Angle angle, Angle arcWidth, float range, MapId mapId, EntityUid ignore)
     {
         // TODO: This is pretty sucky.
         var widthRad = arcWidth;
@@ -1062,7 +1283,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         return true;
     }
 
-    private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation)
+    private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation, bool advanced) // Imperial medieval edit
     {
         // TODO: Assert that offset eyes are still okay.
         if (!TryComp(user, out TransformComponent? userXform))
@@ -1083,6 +1304,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (localPos.Length() > visualLength)
             localPos = localPos.Normalized() * visualLength;
 
+        // Imperial medieval edit - only advanced observer visuals bypass buffered lunge delivery.
+        if (advanced && _advancedLightAttack.TryPresentAdvancedSwing(user, weapon, angle, localPos, animation))
+            return;
         DoLunge(user, weapon, angle, localPos, animation);
     }
 
@@ -1163,3 +1387,5 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
     }
 }
+
+

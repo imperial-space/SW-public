@@ -1,0 +1,14 @@
+# client-only presentation; first three frames of the charge placeholder.
+- type: entity
+  id: MedievalAdvancedLightAttackCue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Poise/LightAttack/windup.rsi
+    state: windup
+    noRot: true
+    drawdepth: Effects
+    visible: false
+  - type: Tag
+    tags:
+    - HideContextMenu
