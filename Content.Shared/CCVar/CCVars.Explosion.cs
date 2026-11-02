@@ -105,4 +105,14 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> ExplosionCanCreateVacuum =
         CVarDef.Create("explosion.can_create_vacuum", true, CVar.SERVERONLY);
+
+    // Imperial medieval start - scale armor's resistance percentage, independently of blast damage.
+    /// <summary>
+    /// Multiplier for armor explosion resistance. 1 keeps the configured resistance,
+    /// 2 doubles it, and 0 disables it. Does not scale medallions or innate NPC protection.
+    /// </summary>
+    public static readonly CVarDef<float> MedievalArmorExplosionResistanceMultiplier =
+        CVarDef.Create("medieval.armor_explosion_resistance_multiplier", 1f,
+            CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+    // Imperial medieval end
 }

@@ -47,21 +47,18 @@ public sealed class MedievalArmorRepairSystem : EntitySystem
             return;
         }
 
-        if (repairTool.Comp.RepairType != armor.RepairType)
+        if (_armorIntegrity.IsPermanentlyBroken(armor))
         {
-            _popup.PopupEntity(
-                Loc.GetString("armor-repair-wrong-tool-popup"),
-                args.User,
-                args.User,
-                PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("armor-repair-irreparable-popup"), args.User, args.User, PopupType.SmallCaution);
+
             args.Handled = true;
             return;
         }
 
-        if (MathHelper.CloseTo(armor.MaxArmorHP, 0f))
+        if (repairTool.Comp.RepairType != armor.RepairType)
         {
             _popup.PopupEntity(
-                Loc.GetString("armor-repair-irreparable-popup"),
+                Loc.GetString("armor-repair-wrong-tool-popup"),
                 args.User,
                 args.User,
                 PopupType.SmallCaution);
@@ -118,12 +115,8 @@ public sealed class MedievalArmorRepairSystem : EntitySystem
         Entity<MedievalArmorIntegrityComponent> armor,
         ref MedievalArmorRepairDoAfterEvent args)
     {
-        if (args.Handled ||
-            args.Cancelled ||
-            args.Used is not { } used ||
-            !TryComp<MedievalRepairArmorComponent>(used, out var repairTool) ||
-            repairTool.RepairType != armor.Comp.RepairType ||
-            IsArmorEquipped(armor) ||
+        if (args.Handled || args.Cancelled || args.Used is not { } used || !TryComp<MedievalRepairArmorComponent>(used, out var repairTool) ||
+            repairTool.RepairType != armor.Comp.RepairType || IsArmorEquipped(armor) || _armorIntegrity.IsPermanentlyBroken(armor.Comp) ||
             MathHelper.CloseTo(armor.Comp.CurrentArmorHP, armor.Comp.MaxArmorHP))
         {
             return;

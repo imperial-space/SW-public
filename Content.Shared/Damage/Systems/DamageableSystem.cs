@@ -171,8 +171,7 @@ namespace Content.Shared.Damage
         ///     Returns a <see cref="DamageSpecifier"/> with information about the actual damage changes. This will be
         ///     null if the user had no applicable components that can take damage.
         /// </returns>
-        public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
-            bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null)
+        public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false, bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null, bool ignoreArmorDamage = false)
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
@@ -194,14 +193,21 @@ namespace Content.Shared.Damage
             // Apply resistances
             if (!ignoreResistances)
             {
-                if (damageable.DamageModifierSetId != null &&
-                    _prototypeManager.Resolve<DamageModifierSetPrototype>(damageable.DamageModifierSetId, out var modifierSet))
+                if (damageable.DamageModifierSetId != null && _prototypeManager.Resolve<DamageModifierSetPrototype>(damageable.DamageModifierSetId, out var modifierSet))
                 {
                     // TODO DAMAGE PERFORMANCE
                     // use a local private field instead of creating a new dictionary here..
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
+            }
 
+            // Allow armor durability to read the damage before worn armor modifies it.
+            var preModify = new DamagePreModifyEvent(damage, origin, ignoreArmorDamage);
+            RaiseLocalEvent(uid.Value, ref preModify);
+
+            // Apply worn armor and other DamageModifyEvent resistances.
+            if (!ignoreResistances)
+            {
                 var ev = new DamageModifyEvent(damage, origin);
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
@@ -370,6 +376,8 @@ namespace Content.Shared.Damage
     [ByRefEvent]
     public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid? Origin = null, bool Cancelled = false);
 
+    [ByRefEvent]
+    public record struct DamagePreModifyEvent(DamageSpecifier Damage, EntityUid? Origin = null, bool IgnoreArmorDamage = false);
     /// <summary>
     ///     Raised on an entity when damage is about to be dealt,
     ///     in case anything else needs to modify it other than the base
