@@ -1,4 +1,6 @@
+//Imperial medieval start
 using Content.Client.Imperial.Medieval.Items;
+//Imperial medieval stop
 using System.Numerics;
 using Content.Client.Items.Systems;
 using Content.Shared.Item;
@@ -72,12 +74,14 @@ public sealed class ItemGridPiece : Control, IEntityControl
         if (_storageController.IsDragging)
             return null;
 
+        //Imperial medieval start
         var tooltip = new Tooltip
         {
             Text = _entityManager.GetComponent<MetaDataComponent>(Entity).EntityName
         };
         _entityManager.System<ItemNameColorSystem>().ApplyTooltip(tooltip, Entity);
         return tooltip;
+        //Imperial medieval stop
     }
 
     protected override void OnThemeUpdated()

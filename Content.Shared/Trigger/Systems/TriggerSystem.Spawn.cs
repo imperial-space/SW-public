@@ -68,17 +68,21 @@ public sealed partial class TriggerSystem
     /// <param name="predicted">Whether to use predicted spawning.</param>
     private void SpawnTriggerHelper(Entity<TransformComponent> target, EntProtoId proto, bool useMapCoords, bool predicted)
     {
+        //Imperial medieval start
         var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
         if (!rules.CanSpawn(proto, target.Comp.Coordinates))
             return;
         using var sourceScope = rules.WithSource(rules.CurrentSource);
+        //Imperial medieval stop
         if (useMapCoords)
         {
             var mapCoords = _transform.GetMapCoordinates(target);
+            //Imperial medieval start
             if (predicted)
                 rules.TagSpell(EntityManager.PredictedSpawn(proto, mapCoords), null);
             else if (_net.IsServer)
                 rules.TagSpell(Spawn(proto, mapCoords), null);
+            //Imperial medieval stop
         }
 
         else
@@ -87,10 +91,12 @@ public sealed partial class TriggerSystem
             if (!coords.IsValid(EntityManager))
                 return;
 
+            //Imperial medieval start
             if (predicted)
                 rules.TagSpell(PredictedSpawnAttachedTo(proto, coords), null);
             else if (_net.IsServer)
                 rules.TagSpell(SpawnAttachedTo(proto, coords), null);
+            //Imperial medieval stop
         }
     }
 

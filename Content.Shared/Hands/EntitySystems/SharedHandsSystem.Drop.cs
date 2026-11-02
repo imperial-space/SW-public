@@ -138,10 +138,12 @@ public abstract partial class SharedHandsSystem
         if (TerminatingOrDeleted(entity))
             return true;
 
+        //Imperial medieval start
         var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
         if ((arenaRules.RuleDenied(ent.Owner, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Equipment) || targetDropLocation is { } location && arenaRules.RuleDenied(location, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Equipment)) &&
             arenaRules.IsBlockingFurniture(entity.Value))
             return false;
+        //Imperial medieval stop
 
         var itemXform = Transform(entity.Value);
         if (itemXform.MapUid == null)

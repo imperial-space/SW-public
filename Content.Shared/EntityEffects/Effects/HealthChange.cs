@@ -97,6 +97,7 @@ namespace Content.Shared.EntityEffects.Effects
                 scale = ScaleByQuantity ? reagentArgs.Quantity * reagentArgs.Scale : reagentArgs.Scale;
             }
 
+            //Imperial medieval start
             var universalReagentDamageModifier = args.EntityManager.System<DamageableSystem>().UniversalReagentDamageModifier;
             var universalReagentHealModifier = args.EntityManager.System<DamageableSystem>().UniversalReagentHealModifier;
 
@@ -123,6 +124,7 @@ namespace Content.Shared.EntityEffects.Effects
                     interruptsDoAfters: false, origin: args.EntityManager
                         .System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().IsArena(args.TargetEntity)
                         ? args.Origin : null);
+            //Imperial medieval stop
         }
     }
 }

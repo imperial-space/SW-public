@@ -51,7 +51,9 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         if (before.Cancelled) return;
 
+        //Imperial medieval start
         using var arenaSource = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().WithSource(uid);
+        //Imperial medieval stop
         // imperial medieval rideable end
 
 

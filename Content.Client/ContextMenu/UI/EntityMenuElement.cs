@@ -1,4 +1,6 @@
+//Imperial medieval start
 using Content.Client.Imperial.Medieval.Items;
+//Imperial medieval stop
 using System.Linq;
 using Content.Client.Administration.Managers;
 using Content.Client.Administration.Systems;
@@ -111,13 +113,17 @@ namespace Content.Client.ContextMenu.UI
             {
                 Icon.SetEntity(null);
                 Text = string.Empty;
+                //Imperial medieval start
                 _entityManager.System<ItemNameColorSystem>().Apply(Label, null);
+                //Imperial medieval stop
             }
             else
             {
                 Icon.SetEntity(entity);
                 Text = GetEntityDescription(entity.Value);
+                //Imperial medieval start
                 _entityManager.System<ItemNameColorSystem>().Apply(Label, entity);
+                //Imperial medieval stop
             }
         }
 

@@ -43,9 +43,11 @@ public sealed partial class MovespeedModifier : EntityEffect
     /// </summary>
     public override void Effect(EntityEffectBaseArgs args)
     {
+        //Imperial medieval start
         if ((WalkSpeedModifier < 1 || SprintSpeedModifier < 1) &&
             args.EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(args.TargetEntity, args.Origin))
             return;
+        //Imperial medieval stop
         var status = args.EntityManager.EnsureComponent<MovespeedModifierMetabolismComponent>(args.TargetEntity);
 
         // Only refresh movement if we need to.

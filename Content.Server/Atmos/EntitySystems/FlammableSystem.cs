@@ -101,8 +101,10 @@ namespace Content.Server.Atmos.EntitySystems
                 if (!TryComp<FlammableComponent>(entity, out var flammable))
                     continue;
 
+                //Imperial medieval start
                 if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksFriendlyEffect(entity, args.User, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Fire))
                     continue;
+                //Imperial medieval stop
                 AdjustFireStacks(entity, component.FireStacks, flammable);
                 if (component.FireStacks >= 0)
                     Ignite(entity, args.Weapon, flammable, args.User);
@@ -120,8 +122,10 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
 
             var otherEnt = args.OtherEntity;
+            //Imperial medieval start
             if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksFriendlyEffect(otherEnt, uid, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Fire))
                 return;
+            //Imperial medieval stop
 
             if (!TryComp(otherEnt, out FlammableComponent? flammable))
                 return;
@@ -306,8 +310,10 @@ namespace Content.Server.Atmos.EntitySystems
             if (!Resolve(uid, ref flammable))
                 return;
 
+            //Imperial medieval start
             if (stacks > flammable.FireStacks && EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksFriendlyEffect(uid, null, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Fire))
                 return;
+            //Imperial medieval stop
             flammable.FireStacks = MathF.Min(MathF.Max(flammable.MinimumFireStacks, stacks), flammable.MaximumFireStacks);
 
             if (flammable.FireStacks <= 0)
@@ -347,8 +353,10 @@ namespace Content.Server.Atmos.EntitySystems
             if (!Resolve(uid, ref flammable))
                 return;
 
+            //Imperial medieval start
             if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksFriendlyEffect(uid, ignitionSourceUser ?? ignitionSource, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Fire))
                 return;
+            //Imperial medieval stop
 
             if (flammable.AlwaysCombustible)
             {

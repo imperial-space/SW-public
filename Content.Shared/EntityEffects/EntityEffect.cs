@@ -112,7 +112,9 @@ public record class EntityEffectBaseArgs
 
     public IEntityManager EntityManager = default!;
 
+    //Imperial medieval start
     public EntityUid? Origin;
+    //Imperial medieval stop
 
     public EntityEffectBaseArgs(EntityUid targetEntity, IEntityManager entityManager)
     {
@@ -120,11 +122,13 @@ public record class EntityEffectBaseArgs
         EntityManager = entityManager;
     }
 
+    //Imperial medieval start
     public EntityEffectBaseArgs(EntityUid targetEntity, IEntityManager entityManager, EntityUid? origin)
         : this(targetEntity, entityManager)
     {
         Origin = origin;
     }
+    //Imperial medieval stop
 }
 
 public record class EntityEffectReagentArgs : EntityEffectBaseArgs

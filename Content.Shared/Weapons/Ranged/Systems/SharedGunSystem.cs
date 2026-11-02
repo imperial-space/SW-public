@@ -432,11 +432,13 @@ public abstract partial class SharedGunSystem : EntitySystem
         var projectile = EnsureComp<ProjectileComponent>(uid);
         projectile.Weapon = gunUid;
         var shooter = user ?? gunUid;
+        //Imperial medieval start
         if (shooter != null)
         {
             Projectiles.SetShooter(uid, projectile, shooter.Value);
             EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().TagSpell(uid, shooter, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Projectiles);
         }
+        //Imperial medieval stop
 
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
     }

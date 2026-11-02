@@ -35,9 +35,11 @@ namespace Content.Server.Engineering.EntitySystems
             if (string.IsNullOrEmpty(component.Prototype))
                 return;
 
+            //Imperial medieval start
             var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
             if (arenaRules.RuleDenied(args.ClickLocation, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
                 return;
+            //Imperial medieval stop
             var gridUid = _transform.GetGrid(args.ClickLocation);
             if (!TryComp<MapGridComponent>(gridUid, out var grid))
                 return;
@@ -72,8 +74,10 @@ namespace Content.Server.Engineering.EntitySystems
                     return;
             }
 
+            //Imperial medieval start
             if (component.Deleted || arenaRules.RuleDenied(args.ClickLocation, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building) || !IsTileClear())
                 return;
+            //Imperial medieval stop
 
             if (TryComp(uid, out StackComponent? stackComp)
                 && component.RemoveOnInteract && !_stackSystem.Use(uid, 1, stackComp))

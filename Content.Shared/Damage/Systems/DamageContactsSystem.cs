@@ -33,10 +33,12 @@ public sealed class DamageContactsSystem : EntitySystem
                 continue;
             damaged.NextSecond = _timing.CurTime + TimeSpan.FromSeconds(1);
 
+            //Imperial medieval start
             using var source = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>()
                 .WithSource(damaged.ArenaSource, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Contact);
             if (damaged.Damage != null)
                 _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false, origin: damaged.ArenaSource);
+            //Imperial medieval stop
         }
     }
 
@@ -64,8 +66,10 @@ public sealed class DamageContactsSystem : EntitySystem
     {
         var otherUid = args.OtherEntity;
 
+        //Imperial medieval start
         var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
         if (rules.BlocksFriendlyEffect(otherUid, uid, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Contact)) return;
+        //Imperial medieval stop
         if (HasComp<DamagedByContactComponent>(otherUid))
             return;
 
@@ -74,7 +78,9 @@ public sealed class DamageContactsSystem : EntitySystem
 
         var damagedByContact = EnsureComp<DamagedByContactComponent>(otherUid);
         damagedByContact.Damage = component.Damage;
+        //Imperial medieval start
         damagedByContact.ArenaSource = rules.IsArena(uid) &&
             HasComp<Content.Shared.Imperial.Medieval.Boss.BossArenaSpellSourceComponent>(uid) ? uid : null;
+        //Imperial medieval stop
     }
 }

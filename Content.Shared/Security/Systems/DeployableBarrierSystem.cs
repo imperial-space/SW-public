@@ -38,8 +38,10 @@ public sealed class DeployableBarrierSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        //Imperial medieval start
         if (isDeployed && EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(uid, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
             isDeployed = false;
+        //Imperial medieval stop
         var transform = Transform(uid);
         var fixture = _fixtures.GetFixtureOrNull(uid, component.FixtureId);
 

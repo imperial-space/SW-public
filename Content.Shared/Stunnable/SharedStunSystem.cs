@@ -129,8 +129,10 @@ public abstract partial class SharedStunSystem : EntitySystem
     // TODO STUN: Make events for different things. (Getting modifiers, attempt events, informative events...)
     public bool TryAddStunDuration(EntityUid uid, TimeSpan duration)
     {
+        //Imperial medieval start
         if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid))
             return false;
+        //Imperial medieval stop
         if (!_status.TryAddStatusEffectDuration(uid, StunId, duration))
             return false;
 
@@ -140,8 +142,10 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     public bool TryUpdateStunDuration(EntityUid uid, TimeSpan? duration)
     {
+        //Imperial medieval start
         if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid))
             return false;
+        //Imperial medieval stop
         if (!_status.TryUpdateStatusEffectDuration(uid, StunId, duration))
             return false;
 
@@ -209,8 +213,10 @@ public abstract partial class SharedStunSystem : EntitySystem
     /// <param name="force">Should we force the status effect?</param>
     public bool CanKnockdown(Entity<StandingStateComponent?> entity, ref TimeSpan? time, ref bool autoStand, ref bool drop, bool force = false)
     {
+        //Imperial medieval start
         if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(entity.Owner))
             return false;
+        //Imperial medieval stop
         if (time <= TimeSpan.Zero)
             return false;
 
@@ -296,8 +302,10 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     public bool TryAddParalyzeDuration(EntityUid uid, TimeSpan duration)
     {
+        //Imperial medieval start
         if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid))
             return false;
+        //Imperial medieval stop
         if (!_status.TryAddStatusEffectDuration(uid, StunId, duration))
             return false;
 
@@ -310,8 +318,10 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     public bool TryUpdateParalyzeDuration(EntityUid uid, TimeSpan? duration)
     {
+        //Imperial medieval start
         if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid))
             return false;
+        //Imperial medieval stop
         if (!_status.TryUpdateStatusEffectDuration(uid, StunId, duration))
             return false;
 
