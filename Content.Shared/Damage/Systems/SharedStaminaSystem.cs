@@ -119,7 +119,11 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
         var curTime = Timing.CurTime;
         var pauseTime = _metadata.GetPauseTime(uid);
-        return MathF.Max(0f, component.StaminaDamage - MathF.Max(0f, (float) (curTime - (component.NextUpdate + pauseTime)).TotalSeconds * component.Decay));
+        // Imperial medieval start - alternate recovery may override ordinary extrapolation.
+        var query = new StaminaDamageQueryEvent(MathF.Max(0f, component.StaminaDamage - MathF.Max(0f, (float)(curTime - (component.NextUpdate + pauseTime)).TotalSeconds * component.Decay)));
+        RaiseLocalEvent(uid, ref query);
+        return query.Value;
+        // Imperial medieval end
     }
 
     private void OnRejuvenate(Entity<StaminaComponent> entity, ref RejuvenateEvent args)
@@ -272,12 +276,22 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (!Resolve(uid, ref component, false))
             return true;
 
+        // Imperial medieval start - report a cost attempt without classifying it in base code.
+        var costCheck = new StaminaCostCheckEvent(value, value);
+        RaiseLocalEvent(uid, ref costCheck);
+        // Imperial medieval end
         var oldStam = component.StaminaDamage;
 
-        if (oldStam + value >= component.CritThreshold || component.Critical)
+        // Imperial medieval start - honor the extension's affordability result.
+        if (oldStam + costCheck.CheckCost >= component.CritThreshold || component.Critical)
             return false;
+        // Imperial medieval end
 
         TakeStaminaDamage(uid, value, component, source, with, visual: visual, ignoreResist: ignoreResist, log: log); // Imperial Medieval Stamina Log Disable
+        // Imperial medieval start - actual expenditure only, including modifier/cancellation results.
+        var paid = new StaminaCostPaidEvent(component.StaminaDamage - oldStam);
+        RaiseLocalEvent(uid, ref paid);
+        // Imperial medieval end
         return true;
     }
 
@@ -288,7 +302,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (!Resolve(uid, ref component, false))
             return;
 
-        var ev = new BeforeStaminaDamageEvent(value, Origin: source); // Добавлен источник урона, нужен для системы парирования
+        var ev = new BeforeStaminaDamageEvent(value, Origin: source, With: with); // Добавлен источник урона, нужен для системы парирования
         RaiseLocalEvent(uid, ref ev);
         if (ev.Cancelled)
             return;
@@ -305,6 +319,11 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (component.Critical)
             return;
 
+        // Imperial medieval start - final-unit interception before status/critical evaluation.
+        var finalChange = new StaminaFinalChangeEvent(value);
+        RaiseLocalEvent(uid, ref finalChange);
+        value = finalChange.Value;
+        // Imperial medieval end
         var oldDamage = component.StaminaDamage;
         component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + value);
 
@@ -404,10 +423,17 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
             comp.NextUpdate += TimeSpan.FromSeconds(1f);
 
-            TakeStaminaDamage(
-                uid,
-                comp.AfterCritical ? -(comp.Decay * ev.Modifier) * comp.AfterCritDecayMultiplier : -(comp.Decay * ev.Modifier), // Recover faster after crit
-                comp, ignoreResist: true);
+            // Imperial medieval start - the existing clock/critical lifecycle still advances.
+            var regenAttempt = new StaminaNaturalRegenAttemptEvent();
+            RaiseLocalEvent(uid, ref regenAttempt);
+            if (!regenAttempt.Cancelled)
+            {
+                TakeStaminaDamage(
+                    uid,
+                    comp.AfterCritical ? -(comp.Decay * ev.Modifier) * comp.AfterCritDecayMultiplier : -(comp.Decay * ev.Modifier), // Recover faster after crit
+                    comp, ignoreResist: true);
+            }
+            // Imperial medieval end
 
             Dirty(uid, comp);
         }
