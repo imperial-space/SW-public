@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Imperial.Medieval.ChargedAttack;
+using Content.Shared.Imperial.Medieval.Poise.MeleeLockOn;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.MouseRotator;
@@ -22,6 +23,9 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private readonly INetManager _netMan = default!; // Imperial medieval edit end
     [Dependency] private   readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private   readonly ChargedAttackSystem _chargedAttackSystem = default!; // Imperial medieval charge attack
+    // Imperial medieval start
+    [Dependency] private readonly MeleeLockOnSystem _meleeLockOn = default!;
+    // Imperial medieval end
 
     public override void Initialize()
     {
@@ -35,6 +39,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     private void OnMapInit(EntityUid uid, CombatModeComponent component, MapInitEvent args)
     {
         _actionsSystem.AddAction(uid, ref component.CombatToggleActionEntity, component.CombatToggleAction);
+        _meleeLockOn.OnCombatInitialized(uid);
         component.NextTimeAudioPlay = Timing.CurTime; // Imperial medieval edit
         Dirty(uid, component);
     }
@@ -42,6 +47,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     private void OnShutdown(EntityUid uid, CombatModeComponent component, ComponentShutdown args)
     {
         _actionsSystem.RemoveAction(uid, component.CombatToggleActionEntity);
+        _meleeLockOn.OnCombatShutdown(uid);
 
         SetMouseRotatorComponents(uid, false);
     }
@@ -79,8 +85,13 @@ public abstract class SharedCombatModeSystem : EntitySystem
         if (component.IsInCombatMode == value)
             return;
 
+        var oldValue = component.IsInCombatMode;// Imperial medieval edit
+
         component.IsInCombatMode = value;
         Dirty(entity, component);
+
+        var ev = new CombatModeCheck(oldValue, value);// Imperial medieval edit
+        RaiseLocalEvent(entity, ref ev);// Imperial medieval edit
 
         // Imperial medieval edit start
         if (component.NextTimeAudioPlay < Timing.CurTime && _netMan.IsServer && _mobStateSystem.IsAlive(entity))
@@ -94,6 +105,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
         }
 
         _chargedAttackSystem.OnCombatModeChanged(entity);
+        _meleeLockOn.OnCombatModeChanged(entity, value);
 
         // Imperial medieval edit end
 

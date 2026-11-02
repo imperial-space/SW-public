@@ -22,6 +22,11 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
 
     private TargetOverlay _overlay = default!;
+    public bool IsRangedTargetingDisplayed { get; private set; }
+
+    // Melee reuses the existing projectile overlay's cursor scan without
+    // using or changing the spell selection and casting input handlers.
+    public EntityUid? PickDamageableUnderCursor() => _overlay.TryPickAtCursor(requireDamageable: true);
 
 
     public override void Initialize()
@@ -38,7 +43,7 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ImperialTargetCapture, new PointerInputCmdHandler(MiddleMousePressed))
-            .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(MouseLeftPressed, outsidePrediction: true), typeof(ActionUIController))
+            .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(MouseLeftPressed), typeof(ActionUIController)) // run the release inside prediction.
             .Register<TargetOverlaySystem>();
     }
 
@@ -62,7 +67,10 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
         if (_playerManager.LocalSession?.UserId != session.SenderSession.UserId) return;
         if (_playerManager.LocalEntity == null) return;
 
+        IsRangedTargetingDisplayed = false;
         _overlayManager.RemoveOverlay(_overlay);
+        // hook: server stop packets do not call the shared StopTargeting API.
+        RaiseLocalEvent(new TargetOverlayStoppedEvent(_playerManager.LocalEntity.Value));
     }
 
     private void OnStartTargeting(EntityUid uid, TargetOverlayComponent component, ComponentStartup args)
@@ -76,7 +84,10 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
     {
         if (_playerManager.LocalEntity != uid) return;
 
+        IsRangedTargetingDisplayed = false;
         _overlayManager.RemoveOverlay(_overlay);
+        // hook: also release ownership when the local overlay component is removed.
+        RaiseLocalEvent(new TargetOverlayStoppedEvent(uid));
     }
 
     private bool MiddleMousePressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity)
@@ -99,7 +110,7 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
         if (!_overlay.IsMaxTargetCount())
             _overlay.AddTarget();
 
-        RaiseNetworkEvent(new TargetOverlayShootEvent()
+        RaisePredictiveEvent(new TargetOverlayShootEvent() // predict presentation at target selection.
         {
             Performer = GetNetEntity(player),
             Sender = targetOverlayComponent.Sender.HasValue ? GetNetEntity(targetOverlayComponent.Sender) : null,
@@ -119,6 +130,10 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
         _overlay.Targets = new();
 
         _overlayManager.AddOverlay(_overlay);
+        IsRangedTargetingDisplayed = true;
+        // hook: covers server starts and replacement of a local overlay component.
+        if (_playerManager.LocalEntity is { } user)
+            RaiseLocalEvent(new TargetOverlayStartedEvent(user, component.Sender));
     }
 
     private HashSet<Type> GetTypeFromComponentName(HashSet<string> components)
