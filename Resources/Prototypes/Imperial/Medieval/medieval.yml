@@ -8376,6 +8376,8 @@
 
 - type: explosion
   id: MedievalDefault
+  # poise damage for all MedievalDefault explosions.
+  poiseDamagePerIntensity: 10
   damagePerIntensity:
     types:
       Heat: 5

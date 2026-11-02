@@ -15,6 +15,26 @@ public sealed partial class ProjectileComponent : Component
     [DataField, AutoNetworkedField]
     public Angle Angle;
 
+    // Imperial medieval start
+    /// <summary>Opt out for projectiles whose movement or collision effects are not prediction compatible.</summary>
+    [DataField]
+    public bool Predict = true;
+
+    /// <summary>
+    /// Shooter movement inherited along the shot direction, including signed backward movement.
+    /// 0 inherits none; 1 inherits all. Carrier/grid movement is preserved separately.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float ForwardVelocityInheritance = 1f;
+
+    /// <summary>
+    /// Shooter movement inherited perpendicular to the shot direction, in either strafe direction.
+    /// 0 inherits none; 1 inherits all. Carrier/grid movement is preserved separately.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float StrafeVelocityInheritance = 0.1f;
+    // Imperial medieval end
+
     /// <summary>
     ///     The effect that appears when a projectile collides with an entity.
     /// </summary>
@@ -78,7 +98,8 @@ public sealed partial class ProjectileComponent : Component
     /// <summary>
     ///     If true, the projectile has hit enough targets and should no longer interact with further collisions pending deletion.
     /// </summary>
-    [DataField]
+    // Imperial medieval edit - clients need authoritative terminal state.
+    [DataField, AutoNetworkedField]
     public bool ProjectileSpent;
 
     /// <summary>

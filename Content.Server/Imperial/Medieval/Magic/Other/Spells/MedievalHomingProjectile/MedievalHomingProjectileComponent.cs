@@ -3,15 +3,20 @@ using Robust.Shared.Map;
 
 namespace Content.Server.Imperial.Medieval.Magic.MedievalHomingProjectile;
 
-
-/// <summary>
-///
-/// </summary>
 [RegisterComponent]
 public sealed partial class MedievalHomingProjectileComponent : Component
 {
     [DataField]
     public float LinearVelocityIntensy = 1.0f;
+
+    [DataField]
+    public float AccelerationMultiplier = 1f;
+
+    [DataField]
+    public bool DetonateOnMapTarget = false;
+
+    [DataField]
+    public float TargetArrivalRadius = 0.25f;
 
     [DataField]
     public Angle RelativeAngle = Angle.Zero;
@@ -27,6 +32,9 @@ public sealed partial class MedievalHomingProjectileComponent : Component
 
     [ViewVariables]
     public MapCoordinates? MapTarget;
+
+    [ViewVariables]
+    public MapCoordinates? PreviousCoordinates;
 
     [ViewVariables]
     public EntityUid? EntityTarget;

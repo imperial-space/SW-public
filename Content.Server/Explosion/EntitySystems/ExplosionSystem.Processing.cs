@@ -8,6 +8,7 @@ using Content.Shared.Database;
 using Content.Shared.Explosion;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Explosion.EntitySystems;
+using Content.Shared.Imperial.Medieval.Poise; // Imperial medieval edit
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
@@ -28,6 +29,7 @@ namespace Content.Server.Explosion.EntitySystems;
 public sealed partial class ExplosionSystem
 {
     [Dependency] private readonly FlammableSystem _flammableSystem = default!;
+    [Dependency] private readonly PoiseSystem _explosionPoise = default!; // Imperial medieval edit
 
     /// <summary>
     ///     Used to limit explosion processing time. See <see cref="MaxProcessingTime"/>.
@@ -63,7 +65,7 @@ public sealed partial class ExplosionSystem
     /// </summary>
     private readonly List<EntityUid> _containedEntities = new();
 
-    private readonly List<(EntityUid, DamageSpecifier)> _toDamage = new();
+    private readonly List<(EntityUid Entity, DamageSpecifier Damage, float DamageCoefficient)> _toDamage = new(); // Imperial medieval edit
 
     private List<EntityUid> _anchored = new();
 
@@ -381,13 +383,14 @@ public sealed partial class ExplosionSystem
     }
 
     private DamageSpecifier GetDamage(EntityUid uid,
-        string id, DamageSpecifier damage)
+        string id, DamageSpecifier damage, out float damageCoefficient) // Imperial medieval edit
     {
         // TODO Explosion Performance
         // Cache this? I.e., instead of raising an event, check for a component?
         var resistanceEv = new GetExplosionResistanceEvent(id);
         RaiseLocalEvent(uid, ref resistanceEv);
         resistanceEv.DamageCoefficient = Math.Max(0, resistanceEv.DamageCoefficient);
+        damageCoefficient = resistanceEv.DamageCoefficient; // Imperial medieval edit
 
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (resistanceEv.DamageCoefficient != 1)
@@ -401,15 +404,15 @@ public sealed partial class ExplosionSystem
         _toDamage.Clear();
 
         // don't raise BeforeExplodeEvent if the entity is completely immune to explosions
-        var thisDamage = GetDamage(uid, prototype, originalDamage);
+        var thisDamage = GetDamage(uid, prototype, originalDamage, out var rootDamageCoefficient); // Imperial medieval edit
         if (thisDamage.Empty)
             return;
 
-        _toDamage.Add((uid, thisDamage));
+        _toDamage.Add((uid, thisDamage, rootDamageCoefficient)); // Imperial medieval edit
 
         for (var i = 0; i < _toDamage.Count; i++)
         {
-            var (ent, damage) = _toDamage[i];
+            var (ent, damage, inheritedCoefficient) = _toDamage[i]; // Imperial medieval edit
             _containedEntities.Clear();
             var ev = new BeforeExplodeEvent(damage, prototype, intensity, _containedEntities);
             RaiseLocalEvent(ent, ref ev);
@@ -424,8 +427,11 @@ public sealed partial class ExplosionSystem
             _toDamage.EnsureCapacity(_toDamage.Count + _containedEntities.Count);
             foreach (var contained in _containedEntities)
             {
-                var newDamage = GetDamage(contained, prototype, damage);
-                _toDamage.Add((contained, newDamage));
+                // Imperial medieval start
+                var newDamage = GetDamage(contained, prototype, damage, out var containedCoefficient);
+                // Keep the same accumulated protection as the health damage, including containers.
+                _toDamage.Add((contained, newDamage, inheritedCoefficient * ev.DamageCoefficient * containedCoefficient));
+                // Imperial medieval end
             }
         }
     }
@@ -447,7 +453,8 @@ public sealed partial class ExplosionSystem
         if (originalDamage != null)
         {
             GetEntitiesToDamage(uid, originalDamage, id, intensity);
-            foreach (var (entity, damage) in _toDamage)
+            var poisePerIntensity = _prototypeManager.Index<ExplosionPrototype>(id).PoiseDamagePerIntensity; // Imperial medieval edit
+            foreach (var (entity, damage, damageCoefficient) in _toDamage) // Imperial medieval edit
             {
                 if (damage.GetTotal() > 0 && TryComp<ActorComponent>(entity, out var actorComponent))
                 {
@@ -464,7 +471,24 @@ public sealed partial class ExplosionSystem
                 }
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                _damageableSystem.TryChangeDamage(entity, damage * _damageableSystem.UniversalExplosionDamageModifier, ignoreResistances: true);
+                // Imperial medieval start
+                var actualDamage = _damageableSystem.TryChangeDamage(
+                    entity,
+                    damage * _damageableSystem.UniversalExplosionDamageModifier,
+                    ignoreResistances: true);
+
+                // Cancelled or non-damaging hits must not bypass damage immunity through poise.
+                if (poisePerIntensity > 0f &&
+                    actualDamage != null &&
+                    actualDamage.GetTotal() > 0 &&
+                    TryComp<PoiseComponent>(entity, out var poise))
+                {
+                    var poiseDamage = (int)MathF.Round(
+                        poisePerIntensity * intensity * damageCoefficient,
+                        MidpointRounding.AwayFromZero);
+                    _explosionPoise.TakePoiseDamage(entity, poiseDamage, poise, source: cause);
+                }
+                // Imperial medieval end
 
             }
         }
@@ -920,6 +944,7 @@ sealed class Explosion
 /// </summary>
 public sealed class QueuedExplosion(ExplosionPrototype proto)
 {
+    public List<ExplosionPrediction> Predictions = new(); // Imperial medieval edit - captured while the cause still exists.
     public MapCoordinates Epicenter;
     public ExplosionPrototype Proto = proto;
     public float TotalIntensity, Slope, MaxTileIntensity, TileBreakScale;

@@ -47,6 +47,9 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
     private void OnEmbedActivate(Entity<EmbeddableProjectileComponent> embeddable, ref ActivateInWorldEvent args)
     {
+        // Imperial medieval edit - a local predicted projectile is presentation, not a removable item.
+        if (_net.IsClient && IsClientSide(embeddable))
+            return;
         // Unremovable embeddables moment
         if (embeddable.Comp.RemovalTime == null)
             return;
@@ -103,21 +106,12 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
     private void EmbedAttach(EntityUid uid, EntityUid target, EntityUid? user, EmbeddableProjectileComponent component)
     {
-        TryComp<PhysicsComponent>(uid, out var physics);
-        _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
-        _physics.SetBodyType(uid, BodyType.Static, body: physics);
-        var xform = Transform(uid);
-        _transform.SetParent(uid, xform, target);
-
-        if (component.Offset != Vector2.Zero)
-        {
-            var rotation = xform.LocalRotation;
-            if (TryComp<ThrowingAngleComponent>(uid, out var throwingAngleComp))
-                rotation += throwingAngleComp.Angle;
-            _transform.SetLocalPosition(uid, xform.LocalPosition + rotation.RotateVec(component.Offset), xform);
-        }
-
-        _audio.PlayPredicted(component.Sound, uid, null);
+        // Imperial medieval start
+        ApplyEmbeddingPose(uid, target, component);
+        var predictedUser = TryComp<ProjectilePredictionComponent>(uid, out var prediction)
+            ? prediction.Shooter : (EntityUid?) null;
+        _audio.PlayPredicted(component.Sound, uid, predictedUser);
+        // Imperial medieval end
         component.EmbeddedIntoUid = target;
         var ev = new EmbedEvent(user, target);
         RaiseLocalEvent(uid, ref ev);

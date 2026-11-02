@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Projectiles;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -13,6 +14,7 @@ public sealed partial class MedievalHomingProjectileSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly PhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
 
 
     public override void Update(float frameTime)
@@ -21,9 +23,12 @@ public sealed partial class MedievalHomingProjectileSystem : EntitySystem
 
         var enumerator = EntityQueryEnumerator<MedievalHomingProjectileComponent, ProjectileComponent, PhysicsComponent>();
 
-        while (enumerator.MoveNext(out var uid, out var component, out var _, out var physicsComponent))
+        while (enumerator.MoveNext(out var uid, out var component, out var projectile, out var physicsComponent))
         {
-            if (component.NextUpdate >= _timing.CurTime) return;
+            if (TryDetonateAtMapTarget(uid, component, projectile))
+                continue;
+
+            if (component.NextUpdate >= _timing.CurTime) continue;
 
             component.NextUpdate = _timing.CurTime + component.UpdateRate;
 
@@ -48,7 +53,9 @@ public sealed partial class MedievalHomingProjectileSystem : EntitySystem
                 : physicsComponent.LinearVelocity.ToAngle();
 
             _transformSystem.SetLocalRotation(uid, rotation - component.RelativeAngle - gridRotation);
-            _physicsSystem.ApplyLinearImpulse(uid, direction * component.LinearVelocityIntensy, body: physicsComponent);
+            _physicsSystem.ApplyLinearImpulse(uid,
+                direction * component.LinearVelocityIntensy * component.AccelerationMultiplier,
+                body: physicsComponent);
         }
     }
 
@@ -75,6 +82,7 @@ public sealed partial class MedievalHomingProjectileSystem : EntitySystem
 
         component.EntityTarget = target;
         component.MapTarget = null;
+        component.PreviousCoordinates = null;
         component.LinearVelocityIntensy = linearVelocityIntensy;
         component.RelativeAngle = relativeAngle;
         component.RotateToTarget = rotateToTarget;
@@ -103,6 +111,7 @@ public sealed partial class MedievalHomingProjectileSystem : EntitySystem
 
         component.EntityTarget = null;
         component.MapTarget = target;
+        component.PreviousCoordinates = _transformSystem.GetMapCoordinates(projectile);
         component.LinearVelocityIntensy = linearVelocityIntensy;
         component.RelativeAngle = relativeAngle;
         component.RotateToTarget = rotateToTarget;
@@ -113,6 +122,38 @@ public sealed partial class MedievalHomingProjectileSystem : EntitySystem
     #endregion
 
     #region Helpers
+
+    private bool TryDetonateAtMapTarget(EntityUid uid, MedievalHomingProjectileComponent component, ProjectileComponent projectile)
+    {
+        if (!component.DetonateOnMapTarget || component.EntityTarget != null || component.MapTarget is not { } target)
+            return false;
+
+        var current = _transformSystem.GetMapCoordinates(uid);
+        var previous = component.PreviousCoordinates;
+        component.PreviousCoordinates = current;
+
+        if (current.MapId != target.MapId)
+            return false;
+
+        var start = previous.HasValue && previous.Value.MapId == target.MapId
+            ? previous.Value.Position
+            : current.Position;
+
+        // Check the traveled segment so a fast projectile cannot skip the arrival radius between ticks.
+        var segment = current.Position - start;
+        var lengthSquared = segment.LengthSquared();
+        var fraction = lengthSquared > 0f
+            ? Math.Clamp(Vector2.Dot(target.Position - start, segment) / lengthSquared, 0f, 1f)
+            : 0f;
+        var closest = start + segment * fraction;
+
+        if (Vector2.DistanceSquared(closest, target.Position) > component.TargetArrivalRadius * component.TargetArrivalRadius)
+            return false;
+
+        _transformSystem.SetMapCoordinates(uid, target);
+        _explosionSystem.TriggerExplosive(uid, user: projectile.Shooter);
+        return true;
+    }
 
     private Vector2 GetPeakDistance(EntityUid target, EntityUid projectile)
     {

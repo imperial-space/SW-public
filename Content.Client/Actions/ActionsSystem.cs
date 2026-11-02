@@ -211,7 +211,7 @@ namespace Content.Client.Actions
             }
             else
             {
-                var request = new RequestPerformActionEvent(GetNetEntity(action));
+                var request = new RequestPerformActionEvent(GetNetEntity(action)) { InputTick = GameTiming.CurTick }; // Imperial medieval edit
                 RaisePredictiveEvent(request);
             }
         }
@@ -347,7 +347,7 @@ namespace Content.Client.Actions
                 PerformAction((user, user.Comp), (uid, action));
             }
             else
-                RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(targetEnt), GetNetCoordinates(coords)));
+                RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(targetEnt), GetNetCoordinates(coords)) { InputTick = GameTiming.CurTick }); // Imperial medieval edit
 
             args.FoundTarget = true;
         }
@@ -384,7 +384,7 @@ namespace Content.Client.Actions
             }
             else
             {
-                RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(entity)));
+                RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(entity)) { InputTick = GameTiming.CurTick }); // Imperial medieval edit
             }
 
             args.FoundTarget = true;

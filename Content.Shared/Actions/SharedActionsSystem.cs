@@ -353,7 +353,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
         }
 
         // All checks passed. Perform the action!
-        PerformAction((user, component), action);
+        PerformAction((user, component), action, inputTick: ev.InputTick); //Imperial medieval edit
         return true;
     }
 
@@ -568,7 +568,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
     /// <param name="action">The action being performed</param>
     /// <param name="actionEvent">An event override to perform. If null, uses <see cref="GetEvent"/></param>
     /// <param name="predicted">If false, prevents playing the action's sound on the client</param>
-    public void PerformAction(Entity<ActionsComponent?> performer, Entity<ActionComponent> action, BaseActionEvent? actionEvent = null, bool predicted = true)
+    public void PerformAction(Entity<ActionsComponent?> performer, Entity<ActionComponent> action, BaseActionEvent? actionEvent = null, bool predicted = true, GameTick inputTick = default) //Imperial medieval edit
     {
         var handled = false;
 
@@ -591,6 +591,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
         var target = performer.Owner;
         ev.Performer = performer;
         ev.Action = action;
+        ev.InputTick = inputTick; //Imperial medieval edit
 
         // TODO: This is where we'd add support for event lists
         if (!action.Comp.RaiseOnUser && action.Comp.Container is {} container && !_mindQuery.HasComp(container))

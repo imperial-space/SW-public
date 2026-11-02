@@ -17,6 +17,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Projectiles; // Imperial medieval edit
 using Content.Shared.Speech.Muting;
 using Content.Shared.Storage;
 using Content.Shared.Stunnable;
@@ -49,6 +50,7 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private readonly SharedProjectileSystem _projectiles = default!; // Imperial medieval edit
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -267,7 +269,7 @@ public abstract class SharedMagicSystem : EntitySystem
     #region Projectile Spells
     private void OnProjectileSpell(ProjectileSpellEvent ev)
     {
-        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer) || !_net.IsServer)
+        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer)) // Imperial medieval edit
             return;
 
         ev.Handled = true;
@@ -279,11 +281,24 @@ public abstract class SharedMagicSystem : EntitySystem
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromMap = _transform.ToMapCoordinates(fromCoords);
-        var ent = Spawn(ev.Prototype, fromMap);
         var direction = _transform.ToMapCoordinates(toCoords).Position -
                          fromMap.Position;
+        // Imperial medieval start
+        if (_net.IsClient)
+        {
+            PredictProjectileSpell(ev, fromCoords, direction);
+            return;
+        }
+        var ent = Spawn(ev.Prototype, fromMap);
+        _projectiles.MarkPrediction(ent, ev.Performer,
+            new ProjectilePredictionKey(GetNetEntity(ev.Action), ev.InputTick, 0));
+        // Imperial medieval end
         _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer);
+        _projectiles.CompletePrediction(GetNetEntity(ev.Action), ev.InputTick, ev.Performer, true); // Imperial medieval edit
     }
+    // Imperial medieval start
+    protected virtual void PredictProjectileSpell(ProjectileSpellEvent ev, EntityCoordinates origin, Vector2 direction) { }
+    // Imperial medieval end
     // End Projectile Spells
     #endregion
     #region Change Component Spells

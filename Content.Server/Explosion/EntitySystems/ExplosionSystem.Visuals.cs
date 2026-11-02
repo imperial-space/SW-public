@@ -31,13 +31,14 @@ public sealed partial class ExplosionSystem
             component.SpaceTiles,
             tileLists,
             component.SpaceMatrix,
-            component.SpaceTileSize);
+            component.SpaceTileSize,
+            component.Predictions); // Imperial medieval edit
     }
 
     /// <summary>
     ///     Constructor for the shared <see cref="ExplosionEvent"/> using the server-exclusive explosion classes.
     /// </summary>
-    private EntityUid CreateExplosionVisualEntity(MapCoordinates epicenter, string prototype, Matrix3x2 spaceMatrix, ExplosionSpaceTileFlood? spaceData, IEnumerable<ExplosionGridTileFlood> gridData, List<float> iterationIntensity)
+    private EntityUid CreateExplosionVisualEntity(MapCoordinates epicenter, string prototype, Matrix3x2 spaceMatrix, ExplosionSpaceTileFlood? spaceData, IEnumerable<ExplosionGridTileFlood> gridData, List<float> iterationIntensity, List<ExplosionPrediction> predictions) // Imperial medieval edit
     {
         var explosionEntity = Spawn(null, MapCoordinates.Nullspace);
         var comp = AddComp<ExplosionVisualsComponent>(explosionEntity);
@@ -53,6 +54,7 @@ public sealed partial class ExplosionSystem
         comp.Intensity = iterationIntensity;
         comp.SpaceMatrix = spaceMatrix;
         comp.SpaceTileSize = spaceData?.TileSize ?? DefaultTileSize;
+        comp.Predictions = predictions; // Imperial medieval edit
         Dirty(explosionEntity, comp);
 
         // Light, sound & visuals may extend well beyond normal PVS range. In principle, this should probably still be

@@ -18,6 +18,7 @@ public sealed partial class ExplosionVisualsComponent : Component
     public string ExplosionType = string.Empty;
     public Matrix3x2 SpaceMatrix;
     public ushort SpaceTileSize;
+    public List<ExplosionPrediction> Predictions = new(); // Imperial medieval edit
 }
 
 [Serializable, NetSerializable]
@@ -30,6 +31,7 @@ public sealed class ExplosionVisualsState : ComponentState
     public string ExplosionType = string.Empty;
     public Matrix3x2 SpaceMatrix;
     public ushort SpaceTileSize;
+    public List<ExplosionPrediction> Predictions; // Imperial medieval edit
 
     public ExplosionVisualsState(
         MapCoordinates epicenter,
@@ -38,7 +40,8 @@ public sealed class ExplosionVisualsState : ComponentState
         Dictionary<int, List<Vector2i>>? spaceTiles,
         Dictionary<NetEntity, Dictionary<int, List<Vector2i>>> tiles,
         Matrix3x2 spaceMatrix,
-        ushort spaceTileSize)
+        ushort spaceTileSize,
+        List<ExplosionPrediction>? predictions = null) // Imperial medieval edit
     {
         Epicenter = epicenter;
         SpaceTiles = spaceTiles;
@@ -47,6 +50,7 @@ public sealed class ExplosionVisualsState : ComponentState
         ExplosionType = typeID;
         SpaceMatrix = spaceMatrix;
         SpaceTileSize = spaceTileSize;
+        Predictions = predictions ?? new(); // Imperial medieval edit
     }
 }
 

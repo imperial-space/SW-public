@@ -22,7 +22,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Containers;
-using Content.Server.Imperial.Medieval.Weapons;
+//Imperial medieval - spread event moved to Content.Shared.Weapons.Ranged.Events.
 using Robust.Shared.Threading;
 using Robust.Shared.Random;
 using Content.Server.PowerCell;
@@ -68,8 +68,6 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         userImpulse = true;
 
-        float spread = 0f;   // Imperial Medieval Skills
-
         if (user != null)
         {
             var selfEvent = new SelfBeforeGunShotEvent(user.Value, (gunUid, gun), ammo);
@@ -79,29 +77,18 @@ public sealed partial class GunSystem : SharedGunSystem
                 userImpulse = false;
                 return;
             }
-            // Imperial Medieval Skills start
-            var spreadEv = new GetGunSpreadModifiersEvent(gun.DefaultSpread);
-            RaiseLocalEvent(user.Value, ref spreadEv);
-            spread = _random.NextFloat(-spreadEv.Modifier, spreadEv.Modifier);
-            // Imperial Medieval Skills end
         }
 
+        // Imperial medieval start - launch rules are shared; hitscan/throws retain server random sampling.
+        var launch = GetProjectileLaunch(gunUid, gun, fromCoordinates, toCoordinates, user,
+            !throwItems && ammo.All(a => a.Shootable is not HitscanPrototype));
         var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates);
-        var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
-        var mapDirection = toMap - fromMap.Position;
-        var mapAngle = mapDirection.ToAngle();
-        var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
-        angle += Angle.FromDegrees(spread); // Imperial Medieval Skills
-
-        // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
-        var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
-            ? TransformSystem.WithEntityId(fromCoordinates, gridUid)
-            : new EntityCoordinates(_map.GetMapOrInvalid(fromMap.MapId), fromMap.Position);
-
-        // Update shot based on the recoil
-        toMap = fromMap.Position + angle.ToVec() * mapDirection.Length();
-        mapDirection = toMap - fromMap.Position;
-        var gunVelocity = Physics.GetMapLinearVelocity(fromEnt);
+        var mapDirection = launch.Direction;
+        var mapAngle = launch.BaseAngle;
+        var angle = launch.RecoilAngle;
+        var fromEnt = launch.Origin;
+        var gunVelocity = launch.InheritedVelocity;
+        // Imperial medieval end
 
         // I must be high because this was getting tripped even when true.
         // DebugTools.Assert(direction != Vector2.Zero);
@@ -225,6 +212,10 @@ public sealed partial class GunSystem : SharedGunSystem
                         if (dmg != null)
                             dmg = Damageable.TryChangeDamage(hitEntity, dmg * Damageable.UniversalHitscanDamageModifier, origin: user);
 
+                        // gets weapon, shooter, and target.
+                        var ev = new HitscanResolvedEvent(hitEntity, lastUser);//Imperial medieval edit
+                        RaiseLocalEvent(gunUid, ref ev);//Imperial medieval edit
+
                         // check null again, as TryChangeDamage returns modified damage values
                         if (dmg != null)
                         {
@@ -301,6 +292,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user)
     {
+        MarkPredictedProjectile(uid, gunUid, user); // Imperial medieval edit
         if (gun.Target is { } target && !TerminatingOrDeleted(target))
         {
             var targeted = EnsureComp<TargetedProjectileComponent>(uid);
@@ -339,21 +331,6 @@ public sealed partial class GunSystem : SharedGunSystem
         return angles;
     }
 
-    private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction)
-    {
-        var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
-        component.CurrentAngle = new Angle(newTheta);
-        component.LastFire = component.NextFire;
-
-        // Convert it so angle can go either side.
-        var random = Random.NextFloat(-0.5f, 0.5f);
-        var spread = component.CurrentAngle.Theta * random;
-        var angle = new Angle(direction.Theta + component.CurrentAngle.Theta * random);
-        DebugTools.Assert(spread <= component.MaxAngleModified.Theta);
-        return angle;
-    }
-
     protected override void Popup(string message, EntityUid? uid, EntityUid? user) { }
 
     protected override void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? user = null)
@@ -366,37 +343,18 @@ public sealed partial class GunSystem : SharedGunSystem
         RaiseNetworkEvent(message, filter);
     }
 
-    public void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound)
+    // Imperial medieval start
+    public void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound,
+        bool forceWeaponSound, EntityUid? exclude = null)
     {
-        DebugTools.Assert(!Deleted(otherEntity), "Impact sound entity was deleted");
-
-        // Like projectiles and melee,
-        // 1. Entity specific sound
-        // 2. Ammo's sound
-        // 3. Nothing
-        var playedSound = false;
-
-        if (!forceWeaponSound && modifiedDamage != null && modifiedDamage.GetTotal() > 0 && TryComp<RangedDamageSoundComponent>(otherEntity, out var rangedSound))
-        {
-            var type = SharedMeleeWeaponSystem.GetHighestDamageSound(modifiedDamage, ProtoManager);
-
-            if (type != null && rangedSound.SoundTypes?.TryGetValue(type, out var damageSoundType) == true)
-            {
-                Audio.PlayPvs(damageSoundType, otherEntity, AudioParams.Default.WithVariation(DamagePitchVariation));
-                playedSound = true;
-            }
-            else if (type != null && rangedSound.SoundGroups?.TryGetValue(type, out var damageSoundGroup) == true)
-            {
-                Audio.PlayPvs(damageSoundGroup, otherEntity, AudioParams.Default.WithVariation(DamagePitchVariation));
-                playedSound = true;
-            }
-        }
-
-        if (!playedSound && weaponSound != null)
-        {
-            Audio.PlayPvs(weaponSound, otherEntity);
-        }
+        var sound = GetProjectileImpactSound(otherEntity, modifiedDamage, weaponSound, forceWeaponSound, out var vary);
+        var filter = Filter.Pvs(otherEntity, entityManager: EntityManager);
+        if (exclude != null)
+            filter = filter.RemoveWhereAttachedEntity(entity => entity == exclude.Value);
+        Audio.PlayEntity(sound, filter, otherEntity, true,
+            vary ? AudioParams.Default.WithVariation(DamagePitchVariation) : null);
     }
+    // Imperial medieval end
 
     // TODO: Pseudo RNG so the client can predict these.
     #region Hitscan effects

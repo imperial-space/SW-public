@@ -85,6 +85,7 @@ public abstract partial class SharedMedievalMagicSystem
                     Performer = GetNetEntity(entityTargetProjectileSpell.Performer),
                     CastSpeedModifier = entityTargetProjectileSpell.SpellCastDoAfter?.SpeedModifier ?? 1.0f,
                     Action = GetNetEntity(entityTargetProjectileSpell.Action),
+                    InputTick = entityTargetProjectileSpell.InputTick,
                     ProjectileSpeed = entityTargetProjectileSpell.ProjectileSpeed
                 });
                 break;
@@ -146,6 +147,7 @@ public abstract partial class SharedMedievalMagicSystem
                         Performer = GetNetEntity(entityTargetProjectileSpell.Performer),
                         ProjectilePrototype = entityTargetProjectileSpell.ProjectilePrototype,
                         Action = GetNetEntity(entityTargetProjectileSpell.Action),
+                        InputTick = entityTargetProjectileSpell.InputTick,
                         ProjectileSpeed = entityTargetProjectileSpell.ProjectileSpeed
                     }
                 },

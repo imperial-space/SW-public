@@ -23,6 +23,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
+// imperial medieval start
+using Content.Shared.Imperial.Medieval.Archery;
+// imperial medieval end
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -172,6 +175,11 @@ public sealed partial class GunSystem : SharedGunSystem
             return;
         }
 
+        // imperial medieval start
+        if (HasComp<MedievalBowChargeComponent>(gunUid))
+            return;
+        // imperial medieval end
+
         var useKey = gun.UseKey ? EngineKeyFunctions.Use : EngineKeyFunctions.UseSecondary;
 
         if (_inputSystem.CmdStates.GetState(useKey) != BoundKeyState.Down && !gun.BurstActivated)
@@ -208,6 +216,7 @@ public sealed partial class GunSystem : SharedGunSystem
             Target = target,
             Coordinates = GetNetCoordinates(coordinates),
             Gun = GetNetEntity(gunUid),
+            ProjectileInputTick = Timing.CurTick, // Imperial medieval edit
         });
     }
 
@@ -215,6 +224,12 @@ public sealed partial class GunSystem : SharedGunSystem
         EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, EntityUid? user = null, bool throwItems = false)
     {
         userImpulse = true;
+
+        // Imperial medieval start
+        if (!throwItems && ProjectileInputTick != default &&
+            TryPredictProjectileAmmo(gunUid, gun, ammo, fromCoordinates, toCoordinates, user, out userImpulse))
+            return;
+        // Imperial medieval end
 
         // Rather than splitting client / server for every ammo provider it's easier
         // to just delete the spawned entities. This is for programmer sanity despite the wasted perf.
