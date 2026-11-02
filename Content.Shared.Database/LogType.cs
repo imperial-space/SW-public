@@ -488,4 +488,9 @@ public enum LogType
     /// Medieval faction recruitment (offers, accepts and declines)
     /// </summary>
     MedievalFactionRecruit = 105,
+
+    /// </summary>
+    /// A player caused poise damage or broke an entity's poise.
+    /// </summary>
+    Poise = 106,
 }
