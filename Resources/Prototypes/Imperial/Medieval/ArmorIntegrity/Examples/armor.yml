@@ -13,11 +13,6 @@
   - type: MedievalArmorIntegrity
     containerArmorHP: 200
     repairType: Smithing
-    breakageMultipliers:
-      Blunt: 0.5
-      Slash: 1
-      Piercing: 1.5
-      Heat: 0.25
     unbrokenResistances:
       Blunt:
         coefficient: 0.6
@@ -28,15 +23,6 @@
         coefficient: 0.55
       Heat:
         coefficient: 0.75
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 1
-      Heat:
-        coefficient: 1
 
 - type: entity
   id: WorkpieceMedievalArmorIntegritySmithingExample
@@ -56,10 +42,6 @@
   - type: MedievalArmorIntegrity
     containerArmorHP: 150
     repairType: Smithing
-    breakageMultipliers:
-      Poison: 1
-      Caustic: 0.75
-      Shock: 1.25
 
 - type: entity
   parent: MedievalClothingOuterArmorLeather
@@ -80,15 +62,6 @@
         coefficient: 0.8
       Heat:
         coefficient: 0.85
-    brokenResistances:
-      Blunt:
-        coefficient: 1
-      Slash:
-        coefficient: 1
-      Piercing:
-        coefficient: 1
-      Heat:
-        coefficient: 1
 
 - type: entity
   parent: BaseItem
