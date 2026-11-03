@@ -16,6 +16,8 @@
   id: MedievalKotel
   parent: BaseItem
   components:
+  - type: MedievalWashSource
+    solution: beaker
   - type: AlchemyVessel
   - type: RDWeight
     value: 4

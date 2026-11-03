@@ -74,6 +74,8 @@
     base: water
 
   - type: BadSmelWash
+  - type: MedievalWashSource
+    solution: pool
   - type: AmbientSound
     volume: -13
     range: 2

@@ -8082,6 +8082,8 @@
     base: water
   - type: BadSmelWash # imperial medieval
     maxWash: 1
+  - type: MedievalWashSource
+    solution: pool
 
 - type: entity
   id: ActionSpellwardSpawn
