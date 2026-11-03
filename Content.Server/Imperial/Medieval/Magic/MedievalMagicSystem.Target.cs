@@ -2,7 +2,9 @@ using Content.Shared.Imperial.Medieval.Magic;
 using Content.Shared.Imperial.Medieval.Magic.Overlays;
 using Content.Shared.Imperial.Medieval.Magic.SpellTypes;
 using Content.Shared.Imperial.MouseInput.Events;
+using Content.Shared.Physics;
 using Robust.Shared.Map;
+using Robust.Shared.Physics;
 
 namespace Content.Server.Imperial.Medieval.Magic;
 
@@ -35,6 +37,9 @@ public sealed partial class MedievalMagicSystem
 
     #endregion
 
+    // Keeps the projectile from appearing inside a wall right next to the caster
+    private const float ProjectileWallGap = 0.15f;
+
     #region Spell Cast
 
     protected override void CastProjectileSpell(MedievalProjectileSpellData args)
@@ -56,8 +61,18 @@ public sealed partial class MedievalMagicSystem
 
         if (args.SpawnForwardOffset > 0f && toTarget.LengthSquared() > 0.01f)
         {
+            var forward = toTarget.Normalized();
+            var offset = Math.Min(args.SpawnForwardOffset, toTarget.Length());
+            var ray = new CollisionRay(spawnMapCoords.Position, forward, (int) CollisionGroup.Impassable);
+
+            foreach (var hit in _physicsSystem.IntersectRay(spawnMapCoords.MapId, ray, offset + ProjectileWallGap, performer, returnOnFirstHit: true))
+            {
+                offset = Math.Max(0f, hit.Distance - ProjectileWallGap);
+                break;
+            }
+
             spawnCoords = _transformSystem.ToCoordinates(
-                new MapCoordinates(spawnMapCoords.Position + toTarget.Normalized() * args.SpawnForwardOffset, spawnMapCoords.MapId));
+                new MapCoordinates(spawnMapCoords.Position + forward * offset, spawnMapCoords.MapId));
         }
 
         foreach (var spawnedDirection in args.ProjectilePrototype.Keys)
