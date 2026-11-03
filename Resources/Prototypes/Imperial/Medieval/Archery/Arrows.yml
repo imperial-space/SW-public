@@ -236,7 +236,6 @@
     secondaryDamageType: Radiation
     secondaryFixedDamage: 2
     secondaryDamageMultiplier: 0.25
-    bluntMultiplier: 0
 
 - type: entity
   id: MedievalArrowPractice
