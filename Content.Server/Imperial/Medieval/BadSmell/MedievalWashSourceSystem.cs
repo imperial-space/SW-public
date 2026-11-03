@@ -1,5 +1,6 @@
 using Content.Server.BadSmell;
 using Content.Server.BadSmell.Components;
+using Content.Server.Nocturn;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.BadSmell;
@@ -19,6 +20,7 @@ public sealed class MedievalWashSourceSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly RaceSystem _race = default!;
 
     public override void Initialize()
     {
@@ -121,9 +123,9 @@ public sealed class MedievalWashSourceSystem : EntitySystem
             washed = true;
         }
 
-        if (TryComp<NocturnComponent>(user, out var nocturn) && nocturn.FreshDrinkTimer > 0f)
+        if (_race.HasFreshBlood(user))
         {
-            nocturn.FreshDrinkTimer = 0f;
+            _race.ClearFreshBlood(user);
             washed = true;
         }
 
@@ -136,7 +138,7 @@ public sealed class MedievalWashSourceSystem : EntitySystem
         if (TryComp<BadSmellComponent>(user, out var smell) && smell.SmellLevel > comp.SmellFloor)
             return true;
 
-        return TryComp<NocturnComponent>(user, out var nocturn) && nocturn.FreshDrinkTimer > 0f;
+        return _race.HasFreshBlood(user);
     }
 
     private bool HasEnoughReagent(Entity<MedievalWashSourceComponent> ent)
@@ -144,6 +146,9 @@ public sealed class MedievalWashSourceSystem : EntitySystem
         if (!_solutions.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution))
             return false;
 
-        return solution.GetTotalPrototypeQuantity(ent.Comp.Reagent.Id).Float() >= ent.Comp.MinAmount;
+        var amount = solution.GetTotalPrototypeQuantity(ent.Comp.Reagent.Id).Float();
+
+        // a vessel with a poison or a potion in it is not a place to wash
+        return amount >= ent.Comp.MinAmount && amount >= ent.Comp.MinFraction * solution.Volume.Float();
     }
 }

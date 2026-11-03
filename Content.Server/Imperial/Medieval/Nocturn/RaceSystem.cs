@@ -469,6 +469,17 @@ namespace Content.Server.Nocturn
 
         }
 
+        public bool HasFreshBlood(EntityUid uid, NocturnComponent? component = null)
+        {
+            return Resolve(uid, ref component, false) && component.FreshDrinkTimer > 0f;
+        }
+
+        public void ClearFreshBlood(EntityUid uid, NocturnComponent? component = null)
+        {
+            if (Resolve(uid, ref component, false))
+                component.FreshDrinkTimer = 0f;
+        }
+
         private void OnExamine(EntityUid uid, NocturnComponent component, ExaminedEvent args)
         {
             if (component.BloodLevel < 50)

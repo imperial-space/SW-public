@@ -21,6 +21,12 @@ public sealed partial class MedievalWashSourceComponent : Component
     [DataField]
     public float MinAmount = 60f;
 
+    /// <summary>
+    /// The reagent must make up at least this share of the whole solution.
+    /// </summary>
+    [DataField]
+    public float MinFraction = 0.8f;
+
     [DataField]
     public float Duration = 5f;
 
