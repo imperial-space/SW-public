@@ -713,7 +713,7 @@
   - type: AdvancedLightAttack
     preset: Mace
   - type: PoiseDamage
-    poiseDamage: 3
+    poiseDamage: 8
   - type: RDWeight
     value: 1
   - type: MeleeWeapon
@@ -786,7 +786,7 @@
   - type: AdvancedLightAttack
     preset: Quarterstaff
   - type: PoiseDamage
-    poiseDamage: 6
+    poiseDamage: 10
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: Sharp
@@ -805,7 +805,7 @@
     angle: '60'
     damage:
       types:
-        Blunt: 6.6
+        Blunt: 8.6
         Slash: 0
         Piercing: 0
         Heat: 0

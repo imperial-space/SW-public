@@ -130,6 +130,16 @@
   description: The original rooty tooty point and shooty.
   components:
   - type: MedievalBowCharge
+    baseBluntImpact: 3
+    basePoiseDamage: 16
+    minChargeTime: 0.25
+    maxChargeTime: 4
+    minChargeMultiplier: 0.4
+    maxChargeMultiplier: 1.25
+    staminaDrainPerSecond: 6
+    staminaDrainInterval: 0.25
+    chargingMoveSpeedMultiplier: 0.9
+    meleeKnockback: 2
     lastLoadedArrow: MedievalDraftArrowSteelPhysics
   - type: Sprite
     sprite: Imperial/Medieval/Gun/draft_bow.rsi
@@ -188,17 +198,7 @@
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
-  - type: MedievalBowCharge
-    baseBluntImpact: 3
-    basePoiseDamage: 16
-    minChargeTime: 0.25
-    maxChargeTime: 4
-    minChargeMultiplier: 0.4
-    maxChargeMultiplier: 1.25
-    staminaDrainPerSecond: 6
-    staminaDrainInterval: 0.25
-    chargingMoveSpeedMultiplier: 0.9
-    meleeKnockback: 2
+
 
 - type: entity
   parent: BasePoiseArrow
