@@ -57,28 +57,6 @@ public sealed partial class MeleeParrySystem
         base.Shutdown();
     }
 
-    private bool TryGetParryInputTime(MeleeParryStorageComponent storage, GameTick tick, out TimeSpan time)
-    {
-        time = _timing.CurTime;
-        if (tick == GameTick.Zero || tick <= storage.LastParryInputTick)
-            return false;
-
-        if (!_netMan.IsServer)
-            return true;
-
-        // Predictive inputs use the same tick timeline as the engine's event queue.
-        // A future tick, replay, or input older than the delivery allowance is rejected.
-        if (tick > _timing.CurTick)
-            return false;
-
-        var age = _timing.CurTick.Value - tick.Value;
-        if (age > ConfirmationTicks)
-            return false;
-
-        time -= TimeSpan.FromTicks((long)age * _timing.TickPeriod.Ticks);
-        return time + TimeSpan.FromSeconds(_desyncTolerance) >= storage.NextParryTime;
-    }
-
     private void RecordConfirmationAttempt(EntityUid user, EntityUid weapon, MeleeParryComponent parry, TimeSpan starts)
     {
         if (!_netMan.IsServer)
@@ -213,3 +191,4 @@ public sealed partial class MeleeParrySystem
         public void Dispose() => owner._confirmedHit = previous;
     }
 }
+

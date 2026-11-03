@@ -469,15 +469,20 @@ public sealed partial class AdvancedLightAttackSystem : EntitySystem
             wielder.AttackLockedUntil = until;
         Dirty(user, wielder);
 
+        // Ownership, rather than the currently selected hand, defines every
+        // pending commitment that a parry interrupts (including unarmed attacks).
+        var pending = EntityQueryEnumerator<AdvancedLightAttackComponent>();
+        while (pending.MoveNext(out var weapon, out var attack))
+        {
+            if (attack.Attacker == user)
+                Cancel(weapon, attack);
+        }
+
         foreach (var weapon in _hands.EnumerateHeld(user))
         {
-            if (TryComp<AdvancedLightAttackComponent>(weapon, out var light))
-                Cancel(weapon, light);
             if (TryComp<ChargedAttackComponent>(weapon, out var charge) && charge.CurrentAttacking)
                 _charged.StopAttacking(weapon, charge, user);
         }
-        if (TryComp<AdvancedLightAttackComponent>(user, out var unarmed))
-            Cancel(user, unarmed);
     }
 
     public void EndParryLockout(EntityUid user)

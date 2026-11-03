@@ -33,7 +33,8 @@ namespace Content.Shared.MeleeParry
     public sealed class ParryPressedEvent : EntityEventArgs
     {
         public NetEntity Weapon;
-        public GameTick InputTick; // the predicted input tick, not a claimed wall-clock timestamp.
+        // Identity only. Timing comes from the same predictive queue as melee.
+        public uint InputId;
     }
 
     public readonly struct ParryParameters
@@ -93,7 +94,7 @@ namespace Content.Shared.MeleeParry
 
             if (CheckParryRequirements(uid, out var parryStorage, out var parry, out var item))
             {
-                _entityManager.RaisePredictiveEvent(new ParryPressedEvent { Weapon = GetNetEntity(item), InputTick = _timing.CurTick });
+                RaiseParryInput(item, parryStorage);
                 return;
             }
 
@@ -106,6 +107,18 @@ namespace Content.Shared.MeleeParry
                     storage.ParryQueued = true;
                 }
             }
+        }
+
+        private void RaiseParryInput(EntityUid weapon, MeleeParryStorageComponent storage)
+        {
+            var inputId = unchecked(storage.LastParryInputId + 1);
+            if (inputId == 0)
+                inputId = 1;
+            _entityManager.RaisePredictiveEvent(new ParryPressedEvent
+            {
+                Weapon = GetNetEntity(weapon),
+                InputId = inputId,
+            });
         }
 
         public override void Update(float frameTime)
@@ -153,7 +166,7 @@ namespace Content.Shared.MeleeParry
                         if (item != null && TryComp<MeleeParryComponent>(item.Value, out var parry))
                         {
                             storage.ParryQueued = false;
-                            _entityManager.RaisePredictiveEvent(new ParryPressedEvent { Weapon = GetNetEntity(item.Value), InputTick = _timing.CurTick });
+                            RaiseParryInput(item.Value, storage);
                         }
                     }
                 }
@@ -197,7 +210,11 @@ namespace Content.Shared.MeleeParry
             if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parryComp))
                 return false;
 
-            if (_useDelay.IsDelayed(item.Value))
+            // A committed attack must remain interruptible. Only that actor's
+            // pending timeline can bypass the item delay; recovery still blocks.
+            var pendingOwnAttack = TryComp<AdvancedLightAttackComponent>(item.Value, out var pending) &&
+                                   pending.Attacker == uid && _advanced.IsPending(item.Value);
+            if (_useDelay.IsDelayed(item.Value) && !pendingOwnAttack)
                 return false;
 
             parryStorage = storageComp;
@@ -207,36 +224,31 @@ namespace Content.Shared.MeleeParry
             return true;
         }
 
-        // share activation and validate the predicted input tick.
+        // Shared prediction and authoritative execution use the engine's event timeline.
         private void ExecuteParry(ParryPressedEvent args, EntitySessionEventArgs sessionArgs)
         {
             if (sessionArgs.SenderSession.AttachedEntity is not { } uid) return;
-            TryStartParry(uid, GetEntity(args.Weapon), args.InputTick);
+            if (TryGetEntity(args.Weapon, out var weapon))
+                TryStartParry(uid, weapon.Value, args.InputId);
         }
 
-        /// <summary>Shared predicted activation; the server validates the tick and existing requirements.</summary>
-        public bool TryStartParry(EntityUid uid, EntityUid expectedItem, GameTick inputTick)
+        /// <summary>Numbered predictive input, validated and timed like an advanced melee start.</summary>
+        public bool TryStartParry(EntityUid uid, EntityUid expectedItem, uint inputId)
         {
             if (!CheckParryRequirements(uid, out var parryStorage, out var parry, out var activeItem))
-            {
-                if (_netMan.IsServer && TryComp<MeleeWeaponComponent>(activeItem, out var wpn))
-                {
-                    Dirty(activeItem, wpn);
-                    Dirty(activeItem, parry);
-                    Dirty(uid, parryStorage);
-                }
-                return false;
-            }
-
-            if (expectedItem != activeItem)
                 return false;
 
-            if (!TryGetParryInputTime(parryStorage, inputTick, out var inputTime))
+            if (expectedItem != activeItem || inputId == 0 || (parryStorage.LastParryInputId != 0 && unchecked((int)(inputId - parryStorage.LastParryInputId)) <= 0))
                 return false;
-            parryStorage.LastParryInputTick = inputTick;
 
             if (!TryComp<MeleeWeaponComponent>(activeItem, out var weapon))
                 return false;
+
+            // RaisePredictiveEvent supplies ordering, dispatch timing and replay.
+            // Do not compare a second client tick or accept client-selected times.
+            var inputTime = _timing.CurTime;
+            parryStorage.LastParryInputId = inputId;
+            parryStorage.ParryQueued = false;
 
             var useDelay = EnsureComp<UseDelayComponent>(activeItem);
             var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f));
@@ -408,4 +420,3 @@ namespace Content.Shared.MeleeParry
         }
     }
 }
-
