@@ -1,0 +1,96 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+
+    Title="{Loc 'alchemy-cooling-bath-title'}"
+    MinWidth="512"
+    MinSize="512 256">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal"  >
+            <PanelContainer
+                Name="ContentsPanel"
+                Access="Public"
+                MinSize="300 128"
+                Margin="5 5">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                </PanelContainer.PanelOverride>
+                <ItemList
+                    Name="ContentsList"
+                    Access="Public"
+                    Margin="5 5"
+                    VerticalExpand="True"
+                    HorizontalExpand="True"
+                    StyleClasses="transparentBackgroundItemList"
+                    SelectMode="Button"
+                    SizeFlagsStretchRatio="3"
+                    ItemSeparation="5"
+                    MinSize="100 128">
+                </ItemList>
+            </PanelContainer>
+            <BoxContainer
+                Orientation="Vertical"
+                MinWidth="170"
+                Margin="10 10"
+                VerticalExpand="True"
+                HorizontalExpand="True">
+                <PanelContainer
+                    VerticalExpand="True"
+                    HorizontalExpand="True">
+                    <PanelContainer
+                        VerticalExpand="True"
+                        ModulateSelfOverride="#FF0000"
+                        MinSize="100 128">
+                        <BoxContainer Orientation="Vertical">
+                            <BoxContainer  Orientation="Vertical">
+                                <GridContainer
+                                    Name="DurationButtons"
+                                    HSeparationOverride="1"
+                                    VSeparationOverride="1"
+                                    HorizontalExpand="True"
+                                    Columns="3"
+                                    Margin="0"
+                                    Access="Public">
+                                </GridContainer>
+                                <BoxContainer
+                                    Orientation="Vertical"
+                                    Align="Center"
+                                    SizeFlagsStretchRatio="3">
+                                    <Control MinSize="0 15" />
+                                    <Button
+                                        Name="StartButton"
+                                        Access="Public"
+                                        Text="{Loc 'alchemy-cooling-bath-start'}"
+                                        StyleClasses="ButtonColorGreen"
+                                        TextAlign="Center" />
+                                    <Button
+                                        Name="EjectButton"
+                                        Access="Public"
+                                        Text="{Loc 'alchemy-cooling-bath-eject'}"
+                                        ToolTip="{Loc 'alchemy-cooling-bath-eject-tooltip'}"
+                                        StyleClasses="ButtonColorRed"
+                                        TextAlign="Center" />
+                                </BoxContainer>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical">
+            <PanelContainer StyleClasses="LowDivider" />
+            <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom">
+                <Label Text="{Loc 'alchemy-cooling-bath-footer-left'}" StyleClasses="WindowFooterText" />
+                <Label Text="{Loc 'alchemy-cooling-bath-footer-right'}" StyleClasses="WindowFooterText"
+                       HorizontalAlignment="Right" HorizontalExpand="True"  Margin="0 0 5 0" />
+                <TextureRect StyleClasses="NTLogoDark" Stretch="KeepAspectCentered" VerticalAlignment="Center" HorizontalAlignment="Right" SetSize="19 19"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+    <PanelContainer Name="BusyOverlay" MouseFilter="Stop">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#1B1B1E66" />
+        </PanelContainer.PanelOverride>
+    </PanelContainer>
+</controls:FancyWindow>

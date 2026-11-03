@@ -6310,3 +6310,48 @@
       path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
   - type: Meltable
     resourceCount: 2
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetBacinetVisorless
+  name: normand helmet
+  description: Medieval normand helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/bacinet_visorless.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/bacinet_visorless.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetCervelliere
+  name: normand helmet
+  description: Medieval normand helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/cervelliere.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/cervelliere.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetChainmail
+  name: normand helmet
+  description: Medieval normand helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/chainmail_hood.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/chainmail_hood.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false

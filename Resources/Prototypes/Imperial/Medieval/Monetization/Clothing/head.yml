@@ -356,3 +356,51 @@
     sprite: Imperial/Medieval/Monetization/Clothing/Head/water.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalClothingHeadHoodNeckPass9
+  name: MedievalClothingHeadHoodNeckPass9
+  description: MedievalClothingHeadHoodNeckPass9
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/neck9_hood.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/neck9_hood.rsi
+    quickEquip: false
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalClothingHeadHoodPlague
+  name: MedievalClothingHeadHoodPlague
+  description: MedievalClothingHeadHoodPlague
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/plague_hood.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/plague_hood.rsi
+    quickEquip: false
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalClothingHeadHoodNeckPass11
+  name: MedievalClothingHeadHoodNeckPass11
+  description: MedievalClothingHeadHoodNeckPass11
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/neck11_hood.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Head/neck11_hood.rsi
+    quickEquip: false
+  - type: HideLayerClothing
+    slots:
+    - Hair

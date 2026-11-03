@@ -1,4 +1,5 @@
 using System;
+using Content.Client.Administration.Managers;
 using Content.Client.Imperial.Medieval.Calendar.Board.Elements;
 using Content.Client.Imperial.Medieval.Factions.UI.Elements;
 using Content.Shared.Imperial.Medieval.Calendar;
@@ -18,6 +19,7 @@ public sealed partial class CalendarBoardWindow : DefaultWindow
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IClientAdminManager _adminManager = default!;
 
     public EntityUid Owner;
 
@@ -35,7 +37,6 @@ public sealed partial class CalendarBoardWindow : DefaultWindow
         TabContainer.SetTabTitle(CalendarTab, Loc.GetString("calendar-board-tab-calendar"));
         TabContainer.SetTabTitle(AnnouncementsTab, Loc.GetString("calendar-board-tab-announcements"));
 
-        // Устанавливаем названия для новых вложенных вкладок
         TabContainer.SetTabTitle(DayDeckTab, Loc.GetString("calendar-board-tab-days"));
         TabContainer.SetTabTitle(NightDeckTab, Loc.GetString("calendar-board-tab-nights"));
 
@@ -65,7 +66,6 @@ public sealed partial class CalendarBoardWindow : DefaultWindow
             WantedGrid.AddChild(entry);
         }
 
-
         DayCalendarGrid.RemoveAllChildren();
         if (state.DayDeck != null)
         {
@@ -94,19 +94,28 @@ public sealed partial class CalendarBoardWindow : DefaultWindow
 
         var localEntity = _playerManager.LocalSession?.AttachedEntity;
         var localNetEntity = localEntity != null ? _entMan.GetNetEntity(localEntity.Value) : (NetEntity?)null;
+        var localUserId = _playerManager.LocalSession?.UserId;
+        var isAdmin = _adminManager.CanAdminMenu();
+
+        var userAnnouncementsCount = 0;
 
         AnnouncementsList.RemoveAllChildren();
         foreach (var ann in state.Announcements)
         {
-            var canDelete = localNetEntity != null && ann.AuthorId == localNetEntity;
+            var isAuthor = (localUserId != null && ann.AuthorUserId == localUserId) ||
+                           (localNetEntity != null && ann.AuthorId == localNetEntity);
 
-            var entry = new AnnouncementEntry(ann, canDelete);
+            if (isAuthor)
+                userAnnouncementsCount++;
+
+            var canDelete = isAuthor || isAdmin;
+
+            var entry = new AnnouncementEntry(ann, canDelete, isAdmin);
             entry.OnDelete += id => OnDeleteAnnouncement?.Invoke(id);
             AnnouncementsList.AddChild(entry);
         }
 
-        var canCreate = state.Announcements.Count < 3;
-        CreateAnnouncementButton.Disabled = !canCreate;
+        CreateAnnouncementButton.Disabled = userAnnouncementsCount >= 3;
     }
 
     public override void Close()

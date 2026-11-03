@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellBloodMarkBeginner
+  name: medieval-store-spells-darkness-blood-mark-beginner-name
+  description: medieval-store-spells-darkness-blood-mark-beginner-desc
+  productAction: MedievalActionBloodMarkBeginner
+  priority: 10
+  productUpgradeId:
+    - MedievalSpellBloodMarkMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/BloodMark/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalDarkness: 30
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellBloodMarkMiddle
+  name: medieval-store-spells-darkness-blood-mark-middle-name
+  description: medieval-store-spells-darkness-blood-mark-middle-desc
+  priority: 10
+  productUpgradeId:
+    - MedievalSpellBloodMarkSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/BloodMark/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalDarkness: 60
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBloodMarkBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellBloodMarkSenior
+  name: medieval-store-spells-darkness-blood-mark-senior-name
+  description: medieval-store-spells-darkness-blood-mark-senior-desc
+  priority: 10
+  productUpgradeId:
+    - MedievalSpellBloodMarkSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/BloodMark/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalDarkness: 90
+    ArchmagePoints: 1
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBloodMarkMiddle

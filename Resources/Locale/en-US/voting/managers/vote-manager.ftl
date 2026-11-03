@@ -14,6 +14,9 @@ ui-vote-restart-abstain = Abstain
 ui-vote-gamemode-title = Next gamemode
 ui-vote-gamemode-tie = Tie for gamemode vote! Picking... { $picked }
 ui-vote-gamemode-win = { $winner } won the gamemode vote!
+# imperial medieval start - votes carried over between game mode votes
+ui-vote-gamemode-carryover-option = { $name } [+{ $votes }]
+# imperial medieval end
 
 ui-vote-map-title = Next map
 ui-vote-map-tie = Tie for map vote! Picking... { $picked }

@@ -1,7 +1,7 @@
 using System.Numerics;
 using Content.Client.Actions;
 using Content.Client.Actions.UI;
-using Content.Client.Cooldown;
+using Content.Client.Imperial.Actions; // imperial medieval action cooldown
 using Content.Client.Stylesheets;
 using Content.Shared.Actions.Components;
 using Content.Shared.Charges.Systems;
@@ -49,7 +49,7 @@ public sealed class ActionButton : Control, IEntityControl
     private readonly TextureRect _bigActionIcon;
     private readonly TextureRect _smallActionIcon;
     public readonly Label Label;
-    public readonly CooldownGraphic Cooldown;
+    public readonly ActionCooldownGraphic Cooldown; // imperial medieval action cooldown
     private readonly SpriteView _smallItemSpriteView;
     private readonly SpriteView _bigItemSpriteView;
 
@@ -142,7 +142,7 @@ public sealed class ActionButton : Control, IEntityControl
                 _smallItemSpriteView
             }
         });
-        Cooldown = new CooldownGraphic {Visible = false};
+        Cooldown = new ActionCooldownGraphic(); // imperial medieval action cooldown
 
         AddChild(Button);
         AddChild(_bigActionIcon);
@@ -333,7 +333,14 @@ public sealed class ActionButton : Control, IEntityControl
 
     public void UpdateData(EntityUid? actionId, ActionsSystem system)
     {
+        var previousAction = Action?.Owner; // imperial medieval action cooldown
         Action = system.GetAction(actionId);
+
+        // imperial medieval action cooldown start
+        // The button shows another action now, its cooldown state must not carry over
+        if (previousAction != Action?.Owner)
+            Cooldown.Reset();
+        // imperial medieval action cooldown end
 
         Label.Visible = Action != null;
         UpdateIcons();
@@ -342,8 +349,7 @@ public sealed class ActionButton : Control, IEntityControl
     public void ClearData()
     {
         Action = null;
-        Cooldown.Visible = false;
-        Cooldown.Progress = 1;
+        Cooldown.Reset(); // imperial medieval action cooldown
         Label.Visible = false;
         UpdateIcons();
     }
@@ -354,12 +360,19 @@ public sealed class ActionButton : Control, IEntityControl
 
         UpdateBackground();
 
-        Cooldown.Visible = Action?.Comp.Cooldown != null;
+        // imperial medieval action cooldown start
         if (Action?.Comp is not {} action)
+        {
+            Cooldown.Reset();
             return;
+        }
 
-        if (action.Cooldown is {} cooldown)
-            Cooldown.FromTime(cooldown.Start, cooldown.End);
+        Cooldown.UpdateCooldown(
+            action.Cooldown?.Start,
+            action.Cooldown?.End,
+            _bigActionIcon.Texture,
+            _bigActionIcon.Modulate);
+        // imperial medieval action cooldown end
 
         if (_toggled != action.Toggled)
             _toggled = action.Toggled;

@@ -19,6 +19,8 @@
       hands:
         hand_left:
           location: left
+      sortedHands:
+        - hand_left
       showInHands: false
       emptyRepresentative: []
     - type: MedievalSpellCaster

@@ -59,3 +59,16 @@ medieval-store-spells-vodka-ice-dagger-middle-desc = Convert mana into liquid an
 
 medieval-store-spells-vodka-ice-dagger-senior-name = Perfect ice dagger
 medieval-store-spells-vodka-ice-dagger-senior-desc = Convert mana into liquid and freeze it in your hand to create an ice dagger that is significantly sharper than a regular dagger and will disappear after 30 seconds. Costs 12 mana, cooldown 1.5 seconds.
+
+# Icicle hail
+
+medieval-spell-speach-icicle-hail = G̩̾ȑ͇͕ͯ̉a̤̋ͭn̟̖ͩ̂̃d͕̤ͪ̿̽o̩̱͐ͤ G̠͇ͤ͋l̮̯ͤ̉a̳̟ͮ͗c̬̎̌ỉ̝ǎ̝ͣl͚̃ͦi̥̅̈s̱̔
+
+medieval-store-spells-vodka-icicle-hail-beginner-name = Icicle hail
+medieval-store-spells-vodka-icicle-hail-beginner-desc = Summon a hail of icicles over the chosen area. Costs 35 mana.
+
+medieval-store-spells-vodka-icicle-hail-middle-name = Frozen hail
+medieval-store-spells-vodka-icicle-hail-middle-desc = Summon a wider and denser hail of icicles over the chosen area. Costs 50 mana.
+
+medieval-store-spells-vodka-icicle-hail-senior-name = Icy downpour
+medieval-store-spells-vodka-icicle-hail-senior-desc = Summon a thick downpour of icicles over a large area. Costs 70 mana.

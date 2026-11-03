@@ -23,6 +23,14 @@ public sealed partial class ImperialStoreComponent : Component
     [DataField]
     public LocId CurrencyTitle = "store-ui-currency-title";
 
+    /// <summary>
+    /// imperial medieval - the look of the grimoire window: a folder of textures in
+    /// <c>Textures/Imperial/Medieval/Interface/Foliant</c> that replace the common ones. Empty is the common look.
+    /// It comes from the prototype, so it is not networked.
+    /// </summary>
+    [DataField]
+    public string FoliantTheme = string.Empty;
+
     [DataField]
     public LocId CannotAccessStoreText = "store-not-account-owner";
 

@@ -1,0 +1,239 @@
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: BaseMedievalAlchemyApparatus
+  components:
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: AlchemyApparatus
+  - type: AlchemyVessel
+    solution: alchemy_input
+  - type: AlchemyStation
+  - type: UserInterface
+    interfaces:
+      enum.AlchemyUiKey.Key:
+        type: AlchemyBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      alchemy_items: !type:Container
+  - type: SolutionContainerManager
+    solutions:
+      alchemy_input:
+        maxVol: 1000000
+        canReact: false
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatus
+  id: MedievalAlchemyWhisk
+  name: crushing station
+  description: A sturdy station with a pestle for processing alchemical mixtures.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/whisk.rsi
+    state: icon
+  - type: AlchemyApparatus
+    operation: Whip
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 2
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseStructure
+  id: MedievalAlchemyCool
+  name: cooling bath
+  description: A bath for gradually cooling alchemical vessels.
+  components:
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/cooling_bath.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AlchemyCoolingBathVisuals.IsProcessing:
+        base:
+          True: { state: cooling }
+          False: { state: icon }
+  - type: AlchemyCoolingBath
+  - type: ActivatableUI
+    key: enum.AlchemyCoolingBathUiKey.Key
+  - type: AlchemyStation
+  - type: UserInterface
+    interfaces:
+      enum.AlchemyCoolingBathUiKey.Key:
+        type: AlchemyCoolingBathBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      alchemy_items: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalIronIngot:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatus
+  id: MedievalAlchemyDistill
+  name: distillation apparatus
+  description: An apparatus for distilling alchemical mixtures.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/distiller.rsi
+    state: icon
+  - type: AlchemyApparatus
+    operation: Distill
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalIronPlateSmall:
+            min: 1
+            max: 1
+          MedievalIronIngot:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MedievalAlchemyDistill
+  id: MedievalAlchemyRectify
+  name: rectifier
+  description: An apparatus for rectifying alchemical mixtures.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/rectifier.rsi
+    state: icon
+  - type: AlchemyApparatus
+    operation: Rectify
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalStoneBrick:
+            min: 3
+            max: 4
+          MedievalIronPlate:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatus
+  id: MedievalAlchemyExtract
+  name: alchemy apparatus
+  description: An apparatus for preparing alchemical extracts.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/extractor.rsi
+    state: icon
+  - type: AlchemyApparatus
+    operation: Extract
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalStoneBrick:
+            min: 2
+            max: 3
+          MedievalIronIngot:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatus
+  id: MedievalAlchemyFilter
+  name: alchemy apparatus
+  description: A station for filtering alchemical mixtures.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/filter.rsi
+    state: icon
+  - type: AlchemyApparatus
+    operation: Filter
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalIronIngot:
+            min: 1
+            max: 1
+          MedievalPaper:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatus
+  id: MedievalAlchemyInfuse
+  name: alchemy apparatus
+  description: A station for preparing alchemical infusions.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/infusion.rsi
+    state: icon
+  - type: AlchemyApparatus
+    operation: Infuse
+    outputToInput: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalStoneBrick:
+            min: 1
+            max: 1
+          MedievalIronIngot:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+

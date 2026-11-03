@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.UserInterface.Systems.Actions;
+using Content.Shared.Imperial.Medieval.Magic.MedievalTargetOverlayOnAiming;
 using Content.Shared.Imperial.TargetOverlay;
 using Content.Shared.Imperial.TargetOverlay.Events;
 using Content.Shared.Input;
@@ -20,6 +21,7 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private TargetOverlay _overlay = default!;
     public bool IsRangedTargetingDisplayed { get; private set; }
@@ -107,6 +109,13 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
         if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
         if (!TryComp<TargetOverlayComponent>(player, out var targetOverlayComponent)) return false;
 
+        // The spell needs an entity under the cursor in range: otherwise the click is swallowed,
+        // so the action is not used and neither mana nor cooldown is spent
+        if (targetOverlayComponent.Sender is { } sender &&
+            TryComp<MedievalRequireTargetEntityComponent>(sender, out var require) &&
+            !HasRequiredTarget(player, require))
+            return true;
+
         if (!_overlay.IsMaxTargetCount())
             _overlay.AddTarget();
 
@@ -121,6 +130,17 @@ public sealed partial class TargetOverlaySystem : SharedTargetOverlaySystem
     }
 
     #region Helpers
+
+    private bool HasRequiredTarget(EntityUid player, MedievalRequireTargetEntityComponent require)
+    {
+        if (_overlay.Targeting.Target is not { } target || target == player || !Exists(target)) return false;
+        if (require.Range <= 0) return true;
+
+        var from = _transform.GetMapCoordinates(player);
+        var to = _transform.GetMapCoordinates(target);
+
+        return from.MapId == to.MapId && (to.Position - from.Position).Length() <= require.Range;
+    }
 
     private void UpdateOverlay(TargetOverlayComponent component)
     {

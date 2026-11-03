@@ -2391,7 +2391,15 @@
         prob: 0.06
       - id: MedievalClothingFeetSteel
         prob: 0.06
+      - id: MedievalClothingFeetChain
+        prob: 0.06
       - id: MedievalClothingHeadHelmetBacinet
+        prob: 0.15
+      - id: MedievalClothingHeadHelmetBacinetVisorless
+        prob: 0.15
+      - id: MedievalClothingHeadHelmetCervelliere
+        prob: 0.15
+      - id: MedievalClothingHeadHelmetChainmail
         prob: 0.15
       - id: MedievalClothingHeadHelmetSalad
         prob: 0.15
@@ -3225,7 +3233,6 @@
   - type: StationAiVision
     range: 28
     occluded: false
-  - type: MagicPotionsRecipes
   - type: AmbientSound
     volume: -3
     range: 6.5
@@ -3547,7 +3554,6 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
-  - type: MagicPotionsMaker
   - type: PointLight
     color: Green
     radius: 3

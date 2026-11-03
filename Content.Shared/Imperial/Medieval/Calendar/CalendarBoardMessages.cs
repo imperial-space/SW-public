@@ -1,4 +1,5 @@
 using System;
+using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Medieval.Calendar;
@@ -9,9 +10,11 @@ public sealed class AnnouncementData
     public Guid Id;
     public string Title = string.Empty;
     public string Author = string.Empty;
-    public NetEntity AuthorId;
+    public NetEntity? AuthorId;
+    public NetUserId? AuthorUserId;
     public string Text = string.Empty;
     public string CycleTime = string.Empty;
+    public string? AdminInfo;
 }
 
 [Serializable, NetSerializable]

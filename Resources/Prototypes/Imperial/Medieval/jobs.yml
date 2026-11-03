@@ -929,6 +929,7 @@
   - MedievalClothingHandsGlovesColorBrown
   - MedievalGlovesBlacksmith
   - MedievalIronGlovesBrig
+  - MedievalIronGlovesChain
   - MedievalIronGloves
   - MedievalIronGlovesBear
 
@@ -994,6 +995,14 @@
     proto: MedievalTimer10hours
   equipment:
     gloves: MedievalIronGlovesBrig
+
+- type: loadout
+  id: MedievalIronGlovesChain
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MedievalTimer10hours
+  equipment:
+    gloves: MedievalIronGlovesChain
 
 - type: loadout
   id: MedievalIronGlovesBear
@@ -2033,6 +2042,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalArchivist
+      paymentAmount: 20
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: MedievalJobSpawn
@@ -2084,6 +2096,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalChaplain
+      paymentAmount: 15
     - type: Mana
       maxMana: 150
       regen: 1.2
@@ -2486,6 +2501,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalLegionRecruit
+      paymentAmount: 10
     - type: WarningOnAttach
       message: medieval-warning-leg
     - type: MedievalFactionMember
@@ -2601,6 +2619,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalLegionLegioner
+      paymentAmount: 20
     - type: WarningOnAttach
       message: medieval-warning-leg
     - type: MedievalFactionMember
@@ -2739,6 +2760,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalLegionOpcion
+      paymentAmount: 25
     - type: WarningOnAttach
       message: medieval-warning-leg
     - type: MedievalFactionMember
@@ -2814,6 +2838,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalLegionTribun
+      paymentAmount: 30
     - type: WarningOnAttach
       message: medieval-warning-leg
     - type: MedievalFactionMember
@@ -3019,6 +3046,7 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryManager
     - type: WarningOnAttach
       message: medieval-warning-leg
     - type: MedievalFactionMember
@@ -3163,6 +3191,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalLegionMag
+      paymentAmount: 30
     - type: WarningOnAttach
       message: medieval-warning-leg-mag
     - type: Mana
@@ -3238,6 +3269,7 @@
   storage:
     back:
     - MedievalRecipeBook
+    - MedievalAlchemyGuide
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
@@ -3882,6 +3914,7 @@
   storage:
     back:
     - MedievalRecipeBook
+    - MedievalAlchemyGuide
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
@@ -4696,6 +4729,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalCollegiumRecruit
+      paymentAmount: 10
     - type: WarningOnAttach
       message: medieval-warning-coll
     - type: Mana
@@ -4777,6 +4813,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalCollegiumCommon
+      paymentAmount: 20
     - type: WarningOnAttach
       message: medieval-warning-coll
     - type: Mana
@@ -4862,6 +4901,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: MedievalSalaryReceiver
+      roleType: MedievalCollegiumLeader
+      paymentAmount: 50
     - type: WarningOnAttach
       message: medieval-warning-coll
     - type: Mana

@@ -59,6 +59,15 @@ ent-MedievalMobSkeletDaggerGhost = skeleton with daggers
     .desc = Fast on its feet and armed for close work. Keep it away, or the cuts will come faster than you expect.
     .suffix = { "Medieval, mob, ghost role" }
 
+ent-MedievalMobSkeletHalberdSpell = magical halberd skeleton
+    .desc = A revenant that sweeps its long halberd in heavy, measured arcs.
+ent-MedievalMobSkeletDaggerSpell = magical dagger skeleton
+    .desc = A quick-footed revenant that closes the distance and strikes with both daggers.
+ent-MedievalMobSkeletLegionSpell = magical legionary skeleton
+    .desc = A veteran legionary risen by sorcery, advancing in step and refusing to yield ground.
+ent-MedievalMobSkeletSpearSpell = magical spear skeleton
+    .desc = A tireless sentry that keeps its spear between itself and anyone who comes near.
+
 
 ghost-role-information-skelet-rules = You are a skeleton. Let frail flesh fall. Glory to necromancers and dark mages!
 ghost-role-information-skelet-weak-name = Weak skeleton

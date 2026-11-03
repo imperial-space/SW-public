@@ -30,6 +30,12 @@ public static class MedievalUiStyle
     public static readonly Color TextFaded = Color.FromHex("#7a6a58");
     public static readonly Color TextDisabled = Color.FromHex("#4a4540");
 
+    /// <summary>Something in the way, e.g. an ingredient the mortar can't take.</summary>
+    public static readonly Color Warning = Color.FromHex("#8a3a2a");
+
+    /// <summary>Enchanted things at work, e.g. the mortar grinding on its own.</summary>
+    public static readonly Color Magic = Color.FromHex("#b89ae8");
+
     /// <summary>Medieval lettering for titles and buttons. Small print stays in the regular font to stay readable.</summary>
     private const string FontPath = "/Fonts/Imperial/Vinque/Vinque.otf";
 

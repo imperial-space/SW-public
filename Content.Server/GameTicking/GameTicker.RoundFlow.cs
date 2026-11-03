@@ -750,6 +750,7 @@ namespace Content.Server.GameTicking
 
             // Clear up any game rules.
             ClearGameRules();
+            LastRoundPreset = CurrentPreset ?? LastRoundPreset; // imperial medieval
             CurrentPreset = null;
 
             _allPreviousGameRules.Clear();

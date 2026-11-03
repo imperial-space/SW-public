@@ -4,12 +4,6 @@
                MinSize="1075 550">
     <TabContainer Name="Tabs" HorizontalExpand="True" VerticalExpand="True">
 
-        <BoxContainer Name="WantedTab" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="5">
-            <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-                <GridContainer Name="WantedGrid" Columns="4" HorizontalExpand="True" VerticalExpand="True" />
-            </ScrollContainer>
-        </BoxContainer>
-
         <BoxContainer Name="CalendarTab" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="5">
             <TabContainer Name="CalendarSubTabs" HorizontalExpand="True" VerticalExpand="True">
 
@@ -26,6 +20,12 @@
                 </BoxContainer>
 
             </TabContainer>
+        </BoxContainer>
+
+        <BoxContainer Name="WantedTab" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="5">
+            <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                <GridContainer Name="WantedGrid" Columns="4" HorizontalExpand="True" VerticalExpand="True" />
+            </ScrollContainer>
         </BoxContainer>
 
         <BoxContainer Name="AnnouncementsTab" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="5">

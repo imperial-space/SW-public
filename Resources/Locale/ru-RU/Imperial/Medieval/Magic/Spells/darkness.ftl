@@ -122,3 +122,16 @@ medieval-spell-speach-cursed-fetter = Nɛɛma tɔgbee kɛlɛ
 
 medieval-spell-speach-cursed-fetter-beginner-name = Теневые оковы
 medieval-spell-speach-cursed-fetter-beginner-desc = Призывает магические проклятые оковы в руку. При ударе наносят урон по выносливости. Стоимость 35 маны.
+
+# Blood mark
+
+medieval-spell-speach-blood-mark = S̶i͢g̡n̷ų́m͝ S̡a͜n̶g̨úi͢n̷is͝
+
+medieval-store-spells-darkness-blood-mark-beginner-name = Кровавая метка
+medieval-store-spells-darkness-blood-mark-beginner-desc = Пометьте выбранную цель кровью: в течение 10 секунд она получает немного больше урона. Метки не складываются. Дальность 7 клеток. Стоимость 40 маны.
+
+medieval-store-spells-darkness-blood-mark-middle-name = Кровавое клеймо
+medieval-store-spells-darkness-blood-mark-middle-desc = Выжгите на выбранной цели кровавое клеймо: в течение 14 секунд она получает заметно больше урона. Метки не складываются. Дальность 9 клеток. Стоимость 55 маны.
+
+medieval-store-spells-darkness-blood-mark-senior-name = Багровая печать
+medieval-store-spells-darkness-blood-mark-senior-desc = Наложите на выбранную цель багровую печать: в течение 16 секунд она получает намного больше урона. Метки не складываются. Дальность 11 клеток. Стоимость 65 маны.

@@ -1,0 +1,7 @@
+<Document>
+  <GuideLocalizedText Key="guide-entry-medieval-alchemy-potions" Style="LabelHeadingBigger"/>
+
+  <GuideLocalizedText Key="alchemy-guide-potions-description"/>
+
+  <GuideAlchemyRecipeTable Tag="Potion"/>
+</Document>

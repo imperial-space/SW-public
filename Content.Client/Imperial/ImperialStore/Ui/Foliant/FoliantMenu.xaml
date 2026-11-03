@@ -1,0 +1,78 @@
+<ui:FoliantWindow
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="Content.Client.Imperial.ImperialStore.Ui.Foliant.FoliantMenu"
+    xmlns:ui="clr-namespace:Content.Client.Imperial.ImperialStore.Ui.Foliant">
+    <!-- the window is the book itself, it has no frame and no title. Fixed size: a book does not change its size when the lists do -->
+    <Control SetSize="816 582">
+        <!-- the lower 22 px are left for the end of the red bookmark ribbon that hangs out of the book -->
+        <PanelContainer Name="Cover" Margin="0 0 0 22">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="0">
+                <!-- both pages have the same fixed width, so the seam is exactly in the middle of the book (the ribbon hangs from it) -->
+                <PanelContainer Name="LeftPage" SetWidth="372">
+                    <!-- the top is left free for the ribbons that hang over it -->
+                    <BoxContainer Name="LeftBox" Orientation="Vertical" Margin="0 56 0 0">
+                        <BoxContainer Name="Portrait" Orientation="Horizontal" SeparationOverride="14">
+                            <Control SetSize="100 100">
+                                <TextureRect Name="PortraitRing" Stretch="Keep" />
+                                <TextureRect Name="PortraitRune" Stretch="Keep" />
+                            </Control>
+                            <BoxContainer Orientation="Vertical" VerticalAlignment="Center" HorizontalExpand="True">
+                                <Label Name="SchoolName" />
+                                <BoxContainer Name="AmountBox" Orientation="Horizontal" SeparationOverride="6" Margin="0 4 0 0" />
+                                <BoxContainer Name="SealsBox" Orientation="Horizontal" SeparationOverride="2" Margin="0 6 0 0" />
+                            </BoxContainer>
+                        </BoxContainer>
+
+                        <BoxContainer Name="DividerTop" Orientation="Horizontal" Margin="0 8 0 0" />
+
+                        <Label Name="SourceTitle" Margin="0 6 0 4" />
+                        <!-- the circle stands in the middle of what is left of the page -->
+                        <Control VerticalExpand="True" />
+                        <BoxContainer Name="RitualBox" Orientation="Horizontal" />
+                        <Label Name="RitualHint" HorizontalAlignment="Center" Margin="0 2 0 0" />
+                        <Control VerticalExpand="True" />
+
+                        <BoxContainer Name="DividerBottom" Orientation="Horizontal" />
+                        <BoxContainer Name="LinksBox" Orientation="Horizontal" SeparationOverride="24" Margin="0 6 0 0" />
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer Name="Gutter" SetWidth="40" />
+
+                <PanelContainer Name="RightPage" SetWidth="372">
+                    <Control>
+                        <BoxContainer Name="LearnView" Orientation="Vertical">
+                            <LineEdit Name="SearchBar" />
+                            <ScrollContainer Name="SpellsScroll" HScrollEnabled="False" VerticalExpand="True" Margin="0 8 0 0">
+                                <BoxContainer Name="SpellsBox" Orientation="Vertical" Margin="0 0 8 0" />
+                            </ScrollContainer>
+                        </BoxContainer>
+
+                        <BoxContainer Name="PickView" Orientation="Vertical" Visible="False">
+                            <Label Name="PickTitle" />
+                            <BoxContainer Name="DividerPick" Orientation="Horizontal" Margin="0 6 0 8" />
+                            <BoxContainer Name="PickBox" Orientation="Vertical" SeparationOverride="8" />
+                            <Control VerticalExpand="True" />
+                            <BoxContainer Name="PickLinks" Orientation="Vertical" />
+                        </BoxContainer>
+                    </Control>
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- the ribbons are over the page, they hang from the top edge of the book -->
+        <BoxContainer Name="Ribbons" Orientation="Horizontal" SeparationOverride="0"
+                      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22 10 0 0" />
+
+        <!-- 404 = where the ribbon in the seam starts: half of the book, minus half of the seam (20), plus 16 -->
+        <TextureRect Name="BookmarkTail" Stretch="Keep" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="404 0 0 0" />
+
+        <!-- a medallion over the seam, only in the themes that have one. 399 = 404 + 11 (the middle of the ribbon) - 16 -->
+        <TextureRect Name="Medallion" Stretch="Keep" Visible="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="399 6 0 0" />
+
+        <!-- there is no title bar, the book is closed with a cross on its cover -->
+        <TextureButton Name="CloseButton" StyleClasses="windowCloseButton"
+                       HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 4 6 0" />
+    </Control>
+</ui:FoliantWindow>

@@ -1,0 +1,141 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMedievalAlchemyApparatusCraft
+  components:
+  - type: Item
+    size: Large
+  - type: SpawnAfterInteract
+    doAfter: 6
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stone_wall.rsi
+    state: icon
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatusCraft
+  id: MedievalAlchemyWhiskCraft
+  name: crushing station construction kit
+  description: Use this kit on a clear tile to build a crushing station.
+  components:
+  - type: SpawnAfterInteract
+    prototype: MedievalAlchemyWhisk
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatusCraft
+  id: MedievalAlchemyCoolCraft
+  name: cooling bath construction kit
+  description: Use this kit on a clear tile to build a cooling bath.
+  components:
+  - type: SpawnAfterInteract
+    prototype: MedievalAlchemyCool
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatusCraft
+  id: MedievalAlchemyDistillCraft
+  name: distillation apparatus construction kit
+  description: Use this kit on a clear tile to build a distillation apparatus.
+  components:
+  - type: SpawnAfterInteract
+    prototype: MedievalAlchemyDistill
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatusCraft
+  id: MedievalAlchemyRectifyCraft
+  name: rectifier construction kit
+  description: Use this kit on a clear tile to build a rectifier.
+  components:
+  - type: SpawnAfterInteract
+    prototype: MedievalAlchemyRectify
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatusCraft
+  id: MedievalAlchemyExtractCraft
+  name: alchemical extractor construction kit
+  description: Use this kit on a clear tile to build an alchemical extractor.
+  components:
+  - type: SpawnAfterInteract
+    prototype: MedievalAlchemyExtract
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatusCraft
+  id: MedievalAlchemyFilterCraft
+  name: alchemical filter construction kit
+  description: Use this kit on a clear tile to build an alchemical filter.
+  components:
+  - type: SpawnAfterInteract
+    prototype: MedievalAlchemyFilter
+
+- type: entity
+  parent: BaseMedievalAlchemyApparatusCraft
+  id: MedievalAlchemyInfuseCraft
+  name: infusion station construction kit
+  description: Use this kit on a clear tile to build an infusion station.
+  components:
+  - type: SpawnAfterInteract
+    prototype: MedievalAlchemyInfuse
+
+- type: CP14Recipe
+  id: MedievalAlchemyWhiskCraft
+  craftTime: 2
+  stacks:
+    WoodPlank: 5
+    MedievalIronIngot: 1
+  result: MedievalAlchemyWhiskCraft
+
+- type: CP14Recipe
+  id: MedievalAlchemyCoolCraft
+  craftTime: 4
+  stacks:
+    MedievalCoal: 2
+    MedievalIronPlateSmall: 4
+    MedievalTopaz: 1
+  result: MedievalAlchemyCoolCraft
+
+- type: CP14Recipe
+  id: MedievalAlchemyDistillCraft
+  craftTime: 4
+  stacks:
+    MedievalCoal: 2
+    MedievalIronPlateSmall: 3
+    MedievalIronIngot: 3
+  result: MedievalAlchemyDistillCraft
+
+- type: CP14Recipe
+  id: MedievalAlchemyRectifyCraft
+  craftTime: 8
+  stacks:
+    MedievalCoal: 10
+    MedievalStoneBrick: 10
+    MedievalIronPlate: 2
+    MedievalIronPlateSmall: 4
+    MedievalRivets: 2
+  result: MedievalAlchemyRectifyCraft
+
+- type: CP14Recipe
+  id: MedievalAlchemyExtractCraft
+  craftTime: 4
+  stacks:
+    MedievalCoal: 2
+    MedievalStoneBrick: 5
+    MedievalIronIngot: 3
+  result: MedievalAlchemyExtractCraft
+
+- type: CP14Recipe
+  id: MedievalAlchemyFilterCraft
+  craftTime: 3
+  stacks:
+    MedievalCoal: 6
+    MedievalIronIngot: 2
+  entities:
+    MedievalPaper: 4
+  result: MedievalAlchemyFilterCraft
+
+- type: CP14Recipe
+  id: MedievalAlchemyInfuseCraft
+  craftTime: 4
+  stacks:
+    MedievalCoal: 2
+    MedievalStoneBrick: 3
+    MedievalIronIngot: 2
+  result: MedievalAlchemyInfuseCraft

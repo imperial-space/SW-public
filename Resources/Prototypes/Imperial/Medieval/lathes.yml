@@ -454,8 +454,8 @@
 - type: entity
   id: MedievalMortar
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: mortar
-  description: From BlenderTech. Will It Blend? Let's find out!
+  name: enchanted mortar
+  description: An enchanted mortar. The pestle grinds and presses the ingredients on its own, and everything it gets goes into the vessel the mortar keeps inside itself.
   components:
   - type: ApcPowerReceiver
     needsPower: false
@@ -467,7 +467,7 @@
   - type: UserInterface
     interfaces:
       enum.ReagentGrinderUiKey.Key:
-        type: ReagentGrinderBoundUserInterface
+        type: MedievalMortarBoundUserInterface
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -765,7 +765,7 @@
   - type: UserInterface
     interfaces:
       enum.CP14WorkbenchUiKey.Key:
-        type: CP14WorkbenchBoundUserInterface
+        type: MedievalWorkbenchBoundUserInterface
   - type: Damageable
     damageContainer: Inorganic
 
@@ -855,6 +855,7 @@
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
+    uiTheme: Leather
     recipes:
     - MedievalSewingNeedle
     - MedievalSewingPatches
@@ -929,8 +930,10 @@
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_wood.ogg"
+    uiTheme: Wood
     recipes:
     - MedievalWeaponCrossbow
+    - MedievalAlchemyWhiskCraft
     - MedievalWeaponCrossbowHeavy
     - MedievalWoodenSword
     - MedievalWoodenClaymore
@@ -1040,6 +1043,7 @@
   - type: CP14Workbench
     craftSpeed: 1
     craftSound: "/Audio/Imperial/Medieval/craft_foundry.ogg"
+    uiTheme: Foundry
     recipes:
     - MedievalAstrolit
     - MedievalGlinaFormaReady
@@ -1096,8 +1100,10 @@
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
+    uiTheme: Magic
     recipes:
     - RecycleCrystalToEssenceVodka
+    - MedievalAlchemyCoolCraft
     - RecycleCrystalToEssenceFire
     - RecycleCrystalToEssenceLight
     - RecycleCrystalToEssenceEarth
@@ -1135,6 +1141,7 @@
     - MedievalScrollsPnyaCraft
     - MedievalScrollsKoboldCraft
     - MedievalScrollsPetSlimeCraft
+    - MedievalScrollsPetMimicCraft
     - MedievalClothingHeadHelmetCharmerNeutral
     - MedievalClothingOuterArmorCharmerNeutral
     - ForgedCoreSerdolicCraft
@@ -1227,8 +1234,15 @@
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
+    uiTheme: Blacksmith
     recipes:
     - MedievalGear
+    - MedievalAlchemyCoolCraft
+    - MedievalAlchemyDistillCraft
+    - MedievalAlchemyRectifyCraft
+    - MedievalAlchemyExtractCraft
+    - MedievalAlchemyFilterCraft
+    - MedievalAlchemyInfuseCraft
     - MedievalChain
     - MedievalLeatherBelt
     - MedievalIronPlate
@@ -1251,13 +1265,18 @@
     - MedievalClothingHeadHelmetNormandFree
     - MedievalClothingHeadHelmetNorthern
     - MedievalClothingHeadHelmetBacinet
+    - MedievalClothingHeadHelmetBacinetVisorless
+    - MedievalClothingHeadHelmetCervelliere
+    - MedievalClothingHeadHelmetChainmail
     - MedievalClothingHeadHelmetShapel
     - MedievalClothingHeadHelmetCrusader
     - MedievalIronGloves
     - MedievalIronGlovesBrig
+    - MedievalIronGlovesChain
     - MedievalNorthernGloves
     - MedievalIronGlovesBear
     - MedievalClothingFeetSteel
+    - MedievalClothingFeetChain
     - MedievalClothingFeetNorthern
     - MedievalClothingOuterArmorChainMailLight
     - MedievalClothingOuterArmorChainMail
@@ -1335,6 +1354,10 @@
     - MedievalHatchet
     - BarberScissors
     - MedievalGrenade
+    - MedievalAlchemyGrenadeT1
+    - MedievalCryoGrenade
+    - MedievalAlchemyGrenadeT2
+    - MedievalAlchemyGrenadeT3
     - MedievalLintstock
     - MedievalRamrod
     - MedievalGunpowderCharge
@@ -1435,6 +1458,7 @@
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
+    uiTheme: Tailor
     recipes:
       - MedievalSewingNeedle
       - MedievalSewingPatches

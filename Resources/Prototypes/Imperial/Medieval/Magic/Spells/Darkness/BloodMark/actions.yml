@@ -1,0 +1,146 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionBloodMarkBeginner
+  name: medieval-store-spells-darkness-blood-mark-beginner-name
+  description: medieval-store-spells-darkness-blood-mark-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: SpellCastEffect
+    effectProto: BloodMarkSpellCastEffect
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 25
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/BloodMark/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 7
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnAimingEntityEvent
+      spawnedEntity: MedievalBloodMarkApplyBeginner
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-blood-mark
+          color: "#8B0000"
+          hideChat: true
+  - type: MedievalRequireTargetEntity
+    range: 7
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 1
+    whiteListComponents:
+      - type: MobState
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionBloodMarkMiddle
+      3: MedievalActionBloodMarkSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionBloodMarkMiddle
+  parent: MedievalActionBloodMarkBeginner
+  name: medieval-store-spells-darkness-blood-mark-middle-name
+  description: medieval-store-spells-darkness-blood-mark-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 55
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: SpellCastEffect
+    effectProto: BloodMarkSpellCastEffectMiddle
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/BloodMark/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 9
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnAimingEntityEvent
+      spawnedEntity: MedievalBloodMarkApplyMiddle
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-blood-mark
+          color: "#8B0000"
+          hideChat: true
+  - type: MedievalRequireTargetEntity
+    range: 9
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 1
+    whiteListComponents:
+      - type: MobState
+
+# Senior
+
+- type: entity
+  id: MedievalActionBloodMarkSenior
+  parent: MedievalActionBloodMarkMiddle
+  name: medieval-store-spells-darkness-blood-mark-senior-name
+  description: medieval-store-spells-darkness-blood-mark-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 65
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: SpellCastEffect
+    effectProto: BloodMarkSpellCastEffectSenior
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 40
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/BloodMark/icons.rsi
+      state: senior
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 11
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnAimingEntityEvent
+      spawnedEntity: MedievalBloodMarkApplySenior
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-blood-mark
+          color: "#8B0000"
+          hideChat: true
+  - type: MedievalRequireTargetEntity
+    range: 11
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 1
+    whiteListComponents:
+      - type: MobState

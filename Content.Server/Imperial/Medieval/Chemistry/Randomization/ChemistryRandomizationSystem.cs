@@ -82,20 +82,11 @@ public sealed partial class ChemistryRandomizationSystem : EntitySystem
     }
     private void RecipeInit(EntityUid uid, MedievalRandomChemistryRecipeComponent component, MapInitEvent args)
     {
-        if (component.Weights.Count == 0)
+        var alchemy = EntityManager.System<Content.Server.Imperial.Medieval.Alchemy.AlchemySystem>();
+        var recipe = alchemy.ResolveScroll(component);
+        if (recipe == null)
             return;
-        var type = _random.Pick(component.Weights);
-        var reagent = _random.Pick(_chemRandom.GetReagentsFromGroup(type));
-        var recipe = SharedChemistryRandomizationSystem.GetReactionsOrNull(reagent);
-        if (recipe == null || recipe.Count == 0)
-            return; // ???? kinda impossible but who knows
-        var str = Loc.GetString("imperial-medieval-recipewritten");
-        foreach (var reactant in recipe.First().Reactants)
-        {
-            str = $"{str}{Environment.NewLine}- {Loc.GetString(_prototype.Index<ReagentPrototype>(reactant.Key).LocalizedName)}";
-        }
-        _meta.SetEntityDescription(uid, str);
-        component.Reagent = reagent;
+        _meta.SetEntityDescription(uid, alchemy.DescribeRecipe(recipe));
     }
 
     private void OnRoundStarting(RoundStartingEvent args)

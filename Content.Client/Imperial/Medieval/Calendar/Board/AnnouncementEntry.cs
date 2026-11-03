@@ -11,7 +11,7 @@ public sealed class AnnouncementEntry : PanelContainer
 {
     public Action<Guid>? OnDelete;
 
-    public AnnouncementEntry(AnnouncementData data, bool canDelete)
+    public AnnouncementEntry(AnnouncementData data, bool canDelete, bool showAdminInfo = false)
     {
         Margin = new Thickness(0, 0, 0, 10);
         HorizontalExpand = true;
@@ -51,6 +51,16 @@ public sealed class AnnouncementEntry : PanelContainer
 
         titleBox.AddChild(titleLabel);
         titleBox.AddChild(authorLabel);
+
+        if (showAdminInfo && !string.IsNullOrWhiteSpace(data.AdminInfo))
+        {
+            var adminLabel = new Label
+            {
+                Text = data.AdminInfo,
+                FontColorOverride = Color.FromHex("#E57373")
+            };
+            titleBox.AddChild(adminLabel);
+        }
 
         var deleteButton = new Button
         {

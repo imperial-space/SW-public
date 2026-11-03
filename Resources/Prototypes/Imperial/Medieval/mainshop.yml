@@ -969,6 +969,17 @@
   - MedievalArmor
 
 - type: listing
+  id: MdvShopMedievalIronGlovesChain
+  productEntity: MedievalIronGlovesChain
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 20
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
   id: MdvShopMedievalIronGlovesBear
   productEntity: MedievalIronGlovesBear
   discountCategory: medievalDiscounts
@@ -982,6 +993,17 @@
 - type: listing
   id: MdvShopMedievalClothingFeetSteel
   productEntity: MedievalClothingFeetSteel
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 25
+  cost:
+    Revent: 35
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingFeetChain
+  productEntity: MedievalClothingFeetChain
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 25
@@ -1168,6 +1190,30 @@
 - type: listing
   id: MdvShopMedievalClothingHeadHelmetBacinet
   productEntity: MedievalClothingHeadHelmetBacinet
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetBacinetVisorless
+  productEntity: MedievalClothingHeadHelmetBacinetVisorless
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetCervelliere
+  productEntity: MedievalClothingHeadHelmetCervelliere
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetChainmail
+  productEntity: MedievalClothingHeadHelmetChainmail
   cost:
     Revent: 30
   categories:

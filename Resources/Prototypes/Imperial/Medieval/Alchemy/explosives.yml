@@ -1,0 +1,100 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMedievalExplosiveMixture
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/Bombs/Explosive_Mix.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Flammable
+    alwaysCombustible: true
+    damage: {}
+
+- type: entity
+  parent: BaseMedievalExplosiveMixture
+  id: MedievalExplosiveMixtureT1
+  name: explosive mixture
+  description: An alchemical charge for a gunpowder bomb.
+  components:
+  - type: AlchemyExplosiveMixture
+    bombPrototype: MedievalGrenade
+
+- type: entity
+  parent: BaseMedievalExplosiveMixture
+  id: MedievalCryoMixture
+  name: frost mixture
+  description: An alchemical charge for a frost bomb.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/Bombs/Freezing_Mix.rsi
+  - type: AlchemyExplosiveMixture
+    bombPrototype: MedievalCryoGrenade
+
+- type: entity
+  parent: BaseMedievalExplosiveMixture
+  id: MedievalExplosiveMixtureT2
+  name: potent explosive mixture
+  description: A potent alchemical charge for an explosive bomb.
+  components:
+  - type: AlchemyExplosiveMixture
+    bombPrototype: MedievalAlchemyGrenadeT2
+
+- type: entity
+  parent: BaseMedievalExplosiveMixture
+  id: MedievalExplosiveMixtureT3
+  name: powerful explosive mixture
+  description: A concentrated alchemical charge for a powerful explosive bomb.
+  components:
+  - type: AlchemyExplosiveMixture
+    bombPrototype: MedievalAlchemyGrenadeT3
+
+- type: entity
+  parent: MedievalGrenade
+  id: MedievalCryoGrenade
+  name: frost bomb
+  description: A bomb filled with an alchemical frost mixture.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/Bombs/Ice_bomb.rsi
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 4
+    intensitySlope: 1
+    totalIntensity: 60
+  - type: SpawnOnTrigger
+    proto: MedievalCryoExplosionEffect
+
+- type: entity
+  parent: MedievalGrenade
+  id: MedievalAlchemyGrenadeT2
+  name: potent explosive bomb
+  description: A bomb filled with a potent alchemical mixture.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/Bombs/Medium_bomb.rsi
+  - type: Explosive
+    maxIntensity: 8
+    intensitySlope: 1
+    totalIntensity: 96
+
+- type: entity
+  parent: MedievalGrenade
+  id: MedievalAlchemyGrenadeT3
+  name: powerful explosive bomb
+  description: A bomb filled with a concentrated alchemical mixture.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/Bombs/Big_bomb.rsi
+  - type: Explosive
+    maxIntensity: 80
+    intensitySlope: 1
+    totalIntensity: 1200
+
+- type: entity
+  parent: MedievalExplosionEffect
+  id: MedievalCryoExplosionEffect
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/Explosions/cryo.rsi

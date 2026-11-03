@@ -46,6 +46,7 @@
         range: 4
     rotationPerClick: 0
   - type: MedievalSpellTeleportEffect
+    hideCaster: false
     fadeDistortion:
       - type: PhaseSpaceDistortion
         isMove: false
@@ -80,3 +81,129 @@
           - relativePosition: 0,-1
             fadePosition: 0,-1
             distortionPathTime: 1
+
+- type: entity
+  parent: BaseAction
+  id: MedievalActionDragonTailSweep
+  name: tail sweep
+  description: The dragon spins in place and lashes everyone around it with its tail.
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/tail_sweep.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:MedievalTailSweepActionEvent
+
+- type: entity
+  id: MedievalEffectDragonTailSweep
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/tail_sweep_effect.rsi
+    state: effect
+    drawdepth: BelowMobs
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 0.45
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MedievalEffectDragonTailTrail
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/tail_sweep_trail.rsi
+    drawdepth: BelowMobs
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: MedievalEffectDragonTailTrail
+  id: MedievalEffectDragonTailTrailIce
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: ice
+
+- type: entity
+  parent: MedievalEffectDragonTailTrail
+  id: MedievalEffectDragonTailTrailFire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: fire
+
+- type: entity
+  parent: MedievalEffectDragonTailTrail
+  id: MedievalEffectDragonTailTrailAcid
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: acid
+
+- type: entity
+  parent: MedievalEffectDragonTailTrail
+  id: MedievalEffectDragonTailTrailThunder
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: thunder
+
+- type: entity
+  parent: MedievalEffectDragonTailTrail
+  id: MedievalEffectDragonTailTrailNecro
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: necro
+
+# Mother dragons are bigger, their trail is twice the size
+
+- type: entity
+  parent: MedievalEffectDragonTailTrailIce
+  id: MedievalEffectDragonTailTrailIceMother
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 2, 2
+
+- type: entity
+  parent: MedievalEffectDragonTailTrailFire
+  id: MedievalEffectDragonTailTrailFireMother
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 2, 2
+
+- type: entity
+  parent: MedievalEffectDragonTailTrailAcid
+  id: MedievalEffectDragonTailTrailAcidMother
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 2, 2
+
+- type: entity
+  parent: MedievalEffectDragonTailTrailThunder
+  id: MedievalEffectDragonTailTrailThunderMother
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 2, 2
+
+- type: entity
+  parent: MedievalEffectDragonTailTrailNecro
+  id: MedievalEffectDragonTailTrailNecroMother
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 2, 2

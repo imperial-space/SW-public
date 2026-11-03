@@ -1,0 +1,12 @@
+ent-MedievalTravelTentFolded = свёрнутая походная палатка
+    .desc = Холщовая палатка, скатанная вокруг двух жердей. Поставьте её на земле, а внутрь скатки поместится спальник.
+ent-MedievalTravelTent = походная палатка
+    .desc = Лёгкая холщовая палатка на двух жердях. Постелите внутри спальник.
+construction-recipe-medieval-travel-tent = походная палатка
+construction-recipe-medieval-travel-tent-desc = Холст, пара жердей и верёвка. Носится свёрнутой, ставится где угодно.
+medieval-travel-tent-close = Закрыть полог
+medieval-travel-tent-open = Открыть полог
+medieval-travel-tent-fold = Свернуть палатку
+medieval-travel-tent-slot = спальник
+medieval-travel-tent-no-room = Палатке не хватает места: здесь или позади что-то стоит.
+medieval-travel-tent-bag-already = В палатке уже постелен спальник.

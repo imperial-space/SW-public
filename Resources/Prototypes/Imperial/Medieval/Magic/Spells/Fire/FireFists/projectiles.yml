@@ -1,0 +1,99 @@
+- type: entity
+  id: FireFistsBeginner
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireFists/projectiles.rsi
+    state: icon
+  - type: Unremoveable
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    color: "#FF9C24"
+  - type: TimedDespawn
+    lifetime: 25
+  - type: MedievalSpawnOnMeleeHit
+    prototype: FireFistsHitEffect
+  - type: MedievalActionCooldownOnDespawn
+    cooldown: 45
+  - type: MedievalAlternateHandOnAttack
+  - type: APDamageOnHit
+    damage:
+      types:
+        Heat: 0.5
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    autoAttack: true
+    animation: FireFistsArc
+    wideAnimationRotation: 0
+    angle: 0
+    attackRate: 0.7
+    damage:
+      types:
+        Blunt: 4
+        Heat: 8.5
+
+- type: entity
+  id: FireFistsMiddle
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireFists/projectiles.rsi
+    state: icon
+  - type: Unremoveable
+  - type: PointLight
+    radius: 4
+    energy: 2.0
+    color: "#FF9C24"
+  - type: TimedDespawn
+    lifetime: 30
+  - type: MedievalSpawnOnMeleeHit
+    prototype: FireFistsHitEffect
+  - type: MedievalActionCooldownOnDespawn
+    cooldown: 45
+  - type: MedievalAlternateHandOnAttack
+  - type: APDamageOnHit
+    damage:
+      types:
+        Heat: 0.5
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    autoAttack: true
+    animation: FireFistsArc
+    wideAnimationRotation: 0
+    angle: 0
+    attackRate: 0.9
+    damage:
+      types:
+        Blunt: 5.5
+        Heat: 9.5
+
+- type: entity
+  id: FireFistsArc
+  parent: WeaponArcStatic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireFists/arc.rsi
+    state: fist
+    shader: unshaded
+
+- type: entity
+  id: FireFistsHitEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireFists/hit.rsi
+    noRot: true
+    drawdepth: Effects
+    layers:
+    - state: hit
+      shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#FF9C24"
+  - type: TimedDespawn
+    lifetime: 0.4

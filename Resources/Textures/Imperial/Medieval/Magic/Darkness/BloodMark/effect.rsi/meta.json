@@ -1,0 +1,80 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by Ipno",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "appear",
+            "delays": [
+                [
+                    0.05,
+                    0.05,
+                    0.06,
+                    0.06,
+                    0.06,
+                    0.08,
+                    0.06,
+                    0.06
+                ]
+            ]
+        },
+        {
+            "name": "mark0",
+            "delays": [
+                [
+                    0.3,
+                    0.2,
+                    0.2,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "mark1",
+            "delays": [
+                [
+                    0.3,
+                    0.2,
+                    0.2,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "mark2",
+            "delays": [
+                [
+                    0.3,
+                    0.2,
+                    0.2,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "mark3",
+            "delays": [
+                [
+                    0.3,
+                    0.2,
+                    0.2,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "mark4",
+            "delays": [
+                [
+                    0.3,
+                    0.15,
+                    0.25
+                ]
+            ]
+        }
+    ]
+}

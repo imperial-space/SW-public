@@ -2,6 +2,7 @@ using Content.Client.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Imperial.Medieval.Factions.Prototypes;
+using Content.Shared.Imperial.Medieval.Salary;
 using JetBrains.Annotations;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
@@ -30,6 +31,9 @@ public sealed class FactionMenuUiController : UIController
             _menu.FirePressed += args => Fire(args, "", false);
             _menu.HeadhuntPressed += (id, details) => Fire(id, details, true);
             _menu.WarPressed += DispatchWar;
+            _menu.SalariesRequested += RequestSalaries;
+            _menu.RoleSalarySet += SetRoleSalary;
+            _menu.PersonalSalarySet += SetPersonalSalary;
 
             _menu.OpenCentered();
         }
@@ -41,6 +45,9 @@ public sealed class FactionMenuUiController : UIController
             _menu.FirePressed -= args => Fire(args, "", false);
             _menu.HeadhuntPressed -= (id, details) => Fire(id, details, true);
             _menu.WarPressed -= DispatchWar;
+            _menu.SalariesRequested -= RequestSalaries;
+            _menu.RoleSalarySet -= SetRoleSalary;
+            _menu.PersonalSalarySet -= SetPersonalSalary;
 
             _menu.Close();
             _menu = null;
@@ -67,10 +74,33 @@ public sealed class FactionMenuUiController : UIController
 
                 _menu.PopulateRelations(data);
                 break;
+            case FactionMenu.MenuMode.Salaries:
+                break;
             default:
                 _menu.Populate(data);
                 break;
         }
+    }
+
+    public void PopulateSalaries(SalaryStateMessage state)
+    {
+        if (_menu?.Mode == FactionMenu.MenuMode.Salaries)
+            _menu.PopulateSalaries(state);
+    }
+
+    private void RequestSalaries()
+    {
+        _entityManager.RaisePredictiveEvent(new RequestSalaryStateMessage());
+    }
+
+    private void SetRoleSalary(string roleType, int amount)
+    {
+        _entityManager.RaisePredictiveEvent(new SetRoleSalaryMessage(roleType, amount));
+    }
+
+    private void SetPersonalSalary(NetEntity target, int? amount)
+    {
+        _entityManager.RaisePredictiveEvent(new SetPersonalSalaryMessage(target, amount));
     }
 
     private void Fire(int ent, string details, bool headhunt = false)

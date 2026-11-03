@@ -1,0 +1,87 @@
+- type: entity
+  id: MedievalActionFireFistsBeginner
+  name: medieval-store-spells-fire-fists-beginner-name
+  description: medieval-store-spells-fire-fists-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
+  - type: MedievalInstantSpell
+  - type: MedievalSpawnOnlyInFreeHands
+    count: 2
+    notEnoughMessage: medieval-spell-fire-fists-need-two-hands
+  - type: MedievalSpawnExtraInHand
+    prototype: FireFistsBeginner
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 14
+  - type: Action
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Fire/FireFists/icons.rsi
+      state: beginner
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: FireFistsBeginner
+      spellCastDoAfter:
+        delay: 0.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-fire-fists
+          color: "#FF9C24"
+          hideChat: true
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionFireFistsMiddle
+
+- type: entity
+  id: MedievalActionFireFistsMiddle
+  parent: MedievalActionFireFistsBeginner
+  name: medieval-store-spells-fire-fists-middle-name
+  description: medieval-store-spells-fire-fists-middle-desc
+  components:
+  - type: MedievalSpawnExtraInHand
+    prototype: FireFistsMiddle
+  - type: ManaDrainSpell
+    manaDrain: 60
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 16
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Magic/Fire/FireFists/icons.rsi
+      state: middle
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: FireFistsMiddle
+      spellCastDoAfter:
+        delay: 0.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-fire-fists
+          color: "#FF9C24"
+          hideChat: true

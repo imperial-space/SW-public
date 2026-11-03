@@ -1,0 +1,15 @@
+rp-panel-interact = Взаимодействовать
+rp-panel-cooldown = Подождите секунду перед следующим взаимодействием с этой целью.
+rp-panel-too-far = слишком далеко
+rp-panel-look = Смотреть
+rp-panel-wave = Помахать
+rp-panel-hug = Обнять
+rp-panel-shake = Потрясти
+rp-panel-look-self = Вы смотрите на { $target }
+rp-panel-look-target = { $user } смотрит на вас
+rp-panel-wave-self = Вы машете { $target }
+rp-panel-wave-target = { $user } машет вам
+rp-panel-wave-others = { $user } машет в сторону { $target }
+rp-panel-shake-self = Вы трясёте { $target }
+rp-panel-shake-target = { $user } трясёт вас
+rp-panel-shake-others = { $user } трясёт { $target }

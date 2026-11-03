@@ -1,0 +1,39 @@
+- type: imperialListing
+  id: MedievalSpellFireFistsBeginner
+  name: medieval-store-spells-fire-fists-beginner-name
+  description: medieval-store-spells-fire-fists-beginner-desc
+  productAction: MedievalActionFireFistsBeginner
+  priority: 10
+  productUpgradeId:
+    - MedievalSpellFireFistsMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Fire/FireFists/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalFire: 30
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+- type: imperialListing
+  id: MedievalSpellFireFistsMiddle
+  name: medieval-store-spells-fire-fists-middle-name
+  description: medieval-store-spells-fire-fists-middle-desc
+  priority: 10
+  productUpgradeId:
+    - MedievalSpellFireFistsMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Fire/FireFists/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalFire: 65
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellFireFistsBeginner

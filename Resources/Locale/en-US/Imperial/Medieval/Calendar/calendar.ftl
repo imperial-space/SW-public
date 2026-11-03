@@ -19,3 +19,5 @@ calendar-board-tab-nights = Night
 calendar-board-day = Day {$day}
 calendar-board-night = Night {$day}
 
+calendar-board-announcement-admin-info = [{ $ckey } ({ $character })]
+

@@ -114,6 +114,30 @@
                     </imp:BorderedPanelContainer>
                 </BoxContainer>
             </Button>
+            <Button Name="SalariesMode"
+                    ToggleMode="True"
+                    Visible="False"
+                    VerticalExpand="True"
+                    HorizontalExpand="True"
+                    StyleClasses="ButtonSquare"
+                    ModulateSelfOverride="#00000000"
+                    Margin="0"
+                    SizeFlagsStretchRatio="1">
+                <BoxContainer VerticalExpand="True"
+                        HorizontalExpand="True">
+                    <imp:BorderedPanelContainer VerticalExpand="True"
+                            HorizontalExpand="True"
+                            ModulateSelfOverride="White"
+                            BackgroundPanelColor="#31313D"
+                            BorderRadius="25">
+                        <Label
+                            Text="{Loc 'medieval-salary-menu-tab'}"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            HorizontalAlignment="Center"/>
+                    </imp:BorderedPanelContainer>
+                </BoxContainer>
+            </Button>
             <Control HorizontalExpand="True" SizeFlagsStretchRatio="5"/>
         </BoxContainer>
         <ScrollContainer HScrollEnabled="False"

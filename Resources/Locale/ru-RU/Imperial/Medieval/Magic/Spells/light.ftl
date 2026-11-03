@@ -103,3 +103,16 @@ medieval-spell-speach-summon-foliant = L̛ÍB̸ÉR̵ MÓT͢ÚS̶
 
 medieval-store-spells-magic-light-summon-foliant-beginner-name = Призыв гримура
 medieval-store-spells-light-summon-foliant-beginner-desc = Призывает связанный с вами гримуар. Стоимость 25 маны
+
+# Radiant Phalanx
+
+medieval-spell-speach-radiant-phalanx = P͜h͜a̧͡ĺa̵n͜͢x̷ R̷a̵d̕i̵a͢n̴s̸͜
+
+medieval-store-spells-light-radiant-phalanx-beginner-name = Пара сияющих клинков
+medieval-store-spells-light-radiant-phalanx-beginner-desc = Призывает два сияющих клинка, которые парят за спиной. После выбора целей клинки по очереди устремляются к ним. Стоимость 25 маны.
+
+medieval-store-spells-light-radiant-phalanx-middle-name = Фаланга сияющих клинков
+medieval-store-spells-light-radiant-phalanx-middle-desc = Призывает три сияющих клинка, которые парят за спиной. После выбора целей клинки по очереди устремляются к ним. Стоимость 40 маны.
+
+medieval-store-spells-light-radiant-phalanx-senior-name = Великая фаланга клинков
+medieval-store-spells-light-radiant-phalanx-senior-desc = Призывает пять сияющих клинков, которые парят за спиной. После выбора целей клинки по очереди устремляются к ним. Стоимость 55 маны.

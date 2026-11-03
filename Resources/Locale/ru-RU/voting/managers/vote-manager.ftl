@@ -14,6 +14,9 @@ ui-vote-restart-abstain = Воздержаться
 ui-vote-gamemode-title = Следующее испытание Бога
 ui-vote-gamemode-tie = Ничья в голосовании за испытание Бога! Выбирается... { $picked }
 ui-vote-gamemode-win = { $winner } победил в голосовании за испытание Бога!
+# imperial medieval start - votes carried over between game mode votes
+ui-vote-gamemode-carryover-option = { $name } [+{ $votes }]
+# imperial medieval end
 
 ui-vote-map-title = Следующая карта
 ui-vote-map-tie = Ничья в голосовании за карту! Выбирается... { $picked }

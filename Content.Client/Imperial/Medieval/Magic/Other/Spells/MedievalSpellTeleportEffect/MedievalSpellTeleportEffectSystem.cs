@@ -30,7 +30,8 @@ public sealed partial class MedievalSpellTeleportEffectSystem : SharedMedievalSp
         if (args.Cancelled) return;
         if (!TryComp<SpriteComponent>(args.Performer, out var spriteComponent)) return;
 
-        spriteComponent.Visible = false;
+        if (component.HideCaster)
+            spriteComponent.Visible = false;
 
         if (!TryComp<PhaseSpaceFadeDistortionComponent>(args.Performer, out var casterDistortionComponent)) return;
         if (component.FadeDistortion.FirstOrNull() == null) return;

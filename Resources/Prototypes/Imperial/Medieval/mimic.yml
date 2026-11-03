@@ -1,0 +1,2180 @@
+##################################################################################
+#мимик деревянный
+
+- type: entity
+  id: MobMimicChestOpenPlayerAI
+  parent: SimpleMobBaseNoFood
+  name: goliath
+  description: A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: goliath
+      sprite: Imperial/Medieval/Mobs/mimic/mimic.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mimic-moving
+    noMovementLayers:
+      movement:
+        state: goliath
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DraftParticlesMimicClose:
+            min: 1
+            max: 1
+          PresentRandomMimic:
+            min: 1
+            max: 1
+  - type: MeleeWeapon
+    altDisarm: false
+    range: 1.80
+    attackRate: 0.9
+    hidden: true
+    angle: 0
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 9
+      types:
+        Slash: 9
+        Structural: 25
+        ParryAble: 1
+        Caustic: 1
+        Bloodloss: 3
+  - type: StaminaDamageOnHit
+    damage: 12
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Appearance
+  - type: Puller
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: GoliathCompound
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - DoorBumpOpener
+    - Animal #Этот тег убирает из колеса эмоций мобов "человеческие" эмоции (чихание, свист и т.д)
+    - Goliath
+    - MedievalMob
+  - type: NoSlip
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.8
+        density: 50
+        mask:
+        - Impassable
+        - HighImpassable
+        layer:
+        - MobLayer
+  - type: MedievalUnthrowable
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  # - type: DamageStateVisuals
+    # states:
+      # Alive:
+        # Base: goliath
+      # Dead:
+        # Base: dead
+  - type: Reform
+    actionPrototype: DionaReformActionMimicClose
+    reformTime: 5
+    popupText: Вы прячетесь.
+    reformPrototype: MobMimicChestClosePlayer
+  # - type: ReplacementAccent
+    # accent: slimes
+  - type: IgnoreSpiderWeb
+  - type: MedievalTimedDespawn
+    lifetime: 860
+  # - type: DamageOnContact
+    # damage:
+      # types:
+        # Structural: 150
+  - type: Stamina
+    excess: 150
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/Mimic/step4.ogg
+  - type: ForcedSleepImmune
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 250
+    damage:
+      groups:
+        Brute: -1
+        Burn: -1
+        Airloss: -0.5
+        Toxin: -1
+      types:
+        Bloodloss: -1
+        Cellular: -0.5
+  - type: SpamEmitSound
+    minInterval: 10
+    maxInterval: 30
+    sound:
+      collection: MimicSound
+      # params:
+          # volume: 1
+          # maxDistance: 20
+          # variation: 0.01
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      50: 0.9
+      100: 0.8
+      150: 0.7
+      200: 0.6
+      240: 0.5
+  - type: LanguageSpeaker
+    languages:
+      Common: BadSpeak
+      Goblin: BadSpeak
+      Ancient: BadSpeak
+      Tribe: BadSpeak
+      Orc: BadSpeak
+      Cursed: BadSpeak
+      Growling: BadSpeak
+      Hissing: BadSpeak
+      Elf: BadSpeak
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Vocalizer
+    minVocalizeInterval: 5
+    maxVocalizeInterval: 25 # polly is chattier
+  - type: ActiveListener
+  - type: ParrotListener
+  - type: ParrotMemory
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+  - type: Vocal
+    sounds:
+      Unsexed: MimicHuman
+
+- type: entity
+  id: MobMimicChestClosePlayer
+  parent: BaseControllable
+  suffix: do not spawn
+  name: mimicSPPlayer
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Decor/chest4.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/chest4.rsi
+    state: base
+  - type: Transform
+    noRot: true
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Clickable
+  - type: GravityAffected
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          MedievalChestWithLoot4:
+            min: 1
+            max: 1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+        density: 1000
+  - type: MedievalDiggAble
+  - type: Tag
+    tags:
+      - Structure
+      - Animal
+  # Imperial Medieval Start
+  - type: MedievalMeleeBadTarget
+    safeToHitGroup: structure
+  # Imperial Medieval End
+  - type: Reform
+    actionPrototype: DionaReformActionMimicOpen
+    reformTime: 1
+    popupText: Вы раскрываетесь.
+    reformPrototype: MobMimicChestOpenPlayerAI
+  - type: Appearance
+  - type: ReplacementAccent
+    accent: slimes
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0.1
+    baseSprintSpeed : 0.1
+  - type: InputMover
+  - type: MobMover
+  - type: IgnoreSpiderWeb
+
+- type: entity
+  id: MobMimicChestCloseAI
+  parent: MobMimicChestClosePlayer
+  suffix: spawn
+  name: mimicSPAI
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SpawnOnTrigger
+    proto: DraftParticlesMimicOpen
+  - type: DeleteOnTrigger
+  - type: TriggerOnInteractUsing
+  - type: TriggerOnInteractHand
+  - type: TriggerOnActivate
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          DraftParticlesMimicOpen:
+            min: 1
+            max: 1
+  - type: MedievalTimedDespawn
+    lifetime: 600
+  # - type: EntityStorage  #нету тригера на открытие/закрытие
+    # IsCollidableWhenOpen: true
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionMimicClose
+  name: Маскировка
+  description: Маскирует тебя в обычный сундук.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Decor/chest4.rsi
+      state: base
+    useDelay: 60
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionMimicOpen
+  name: Снять маскировку
+  description: Раскрывает тебя.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Decor/chest4.rsi
+      state: base
+    useDelay: 10
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+- type: entity
+  id: DraftParticlesMimicOpen
+  components:
+  - type: TimedDespawn
+    lifetime: 1
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: spawn
+      sprite: Imperial/Medieval/Mobs/mimic/mimic.rsi
+  - type: SpawnOnDespawn
+    prototype: MobMimicChestOpenPlayerAI
+  - type: Transform
+    noRot: true
+
+- type: entity
+  id: DraftParticlesMimicClose
+  components:
+  - type: TimedDespawn
+    lifetime: 1
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dead
+      sprite: Imperial/Medieval/Mobs/mimic/mimic.rsi
+  - type: SpawnOnDespawn
+    prototype: MedievalChestWithLoot4
+  - type: Transform
+    noRot: true
+
+###################################################################
+#мимик бронза
+
+- type: entity
+  id: MobMimicChestOpenPlayerAI2
+  parent: MobMimicChestOpenPlayerAI
+  name: goliath2
+  description: A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: goliath
+      sprite: Imperial/Medieval/Mobs/mimic/mimic2.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mimic-moving
+    noMovementLayers:
+      movement:
+        state: goliath
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DraftParticlesMimicClose2:
+            min: 1
+            max: 1
+          PresentRandomMimic:
+            min: 1
+            max: 4
+  - type: Reform
+    actionPrototype: DionaReformActionMimicClose2
+    reformTime: 5
+    popupText: Вы прячетесь.
+    reformPrototype: MobMimicChestClosePlayer2
+  - type: NPCUseActionOnTarget
+    actionId: ActionGoliathTentacle
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      350: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 350
+    damage:
+      groups:
+        Brute: -1
+        Burn: -1
+        Airloss: -0.5
+        Toxin: -1
+      types:
+        Bloodloss: -1
+        Cellular: -0.5
+  - type: StaminaDamageOnHit
+    damage: 15
+  - type: MeleeWeapon
+    altDisarm: false
+    range: 1.80
+    attackRate: 0.9
+    hidden: true
+    angle: 0
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 12
+      types:
+        Slash: 12
+        Structural: 25
+        ParryAble: 0.9
+        Caustic: 1
+        Bloodloss: 3
+  - type: Stamina
+    excess: 250
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      100: 0.9
+      200: 0.8
+      250: 0.7
+      300: 0.6
+      340: 0.5
+
+- type: entity
+  id: MobMimicChestClosePlayer2
+  parent: MobMimicChestClosePlayer
+  suffix: do not spawn
+  name: mimicSPPlayer2
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Decor/chest.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/chest.rsi
+    state: base
+  - type: Reform
+    actionPrototype: DionaReformActionMimicOpen2
+    reformTime: 1
+    popupText: Вы раскрываетесь.
+    reformPrototype: MobMimicChestOpenPlayerAI2
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          MedievalChestWithLoot:
+            min: 1
+            max: 1
+
+- type: entity
+  id: MobMimicChestCloseAI2
+  parent: MobMimicChestClosePlayer2
+  suffix: spawn
+  name: mimicSPAI2
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SpawnOnTrigger
+    proto: DraftParticlesMimicOpen2
+  - type: DeleteOnTrigger
+  - type: TriggerOnInteractUsing
+  - type: TriggerOnInteractHand
+  - type: TriggerOnActivate
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          DraftParticlesMimicOpen2:
+            min: 1
+            max: 1
+  - type: MedievalTimedDespawn
+    lifetime: 600
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionMimicClose2
+  name: Маскировка
+  description: Маскирует тебя в обычный сундук.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Decor/chest.rsi
+      state: base
+    useDelay: 60
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionMimicOpen2
+  name: Снять маскировку
+  description: Раскрывает тебя.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Decor/chest.rsi
+      state: base
+    useDelay: 10
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+- type: entity
+  id: DraftParticlesMimicOpen2
+  components:
+  - type: TimedDespawn
+    lifetime: 1.7
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: spawn
+      sprite: Imperial/Medieval/Mobs/mimic/mimic2.rsi
+  - type: SpawnOnDespawn
+    prototype: MobMimicChestOpenPlayerAI2
+  - type: Transform
+    noRot: true
+
+- type: entity
+  id: DraftParticlesMimicClose2
+  components:
+  - type: TimedDespawn
+    lifetime: 1.7
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dead
+      sprite: Imperial/Medieval/Mobs/mimic/mimic2.rsi
+  - type: SpawnOnDespawn
+    prototype: MedievalChestWithLoot
+  - type: Transform
+    noRot: true
+
+
+###################################################################
+#мимик железо
+
+- type: entity
+  id: MobMimicChestOpenPlayerAI3
+  parent: MobMimicChestOpenPlayerAI
+  name: goliath3
+  description: A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: goliath
+      sprite: Imperial/Medieval/Mobs/mimic/mimic3.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mimic-moving
+    noMovementLayers:
+      movement:
+        state: goliath
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 700
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DraftParticlesMimicClose3:
+            min: 1
+            max: 1
+          PresentRandomMimic:
+            min: 2
+            max: 6
+  - type: Reform
+    actionPrototype: DionaReformActionMimicClose3
+    reformTime: 5
+    popupText: Вы прячетесь.
+    reformPrototype: MobMimicChestClosePlayer3
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/Mimic/step2.ogg
+  - type: Stamina
+    excess: 700
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      700: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 700
+    damage:
+      groups:
+        Brute: -2
+        Burn: -2
+        Airloss: -1
+        Toxin: -3
+      types:
+        Bloodloss: -1
+        Cellular: -1
+  - type: Damageable
+    damageModifierSet: MedievalMobMimicIronResist
+  - type: MeleeWeapon
+    altDisarm: false
+    range: 1.80
+    attackRate: 0.75
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    damage:
+      groups:
+        Brute: 45
+      types:
+        Structural: 100
+        ParryAble: 0.6
+        Caustic: 1
+        Bloodloss: 3
+  - type: StaminaDamageOnHit
+    damage: 35
+  - type: MeleeThrowOnHit
+    distance: 5
+    speed: 12
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.65
+    baseSprintSpeed: 2.65
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      250: 0.9
+      400: 0.8
+      500: 0.7
+      600: 0.6
+      680: 0.5
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      Goblin: BadSpeak
+      Ancient: BadSpeak
+      Tribe: BadSpeak
+      Orc: BadSpeak
+      Cursed: Speak
+      Growling: BadSpeak
+      Hissing: BadSpeak
+      Elf: BadSpeak
+
+- type: damageModifierSet
+  id: MedievalMobMimicIronResist
+  coefficients:
+    Blunt: 0.85
+    Slash: 0.85
+    Piercing: 0.85
+    Heat: 0.5
+    Shock: 0.5
+    Cold: 0.5
+    Poison: 0.0
+    Radiation: 0.5
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: entity
+  id: MobMimicChestClosePlayer3
+  parent: MobMimicChestClosePlayer
+  suffix: do not spawn
+  name: mimicSPPlayer3
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Decor/chest2.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/chest.rsi
+    state: base
+  - type: Reform
+    actionPrototype: DionaReformActionMimicOpen3
+    reformTime: 1
+    popupText: Вы раскрываетесь.
+    reformPrototype: MobMimicChestOpenPlayerAI3
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          MedievalChestWithLoot2:
+            min: 1
+            max: 1
+
+- type: entity
+  id: MobMimicChestCloseAI3
+  parent: MobMimicChestClosePlayer3
+  suffix: spawn
+  name: mimicSPAI3
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SpawnOnTrigger
+    proto: DraftParticlesMimicOpen3
+  - type: DeleteOnTrigger
+  - type: TriggerOnInteractUsing
+  - type: TriggerOnInteractHand
+  - type: TriggerOnActivate
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          DraftParticlesMimicOpen3:
+            min: 1
+            max: 1
+  - type: MedievalTimedDespawn
+    lifetime: 600
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionMimicClose3
+  name: Маскировка
+  description: Маскирует тебя в обычный сундук.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Decor/chest2.rsi
+      state: base
+    useDelay: 60
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionMimicOpen3
+  name: Снять маскировку
+  description: Раскрывает тебя.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Decor/chest2.rsi
+      state: base
+    useDelay: 10
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+- type: entity
+  id: DraftParticlesMimicOpen3
+  components:
+  - type: TimedDespawn
+    lifetime: 2.9
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: spawn
+      sprite: Imperial/Medieval/Mobs/mimic/mimic3.rsi
+  - type: SpawnOnDespawn
+    prototype: MobMimicChestOpenPlayerAI3
+  - type: Transform
+    noRot: true
+
+- type: entity
+  id: DraftParticlesMimicClose3
+  components:
+  - type: TimedDespawn
+    lifetime: 2.9
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dead
+      sprite: Imperial/Medieval/Mobs/mimic/mimic3.rsi
+  - type: SpawnOnDespawn
+    prototype: MedievalChestWithLoot2
+  - type: Transform
+    noRot: true
+
+
+###################################################################
+#мимик золото
+
+- type: entity
+  id: MobMimicChestOpenPlayerAI4
+  parent: MobMimicChestOpenPlayerAI
+  name: goliath4
+  description: A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: goliath
+      sprite: Imperial/Medieval/Mobs/mimic/mimic4.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mimic-moving
+    noMovementLayers:
+      movement:
+        state: goliath
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DraftParticlesMimicClose4:
+            min: 1
+            max: 1
+          PresentRandomMimic:
+            min: 4
+            max: 8
+  - type: Reform
+    actionPrototype: DionaReformActionMimicClose4
+    reformTime: 5
+    popupText: Вы прячетесь.
+    reformPrototype: MobMimicChestClosePlayer4
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/Mimic/step3.ogg
+  - type: Damageable
+    damageModifierSet: MedievalMobMimicGoldResist
+  - type: RepeatingTrigger
+    delay: 25
+  - type: SpawnOnTrigger
+    proto: MedievalMobSkeletMaceMimic
+  - type: Stamina
+    excess: 600
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      600: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 600
+    damage:
+      groups:
+        Brute: -3
+        Burn: -5
+        Airloss: -1.5
+        Toxin: -3
+      types:
+        Bloodloss: -1
+        Cellular: -1
+  - type: Flammable
+    firestackFade: -1
+    canResistFire: true
+  - type: PointLight
+    color: green
+    energy: 2
+    radius: 3
+  - type: StaminaDamageOnHit
+    damage: 25
+  - type: MeleeWeapon
+    altDisarm: false
+    range: 1.80
+    attackRate: 0.8
+    hidden: true
+    angle: 0
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 30
+      types:
+        Heat: 17
+        Structural: 80
+        ParryAble: 0.5
+        Caustic: 2
+        Bloodloss: 3
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      300: 0.9
+      400: 0.8
+      450: 0.7
+      500: 0.6
+      540: 0.5
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      Goblin: Speak
+      Ancient: Speak
+      Tribe: Speak
+      Orc: Speak
+      Cursed: Speak
+      Growling: Speak
+      Hissing: Speak
+      Elf: Speak
+
+- type: damageModifierSet
+  id: MedievalMobMimicGoldResist
+  coefficients:
+    Blunt: 0.85
+    Slash: 0.85
+    Piercing: 0.85
+    Heat: 0.0
+    Shock: 0.0
+    Cold: 0.0
+    Poison: 0.0
+    Radiation: 0.0
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: entity
+  id: MobMimicChestClosePlayer4
+  parent: MobMimicChestClosePlayer
+  suffix: do not spawn
+  name: mimicSPPlayer4
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Decor/chest3.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/chest.rsi
+    state: base
+  - type: Reform
+    actionPrototype: DionaReformActionMimicOpen4
+    reformTime: 1
+    popupText: Вы раскрываетесь.
+    reformPrototype: MobMimicChestOpenPlayerAI4
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          MedievalChestWithLoot3:
+            min: 1
+            max: 1
+
+- type: entity
+  id: MobMimicChestCloseAI4
+  parent: MobMimicChestClosePlayer4
+  suffix: spawn
+  name: mimicSPAI4
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SpawnOnTrigger
+    proto: DraftParticlesMimicOpen4
+  - type: DeleteOnTrigger
+  - type: TriggerOnInteractUsing
+  - type: TriggerOnInteractHand
+  - type: TriggerOnActivate
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          DraftParticlesMimicOpen4:
+            min: 1
+            max: 1
+  - type: MedievalTimedDespawn
+    lifetime: 600
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionMimicClose4
+  name: Маскировка
+  description: Маскирует тебя в обычный сундук.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Decor/chest3.rsi
+      state: base
+    useDelay: 60
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionMimicOpen4
+  name: Снять маскировку
+  description: Раскрывает тебя.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Decor/chest3.rsi
+      state: base
+    useDelay: 10
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+- type: entity
+  id: DraftParticlesMimicOpen4
+  components:
+  - type: TimedDespawn
+    lifetime: 2.2
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: spawn
+      sprite: Imperial/Medieval/Mobs/mimic/mimic4.rsi
+  - type: SpawnOnDespawn
+    prototype: MobMimicChestOpenPlayerAI4
+  - type: Transform
+    noRot: true
+
+- type: entity
+  id: DraftParticlesMimicClose4
+  components:
+  - type: TimedDespawn
+    lifetime: 2.2
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dead
+      sprite: Imperial/Medieval/Mobs/mimic/mimic4.rsi
+  - type: SpawnOnDespawn
+    prototype: MedievalChestWithLoot3
+  - type: Transform
+    noRot: true
+
+###################################################################
+#skeleton
+
+- type: entity
+  name: skeleton with a mace
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletMaceMimic
+  description: This skeleton has a mace and a shield.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 60
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/mimic/mimic4skeleton.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 9
+        Piercing: 6.5
+        ParryAble: 1.5
+        Radiation: 3.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      170: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      65: 0.8
+      110: 0.7
+      135: 0.6
+      160: 0.5
+  - type: MedievalUnthrowable
+  - type: Hands
+  - type: ComplexInteraction
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 170
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Dead:
+        Base: dead
+  - type: Damageable
+    damageModifierSet: MedievalMobMimicGoldSkeletResist
+  - type: MedievalSpecialDamageReceiver
+    targetType: Magic
+  - type: Flammable
+    firestackFade: -1
+    canResistFire: true
+  - type: PointLight
+    color: green
+    energy: 1
+    radius: 2
+  - type: Explosive
+    explosionType: CryoGreen
+    maxIntensity: 0.05
+    intensitySlope: 1
+    totalIntensity: 0.1
+    deleteAfterExplosion: true
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: ExplodeOnTrigger
+  # - type: SpawnOnDespawn
+    # prototype: MedievalChestWithLoot2
+
+- type: damageModifierSet
+  id: MedievalMobMimicGoldSkeletResist
+  coefficients:
+    Blunt: 0.3
+    Slash: 0.3
+    Piercing: 0.3
+    Heat: 5.0
+    Shock: 5.0
+    Cold: 5.0
+    Poison: 0.0
+    Radiation: 5.0
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: explosion
+  id: CryoGreen
+  damagePerIntensity:
+    types:
+      Cold: 2
+      Blunt: 5
+      Structural: 10
+  tileBreakChance: [0]
+  tileBreakIntensity: [0]
+  lightColor: Green
+  fireColor: Green
+  texturePath: /Textures/Effects/fire_greyscale.rsi
+  fireStates: 3
+
+###################################################################
+#loot
+- type: entity
+  id: PresentRandomMimic
+  parent: [PresentBase, BaseItem]
+  name: crystal of chance
+  description: You’ll never guess what he’ll pull out this time.
+  suffix: Filled Safe, Medieval
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/mimic/loot.rsi
+    layers:
+      - state: present
+  - type: SpawnItemsOnUse
+    items:
+      - id: MedievalIngotGold10
+        orGroup: GiftPool
+      - id: MedievalIngotSilver10
+        orGroup: GiftPool
+      - id: MedievalFireSerdolick10
+        orGroup: GiftPool      
+      - id: MedievalTopaz10
+        orGroup: GiftPool      
+      - id: MedievalAdam10
+        orGroup: GiftPool      
+      - id: MedievalSteelIngot30
+        orGroup: GiftPool      
+      - id: MedievalEssence5
+        orGroup: GiftPool      
+      - id: MedievalClothingOuterArmorBrigantin
+        orGroup: GiftPool      
+      - id: MedievalFalshionT3Steel
+        orGroup: GiftPool      
+      - id: MedievalIronClaymoreSteel
+        orGroup: GiftPool      
+      - id: MedievalMaceT3SteelHeavy
+        orGroup: GiftPool      
+      - id: MedievalReliefStoneStrong
+        orGroup: GiftPool      
+      - id: MedievalLootAnglerEgg
+        orGroup: GiftPool      
+      - id: MedievalWeaponCrossbow
+        orGroup: GiftPool      
+      - id: MedievalClothingOuterArmorIronCuirass
+        orGroup: GiftPool      
+      - id: MedievalSpearT3Steel
+        orGroup: GiftPool      
+      - id: MedievalIronSekirSteel
+        orGroup: GiftPool      
+      - id: MedievalClothingOuterArmorLeatherHeavy
+        orGroup: GiftPool      
+      - id: MedievalClothingBackpackSatchelTraveller
+        orGroup: GiftPool      
+      - id: MedievalClothingOuterArmorCharmerWeak
+        orGroup: GiftPool      
+      - id: MedievalBlackSpotHorseWhistle
+        orGroup: GiftPool
+      - id: MedaljonDark
+        orGroup: GiftPool
+      - id: MedaljonDef
+        orGroup: GiftPool
+      - id: MedaljonSpeed
+        orGroup: GiftPool
+      - id: MedaljonExpl
+        orGroup: GiftPool
+      - id: MedaljonMana
+        orGroup: GiftPool
+      - id: MedievalRevent100
+        orGroup: GiftPool
+      - id: MedievalRevent80
+        orGroup: GiftPool
+      - id: MedievalRevent70
+        orGroup: GiftPool
+      - id: MedievalRevent50
+        orGroup: GiftPool
+      - id: MedievalRevent25
+        orGroup: GiftPool
+      - id: MedievalScrollsFire
+        orGroup: GiftPool
+      - id: MedievalScrollsPnya
+        orGroup: GiftPool
+      - id: MedievalScrollsKobold
+        orGroup: GiftPool
+      - id: MedievalScrollsPetSlime
+        orGroup: GiftPool
+      - id: FoodMeatDuckCooked
+        orGroup: GiftPool
+      - id: FoodMeatChickenFried
+        orGroup: GiftPool
+      - id: FoodCakeAppleSlice
+        orGroup: GiftPool
+      - id: FoodPieMeatSlice
+        orGroup: GiftPool
+      - id: FoodCakeChocolateSlice
+        orGroup: GiftPool
+      - id: FoodCakeBlueberrySlice
+        orGroup: GiftPool
+      - id: FoodCheeseSlice
+        orGroup: GiftPool
+      - id: MedievalDungeonKey
+        orGroup: GiftPool
+      - id: MedievalClothingHeadHelmetNormandFree
+        orGroup: GiftPool
+      - id: MedievalWoodenShieldBuckler
+        orGroup: GiftPool
+      - id: MedievalClothingHeadHelmetShapel
+        orGroup: GiftPool
+      - id: MedievalIronIngot10
+        orGroup: GiftPool
+      - id: MedievalIngotGold
+        orGroup: GiftPool
+      - id: MedievalIngotSilver
+        orGroup: GiftPool
+      - id: MedievalClothingOuterArmorFur
+        orGroup: GiftPool
+      - id: MedievalAdam
+        orGroup: GiftPool
+      - id: MedievalReliefStoneWeak
+        orGroup: GiftPool
+      - id: MedievalScrollsCrossbow
+        orGroup: GiftPool
+      - id: MedievalScrollsFalshion
+        orGroup: GiftPool
+      - id: MedievalScrollsDagger
+        orGroup: GiftPool
+      - id: MedievalLootDevilMouse
+        orGroup: GiftPool
+      - id: MedievalScrollBarrier
+        orGroup: GiftPool
+      - id: MedievalClothingOuterArmorLeatherLight
+        orGroup: GiftPool
+      - id: MedievalScrollsHalberd
+        orGroup: GiftPool
+      - id: MedievalDaggerT3
+        orGroup: GiftPool
+      - id: MedievalShieldRepairKit
+        orGroup: GiftPool
+      - id: MedievalClothingOuterArmorIronCuirassLight
+        orGroup: GiftPool
+      - id: MedievalScrollsBow
+        orGroup: GiftPool
+      - id: MedievalGrenade
+        orGroup: GiftPool
+      - id: MedievalHandheldHealthAnalyzer
+        orGroup: GiftPool
+      - id: MedievalLockpickPack
+        orGroup: GiftPool
+      - id: MedievalLockpick
+        orGroup: GiftPool
+      - id: MedievalRepairStone
+        orGroup: GiftPool
+      - id: MedievalClothingOuterArmorGambeson
+        orGroup: GiftPool
+      - id: MedievalMyrmexEgg
+        orGroup: GiftPool
+      - id: MedievalPinpointerCritical
+        orGroup: GiftPool
+      - id: MedievalGlowStone
+        orGroup: GiftPool
+      - id: PresentTrashNG1
+        orGroup: GiftPool
+      - id: MedievalPlushieTraveller
+        orGroup: GiftPool
+      - id: MedievalPlushieWizard
+        orGroup: GiftPool
+      - id: MedievalPlushieArcher
+        orGroup: GiftPool
+      - id: MedievalPlushieNecro
+        orGroup: GiftPool
+      - id: MedievalHealthChemistryBottle
+        orGroup: GiftPool
+      - id: MedievalRecipeBook
+        orGroup: GiftPool
+      - id: FoodBakedCookieSugar
+        orGroup: GiftPool
+      - id: MedievalSteelIngot
+        orGroup: GiftPool
+      - id: MedievalArrowFire
+        orGroup: GiftPool
+      - id: MedievalAstrolitPiece
+        orGroup: GiftPool
+      - id: MedievalChemistryRecipe
+        orGroup: GiftPool
+      - id: MedievalForstoneOre
+        orGroup: GiftPool
+      - id: MedievalEbonitOre
+        orGroup: GiftPool
+      - id: ClothingHeadHelmetBone
+        orGroup: GiftPool
+      - id: ClothingEyesEyepatchHudBeer
+        orGroup: GiftPool
+      - id: MedievalIronIngot
+        orGroup: GiftPool
+      - id: MedievalArrowIronPhysics
+        orGroup: GiftPool
+      - id: MedievalTopaz
+        orGroup: GiftPool
+      - id: MedievalFireSerdolick
+        orGroup: GiftPool
+      - id: MedievalBrutepack
+        orGroup: GiftPool
+      - id: MedievalBolt
+        orGroup: GiftPool
+      - id: ClothingEyesEyepatchHudMedical
+        orGroup: GiftPool
+      - id: MedievalPaper
+        orGroup: GiftPool
+      - id: MedievalGear
+        orGroup: GiftPool
+      - id: MedievalLeather1
+        orGroup: GiftPool
+      - id: MedievalSpiderHair
+        orGroup: GiftPool
+      - id: MedievalRope
+        orGroup: GiftPool
+      - id: MedievalLootAnt
+        orGroup: GiftPool
+      - id: MedievalManaBurnGrenade
+        orGroup: GiftPool
+      - id: DiceBag
+        orGroup: GiftPool
+      - id: MedievalHandcuffs
+        orGroup: GiftPool
+      - id: MedievalMaskFace
+        orGroup: GiftPool
+      - id: MedievalClothingOuterArmorStudded
+        orGroup: GiftPool
+      - id: MedievalEssence
+        orGroup: GiftPool
+      - id: MedievalFetter
+        orGroup: GiftPool
+      - id: MedievalScythe
+        orGroup: GiftPool
+      - id: MedievalPen
+        orGroup: GiftPool
+      - id: MedievalBanjoInstrument
+        orGroup: GiftPool
+      - id: ClothingOuterArmorBone
+        orGroup: GiftPool
+      - id: MedievalHolySalt
+        orGroup: GiftPool
+      - id: MedievalClothingHeadArcherHat
+        orGroup: GiftPool
+      - id: MedievalWeaponCrossbowHeavy
+        orGroup: GiftPool
+      - id: MedievalClothingBackpackBox
+        orGroup: GiftPool
+      - id: MedievalClothingOuterArmorLeather
+        orGroup: GiftPool
+      - id: MedievalBeaker
+        orGroup: GiftPool
+      - id: MedievalKnut
+        orGroup: GiftPool
+      - id: MedievalShoesSpeed
+        orGroup: GiftPool
+      - id: MedievalHandheldGPSBasic
+        orGroup: GiftPool
+      - id: ForgedCoreGold
+        orGroup: GiftPool
+      - id: ForgedTopazEyes
+        orGroup: GiftPool
+      - id: ForgedSerdolickEyes
+        orGroup: GiftPool
+      - id: ForgedAdamEyes
+        orGroup: GiftPool
+      - id: ForgedBloodEyes
+        orGroup: GiftPool
+      - id: ForgedCoreTopaz
+        orGroup: GiftPool
+      - id: ForgedCoreSerdolic
+        orGroup: GiftPool
+      - id: ForgedCoreAdam
+        orGroup: GiftPool
+      - id: MedievalGag
+        orGroup: GiftPool
+      - id: MedievalPickaxe
+        orGroup: GiftPool
+      - id: MedievalClothingBackpackLeather
+        orGroup: GiftPool
+      - id: MedievalAlchemicBelt
+        orGroup: GiftPool
+      - id: MedievalKeyStorage
+        orGroup: GiftPool
+      - id: MedievalClothingHeadHelmetCap
+        orGroup: GiftPool
+      - id: ClothingHeadHatPumpkin
+        orGroup: GiftPool
+      - id: MedievalMaceRusty
+        orGroup: GiftPool
+      - id: MedievalFalshionRusty
+        orGroup: GiftPool
+      - id: MedievalSpearRusty
+        orGroup: GiftPool
+      - id: MedievalShortSwordRusty
+        orGroup: GiftPool
+      - id: MedievalSaberRusty
+        orGroup: GiftPool
+      - id: MedievalQuiverSteel
+        orGroup: GiftPool      
+      - id: MedievalQuiver
+        orGroup: GiftPool      
+      - id: MedievalHatchet
+        orGroup: GiftPool      
+      - id: MedievalGeigerCounter
+        orGroup: GiftPool      
+      - id: MedievalClothingMaskPlague
+        orGroup: GiftPool 
+      - id: MedievalClothingShoesLeather
+        orGroup: GiftPool 
+      - id: MedievalClothingHeadHatPlaguedoctor
+        orGroup: GiftPool 
+      - id: MedievalIronGloves
+        orGroup: GiftPool 
+      - id: MedievalIronGlovesBear
+        orGroup: GiftPool 
+      - id: MedievalIronGlovesBrig
+        orGroup: GiftPool 
+      - id: BowImprovised
+        orGroup: GiftPool 
+      - id: MedievalClothingFeetSteel
+        orGroup: GiftPool 
+      - id: MedaljonFlashImmune
+        orGroup: GiftPool 
+      - id: MedievalClothingHeadHelmetCrusader
+        orGroup: GiftPool 
+      - id: MedievalClothingOuterArmorIron
+        orGroup: GiftPool 
+      - id: MedievalClothingOuterArmorUpIron
+        orGroup: GiftPool 
+      - id: MedievalIronShieldBuckler
+        orGroup: GiftPool 
+      - id: MedievalClothingHeadCrownKing
+        orGroup: GiftPool
+      - id: MedievalDragonLootThunderscale
+        orGroup: GiftPool 
+      - id: MedievalDragonLootIcescale
+        orGroup: GiftPool 
+      - id: MedievalDragonLootAcidscale
+        orGroup: GiftPool 
+      - id: MedievalDragonLootFirescale
+        orGroup: GiftPool 
+      - id: MedievalDragonLootBones
+        orGroup: GiftPool
+      - id: MedievalScrollsMimic
+        orGroup: GiftPool
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/flashbang_cast.ogg
+
+
+###################################################################
+#emotions
+- type: soundCollection
+  id: MimicSound
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-7.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-8.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-9.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-7.ogg
+  - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-8.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Male/mpassive_whiner_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Male/mpassive_whiner_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Male/mpassive_whiner_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_6.ogg
+  - /Audio/Voice/Human/whistle_1.ogg
+  - /Audio/Voice/Human/whistle_2.ogg
+  - /Audio/Voice/Human/whistle_3.ogg
+  - /Audio/Voice/Human/whistle_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cough/Male/mbcough_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cough/Male/mbcough_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cough/Male/mbcough_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cough/Female/fbcough_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cough/Female/fbcough_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Cough/Female/fbcough_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Sigh/sigh_male.ogg
+  - /Audio/Imperial/Medieval/Emotes/Sigh/sigh_female.ogg
+  - /Audio/Imperial/Medieval/Emotes/Sneeze/sneeze_male.ogg
+  - /Audio/Imperial/Medieval/Emotes/Sneeze/sneeze_neutral.ogg
+  - /Audio/Imperial/Medieval/Emotes/Sneeze/sneeze_female.ogg
+  - /Audio/Imperial/Medieval/Emotes/Sneeze/sneeze_neutral.ogg
+  - /Audio/Voice/Human/male_yawn_1.ogg
+  - /Audio/Voice/Human/female_yawn_1.ogg
+  - /Audio/Voice/Human/snore1.ogg
+  - /Audio/Voice/Human/snore2.ogg
+  - /Audio/Voice/Human/snore3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Gasp/Male/gasp1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Gasp/Male/gasp2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Gasp/Male/gasp3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Gasp/Female/gasp1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Gasp/Female/gasp2.ogg
+  - /Audio/Effects/Gasp/male_deathgasp_1.ogg
+  - /Audio/Effects/Gasp/male_deathgasp_2.ogg
+  - /Audio/Effects/Gasp/male_deathgasp_3.ogg
+  - /Audio/Effects/Gasp/male_deathgasp_4.ogg
+  - /Audio/Effects/Gasp/male_deathgasp_5.ogg
+  - /Audio/Effects/Gasp/female_deathgasp_1.ogg
+  - /Audio/Effects/Gasp/female_deathgasp_2.ogg
+  - /Audio/Effects/Gasp/female_deathgasp_3.ogg
+  - /Audio/Effects/Gasp/female_deathgasp_4.ogg
+  - /Audio/Effects/Gasp/female_deathgasp_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_question_female_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_7.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_think_female_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_think_female_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_think_female_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_7.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_8.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_9.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_11.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_12.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_13.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_14.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_15.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_16.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_17.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_18.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_7.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_9.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_10.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_10.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_8.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_6.ogg
+
+- type: emoteSounds
+  id: MimicHuman
+  sounds:
+    Scream:
+      collection: MimicSound
+
+###################################################################
+#pet
+- type: entity
+  name: little mimic
+  parent: SimpleMobBaseNoFood
+  id: MedievalMobPetMimic
+  description: The most unpredictable familiar, owing to the clot of darkness in his heart. He eats absolutely anything, sticks his tentacles where they don't belong, and loves imitating humans.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 2.5
+  - type: Sprite
+    drawdepth: SmallMobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mimike_pet_active
+      sprite: Imperial/Medieval/Mobs/mimic/pet.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mimike_pet_walk
+    noMovementLayers:
+      movement:
+        state: mimike_pet_active
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.25
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mimike_pet_active
+      Dead:
+        Base: mimike_pet_idel
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-pet-mimic
+    interactFailureString: petting-failure-corrupted-corgi
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: MeleeWeapon
+    altDisarm: false
+    # range: 1.80
+    hidden: true
+    attackRate: 1
+    angle: 0
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 8
+      types:
+        ParryAble: 1
+        Caustic: 0.5
+        Structural: 10
+        Bloodloss: 1
+  - type: NoSlip
+  - type: Puller
+    needsHands: false
+  - type: Alerts
+  - type: Familiar
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - Animal #Этот тег убирает из колеса эмоций мобов "человеческие" эмоции (чихание, свист и т.д)
+    - Goliath
+    - MedievalMob
+    - FootstepSound
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-pet-mimic-name
+    description: ghost-role-information-pet-mimic-description
+    rules: ghost-role-information-pet-mimic-rules
+  # - type: Item
+  - type: IgniteOnMeleeHit
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          Log:
+            min: 1
+            max: 1
+          PresentRandomMimic:
+            min: 1
+            max: 1          
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+  - type: LanguageSpeaker
+    languages:
+      Common: BadSpeak
+      # Goblin: BadSpeak
+      # Ancient: BadSpeak
+      # Tribe: BadSpeak
+      # Orc: BadSpeak
+      Cursed: BadSpeak
+      # Growling: BadSpeak
+      # Hissing: BadSpeak
+      # Elf: BadSpeak
+  - type: MedievalDash
+    force: 350
+  - type: IgnoreSpiderWeb
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: NPCUseActionOnTarget
+    actionId: ActionGoliathTentacle
+  - type: Storage
+    grid:
+    - 0,0,7,7
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Vocalizer
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120 # polly is chattier
+  - type: ActiveListener
+  - type: ParrotListener
+  - type: ParrotMemory
+  - type: Speech
+    speechSounds: Cat
+    speechVerb: SmallMob
+    allowedEmotes: ['Scream']
+  # - type: ReplacementAccent
+    # accent: cat
+  - type: Vocal
+    sounds:
+      Unsexed: MimicHuman
+  - type: ForcedSleepImmune
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/Mimic/step4.ogg
+      params:
+        volume: -10
+  - type: LocalLight
+    energy: 0.2
+    radius: 2.8
+  - type: Emoting
+  - type: ActionGrant
+    actions:
+    - DionaReformActionPetMimicClose
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Dumpable
+  # - type: Reform
+    # actionPrototype: DionaReformActionPetMimicClose
+    # reformTime: 5
+    # popupText: Вы прячетесь.
+    # reformPrototype: MobPetMimicChestClosePlayer
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
+
+- type: entity
+  name: close little mimic
+  parent: SimpleMobBaseNoFood
+  id: MobPetMimicChestClosePlayer
+  description: The most unpredictable familiar, owing to the clot of darkness in his heart. He eats absolutely anything, sticks his tentacles where they don't belong, and loves imitating humans.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0.1
+    baseSprintSpeed : 0.1
+  - type: Sprite
+    drawdepth: Objects
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mimike_pet_idel
+      sprite: Imperial/Medieval/Mobs/mimic/pet.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.25
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-pet-close-mimic
+    interactFailureString: petting-failure-generic
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: MeleeWeapon
+    altDisarm: false
+    # range: 1.80
+    hidden: true
+    attackRate: 0.1
+    angle: 0
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 1
+  - type: NoSlip
+  - type: Puller
+    needsHands: true
+  - type: Alerts
+  - type: Familiar
+  # - type: NpcFactionMember
+    # factions:
+    # - NanoTrasen
+  - type: InputMover
+  - type: MobMover
+  # - type: HTN
+    # rootTask:
+      # task: GoliathCompound
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - Animal #Этот тег убирает из колеса эмоций мобов "человеческие" эмоции (чихание, свист и т.д)
+    - Goliath
+    - MedievalMob
+  # - type: GhostTakeoverAvailable
+  # - type: GhostRole
+    # makeSentient: true
+    # name: ghost-role-information-pnya-name
+    # description: ghost-role-information-pnya-description
+    # rules: Вы - фамильяр. Служите тому, кто вас призвал. [color=yellow]Лкм - удар[/color], [color=yellow]пкм - запуск исцеляющего снаряда.[/color]
+  # - type: Item
+  - type: IgniteOnMeleeHit
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+          params:
+            volume: -6
+  - type: LanguageSpeaker
+    languages:
+      Common: BadSpeak
+      Goblin: BadSpeak
+      Ancient: BadSpeak
+      Tribe: BadSpeak
+      Orc: BadSpeak
+      Cursed: BadSpeak
+      Growling: BadSpeak
+      Hissing: BadSpeak
+      Elf: BadSpeak
+  - type: MedievalDash
+    force: 5
+  - type: IgnoreSpiderWeb
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  # - type: NPCUseActionOnTarget
+    # actionId: ActionGoliathTentacle
+  # - type: Storage
+    # grid:
+    # - 0,0,7,7
+  # - type: ContainerContainer
+    # containers:
+      # storagebase: !type:Container
+        # ents: []
+  # - type: UserInterface
+    # interfaces:
+      # enum.StorageUiKey.Key:
+        # type: StorageBoundUserInterface
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Speech
+    speechSounds: Cat
+    speechVerb: SmallMob
+    allowedEmotes: ['Scream', 'Laugh', 'Cough', 'Sigh', 'Warcry', 'PainScream', 'PassiveScream']
+  # - type: ReplacementAccent
+    # accent: cat
+  - type: Vocal
+    sounds:
+      Male: MimicHuman
+      Female: MimicHuman
+      Unsexed: MimicHuman
+  - type: MedievalUnthrowable
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: ForcedSleepImmune
+  - type: Emoting
+  - type: MedievalMeleeBadTarget
+    safeToHitGroup: structure
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 150
+    damage:
+      groups:
+        Brute: -5
+        Burn: -5
+        Airloss: -1.5
+        Toxin: -5
+      types:
+        Bloodloss: -2
+        Cellular: -2
+  - type: Flammable
+    firestackFade: -1
+    canResistFire: true
+  - type: StaminaDamageOnHit
+    damage: 15
+  # - type: ActionGrant
+    # actions:
+    # - DionaReformActionPetMimicOpen
+  # - type: Reform
+    # actionPrototype: DionaReformActionPetMimicOpen
+    # reformTime: 1
+    # popupText: Вы раскрываетесь.
+    # reformPrototype: MedievalMobPetMimic
+
+- type: entity
+  parent: BaseAction
+  id: DionaReformActionPetMimicClose
+  name: Маскировка
+  description: Маскирует вас в милый сундук. В этой форме ваше здоровье увеличивается в несколько раз.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Mobs/mimic/pet.rsi
+      state: mimike_pet_action_2
+    useDelay: 60
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: PolymorphPetMimic
+
+# - type: entity
+  # parent: BaseAction
+  # id: DionaReformActionPetMimicOpen
+  # name: Снять маскировку
+  # description: Раскрывает тебя.
+  # components:
+  # - type: Action
+    # icon:
+      # sprite: Imperial/Medieval/Mobs/mimic/pet.rsi
+      # state: mimike_pet_action_2
+    # useDelay: 10
+  # - type: InstantAction
+    # event: !type:RevertPolymorphActionEvent
+
+- type: polymorph
+  id: PolymorphPetMimic
+  configuration:
+    entity: MobPetMimicChestClosePlayer
+    transferName: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false

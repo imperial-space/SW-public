@@ -36,8 +36,8 @@ public sealed partial class AddMagicEssence : EntityEffect
         if (_random.Prob(EssenceAddProbability))
             _grimoireSystem.TryAddCurrency(magicEntityEffectsArgs.Performer, AddedEssences);
 
-        if (_random.Prob(BonusAddProbability))
-            _grimoireSystem.TryAddBonus(magicEntityEffectsArgs.Performer, BonusEssences);
+        // imperial medieval - casting no longer feeds the passive essence, it comes from the essence slots of the grimoire.
+        // BonusEssences and BonusAddProbability stay only so the spell prototypes keep loading.
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => "";

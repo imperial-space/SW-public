@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseSmithWorkpiece
   parent: BaseItem
   abstract: true
@@ -196,6 +196,27 @@
     finalProductEntity: MedievalClothingHeadHelmetBacinet
 
 - type: entity
+  id: WorkpieceMedievalClothingHeadHelmetBacinetVisorless
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetBacinetVisorless
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetCervelliere
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetCervelliere
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetChainmail
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetChainmail
+
+- type: entity
   id: WorkpieceMedievalClothingHeadHelmetShapel
   parent: BaseArmorWorkpiece
   components:
@@ -224,6 +245,13 @@
     finalProductEntity: MedievalIronGlovesBrig
 
 - type: entity
+  id: WorkpieceMedievalIronGlovesChain
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronGlovesChain
+
+- type: entity
   id: WorkpieceMedievalNorthernGloves
   parent: BaseArmorWorkpiece
   components:
@@ -243,6 +271,13 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalClothingFeetSteel
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetChain
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetChain
 
 - type: entity
   id: WorkpieceMedievalClothingFeetNorthern

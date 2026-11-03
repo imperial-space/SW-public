@@ -2,6 +2,7 @@
 using Content.Shared.Atmos.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.RPPanel;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
@@ -35,6 +36,9 @@ public sealed class SharedHandExtinguishSystem : EntitySystem
     private void OnInteractHand(EntityUid uid, FlammableComponent flammable, InteractHandEvent args)
     {
         if (args.Handled || args.User == args.Target || !HasComp<HandsComponent>(args.User))
+            return;
+
+        if (TryComp<RPPanelMemberComponent>(uid, out var panel) && panel.HugInitiator == args.User)
             return;
 
         var now = _gameTiming.CurTime;

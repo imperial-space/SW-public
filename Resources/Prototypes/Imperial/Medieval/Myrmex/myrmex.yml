@@ -8,7 +8,7 @@
 
 - type: tile
   id: MedievalMyrmexFloor1
-  name: смола мирмексов
+  name: myrmex resin
   sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_tiles1.png
   variants: 1
   baseTurf: FloorCave
@@ -22,7 +22,7 @@
 
 - type: tile
   id: MedievalMyrmexFloor2
-  name: смола мирмексов
+  name: myrmex resin
   sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_tiles2.png
   variants: 1
   baseTurf: FloorCave
@@ -175,8 +175,6 @@
   - type: IconSmooth
     key: walls
     base: flimsy
-  - type: ExplosionResistance
-    damageCoefficient: 10
   - type: Construction
     graph: MMyrmexFlimsyWall
     node: medievalMyrmexFlimsyWall
@@ -184,6 +182,8 @@
     replaceableTiles:
     replacementTiles:
     - MedievalMyrmexFloor2
+  - type: ExplosionResistance
+    damageCoefficient: 0.22
 
 - type: entity
   parent: BaseWall
@@ -209,8 +209,6 @@
   - type: IconSmooth
     key: walls
     base: strong
-  - type: ExplosionResistance
-    damageCoefficient: 20
   - type: Construction
     graph: MMyrmexStrongWall
     node: medievalMyrmexStrongWall
@@ -218,6 +216,8 @@
     replaceableTiles:
     replacementTiles:
     - MedievalMyrmexFloor2
+  - type: ExplosionResistance
+    damageCoefficient: 0.12
 
 - type: entity
   id: MedievalMyrmexWeb
@@ -304,6 +304,8 @@
       ignoreWhitelist:
         components:
             - IgnoreSpiderWeb
+    - type: ExplosionResistance
+      damageCoefficient: 0.08
 
 - type: reagent
   id: MedievalMyrmexPoison
@@ -322,8 +324,28 @@
           invert: true
         damage:
           types:
-            Heat: 1
-            Poison: 2
+            Heat: 3
+            Poison: 1
+
+- type: reagent
+  id: MedievalMyrmexPoisonWeak
+  name: reagent-name-myrmex-poison
+  desc: reagent-desc-myrmex-poison
+  physicalDesc: reagent-physical-desc-soapy
+  flavor: bitter
+  color: "#ff7e00"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:HasTag
+          tag: MyrmexPoisonImmune
+          invert: true
+        damage:
+          types:
+            Heat: 1.5
+            Poison: 0.5
 
 - type: entity
   id: MedievalMyrmexTrapBase
@@ -396,6 +418,8 @@
         params:
             maxDistance: 10
   - type: DeleteOnTrigger
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   parent: MedievalMyrmexTrapBase
@@ -470,9 +494,9 @@
   - type: MyrmexHunger
   - type: MyrmexThreshold
   # imperial medieval - required for TryAddStatusEffect (speed/shield bursts) to work at all;
-  # StatusEffectsSystem resolves this component and silently faild if its missing. 
+  # StatusEffectsSystem resolves this component and silently faild if its missing.
   - type: StatusEffects
-    allowed: 
+    allowed:
     - MedievalMyrmexSpeedBurst
     - MedievalMyrmexShieldBurst
   - type: BorgHandsImperial
@@ -624,15 +648,40 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
 
+- type: inventoryTemplate
+  id: myrmexworker
+  slots:
+    - name: pocket1
+      slotTexture: pocket
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,4
+      displayName: Pocket 1
+      stripHidden: true
+    - name: pocket2
+      slotTexture: pocket
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,4
+      displayName: Pocket 2
+      stripHidden: true
+
 - type: entity
   name: myrmeling
   parent: MedievalMyrmexBase
   id: MedievalMyrmexWorker
   description: muravey ebanniy
   components:
-  # outgoing poise per hit.
   - type: PoiseDamage
     poiseDamage: 6
+  - type: CrafterTrait
+  - type: InventorySlots
+  - type: Inventory
+    templateId: myrmexworker
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_worker.rsi
@@ -650,35 +699,36 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 8
+        Brute: 15
       types:
         ParryAble: 1
         Structural: 85
   - type: APDamageOnHit
-    damage: 
-      types: 
+    damage:
+      types:
         Blunt: 3
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      170: Dead
+      215: Critical
+      340: Dead
   - type: Stamina
-    critThreshold: 130 
+    critThreshold: 130
     stunTime: 5
     cooldown: 2.5
     decay: 5.76
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.2
-    baseSprintSpeed: 2
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 2.1
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      45: 1
-      55: 0.85
-      68: 0.75
-      78: 0.7
+      40: 1
+      90: 0.8
+      110: 0.7
+      140: 0.6
+      180: 0.5
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -715,7 +765,7 @@
       state: base
   - type: Physics
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 0.5
     rechargeSound:
       path: /Audio/Imperial/Medieval/ant_acidrecharge.ogg
   - type: BasicEntityAmmoProvider
@@ -750,8 +800,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      170: Dead
+      140: Critical
+      270: Dead
   - type: Stamina
     critThreshold: 125
     stunTime: 5
@@ -759,7 +809,7 @@
     decay: 5.88
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.4
+    baseWalkSpeed: 3.58
     baseSprintSpeed: 2.2
   - type: InputMover
   - type: SlowOnDamage
@@ -798,9 +848,28 @@
   - type: Projectile
     damage:
       types:
-        Caustic: 8.0
-        Blunt: 7.0
+        Caustic: 2.0
+        Blunt: 15.0
         Structural: 10
+
+
+- type: entity
+  id: MedievalBulletAcid
+  name: acid spit
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 14
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+
 - type: entity
   name: myrmalisk
   parent: MedievalMyrmexBase
@@ -841,24 +910,25 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      310: Critical # curse of 220. no. 310.
-      450: Dead
+      750: Critical # curse of 220. no. 310. no. 610. no. 910..
+      1150: Dead
   - type: Stamina
     critThreshold: 180
     stunTime: 4
     cooldown: 2.5
-    decay: 6.36
+    decay: 5.3
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 1.8
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 1.2
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      180: 1
-      230: 0.9
-      270: 0.85
-      300: 0.8
+      120: 1
+      230: 0.8
+      370: 0.7
+      510: 0.6
+      670: 0.5
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -907,19 +977,20 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 13
+        Brute: 28
+        Airloss: 2
       types:
         ParryAble: 1
         Structural: 10
   - type: APDamageOnHit
-    damage: 
+    damage:
       types:
         Blunt: 5
   - type: MobThresholds
     thresholds:
       0: Alive
-      155: Critical
-      270: Dead
+      325: Critical
+      570: Dead
   - type: Stamina
     critThreshold: 165
     stunTime: 5
@@ -927,15 +998,16 @@
     decay: 6.24
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 4.2
-    baseSprintSpeed: 2.7
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 2.1
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      90: 1
-      115: 0.85
-      135: 0.78
-      150: 0.72
+      80: 1
+      130: 0.8
+      180: 0.7
+      230: 0.6
+      280: 0.5
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -1075,7 +1147,7 @@
       path: /Audio/Imperial/Medieval/ant_queenfootstep.ogg
       params:
         variation: 0.125
-        volume: -5
+        volume: -2
   - type: MeleeWeapon
     animation: WeaponArcBite
     range: 2
@@ -1091,16 +1163,16 @@
       types:
         ParryAble: 0.7
         Bloodloss: 2
-        Structural: 155
+        Structural: 355
   - type: APDamageOnHit
-    damage: 
-      types: 
-        Blunt: 8
+    damage:
+      types:
+        Blunt: 9
   - type: MobThresholds
     thresholds:
       0: Alive
-      750: Critical
-      900: Dead
+      2350: Critical
+      3900: Dead
   - type: Stamina
     critThreshold: 220
     stunTime: 3
@@ -1108,20 +1180,22 @@
     decay: 6.6
     afterCritDecayMultiplier: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 2.2
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 2.1
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      400: 1
-      500: 0.9
-      620: 0.85
-      720: 0.8
+      300: 1
+      1050: 0.8
+      1400: 0.7
+      1550: 0.6
+      1700: 0.5
+      1930: 0.4
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 12
+    damage: 19
   - type: LanguageSpeaker
     languages:
       Common: Understand

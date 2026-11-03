@@ -51,6 +51,14 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
 
         var phaseIndex = Math.Clamp(component.CurrentPhase, 0, component.BaseLayerStates.Count - 1);
         var state = component.BaseLayerStates[phaseIndex];
+        var invinciblePhaseIndex = component.CurrentPhase - 1;
+        if (component.InvincibilityActive &&
+            invinciblePhaseIndex >= 0 && invinciblePhaseIndex < component.Phases.Count &&
+            component.Phases[invinciblePhaseIndex].InvincibleBaseLayerState is { } invincibleState)
+        {
+            state = invincibleState;
+        }
+
         if (string.IsNullOrWhiteSpace(state))
             return;
 
@@ -68,7 +76,10 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
             : component.OuterLayerState;
 
         if (string.IsNullOrWhiteSpace(state))
+        {
+            _sprite.RemoveLayer((uid, sprite), "outer", false);
             return;
+        }
 
         EnsureOuterLayer(uid, sprite, state, spritePath.Value);
         if (!_sprite.LayerMapTryGet((uid, sprite), "outer", out _, false))

@@ -1,0 +1,154 @@
+# Choosing the spell summons swords behind the caster; after the targets are chosen the swords attack them one after another (MedievalVolleySpell)
+
+# Beginner
+
+- type: entity
+  id: MedievalActionRadiantPhalanxBeginner
+  name: medieval-store-spells-light-radiant-phalanx-beginner-name
+  description: medieval-store-spells-light-radiant-phalanx-beginner-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 10
+  - type: MedievalTargetSpell
+  - type: MedievalVolleySpell
+    projectile: MedievalProjectileRadiantSwordBeginner
+    count: 2
+    arc: 50
+    hoverRadius: 1.0
+    launchInterval: 0.15
+    summonSound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/lightsphere_cast.ogg
+    launchSound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+      params:
+        volume: -6
+  - type: Action
+    useDelay: 7
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileRadiantSwordBeginner
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-radiant-phalanx
+          color: "#FFE57E"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 2
+    whiteListComponents:
+      - type: Damageable
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionRadiantPhalanxMiddle
+      3: MedievalActionRadiantPhalanxSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionRadiantPhalanxMiddle
+  parent: MedievalActionRadiantPhalanxBeginner
+  name: medieval-store-spells-light-radiant-phalanx-middle-name
+  description: medieval-store-spells-light-radiant-phalanx-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: MedievalVolleySpell
+    projectile: MedievalProjectileRadiantSwordMiddle
+    count: 3
+    arc: 80
+    hoverRadius: 1.15
+    launchInterval: 0.15
+    summonSound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/lightsphere_cast.ogg
+    launchSound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+      params:
+        volume: -6
+  - type: Action
+    useDelay: 9
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileRadiantSwordMiddle
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-radiant-phalanx
+          color: "#FFE57E"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 3
+    whiteListComponents:
+      - type: Damageable
+
+# Senior
+
+- type: entity
+  id: MedievalActionRadiantPhalanxSenior
+  parent: MedievalActionRadiantPhalanxBeginner
+  name: medieval-store-spells-light-radiant-phalanx-senior-name
+  description: medieval-store-spells-light-radiant-phalanx-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 55
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 14
+  - type: MedievalTargetSpell
+  - type: MedievalVolleySpell
+    projectile: MedievalProjectileRadiantSwordSenior
+    count: 5
+    arc: 140
+    hoverRadius: 1.3
+    launchInterval: 0.15
+    summonSound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/lightsphere_cast.ogg
+    launchSound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+      params:
+        volume: -6
+  - type: Action
+    useDelay: 12
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/icons.rsi
+      state: senior
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileRadiantSwordSenior
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-radiant-phalanx
+          color: "#FFE57E"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 5
+    whiteListComponents:
+      - type: Damageable

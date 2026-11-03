@@ -42,6 +42,7 @@ namespace Content.Server.MagicBarrier
         [Dependency] private readonly AchievementSystem _achievement = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly AncientNocturneSpawnRuleSystem _ancientNocturne = default!;
+        [Dependency] private readonly BlackSpireSpawnRuleSystem _blackSpire = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 
         public static bool IsBarrierActive = true;
@@ -514,6 +515,10 @@ namespace Content.Server.MagicBarrier
             if (randomise <= 35f && randomise <= component.AncientNocturneEventChance)
                 return TryStartAncientNocturneEvent();
 
+            var blackSpireChance = Math.Clamp(component.AncientNocturneEventChance, 0f, 35f);
+            if (randomise > 35f && randomise <= 35f + blackSpireChance)
+                return TryStartBlackSpireEvent();
+
             var availableSpawners = EntityManager.EntityQuery<StarFallComponent>()
                 .Where(candidate => candidate.Active)
                 .ToArray();
@@ -560,6 +565,21 @@ namespace Content.Server.MagicBarrier
                 return true;
 
             Log.Warning("Unable to start Ancient Nocturne midround event: game rule startup failed");
+            return false;
+        }
+
+        private bool TryStartBlackSpireEvent()
+        {
+            if (!_blackSpire.CanStartBlackSpireEvent())
+            {
+                Log.Warning("Unable to start Black Spire midround event: no unused BlackSpireSpawnMarkerComponent markers are available");
+                return false;
+            }
+
+            if (_gameTicker.StartGameRule("MedievalBlackSpireSpawnRule"))
+                return true;
+
+            Log.Warning("Unable to start Black Spire midround event: game rule startup failed");
             return false;
         }
 

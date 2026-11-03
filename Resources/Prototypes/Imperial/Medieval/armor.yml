@@ -1854,6 +1854,17 @@
     poiseIncreaseOverride: 10
 
 - type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesChain
+  name: IronGloves
+  description: gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/chainmail_gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/chainmail_gloves.rsi
+
+- type: entity
   parent: MedievalIronGlovesBrig
   id: MedievalIronGlovesGoblinSlayer
   name: IronGloves
@@ -4966,6 +4977,21 @@
     sprite: Imperial/Medieval/Clothing/Shoes/greenknight.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/greenknight.rsi
+
+- type: entity
+  parent: MedievalClothingFeetSteel
+  id: MedievalClothingFeetChain
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/chainmail_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/chainmail_boots.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpurs
+      params:
+        variation: 0.09
+        volume: -6
 
 - type: entity
   parent: MedievalIronGloves

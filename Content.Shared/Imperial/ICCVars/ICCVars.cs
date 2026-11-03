@@ -9,6 +9,20 @@ public sealed partial class ICCVars : CVars
 {
     public static readonly CVarDef<bool>
         VoteAutoStartInLobby = CVarDef.Create("vote.autostartinlobby", true, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Keeps the previous round's game mode out of the next preset vote. Off by default: with carried over
+    ///     votes the last mode stays in the vote and only loses its votes.
+    /// </summary>
+    public static readonly CVarDef<bool>
+        VotePresetBlockRepeat = CVarDef.Create("vote.preset_block_repeat", false, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Votes for game modes that lose a preset vote carry over to the next one, so a mode people keep
+    ///     asking for gets its turn. The winning mode starts from zero again.
+    /// </summary>
+    public static readonly CVarDef<bool>
+        VotePresetCarryover = CVarDef.Create("vote.preset_carryover", true, CVar.SERVERONLY);
     public static readonly CVarDef<int>
         GameEndRoundDuration = CVarDef.Create("game.endroundduration", 40, CVar.SERVERONLY);
     #region Sponsors

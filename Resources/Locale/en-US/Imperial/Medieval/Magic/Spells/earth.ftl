@@ -104,3 +104,19 @@ medieval-store-spells-earth-seedlings-middle-desc = Summon a small grove at the 
 
 medieval-store-spells-earth-seedlings-senior-name = Summon Forest
 medieval-store-spells-earth-seedlings-senior-desc = Summon a forest at the selected location.
+
+# Boulder
+
+medieval-spell-speach-boulder = L̄â̠p̵̣ìs̸̀ I̝̣a̠c̄̃́t̝u̵s̠
+
+medieval-store-spells-earth-boulder-beginner-name = Hurled Boulder
+medieval-store-spells-earth-boulder-beginner-desc = Summon a boulder from the ground and hurl it at the selected target. Cost: 40 mana.
+
+medieval-store-spells-earth-boulder-middle-name = Boulder Volley
+medieval-store-spells-earth-boulder-middle-desc = Summon up to 2 boulders from the ground and hurl them at selected targets. Cost: 60 mana. Use MMB to select multiple targets.
+
+medieval-store-spells-earth-boulder-senior-name = Boulder Avalanche
+medieval-store-spells-earth-boulder-senior-desc = Summon up to 3 boulders from the ground and hurl them at selected targets. Cost: 75 mana. Use MMB to select multiple targets.
+
+ent-MedievalBoulderProjectile = boulder
+    .desc = A heavy boulder torn out of the ground by magic.

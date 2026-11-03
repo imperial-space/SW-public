@@ -1,0 +1,61 @@
+# Boulder emerging from the ground
+
+- type: entity
+  id: MedievalBoulderEmerge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Boulder/projectiles.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: emerge
+  - type: MedievalLaunchAfterSpawn
+    projectile: MedievalBoulderProjectile
+    delay: 0.8
+    delayStep: 0.2
+    radius: 0.85
+    slotAngle: 40
+    speed: 12
+  - type: TimedDespawn
+    lifetime: 3
+
+# Boulder
+
+- type: entity
+  id: MedievalBoulderProjectile
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Boulder/projectiles.rsi
+    layers:
+    - state: boulder
+  - type: Projectile
+    impactEffect: MedievalBoulderImpactEffect
+    damage:
+      types:
+        Blunt: 40
+        Structural: 15
+  - type: MedievalKnockbackOnHit
+    distance: 0.5
+    speed: 6
+
+# Boulder shatters on impact
+
+- type: entity
+  id: MedievalBoulderImpactEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.45
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - map: ["enum.EffectLayers.Unshaded"]
+      sprite: Imperial/Medieval/Magic/Earth/Boulder/hit.rsi
+      state: hit
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu

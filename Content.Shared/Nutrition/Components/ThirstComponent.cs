@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Content.Shared.Imperial.Medieval.Nutrition; // imperial medieval
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -6,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Nutrition.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(ThirstSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(ThirstSystem), typeof(NeedRateModifierSystem))] // imperial medieval: the trait modifier changes the decay rates
 [AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class ThirstComponent : Component
 {

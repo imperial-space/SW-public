@@ -1,0 +1,7 @@
+<Document>
+  <GuideLocalizedText Key="guide-entry-medieval-alchemy-basics" Style="LabelHeadingBigger"/>
+  <Box Orientation="Vertical">
+    <GuideLocalizedText Key="alchemy-guide-basics-aspects"/>
+    <GuideLocalizedText Key="alchemy-guide-basics-potions"/>
+  </Box>
+</Document>

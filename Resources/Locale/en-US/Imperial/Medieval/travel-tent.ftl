@@ -1,0 +1,12 @@
+ent-MedievalTravelTentFolded = rolled travel tent
+    .desc = A canvas tent rolled up around two poles. Pitch it on the ground; a sleeping bag fits inside the roll.
+ent-MedievalTravelTent = travel tent
+    .desc = A light canvas tent on two poles. Lay your sleeping bag inside.
+construction-recipe-medieval-travel-tent = travel tent
+construction-recipe-medieval-travel-tent-desc = Canvas, a couple of poles and some rope. Carried rolled up, pitched anywhere.
+medieval-travel-tent-close = Close the flap
+medieval-travel-tent-open = Open the flap
+medieval-travel-tent-fold = Fold the tent
+medieval-travel-tent-slot = sleeping bag
+medieval-travel-tent-no-room = There's no room for the tent: something is in the way here or behind it.
+medieval-travel-tent-bag-already = There is already a sleeping bag in the tent.

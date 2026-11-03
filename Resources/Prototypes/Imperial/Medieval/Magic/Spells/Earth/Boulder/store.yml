@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellBoulderBeginner
+  name: medieval-store-spells-earth-boulder-beginner-name
+  description: medieval-store-spells-earth-boulder-beginner-desc
+  productAction: MedievalActionBoulderBeginner
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellBoulderMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Boulder/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalEarth: 30
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellBoulderMiddle
+  name: medieval-store-spells-earth-boulder-middle-name
+  description: medieval-store-spells-earth-boulder-middle-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellBoulderSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Boulder/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalEarth: 60
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBoulderBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellBoulderSenior
+  name: medieval-store-spells-earth-boulder-senior-name
+  description: medieval-store-spells-earth-boulder-senior-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellBoulderSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Boulder/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalEarth: 90
+    ArchmagePoints: 1
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBoulderMiddle

@@ -1,0 +1,144 @@
+# Hail: shows ripples over the circle once, then spreads the icicles over it
+
+- type: entity
+  id: MedievalIcicleHailBeginner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MedievalRain
+    drop: MedievalIcicleDrop
+    marker: MedievalIcicleHailMarkerSmall
+    count: 10
+    radius: 2
+    duration: 4.5
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: MedievalIcicleHailMiddle
+  parent: MedievalIcicleHailBeginner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MedievalRain
+    drop: MedievalIcicleDrop
+    marker: MedievalIcicleHailMarkerMid
+    count: 20
+    radius: 2.5
+    duration: 5
+
+- type: entity
+  id: MedievalIcicleHailSenior
+  parent: MedievalIcicleHailBeginner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MedievalRain
+    drop: MedievalIcicleDrop
+    marker: MedievalIcicleHailMarkerBig
+    count: 34
+    radius: 2.75
+    duration: 6.5
+
+# Ripples that show the area, play once
+
+- type: entity
+  id: MedievalIcicleHailMarkerSmall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1.0
+  - type: Sprite
+    drawdepth: FloorObjects
+    noRot: true
+    sprite: Imperial/Medieval/Magic/Vodka/IcicleHail/telegraph.rsi
+    layers:
+    - state: ripple_small
+      shader: unshaded
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MedievalIcicleHailMarkerMid
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1.0
+  - type: Sprite
+    drawdepth: FloorObjects
+    noRot: true
+    sprite: Imperial/Medieval/Magic/Vodka/IcicleHail/telegraph.rsi
+    layers:
+    - state: ripple_mid
+      shader: unshaded
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MedievalIcicleHailMarkerBig
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1.0
+  - type: Sprite
+    drawdepth: FloorObjects
+    noRot: true
+    sprite: Imperial/Medieval/Magic/Vodka/IcicleHail/telegraph.rsi
+    layers:
+    - state: ripple_big
+      shader: unshaded
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# One falling icicle
+
+- type: entity
+  id: MedievalIcicleDrop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Vodka/IcicleHail/projectiles.rsi
+    drawdepth: Effects
+    noRot: true
+    offset: 0, 1
+    layers:
+    - state: fall
+      shader: unshaded
+  - type: MedievalRainDrop
+    fallTime: 0.6
+    radius: 0.8
+    damage:
+      types:
+        Piercing: 12
+        Cold: 4
+    apDamage:
+      types:
+        Cold: 1.5
+    impact: MedievalIcicleImpact
+    sound:
+      path: /Audio/Effects/glass_break2.ogg
+      params:
+        volume: -10
+        variation: 0.2
+  - type: TimedDespawn
+    lifetime: 1
+
+# Icicle shatters on the ground
+
+- type: entity
+  id: MedievalIcicleImpact
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.42
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - map: ["enum.EffectLayers.Unshaded"]
+      sprite: Imperial/Medieval/Magic/Vodka/IcicleHail/hit.rsi
+      state: hit
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu

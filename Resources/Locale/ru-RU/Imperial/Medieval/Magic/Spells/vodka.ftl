@@ -60,3 +60,15 @@ medieval-store-spells-vodka-ice-dagger-middle-desc = Конвертируйте 
 medieval-store-spells-vodka-ice-dagger-senior-name = Совершенный ледяной кинжал
 medieval-store-spells-vodka-ice-dagger-senior-desc = Конвертируйте манну в жидкость и охладите ее в руке для создания ледяного кинжала, который значительно острее обычного кинжала и исчезнет через 30 секунд. Стоимость 12 маны, перезарядка 1.5 секунды.
 
+# Icicle hail
+
+medieval-spell-speach-icicle-hail = G̩̾ȑ͇͕ͯ̉a̤̋ͭn̟̖ͩ̂̃d͕̤ͪ̿̽o̩̱͐ͤ G̠͇ͤ͋l̮̯ͤ̉a̳̟ͮ͗c̬̎̌ỉ̝ǎ̝ͣl͚̃ͦi̥̅̈s̱̔
+
+medieval-store-spells-vodka-icicle-hail-beginner-name = Град сосулек
+medieval-store-spells-vodka-icicle-hail-beginner-desc = Призовите над выбранной областью град из ледяных сосулек. Стоимость 35 маны.
+
+medieval-store-spells-vodka-icicle-hail-middle-name = Ледяной град
+medieval-store-spells-vodka-icicle-hail-middle-desc = Призовите над выбранной областью более широкий и плотный град из ледяных сосулек. Стоимость 50 маны.
+
+medieval-store-spells-vodka-icicle-hail-senior-name = Ледяной ливень
+medieval-store-spells-vodka-icicle-hail-senior-desc = Призовите над большой областью густой ливень из ледяных сосулек. Стоимость 70 маны.

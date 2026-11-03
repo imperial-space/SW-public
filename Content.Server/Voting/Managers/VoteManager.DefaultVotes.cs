@@ -12,6 +12,7 @@ using Content.Server.RoundEnd;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Imperial.ICCVar; // imperial medieval
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
@@ -215,9 +216,21 @@ namespace Content.Server.Voting.Managers
                 Loc.GetString("ui-vote-restart-fail-not-enough-ghost-players", ("ghostPlayerRequirement", ghostPercentageRequirement)));
         }
 
+        // imperial medieval - votes for modes that lost earlier preset votes, by preset id
+        private readonly Dictionary<string, int> _presetCarryoverVotes = new();
+
         private void CreatePresetVote(ICommonSession? initiator)
         {
             var presets = GetGamePresets();
+
+            // imperial medieval start - carried over votes
+            var useCarryover = _cfg.GetCVar(ICCVars.VotePresetCarryover);
+            if (!useCarryover)
+                _presetCarryoverVotes.Clear();
+
+            // fixed order: the vote reports its counts in the same order the options were added
+            var presetIds = presets.Keys.ToList();
+            // imperial medieval end
 
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
@@ -232,9 +245,14 @@ namespace Content.Server.Voting.Managers
             if (alone)
                 options.InitiatorTimeout = TimeSpan.FromSeconds(10);
 
-            foreach (var (k, v) in presets)
+            foreach (var id in presetIds) // imperial medieval - show carried over votes next to the mode
             {
-                options.Options.Add((Loc.GetString(v), k));
+                var name = Loc.GetString(presets[id]);
+                var carried = CarriedVotes(id);
+                if (carried > 0)
+                    name = Loc.GetString("ui-vote-gamemode-carryover-option", ("name", name), ("votes", carried));
+
+                options.Options.Add((name, id));
             }
 
             WirePresetVoteInitiator(options, initiator);
@@ -244,7 +262,11 @@ namespace Content.Server.Voting.Managers
             vote.OnFinished += (_, args) =>
             {
                 string picked;
-                if (args.Winner == null)
+                if (useCarryover && presetIds.Count > 0) // imperial medieval
+                {
+                    picked = PickPresetWithCarryover(presets, presetIds, args.Votes);
+                }
+                else if (args.Winner == null)
                 {
                     picked = (string) _random.Pick(args.Winners);
                     _chatManager.DispatchServerAnnouncement(
@@ -260,6 +282,47 @@ namespace Content.Server.Voting.Managers
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
                 ticker.SetGamePreset(picked);
             };
+        }
+
+        /// <summary>
+        ///     imperial medieval - picks the mode by this vote's counts plus the votes carried over from earlier
+        ///     preset votes, announces the winner as usual, and carries the losers' votes on. The winner starts from zero.
+        /// </summary>
+        private string PickPresetWithCarryover(Dictionary<string, string> presets, List<string> presetIds, List<int> votes)
+        {
+            var results = new List<(string Id, int Fresh, int Total)>(presetIds.Count);
+            for (var i = 0; i < presetIds.Count; i++)
+            {
+                var id = presetIds[i];
+                var fresh = i < votes.Count ? votes[i] : 0;
+                results.Add((id, fresh, fresh + CarriedVotes(id)));
+            }
+
+            var max = results.Max(r => r.Total);
+            var winners = results.Where(r => r.Total == max).Select(r => r.Id).ToList();
+            var picked = winners.Count == 1 ? winners[0] : _random.Pick(winners);
+
+            foreach (var (id, _, total) in results)
+            {
+                _presetCarryoverVotes[id] = id != picked && CarriesVotes(id) ? total : 0;
+            }
+
+            _chatManager.DispatchServerAnnouncement(winners.Count == 1
+                ? Loc.GetString("ui-vote-gamemode-win", ("winner", Loc.GetString(presets[picked])))
+                : Loc.GetString("ui-vote-gamemode-tie", ("picked", Loc.GetString(presets[picked]))));
+
+            return picked;
+        }
+
+        // imperial medieval - a mode can opt out of carrying votes with carryoverVotes: false in its prototype
+        private bool CarriesVotes(string presetId)
+        {
+            return _prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset) && preset.CarryoverVotes;
+        }
+
+        private int CarriedVotes(string presetId)
+        {
+            return CarriesVotes(presetId) ? _presetCarryoverVotes.GetValueOrDefault(presetId) : 0;
         }
 
         private void CreateMapVote(ICommonSession? initiator)
@@ -604,6 +667,12 @@ namespace Content.Server.Voting.Managers
 
                 presets[preset.ID] = preset.ModeTitle;
             }
+
+            // imperial medieval - same mode can't win two rounds in a row, unless it's the only option left
+            var last = _entityManager.System<GameTicker>().LastRoundPreset?.ID;
+            if (_cfg.GetCVar(ICCVars.VotePresetBlockRepeat) && last != null && presets.Count > 1)
+                presets.Remove(last);
+
             return presets;
         }
     }

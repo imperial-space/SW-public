@@ -191,6 +191,35 @@
   result: WorkpieceMedievalClothingHeadHelmetBacinet
 
 - type: CP14Recipe
+  id: MedievalClothingHeadHelmetBacinetVisorless
+  craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetBacinetVisorless
+  stacks:
+    MedievalIronIngot: 1
+    MedievalIronPlateSmall: 5
+    MedievalRivets: 1
+  result: WorkpieceMedievalClothingHeadHelmetBacinetVisorless
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetCervelliere
+  craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetCervelliere
+  stacks:
+    MedievalIronIngot: 1
+    MedievalIronPlateSmall: 5
+    MedievalRivets: 1
+  result: WorkpieceMedievalClothingHeadHelmetCervelliere
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetChainmail
+  craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetChainmail
+  stacks:
+    MedievalChain: 2
+    MedievalRivets: 1
+  result: WorkpieceMedievalClothingHeadHelmetChainmail
+
+- type: CP14Recipe
   id: MedievalClothingHeadHelmetShapel
   craftTime: 9
   iconOverride: MedievalClothingHeadHelmetShapel
@@ -231,6 +260,16 @@
   result: WorkpieceMedievalIronGlovesBrig
 
 - type: CP14Recipe
+  id: MedievalIronGlovesChain
+  craftTime: 12
+  iconOverride: MedievalIronGlovesChain
+  stacks:
+    MedievalRivets: 1
+    MedievalChain: 2
+    # 10 total
+  result: WorkpieceMedievalIronGlovesChain
+
+- type: CP14Recipe
   id: MedievalNorthernGloves
   craftTime: 12
   iconOverride: MedievalNorthernGloves
@@ -259,6 +298,15 @@
     MedievalIronPlateSmall: 5
     # 10 total
   result: WorkpieceMedievalClothingFeetSteel
+
+- type: CP14Recipe
+  id: MedievalClothingFeetChain
+  craftTime: 10
+  iconOverride: MedievalClothingFeetChain
+  stacks:
+    MedievalChain: 2
+    # 10 total
+  result: WorkpieceMedievalClothingFeetChain
 
 - type: CP14Recipe
   id: MedievalClothingFeetNorthern
@@ -1116,3 +1164,43 @@
     MedievalIronIngot: 5
     WoodPlank: 7
   result: WorkpieceMedievalSaberSilver
+
+- type: CP14Recipe
+  id: MedievalAlchemyGrenadeT1
+  craftTime: 1
+  iconOverride: MedievalGrenade
+  stacks:
+    MedievalIronIngot: 2
+  entities:
+    MedievalExplosiveMixtureT1: 1
+  result: MedievalGrenade
+
+- type: CP14Recipe
+  id: MedievalCryoGrenade
+  craftTime: 1
+  iconOverride: MedievalCryoGrenade
+  stacks:
+    MedievalIronIngot: 2
+  entities:
+    MedievalCryoMixture: 1
+  result: MedievalCryoGrenade
+
+- type: CP14Recipe
+  id: MedievalAlchemyGrenadeT2
+  craftTime: 2
+  iconOverride: MedievalAlchemyGrenadeT2
+  stacks:
+    MedievalIronIngot: 4
+  entities:
+    MedievalExplosiveMixtureT2: 1
+  result: MedievalAlchemyGrenadeT2
+
+- type: CP14Recipe
+  id: MedievalAlchemyGrenadeT3
+  craftTime: 4
+  iconOverride: MedievalAlchemyGrenadeT3
+  stacks:
+    MedievalIronIngot: 6
+  entities:
+    MedievalExplosiveMixtureT3: 1
+  result: MedievalAlchemyGrenadeT3

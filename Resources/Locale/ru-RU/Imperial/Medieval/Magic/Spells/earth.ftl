@@ -89,3 +89,19 @@ medieval-spell-speach-earth-bed = L̸é̵c̶t̸u̶s̶ S̸ó̶l̸u̶m̵
 
 medieval-store-spells-earth-bed-beginner-name = Ложе из земли
 medieval-store-spells-earth-bed-beginner-desc = Создайте в указаном месте не особо удобное место для сна. Стоимость 45 маны
+
+# Boulder
+
+medieval-spell-speach-boulder = L̄â̠p̵̣ìs̸̀ I̝̣a̠c̄̃́t̝u̵s̠
+
+medieval-store-spells-earth-boulder-beginner-name = Метательный валун
+medieval-store-spells-earth-boulder-beginner-desc = Вызовите из земли валун и метните его в выбранную цель. Стоимость 40 маны.
+
+medieval-store-spells-earth-boulder-middle-name = Валунный залп
+medieval-store-spells-earth-boulder-middle-desc = Вызовите из земли до двух валунов и метните их в выбранные цели. Стоимость 60 маны. Используйте среднюю кнопку мыши для выбора нескольких целей.
+
+medieval-store-spells-earth-boulder-senior-name = Валунный обвал
+medieval-store-spells-earth-boulder-senior-desc = Вызовите из земли до трёх валунов и метните их в выбранные цели. Стоимость 75 маны. Используйте среднюю кнопку мыши для выбора нескольких целей.
+
+ent-MedievalBoulderProjectile = валун
+    .desc = Тяжёлый валун, вырванный из земли магией.

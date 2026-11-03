@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellRadiantPhalanxBeginner
+  name: medieval-store-spells-light-radiant-phalanx-beginner-name
+  description: medieval-store-spells-light-radiant-phalanx-beginner-desc
+  productAction: MedievalActionRadiantPhalanxBeginner
+  priority: 6
+  productUpgradeId:
+    - MedievalSpellRadiantPhalanxMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalLight: 20
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellRadiantPhalanxMiddle
+  name: medieval-store-spells-light-radiant-phalanx-middle-name
+  description: medieval-store-spells-light-radiant-phalanx-middle-desc
+  priority: 6
+  productUpgradeId:
+    - MedievalSpellRadiantPhalanxSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalLight: 50
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellRadiantPhalanxBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellRadiantPhalanxSenior
+  name: medieval-store-spells-light-radiant-phalanx-senior-name
+  description: medieval-store-spells-light-radiant-phalanx-senior-desc
+  priority: 6
+  productUpgradeId:
+    - MedievalSpellRadiantPhalanxSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalLight: 85
+    ArchmagePoints: 1
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellRadiantPhalanxMiddle

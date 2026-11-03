@@ -5,6 +5,7 @@ using Content.Shared.EntityEffects;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.CoordsHelper;
 using Content.Shared.Imperial.Medieval.Magic;
+using Content.Shared.Imperial.Medieval.Magic.VolleySpell;
 using Content.Shared.Imperial.TargetOverlay.Events;
 using Content.Shared.Item;
 using Content.Shared.Physics;
@@ -144,6 +145,24 @@ public sealed partial class MedievalMagicSystem
         if (!spellCasterComponent.TargetStack.TryGetValue(action, out var targets))
         {
             spellCasterComponent.SpellStack.TryAdd(action, args);
+
+            return;
+        }
+
+        // A volley spell sends the projectiles that already hover behind the caster instead of spawning new ones
+        if (TryComp<MedievalVolleySpellComponent>(action, out var volley))
+        {
+            _volleySystem.Launch(
+                performer,
+                action,
+                volley,
+                targets.Take(volley.Count).Select(el => (el.CursorPosition, el.Target.HasValue ? GetEntity(el.Target.Value) : (EntityUid?) null)).ToList(),
+                args.ProjectileSpeed);
+
+            spellCasterComponent.TargetStack.Remove(action);
+            spellCasterComponent.SpellStack.Remove(action);
+
+            base.CastEntityTargetProjectileSpell(args);
 
             return;
         }

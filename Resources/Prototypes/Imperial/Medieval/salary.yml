@@ -1,0 +1,25 @@
+- type: entity
+  parent: BaseStructure
+  id: MedievalAtm
+  name: Treasury Crystal
+  description: Withdraws the salary you have earned.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/atm.rsi
+    layers:
+    - state: icon
+    - state: icon-on
+    offset: 0,0.25
+    noRot: true
+  - type: Icon
+    sprite: Imperial/Medieval/Structures/atm.rsi
+    state: icon
+  - type: InteractionOutline
+  - type: MedievalAtm
+    withdrawSound:
+      path: /Audio/Imperial/Medieval/coin_out.ogg

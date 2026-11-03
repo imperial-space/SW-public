@@ -109,3 +109,49 @@
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Special/seking_cloak.rsi
   - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakPass9
+  name: MedievalClothingNeckCloakPass
+  description: MedievalClothingNeckCloakPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck9.rsi
+  - type: Insulated
+  - type: ToggleableClothing
+    clothingPrototype: MedievalClothingHeadHoodNeckPass9
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakPass10
+  name: MedievalClothingNeckCloakPass
+  description: MedievalClothingNeckCloakPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck10.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakPass11
+  name: MedievalClothingNeckCloakPass
+  description: MedievalClothingNeckCloakPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck11.rsi
+  - type: Insulated
+  - type: ToggleableClothing
+    clothingPrototype: MedievalClothingHeadHoodNeckPass11
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}

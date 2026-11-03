@@ -1,0 +1,78 @@
+# Applies the mark to the selected target
+
+- type: entity
+  id: MedievalBloodMarkApplyBeginner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MedievalApplyBloodMark
+    multiplier: 0.15
+    duration: 10
+    effect: MedievalBloodMarkEffect
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: MedievalBloodMarkApplyMiddle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MedievalApplyBloodMark
+    multiplier: 0.25
+    duration: 14
+    effect: MedievalBloodMarkEffectMiddle
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: MedievalBloodMarkApplySenior
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MedievalApplyBloodMark
+    multiplier: 0.35
+    duration: 16
+    effect: MedievalBloodMarkEffectMiddle
+  - type: TimedDespawn
+    lifetime: 1
+
+# Sign above the marked entity: stamps in, then loses its parts while the mark runs out
+
+- type: entity
+  id: MedievalBloodMarkEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/BloodMark/effect.rsi
+    drawdepth: Effects
+    noRot: true
+    offset: 0, 0.85
+    layers:
+    - state: appear
+      map: [ "base" ]
+      shader: unshaded
+  - type: MedievalBloodMarkSign
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MedievalBloodMarkVisuals.Stage:
+        base:
+          Appear: { state: appear }
+          Stage0: { state: mark0 }
+          Stage1: { state: mark1 }
+          Stage2: { state: mark2 }
+          Stage3: { state: mark3 }
+          Stage4: { state: mark4 }
+  - type: PointLight
+    radius: 1.5
+    energy: 0.8
+    color: "#8B0000"
+    offset: 0, 0.85
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MedievalBloodMarkEffectMiddle
+  parent: MedievalBloodMarkEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/BloodMark/effect_middle.rsi

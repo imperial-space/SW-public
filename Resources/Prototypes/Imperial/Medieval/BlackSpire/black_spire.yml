@@ -1,0 +1,86 @@
+- type: entity
+  id: MedievalBlackSpire
+  parent: BaseStructure
+  name: black spire
+  description: A sinister spire spreading a curse across the sector.
+  suffix: Medieval
+  components:
+  - type: SpriteFade
+  - type: Sprite
+    sprite: Imperial/Medieval/BlackSpire/black_spire.rsi
+    drawdepth: Overdoors
+    offset: 0,0.9
+    layers:
+    - state: base
+      map: ["base"]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - Impassable
+        - HighImpassable
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+        - InteractImpassable
+  - type: ObeliskDestroyable
+    announcePhaseChanges: false
+    destroyedAnnouncement: medieval-black-spire-destroyed-announcement
+    announcementSender: medieval-black-spire-event-sender
+    announcementColor: LimeGreen
+    deleteOnDestruction: true
+    invincibilityDuration: 1
+    invincibilityEndedSound:
+      path: /Audio/Imperial/Medieval/magic-break.ogg
+    destroyedEffect: MedievalSkeletDespawnEffect
+    destroyedLoot: MagicMedievalDarkness
+    baseLayerStates:
+    - base
+    - base2
+    - base3
+    outerLayerState: ""
+    invincibleOuterLayerState: ""
+    phases:
+    - threshold: 1000
+      announcement: damaged
+      invincibleBaseLayerState: base
+    - threshold: 1000
+      announcement: critical
+      invincibleBaseLayerState: base2
+    - threshold: 1000
+      announcement: destroyed
+      destroyOnReached: true
+  - type: BlackSpire
+    stageDurations: [600, 600, 600]
+    effectInterval: 300
+    curseDuration: 300
+    needsMultiplier: 1.5
+    skeletonChance: 0.4
+    weakSkeleton: MedievalMobSkeletWeakSpell
+    characterSpawnMinRadius: 2
+    characterSpawnMaxRadius: 4
+    radiationDamage:
+      types:
+        Radiation: 5
+    aggressionInterval: 20
+    aggressionRadius: 15
+    damageAggressionDuration: 120
+    spawnMinRadius: 1.5
+    spawnMaxRadius: 6
+    invincibilityEndedSpawnCount: 5
+    skeletonPool:
+      MedievalMobSkeletHalberdSpell: 1
+      MedievalMobSkeletDaggerSpell: 1
+      MedievalMobSkeletLegionSpell: 1
+      MedievalMobSkeletSpearSpell: 1
+      MedievalMobSkeletFighterSpell: 1
+      MedievalMobSkeletMeatSpell: 10
+      MedievalMobSkeletWeakSpell: 20

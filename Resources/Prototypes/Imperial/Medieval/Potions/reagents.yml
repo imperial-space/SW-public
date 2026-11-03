@@ -1,6 +1,6 @@
 - type: reagent
   id: medievalexplosion
-  name: ""
+  name: alchemy-potion-medievalexplosion
   desc: imperial-medieval-medievalexplosion-desc
   physicalDesc: ""
   showinbook: false
@@ -32,7 +32,7 @@
 
 - type: reagent
   id: medievalhealburn
-  name: ""
+  name: alchemy-potion-medievalhealburn
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -76,7 +76,7 @@
 
 - type: reagent
   id: medievalhealbloodandoxygen
-  name: ""
+  name: alchemy-potion-medievalhealbloodandoxygen
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -119,7 +119,7 @@
 
 - type: reagent
   id: medievalacid
-  name: ""
+  name: alchemy-potion-medievalacid
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -213,7 +213,7 @@
 
 - type: reagent
   id: medievaldrughealmech
-  name: ""
+  name: alchemy-potion-medievaldrughealmech
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -259,7 +259,7 @@
 
 - type: reagent
   id: medievalvomit
-  name: ""
+  name: alchemy-potion-medievalvomit
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -295,7 +295,7 @@
 - type: reagent
   id: medievalAmmonia
   showinbook: false
-  name: ""
+  name: alchemy-potion-medievalAmmonia
   desc: ""
   physicalDesc: ""
   evaporationSpeed: 0.3
@@ -373,7 +373,7 @@
 - type: reagent
   id: medievalPlantBGone
   showinbook: false
-  name: ""
+  name: alchemy-potion-medievalPlantBGone
   desc: ""
   evaporationSpeed: 0.3
   absorbent: true
@@ -406,7 +406,7 @@
 - type: reagent
   id: medievalLeft4Zed
   showinbook: false
-  name: ""
+  name: alchemy-potion-medievalLeft4Zed
   desc: ""
   evaporationSpeed: 0.3
   absorbent: true
@@ -439,7 +439,7 @@
 - type: reagent
   id: medievalDiethylamine
   showinbook: false
-  name: ""
+  name: alchemy-potion-medievalDiethylamine
   desc: ""
   evaporationSpeed: 0.3
   absorbent: true
@@ -468,7 +468,7 @@
 
 - type: reagent
   id: medievalslow
-  name: ""
+  name: alchemy-potion-medievalslow
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -504,7 +504,7 @@
 
 - type: reagent
   id: medievalfast
-  name: ""
+  name: alchemy-potion-medievalfast
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -540,7 +540,7 @@
 
 - type: reagent
   id: medievalstamina
-  name: ""
+  name: alchemy-potion-medievalstamina
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -578,7 +578,7 @@
 
 - type: reagent
   id: medievalsmoke
-  name: ""
+  name: alchemy-potion-medievalsmoke
   desc: imperial-medieval-medievalsmoke-desc
   physicalDesc: ""
   showinbook: false
@@ -610,7 +610,7 @@
 - type: reagent
   id: medievalAntihol
   showinbook: false
-  name: ""
+  name: alchemy-potion-medievalAntihol
   desc: ""
   physicalDesc: ""
   flavor: null
@@ -632,7 +632,7 @@
 
 - type: reagent
   id: medievalcryoexplosion
-  name: ""
+  name: alchemy-potion-medievalcryoexplosion
   desc: imperial-medieval-medievalcryoexplosion-desc
   physicalDesc: ""
   showinbook: false
@@ -663,7 +663,7 @@
 
 - type: reagent
   id: medievalhealslash
-  name: ""
+  name: alchemy-potion-medievalhealslash
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -705,7 +705,7 @@
 
 - type: reagent
   id: medievalhealpiercing
-  name: ""
+  name: alchemy-potion-medievalhealpiercing
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -747,7 +747,7 @@
 
 - type: reagent
   id: medievalhealblunt
-  name: ""
+  name: alchemy-potion-medievalhealblunt
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -789,7 +789,7 @@
 
 - type: reagent
   id: medievalmute
-  name: ""
+  name: alchemy-potion-medievalmute
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -828,7 +828,7 @@
 
 - type: reagent
   id: medievalblind
-  name: ""
+  name: alchemy-potion-medievalblind
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -888,7 +888,7 @@
 
 - type: reagent
   id: medievaljitter
-  name: ""
+  name: alchemy-potion-medievaljitter
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -925,7 +925,7 @@
 
 - type: reagent
   id: medievalsleep
-  name: ""
+  name: alchemy-potion-medievalsleep
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -966,7 +966,7 @@
 
 - type: reagent
   id: medievalignite
-  name: ""
+  name: alchemy-potion-medievalignite
   desc: ""
   physicalDesc: ""
   showinbook: false
@@ -1009,7 +1009,7 @@
 
 - type: reagent
   id: medievalhealandstopblood
-  name: ""
+  name: alchemy-potion-medievalhealandstopblood
   desc: ""
   physicalDesc: ""
   showinbook: false

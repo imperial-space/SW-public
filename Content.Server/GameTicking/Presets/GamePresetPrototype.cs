@@ -31,6 +31,12 @@ namespace Content.Server.GameTicking.Presets
         [DataField("maxPlayers")]
         public int? MaxPlayers;
 
+        /// <summary>
+        ///     imperial medieval - whether votes for this mode carry over to the next preset vote when it loses.
+        /// </summary>
+        [DataField]
+        public bool CarryoverVotes = true;
+
         [DataField]
         public IReadOnlyList<EntProtoId> Rules { get; private set; } = Array.Empty<EntProtoId>();
 

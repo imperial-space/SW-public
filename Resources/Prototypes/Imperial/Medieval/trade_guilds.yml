@@ -724,10 +724,16 @@
   - productEntity: MedievalIronGlovesBrig
     cost: 30
     reputationForBuying: 1
+  - productEntity: MedievalIronGlovesChain
+    cost: 30
+    reputationForBuying: 1
   - productEntity: MedievalIronGlovesBear
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalClothingFeetSteel
+    cost: 35
+    reputationForBuying: 1.15
+  - productEntity: MedievalClothingFeetChain
     cost: 35
     reputationForBuying: 1.15
   - productEntity: MedievalClothingOuterArmorChainMailLight
@@ -758,6 +764,15 @@
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalClothingHeadHelmetBacinet
+    cost: 30
+    reputationForBuying: 1
+  - productEntity: MedievalClothingHeadHelmetBacinetVisorless
+    cost: 30
+    reputationForBuying: 1
+  - productEntity: MedievalClothingHeadHelmetCervelliere
+    cost: 30
+    reputationForBuying: 1
+  - productEntity: MedievalClothingHeadHelmetChainmail
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalClothingHeadHelmetNazal
@@ -1713,6 +1728,20 @@
   - productEntity: MedievalWizardBlacksmithCraft
     cost: 200
     reputationForBuying: 7.3
+  - productEntity: MedievalAlchemyWhiskCraft
+    cost: 20
+  - productEntity: MedievalAlchemyCoolCraft
+    cost: 40
+  - productEntity: MedievalAlchemyDistillCraft
+    cost: 40
+  - productEntity: MedievalAlchemyRectifyCraft
+    cost: 100
+  - productEntity: MedievalAlchemyExtractCraft
+    cost: 40
+  - productEntity: MedievalAlchemyFilterCraft
+    cost: 40
+  - productEntity: MedievalAlchemyInfuseCraft
+    cost: 40
   - productEntity: MedievalWoodenFloorCraft
     cost: 10
     reputationForBuying: 0.3

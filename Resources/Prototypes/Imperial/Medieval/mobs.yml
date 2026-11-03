@@ -3085,42 +3085,10 @@
 
 - type: entity
   name: legion skeleton
-  parent: MedievalMobSkeletBase
   id: MedievalMobSkeletLegion
   description: You should not approach him if you are not confident in your abilities.
+  parent: MedievalMobSkeletLegionBase
   components:
-  # outgoing poise per hit.
-  - type: PoiseDamage
-    poiseDamage: 10
-  - type: MedievalTimedDespawn
-    lifetime: 600
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Imperial/Medieval/Mobs/skelet_legion.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: base
-  - type: MeleeWeapon
-    damage:
-      groups:
-        Brute: 17
-      types:
-        ParryAble: 1
-        Radiation: 3
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      155: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 4.1
-    baseSprintSpeed: 4.1
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      10: 1
-      65: 0.8
-      110: 0.7
-      135: 0.6
-      160: 0.5
   - type: Butcherable
     spawned:
     - id: MedievalLootLegion
@@ -3128,9 +3096,6 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.20
-  - type: Hands
-  - type: ComplexInteraction
-  - type: AchievementTarget
 
 - type: entity
   name: legion skeleton
@@ -3384,42 +3349,10 @@
 
 - type: entity
   name: skeleton with a spear
-  parent: MedievalMobSkeletBase
   id: MedievalMobSkeletSpear
   description: This skeleton has a spear.
+  parent: MedievalMobSkeletSpearBase
   components:
-  # outgoing poise per hit.
-  - type: PoiseDamage
-    poiseDamage: 8
-  - type: MedievalTimedDespawn
-    lifetime: 600
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: base
-  - type: MeleeWeapon
-    attackRate: 0.65
-    range: 2.1
-    damage:
-      types:
-        Piercing: 12
-        ParryAble: 1
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      150: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3.7
-    baseSprintSpeed: 3.8
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      10: 1
-      65: 0.8
-      110: 0.7
-      135: 0.6
-      140: 0.5
   - type: Butcherable
     spawned:
     - id: MedievalLootLegion
@@ -3427,8 +3360,6 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.20
-  - type: Hands
-  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a spear
@@ -3445,45 +3376,10 @@
 
 - type: entity
   name: skeleton with a halberd
-  parent: MedievalMobSkeletBase
   id: MedievalMobSkeletHalberd
   description: This skeleton has a halberd.
+  parent: MedievalMobSkeletHalberdBase
   components:
-  # outgoing poise per hit.
-  - type: PoiseDamage
-    poiseDamage: 15
-  - type: MedievalTimedDespawn
-    lifetime: 600
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: base
-  - type: MeleeWeapon
-    attackRate: 0.4
-    damage:
-      types:
-        Piercing: 12
-        Slash: 12
-        Structural: 2
-        ParryAble: 1
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      150: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3.7
-    baseSprintSpeed: 3.8
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      10: 1
-      65: 0.8
-      110: 0.7
-      135: 0.6
-      140: 0.5
   - type: Butcherable
     spawned:
     - id: MedievalLootLegion
@@ -3491,8 +3387,6 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.20
-  - type: Hands
-  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a halberd
@@ -3509,42 +3403,10 @@
 
 - type: entity
   name: skeleton with a dagger
-  parent: MedievalMobSkeletBase
   id: MedievalMobSkeletDagger
   description: This skeleton has a daggers.
+  parent: MedievalMobSkeletDaggerBase
   components:
-  # outgoing poise per hit.
-  - type: PoiseDamage
-    poiseDamage: 2
-  - type: MedievalTimedDespawn
-    lifetime: 600
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: base
-  - type: MeleeWeapon
-    attackRate: 1.34
-    range: 1
-    damage:
-      types:
-        Slash: 12.5
-        ParryAble: 1
-    soundHit:
-      path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      120: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 4.6
-    baseSprintSpeed: 4.7
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      10: 1
-      65: 0.8
-      110: 0.7
   - type: Butcherable
     spawned:
     - id: MedievalLootLegion
@@ -3552,8 +3414,6 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.20
-  - type: Hands
-  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a dagger
@@ -4540,7 +4400,7 @@
       groups:
         Brute: 56
       types:
-        ParryAble: 1.5
+        ParryAble: 0.5
         Caustic: 1
         Bloodloss: 3
   - type: Puller
@@ -5040,3 +4900,187 @@
   - type: SmokeOnTrigger
     duration: 10
     spreadAmount: 5
+
+- type: entity
+  name: magical halberd skeleton
+  parent: MedievalMobSkeletHalberdBase
+  id: MedievalMobSkeletHalberdSpell
+  description: A revenant that sweeps its long halberd in heavy, measured arcs.
+
+- type: entity
+  name: magical dagger skeleton
+  parent: MedievalMobSkeletDaggerBase
+  id: MedievalMobSkeletDaggerSpell
+  description: A quick-footed revenant that closes the distance and strikes with both daggers.
+
+- type: entity
+  name: magical legionary skeleton
+  parent: MedievalMobSkeletLegionBase
+  id: MedievalMobSkeletLegionSpell
+  description: A veteran legionary risen by sorcery, advancing in step and refusing to yield ground.
+
+- type: entity
+  name: magical spear skeleton
+  parent: MedievalMobSkeletSpearBase
+  id: MedievalMobSkeletSpearSpell
+  description: A tireless sentry that keeps its spear between itself and anyone who comes near.
+
+- type: entity
+  id: MedievalMobSkeletHalberdBase
+  parent: MedievalMobSkeletBase
+  abstract: true
+  components:
+  - type: PoiseDamage
+    poiseDamage: 15
+  - type: MedievalTimedDespawn
+    lifetime: 600
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    attackRate: 0.4
+    damage:
+      types:
+        Piercing: 12
+        Slash: 12
+        Structural: 2
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.7
+    baseSprintSpeed: 3.8
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      65: 0.8
+      110: 0.7
+      135: 0.6
+      140: 0.5
+  - type: Hands
+  - type: ComplexInteraction
+
+- type: entity
+  id: MedievalMobSkeletDaggerBase
+  parent: MedievalMobSkeletBase
+  abstract: true
+  components:
+  - type: PoiseDamage
+    poiseDamage: 2
+  - type: MedievalTimedDespawn
+    lifetime: 600
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    attackRate: 1.34
+    range: 1
+    damage:
+      types:
+        Slash: 12.5
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.6
+    baseSprintSpeed: 4.7
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      65: 0.8
+      110: 0.7
+  - type: Hands
+  - type: ComplexInteraction
+
+- type: entity
+  id: MedievalMobSkeletLegionBase
+  parent: MedievalMobSkeletBase
+  abstract: true
+  components:
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: MedievalTimedDespawn
+    lifetime: 600
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_legion.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 17
+      types:
+        ParryAble: 1
+        Radiation: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      155: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.1
+    baseSprintSpeed: 4.1
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      65: 0.8
+      110: 0.7
+      135: 0.6
+      160: 0.5
+  - type: Hands
+  - type: ComplexInteraction
+  - type: AchievementTarget
+
+- type: entity
+  id: MedievalMobSkeletSpearBase
+  parent: MedievalMobSkeletBase
+  abstract: true
+  components:
+  - type: PoiseDamage
+    poiseDamage: 8
+  - type: MedievalTimedDespawn
+    lifetime: 600
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    attackRate: 0.65
+    range: 2.1
+    damage:
+      types:
+        Piercing: 12
+        ParryAble: 1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.7
+    baseSprintSpeed: 3.8
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      65: 0.8
+      110: 0.7
+      135: 0.6
+      140: 0.5
+  - type: Hands
+  - type: ComplexInteraction

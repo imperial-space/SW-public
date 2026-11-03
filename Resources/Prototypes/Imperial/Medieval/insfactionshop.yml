@@ -445,6 +445,14 @@
   - MedievalInsArmor
 
 - type: listing
+  id: MdvInsMedievalIronGloves4
+  productEntity: MedievalIronGlovesChain
+  cost:
+    MedalIns: 3
+  categories:
+  - MedievalInsArmor
+
+- type: listing
   id: MdvInsMedievalIronGloves3
   productEntity: MedievalIronGlovesBear
   cost:

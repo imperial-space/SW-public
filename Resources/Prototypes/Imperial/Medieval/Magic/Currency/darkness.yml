@@ -6,6 +6,13 @@
   canWithdraw: true
   cash:
     1: MagicMedievalDarkness1
+  school:
+    order: 4
+    name: foliant-school-MagicMedievalDarkness
+    word: imperial-store-slot-word-darkness
+    color: "#B600FF"
+    effect: ImperialStoreSlotEffectDarkness
+    rune: rune_dark.png
 
 # Entity
 

@@ -6,6 +6,14 @@
   canWithdraw: false
   cash:
     1: MagicMedievalEarth1
+  school:
+    order: 3
+    name: foliant-school-MagicMedievalEarth
+    word: imperial-store-slot-word-earth
+    color: "#838275"
+    effect: ImperialStoreSlotEffectEarth
+    rune: rune_earth.png
+    windowColor: "#8a6a4a"
 
 # Entity
 

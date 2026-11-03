@@ -1,0 +1,42 @@
+# Blood circle under the caster, one sprite state per tier
+
+- type: entity
+  id: BloodMarkSpellCastEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/BloodMark/cast.rsi
+    drawdepth: SmallMobs
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#8B0000"
+  - type: TimedDespawn
+    lifetime: 0.65
+
+- type: entity
+  id: BloodMarkSpellCastEffectMiddle
+  parent: BloodMarkSpellCastEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: middle
+        shader: unshaded
+
+- type: entity
+  id: BloodMarkSpellCastEffectSenior
+  parent: BloodMarkSpellCastEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    radius: 4
+    energy: 1.4
+  - type: Sprite
+    layers:
+      - state: senior
+        shader: unshaded

@@ -156,3 +156,16 @@ medieval-store-spells-darkness-cursed-arrow-player-follower-middle-name = Cursed
 medieval-store-spells-darkness-cursed-arrow-player-follower-middle-desc = Fire up to four homing arrows. Costs 35 mana. Use the middle mouse button to select multiple targets.
 medieval-store-spells-darkness-cursed-arrow-player-follower-senior-name = Cursed arrow: Pursuit
 medieval-store-spells-darkness--cursed-arrow-player-follower-senior-desc = Fire up to six homing arrows. Costs 45 mana. Use the middle mouse button to select multiple targets.
+
+# Blood mark
+
+medieval-spell-speach-blood-mark = S̶i͢g̡n̷ų́m͝ S̡a͜n̶g̨úi͢n̷is͝
+
+medieval-store-spells-darkness-blood-mark-beginner-name = Blood mark
+medieval-store-spells-darkness-blood-mark-beginner-desc = Mark the chosen target with blood: for 10 seconds it takes somewhat more damage. Marks do not stack. Range 7 tiles. Costs 40 mana.
+
+medieval-store-spells-darkness-blood-mark-middle-name = Blood brand
+medieval-store-spells-darkness-blood-mark-middle-desc = Burn a blood brand into the chosen target: for 14 seconds it takes noticeably more damage. Marks do not stack. Range 9 tiles. Costs 55 mana.
+
+medieval-store-spells-darkness-blood-mark-senior-name = Crimson seal
+medieval-store-spells-darkness-blood-mark-senior-desc = Lay a crimson seal on the chosen target: for 16 seconds it takes much more damage. Marks do not stack. Range 11 tiles. Costs 65 mana.

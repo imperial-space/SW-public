@@ -68,6 +68,11 @@
   - type: StaticPrice
     price: 50
 
+  # fits into a travel tent
+  - type: Tag
+    tags:
+    - MedievalSleepingBag
+
 
 # Rolled version used by crafting and shops
 

@@ -1,0 +1,145 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionIcicleHailBeginner
+  name: medieval-store-spells-vodka-icicle-hail-beginner-name
+  description: medieval-store-spells-vodka-icicle-hail-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalVodka: 1
+        bonusEssences:
+          MagicMedievalVodka: 1
+  - type: ManaDrainSpell
+    manaDrain: 35
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: SpellCastEffect
+    effectProto: IceBarrierSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icewall_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Vodka/IcicleHail/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalIcicleHailBeginner
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1.8
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-icicle-hail
+          color: "#78C6ED"
+          hideChat: true
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionIcicleHailMiddle
+      3: MedievalActionIcicleHailSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionIcicleHailMiddle
+  parent: MedievalActionIcicleHailBeginner
+  name: medieval-store-spells-vodka-icicle-hail-middle-name
+  description: medieval-store-spells-vodka-icicle-hail-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 50
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 25
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icewall_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Vodka/IcicleHail/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 9
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalIcicleHailMiddle
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 2.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-icicle-hail
+          color: "#78C6ED"
+          hideChat: true
+
+# Senior
+
+- type: entity
+  id: MedievalActionIcicleHailSenior
+  parent: MedievalActionIcicleHailMiddle
+  name: medieval-store-spells-vodka-icicle-hail-senior-name
+  description: medieval-store-spells-vodka-icicle-hail-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 70
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icewall_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Vodka/IcicleHail/icons.rsi
+      state: senior
+  - type: TargetAction
+    checkCanAccess: false
+    range: 10
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalIcicleHailSenior
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 3
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-icicle-hail
+          color: "#78C6ED"
+          hideChat: true

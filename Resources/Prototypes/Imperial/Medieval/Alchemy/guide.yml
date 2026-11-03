@@ -1,0 +1,13 @@
+- type: entity
+  parent: MedievalPaper
+  id: MedievalAlchemyGuide
+  name: alchemy parchment
+  description: A parchment explaining how to extract aspects and brew potions.
+  components:
+  - type: ActivatableUI
+    verbOnly: true
+  - type: GuideHelp
+    guides:
+    - MedievalAlchemyBasics
+    - MedievalAlchemy
+    openOnActivation: true

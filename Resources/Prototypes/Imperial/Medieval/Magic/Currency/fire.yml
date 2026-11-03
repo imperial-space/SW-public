@@ -6,6 +6,13 @@
   canWithdraw: false
   cash:
     1: MagicMedievalFire1
+  school:
+    order: 0
+    name: foliant-school-MagicMedievalFire
+    word: imperial-store-slot-word-fire
+    color: "#FF5900"
+    effect: ImperialStoreSlotEffectFire
+    rune: rune_fire.png
 
 # Entity
 

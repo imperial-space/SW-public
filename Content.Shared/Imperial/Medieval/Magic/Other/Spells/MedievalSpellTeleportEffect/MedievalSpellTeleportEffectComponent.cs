@@ -17,5 +17,11 @@ public sealed partial class MedievalSpellTeleportEffectComponent : Component
 
     [DataField]
     public bool CheckOccluded = true;
+
+    /// <summary>
+    /// Hide the caster sprite while the spell is being cast.
+    /// </summary>
+    [DataField]
+    public bool HideCaster = true;
 }
 

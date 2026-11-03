@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseGameRule
+  id: MedievalBlackSpireSpawnRule
+  components:
+  - type: GameRule
+  - type: BlackSpireSpawnRule
+    spirePrototype: MedievalBlackSpire
+
+- type: entity
+  parent: MarkerBase
+  id: MedievalBlackSpireSpawnMarker
+  suffix: Medieval
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: BlackSpireSpawnMarker

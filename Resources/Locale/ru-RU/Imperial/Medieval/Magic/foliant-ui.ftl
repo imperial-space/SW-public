@@ -1,0 +1,20 @@
+# Window of the grimoire (Foliant)
+foliant-search = Искать в записях
+foliant-learn = Изучить
+foliant-refund = Стереть изученное
+foliant-circle-title = Рунный круг
+foliant-slot-empty = Пусто
+foliant-pick-title = Чей дар призвать?
+foliant-pick-select = Вложить
+foliant-pick-lack = Сил для этого дара пока не хватает
+foliant-pick-clear = Развеять дар
+foliant-school-MagicMedievalFire = Огонь
+foliant-school-MagicMedievalLight = Свет
+foliant-school-MagicMedievalVodka = Вода
+foliant-school-MagicMedievalEarth = Земля
+foliant-school-MagicMedievalDarkness = Тьма
+foliant-seals = печати архимага
+foliant-empty = Здесь пока нет записей
+foliant-empty-search = В записях такого нет
+foliant-ritual-hint-empty = Коснись гнезда, чтобы вложить дар
+foliant-ritual-hint-full = Коснись гнезда, чтобы сменить дар

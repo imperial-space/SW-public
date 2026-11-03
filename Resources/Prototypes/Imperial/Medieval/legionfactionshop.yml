@@ -441,6 +441,14 @@
   - MedievalLegionArmor
 
 - type: listing
+  id: MdvLegionMedievalIronGlovesChain
+  productEntity: MedievalIronGlovesChain
+  cost:
+    MedalLegion: 3
+  categories:
+  - MedievalLegionArmor
+
+- type: listing
   id: MdvLegionMedievalIronGlovesBear
   productEntity: MedievalIronGlovesBear
   cost:

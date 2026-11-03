@@ -1,0 +1,118 @@
+# Swords of the radiant phalanx. They do not collide until they are launched.
+# The sprite points up, so the projectile is turned by 180 degrees to fly point first.
+
+- type: entity
+  id: MedievalProjectileRadiantSwordBase
+  parent: BaseBullet
+  name: radiant sword
+  description: A blade of radiant light.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/projectiles.rsi
+    scale: 0.75, 0.75
+    layers:
+    - state: sword
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#FFE57E"
+  - type: Projectile
+    angle: 180
+    onlyCollideWhenShot: true
+    forceSound: true # otherwise the Heat part makes mobs play their energy hit sound
+    impactEffect: RadiantSwordImpact
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DelayedSpawn
+    proto: RadiantSwordSummonFlash
+    delay: 0.02
+    attached: true
+  - type: TimedDespawn
+    lifetime: 30
+
+# Beginner
+
+- type: entity
+  id: MedievalProjectileRadiantSwordBeginner
+  parent: MedievalProjectileRadiantSwordBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 9
+        Heat: 8
+  - type: APDamageOnHit
+    damage:
+      types:
+        Heat: 1.5
+
+# Middle
+
+- type: entity
+  id: MedievalProjectileRadiantSwordMiddle
+  parent: MedievalProjectileRadiantSwordBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 8.5
+        Heat: 8.5
+  - type: APDamageOnHit
+    damage:
+      types:
+        Heat: 2
+
+# Senior
+
+- type: entity
+  id: MedievalProjectileRadiantSwordSenior
+  parent: MedievalProjectileRadiantSwordBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 8.5
+        Heat: 8.5
+  - type: APDamageOnHit
+    damage:
+      types:
+        Heat: 3
+
+# Effects
+
+- type: entity
+  id: RadiantSwordSummonFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/effects.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: summon
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.3
+
+- type: entity
+  id: RadiantSwordImpact
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/RadiantPhalanx/effects.rsi
+    drawdepth: Effects
+    layers:
+    - state: impact
+      shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu

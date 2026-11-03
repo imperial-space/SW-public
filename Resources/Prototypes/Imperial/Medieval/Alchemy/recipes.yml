@@ -1,0 +1,515 @@
+- type: alchemyRecipe
+  id: BaseAlchemyRecipeT1
+  abstract: true
+  tag: Potion
+  group: EasyPack
+  tier: 1
+  randomized: false
+  strictRatio: true
+  allowImpurities: false
+  ingredientCount: 2
+  expectedSteps: 2
+  maxComplexity: 8
+
+- type: alchemyRecipe
+  id: BaseAlchemyRecipeT2
+  abstract: true
+  tag: Potion
+  group: MediumPack
+  tier: 2
+  randomized: true
+  strictRatio: true
+  allowImpurities: false
+  ingredientCount: 2
+  totalAspectAmount: 20
+  minParts: 1
+  maxParts: 18
+  expectedSteps: 3
+  maxComplexity: 8
+
+- type: alchemyRecipe
+  id: BaseAlchemyRecipeT3
+  abstract: true
+  tag: Potion
+  group: HardPack
+  tier: 3
+  randomized: true
+  strictRatio: true
+  allowImpurities: false
+  ingredientCount: 3
+  totalAspectAmount: 35
+  minParts: 1
+  maxParts: 20
+  expectedSteps: 4
+  maxComplexity: 15
+
+- type: alchemyRecipe
+  id: BaseAlchemyRecipeDrink
+  abstract: true
+  parent: BaseAlchemyRecipeT1
+  tag: Drink
+  strictRatio: false
+  allowImpurities: false
+  maxComplexity: 8
+
+- type: alchemyRecipe
+  id: Alchemymedievalexplosion
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyFire
+    amount: 4
+  - reagent: AlchemyEarth
+    amount: 4
+  - reagent: AlchemyLight
+    amount: 4
+  steps:
+  - operation: Filter
+  - operation: Stir
+  - operation: Cool
+  entityProducts:
+    MedievalExplosiveMixtureT1: 1
+
+- type: alchemyRecipe
+  id: Alchemymedievalhealburn
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 1
+  - reagent: AlchemyFire
+    amount: 1
+  steps:
+  - operation: Stir
+  products:
+    medievalhealburn: 2
+
+- type: alchemyRecipe
+  id: Alchemymedievalhealbloodandoxygen
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 1
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Stir
+  products:
+    medievalhealbloodandoxygen: 2
+
+- type: alchemyRecipe
+  id: Alchemymedievalacid
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyEarth
+    amount: 1
+  - reagent: AlchemyFire
+    amount: 2
+  steps:
+  - operation: Stir
+  products:
+    medievalacid: 3
+
+- type: alchemyRecipe
+  id: Alchemymedievaldrughealmech
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyEarth
+    amount: 1
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievaldrughealmech: 2
+
+- type: alchemyRecipe
+  id: Alchemymedievalvomit
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyFire
+    amount: 1
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievalvomit: 2
+
+- type: alchemyRecipe
+  id: AlchemymedievalAmmonia
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 2
+  - reagent: AlchemyEarth
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievalAmmonia: 3
+
+- type: alchemyRecipe
+  id: AlchemymedievalPlantBGone
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 2
+  - reagent: AlchemyFire
+    amount: 1
+  steps:
+  - operation: Stir
+  - operation: Heat
+  products:
+    medievalPlantBGone: 3
+
+- type: alchemyRecipe
+  id: AlchemymedievalLeft4Zed
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 1
+  - reagent: AlchemyLight
+    amount: 1
+  - reagent: AlchemyEarth
+    amount: 1
+  steps:
+  - operation: Stir
+  - operation: Cool
+  products:
+    medievalLeft4Zed: 3
+
+- type: alchemyRecipe
+  id: AlchemymedievalDiethylamine
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyEarth
+    amount: 2
+  - reagent: AlchemyFire
+    amount: 1
+  steps:
+  - operation: Stir
+  products:
+    medievalDiethylamine: 3
+
+- type: alchemyRecipe
+  id: Alchemymedievalslow
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyEarth
+    amount: 2
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievalslow: 3
+
+- type: alchemyRecipe
+  id: Alchemymedievalfast
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyFire
+    amount: 2
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievalfast: 3
+
+- type: alchemyRecipe
+  id: Alchemymedievalstamina
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 3
+  - reagent: AlchemyEarth
+    amount: 1
+  steps:
+  - operation: Heat
+  - operation: Stir
+  products:
+    medievalstamina: 4
+
+- type: alchemyRecipe
+  id: Alchemymedievalsmoke
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 3
+  - reagent: AlchemyFire
+    amount: 1
+  steps:
+  - operation: Stir
+  - operation: Heat
+  products:
+    medievalsmoke: 4
+
+- type: alchemyRecipe
+  id: AlchemymedievalAntihol
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 1
+  - reagent: AlchemyLight
+    amount: 1
+  - reagent: AlchemyFire
+    amount: 1
+  steps:
+  - operation: Whip
+  products:
+    medievalAntihol: 3
+
+- type: alchemyRecipe
+  id: Alchemymedievalcryoexplosion
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyEarth
+    amount: 3
+  - reagent: AlchemyFire
+    amount: 1
+  steps:
+  - operation: Stir
+  entityProducts:
+    MedievalCryoMixture: 1
+
+- type: alchemyRecipe
+  id: Alchemymedievalhealslash
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyEarth
+    amount: 3
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievalhealslash: 4
+
+- type: alchemyRecipe
+  id: Alchemymedievalhealpiercing
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyFire
+    amount: 3
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievalhealpiercing: 4
+
+- type: alchemyRecipe
+  id: Alchemymedievalhealblunt
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 4
+  - reagent: AlchemyEarth
+    amount: 1
+  steps:
+  - operation: Heat
+  - operation: Stir
+  products:
+    medievalhealblunt: 5
+
+- type: alchemyRecipe
+  id: Alchemymedievalmute
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 4
+  - reagent: AlchemyFire
+    amount: 1
+  steps:
+  - operation: Stir
+  - operation: Heat
+  products:
+    medievalmute: 5
+
+- type: alchemyRecipe
+  id: Alchemymedievalblind
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 4
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Stir
+  products:
+    medievalblind: 5
+
+- type: alchemyRecipe
+  id: Alchemymedievaljitter
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyEarth
+    amount: 4
+  - reagent: AlchemyFire
+    amount: 1
+  steps:
+  - operation: Stir
+  products:
+    medievaljitter: 5
+
+- type: alchemyRecipe
+  id: Alchemymedievalsleep
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyEarth
+    amount: 4
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievalsleep: 5
+
+- type: alchemyRecipe
+  id: Alchemymedievalignite
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyFire
+    amount: 4
+  - reagent: AlchemyLight
+    amount: 1
+  steps:
+  - operation: Heat
+  products:
+    medievalignite: 5
+
+- type: alchemyRecipe
+  id: Alchemymedievalhealandstopblood
+  parent: BaseAlchemyRecipeT1
+  ingredients:
+  - reagent: AlchemyWater
+    amount: 5
+  - reagent: AlchemyEarth
+    amount: 1
+  steps:
+  - operation: Heat
+  - operation: Stir
+  products:
+    medievalhealandstopblood: 6
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedhealeverything
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedhealeverything: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedhealslash
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedhealslash: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedhealpiercing
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedhealpiercing: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedhealblunt
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedhealblunt: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedhealburn
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedhealburn: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedfast
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedfast: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedslow
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedslow: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedpacifism
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedpacifism: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedradiation
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedradiation: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedteleport
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedteleport: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedhealandstopblood
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedhealandstopblood: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedstimulant
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedstimulant: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedignite
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancedignite: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancednocturnblood
+  parent: BaseAlchemyRecipeT2
+  products:
+    medievaladvancednocturnblood: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievaladvancedsmokeandexplosion
+  parent: BaseAlchemyRecipeT2
+  entityProducts:
+    MedievalExplosiveMixtureT2: 1
+
+- type: alchemyRecipe
+  id: Alchemymedievalbestexplosion
+  parent: BaseAlchemyRecipeT3
+  totalAspectAmount: 100
+  maxParts: 50
+  entityProducts:
+    MedievalExplosiveMixtureT3: 1
+
+- type: alchemyRecipe
+  id: Alchemymedievalbestheal
+  parent: BaseAlchemyRecipeT3
+  products:
+    medievalbestheal: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievalbestpoison
+  parent: BaseAlchemyRecipeT3
+  products:
+    medievalbestpoison: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievalbestacidradiation
+  parent: BaseAlchemyRecipeT3
+  products:
+    medievalbestacidradiation: 10
+
+- type: alchemyRecipe
+  id: Alchemymedievalbeststimulant
+  parent: BaseAlchemyRecipeT3
+  products:
+    medievalbeststimulant: 10

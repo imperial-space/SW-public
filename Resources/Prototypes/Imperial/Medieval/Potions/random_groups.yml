@@ -54,7 +54,6 @@
   id: EasyPack
   priority: 1
   potions:
-  - medievalexplosion
   - medievalhealburn
   - medievalhealbloodandoxygen
   - medievalacid
@@ -69,7 +68,6 @@
   - medievalstamina
   - medievalsmoke
   - medievalAntihol
-  - medievalcryoexplosion
   - medievalhealslash
   - medievalhealpiercing
   - medievalhealblunt
@@ -102,7 +100,7 @@
   - "#ffffff"
   - "#3d3d3d"
   recipeCount: 2
-  potionCount: 25
+  potionCount: 23
 
 - type: chemRandom
   id: MediumPack
@@ -122,7 +120,6 @@
   - medievaladvancedstimulant
   - medievaladvancedignite
   - medievaladvancednocturnblood
-  - medievaladvancedsmokeandexplosion
   reactants: 0
   usedGroups:
   - EasyPack
@@ -150,18 +147,17 @@
   - "#5a7e45"
   - "#ffffff"
   - "#3d3d3d"
-  potionCount: 8
+  potionCount: 14
 
 - type: chemRandom
   id: HardPack
   potions:
-  - medievalbestexplosion
   - medievalbestheal
   - medievalbestpoison
   - medievalbestacidradiation
   - medievalbeststimulant
   reactants: 1
-  potionCount: 2
+  potionCount: 4
   priority: 3
   usedGroups:
   - EasyPack

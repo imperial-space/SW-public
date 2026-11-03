@@ -320,6 +320,7 @@
       - id: MedievalIronGloves
       - id: MedievalIronGlovesBear
       - id: MedievalIronGlovesBrig
+      - id: MedievalIronGlovesChain
       - id: MedievalRepairStone
       - id: MedievalClothingHeadHelmetShapel
       - id: BowImprovised

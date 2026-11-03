@@ -1,0 +1,16 @@
+<Document>
+  <GuideLocalizedText Key="guide-entry-medieval-alchemy" Style="LabelHeadingBigger"/>
+
+  <GuideLocalizedText Key="alchemy-guide-introduction"/>
+
+  <GuideLocalizedText Key="alchemy-guide-quantities"/>
+
+  <GuideLocalizedText Key="alchemy-guide-aspects-title" Style="LabelHeading"/>
+  <GuideLocalizedText Key="alchemy-guide-aspects"/>
+
+  <GuideLocalizedText Key="guide-entry-medieval-alchemy-potions" Style="LabelHeading"/>
+  <GuideAlchemyRecipeTable Tag="Potion"/>
+
+  <GuideLocalizedText Key="guide-entry-medieval-alchemy-drinks" Style="LabelHeading"/>
+  <GuideAlchemyRecipeTable Tag="Drink"/>
+</Document>

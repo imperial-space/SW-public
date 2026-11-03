@@ -126,3 +126,16 @@ medieval-spell-speach-flash = O̧̢B̧̀͘Ş͝͡C̷͜͢U̧͝R̴A͝ŢIO̸͏̴
 medieval-spell-speach-holy-touch = Ţ̀á̸͡c̸t͘u͡s͡ ̧͜Sa̵̶͜nc̕t͝u̷s
 
 medieval-spell-speach-magic-light = Íl͏ĺ̡͡um̴̷͠ín͢͜͞a͟ ̕V͢͏͡i̸͞͞a͘͜m̀̕
+
+# Radiant Phalanx
+
+medieval-spell-speach-radiant-phalanx = P͜h͜a̧͡ĺa̵n͜͢x̷ R̷a̵d̕i̵a͢n̴s̸͜
+
+medieval-store-spells-light-radiant-phalanx-beginner-name = Pair of radiant blades
+medieval-store-spells-light-radiant-phalanx-beginner-desc = Summons two radiant blades that hover behind you. Once the targets are chosen the blades rush at them one after another. Costs 25 mana.
+
+medieval-store-spells-light-radiant-phalanx-middle-name = Radiant blade phalanx
+medieval-store-spells-light-radiant-phalanx-middle-desc = Summons three radiant blades that hover behind you. Once the targets are chosen the blades rush at them one after another. Costs 40 mana.
+
+medieval-store-spells-light-radiant-phalanx-senior-name = Grand blade phalanx
+medieval-store-spells-light-radiant-phalanx-senior-desc = Summons five radiant blades that hover behind you. Once the targets are chosen the blades rush at them one after another. Costs 55 mana.

@@ -1,0 +1,15 @@
+rp-panel-interact = Interact
+rp-panel-cooldown = Wait one second before interacting with this target again.
+rp-panel-too-far = too far away
+rp-panel-look = Look
+rp-panel-wave = Wave
+rp-panel-hug = Hug
+rp-panel-shake = Shake
+rp-panel-look-self = You look at { $target }
+rp-panel-look-target = { $user } looks at you
+rp-panel-wave-self = You wave at { $target }
+rp-panel-wave-target = { $user } waves at you
+rp-panel-wave-others = { $user } waves toward { $target }
+rp-panel-shake-self = You shake { $target }
+rp-panel-shake-target = { $user } shakes you
+rp-panel-shake-others = { $user } shakes { $target }

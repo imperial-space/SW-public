@@ -127,3 +127,17 @@ medieval-spell-speach-fire-fetter = Kɛlɛ faama nɛɛma
 
 medieval-spell-speach-fire-fetter-beginner-name = Огненные оковы
 medieval-spell-speach-fire-fetter-beginner-desc = Призывает магические огненные оковы в руку. При ударе наносят огненный урон и поджигают цель. Стоимость 35 маны.
+
+medieval-spell-speach-fire-fists = I̩̾͞G͈͌͠Ǹ͓͜I̝̿S̬̃͜ P̲̌U̦̽G̥͊͝N͙̅͘U͎͋S̹̄͢
+medieval-spell-fire-fists-need-two-hands = Для этого заклинания нужны две свободные руки.
+
+medieval-store-spells-fire-fists-beginner-name = Кулаки гнева
+medieval-store-spells-fire-fists-beginner-desc = Поджигает оба кулака на 25 секунд (обе руки должны быть свободны): удары наносят дополнительный огненный урон, а руки при каждом ударе меняются сами. Можно бить, зажав кнопку мыши. Стоимость 40 маны.
+
+medieval-store-spells-fire-fists-middle-name = Кулаки пекла
+medieval-store-spells-fire-fists-middle-desc = Огонь разгорается сильнее и держится 30 секунд: кулаки бьют быстрее и больнее. Стоимость 60 маны.
+
+ent-FireFistsBeginner = кулак гнева
+    .desc = Пылающий кулак мага. Каждый удар наносит огненный урон.
+ent-FireFistsMiddle = кулак пекла
+    .desc = Пылающий кулак мага. Бьёт быстрее и жжёт сильнее.

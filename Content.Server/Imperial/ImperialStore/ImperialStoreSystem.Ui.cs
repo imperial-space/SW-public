@@ -107,7 +107,17 @@ public sealed partial class ImperialStoreSystem
 
         // only tell operatives to lock their uplink if it can be locked
         var showFooter = HasComp<RingerUplinkComponent>(store);
-        var state = new ImperialStoreUpdateState(component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed);
+
+        // imperial medieval - essence slots
+        var slots = new List<string?>(component.BonusCount);
+        for (var i = 0; i < component.BonusCount; i++)
+        {
+            slots.Add(GetSlotSchool(component, i));
+        }
+
+        var selectable = GetSelectableSchools(user ?? component.AccountOwner, component, component.LastAvailableListings);
+
+        var state = new ImperialStoreUpdateState(component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed, slots, selectable);
         _ui.SetUiState(store, ImperialStoreUiKey.Key, state);
     }
 

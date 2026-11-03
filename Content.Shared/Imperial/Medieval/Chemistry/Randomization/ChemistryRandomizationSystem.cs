@@ -7,6 +7,7 @@ using Content.Shared.Database;
 using Content.Shared.Destructible.Thresholds;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
+using Content.Shared.Imperial.Medieval.Alchemy;
 using Content.Shared.Nutrition;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -183,6 +184,18 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
             }
             GenerateFromGroup(item, ref recipes, ref offset);
         }
+        var alchemy = _prototypeManager.EnumeratePrototypes<Content.Shared.Imperial.Medieval.Alchemy.AlchemyRecipePrototype>().Where(p => !p.Abstract).ToList();
+        var products = alchemy.SelectMany(p => p.Products.Keys).ToHashSet();
+        foreach (var reactions in _reactions.Values.Concat(_reactionsSingle.Values))
+            reactions.RemoveAll(r => r.Products.Keys.Any(products.Contains));
+        foreach (var product in products)
+        {
+            if (_reagentsData.TryGetValue(product, out var generated))
+                generated.Reactions.Clear();
+        }
+        foreach (var product in alchemy.Where(p => !p.Randomized).SelectMany(p => p.Products.Keys))
+            _reagentsData.Remove(product);
+
     }
 
     /// <summary>
@@ -611,6 +624,8 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     /// </summary>
     public void FullyReactSolution(Entity<SolutionComponent> soln, ReactionMixerComponent? mixerComponent = null)
     {
+        AlchemyRecipeSystem.MergeHistories(soln.Comp.Solution);
+
         // construct the initial set of reactions to check.
         SortedSet<ReactionData> reactions = new();
         foreach (var reactant in soln.Comp.Solution.Contents)
@@ -631,4 +646,3 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     }
     #endregion
 }
-

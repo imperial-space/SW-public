@@ -18,7 +18,7 @@ public sealed class CalendarSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
-    public const int DayStageNumber = 12;
+    public const int DayStageNumber = 1;
     public const int NightStageNumber = 6;
 
     public const string DayTag = "Day";
@@ -41,6 +41,7 @@ public sealed class CalendarSystem : EntitySystem
         SubscribeLocalEvent<DayCycleStageChangedEvent>(OnDayCycleChanged);
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStart);
         SubscribeLocalEvent<CalendarEventStartedEvent>(OnCalendarEventStarted);
+        SubscribeLocalEvent<DayCycleFinishedEvent>(OnNewDayCycle);
     }
 
     private void OnCalendarEventStarted(CalendarEventStartedEvent args)
@@ -100,6 +101,11 @@ public sealed class CalendarSystem : EntitySystem
     {
         _curCycle = 0;
         InitializeCalendarDecks();
+
+        if (_dayDeck.Count > 0)
+            TriggerDayStageNotification(_dayDeck[0]);
+        else
+            TriggerDayStageNotification("DefaultCalendarEvent");
     }
 
     private void InitializeCalendarDecks()
@@ -152,7 +158,13 @@ public sealed class CalendarSystem : EntitySystem
         }
 
         if (pool.Count == 0)
+        {
+            for (var day = 1; day <= TargetDaysCount; day++)
+            {
+                deck.Add(fallbackEventId);
+            }
             return;
+        }
 
         var counts = new Dictionary<string, int>(pool.Count);
         var lastOccurrence = new Dictionary<string, int>(pool.Count);
@@ -210,21 +222,24 @@ public sealed class CalendarSystem : EntitySystem
         TriggerNextDayStageNotification(args.NextStage);
     }
 
+    private void OnNewDayCycle(ref DayCycleFinishedEvent args)
+    {
+        _curCycle++;
+    }
+
     public void TriggerNextDayStageNotification(int stageNumber)
     {
         switch (stageNumber)
         {
             case DayStageNumber:
                 {
-                    _curCycle++;
-
                     if (_dayDeck.Count == 0)
                     {
                         TriggerDayStageNotification("DefaultCalendarEvent");
                         return;
                     }
 
-                    var index = (_curCycle - 1) % _dayDeck.Count;
+                    var index = _curCycle % _dayDeck.Count;
                     TriggerDayStageNotification(_dayDeck[index]);
                     break;
                 }
@@ -237,8 +252,7 @@ public sealed class CalendarSystem : EntitySystem
                         return;
                     }
 
-                    var cycleIndex = Math.Max(0, _curCycle - 1);
-                    var index = cycleIndex % _nightDeck.Count;
+                    var index = _curCycle % _nightDeck.Count;
                     TriggerDayStageNotification(_nightDeck[index]);
                     break;
                 }

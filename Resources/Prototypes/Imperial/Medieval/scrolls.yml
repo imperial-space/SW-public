@@ -33,6 +33,17 @@
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Heat: 25
+    targetType: Magic
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 8.5
+        Slash: 9.85
+        Heat: 9
 
 - type: entity
   name: draft sword
@@ -62,6 +73,17 @@
       path: /Audio/Imperial/Medieval/sword_uneqip.ogg
     unequipSound:
       path: /Audio/Imperial/Medieval/sword_eqip.ogg
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Heat: 18
+    targetType: Magic
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 11.1
+        Piercing: 6.5
+        Heat: 7
 
 - type: entity
   name: draft dagger
@@ -89,8 +111,18 @@
     slots:
     - belt
     quickEquip: false
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Heat: 10
+    targetType: Magic
+  - type: APDamageOnHit
+    damage:
+      types:
+        Slash: 0
+        Piercing: 0
+        Heat: 5
 
-# spellward start - draft bow now uses the same charged bow parent and PoiseArchery ammo filter
 - type: entity
   id: MedievalDraftBowImprovised
   parent: BaseMedievalBowCharged
@@ -110,7 +142,6 @@
     - state: unwielded-plunger
       map: [ plunger ]
       visible: false
-  # spellward start - preserve the draft bow's original draw and firing sounds
   - type: Wieldable
     wieldSound:
       path: /Audio/Items/bow_pull.ogg
@@ -118,7 +149,6 @@
     soundGunshot:
       collection: BulletMiss
     soundEmpty: null
-  # spellward end
   - type: Appearance
   - type: ItemMapper
     spriteLayers:
@@ -158,6 +188,17 @@
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
+  - type: MedievalBowCharge
+    baseBluntImpact: 3
+    basePoiseDamage: 16
+    minChargeTime: 0.25
+    maxChargeTime: 4
+    minChargeMultiplier: 0.4
+    maxChargeMultiplier: 1.25
+    staminaDrainPerSecond: 6
+    staminaDrainInterval: 0.25
+    chargingMoveSpeedMultiplier: 0.9
+    meleeKnockback: 2
 
 - type: entity
   parent: BasePoiseArrow
@@ -179,6 +220,16 @@
   name: draft arrow
   description: You can feel the power of the steppe within you.
   components:
+  - type: PoiseArchery
+    damageType: Piercing
+    fixedDamage: 5
+    damageMultiplier: 1
+    bluntMultiplier: 1
+    minPoiseMultiplier: 0.25
+    maxPoiseMultiplier: 1
+    secondaryDamageType: Cold
+    secondaryFixedDamage: 2
+    secondaryDamageMultiplier: 0.25
   - type: TimedDespawn
     lifetime: 300    # 900 = 15 minutes
   - type: SpawnOnDespawn
@@ -254,7 +305,6 @@
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
-
 - type: entity
   parent: MedievalQuiverSteel
   id: MedievalDraftQuiverSteel
@@ -495,6 +545,26 @@
     layers:
       - state: slime
 
+- type: entity
+  parent: BaseItem
+  id: MedievalScrollsPetMimic
+  name: mimic summoning scroll
+  description: A blueprint for some machine. It can be inserted into an autolathe.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalMobPetMimic
+    sound:
+      path: /Audio/Imperial/Medieval/scrolls/Magic_weap_ischez_4.ogg
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/scrolls.rsi
+    layers:
+      - state: mimic
+
 #CRAFTS
 - type: CP14Recipe
   id: MedievalScrollsHalberdCraft
@@ -557,3 +627,13 @@
     MedievalScrollBarrier: 1
   stacks:
     MedievalTopaz: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsPetMimicCraft
+  result: MedievalScrollsPetMimic
+  entities:
+    MedievalScrollBarrier: 1
+  stacks:
+    MedievalAdam: 1
+    MedievalEssence: 1
+
