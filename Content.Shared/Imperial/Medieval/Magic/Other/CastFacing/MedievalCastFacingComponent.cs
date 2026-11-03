@@ -9,9 +9,6 @@ namespace Content.Shared.Imperial.Medieval.Magic;
 [RegisterComponent]
 public sealed partial class MedievalCastFacingComponent : Component
 {
-    /// <summary>
-    /// The point the caster faces.
-    /// </summary>
     [ViewVariables]
     public MapCoordinates Target;
 }

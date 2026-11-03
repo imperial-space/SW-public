@@ -30,8 +30,6 @@
   - type: TimedDespawn
     lifetime: 3.5
 
-# Heal feedback
-
 - type: entity
   id: DivineHealSparkles
   categories: [ HideSpawnMenu ]

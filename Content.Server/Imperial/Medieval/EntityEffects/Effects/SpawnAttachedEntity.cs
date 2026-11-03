@@ -10,9 +10,6 @@ namespace Content.Server.Imperial.Medieval.EntityEffects;
 /// </summary>
 public sealed partial class SpawnAttachedEntity : EntityEffect
 {
-    /// <summary>
-    /// What entity to spawn.
-    /// </summary>
     [DataField(required: true)]
     public EntProtoId Entity;
 

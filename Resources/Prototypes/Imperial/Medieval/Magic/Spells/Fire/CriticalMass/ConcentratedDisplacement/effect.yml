@@ -25,7 +25,7 @@
     spawnRelativePosition: 1,1
     onlyOneSide: true
   - type: TimedDespawn
-    lifetime: 1.25
+    lifetime: 1.2
 
 - type: entity
   id: ConcentratedDisplacementSpellCastEffectMiddle

@@ -28,7 +28,7 @@
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
   - type: TimedDespawn
-    lifetime: 1.25
+    lifetime: 1.2
 
 - type: entity
   id: DiffusionSpellCastEffectMiddle

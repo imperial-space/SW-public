@@ -10,9 +10,6 @@ namespace Content.Shared.Imperial.Medieval.Magic;
 [RegisterComponent]
 public sealed partial class MedievalDetonateAtTargetComponent : Component
 {
-    /// <summary>
-    /// The point where the projectile triggers. Null until the spell sets it.
-    /// </summary>
     [ViewVariables]
     public MapCoordinates? Target;
 }

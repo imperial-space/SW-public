@@ -59,8 +59,6 @@
     spawnedEntitiesPrototype:
     - MedievalMeteorImpact
 
-# Impact and scorch mark
-
 - type: entity
   id: MedievalMeteorImpact
   categories: [ HideSpawnMenu ]

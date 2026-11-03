@@ -28,9 +28,6 @@ public sealed partial class MedievalProjectileSpellEvent : MedievalTargetSpellEv
     [DataField]
     public float SpawnForwardOffset = 0f;
 
-    /// <summary>
-    /// If true, the caster turns towards the target point and stays facing it while the spell is being cast.
-    /// </summary>
     [DataField]
     public bool FaceTargetWhileCasting = false;
 }

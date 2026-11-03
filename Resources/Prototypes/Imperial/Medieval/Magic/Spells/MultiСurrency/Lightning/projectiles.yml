@@ -13,6 +13,7 @@
 
 - type: entity
   id: MedievalLightningExplosionLight
+  categories: [ HideSpawnMenu ]
   parent: MedievalLightningExplosion
   components:
   - type: SpawnEntityOnTrigger
