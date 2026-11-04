@@ -396,11 +396,20 @@
   name: bread
   parent: FoodBreadBase
   id: FoodBreadPlain
-  description: Some plain old earthen bread.
+  description: Bread is the staple food of people, regardless of their status! # Imperial Medieval
   components:
+  # Imperial Medieval Start
   - type: Sprite
+    sprite: Imperial/Medieval/Food/bread.rsi
     layers:
-    - state: plain
+    - state: bread1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        bread1: ""
+        bread2: ""
+  # Imperial Medieval End
   - type: SliceableFood
     slice: FoodBreadPlainSlice
 
@@ -410,9 +419,18 @@
   id: FoodBreadPlainSlice
   description: A slice of home.
   components:
+  # Imperial Medieval Start
   - type: Sprite
+    sprite: Imperial/Medieval/Food/bread.rsi
     layers:
-    - state: plain-slice
+    - state: bread1-slice
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        bread1-slice: ""
+        bread2-slice: ""
+  # Imperial Medieval End
 
 - type: entity
   name: sausage bread

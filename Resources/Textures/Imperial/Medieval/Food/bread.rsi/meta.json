@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by Prazat",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bread1"
+    },
+    {
+      "name": "bread2"
+    },
+    {
+      "name": "bread1-slice"
+    },
+    {
+      "name": "bread2-slice"
+    },
+    {
+      "name": "rye_bread1"
+    },
+    {
+      "name": "rye_bread2"
+    },
+    {
+      "name": "rye_bread1-slice"
+    },
+    {
+      "name": "rye_bread2-slice"
+    },
+    {
+      "name": "berry_bread"
+    },
+    {
+      "name": "berry_bread-slice"
+    }
+  ]
+}
