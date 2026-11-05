@@ -1,0 +1,139 @@
+- type: entity
+  parent: FoodBakingBase
+  id: MedievalFoodCheesePiece
+  name: cheese piece
+  description: Finely cut cheese.
+  components:
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: cheese-piece-inhand-left
+      right:
+      - state: cheese-piece-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/dairy.rsi
+    layers:
+    - state: cheese-piece1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        cheese-piece1: ""
+        cheese-piece2: ""
+        cheese-piece3: ""
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.25
+
+- type: entity
+  parent: FoodBakingBase
+  id: MedievalFoodCheeseGoat
+  name: goat cheese
+  description: Uncommon, but a familiar sight among mountain folk.
+  components:
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: cheesegoat-inhand-left
+      right:
+      - state: cheesegoat-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - creamy
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/dairy.rsi
+    layers:
+    - state: cheesegoat1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        cheesegoat1: ""
+        cheesegoat2: ""
+  - type: SliceableFood
+    count: 3
+    slice: MedievalFoodCheeseGoatSlice
+
+- type: entity
+  parent: FoodBakingBase
+  id: MedievalFoodCheeseGoatSlice
+  name: goat cheese wedge
+  description: A wedge of goat cheese with a slight tang.
+  components:
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: cheesegoat-slice-inhand-left
+      right:
+      - state: cheesegoat-slice-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - creamy
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/dairy.rsi
+    layers:
+    - state: cheesegoat-slice1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        cheesegoat-slice1: ""
+        cheesegoat-slice2: ""
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: SliceableFood
+    count: 3
+    slice: MedievalFoodCheeseGoatPiece
+
+- type: entity
+  parent: FoodBakingBase
+  id: MedievalFoodCheeseGoatPiece
+  name: goat cheese piece
+  description: A small piece of goat cheese.
+  components:
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: cheesegoat-piece-inhand-left
+      right:
+      - state: cheesegoat-piece-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - creamy
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/dairy.rsi
+    layers:
+    - state: cheesegoat-piece1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        cheesegoat-piece1: ""
+        cheesegoat-piece2: ""
+        cheesegoat-piece3: ""
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.67
