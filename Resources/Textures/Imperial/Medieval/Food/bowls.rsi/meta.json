@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by Prazat",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bowl"
+    },
+    {
+      "name": "borsch-1"
+    },
+    {
+      "name": "borsch-2"
+    },
+    {
+      "name": "borsch-3"
+    },
+    {
+      "name": "borsch-4"
+    },
+    {
+      "name": "meat_stew-1"
+    },
+    {
+      "name": "meat_stew-2"
+    },
+    {
+      "name": "meat_stew-3"
+    },
+    {
+      "name": "meat_stew-4"
+    },
+    {
+      "name": "mushroom-1"
+    },
+    {
+      "name": "mushroom-2"
+    },
+    {
+      "name": "mushroom-3"
+    },
+    {
+      "name": "mushroom-4"
+    },
+    {
+      "name": "mushroom_purple-1"
+    },
+    {
+      "name": "mushroom_purple-2"
+    },
+    {
+      "name": "mushroom_purple-3"
+    },
+    {
+      "name": "mushroom_purple-4"
+    },
+    {
+      "name": "potato_mashed-1"
+    },
+    {
+      "name": "potato_mashed-2"
+    },
+    {
+      "name": "potato_mashed-3"
+    },
+    {
+      "name": "potato_mashed-4"
+    },
+    {
+      "name": "rice-1"
+    },
+    {
+      "name": "rice-2"
+    },
+    {
+      "name": "rice-3"
+    },
+    {
+      "name": "rice-4"
+    },
+    {
+      "name": "vegetable_stew-1"
+    },
+    {
+      "name": "vegetable_stew-2"
+    },
+    {
+      "name": "vegetable_stew-3"
+    },
+    {
+      "name": "vegetable_stew-4"
+    },
+    {
+      "name": "caesar-1"
+    },
+    {
+      "name": "caesar-2"
+    },
+    {
+      "name": "caesar-3"
+    },
+    {
+      "name": "caesar-4"
+    }
+  ]
+}

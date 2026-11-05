@@ -1,0 +1,54 @@
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupMushroomPurple
+  name: purple mushroom soup
+  description: A soup of purple mushrooms. It looks unusual, but smells good.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - mushroom
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: mushroom_purple-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: mushroom_purple-
+    changeColor: false
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 20
+          - ReagentId: Water
+            Quantity: 5
+          - ReagentId: Milk
+            Quantity: 5
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodPotatoMashed
+  name: mashed potatoes
+  description: Boiled potatoes mashed into a soft puree.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - potatoes
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: potato_mashed-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: potato_mashed-
+    changeColor: false
+  - type: Appearance
