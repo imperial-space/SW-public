@@ -28,10 +28,12 @@ public sealed class MeleeLockOnMarkerOverlay : Overlay
     private readonly SharedTransformSystem _transforms;
     private readonly MapSystem _maps;
     private readonly TargetOverlaySystem _projectileTargeting;
+    private readonly MeleeLockOnTrackingSystem _tracking;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
-    private const string MarkerPath = "/Textures/Imperial/Medieval/Poise/MeleeLockOn/target.png";
+    private static readonly SpriteSpecifier.Texture MarkerIcon = new(new ResPath("/Textures/Imperial/Medieval/Poise/MeleeLockOn/target.png"));
+    private static readonly SpriteSpecifier.Texture CursorIcon = new(new ResPath(ProjectileTargetOverlay.TargetIconPath));
 
     public MeleeLockOnMarkerOverlay()
     {
@@ -40,6 +42,7 @@ public sealed class MeleeLockOnMarkerOverlay : Overlay
         _transforms = _systems.GetEntitySystem<SharedTransformSystem>();
         _maps = _systems.GetEntitySystem<MapSystem>();
         _projectileTargeting = _systems.GetEntitySystem<TargetOverlaySystem>();
+        _tracking = _systems.GetEntitySystem<MeleeLockOnTrackingSystem>();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -50,7 +53,21 @@ public sealed class MeleeLockOnMarkerOverlay : Overlay
 
         // Preserve the locked marker while the player is selecting a replacement.
         if (lockOn.Target is { } target && _entities.HasComponent<TransformComponent>(target))
-            DrawMarker(args, _transforms.GetMapCoordinates(target), MarkerPath, Angle.Zero);
+        {
+            var targetCoords = _transforms.GetMapCoordinates(target);
+            if (targetCoords.MapId == args.MapId && _tracking.GetDebugLineColor(user, target) is { } color)
+            {
+                var playerCoords = _transforms.GetMapCoordinates(user);
+                if (playerCoords.MapId == args.MapId)
+                {
+                    args.WorldHandle.SetTransform(Matrix3x2.Identity);
+                    args.WorldHandle.DrawLine(playerCoords.Position, targetCoords.Position, color);
+                }
+            }
+
+            if (_tracking.ShouldDrawMarker(user, target))
+                DrawMarker(args, targetCoords, MarkerIcon, Angle.Zero);
+        }
 
         // Preview the current target using the existing projectile cursor scan.
         if (lockOn.TargetingMode && args.Viewport.Eye != null)
@@ -60,11 +77,11 @@ public sealed class MeleeLockOnMarkerOverlay : Overlay
             var coords = hovered is { } candidate && _entities.HasComponent<TransformComponent>(candidate)
                 ? _transforms.GetMapCoordinates(candidate)
                 : cursor;
-            DrawMarker(args, coords, ProjectileTargetOverlay.TargetIconPath, -Angle.FromDegrees(_timing.CurTime.TotalMilliseconds / 20));
+            DrawMarker(args, coords, CursorIcon, -Angle.FromDegrees(_timing.CurTime.TotalMilliseconds / 20));
         }
     }
 
-    private void DrawMarker(in OverlayDrawArgs args, MapCoordinates coords, string path, Angle rotation)
+    private void DrawMarker(in OverlayDrawArgs args, MapCoordinates coords, SpriteSpecifier.Texture icon, Angle rotation)
     {
         if (coords.MapId != args.MapId || !_maps.TryGetMap(coords.MapId, out var mapUid))
             return;
@@ -73,7 +90,7 @@ public sealed class MeleeLockOnMarkerOverlay : Overlay
         var invMatrix = _transforms.GetInvWorldMatrix(mapUid.Value);
         var localPosition = Vector2.Transform(coords.Position, invMatrix);
         var box = new Box2Rotated(Box2.UnitCentered.Translated(localPosition), rotation, localPosition);
-        var texture = _sprites.Frame0(new SpriteSpecifier.Texture(new ResPath(path)));
+        var texture = _sprites.Frame0(icon);
         var handle = args.WorldHandle;
         handle.SetTransform(worldMatrix);
         handle.DrawTextureRect(texture, box, Color.White);
