@@ -14,6 +14,12 @@
     - random:
         rye_bread1: ""
         rye_bread2: ""
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: rye_bread-inhand-left
+      right:
+      - state: rye_bread-inhand-right
   - type: SliceableFood
     slice: MedievalFoodBreadRyeSlice
 
@@ -33,6 +39,12 @@
     - random:
         rye_bread1-slice: ""
         rye_bread2-slice: ""
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: rye_bread-slice-inhand-left
+      right:
+      - state: rye_bread-slice-inhand-right
 
 - type: entity
   parent: FoodBreadBase
@@ -48,6 +60,12 @@
     sprite: Imperial/Medieval/Food/bread.rsi
     layers:
     - state: berry_bread
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: berry_bread-inhand-left
+      right:
+      - state: berry_bread-inhand-right
   - type: SliceableFood
     slice: MedievalFoodBreadBerrySlice
   - type: Tag
@@ -78,6 +96,12 @@
     sprite: Imperial/Medieval/Food/bread.rsi
     layers:
     - state: berry_bread-slice
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: berry_bread-slice-inhand-left
+      right:
+      - state: berry_bread-slice-inhand-right
   - type: Tag
     tags:
     - Fruit

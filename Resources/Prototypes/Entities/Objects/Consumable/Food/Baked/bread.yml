@@ -409,6 +409,12 @@
     - random:
         bread1: ""
         bread2: ""
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bread-inhand-left
+      right:
+      - state: bread-inhand-right
   # Imperial Medieval End
   - type: SliceableFood
     slice: FoodBreadPlainSlice
@@ -430,6 +436,12 @@
     - random:
         bread1-slice: ""
         bread2-slice: ""
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bread-slice-inhand-left
+      right:
+      - state: bread-slice-inhand-right
   # Imperial Medieval End
 
 - type: entity
