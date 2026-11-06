@@ -1,0 +1,12 @@
+ent-MedievalFoodSausage = raw sausage
+    .desc = A raw sausage. Better cooked before eating.
+ent-MedievalFoodSausageCooked = fried sausage
+    .desc = A sausage fried until golden brown.
+ent-MedievalFoodMollusk = raw mollusk
+    .desc = A small mollusk. Better cooked before eating.
+ent-MedievalFoodMolluskFried = fried mollusk
+    .desc = A small mollusk, fried and still warm.
+ent-MedievalFoodChickenWhole = whole chicken
+    .desc = A plucked and gutted chicken, ready for cooking.
+ent-MedievalFoodChickenWholeFried = fried whole chicken
+    .desc = A whole chicken fried to a golden crust.
