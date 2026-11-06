@@ -85,8 +85,6 @@ public sealed partial class PoiseComponent : Component
     [AutoPausedField, AutoNetworkedField]
     public TimeSpan PoiseBreakEnds;
 
-    public bool ProtectBreakingHit;
-
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

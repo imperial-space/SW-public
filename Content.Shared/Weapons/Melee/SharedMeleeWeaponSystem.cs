@@ -811,14 +811,19 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
         // [IMPERIAL]
 
+        // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
+        if (damageResult is {Empty: false} && damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
+        {
+            _stamina.TakeStaminaDamage(target, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
+        }
+
+        // Imperial medieval start
+        var resolvedEvent = new MeleeHitResolvedEvent(attackedEvent);
+        RaiseLocalEvent(target, ref resolvedEvent);
+        // Imperial medieval end
+
         if (damageResult is {Empty: false})
         {
-            // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
-            if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
-            {
-                _stamina.TakeStaminaDamage(target, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
-            }
-
             // Imperial Medieval start
             var dealtEv = new MeleeDamageDealtEvent(target, user, weapon, damageResult);
             RaiseLocalEvent(user, ref dealtEv);
@@ -1021,14 +1026,20 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
 
+            // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
+            if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero &&
+                damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
+            {
+                _stamina.TakeStaminaDamage(entity, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
+            }
+
+            // Imperial medieval start
+            var resolvedEvent = new MeleeHitResolvedEvent(attackedEvent);
+            RaiseLocalEvent(entity, ref resolvedEvent);
+            // Imperial medieval end
+
             if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero)
             {
-                // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
-                if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
-                {
-                    _stamina.TakeStaminaDamage(entity, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
-                }
-
                 appliedDamage += damageResult;
 
                 // Imperial Medieval start

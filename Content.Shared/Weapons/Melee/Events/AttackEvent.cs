@@ -52,5 +52,11 @@ namespace Content.Shared.Weapons.Melee.Events
             ClickLocation = clickLocation;
         }
     }
+
+    // Imperial medieval start
+    /// <summary>Raised on each melee target after its health and stamina damage resolve.</summary>
+    [ByRefEvent]
+    public readonly record struct MeleeHitResolvedEvent(AttackedEvent Attack);
+    // Imperial medieval end
 }
 

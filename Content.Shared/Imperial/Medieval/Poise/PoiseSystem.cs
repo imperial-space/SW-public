@@ -39,15 +39,23 @@ public sealed class PoiseSystem : EntitySystem
         SubscribeLocalEvent<PoiseComponent, MeleeAttackEvent>(OnMeleeAttack);
         SubscribeLocalEvent<PoiseComponent, DamageModifyEvent>(OnDamageModify);
         SubscribeLocalEvent<PoiseComponent, AttackedEvent>(OnAttacked);
+        SubscribeLocalEvent<PoiseComponent, MeleeHitResolvedEvent>(OnMeleeHitResolved);
         SubscribeLocalEvent<PoiseComponent, GetExplosionResistanceEvent>(OnExplosionResistance);
         SubscribeLocalEvent<PoiseComponent, CombatModeCheck>(OnCombatModeChange);
     }
 
     private void OnAttacked(EntityUid uid, PoiseComponent component, AttackedEvent args)
     {
-        var damage = args.PoiseDamageOverride ?? GetMeleePoiseDamage(args.Used);
-        if (damage > 0)
-            TakePoiseDamage(uid, damage, source: args.User, with: args.Used == args.User ? null : args.Used);
+        // Capture the original grip and charge; apply poise when this hit finishes.
+        args.PoiseDamageOverride ??= GetMeleePoiseDamage(args.Used);
+    }
+
+    private void OnMeleeHitResolved(EntityUid uid, PoiseComponent component, ref MeleeHitResolvedEvent args)
+    {
+        var attack = args.Attack;
+        if (attack.PoiseDamageOverride is > 0)
+            TakePoiseDamage(uid, attack.PoiseDamageOverride.Value, source: attack.User,
+                with: attack.Used == attack.User ? null : attack.Used);
     }
 
     /// <summary>Capture charge/grip-dependent poise at contact, before hit confirmation.</summary>
@@ -269,14 +277,13 @@ public sealed class PoiseSystem : EntitySystem
         }
     }
 
-    public void BreakPoise(EntityUid uid, PoiseComponent component, bool protectBreakingHit = false)
+    public void BreakPoise(EntityUid uid, PoiseComponent component)
     {
         if (component.Npc && (!_net.IsServer || component.PoiseThreshold <= 0))
             return;
         if (component.PoiseBroken)
             return;
 
-        component.ProtectBreakingHit = protectBreakingHit;
         _combatStamina.OnPoiseBroken(uid);
         component.PoiseBroken = true;
         // halve break and recovery timers for qualifying torsos.
@@ -308,12 +315,9 @@ public sealed class PoiseSystem : EntitySystem
         if (component.Npc && !_net.IsServer)
             return;
 
-        var protectBreakingHit = component.ProtectBreakingHit;
-        component.ProtectBreakingHit = false;
-
         float multiplier;
 
-        if (component.PoiseBroken && !protectBreakingHit)
+        if (component.PoiseBroken)
         {
             multiplier = component.BrokenHealthDamageMultiplier;
             if (multiplier == 1f)
@@ -407,8 +411,6 @@ public sealed class PoiseSystem : EntitySystem
             }
             if (component.PoiseBroken)
             {
-                component.ProtectBreakingHit = false;
-
                 // returning from a break also restores poise, so honor the lock.
                 if (_timing.CurTime >= component.PoiseBreakEnds &&
                     _timing.CurTime >= component.PoiseRecoveryBlockedUntil)
