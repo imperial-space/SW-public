@@ -281,6 +281,12 @@ public sealed class CombatStaminaSystem : EntitySystem
         }
 
         var now = _timing.CurTime;
+        if (now <= combat.RecoveryStarts)
+        {
+            if (combat.Pending > stamina.StaminaDamage)
+                SetPending(uid, combat, stamina.StaminaDamage);
+            return;
+        }
         var amount = stamina.Critical ? 0f : CombatStaminaMath.RecoveryAmount(
             GetPending(uid), combat.RecoveryPerSecond, combat.LastUpdate, combat.RecoveryStarts, now);
         combat.LastUpdate = now;
