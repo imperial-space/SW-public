@@ -9,6 +9,9 @@ using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.Prediction;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using PhysicsTransform = Robust.Shared.Physics.Transform;
 // Imperial medieval end
 
 namespace Content.Server.Movement.Systems;
@@ -22,8 +25,10 @@ public sealed class LagCompensationSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     // Imperial medieval start
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private readonly Dictionary<NetUserId, GameTick> _lastRealTicks = new();
+    private readonly MedievalMeleeHistoryIndex _meleeHistory = new();
 
     // Maximum supported historical lookup window.
     public static readonly TimeSpan BufferTime = TimeSpan.FromMilliseconds(750);
@@ -37,6 +42,7 @@ public sealed class LagCompensationSystem : EntitySystem
         // Imperial medieval start
         SubscribeLocalEvent<LagCompensationComponent, ComponentStartup>(OnLagStartup);
         SubscribeLocalEvent<LagCompensationComponent, MapInitEvent>(OnLagMapInit);
+        SubscribeLocalEvent<LagCompensationComponent, ComponentShutdown>(OnLagShutdown);
         SubscribeNetworkEvent<MedievalSetLastRealTickEvent>(OnSetLastRealTick);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
@@ -48,12 +54,14 @@ public sealed class LagCompensationSystem : EntitySystem
     {
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
         _lastRealTicks.Clear();
+        _meleeHistory.Clear();
         base.Shutdown();
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent args)
     {
         _lastRealTicks.Clear();
+        _meleeHistory.Clear();
     }
 
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
@@ -68,15 +76,20 @@ public sealed class LagCompensationSystem : EntitySystem
     private void OnLagMapInit(EntityUid uid, LagCompensationComponent component, MapInitEvent args)
         => SeedHistory(uid, component);
 
+    private void OnLagShutdown(EntityUid uid, LagCompensationComponent component, ComponentShutdown args)
+        => _meleeHistory.Remove(uid);
+
     private void SeedHistory(EntityUid uid, LagCompensationComponent component)
     {
         // A stationary entity needs a baseline before its first movement. MapInit
         // also covers components started before their map coordinates were valid.
-        if (component.Positions.Count != 0 || !TryComp(uid, out TransformComponent? xform) ||
+        if (!TryComp(uid, out TransformComponent? xform) ||
             xform.MapID == MapId.Nullspace || !xform.Coordinates.IsValid(EntityManager))
             return;
 
-        component.Positions.Enqueue((_timing.CurTime, xform.Coordinates, xform.LocalRotation));
+        if (component.Positions.Count == 0)
+            component.Positions.Enqueue((_timing.CurTime, xform.Coordinates, xform.LocalRotation));
+        RefreshMeleeHistory(uid, component);
     }
 
     private void OnSetLastRealTick(MedievalSetLastRealTickEvent msg, EntitySessionEventArgs args)
@@ -125,10 +138,12 @@ public sealed class LagCompensationSystem : EntitySystem
         // Probably fine to include ignored.
         var query = AllEntityQuery<LagCompensationComponent>();
 
-        while (query.MoveNext(out var comp))
+        while (query.MoveNext(out var uid, out var comp))
         {
             // Imperial medieval edit - retain the last pose preceding the lookup window.
             MedievalLagCompensationHistory.Prune(comp.Positions, earliestTime);
+            // Imperial medieval edit - share the existing maintenance pass across all strikes.
+            RefreshMeleeHistory(uid, comp);
         }
     }
 
@@ -138,7 +153,59 @@ public sealed class LagCompensationSystem : EntitySystem
             return; // probably being sent to nullspace for deletion.
 
         component.Positions.Enqueue((_timing.CurTime, args.NewPosition, args.NewRotation));
+        // Imperial medieval edit - queries later in this tick must see this movement too.
+        RefreshMeleeHistory(uid, component);
     }
+
+    // Imperial medieval start
+    private void RefreshMeleeHistory(EntityUid uid, LagCompensationComponent history)
+    {
+        if (TerminatingOrDeleted(uid) || !TryComp(uid, out TransformComponent? xform) ||
+            !TryComp<PhysicsComponent>(uid, out _) || !TryComp<FixturesComponent>(uid, out var fixtures))
+        {
+            _meleeHistory.Remove(uid);
+            return;
+        }
+
+        // Include every fixture, even when it is temporarily non-collidable.
+        // A rotation-independent bound also survives collision-layer changes.
+        var radiusSquared = 0f;
+        foreach (var fixture in fixtures.Fixtures.Values)
+        {
+            for (var child = 0; child < fixture.Shape.ChildCount; child++)
+            {
+                var bounds = fixture.Shape.ComputeAABB(PhysicsTransform.Empty, child);
+                var x = MathF.Max(MathF.Abs(bounds.Left), MathF.Abs(bounds.Right));
+                var y = MathF.Max(MathF.Abs(bounds.Bottom), MathF.Abs(bounds.Top));
+                var squared = x * x + y * y;
+                if (float.IsFinite(squared))
+                    radiusSquared = MathF.Max(radiusSquared, squared);
+            }
+        }
+
+        // Native arc rays test fixture AABBs in their broadphase frame. Their
+        // corners can extend beyond the shape's bounding circle by sqrt(2).
+        var radius = MathF.Sqrt(radiusSquared) * MathF.Sqrt(2f);
+        _meleeHistory.Refresh(uid, history.Positions, xform.Coordinates, radius, _timing.CurTime, BufferTime);
+    }
+
+    /// <summary>
+    /// Adds bodies whose retained historical bounds may intersect a strike.
+    /// Query each coordinate parent's tree, rather than each tracked body.
+    /// </summary>
+    public void GetMeleeCandidates(MapId map, Box2 worldBounds, HashSet<EntityUid> candidates)
+    {
+        foreach (var parent in _meleeHistory.Parents)
+        {
+            if (TerminatingOrDeleted(parent) || !TryComp(parent, out TransformComponent? xform) ||
+                xform.MapID != map)
+                continue;
+
+            var (_, _, _, inverse) = _transform.GetWorldPositionRotationMatrixWithInv(parent);
+            _meleeHistory.Query(parent, inverse.TransformBox(worldBounds), candidates);
+        }
+    }
+    // Imperial medieval end
 
     public (EntityCoordinates Coordinates, Angle Angle) GetCoordinatesAngle(EntityUid uid, ICommonSession? pSession,
         TransformComponent? xform = null)

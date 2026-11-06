@@ -40,55 +40,65 @@ public sealed class ChargedAttackLagCompensationSystem : EntitySystem
     public IDisposable BeginStrike(EntityUid user, ICommonSession? session)
     {
         var strike = new Strike(user, session, Transform(user).MapID);
-        if (session != null)
-            CaptureTargets(strike, session);
         _strikes.Push(strike);
         return new StrikeScope(this, strike);
     }
 
-    private void CaptureTargets(Strike strike, ICommonSession session)
+    private void CaptureTargets(Strike strike, Vector2 position, float range)
     {
-        // A current-position spatial query would omit the very targets we need
-        // to recover. Visit tracked bodies once, not once per arc ray.
-        var query = EntityQueryEnumerator<LagCompensationComponent, PhysicsComponent, FixturesComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out _, out var body, out var fixtures, out var xform))
+        // Query BOTH positions: history recovers bodies that moved out of reach;
+        // current bounds find bodies that moved in and must have their present
+        // proxies suppressed. Neither query enumerates every body on the map.
+        var extent = new Vector2(range + 0.1f);
+        var bounds = new Box2(position - extent, position + extent);
+        var candidates = new HashSet<EntityUid>();
+        _lookup.GetEntitiesIntersecting(strike.Map, bounds, candidates,
+            LookupFlags.Dynamic | LookupFlags.Static | LookupFlags.Approximate);
+        _history.GetMeleeCandidates(strike.Map, bounds, candidates);
+        foreach (var uid in candidates)
+            CaptureTarget(strike, uid);
+    }
+
+    private void CaptureTarget(Strike strike, EntityUid uid)
+    {
+        if (!strike.Captured.Add(uid) || uid == strike.User || TerminatingOrDeleted(uid) || IsPaused(uid) ||
+            !HasComp<LagCompensationComponent>(uid) ||
+            !TryComp<PhysicsComponent>(uid, out var body) || !body.CanCollide ||
+            !TryComp<FixturesComponent>(uid, out var fixtures) ||
+            !TryComp(uid, out TransformComponent? xform) || xform.MapID != strike.Map)
+            return;
+
+        var (coordinates, angle) = _history.GetCoordinatesAngle(uid, strike.Session, xform);
+        if (!TryFreezePose(coordinates, angle, strike.Map, out var pose, out var mapPosition, out var worldAngle))
+            return;
+        strike.Poses[uid] = pose;
+
+        // Keep the native engine query when history falls back to the current
+        // pose, or the target simply has not moved since the reported state.
+        if (coordinates.Equals(xform.Coordinates) && angle.Equals(xform.LocalRotation))
+            return;
+
+        // The engine raycasts tight fixture AABBs in their grid/map broadphase
+        // frame. Computing a world AABB would enlarge a rotated grid's bounds.
+        if (!TryComp<BroadphaseComponent>(coordinates.EntityId, out var broadphase) &&
+            !_lookup.TryFindBroadphase(coordinates.EntityId, out broadphase))
+            return;
+        var (_, broadRotation, matrix, inverse) =
+            _transform.GetWorldPositionRotationMatrixWithInv(broadphase.Owner);
+        var historicalTransform = new PhysicsTransform(Vector2.Transform(mapPosition, inverse), worldAngle - broadRotation);
+        var bounds = new List<Box2>();
+        foreach (var fixture in fixtures.Fixtures.Values)
         {
-            if (uid == strike.User || !body.CanCollide || xform.MapID != strike.Map ||
-                TerminatingOrDeleted(uid))
+            // ProxyCount also excludes bodies/fixtures removed from collision
+            // queries (e.g. a target currently inside a container).
+            if (!fixture.Hard || fixture.ProxyCount == 0 || (fixture.CollisionLayer & AttackMask) == 0)
                 continue;
-
-            var (coordinates, angle) = _history.GetCoordinatesAngle(uid, session, xform);
-            if (!TryFreezePose(coordinates, angle, strike.Map, out var pose, out var mapPosition, out var worldAngle))
-                continue;
-            strike.Poses[uid] = pose;
-
-            // Keep the native engine query when history falls back to the current
-            // pose, or the target simply has not moved since the reported state.
-            if (coordinates.Equals(xform.Coordinates) && angle.Equals(xform.LocalRotation))
-                continue;
-
-            // The engine raycasts tight fixture AABBs in their grid/map broadphase
-            // frame. Computing a world AABB would enlarge a rotated grid's bounds.
-            if (!TryComp<BroadphaseComponent>(coordinates.EntityId, out var broadphase) &&
-                !_lookup.TryFindBroadphase(coordinates.EntityId, out broadphase))
-                continue;
-            var (_, broadRotation, matrix, inverse) =
-                _transform.GetWorldPositionRotationMatrixWithInv(broadphase.Owner);
-            var historicalTransform = new PhysicsTransform(Vector2.Transform(mapPosition, inverse), worldAngle - broadRotation);
-            var bounds = new List<Box2>();
-            foreach (var fixture in fixtures.Fixtures.Values)
-            {
-                // ProxyCount also excludes bodies/fixtures removed from collision
-                // queries (e.g. a target currently inside a container).
-                if (!fixture.Hard || fixture.ProxyCount == 0 || (fixture.CollisionLayer & AttackMask) == 0)
-                    continue;
-                for (var child = 0; child < fixture.Shape.ChildCount; child++)
-                    bounds.Add(fixture.Shape.ComputeAABB(historicalTransform, child));
-            }
-
-            if (bounds.Count != 0)
-                strike.Replaced[uid] = new HistoricalBody(bounds, matrix, inverse);
+            for (var child = 0; child < fixture.Shape.ChildCount; child++)
+                bounds.Add(fixture.Shape.ComputeAABB(historicalTransform, child));
         }
+
+        if (bounds.Count != 0)
+            strike.Replaced[uid] = new HistoricalBody(bounds, matrix, inverse);
     }
 
     private bool TryFreezePose(EntityCoordinates coordinates, Angle localAngle, MapId map,
@@ -121,6 +131,10 @@ public sealed class ChargedAttackLagCompensationSystem : EntitySystem
         if (!float.IsFinite(range) || range < 0f)
             return true;
 
+        // Freeze local candidates before ray callbacks or hit events can move
+        // them. A strike scope is synchronous; nested scopes remain independent.
+        CaptureTargets(strike, position, range);
+
         // Preserve the exact existing arc sample count and directions.
         var widthRad = arcWidth;
         var increments = 1 + 35 * (int) Math.Ceiling(widthRad / (2 * Math.PI));
@@ -130,7 +144,7 @@ public sealed class ChargedAttackLagCompensationSystem : EntitySystem
         {
             var ray = new CollisionRay(position, new Angle(baseAngle + increment * i).ToWorldVec(), AttackMask);
             var results = _physics.IntersectRayWithPredicate(map, ray, range,
-                entity => entity == user || strike.Replaced.ContainsKey(entity), false).ToList();
+                entity => entity == user || IgnoreCurrentBody(strike, entity), false).ToList();
 
             foreach (var (uid, historical) in strike.Replaced)
                 historical.AddIntersections(uid, ray, range, results);
@@ -179,21 +193,32 @@ public sealed class ChargedAttackLagCompensationSystem : EntitySystem
 
     private bool Validate(Strike strike, EntityUid target, float range)
     {
-        if (TerminatingOrDeleted(target) || !TryComp<TransformComponent>(target, out var xform) ||
+        if (TerminatingOrDeleted(target) || !TryComp(target, out TransformComponent? xform) ||
             xform.MapID != strike.Map)
             return false;
         if (!strike.Poses.TryGetValue(target, out var pose))
         {
+            CaptureTarget(strike, target);
             // Untracked world objects retain current geometry. Remember their
             // first checked pose too, rather than repeatedly reading transforms.
-            if (!TryFreezePose(xform.Coordinates, xform.LocalRotation, strike.Map, out pose, out _, out _))
+            if (!strike.Poses.TryGetValue(target, out pose) &&
+                !TryFreezePose(xform.Coordinates, xform.LocalRotation, strike.Map, out pose, out _, out _))
                 return false;
             strike.Poses[target] = pose;
         }
         if (!pose.Coordinates.IsValid(EntityManager))
             return false;
         return _interaction.InRangeUnobstructed(strike.User, target, pose.Coordinates, pose.Angle,
-            range, predicate: entity => strike.Replaced.ContainsKey(entity), overlapCheck: false);
+            range, predicate: entity => IgnoreCurrentBody(strike, entity), overlapCheck: false);
+    }
+
+    private bool IgnoreCurrentBody(Strike strike, EntityUid entity)
+    {
+        // Final fixture-distance validation can raycast as far as the target's
+        // centre, beyond the arc's range for a large collider. Resolve such an
+        // obstruction lazily so it obeys the same historical ignore rule too.
+        CaptureTarget(strike, entity);
+        return strike.Replaced.ContainsKey(entity);
     }
 
     private readonly record struct Pose(EntityCoordinates Coordinates, Angle Angle);
@@ -203,6 +228,7 @@ public sealed class ChargedAttackLagCompensationSystem : EntitySystem
         public readonly EntityUid User = user;
         public readonly ICommonSession? Session = session;
         public readonly MapId Map = map;
+        public readonly HashSet<EntityUid> Captured = new();
         public readonly Dictionary<EntityUid, Pose> Poses = new();
         public readonly Dictionary<EntityUid, HistoricalBody> Replaced = new();
     }
