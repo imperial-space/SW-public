@@ -17,7 +17,15 @@
     maxFillLevels: 4
     fillBaseName: mushroom_purple-
     changeColor: false
+    inHandsFillBaseName: -mushroom_purple-
+    inHandsMaxFillLevels: 2
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
   - type: SolutionContainerManager
     solutions:
       food:
@@ -51,4 +59,12 @@
     maxFillLevels: 4
     fillBaseName: potato_mashed-
     changeColor: false
+    inHandsFillBaseName: -potato_mashed-
+    inHandsMaxFillLevels: 2
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right

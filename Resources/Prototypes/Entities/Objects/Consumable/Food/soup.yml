@@ -241,7 +241,15 @@
     maxFillLevels: 4
     fillBaseName: caesar-
     changeColor: false
+    inHandsFillBaseName: -caesar-
+    inHandsMaxFillLevels: 2
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
   # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:
@@ -413,7 +421,15 @@
     maxFillLevels: 4
     fillBaseName: rice-
     changeColor: false
+    inHandsFillBaseName: -rice-
+    inHandsMaxFillLevels: 2
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
   # Imperial Medieval End
 
 - type: entity
@@ -769,7 +785,15 @@
     maxFillLevels: 4
     fillBaseName: vegetable_stew-
     changeColor: false
+    inHandsFillBaseName: -vegetable_stew-
+    inHandsMaxFillLevels: 2
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
   # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:
@@ -1063,7 +1087,15 @@
     maxFillLevels: 4
     fillBaseName: mushroom-
     changeColor: false
+    inHandsFillBaseName: -mushroom-
+    inHandsMaxFillLevels: 2
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
   # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:
@@ -1102,7 +1134,15 @@
     maxFillLevels: 4
     fillBaseName: borsch-
     changeColor: false
+    inHandsFillBaseName: -borsch-
+    inHandsMaxFillLevels: 2
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
   # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:
@@ -1166,7 +1206,15 @@
     maxFillLevels: 4
     fillBaseName: meat_stew-
     changeColor: false
+    inHandsFillBaseName: -meat_stew-
+    inHandsMaxFillLevels: 2
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
   # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:

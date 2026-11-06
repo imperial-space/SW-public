@@ -105,6 +105,142 @@
     },
     {
       "name": "caesar-4"
+    },
+    {
+      "name": "bowl-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bowl-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-borsch-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-borsch-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-borsch-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-borsch-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-meat_stew-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-meat_stew-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-meat_stew-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-meat_stew-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-vegetable_stew-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-vegetable_stew-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-vegetable_stew-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-vegetable_stew-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-mushroom-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-mushroom-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-mushroom-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-mushroom-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-mushroom_purple-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-mushroom_purple-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-mushroom_purple-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-mushroom_purple-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-potato_mashed-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-potato_mashed-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-potato_mashed-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-potato_mashed-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-rice-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-rice-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-rice-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-rice-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-caesar-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-caesar-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-caesar-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-caesar-2",
+      "directions": 4
     }
   ]
 }
