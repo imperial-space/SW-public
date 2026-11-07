@@ -1,0 +1,530 @@
+- type: entity
+  parent: FoodBowlBig
+  id: MedievalBowlWood
+  name: wooden bowl
+  description: A bowl carved from wood, used for soups and salads.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
+    layers:
+    - state: bowl-wood
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-wood-inhand-left
+      right:
+      - state: bowl-wood-inhand-right
+  - type: Destructible
+    thresholds: []
+
+- type: entity
+  parent: FoodBowlBig
+  id: MedievalBowlIron
+  name: iron bowl
+  description: A sturdy iron bowl.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
+    layers:
+    - state: bowl-iron
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-iron-inhand-left
+      right:
+      - state: bowl-iron-inhand-right
+  - type: Destructible
+    thresholds: []
+
+- type: entity
+  parent: FoodBowlBig
+  id: MedievalBowlSteel
+  name: steel bowl
+  description: A strong steel bowl.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
+    layers:
+    - state: bowl-steel
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-steel-inhand-left
+      right:
+      - state: bowl-steel-inhand-right
+  - type: Destructible
+    thresholds: []
+
+- type: entity
+  parent: FoodBowlBig
+  id: MedievalBowlGold
+  name: golden bowl
+  description: A golden bowl, fit for a lord's table.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
+    layers:
+    - state: bowl-gold
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-gold-inhand-left
+      right:
+      - state: bowl-gold-inhand-right
+  - type: Destructible
+    thresholds: []
+
+- type: entity
+  parent: FoodBowlBig
+  id: MedievalBowlEbonit
+  name: ebonite bowl
+  description: A dark bowl of ebonite.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
+    layers:
+    - state: bowl-ebonit
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-ebonit-inhand-left
+      right:
+      - state: bowl-ebonit-inhand-right
+  - type: Destructible
+    thresholds: []
+
+- type: entity
+  parent: FoodBowlBig
+  id: MedievalBowlGlina
+  name: grey clay bowl
+  description: A simple bowl of grey clay.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
+    layers:
+    - state: bowl-glina
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-glina-inhand-left
+      right:
+      - state: bowl-glina-inhand-right
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: MedievalPlateBase
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-6
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: Damageable
+    damageContainer: Inorganic
+
+- type: entity
+  abstract: true
+  parent: MedievalPlateBase
+  id: MedievalPlateSmallBase
+  components:
+  - type: Item
+    storedOffset: 0,-3
+
+- type: entity
+  parent: MedievalPlateBase
+  id: MedievalPlateWood
+  name: wooden plate
+  description: A plate carved from wood.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate.rsi
+    state: plate-wood
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-wood-inhand-left
+      right:
+      - state: plate-wood-inhand-right
+
+- type: entity
+  parent: MedievalPlateBase
+  id: MedievalPlateIron
+  name: iron plate
+  description: A plate made of iron.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate.rsi
+    state: plate-iron
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-iron-inhand-left
+      right:
+      - state: plate-iron-inhand-right
+
+- type: entity
+  parent: MedievalPlateBase
+  id: MedievalPlateSteel
+  name: steel plate
+  description: A plate made of steel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate.rsi
+    state: plate-steel
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-steel-inhand-left
+      right:
+      - state: plate-steel-inhand-right
+
+- type: entity
+  parent: MedievalPlateBase
+  id: MedievalPlateGold
+  name: golden plate
+  description: A plate made of gold.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate.rsi
+    state: plate-gold
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-gold-inhand-left
+      right:
+      - state: plate-gold-inhand-right
+
+- type: entity
+  parent: MedievalPlateBase
+  id: MedievalPlateEbonit
+  name: ebonite plate
+  description: A plate made of ebonite.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate.rsi
+    state: plate-ebonit
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-ebonit-inhand-left
+      right:
+      - state: plate-ebonit-inhand-right
+
+- type: entity
+  parent: FoodPlate
+  id: MedievalPlateGlina
+  name: grey clay plate
+  description: A plate made of grey clay.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate.rsi
+    state: plate-glina
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-glina-inhand-left
+      right:
+      - state: plate-glina-inhand-right
+
+- type: entity
+  parent: MedievalPlateSmallBase
+  id: MedievalPlateSmallWood
+  name: small wooden plate
+  description: A small plate carved from wood.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate_small.rsi
+    state: plate-small-wood
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-small-wood-inhand-left
+      right:
+      - state: plate-small-wood-inhand-right
+
+- type: entity
+  parent: MedievalPlateSmallBase
+  id: MedievalPlateSmallIron
+  name: small iron plate
+  description: A small plate made of iron.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate_small.rsi
+    state: plate-small-iron
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-small-iron-inhand-left
+      right:
+      - state: plate-small-iron-inhand-right
+
+- type: entity
+  parent: MedievalPlateSmallBase
+  id: MedievalPlateSmallSteel
+  name: small steel plate
+  description: A small plate made of steel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate_small.rsi
+    state: plate-small-steel
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-small-steel-inhand-left
+      right:
+      - state: plate-small-steel-inhand-right
+
+- type: entity
+  parent: MedievalPlateSmallBase
+  id: MedievalPlateSmallGold
+  name: small golden plate
+  description: A small plate made of gold.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate_small.rsi
+    state: plate-small-gold
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-small-gold-inhand-left
+      right:
+      - state: plate-small-gold-inhand-right
+
+- type: entity
+  parent: MedievalPlateSmallBase
+  id: MedievalPlateSmallEbonit
+  name: small ebonite plate
+  description: A small plate made of ebonite.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate_small.rsi
+    state: plate-small-ebonit
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-small-ebonit-inhand-left
+      right:
+      - state: plate-small-ebonit-inhand-right
+
+- type: entity
+  parent: FoodPlateSmall
+  id: MedievalPlateSmallGlina
+  name: small grey clay plate
+  description: A small plate made of grey clay.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/plate_small.rsi
+    state: plate-small-glina
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: plate-small-glina-inhand-left
+      right:
+      - state: plate-small-glina-inhand-right
+
+- type: entity
+  abstract: true
+  parent: DrinkBase
+  id: MedievalJugBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/jug.rsi
+    layers:
+    - state: jug
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 60
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: Item
+    size: Normal
+  - type: Damageable
+    damageContainer: Inorganic
+
+- type: entity
+  abstract: true
+  parent: MedievalJugBase
+  id: MedievalJugBreakable
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalJugTrash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseItem
+  id: MedievalJugTrash
+  name: broken jug
+  description: A broken jug. Useless.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/jug.rsi
+    state: jug-trash
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - Trash
+  - type: SpaceGarbage
+
+- type: entity
+  parent: MedievalJugBreakable
+  id: MedievalJug
+  name: jug
+  description: A clay jug for water, wine and other drinks.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/jug.rsi
+    layers:
+    - state: jug
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: jug-inhand-left
+      right:
+      - state: jug-inhand-right
+
+- type: entity
+  parent: MedievalJugBreakable
+  id: MedievalJugGlina
+  name: grey clay jug
+  description: A jug of grey clay.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/jug.rsi
+    layers:
+    - state: jug-glina
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: jug-glina-inhand-left
+      right:
+      - state: jug-glina-inhand-right
+
+- type: entity
+  parent: MedievalJugBase
+  id: MedievalJugIron
+  name: iron jug
+  description: An iron jug.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/jug.rsi
+    layers:
+    - state: jug-iron
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: jug-iron-inhand-left
+      right:
+      - state: jug-iron-inhand-right
+
+- type: entity
+  parent: MedievalJugBase
+  id: MedievalJugSteel
+  name: steel jug
+  description: A steel jug.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/jug.rsi
+    layers:
+    - state: jug-steel
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: jug-steel-inhand-left
+      right:
+      - state: jug-steel-inhand-right
+
+- type: entity
+  parent: MedievalJugBase
+  id: MedievalJugGold
+  name: golden jug
+  description: A golden jug.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/jug.rsi
+    layers:
+    - state: jug-gold
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: jug-gold-inhand-left
+      right:
+      - state: jug-gold-inhand-right
+
+- type: entity
+  parent: BaseItem
+  id: MedievalBreadTin
+  name: bread tin
+  description: A tin for baking square loaves of bread.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Dishes/bread_tin.rsi
+    state: bread-tin
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-3

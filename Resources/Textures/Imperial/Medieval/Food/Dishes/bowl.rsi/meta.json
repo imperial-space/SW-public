@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by Prazat",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bowl"
+    },
+    {
+      "name": "bowl-wood"
+    },
+    {
+      "name": "bowl-iron"
+    },
+    {
+      "name": "bowl-steel"
+    },
+    {
+      "name": "bowl-gold"
+    },
+    {
+      "name": "bowl-ebonit"
+    },
+    {
+      "name": "bowl-glina"
+    },
+    {
+      "name": "bowl-trash"
+    },
+    {
+      "name": "fill-1"
+    },
+    {
+      "name": "fill-2"
+    },
+    {
+      "name": "fill-3"
+    },
+    {
+      "name": "fill-4"
+    },
+    {
+      "name": "fill-5"
+    },
+    {
+      "name": "bowl-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bowl-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bowl-wood-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bowl-wood-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bowl-iron-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bowl-iron-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bowl-steel-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bowl-steel-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bowl-gold-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bowl-gold-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bowl-ebonit-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bowl-ebonit-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bowl-glina-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bowl-glina-inhand-right",
+      "directions": 4
+    }
+  ]
+}
