@@ -21,6 +21,14 @@
             False: { visible: false }
     - type: Item
       size: Tiny
+      # Imperial Medieval Start
+      sprite: Imperial/Medieval/Food/seed_packet.rsi
+      inhandVisuals:
+        left:
+        - state: inhand-left
+        right:
+        - state: inhand-right
+      # Imperial Medieval End
     - type: StaticPrice
       price: 20
     - type: ItemSlots
