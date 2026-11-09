@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by Prazat",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "chicken-raw"
+    },
+    {
+      "name": "chicken2-raw"
+    },
+    {
+      "name": "chicken3-raw"
+    },
+    {
+      "name": "chicken3-fried"
+    },
+    {
+      "name": "chicken-fried"
+    },
+    {
+      "name": "chicken2-fried"
+    },
+    {
+      "name": "sausage"
+    },
+    {
+      "name": "sausage-cooked"
+    },
+    {
+      "name": "mollusk"
+    },
+    {
+      "name": "mollusk-fried"
+    },
+    {
+      "name": "sausage-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "sausage-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "sausage-cooked-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "sausage-cooked-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "mollusk-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "mollusk-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "mollusk-fried-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "mollusk-fried-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "chicken3-raw-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "chicken3-raw-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "chicken3-fried-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "chicken3-fried-inhand-right",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+ent-MedievalFoodSausage = сырая колбаса
+    .desc = Сырая колбаса. Перед едой лучше приготовить.
+ent-MedievalFoodSausageCooked = жареная колбаса
+    .desc = Колбаса, поджаренная до румяной корочки.
+ent-MedievalFoodMollusk = сырой моллюск
+    .desc = Небольшой моллюск. Перед едой лучше приготовить.
+ent-MedievalFoodMolluskFried = жареный моллюск
+    .desc = Небольшой моллюск, поджаренный и ещё тёплый.
+ent-MedievalFoodChickenWhole = тушка курицы
+    .desc = Ощипанная и выпотрошенная курица, готовая к приготовлению.
+ent-MedievalFoodChickenWholeFried = жареная тушка курицы
+    .desc = Целая курица, зажаренная до золотистой корочки.

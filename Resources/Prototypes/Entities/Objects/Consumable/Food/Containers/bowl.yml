@@ -10,17 +10,26 @@
     shape:
     - 0,0,1,0
     storedOffset: 0,-3
+    # Imperial Medieval Start
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+    # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 50 # enough to make cheese in.
+  # Imperial Medieval Start
   - type: Sprite
-    sprite: Objects/Consumable/Food/bowl.rsi
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
     layers:
     - state: bowl
     - map: ["enum.SolutionContainerLayers.Fill"]
       state: fill-1
       visible: false
+  # Imperial Medieval End
   - type: MixableSolution
     solution: food
   - type: Edible
@@ -85,9 +94,11 @@
     shape:
     - 0,0,1,0
     storedOffset: 0,-3
+  # Imperial Medieval Start
   - type: Sprite
-    sprite: Objects/Consumable/Food/bowl.rsi
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
     state: bowl-trash
+  # Imperial Medieval End
   - type: Tag
     tags:
     - Trash

@@ -12,18 +12,22 @@
   id: FoodPlate
   description: A large plate, excellent for bread.
   components:
+  # Imperial Medieval Start
   - type: Sprite
-    sprite: Objects/Consumable/Food/plates.rsi
+    sprite: Imperial/Medieval/Food/Dishes/plate.rsi
     state: plate
+  # Imperial Medieval End
   - type: Item
     shape:
     - 0,0,1,0
     storedOffset: 0,-6
+    # Imperial Medieval Start
     inhandVisuals:
       left:
       - state: plate-inhand-left
       right:
       - state: plate-inhand-right
+    # Imperial Medieval End
   - type: DamageOnLand
     damage:
       types:
@@ -66,9 +70,11 @@
   id: FoodPlateTrash
   description: A broken plate. Useless.
   components:
+  # Imperial Medieval Start
   - type: Sprite
-    sprite: Objects/Consumable/Food/plates.rsi
+    sprite: Imperial/Medieval/Food/Dishes/plate.rsi
     state: plate-trash
+  # Imperial Medieval End
   - type: Item
     shape:
     - 0,0,1,0
@@ -86,16 +92,20 @@
   id: FoodPlateSmall
   description: A small plate. Delicate.
   components:
+  # Imperial Medieval Start
   - type: Sprite
-    sprite: Objects/Consumable/Food/plates.rsi
+    sprite: Imperial/Medieval/Food/Dishes/plate_small.rsi
     state: plate-small
+  # Imperial Medieval End
   - type: Item
     storedOffset: 0,-3
+    # Imperial Medieval Start
     inhandVisuals:
       left:
-      - state: plate-inhand-left
+      - state: plate-small-inhand-left
       right:
-      - state: plate-inhand-right
+      - state: plate-small-inhand-right
+    # Imperial Medieval End
 # Needs the full thing because inherting is dumb sometimes.
   - type: Destructible
     thresholds:
@@ -123,9 +133,11 @@
   parent: FoodPlateTrash
   id: FoodPlateSmallTrash
   components:
+  # Imperial Medieval Start
   - type: Sprite
-    sprite: Objects/Consumable/Food/plates.rsi
+    sprite: Imperial/Medieval/Food/Dishes/plate_small.rsi
     state: plate-small-trash
+  # Imperial Medieval End
   - type: Item
     storedOffset: 0,-3
 

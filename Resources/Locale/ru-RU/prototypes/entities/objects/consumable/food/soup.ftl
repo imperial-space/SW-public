@@ -16,9 +16,11 @@ ent-FoodSaladValid = валид салат
 ent-FoodSaladColeslaw = коулсло
     .desc = Порубленная капуста и красный лук, заправленные соусом винегрет.
     .suffix = { "" }
+# Imperial Medieval Start
 ent-FoodSaladCaesar = салат Цезарь
-    .desc = Простой, но вкусный салат из лука, капусты, гренок и тёртого сыра, заправленный маслом. Подается с ломтиком питы!
+    .desc = Салат из зелени, лука, сухариков и тёртого сыра, заправленный маслом.
     .suffix = { "" }
+# Imperial Medieval End
 ent-FoodSaladKimchi = салат кимчи
     .desc = На самом деле это просто острый салат.
     .suffix = { "" }
@@ -73,9 +75,11 @@ ent-FoodSoupWingFangChu = крылышко фан чу
 ent-FoodSoupClown = слёзы клоуна
     .desc = Не очень-то смешно.
     .suffix = { "" }
+# Imperial Medieval Start
 ent-FoodSoupVegetable = овощной суп
-    .desc = Настоящий веганский обед.
+    .desc = Густой суп из овощей с грядки.
     .suffix = { "" }
+# Imperial Medieval End
 ent-FoodSoupNettle = крапивный суп
     .desc = Подумать только, ботаник забил бы вас до смерти одной из веток.
     .suffix = { "" }
@@ -106,15 +110,19 @@ ent-FoodSoupMiso = мисо суп
 ent-FoodSoupMushroom = грибной суп
     .desc = Вкусный и сытный грибной суп.
     .suffix = { "" }
+# Imperial Medieval Start
 ent-FoodSoupBeet = борщ
-    .desc = Боржч для всех, даром, и пусть никто не уйдёт голодным.
+    .desc = Густой горячий борщ из свёклы. После такой миски из-за стола встают сытыми.
     .suffix = { "" }
+# Imperial Medieval End
 ent-FoodSoupBeetRed = борщ
     .desc = Довольно деликатесное блюдо.
     .suffix = { "" }
-ent-FoodSoupStew = рагу
-    .desc = Хорошее тёплое рагу. Здоровое и сытное.
+# Imperial Medieval Start
+ent-FoodSoupStew = мясная похлёбка
+    .desc = Горячий суп из мяса и зелени.
     .suffix = { "" }
+# Imperial Medieval End
 ent-FoodSoupPotato = сладкий картофельный суп
     .desc = Вкусный сладкий картофель в форме супа.
     .suffix = { "" }

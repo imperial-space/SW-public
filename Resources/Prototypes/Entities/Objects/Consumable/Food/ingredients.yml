@@ -645,8 +645,18 @@
   - type: Item
     shape:
     - 0,0,1,0
+    # Imperial Medieval Start
+    inhandVisuals:
+      left:
+      - state: butter-inhand-left
+      right:
+      - state: butter-inhand-right
+    # Imperial Medieval End
+  # Imperial Medieval Start
   - type: Sprite
+    sprite: Imperial/Medieval/Food/dairy.rsi
     state: butter
+  # Imperial Medieval End
   - type: Slippery
   - type: StepTrigger
     intersectRatio: 0.2
@@ -689,8 +699,18 @@
   components:
   - type: Item
     size: Tiny
+    # Imperial Medieval Start
+    inhandVisuals:
+      left:
+      - state: butter-slice-inhand-left
+      right:
+      - state: butter-slice-inhand-right
+    # Imperial Medieval End
+  # Imperial Medieval Start
   - type: Sprite
+    sprite: Imperial/Medieval/Food/dairy.rsi
     state: butter-slice
+  # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:
       food:
@@ -731,11 +751,29 @@
   components:
   - type: Item
     size: Normal
+    # Imperial Medieval Start
+    inhandVisuals:
+      left:
+      - state: cheese-inhand-left
+      right:
+      - state: cheese-inhand-right
+    # Imperial Medieval End
   - type: FlavorProfile
     flavors:
       - cheesy
+  # Imperial Medieval Start
   - type: Sprite
-    state: cheesewheel
+    sprite: Imperial/Medieval/Food/dairy.rsi
+    layers:
+    - state: cheese1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        cheese1: ""
+        cheese2: ""
+        cheese3: ""
+  # Imperial Medieval End
   - type: SliceableFood
     count: 4
     slice: FoodCheeseSlice
@@ -749,8 +787,22 @@
   - type: FlavorProfile
     flavors:
       - cheesy
+  # Imperial Medieval Start
   - type: Sprite
-    state: cheesewedge
+    sprite: Imperial/Medieval/Food/dairy.rsi
+    layers:
+    - state: cheese-slice1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        cheese-slice1: ""
+        cheese-slice2: ""
+        cheese-slice3: ""
+  - type: SliceableFood
+    count: 3
+    slice: MedievalFoodCheesePiece
+  # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:
       food:
@@ -768,11 +820,13 @@
   - type: Item
     size: Tiny
     storedOffset: 0,-3
+    # Imperial Medieval Start
     inhandVisuals:
       left:
-      - state: cheesewedge-inhand-left
+      - state: cheese-slice-inhand-left
       right:
-      - state: cheesewedge-inhand-right
+      - state: cheese-slice-inhand-right
+    # Imperial Medieval End
 
 - type: entity
   parent: FoodBakingBase

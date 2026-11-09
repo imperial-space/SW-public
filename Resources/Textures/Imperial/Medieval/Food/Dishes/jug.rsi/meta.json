@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by Prazat",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "jug"
+    },
+    {
+      "name": "jug-glina"
+    },
+    {
+      "name": "jug-iron"
+    },
+    {
+      "name": "jug-steel"
+    },
+    {
+      "name": "jug-gold"
+    },
+    {
+      "name": "jug-trash"
+    },
+    {
+      "name": "fill-1"
+    },
+    {
+      "name": "fill-2"
+    },
+    {
+      "name": "jug-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "jug-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "jug-glina-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "jug-glina-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "jug-iron-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "jug-iron-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "jug-steel-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "jug-steel-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "jug-gold-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "jug-gold-inhand-right",
+      "directions": 4
+    }
+  ]
+}

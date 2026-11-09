@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by Prazat",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "butter"
+    },
+    {
+      "name": "butter-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "butter-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "butter-slice"
+    },
+    {
+      "name": "butter-slice-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "butter-slice-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "cheese-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "cheese-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "cheese-piece-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "cheese-piece-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "cheese-piece1"
+    },
+    {
+      "name": "cheese-piece2"
+    },
+    {
+      "name": "cheese-piece3"
+    },
+    {
+      "name": "cheese-slice-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "cheese-slice-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "cheese-slice1"
+    },
+    {
+      "name": "cheese-slice2"
+    },
+    {
+      "name": "cheese-slice3"
+    },
+    {
+      "name": "cheese1"
+    },
+    {
+      "name": "cheese2"
+    },
+    {
+      "name": "cheese3"
+    },
+    {
+      "name": "cheesegoat-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "cheesegoat-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "cheesegoat-piece-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "cheesegoat-piece-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "cheesegoat-piece1"
+    },
+    {
+      "name": "cheesegoat-piece2"
+    },
+    {
+      "name": "cheesegoat-piece3"
+    },
+    {
+      "name": "cheesegoat-slice-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "cheesegoat-slice-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "cheesegoat-slice1"
+    },
+    {
+      "name": "cheesegoat-slice2"
+    },
+    {
+      "name": "cheesegoat1"
+    },
+    {
+      "name": "cheesegoat2"
+    }
+  ]
+}

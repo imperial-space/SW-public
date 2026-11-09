@@ -288,8 +288,18 @@
   name: raw chicken meat
   description: A slab of raw chicken. Remember to wash your hands!
   components:
+  # Imperial Medieval Start
   - type: Sprite
-    state: bird
+    sprite: Imperial/Medieval/Food/meat.rsi
+    layers:
+    - state: chicken-raw
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        chicken-raw: ""
+        chicken2-raw: ""
+  # Imperial Medieval End
   - type: SolutionContainerManager
     solutions:
       food:
@@ -308,6 +318,9 @@
     node: start
     defaultTarget: cooked chicken
   - type: Item
+    # Imperial Medieval Start
+    sprite: Objects/Consumable/Food/meat.rsi
+    # Imperial Medieval End
     storedOffset: -1,1
     inhandVisuals:
       left:
@@ -1227,6 +1240,9 @@
     - Cooked
     - Meat
   - type: Sprite
+    # Imperial Medieval Start
+    sprite: Imperial/Medieval/Food/meat.rsi
+    # Imperial Medieval End
     layers:
     - state: chicken-fried
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -1248,6 +1264,9 @@
       Burger: MeatChicken
       Taco: MeatChicken
   - type: Item
+    # Imperial Medieval Start
+    sprite: Objects/Consumable/Food/meat.rsi
+    # Imperial Medieval End
     inhandVisuals:
       left:
       - state: plain-cooked-inhand-left

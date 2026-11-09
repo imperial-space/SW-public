@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by Prazat",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "plate"
+    },
+    {
+      "name": "plate-wood"
+    },
+    {
+      "name": "plate-iron"
+    },
+    {
+      "name": "plate-steel"
+    },
+    {
+      "name": "plate-gold"
+    },
+    {
+      "name": "plate-ebonit"
+    },
+    {
+      "name": "plate-glina"
+    },
+    {
+      "name": "plate-trash"
+    },
+    {
+      "name": "plate-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plate-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "plate-wood-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plate-wood-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "plate-iron-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plate-iron-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "plate-steel-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plate-steel-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "plate-gold-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plate-gold-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "plate-ebonit-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plate-ebonit-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "plate-glina-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plate-glina-inhand-right",
+      "directions": 4
+    }
+  ]
+}

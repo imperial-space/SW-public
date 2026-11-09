@@ -1,0 +1,179 @@
+- type: entity
+  parent: FoodMeatRawBase
+  id: MedievalFoodSausage
+  name: raw sausage
+  description: A raw sausage. Better cooked before eating.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: sausage-inhand-left
+      right:
+      - state: sausage-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/meat.rsi
+    state: sausage
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+        - ReagentId: Fat
+          Quantity: 5
+
+- type: entity
+  parent: FoodMeatBase
+  id: MedievalFoodSausageCooked
+  name: fried sausage
+  description: A sausage fried until golden brown.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: sausage-cooked-inhand-left
+      right:
+      - state: sausage-cooked-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/meat.rsi
+    state: sausage-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 5
+
+- type: entity
+  parent: FoodMeatRawBase
+  id: MedievalFoodMollusk
+  name: raw mollusk
+  description: A small mollusk. Better cooked before eating.
+  components:
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: mollusk-inhand-left
+      right:
+      - state: mollusk-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - fishy
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/meat.rsi
+    state: mollusk
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Fat
+          Quantity: 1
+        - ReagentId: Water
+          Quantity: 2
+
+- type: entity
+  parent: FoodMeatBase
+  id: MedievalFoodMolluskFried
+  name: fried mollusk
+  description: A small mollusk, fried and still warm.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: mollusk-fried-inhand-left
+      right:
+      - state: mollusk-fried-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - fishy
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/meat.rsi
+    state: mollusk-fried
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 3
+
+- type: entity
+  parent: FoodMeatRawBase
+  id: MedievalFoodChickenWhole
+  name: whole chicken
+  description: A plucked and gutted chicken, ready for cooking.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: chicken3-raw-inhand-left
+      right:
+      - state: chicken3-raw-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/meat.rsi
+    state: chicken3-raw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 18
+        - ReagentId: Fat
+          Quantity: 9
+
+- type: entity
+  parent: FoodMeatBase
+  id: MedievalFoodChickenWholeFried
+  name: fried whole chicken
+  description: A whole chicken fried to a golden crust.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: chicken3-fried-inhand-left
+      right:
+      - state: chicken3-fried-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/meat.rsi
+    state: chicken3-fried
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10

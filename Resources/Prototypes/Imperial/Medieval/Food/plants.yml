@@ -1,0 +1,301 @@
+- type: seed
+  id: MedievalBeet
+  name: seeds-beet-name
+  noun: seeds-noun-seeds
+  displayName: seeds-beet-display-name
+  plantRsi: Imperial/Medieval/Food/Plants/beet.rsi
+  packetPrototype: MedievalBeetSeeds
+  productPrototypes:
+    - MedievalFoodBeet
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 6
+      PotencyDivisor: 15
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: MedievalBeetSeeds
+  name: packet of beet seeds
+  components:
+    - type: Seed
+      seedId: MedievalBeet
+    - type: Sprite
+      sprite: Imperial/Medieval/Food/Plants/beet.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: MedievalFoodBeet
+  name: beet
+  description: A juicy dark red root vegetable. The base of borscht.
+  components:
+  - type: FishingBait
+    baitType: Plant
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Plants/beet.rsi
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: MedievalBeet
+  - type: Tag
+    tags:
+    - Vegetable
+
+- type: seed
+  id: MedievalSugarBeet
+  name: seeds-sugarbeet-name
+  noun: seeds-noun-seeds
+  displayName: seeds-sugarbeet-display-name
+  plantRsi: Imperial/Medieval/Food/Plants/sugar_beet.rsi
+  packetPrototype: MedievalSugarBeetSeeds
+  productPrototypes:
+    - MedievalFoodSugarBeet
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Sugar:
+      Min: 1
+      Max: 6
+      PotencyDivisor: 15
+
+- type: entity
+  parent: SeedBase
+  id: MedievalSugarBeetSeeds
+  name: packet of sugar beet seeds
+  components:
+    - type: Seed
+      seedId: MedievalSugarBeet
+    - type: Sprite
+      sprite: Imperial/Medieval/Food/Plants/sugar_beet.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: MedievalFoodSugarBeet
+  name: sugar beet
+  description: A pale, sweet root vegetable that sugar is made from.
+  components:
+  - type: FishingBait
+    baitType: Plant
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Sugar
+          Quantity: 7
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Plants/sugar_beet.rsi
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: MedievalSugarBeet
+  - type: Tag
+    tags:
+    - Vegetable
+
+- type: seed
+  id: MedievalCucumber
+  name: seeds-cucumber-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cucumber-display-name
+  plantRsi: Imperial/Medieval/Food/Plants/cucumber.rsi
+  packetPrototype: MedievalCucumberSeeds
+  productPrototypes:
+    - MedievalFoodCucumber
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 8
+  production: 6
+  yield: 2
+  potency: 10
+  growthStages: 5
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Water:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: entity
+  parent: SeedBase
+  id: MedievalCucumberSeeds
+  name: packet of cucumber seeds
+  components:
+    - type: Seed
+      seedId: MedievalCucumber
+    - type: Sprite
+      sprite: Imperial/Medieval/Food/Plants/cucumber.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: MedievalFoodCucumber
+  name: cucumber
+  description: A crisp green cucumber.
+  components:
+  - type: FishingBait
+    baitType: Plant
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Water
+          Quantity: 6
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Plants/cucumber.rsi
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: MedievalCucumber
+  - type: Tag
+    tags:
+    - Vegetable
+
+- type: seed
+  id: MedievalSweetPepper
+  name: seeds-sweetpepper-name
+  noun: seeds-noun-seeds
+  displayName: seeds-sweetpepper-display-name
+  plantRsi: Imperial/Medieval/Food/Plants/sweet_pepper.rsi
+  packetPrototype: MedievalSweetPepperSeeds
+  productPrototypes:
+    - MedievalFoodSweetPepper
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 6
+  production: 6
+  yield: 2
+  potency: 10
+  growthStages: 5
+  waterConsumption: 0.60
+  idealLight: 9
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: MedievalSweetPepperSeeds
+  name: packet of sweet pepper seeds
+  components:
+    - type: Seed
+      seedId: MedievalSweetPepper
+    - type: Sprite
+      sprite: Imperial/Medieval/Food/Plants/sweet_pepper.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: MedievalFoodSweetPepper
+  name: sweet pepper
+  description: A fleshy sweet pepper, not hot at all.
+  components:
+  - type: FishingBait
+    baitType: Plant
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Plants/sweet_pepper.rsi
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: MedievalSweetPepper
+  - type: Tag
+    tags:
+    - Vegetable
+
+- type: entity
+  parent: FoodProduceBase
+  id: MedievalFoodPotatoClean
+  name: peeled potato
+  description: A peeled potato, ready for cooking.
+  components:
+  - type: FishingBait
+    baitType: Plant
+  - type: FlavorProfile
+    flavors:
+      - potatoes
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/Plants/potato.rsi
+    state: clean
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: clean-inhand-left
+      right:
+      - state: clean-inhand-right
+  - type: Tag
+    tags:
+    - Potato
+    - Vegetable

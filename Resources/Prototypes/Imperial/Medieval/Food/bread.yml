@@ -1,0 +1,128 @@
+- type: entity
+  parent: FoodBreadBase
+  id: MedievalFoodBreadRye
+  name: rye bread
+  description: Dark, dense bread baked from rye flour.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bread.rsi
+    layers:
+    - state: rye_bread1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        rye_bread1: ""
+        rye_bread2: ""
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: rye_bread-inhand-left
+      right:
+      - state: rye_bread-inhand-right
+  - type: SliceableFood
+    slice: MedievalFoodBreadRyeSlice
+
+- type: entity
+  parent: FoodBreadSliceBase
+  id: MedievalFoodBreadRyeSlice
+  name: rye bread slice
+  description: A slice of dark rye bread.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bread.rsi
+    layers:
+    - state: rye_bread1-slice
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        rye_bread1-slice: ""
+        rye_bread2-slice: ""
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: rye_bread-slice-inhand-left
+      right:
+      - state: rye_bread-slice-inhand-right
+
+- type: entity
+  parent: FoodBreadBase
+  id: MedievalFoodBreadBerry
+  name: berry bread
+  description: Soft bread with dried fruit, a common treat among peasants.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - berry
+      - bread
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bread.rsi
+    layers:
+    - state: berry_bread
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: berry_bread-inhand-left
+      right:
+      - state: berry_bread-inhand-right
+  - type: SliceableFood
+    slice: MedievalFoodBreadBerrySlice
+  - type: Tag
+    tags:
+    - Fruit
+    - Bread
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 4
+
+- type: entity
+  parent: FoodBreadSliceBase
+  id: MedievalFoodBreadBerrySlice
+  name: berry bread slice
+  description: A slice of soft bread with dried fruit.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - berry
+      - bread
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bread.rsi
+    layers:
+    - state: berry_bread-slice
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: berry_bread-slice-inhand-left
+      right:
+      - state: berry_bread-slice-inhand-right
+  - type: Tag
+    tags:
+    - Fruit
+    - Bread
+    - Slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: microwaveMealRecipe
+  id: RecipeMedievalBerryBread
+  name: berry bread recipe
+  result: MedievalFoodBreadBerry
+  time: 15
+  group: Breads
+  solids:
+    FoodDough: 1
+    FoodBerries: 3

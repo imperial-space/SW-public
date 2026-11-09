@@ -907,7 +907,9 @@
   name: potato
   parent: FoodProduceBase
   id: FoodPotato
-  description: The space Irish starved to death after their potato crops died. Sadly they were unable to fish for space carp due to it being the queen's space. Bringing this up to any space IRA member will drive them insane with anger.
+  # Imperial Medieval Start
+  description: A potato caked in soil. Best washed before cooking.
+  # Imperial Medieval End
   components:
   - type: FishingBait
     baitType: Plant
@@ -926,8 +928,13 @@
         - ReagentId: Vitamin
           Quantity: 4
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/potato.rsi
+    # Imperial Medieval Start
+    sprite: Imperial/Medieval/Food/Plants/potato.rsi
+    # Imperial Medieval End
   - type: Item
+    # Imperial Medieval Start
+    sprite: Objects/Specific/Hydroponics/potato.rsi
+    # Imperial Medieval End
     heldPrefix: produce
   - type: Produce
     seedId: potato
@@ -2405,7 +2412,9 @@
   name: grapes
   parent: FoodProduceBase
   id: FoodGrape
-  description: The food of emperors, Space France inhabitants (usually as wine) and soccer moms. One day it could be used in wine production for the bartender if he ever runs out.
+  # Imperial Medieval Start
+  description: A bunch of ripe grapes.
+  # Imperial Medieval End
   components:
   - type: FishingBait
     baitType: Plant

@@ -64,7 +64,9 @@
       - FoodSoupMiso
       - FoodSoupMushroom
       - FoodSoupBeet
-      - FoodSoupBeetRed
+      # Imperial Medieval Start
+      # - FoodSoupBeetRed
+      # Imperial Medieval End
       - FoodSoupPotato
       - FoodSoupOnion
       - FoodSoupBisque

@@ -1603,7 +1603,9 @@
   name: seeds-grape-name
   noun: seeds-noun-seeds
   displayName: seeds-grape-display-name
-  plantRsi: Objects/Specific/Hydroponics/grape.rsi
+  # Imperial Medieval Start
+  plantRsi: Imperial/Medieval/Food/Plants/grape.rsi
+  # Imperial Medieval End
   packetPrototype: GrapeSeeds
   productPrototypes:
     - FoodGrape
@@ -1612,7 +1614,9 @@
   production: 5
   yield: 3
   potency: 10
-  growthStages: 2
+  # Imperial Medieval Start
+  growthStages: 5
+  # Imperial Medieval End
   chemicals:
     Nutriment:
       Min: 1
