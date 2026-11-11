@@ -20,7 +20,7 @@ namespace Content.Shared.MeleeParry.Components
 
         [DataField, AutoNetworkedField]
         [ViewVariables(VVAccess.ReadWrite)]
-        public float ParryWindow = 0.15f;
+        public float ParryWindow = 0.2f;
 
         [DataField, AutoNetworkedField]
         [ViewVariables(VVAccess.ReadWrite)]

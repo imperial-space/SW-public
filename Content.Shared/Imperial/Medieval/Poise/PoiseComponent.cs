@@ -30,7 +30,7 @@ public sealed partial class PoiseComponent : Component
 
     // Количество урона по стойке, восстанавливаемое за один тик восстановления.
     [DataField, AutoNetworkedField]
-    public int PoiseRecoveryPerTick = 5;
+    public int PoiseRecoveryPerTick = 10;
 
     // Доля стойки, восстанавливаемая после выхода из состояния пробитой стойки.
     [DataField, AutoNetworkedField]
@@ -63,11 +63,11 @@ public sealed partial class PoiseComponent : Component
     // Задержка после получения урона по стойке перед началом обычного восстановления.
     // base player delay; eligible torso armor halves recovery timers.
     [DataField]
-    public TimeSpan PoiseRecoveryDelay = TimeSpan.FromSeconds(20f);
+    public TimeSpan PoiseRecoveryDelay = TimeSpan.FromSeconds(12f);
 
     // Интервал между тиками обычного восстановления стойки.
     [DataField]
-    public TimeSpan PoiseRecoveryInterval = TimeSpan.FromSeconds(3f);
+    public TimeSpan PoiseRecoveryInterval = TimeSpan.FromSeconds(2f);
 
     // Время, в течение которого стойка остаётся пробитой.
     [DataField]
