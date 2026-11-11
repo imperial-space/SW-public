@@ -3,6 +3,7 @@ using Content.Shared.Coordinates;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Imperial.DurabilityDisplay.Components;
+using Content.Shared.Imperial.Medieval.Poise.LightAttack;
 using Content.Shared.Imperial.Medieval.MedievalItemRustComponent;
 using Content.Shared.Interaction;
 using Content.Shared.MedievalMeleeResource.Components;
@@ -23,6 +24,7 @@ public sealed class MedievalMeleeResourceSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedWieldableSystem _wieldable = default!;
+    [Dependency] private readonly AdvancedLightAttackSystem _advancedLightAttack = default!;
 
     public override void Initialize()
     {
@@ -202,6 +204,8 @@ public sealed class MedievalMeleeResourceSystem : EntitySystem
 
     private void OnWeaponStart(EntityUid uid, MeleeWeaponComponent component, ComponentStartup args)
     {
+        _advancedLightAttack.RefreshHeldMelee(uid, removing: false);
+
         if (HasComp<ExaminerComponent>(uid))
             return;
 
@@ -300,4 +304,3 @@ public sealed class MedievalMeleeResourceSystem : EntitySystem
         return 1.0f;
     }
 }
-

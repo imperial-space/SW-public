@@ -11,7 +11,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Imperial.Medieval.ChargedAttack;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
@@ -54,9 +53,9 @@ public sealed partial class AdvancedLightAttackSystem : EntitySystem
         SubscribeAllEvent<AdvancedChargedAttackReleaseEvent>(OnChargedRelease);
         SubscribeLocalEvent<AdvancedLightAttackComponent, DroppedEvent>(OnDropped);
         SubscribeLocalEvent<AdvancedLightAttackComponent, GotUnequippedHandEvent>(OnUnequipped);
-        SubscribeLocalEvent<AdvancedLightAttackComponent, GotEquippedHandEvent>(OnEquipped);
         SubscribeLocalEvent<AdvancedLightAttackComponent, EntityPausedEvent>(OnPaused);
         SubscribeLocalEvent<AdvancedLightAttackComponent, ComponentShutdown>(OnShutdown);
+        InitializeDualWielding();
         // attach this world to the already-registered, persistent router.
         _cueNetwork.CueReceived += OnCuePacket;
     }
@@ -222,27 +221,6 @@ public sealed partial class AdvancedLightAttackSystem : EntitySystem
         => TryComp<AdvancedLightAttackUserComponent>(user, out var component) &&
            component.AttackLockedUntil > _timing.CurTime;
 
-    /// <summary>Always derive this flag from distinct real weapons, never virtual second-hand grips.</summary>
-    public bool RefreshDualWielding(EntityUid user)
-    {
-        var count = 0;
-        foreach (var held in _hands.EnumerateHeld(user))
-        {
-            if (!HasComp<VirtualItemComponent>(held) &&
-                TryComp<MeleeWeaponComponent>(held, out var melee) && !melee.MustBeEquippedToUse)
-                count++;
-        }
-
-        var component = EnsureComp<AdvancedLightAttackUserComponent>(user);
-        var dual = count >= 2;
-        if (component.IsDualWielding != dual)
-        {
-            component.IsDualWielding = dual;
-            Dirty(user, component);
-        }
-        return dual;
-    }
-
     public bool TryBegin(EntityUid user, EntityUid weapon, MeleeWeaponComponent melee, LightAttackEvent attack, bool charged = false)
     {
         if (!TryComp<AdvancedLightAttackComponent>(weapon, out var component) || IsPending(weapon) ||
@@ -359,12 +337,6 @@ public sealed partial class AdvancedLightAttackSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var users = EntityQueryEnumerator<AdvancedLightAttackUserComponent>();
-        while (users.MoveNext(out var user, out _))
-        {
-            if (_net.IsServer || _players.LocalEntity == user)
-                RefreshDualWielding(user);
-        }
         var query = EntityQueryEnumerator<AdvancedLightAttackComponent, MeleeWeaponComponent>();
         while (query.MoveNext(out var weapon, out var component, out var melee))
         {
@@ -535,18 +507,13 @@ public sealed partial class AdvancedLightAttackSystem : EntitySystem
     private void OnDropped(EntityUid uid, AdvancedLightAttackComponent component, DroppedEvent args)
     {
         Cancel(uid, component);
-        RefreshDualWielding(args.User);
     }
 
     private void OnUnequipped(EntityUid uid, AdvancedLightAttackComponent component, GotUnequippedHandEvent args)
     {
         Cancel(uid, component);
         ReleasePrimary(uid);
-        RefreshDualWielding(args.User);
     }
-
-    private void OnEquipped(EntityUid uid, AdvancedLightAttackComponent component, GotEquippedHandEvent args)
-        => RefreshDualWielding(args.User);
 
     private void OnPaused(EntityUid uid, AdvancedLightAttackComponent component, ref EntityPausedEvent args)
         => Cancel(uid, component);
