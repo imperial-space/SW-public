@@ -1,6 +1,5 @@
 // Imperial medieval start
 using System.Numerics;
-using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Effects;
 using Content.Shared.Projectiles;
@@ -15,7 +14,6 @@ using Robust.Client.Timing;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.GameStates;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -31,7 +29,7 @@ namespace Content.Client.Projectiles;
 /// Ordinary server physics and damage remain authoritative.
 /// Sprite interpolation smooths flight without feeding rendered positions back into physics.
 /// </summary>
-public sealed class ProjectilePredictionSystem : EntitySystem
+public sealed partial class ProjectilePredictionSystem : EntitySystem
 {
     [Dependency] private readonly IClientGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
@@ -46,7 +44,7 @@ public sealed class ProjectilePredictionSystem : EntitySystem
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly FixtureSystem _fixtures = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly Content.Shared.Explosion.EntitySystems.SharedExplosionSystem _explosions = default!;
+    [Dependency] private readonly Shared.Explosion.EntitySystems.SharedExplosionSystem _explosions = default!;
 
     private readonly HashSet<EntityUid> _overlapping = new();
     private readonly Dictionary<ProjectilePredictionKey, EntityUid> _local = new();
@@ -329,15 +327,6 @@ public sealed class ProjectilePredictionSystem : EntitySystem
         }
     }
 
-    private void OnShotCompleted(ProjectileShotCompletedEvent args)
-    {
-        if (args.Launched)
-            return;
-        foreach (var key in _local.Keys.ToArray())
-            if (key.Weapon == args.Weapon && key.InputTick == args.InputTick)
-                Retire(key);
-    }
-
     private void Retire(ProjectilePredictionKey key)
     {
         if (_local.Remove(key, out var local) && Exists(local))
@@ -357,54 +346,6 @@ public sealed class ProjectilePredictionSystem : EntitySystem
             _sprites.SetVisible((uid, sprite), visible);
     }
 
-    // Persistent local projectiles advance once, rather than again for every replayed player input.
-    private void OnBeforeSolve(ref PhysicsUpdateBeforeSolveEvent args)
-    {
-        if (_timing.IsFirstTimePredicted)
-        {
-            foreach (var (uid, flight) in _flight)
-            {
-                if (flight.Tick == _timing.CurTick || !TryComp(uid, out TransformComponent? xform))
-                    continue;
-                flight.Previous = _transform.GetMapCoordinates(uid, xform);
-                flight.Tick = _timing.CurTick;
-            }
-            // Engine reset may retain an already touching contact without another StartCollide.
-            // Consume only existing sensor contacts that the engine's shape query confirms now.
-            foreach (var (key, uid) in _local.ToArray())
-            {
-                if (!TryComp<ProjectilePredictionComponent>(uid, out var predicted) || predicted.Impact ||
-                    !TryComp<ProjectileComponent>(uid, out var projectile) || projectile.ProjectileSpent ||
-                    !TryComp<PhysicsComponent>(uid, out var body) || !body.CanCollide ||
-                    _fixtures.GetFixtureOrNull(uid, SharedProjectileSystem.ProjectileFixture) is not { } sensor ||
-                    sensor.Contacts.Count == 0)
-                    continue;
-                _overlapping.Clear();
-                _lookup.GetEntitiesIntersecting(Transform(uid).MapID, sensor.Shape,
-                    _physics.GetPhysicsTransform(uid), _overlapping, LookupFlags.Dynamic | LookupFlags.Static);
-                foreach (var (otherFixture, contact) in sensor.Contacts.ToArray())
-                {
-                    var target = otherFixture.Owner;
-                    if (contact.Deleting || !contact.Enabled || !otherFixture.Hard || !_overlapping.Contains(target) ||
-                        target == predicted.Source || target == projectile.Shooter || target == projectile.Weapon ||
-                        TryComp<ProjectilePredictionComponent>(target, out var matching) && matching.Key == key ||
-                        !TryComp<PhysicsComponent>(target, out var targetBody) || !targetBody.CanCollide ||
-                        !TryComp<FixturesComponent>(target, out var targetFixtures) ||
-                        targetFixtures.Fixtures.Values.Count(fixture => fixture.Hard) != 1)
-                        continue;
-                    PresentContact((uid, predicted), projectile, target, body);
-                    if (predicted.Impact)
-                        break;
-                }
-            }
-            return;
-        }
-        _replay.Clear();
-        foreach (var uid in _local.Values)
-            if (TryComp<PhysicsComponent>(uid, out var body) && TryComp(uid, out TransformComponent? xform))
-                _replay[uid] = (xform.Coordinates, xform.LocalRotation, body.LinearVelocity, body.AngularVelocity);
-    }
-
     private void OnAfterSolve(ref PhysicsUpdateAfterSolveEvent args)
     {
         if (_timing.IsFirstTimePredicted)
@@ -421,51 +362,6 @@ public sealed class ProjectilePredictionSystem : EntitySystem
             _physics.SetAngularVelocity(uid, pose.Angular);
         }
         _replay.Clear();
-    }
-
-    public override void Update(float frameTime)
-    {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-        foreach (var (key, uid) in _local.ToArray())
-        {
-            if (!Enabled || !Exists(uid) || _player.LocalEntity == null ||
-                !_server.ContainsKey(key) && _timing.RealTime - _created[key] > TimeSpan.FromSeconds(3))
-                Retire(key);
-            else if (_server.TryGetValue(key, out var server))
-            {
-                if (TerminatingOrDeleted(server) || !TryComp(server, out TransformComponent? realTransform) ||
-                    realTransform.MapID == MapId.Nullspace ||
-                    !TryComp<ProjectileComponent>(server, out var real) || real.ProjectileSpent ||
-                    real.Shooter != _player.LocalEntity ||
-                    TryComp<EmbeddableProjectileComponent>(server, out var embedded) && embedded.EmbeddedIntoUid != null)
-                    Retire(key);
-                else
-                {
-                    SetVisible(server, false);
-                    // A real state past the predicted contact can establish a miss without a client hit report.
-                    // This is an impact disagreement, not routine correction of an uninterrupted flight.
-                    var localPrediction = Comp<ProjectilePredictionComponent>(uid);
-                    if (localPrediction.Impact && !_confirmed.ContainsKey(key) &&
-                        TryComp<ProjectilePredictionComponent>(server, out var realPrediction) &&
-                        localPrediction.ContactTick >= localPrediction.LaunchTick)
-                    {
-                        var flightTicks = localPrediction.ContactTick.Value - localPrediction.LaunchTick.Value;
-                        if (_timing.LastRealTick > realPrediction.LaunchTick + flightTicks + 2u)
-                            Retire(key);
-                    }
-                }
-            }
-        }
-        foreach (var key in _created.Keys.ToArray())
-            if (!_local.ContainsKey(key) && _timing.RealTime - _created[key] > TimeSpan.FromSeconds(10))
-                _created.Remove(key);
-        foreach (var (key, value) in _presented.ToArray())
-            if (_timing.RealTime - value.Time > TimeSpan.FromSeconds(10))
-                _presented.Remove(key);
-        foreach (var (key, time) in _confirmed.ToArray())
-            if (_timing.RealTime - time > TimeSpan.FromSeconds(10))
-                _confirmed.Remove(key);
     }
 
     public override void FrameUpdate(float frameTime)
@@ -501,17 +397,5 @@ public sealed class ProjectilePredictionSystem : EntitySystem
             _sprites.SetOffset((uid, sprite), flight.SpriteOffset);
     }
 
-    private void OnDetach(LocalPlayerDetachedEvent args)
-    {
-        foreach (var key in _local.Keys.ToArray())
-            Retire(key);
-        _server.Clear();
-        _serverKeys.Clear();
-        _created.Clear();
-        _presented.Clear();
-        _confirmed.Clear();
-        _replay.Clear();
-        _flight.Clear();
-    }
 }
 // Imperial medieval end
