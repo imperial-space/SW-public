@@ -1045,37 +1045,23 @@
 
 - type: entity
   name: falshion
-  parent: [ BaseItem, BaseOneHandedCharged ]
+  parent: MedievalFalshionT3
   id: MedievalFalshionT3Legion
   description: An ancient war blade.
   components:
   - type: RDWeight
     value: 2
-  - type: QuestItem
-    contractName: "любые одноручные мечи"
-  - type: EmitSoundOnLand
-    sound:
-      collection: MedievalIronDrop
-      params:
-          variation: 0.02
-          volume: 1
-  - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_sword_legion.rsi
     state: icon
-  - type: MeleeParry
   - type: MeleeWeapon
     animation: CP14WeaponArcThrust
     wideAnimation: CP14WeaponArcSlash
     cPSwingBeverage: false
     cPAnimationOffset: 1
-    clickDamageModifier: 1.15
+    clickDamageModifier: 1
     wideAnimationRotation: -140
-    attackRate: 1.1
-    damage:
-      types:
-        Slash: 18
-        ParryAble: 1
+    attackRate: 1
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     soundSwing:
@@ -1112,10 +1098,10 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 0.7
+    distance: 0.5
     speed: 5
   - type: StaminaDamageOnHit
-    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 4
 
