@@ -8,9 +8,9 @@
     baseBowDamage: 12
     baseBluntImpact: 5
     basePoiseDamage: 15
-    minChargeTime: 0.5
-    maxChargeTime: 3
-    minChargeMultiplier: 0.25
+    minChargeTime: 0.75
+    maxChargeTime: 3.5
+    minChargeMultiplier: 0.20
     maxChargeMultiplier: 1.1
     staminaDrainPerSecond: 4
     staminaDrainInterval: 0.25
@@ -136,7 +136,7 @@
     minChargeTime: 1.5
     maxChargeTime: 5
     minChargeMultiplier: 0.5
-    maxChargeMultiplier: 1.50
+    maxChargeMultiplier: 1.75
     staminaDrainPerSecond: 6
     staminaDrainInterval: 0.25
     chargingMoveSpeedMultiplier: 0.7
@@ -177,7 +177,7 @@
   - type: Clothing
     sprite: Imperial/Medieval/Gun/bowwhois.rsi
   - type: Gun
-    projectileSpeed: 25
+    projectileSpeed: 17
     soundGunshot:
       path: /Audio/Imperial/Medieval/ES_Bow_Release_Arrow_-_SFX_Producer.ogg
   - type: MedievalBowCharge

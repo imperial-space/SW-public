@@ -135,7 +135,7 @@
     minChargeTime: 0.25
     maxChargeTime: 4
     minChargeMultiplier: 0.4
-    maxChargeMultiplier: 1.25
+    maxChargeMultiplier: 1.5
     staminaDrainPerSecond: 6
     staminaDrainInterval: 0.25
     chargingMoveSpeedMultiplier: 0.9
