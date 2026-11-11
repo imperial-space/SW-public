@@ -1,6 +1,5 @@
 // Imperial medieval edit - per-weapon advanced input routing; pending offhand attacks retain aim and timing.
 using Content.Shared.Imperial.Medieval.Poise.LightAttack;
-using Content.Shared.Hands.EntitySystems;
 using System.Linq;
 using Content.Client.Gameplay;
 using Content.Shared.CombatMode;
@@ -40,9 +39,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     [Dependency] private readonly Content.Shared.Imperial.Medieval.Poise.MeleeLockOn.MeleeLockOnSystem _meleeLockOn = default!;
-    [Dependency] private readonly AdvancedLightAttackSystem _advanced = default!; // Imperial medieval edit
-    [Dependency] private readonly SharedHandsSystem _advancedHands = default!; // Imperial medieval edit
-    private uint _nextAdvancedAttackId; // Imperial medieval edit - allocated once per physical/predicted input.
     private bool _wasCapturingMeleeTarget; // Prevent a selection click becoming an attack.
 
     // Called by the existing projectile targeting input handler before it closes capture.
@@ -351,58 +347,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             attackId = ++_nextAdvancedAttackId;
         RaisePredictiveEvent(new LightAttackEvent(GetNetEntity(target), GetNetEntity(weaponUid), GetNetCoordinates(coordinates), attackId));
     }
-
-    // Imperial medieval start
-    private bool TryGetAdvancedCursor(out MapCoordinates point, out EntityCoordinates location)
-    {
-        point = _eyeManager.PixelToMap(_inputManager.MouseScreenPosition);
-        location = default;
-        if (point.MapId == MapId.Nullspace)
-            return false;
-        if (MapManager.TryFindGridAt(point, out var grid, out _))
-            location = TransformSystem.ToCoordinates(grid, point);
-        else
-            location = TransformSystem.ToCoordinates(_map.GetMap(point.MapId), point);
-        return true;
-    }
-
-    private void UpdateAdvancedHeldInput(EntityUid user, BoundKeyState primary, BoundKeyState secondary)
-    {
-        var validCursor = TryGetAdvancedCursor(out var point, out var location);
-        EntityUid? target = null;
-        if (validCursor && _stateManager.CurrentState is GameplayStateBase screen)
-            target = screen.GetClickedEntity(point);
-
-        foreach (var uid in _advancedHands.EnumerateHeld(user))
-        {
-            if (!TryComp<AdvancedLightAttackComponent>(uid, out var component) ||
-                !TryComp<MeleeWeaponComponent>(uid, out var melee))
-                continue;
-
-            // Imperial medieval edit - a release reaches every held commitment, including an inactive hand.
-            if (component.IsCharged && component.SecondaryHeld && secondary != BoundKeyState.Down)
-            {
-                var releaseCoordinates = validCursor ? GetNetCoordinates(location) :
-                    component.PendingAttack?.Coordinates ?? GetNetCoordinates(Transform(user).Coordinates);
-                RaisePredictiveEvent(new AdvancedChargedAttackReleaseEvent(GetNetEntity(uid), component.AttackId, releaseCoordinates));
-            }
-            var charging = TryComp<ChargedAttackComponent>(uid, out var charge) && charge.CurrentAttacking;
-            // Release inactive hands too. A held secondary button must not keep
-            // the primary latch stuck after its wind-up or strike.
-            if (!component.IsCharged && primary != BoundKeyState.Down &&
-                (component.PrimaryHeld || component.UsesPrimaryLatch && melee.Attacking && !charging))
-                RaisePredictiveEvent(new StopAttackEvent(GetNetEntity(uid)));
-
-            if (!validCursor || component.Attacker != user || !_advanced.IsPending(uid))
-                continue;
-            var netTarget = GetNetEntity(target);
-            var netCoordinates = GetNetCoordinates(location);
-            if (component.PendingAttack is { } pending && pending.Target == netTarget && pending.Coordinates.Equals(netCoordinates))
-                continue;
-            RaisePredictiveEvent(new AdvancedLightAttackAimEvent(GetNetEntity(uid), component.AttackId, netTarget, netCoordinates));
-        }
-    }
-    // Imperial medieval end
 
     private void OnMeleeLunge(MeleeLungeEvent ev)
     {

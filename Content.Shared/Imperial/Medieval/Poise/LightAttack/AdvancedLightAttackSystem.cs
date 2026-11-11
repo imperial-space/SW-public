@@ -203,7 +203,8 @@ public sealed partial class AdvancedLightAttackSystem : EntitySystem
         // Releasing after a strike/cancellation only clears its input latch.
         if (IsPending(weapon.Value))
         {
-            TryUpdateAim(user, new AdvancedLightAttackAimEvent(message.Weapon, message.AttackId, null, message.Coordinates));
+            // Release publishes its exact aim and revised strike time together.
+            TryUpdateAim(user, new AdvancedLightAttackAimEvent(message.Weapon, message.AttackId, null, message.Coordinates), publish: false);
             component.Strikes = _timing.CurTime < component.MinimumStrike ? component.MinimumStrike :
                 _timing.CurTime > component.MaximumStrike ? component.MaximumStrike : _timing.CurTime;
             Publish(weapon.Value, component);
@@ -318,6 +319,9 @@ public sealed partial class AdvancedLightAttackSystem : EntitySystem
     }
 
     public bool TryUpdateAim(EntityUid user, AdvancedLightAttackAimEvent message)
+        => TryUpdateAim(user, message, publish: true);
+
+    private bool TryUpdateAim(EntityUid user, AdvancedLightAttackAimEvent message, bool publish)
     {
         if (!TryGetEntity(message.Weapon, out var weapon) ||
             !TryComp<AdvancedLightAttackComponent>(weapon, out var component) ||
@@ -347,7 +351,8 @@ public sealed partial class AdvancedLightAttackSystem : EntitySystem
             return true;
 
         component.PendingAttack = new LightAttackEvent(netTargetValue, message.Weapon, message.Coordinates, component.AttackId);
-        Publish(weapon.Value, component);
+        if (publish)
+            Publish(weapon.Value, component);
         return true;
     }
 

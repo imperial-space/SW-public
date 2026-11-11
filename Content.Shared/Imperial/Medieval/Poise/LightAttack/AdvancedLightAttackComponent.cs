@@ -94,6 +94,10 @@ public sealed partial class AdvancedLightAttackComponent : Component
 
     [ViewVariables, AutoNetworkedField]
     public TimeSpan ServerSimulationSample;
+
+    // Local input-send bookkeeping, deliberately excluded from network state
+    // and rollback. Only the owner's first-predicted input update advances it.
+    public AdvancedLightAttackAimThrottle ClientAimThrottle;
 }
 
 [Serializable, NetSerializable]

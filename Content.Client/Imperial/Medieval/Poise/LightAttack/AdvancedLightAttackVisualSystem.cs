@@ -81,7 +81,11 @@ public sealed class AdvancedLightAttackVisualSystem : EntitySystem
                 continue;
             }
 
-            // A newer cancellation notification wins over older replicated state.
+            // Skip unchanged or older replicated state before allocating a cue.
+            // Cached cues still animate below, and newer cancellation packets win.
+            if (_remote.TryGetValue(netWeapon, out var current) && component.Revision <= current.Revision)
+                continue;
+
             Accept(new MsgAdvancedLightAttackCue
             {
                 Weapon = netWeapon,
@@ -172,7 +176,7 @@ public sealed class AdvancedLightAttackVisualSystem : EntitySystem
         if (phase is not (AdvancedLightAttackPhase.Preparing or AdvancedLightAttackPhase.Windup) ||
             Paused(user) || now < cueStarts || now >= strikes || strikes <= cueStarts)
             return;
-        var progress = Math.Clamp((float) ((now - cueStarts).TotalSeconds / (strikes - cueStarts).TotalSeconds), 0f, 1f);
+        var progress = Math.Clamp((float)((now - cueStarts).TotalSeconds / (strikes - cueStarts).TotalSeconds), 0f, 1f);
 
         if (!_visuals.TryGetValue(weapon, out var visual) || visual.AttackId != attackId ||
             visual.Effect != effect || visual.User != user || TerminatingOrDeleted(visual.Entity))
