@@ -1,7 +1,24 @@
 {
   "version": 1,
-  "size": {"x": 32, "y": 32},
-  "license": "CC0-1.0",
-  "copyright": "Original Spellward temporary UI art created for this implementation",
-  "states": [{"name": "icon"}]
+  "size":
+  {
+    "x": 32,
+    "y": 32
+  },
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "discord: amir_63411",
+  "states":
+  [
+    {
+      "name": "icons",
+      "directions": 1,
+      "delays": [[1]]
+    },
+
+    {
+      "name": "cursor",
+      "directions": 1,
+      "delays": [[1]]
+    }
+  ]
 }

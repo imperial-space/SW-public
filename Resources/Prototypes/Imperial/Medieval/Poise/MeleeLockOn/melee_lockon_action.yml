@@ -8,7 +8,7 @@
     itemIconStyle: NoItem
     icon:
       sprite: Imperial/Medieval/Poise/MeleeLockOn/action.rsi
-      state: icon
+      state: icons
     checkCanInteract: false
   - type: InstantAction
     event: !type:MeleeLockOnToggleEvent

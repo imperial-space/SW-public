@@ -33,7 +33,7 @@ public sealed class MeleeLockOnMarkerOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
     private static readonly SpriteSpecifier.Texture MarkerIcon = new(new ResPath("/Textures/Imperial/Medieval/Poise/MeleeLockOn/target.png"));
-    private static readonly SpriteSpecifier.Texture CursorIcon = new(new ResPath(ProjectileTargetOverlay.TargetIconPath));
+    private static readonly SpriteSpecifier.Rsi CursorIcon = new(new ResPath("/Textures/Imperial/Medieval/Poise/MeleeLockOn/action.rsi"), "cursor");
 
     public MeleeLockOnMarkerOverlay()
     {
@@ -66,7 +66,7 @@ public sealed class MeleeLockOnMarkerOverlay : Overlay
             }
 
             if (_tracking.ShouldDrawMarker(user, target))
-                DrawMarker(args, targetCoords, MarkerIcon, Angle.Zero);
+                DrawMarker(args, targetCoords, CursorIcon, Angle.Zero);
         }
 
         // Preview the current target using the existing projectile cursor scan.
@@ -81,7 +81,7 @@ public sealed class MeleeLockOnMarkerOverlay : Overlay
         }
     }
 
-    private void DrawMarker(in OverlayDrawArgs args, MapCoordinates coords, SpriteSpecifier.Texture icon, Angle rotation)
+    private void DrawMarker(in OverlayDrawArgs args, MapCoordinates coords, SpriteSpecifier icon, Angle rotation)
     {
         if (coords.MapId != args.MapId || !_maps.TryGetMap(coords.MapId, out var mapUid))
             return;
