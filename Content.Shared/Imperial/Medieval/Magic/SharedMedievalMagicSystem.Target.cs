@@ -57,8 +57,12 @@ public abstract partial class SharedMedievalMagicSystem
 
         if (started && args is MedievalProjectileSpellEvent { FaceTargetWhileCasting: true })
         {
-            var facing = EnsureComp<MedievalCastFacingComponent>(args.Performer);
-            facing.Target = _transformSystem.ToMapCoordinates(args.Target);
+            var target = _transformSystem.ToMapCoordinates(args.Target);
+
+            if (!float.IsFinite(target.Position.X) || !float.IsFinite(target.Position.Y))
+                return;
+
+            EnsureComp<MedievalCastFacingComponent>(args.Performer).Target = target;
         }
     }
 

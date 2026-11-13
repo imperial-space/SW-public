@@ -56,24 +56,7 @@ public sealed partial class MedievalMagicSystem
 
         var userVelocity = _physicsSystem.GetMapLinearVelocity(performer);
 
-        var spawnCoords = xform.Coordinates;
-        var toTarget = targetMapCoords.Position - spawnMapCoords.Position;
-
-        if (args.SpawnForwardOffset > 0f && toTarget.LengthSquared() > 0.01f)
-        {
-            var forward = toTarget.Normalized();
-            var offset = Math.Min(args.SpawnForwardOffset, toTarget.Length());
-            var ray = new CollisionRay(spawnMapCoords.Position, forward, (int) CollisionGroup.Impassable);
-
-            foreach (var hit in _physicsSystem.IntersectRay(spawnMapCoords.MapId, ray, offset + ProjectileWallGap, performer, returnOnFirstHit: true))
-            {
-                offset = Math.Max(0f, hit.Distance - ProjectileWallGap);
-                break;
-            }
-
-            spawnCoords = _transformSystem.ToCoordinates(
-                new MapCoordinates(spawnMapCoords.Position + forward * offset, spawnMapCoords.MapId));
-        }
+        var spawnCoords = GetProjectileSpawnCoordinates(performer, spawnMapCoords, targetMapCoords, args.SpawnForwardOffset);
 
         foreach (var spawnedDirection in args.ProjectilePrototype.Keys)
         {
@@ -116,6 +99,33 @@ public sealed partial class MedievalMagicSystem
         }
 
         base.CastProjectileSpell(args);
+    }
+
+    private EntityCoordinates GetProjectileSpawnCoordinates(
+        EntityUid performer,
+        MapCoordinates spawnMapCoords,
+        MapCoordinates targetMapCoords,
+        float forwardOffset)
+    {
+        var toTarget = targetMapCoords.Position - spawnMapCoords.Position;
+
+        if (forwardOffset > 0f && toTarget.LengthSquared() > 0.01f)
+        {
+            var forward = toTarget.Normalized();
+            var offset = Math.Min(forwardOffset, toTarget.Length());
+            var ray = new CollisionRay(spawnMapCoords.Position, forward, (int) CollisionGroup.Impassable);
+
+            foreach (var hit in _physicsSystem.IntersectRay(spawnMapCoords.MapId, ray, offset + ProjectileWallGap, performer, returnOnFirstHit: true))
+            {
+                offset = Math.Max(0f, hit.Distance - ProjectileWallGap);
+                break;
+            }
+
+            return _transformSystem.ToCoordinates(
+                new MapCoordinates(spawnMapCoords.Position + forward * offset, spawnMapCoords.MapId));
+        }
+
+        return Transform(performer).Coordinates;
     }
 
 
