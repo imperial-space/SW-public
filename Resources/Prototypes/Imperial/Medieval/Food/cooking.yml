@@ -1,0 +1,149 @@
+- type: soundCollection
+  id: MedievalLadlePour
+  files:
+  - /Audio/Imperial/Medieval/Cooking/ladle_pour_1.ogg
+  - /Audio/Imperial/Medieval/Cooking/ladle_pour_2.ogg
+  - /Audio/Imperial/Medieval/Cooking/ladle_pour_3.ogg
+  - /Audio/Imperial/Medieval/Cooking/ladle_pour_4.ogg
+
+- type: Tag
+  id: MedievalBowl
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodMess
+  name: poor stew
+  description: Whatever was in the pot, boiled together. It fills the belly and little else.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: mess-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: mess-
+    changeColor: false
+    inHandsFillBaseName: -mess-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Water
+          Quantity: 4
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodBurntMess
+  name: burnt mess
+  description: Burnt black and stuck together. Eating this is a bad idea.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - terrible
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: burnt-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: burnt-
+    changeColor: false
+    inHandsFillBaseName: -burnt-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: GastroToxin
+          Quantity: 6
+
+- type: medievalCookRecipe
+  id: MedievalCookBorsch
+  ingredients:
+  - id: MedievalFoodBeet
+    count: 2
+  - id: FoodPotato
+  - tag: Meat
+    excludeTags: [ Cooked, Cutlet ]
+  cookTime: 10
+  result: FoodSoupBeet
+
+- type: medievalCookRecipe
+  id: MedievalCookMeatStew
+  ingredients:
+  - tag: Meat
+    excludeTags: [ Cooked, Cutlet ]
+    count: 2
+  - id: FoodPotato
+  cookTime: 10
+  result: FoodSoupStew
+
+- type: medievalCookRecipe
+  id: MedievalCookVegetableStew
+  ingredients:
+  - id: FoodCarrot
+  - id: FoodPotato
+  - tag: Vegetable
+  cookTime: 10
+  result: FoodSoupVegetable
+
+- type: medievalCookRecipe
+  id: MedievalCookMushroomSoup
+  ingredients:
+  - id: FoodMushroom
+    count: 3
+  cookTime: 10
+  result: FoodSoupMushroom
+
+- type: medievalCookRecipe
+  id: MedievalCookPurpleMushroomSoup
+  ingredients:
+  - id: MedievalMushroom1
+    count: 3
+  cookTime: 10
+  result: MedievalFoodSoupMushroomPurple
+
+- type: medievalCookRecipe
+  id: MedievalCookMashedPotato
+  ingredients:
+  - id: FoodPotato
+    count: 3
+  water: 40
+  cookTime: 10
+  result: MedievalFoodPotatoMashed
+  silentServe: true
+
+- type: medievalCookRecipe
+  id: MedievalCookPorridge
+  ingredients:
+  - id: WheatBushel
+    count: 3
+  water: 40
+  cookTime: 10
+  result: FoodOatmeal
+  silentServe: true

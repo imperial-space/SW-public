@@ -8,16 +8,6 @@
     "copyright": "Made for the Imperial Space community, authors'es discord nickname: pyrolizz",
     "states": [
         {
-            "name": "mw"
-
-        },
-        {
-            "name": "mw_unlit"
-        },
-        {
-            "name": "mw0"
-        },
-        {
             "name": "mw_running_unlit",
             "delays": [
                 [
@@ -29,20 +19,54 @@
             ]
         },
         {
-            "name": "mwb"
-        },
-        {
-            "name": "mwbloody"
-        },
-        {
-            "name": "mwbloody0"
-        },
-        {
-            "name": "mwbloody1",
+            "name": "pot-steam",
             "delays": [
                 [
-                    0.1,
-                    0.1,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "pot-ready",
+            "delays": [
+                [
+                    0.25,
+                    0.25,
+                    0.25,
+                    0.25
+                ]
+            ]
+        },
+        {
+            "name": "pot-burnt",
+            "delays": [
+                [
+                    0.25,
+                    0.25,
+                    0.25,
+                    0.25
+                ]
+            ]
+        },
+        {
+            "name": "stones"
+        },
+        {
+            "name": "ash"
+        },
+        {
+            "name": "embers"
+        },
+        {
+            "name": "frame"
+        },
+        {
+            "name": "fire-low",
+            "delays": [
+                [
                     0.1,
                     0.1,
                     0.1,
@@ -51,25 +75,16 @@
             ]
         },
         {
-            "name": "mwbloodyo",
-            "delays": [
-                [
-                    0.1,
-                    0.1
-                ]
-            ]
+            "name": "log1-fresh"
         },
         {
-            "name": "mwo",
-            "delays": [
-                [
-                    0.1,
-                    0.1
-                ]
-            ]
+            "name": "log2-fresh"
         },
-       {
-           "name": "mw-o"
-       }
+        {
+            "name": "log3-fresh"
+        },
+        {
+            "name": "log4-fresh"
+        }
     ]
 }
