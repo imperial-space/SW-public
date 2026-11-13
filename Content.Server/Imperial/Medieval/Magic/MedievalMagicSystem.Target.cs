@@ -2,7 +2,9 @@ using Content.Shared.Imperial.Medieval.Magic;
 using Content.Shared.Imperial.Medieval.Magic.Overlays;
 using Content.Shared.Imperial.Medieval.Magic.SpellTypes;
 using Content.Shared.Imperial.MouseInput.Events;
+using Content.Shared.Physics;
 using Robust.Shared.Map;
+using Robust.Shared.Physics;
 
 namespace Content.Server.Imperial.Medieval.Magic;
 
@@ -35,6 +37,9 @@ public sealed partial class MedievalMagicSystem
 
     #endregion
 
+    // Keeps the projectile from appearing inside a wall right next to the caster
+    private const float ProjectileWallGap = 0.15f;
+
     #region Spell Cast
 
     protected override void CastProjectileSpell(MedievalProjectileSpellData args)
@@ -51,6 +56,8 @@ public sealed partial class MedievalMagicSystem
 
         var userVelocity = _physicsSystem.GetMapLinearVelocity(performer);
 
+        var spawnCoords = GetProjectileSpawnCoordinates(performer, spawnMapCoords, targetMapCoords, args.SpawnForwardOffset);
+
         foreach (var spawnedDirection in args.ProjectilePrototype.Keys)
         {
             var projectilePrototype = args.ProjectilePrototype[spawnedDirection];
@@ -60,13 +67,17 @@ public sealed partial class MedievalMagicSystem
                 Performer = performer,
                 SpawnedEntityPrototype = projectilePrototype,
                 Direction = spawnedDirection,
-                Coordinates = xform.Coordinates
+                Coordinates = spawnCoords
             };
 
             RaiseLocalEvent(action, ref evBefore);
             if (evBefore.Cancelled) continue;
 
-            var ent = Spawn(projectilePrototype, xform.Coordinates);
+            var ent = Spawn(projectilePrototype, spawnCoords);
+
+            if (TryComp<MedievalDetonateAtTargetComponent>(ent, out var detonate))
+                detonate.Target = targetMapCoords;
+
             var direction = spawnedDirection.RotateVec(targetMapCoords.Position - spawnMapCoords.Position);
             var rotation = spawnedDirection;
 
@@ -88,6 +99,33 @@ public sealed partial class MedievalMagicSystem
         }
 
         base.CastProjectileSpell(args);
+    }
+
+    private EntityCoordinates GetProjectileSpawnCoordinates(
+        EntityUid performer,
+        MapCoordinates spawnMapCoords,
+        MapCoordinates targetMapCoords,
+        float forwardOffset)
+    {
+        var toTarget = targetMapCoords.Position - spawnMapCoords.Position;
+
+        if (forwardOffset > 0f && toTarget.LengthSquared() > 0.01f)
+        {
+            var forward = toTarget.Normalized();
+            var offset = Math.Min(forwardOffset, toTarget.Length());
+            var ray = new CollisionRay(spawnMapCoords.Position, forward, (int) CollisionGroup.Impassable);
+
+            foreach (var hit in _physicsSystem.IntersectRay(spawnMapCoords.MapId, ray, offset + ProjectileWallGap, performer, returnOnFirstHit: true))
+            {
+                offset = Math.Max(0f, hit.Distance - ProjectileWallGap);
+                break;
+            }
+
+            return _transformSystem.ToCoordinates(
+                new MapCoordinates(spawnMapCoords.Position + forward * offset, spawnMapCoords.MapId));
+        }
+
+        return Transform(performer).Coordinates;
     }
 
 

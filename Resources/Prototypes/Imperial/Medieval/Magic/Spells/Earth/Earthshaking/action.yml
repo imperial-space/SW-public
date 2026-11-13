@@ -64,6 +64,8 @@
   description: medieval-store-spells-earth-earthshaking-middle-desc
   parent: MedievalActionEarthshakingBeginner
   components:
+  - type: SpellCastEffect
+    effectProto: EarthshakingSpellCastEffectMiddle
   - type: ManaDrainSpell
     manaDrain: 50
     canUseWithoutMana: true
@@ -108,6 +110,8 @@
   description: medieval-store-spells-earth-earthshaking-senior-desc
   parent: MedievalActionEarthshakingBeginner
   components:
+  - type: SpellCastEffect
+    effectProto: EarthshakingSpellCastEffectSenior
   - type: ManaDrainSpell
     manaDrain: 60
     canUseWithoutMana: true

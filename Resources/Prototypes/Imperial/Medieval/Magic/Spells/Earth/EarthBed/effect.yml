@@ -2,9 +2,10 @@
 
 - type: entity
   id: EarthBedSpellCastEffectBeginner
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/earth/earthshaking.rsi
     color: "#838275"
     noRot: true
     layers:
@@ -15,5 +16,4 @@
     energy: 2
     color: "#838275"
   - type: TimedDespawn
-    lifetime: 0.5
-
+    lifetime: 1

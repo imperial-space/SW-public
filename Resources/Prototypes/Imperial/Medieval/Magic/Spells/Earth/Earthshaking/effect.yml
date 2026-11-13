@@ -1,8 +1,9 @@
 - type: entity
   id: EarthshakingSpellCastEffectBeginner
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/earth/earthshaking.rsi
     color: "#838275"
     noRot: true
     layers:
@@ -13,4 +14,44 @@
     energy: 2
     color: "#838275"
   - type: TimedDespawn
-    lifetime: 0.5
+    lifetime: 1
+
+# Middle
+
+- type: entity
+  id: EarthshakingSpellCastEffectMiddle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/earth/earthshaking.rsi
+    color: "#838275"
+    noRot: true
+    layers:
+      - state: middle
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#838275"
+  - type: TimedDespawn
+    lifetime: 3
+
+# Senior
+
+- type: entity
+  id: EarthshakingSpellCastEffectSenior
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/earth/earthshaking.rsi
+    color: "#838275"
+    noRot: true
+    layers:
+      - state: senior
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#838275"
+  - type: TimedDespawn
+    lifetime: 4

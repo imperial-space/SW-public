@@ -20,6 +20,7 @@
     totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: CursedArrowImpactEffect
     damage:
       types:
         Blunt: 10
@@ -47,6 +48,7 @@
     totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: CursedArrowImpactEffect
     damage:
       types:
         Blunt: 10
@@ -74,6 +76,7 @@
     totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: CursedArrowImpactEffectBig
     damage:
       types:
         Blunt: 12

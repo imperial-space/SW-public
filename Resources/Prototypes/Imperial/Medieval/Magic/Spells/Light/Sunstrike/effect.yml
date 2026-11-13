@@ -2,6 +2,7 @@
 
 - type: entity
   id: SunstrikeSpellCastEffectMiddle
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi
@@ -21,6 +22,7 @@
 
 - type: entity
   id: SunstrikeSpellCastEffectSenior
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi

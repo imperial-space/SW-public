@@ -2,10 +2,11 @@
 
 - type: entity
   id: HolyTouchSpellCastEffectBeginner
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/holy.rsi
-    color: "#00981C"
+    color: "#FFE57E"
     noRot: true
     layers:
       - state: beginner
@@ -13,6 +14,6 @@
   - type: PointLight
     radius: 2
     energy: 1
-    color: "#00981C"
+    color: "#FFE57E"
   - type: TimedDespawn
     lifetime: 2

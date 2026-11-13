@@ -23,6 +23,7 @@
     relativeAngle: 90
     linearVelocityIntensy: 0.1
   - type: Projectile
+    impactEffect: MagicArrowImpactEffect
     damage:
       types:
         Blunt: 24
@@ -52,6 +53,7 @@
     relativeAngle: 90
     linearVelocityIntensy: 0.1
   - type: Projectile
+    impactEffect: MagicArrowImpactEffect
     damage:
       types:
         Blunt: 13.5
@@ -81,6 +83,7 @@
     relativeAngle: 90
     linearVelocityIntensy: 0.1
   - type: Projectile
+    impactEffect: MagicArrowImpactEffectBig
     damage:
       types:
         Blunt: 11.25

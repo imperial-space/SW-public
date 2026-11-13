@@ -2,7 +2,12 @@
 
 - type: entity
   id: MedievalEffectWaterSphereBeginner
+  categories: [ HideSpawnMenu ]
   components:
+  - type: TriggerOnSpawn
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+    - MedievalWaterSphereOrbSmall
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: senior
@@ -39,7 +44,12 @@
 
 - type: entity
   id: MedievalEffectWaterSphereBeginnerDespawn
+  categories: [ HideSpawnMenu ]
   components:
+  - type: TriggerOnSpawn
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+    - MedievalWaterSpherePopSmall
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: senior
@@ -70,7 +80,12 @@
 
 - type: entity
   id: MedievalEffectWaterSphereMiddle
+  categories: [ HideSpawnMenu ]
   components:
+  - type: TriggerOnSpawn
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+    - MedievalWaterSphereOrbSmall
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: senior
@@ -107,7 +122,12 @@
 
 - type: entity
   id: MedievalEffectWaterSphereMiddleDespawn
+  categories: [ HideSpawnMenu ]
   components:
+  - type: TriggerOnSpawn
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+    - MedievalWaterSpherePopSmall
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: senior
@@ -121,7 +141,12 @@
 
 - type: entity
   id: MedievalEffectWaterSphereSenior
+  categories: [ HideSpawnMenu ]
   components:
+  - type: TriggerOnSpawn
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+    - MedievalWaterSphereOrb
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: senior
@@ -158,7 +183,12 @@
 
 - type: entity
   id: MedievalEffectWaterSphereSeniorDespawn
+  categories: [ HideSpawnMenu ]
   components:
+  - type: TriggerOnSpawn
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+    - MedievalWaterSpherePop
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: senior
@@ -166,3 +196,59 @@
     color: "#0CBFE9"
   - type: TimedDespawn
     lifetime: 5
+
+- type: entity
+  id: MedievalWaterSphereOrb
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/orb.rsi
+      state: sphere
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: MedievalWaterSpherePop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/orb.rsi
+      state: pop
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: MedievalWaterSphereOrbSmall
+  categories: [ HideSpawnMenu ]
+  parent: MedievalWaterSphereOrb
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/orb.rsi
+      state: sphere_small
+      shader: unshaded
+
+- type: entity
+  id: MedievalWaterSpherePopSmall
+  categories: [ HideSpawnMenu ]
+  parent: MedievalWaterSpherePop
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/orb.rsi
+      state: pop_small
+      shader: unshaded

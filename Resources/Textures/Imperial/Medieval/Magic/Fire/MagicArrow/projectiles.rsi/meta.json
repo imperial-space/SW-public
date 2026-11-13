@@ -1,20 +1,44 @@
 {
     "version": 1,
     "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-    "copyright": "by discord: fortengamer",
+    "copyright": "base sprites by discord: fortengamer, animation by Ipno",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "aim"
+            "name": "aim",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
         },
         {
-            "name": "cursor"
+            "name": "cursor",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
         },
         {
-            "name": "kunai"
+            "name": "kunai",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
         }
     ]
 }

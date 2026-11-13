@@ -31,8 +31,9 @@
   id: MedievalMeteor
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/Earth/Meteors/projectiles.rsi
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/fall.rsi
     noRot: true
+    offset: -1.125,2.0
     layers:
     - state: meteor
       shader: unshaded
@@ -54,6 +55,25 @@
     canCreateVacuum: false
   - type: SpawnOnTrigger
     proto: ShockWaveEffect
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+    - MedievalMeteorImpact
+
+- type: entity
+  id: MedievalMeteorImpact
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/impact.rsi
+    noRot: true
+    offset: 0,0.2
+    layers:
+    - state: scorch
+      drawdepth: Puddles
+    - state: impact
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 6.5
 
 - type: explosion
   id: Meteor
@@ -61,10 +81,10 @@
     types:
       Blunt: 3
       Piercing: 3
-  lightColor: Gray
+  lightColor: Orange
   texturePath: /Textures/Effects/fire.rsi
   fireStates: 3
-  fireColor: Gray
+  fireColor: "#ff9a3c"
 
 # Beginner
 

@@ -16,6 +16,10 @@
     - Energy
     spread: 75
   - type: Clickable
+  - type: TriggerOnSpawn
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+    - IceBarrierFrostEffect
   - type: Physics
     bodyType: Static
   - type: Fixtures

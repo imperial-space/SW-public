@@ -7,21 +7,27 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    sprite: Imperial/Medieval/Magic/Fire/Fireball/projectiles.rsi
+    offset: 0,-0.3
     layers:
-    - state: fireball
+    - state: fly_t1
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    color: "#ff9c24"
   - type: Explosive
     explosionType: Default
     maxIntensity: 2
     intensitySlope: 8
     totalIntensity: 36
     maxTileBreak: 0
+  - type: MedievalDetonateAtTarget
   - type: IgniteOnCollide
     fireStacks: 2
   - type: SpawnEntityOnTrigger
     spawnedEntitiesPrototype:
       - FireballShockWaveEffect
-  - type: FireballDistortion
   - type: SingularityDistortion
     falloffPower: 3
     intensity: 100
@@ -58,25 +64,27 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    sprite: Imperial/Medieval/Magic/Fire/Fireball/projectiles.rsi
+    offset: 0,-0.3
     layers:
-    - state: fireball
+    - state: fly_t2
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 2
+    color: "#ff6a10"
   - type: Explosive
     explosionType: Default
     maxIntensity: 5
     intensitySlope: 6
     totalIntensity: 90
     maxTileBreak: 0
+  - type: MedievalDetonateAtTarget
   - type: IgniteOnCollide
     fireStacks: 3
   - type: SpawnEntityOnTrigger
     spawnedEntitiesPrototype:
       - FireballShockWaveEffect
-  - type: FireballDistortion
-    fireballScale: 2
-    startPoint: 0.25,0
-    fireColor: "#FF1800"
-    fireEdgeColor: "#970000"
   - type: SingularityDistortion
     falloffPower: 2.5
     intensity: 100
@@ -113,25 +121,27 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    sprite: Imperial/Medieval/Magic/Fire/Fireball/projectiles.rsi
+    offset: 0,-0.3
     layers:
-    - state: fireball
+    - state: fly_t3
+      shader: unshaded
+  - type: PointLight
+    radius: 5
+    energy: 3
+    color: "#ff2a10"
   - type: Explosive
     explosionType: Default
     maxIntensity: 10
     intensitySlope: 5
     totalIntensity: 210
     maxTileBreak: 0
+  - type: MedievalDetonateAtTarget
   - type: IgniteOnCollide
     fireStacks: 5
   - type: SpawnEntityOnTrigger
     spawnedEntitiesPrototype:
       - FireballShockWaveEffect
-  - type: FireballDistortion
-    fireballScale: 3
-    startPoint: 0.5,0
-    fireColor: "#FF0000"
-    fireEdgeColor: "#00FFFF"
   - type: SingularityDistortion
     falloffPower: 2
     intensity: 150

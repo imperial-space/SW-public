@@ -54,3 +54,39 @@
     color: "#ff9c24"
   - type: TimedDespawn
     lifetime: 4
+
+# Fade (when the wall burns out)
+
+- type: entity
+  id: FireWallFadeBeginner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/fade.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: beginner
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.5
+
+- type: entity
+  id: FireWallFadeMiddle
+  parent: FireWallFadeBeginner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: middle
+      shader: unshaded
+
+- type: entity
+  id: FireWallFadeSenior
+  parent: FireWallFadeBeginner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: senior
+      shader: unshaded

@@ -31,7 +31,7 @@
     - MedievalSpellBlinkMiddle
   icon:
     sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
-    state: beginner
+    state: middle
   cost:
     MagicMedievalLight: 55
   categories:

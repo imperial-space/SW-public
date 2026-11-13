@@ -2,12 +2,20 @@
 
 - type: entity
   id: MedievalProjectileSummonFoliantBeginner
+  categories: [ HideSpawnMenu ]
   components:
     - type: CargoSellBlacklist
+    - type: Sprite
+      sprite: Imperial/Medieval/Magic/Light/SummonFoliant/flash.rsi
+      drawdepth: Effects
+      noRot: true
+      layers:
+      - state: flash
+        shader: unshaded
     - type: PointLight
       color: white
-      energy: 5
-      radius: 3
+      energy: 2
+      radius: 2
     - type: Fixtures
       fixtures:
         fix1:

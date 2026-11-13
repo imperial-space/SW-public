@@ -31,3 +31,20 @@
   - type: TimedDespawn
     lifetime: 0.5
 
+- type: entity
+  id: IceBarrierFrostEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/frost.rsi
+      state: frost
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
