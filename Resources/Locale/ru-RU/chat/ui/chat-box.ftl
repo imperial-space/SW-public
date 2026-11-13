@@ -37,6 +37,6 @@ hud-chatbox-highlights-button = Принять
 hud-chatbox-highlights-tooltip = Слова должны быть разделены новой строкой,
                                  если они перенесены внутри ", они будут выделены
                                  только если разделены пробелами или знаками препинания.
-hud-chatbox-highlights-placeholder = МакХэндс
-                                     "Суд"
-                                     Мед
+hud-chatbox-highlights-placeholder = Гоблин
+                                     "Легион"
+                                     Ярл
