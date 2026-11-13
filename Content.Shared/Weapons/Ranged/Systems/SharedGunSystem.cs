@@ -130,15 +130,21 @@ public abstract partial class SharedGunSystem : EntitySystem
             !_combatMode.IsInCombatMode(user) ||
             !TryGetGun(user.Value, out var ent, out var gun))
         {
+            if (user != null)
+                Projectiles.CompletePrediction(msg.Gun, msg.ProjectileInputTick, user.Value, false); // Imperial medieval edit
             return;
         }
 
         if (ent != GetEntity(msg.Gun))
+        {
+            Projectiles.CompletePrediction(msg.Gun, msg.ProjectileInputTick, user.Value, false); // Imperial medieval edit
             return;
+        }
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
         gun.Target = GetEntity(msg.Target);
-        AttemptShoot(user.Value, ent, gun);
+        // Imperial medieval edit
+        AttemptPredictedShoot(user.Value, ent, gun, gun.ShootCoordinates.Value, msg.ProjectileInputTick, resetShotCounter: false);
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -424,18 +430,38 @@ public abstract partial class SharedGunSystem : EntitySystem
         var physics = EnsureComp<PhysicsComponent>(uid);
         Physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
 
-        var targetMapVelocity = gunVelocity + direction.Normalized() * speed;
+        // Imperial medieval start
+        var projectile = EnsureComp<ProjectileComponent>(uid);
+        var shotDirection = direction.Normalized();
+        var launchVelocity = shotDirection * speed;
+        if (user is { } shooterUid && TryComp<PhysicsComponent>(shooterUid, out var shooterBody))
+        {
+            // Body linear velocity is relative to its parent, expressed in map axes.
+            var movement = shooterBody.LinearVelocity;
+            var forward = Vector2.Dot(movement, shotDirection) * shotDirection;
+            var strafe = movement - forward;
+            launchVelocity += forward * projectile.ForwardVelocityInheritance +
+                              strafe * projectile.StrafeVelocityInheritance;
+
+            // Derive carrier motion once. Some spell callers already supply full shooter velocity.
+            // The entity overload also includes parent angular motion at the shooter's position.
+            gunVelocity = Physics.GetMapLinearVelocity(shooterUid, shooterBody) - movement;
+        }
+        var targetMapVelocity = gunVelocity + launchVelocity;
+        // Imperial medieval end
         var currentMapVelocity = Physics.GetMapLinearVelocity(uid, physics);
         var finalLinear = physics.LinearVelocity + targetMapVelocity - currentMapVelocity;
         Physics.SetLinearVelocity(uid, finalLinear, body: physics);
 
-        var projectile = EnsureComp<ProjectileComponent>(uid);
         projectile.Weapon = gunUid;
         var shooter = user ?? gunUid;
         if (shooter != null)
             Projectiles.SetShooter(uid, projectile, shooter.Value);
 
-        TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
+        // Imperial medieval start - apply the launch heading immediately, retaining the native sprite offset.
+        var facing = launchVelocity.IsLengthZero() ? direction : launchVelocity;
+        TransformSystem.SetWorldRotationNoLerp(uid, facing.ToWorldAngle() + projectile.Angle);
+        // Imperial medieval end
     }
 
     protected abstract void Popup(string message, EntityUid? uid, EntityUid? user);

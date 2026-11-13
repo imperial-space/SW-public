@@ -1,0 +1,212 @@
+- type: entity
+  name: Chargebow
+  parent: BaseBow
+  abstract: true
+  id: BaseMedievalBowCharged
+  components:
+  - type: MedievalBowCharge
+    baseBowDamage: 12
+    baseBluntImpact: 5
+    basePoiseDamage: 15
+    minChargeTime: 0.75
+    maxChargeTime: 3.5
+    minChargeMultiplier: 0.20
+    maxChargeMultiplier: 1.1
+    staminaDrainPerSecond: 4
+    staminaDrainInterval: 0.25
+    chargingMoveSpeedMultiplier: 0.8
+    meleeKnockback: 3
+  - type: RDWeight
+    value: 1.5
+  - type: ItemSlots
+    slots:
+      projectiles:
+        name: Projectiles
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
+        whitelist:
+          components:
+          - PoiseArchery
+  - type: Gun
+    minAngle: 0
+    maxAngle: 5
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    resetOnHandSelected: false
+    defaultSpread: 10
+    projectileSpeed: 20
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    attackRate: .5
+    range: 1.2
+    clickDamageModifier: 1
+    damage:
+      types:
+        Blunt: 3
+    animation: WeaponArcPunch
+    soundHit:
+      collection: WeakHit
+
+- type: entity
+  id: MedievalBowImprovised
+  parent: BaseMedievalBowCharged
+  name: Shortbow
+  components:
+  - type: Sprite
+    layers:
+    - state: unwielded
+      map: [ base ]
+    - state: unwielded-arrow
+      map: [ arrow ]
+      visible: false
+    - state: unwielded-plunger
+      map: [ plunger ]
+      visible: false
+  - type: Appearance
+  - type: ItemMapper
+    spriteLayers:
+    - arrow
+    - plunger
+    mapLayers:
+      arrow:
+        whitelist:
+          tags:
+          - Arrow
+      plunger:
+        whitelist:
+          tags:
+          - Plunger
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        arrow:
+          True: { state: wielded-arrow }
+          False: { state: unwielded-arrow }
+        plunger:
+          True: { state: wielded-plunger }
+          False: { state: unwielded-plunger }
+        base:
+          True: { state: wielded }
+          False: { state: unwielded }
+  - type: RDWeight
+    value: 1.5
+
+- type: entity
+  name: Long Bow
+  parent: BaseMedievalBowCharged
+  id: MedievalWeaponBow
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/bow.rsi
+    layers:
+    - state: base
+      map: [ base ]
+    - sprite: Imperial/Medieval/Gun/bowwhois.rsi
+      state: unwielded-arrow
+      map: [ arrow ]
+      visible: false
+  - type: Appearance
+  - type: ItemMapper
+    spriteLayers:
+    - arrow
+    mapLayers:
+      arrow:
+        whitelist:
+          components:
+          - PoiseArchery
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        arrow:
+          True: { state: wielded-arrow }
+          False: { state: unwielded-arrow }
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/bow.rsi
+  - type: Gun
+    projectileSpeed: 25
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/ES_Bow_Release_Arrow_-_SFX_Producer.ogg
+  - type: MedievalBowCharge
+    baseBowDamage: 16
+    baseBluntImpact: 5
+    basePoiseDamage: 20
+    minChargeTime: 1.5
+    maxChargeTime: 5
+    minChargeMultiplier: 0.5
+    maxChargeMultiplier: 1.75
+    staminaDrainPerSecond: 6
+    staminaDrainInterval: 0.25
+    chargingMoveSpeedMultiplier: 0.7
+    meleeKnockback: 4
+
+- type: entity
+  name: Quick Bow
+  parent: BaseMedievalBowCharged
+  id: MedievalQuickBow
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/bowwhois.rsi
+    layers:
+    - state: unwielded
+      map: [ base ]
+    - state: unwielded-arrow
+      map: [ arrow ]
+      visible: false
+  - type: Appearance
+  - type: ItemMapper
+    spriteLayers:
+    - arrow
+    mapLayers:
+      arrow:
+        whitelist:
+          components:
+          - PoiseArchery
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        arrow:
+          True: { state: wielded-arrow }
+          False: { state: unwielded-arrow }
+        base:
+          True: { state: wielded }
+          False: { state: unwielded }
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/bowwhois.rsi
+  - type: Gun
+    projectileSpeed: 17
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/ES_Bow_Release_Arrow_-_SFX_Producer.ogg
+  - type: MedievalBowCharge
+    baseBluntImpact: 1
+    basePoiseDamage: 10
+    minChargeTime: 0.25
+    maxChargeTime: 1.5
+    minChargeMultiplier: 0.2
+    maxChargeMultiplier: 0.4
+    staminaDrainPerSecond: 8
+    staminaDrainInterval: 0.25
+    chargingMoveSpeedMultiplier: 0.9
+    meleeKnockback: 2
+
+- type: entity
+  name: Dark Follower Shortbow
+  parent: BaseMedievalBowCharged
+  id: MedievalWeaponBowNecro
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/necro_bow.rsi
+    state: base
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/necro_bow.rsi
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/ES_Bow_Release_Arrow_-_SFX_Producer.ogg
+  - type: RadiationSource
+    intensity: 2
+    slope: 3

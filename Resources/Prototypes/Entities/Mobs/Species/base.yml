@@ -365,6 +365,7 @@
       Agility: 10
       Intelligence: 10
       Endurance: 10
+  - type: Poise
   - type: LastWords
   - type: MeleeParryStorage
   - type: AchievementOwner

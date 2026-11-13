@@ -1,7 +1,7 @@
 using System.Numerics;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Medieval.Farmer;
+using Content.Shared.Imperial.Medieval.Poise.CombatStamina;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Physics.Components;
@@ -13,7 +13,7 @@ namespace Content.Shared.Imperial.Medieval.Sprint;
 public sealed partial class MedievalSprintSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
+    [Dependency] private readonly CombatStaminaSystem _combatStamina = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speedModifierSystem = default!;
 
 
@@ -65,7 +65,13 @@ public sealed partial class MedievalSprintSystem : EntitySystem
             if (HasComp<FarmerBoostComponent>(uid))
                 stam *= 0.3f;
 
-            _staminaSystem.TryTakeStamina(uid, stam * ev.Modifier, ignoreResist: true, log: false);
+            if (!_combatStamina.TrySpendSprint(uid, stam * ev.Modifier))
+            {
+                component.Sprinting = false;
+                component.Tried = true;
+                _speedModifierSystem.RefreshMovementSpeedModifiers(uid);
+                continue;
+            }
 
             component.Tried = false;
             component.NextStaminaDamageTime = _timing.CurTime + component.StaminaGainPeriod;
@@ -99,7 +105,8 @@ public sealed partial class MedievalSprintSystem : EntitySystem
         if (ev.Cancelled)
             return false;
 
-        return staminaComponent.StaminaDamage / staminaComponent.CritThreshold <= component.MinStaminaToSprintPrecent;
+        return _combatStamina.CanFundSprint(component.Owner) ||
+               staminaComponent.StaminaDamage / staminaComponent.CritThreshold <= component.MinStaminaToSprintPrecent;
     }
 
     #endregion

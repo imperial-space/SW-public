@@ -27,36 +27,67 @@
         Piercing: 0.9
         Heat: 0.6
         Cold: 0.4
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 60
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.6
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.26
-      Slash:
-        coefficient: 0.46
-      Piercing:
-        coefficient: 0.65
-      Heat:
-        coefficient: 0.45
-    brokenResistances:
-      Blunt:
         coefficient: 0.9
+        flatReduction: 0
       Slash:
         coefficient: 0.9
+        flatReduction: 0
       Piercing:
-        coefficient: 0.95
+        coefficient: 0.9
+        flatReduction: 0
       Heat:
-        coefficient: 0.95
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.35
-      Heat: 1
+        coefficient: 0.6
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.4
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -69,6 +100,31 @@
     damageCoefficient: 0.95
   - type: ManaRegen
     regen: -0.5
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
+
+- type: entity
+  id: MedievalPoiseArmorLight
+  abstract: true
+  components:
+  - type: PoiseArmor
+    armorClass: Light
+
+- type: entity
+  id: MedievalPoiseArmorMedium
+  abstract: true
+  components:
+  - type: PoiseArmor
+    armorClass: Medium
+
+- type: entity
+  id: MedievalPoiseArmorHeavy
+  abstract: true
+  components:
+  - type: PoiseArmor
+    armorClass: Heavy
 
 - type: entity
   parent: MedievalClothingOuterArmorStudded
@@ -111,41 +167,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.78
-        Heat: 0.7
-        Cold: 0.5
+        Blunt: 0.82
+        Slash: 0.86
+        Piercing: 0.84
+        Heat: 1.0
+        Cold: 1.0
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 135
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.55
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.11
+        coefficient: 0.82
+        flatReduction: 0
       Slash:
-        coefficient: 0.35
+        coefficient: 0.86
+        flatReduction: 0
       Piercing:
-        coefficient: 0.45
+        coefficient: 0.84
+        flatReduction: 0
       Heat:
-        coefficient: 0.45
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.95
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.35
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -155,7 +242,12 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: ClothingOuterBase
@@ -264,40 +356,71 @@
     modifiers:
       coefficients:
         Blunt: 0.85
-        Slash: 0.7
-        Piercing: 0.75
-        Heat: 0.65
-        Cold: 0.6
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 1.0
+        Cold: 1.0
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 180
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.12
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.05
-      Slash:
-        coefficient: 0.12
-      Piercing:
-        coefficient: 0.25
-      Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
+        coefficient: 0.85
+        flatReduction: 0
       Slash:
         coefficient: 0.9
+        flatReduction: 0
       Piercing:
         coefficient: 0.9
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.25
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -307,7 +430,12 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: ClothingOuterBase
@@ -338,41 +466,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.7
-        Piercing: 0.75
-        Heat: 0.65
-        Cold: 0.6
+        Blunt: 0.82
+        Slash: 0.86
+        Piercing: 0.88
+        Heat: 1.0
+        Cold: 1.0
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 175
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.15
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.05
+        coefficient: 0.82
+        flatReduction: 0
       Slash:
-        coefficient: 0.12
+        coefficient: 0.86
+        flatReduction: 0
       Piercing:
-        coefficient: 0.3
+        coefficient: 0.88
+        flatReduction: 0
       Heat:
-        coefficient: 0.2
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.9
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.25
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -382,7 +541,12 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: ClothingOuterBase
@@ -414,41 +578,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.65
-        Piercing: 0.71
-        Heat: 0.62
-        Cold: 0.55
+        Blunt: 0.72
+        Slash: 0.76
+        Piercing: 0.78
+        Heat: 1.05
+        Cold: 0.95
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 225
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.15
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.05
+        coefficient: 0.72
+        flatReduction: 0
       Slash:
-        coefficient: 0.12
+        coefficient: 0.76
+        flatReduction: 0
       Piercing:
-        coefficient: 0.27
+        coefficient: 0.78
+        flatReduction: 0
       Heat:
-        coefficient: 0.27
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.9
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.25
-      Heat: 1
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -458,7 +653,12 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorLeatherLight
@@ -512,49 +712,85 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.83
-        Slash: 0.6
-        Piercing: 0.75
-        Heat: 0.78
-        Cold: 0.8
+        Blunt: 0.84
+        Slash: 0.55
+        Piercing: 0.65
+        Heat: 0.95
+        Cold: 1.05
+        Shock: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 275
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.2
+      damageCoefficient: 0.9
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.975
     unbrokenResistances:
       Blunt:
-        coefficient: 0.225
+        coefficient: 0.84
+        flatReduction: 0
       Slash:
-        coefficient: 0.125
+        coefficient: 0.55
+        flatReduction: 0
       Piercing:
-        coefficient: 0.325
+        coefficient: 0.65
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.9
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.7
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    # mirror the intact integrity value
+    damageCoefficient: 0.9
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: ClothingOuterBase
@@ -575,49 +811,85 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.88
-        Slash: 0.65
-        Piercing: 0.8
-        Heat: 0.8
-        Cold: 0.85
+        Blunt: 0.8
+        Slash: 0.6
+        Piercing: 0.68
+        Heat: 0.95
+        Cold: 1.05
+        Shock: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 185
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.2
+      damageCoefficient: 0.9
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.975
     unbrokenResistances:
       Blunt:
-        coefficient: 0.2
+        coefficient: 0.8
+        flatReduction: 0
       Slash:
-        coefficient: 0.1
+        coefficient: 0.6
+        flatReduction: 0
       Piercing:
-        coefficient: 0.3
+        coefficient: 0.68
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.9
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.75
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.92
+    # mirror the intact integrity value
+    damageCoefficient: 0.9
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: ClothingOuterBase
@@ -649,41 +921,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.5
-        Cold: 0.44
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.8
+        Heat: 1.05
+        Cold: 0.95
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 325
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.15
+      damageCoefficient: 0.9
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.975
     unbrokenResistances:
       Blunt:
-        coefficient: 0.03
+        coefficient: 0.6
+        flatReduction: 0
       Slash:
-        coefficient: 0.12
+        coefficient: 0.7
+        flatReduction: 0
       Piercing:
-        coefficient: 0.3
+        coefficient: 0.8
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.9
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.25
-      Heat: 1
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -693,7 +996,12 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.78
+    # mirror the intact integrity value
+    damageCoefficient: 0.9
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalClothingOuterArmorLeatherHeavy
@@ -768,41 +1076,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
+        Blunt: 0.72
         Slash: 0.5
-        Piercing: 0.52
-        Heat: 0.55
-        Cold: 0.7
+        Piercing: 0.55
+        Heat: 0.9
+        Cold: 1.05
+        Shock: 1.1
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 395
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.12
-    brokenExplosionResistance:
       damageCoefficient: 0.85
+    # torso-only explosion resistance
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
     unbrokenResistances:
       Blunt:
-        coefficient: 0.11
+        coefficient: 0.72
+        flatReduction: 0
       Slash:
-        coefficient: 0.08
+        coefficient: 0.5
+        flatReduction: 0
       Piercing:
-        coefficient: 0.125
+        coefficient: 0.55
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.8
-      Slash:
-        coefficient: 0.8
-      Piercing:
-        coefficient: 0.8
-      Heat:
-        coefficient: 0.8
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.5
   - type: ClothingSpeedModifier
@@ -811,8 +1150,13 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    # mirror the intact integrity value
+    damageCoefficient: 0.85
   - type: MedievalIronHitSound
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirass
@@ -837,7 +1181,7 @@
     sprite: Imperial/Medieval/Clothing/Armor/viking.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, MedievalPoiseArmorLight]
   id: MedievalClothingOuterArmorIronCuirassLight
   name: iron armor cuirass
   description: An armored iron plate to protect against melee weapons.
@@ -870,41 +1214,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.68
-        Slash: 0.65
-        Piercing: 0.58
-        Heat: 0.7
-        Cold: 0.7
+        Blunt: 0.88
+        Slash: 0.5
+        Piercing: 0.62
+        Heat: 0.95
+        Cold: 1.05
+        Shock: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 260
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.15
+      damageCoefficient: 0.9
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.975
     unbrokenResistances:
       Blunt:
-        coefficient: 0.13
+        coefficient: 0.88
+        flatReduction: 0
       Slash:
-        coefficient: 0.115
+        coefficient: 0.5
+        flatReduction: 0
       Piercing:
-        coefficient: 0.15
+        coefficient: 0.62
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.8
-      Slash:
-        coefficient: 0.8
-      Piercing:
-        coefficient: 0.8
-      Heat:
-        coefficient: 0.8
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.75
   - type: ClothingSpeedModifier
@@ -913,8 +1288,13 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    # mirror the intact integrity value
+    damageCoefficient: 0.9
   - type: MedievalIronHitSound
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirassLight
@@ -961,41 +1341,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.35
-        Slash: 0.3
-        Piercing: 0.36
-        Heat: 0.45
-        Cold: 0.7
+        Blunt: 0.65
+        Slash: 0.52
+        Piercing: 0.55
+        Heat: 0.9
+        Cold: 1.05
+        Shock: 1.1
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 600
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.1
-    brokenExplosionResistance:
       damageCoefficient: 0.85
+    # torso-only explosion resistance
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
     unbrokenResistances:
       Blunt:
-        coefficient: 0.095
+        coefficient: 0.65
+        flatReduction: 0
       Slash:
-        coefficient: 0.06
+        coefficient: 0.52
+        flatReduction: 0
       Piercing:
-        coefficient: 0.095
+        coefficient: 0.55
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.8
-      Slash:
-        coefficient: 0.8
-      Piercing:
-        coefficient: 0.8
-      Heat:
-        coefficient: 0.8
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.45
   - type: ClothingSpeedModifier
@@ -1004,9 +1415,14 @@
   - type: Item
     size: Huge
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    # mirror the intact integrity value
+    damageCoefficient: 0.85
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: ClothingOuterBase
@@ -1042,41 +1458,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.28
-        Slash: 0.25
-        Piercing: 0.3
-        Heat: 0.25
-        Cold: 0.6
+        Blunt: 0.75
+        Slash: 0.4
+        Piercing: 0.45
+        Heat: 0.9
+        Cold: 1.05
+        Shock: 1.1
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 760
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.07
-    brokenExplosionResistance:
       damageCoefficient: 0.85
+    # torso-only explosion resistance
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
     unbrokenResistances:
       Blunt:
-        coefficient: 0.085
+        coefficient: 0.75
+        flatReduction: 0
       Slash:
-        coefficient: 0.065
+        coefficient: 0.4
+        flatReduction: 0
       Piercing:
-        coefficient: 0.09
+        coefficient: 0.45
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.7
-      Slash:
-        coefficient: 0.7
-      Piercing:
-        coefficient: 0.7
-      Heat:
-        coefficient: 0.7
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.25
   - type: ClothingSpeedModifier
@@ -1085,10 +1532,15 @@
   - type: Item
     size: Huge
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    # mirror the intact integrity value
+    damageCoefficient: 0.85
   - type: MedievalIronHitSound
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingOuterArmorUpIron # imperial medieval
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorUpIron
@@ -1155,6 +1607,71 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/draconic.rsi
   - type: MedievalIronHitSound
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.5
+        Piercing: 0.55
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.5
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.55
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: ClothingHandsBase
@@ -1187,43 +1704,78 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
-        Cold: 0.95
+        Blunt: 0.94
+        Slash: 0.86
+        Piercing: 0.88
+        Heat: 0.95
+        Cold: 1.05
+        Shock: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 60
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.65
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.75
+        coefficient: 0.94
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.86
+        flatReduction: 0
       Piercing:
-        coefficient: 0.75
+        coefficient: 0.88
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    brokenResistances:
-      Blunt:
         coefficient: 0.95
-      Slash:
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
         coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalIronGloves # imperial medieval
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalIronGloves
@@ -1235,6 +1787,71 @@
     sprite: Imperial/Medieval/Clothing/Gloves/iron_gloves_brig.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/iron_gloves_brig.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.88
+        Slash: 0.92
+        Piercing: 0.89
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.88
+        flatReduction: 0
+      Slash:
+        coefficient: 0.92
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.89
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalIronGloves
@@ -1268,6 +1885,71 @@
     sprite: Imperial/Medieval/Clothing/Gloves/iron_gloves_bear.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/iron_gloves_bear.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.86
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.85
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.86
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: ClothingOuterPlagueSuit
@@ -1275,46 +1957,78 @@
   name: MedievalClothingOuterPlagueSuit
   description: MedievalClothingOuterPlagueSuit
   components:
+  # agreed armor balance
   - type: MedievalPlagueSpreadBlocking
     modifier: 0.3
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.6
-        Cold: 0.4
+        Blunt: 0.65
+        Slash: 0.73
+        Piercing: 0.82
+        Heat: 1.05
+        Shock: 1
+        Cold: 0.95
+        Caustic: 1
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
-    containerArmorHP: 65
+    containerArmorHP: 120
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.4
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.26
-      Slash:
-        coefficient: 0.46
-      Piercing:
         coefficient: 0.65
-      Heat:
-        coefficient: 0.55
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
+        flatReduction: 0
       Slash:
-        coefficient: 0.9
+        coefficient: 0.73
+        flatReduction: 0
       Piercing:
-        coefficient: 0.95
+        coefficient: 0.82
+        flatReduction: 0
       Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1
+        flatReduction: 0
+      Cold:
         coefficient: 0.95
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.35
-      Heat: 1
+        flatReduction: 0
+      Caustic:
+        coefficient: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -1324,10 +2038,11 @@
   - type: ExplosionResistance
     damageCoefficient: 0.95
   - type: ManaRegen
-    regen: 0.25
- #- type: Tag
- #  tags:
- #  - Sterile
+    regen: 0.5
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: ClothingUniformJumpskirtJanimaidmini
@@ -1459,41 +2174,75 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.95
+        Blunt: 0.88
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 90
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.8
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.85
+        coefficient: 0.88
+        flatReduction: 0
       Slash:
-        coefficient: 0.85
+        coefficient: 0.82
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.84
+        flatReduction: 0
       Heat:
         coefficient: 0.9
-    brokenResistances:
-      Blunt:
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
         coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: ExplosionResistance
-    damageCoefficient: 0.95
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ClothingSpeedModifier
     walkModifier: 0.99
     sprintModifier: 0.99
@@ -1505,11 +2254,16 @@
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingFeetSteel # imperial medieval
   - type: ProtectedFromStepTriggers
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: Clothing
   id: MedievalClothingFeetNecromancer
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 3
   #- type: QualityOfItem
@@ -1537,41 +2291,75 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.95
+        Blunt: 0.88
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 1.05
+        Shock: 1.1
+        Cold: 0.9
+        Caustic: 0.95
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 90
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.8
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.85
+        coefficient: 0.88
+        flatReduction: 0
       Slash:
-        coefficient: 0.85
+        coefficient: 0.82
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.84
+        flatReduction: 0
       Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
         coefficient: 0.9
-    brokenResistances:
-      Blunt:
+        flatReduction: 0
+      Caustic:
         coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
   - type: ExplosionResistance
-    damageCoefficient: 0.95
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ClothingSpeedModifier
     walkModifier: 0.99
     sprintModifier: 0.99
@@ -1584,6 +2372,10 @@
   #  intensity: 0.3
   #  slope: 0.2
   - type: ProtectedFromStepTriggers
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: ClothingHandsBase
@@ -1591,6 +2383,7 @@
   name: IronGloves
   description: gloves
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 3
   #- type: QualityOfItem
@@ -1615,36 +2408,76 @@
   - type: MedievalArmorIntegrity
     containerArmorHP: 100
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.75
+        coefficient: 0.89
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.85
+        flatReduction: 0
       Piercing:
-        coefficient: 0.75
+        coefficient: 0.86
+        flatReduction: 0
       Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
         coefficient: 0.9
-    brokenResistances:
-      Blunt:
+        flatReduction: 0
+      Caustic:
         coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
-  #- type: RadiationSource
-  #  intensity: 0.3
-  #  slope: 0.2
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.89
+        Slash: 0.85
+        Piercing: 0.86
+        Heat: 1.05
+        Shock: 1.1
+        Cold: 0.9
+        Caustic: 0.95
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: ClothingHandsBase
@@ -1652,6 +2485,7 @@
   name: IronGloves
   description: gloves
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 2
   #- type: QualityOfItem
@@ -1676,37 +2510,77 @@
   - type: MedievalArmorIntegrity
     containerArmorHP: 75
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.7
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.75
-      Slash:
-        coefficient: 0.75
-      Piercing:
-        coefficient: 0.75
-      Heat:
-        coefficient: 0.9
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
+        coefficient: 0.93
+        flatReduction: 0
       Slash:
         coefficient: 0.95
+        flatReduction: 0
       Piercing:
         coefficient: 0.95
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
-  #- type: RadiationSource
-  #  intensity: 0.3
-  #  slope: 0.2
+        coefficient: 1
+        flatReduction: 0
+      Shock:
+        coefficient: 1
+        flatReduction: 0
+      Cold:
+        coefficient: 1
+        flatReduction: 0
+      Caustic:
+        coefficient: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
   - type: CurseItem
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 1
+        Shock: 1
+        Cold: 1
+        Caustic: 1
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: ClothingHandsBase
@@ -1731,6 +2605,7 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 25
   #- type: QualityOfItem
@@ -1757,51 +2632,87 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.48
-        Slash: 0.48
-        Piercing: 0.48
-        Heat: 0.48
-        Cold: 0.8
+        Blunt: 0.75
+        Slash: 0.4
+        Piercing: 0.45
+        Heat: 1.05
+        Shock: 1.1
+        Cold: 0.9
+        Caustic: 0.95
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 700
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.1
-    brokenExplosionResistance:
       damageCoefficient: 0.85
+    # torso-only explosion resistance
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
     unbrokenResistances:
       Blunt:
-        coefficient: 0.085
+        coefficient: 0.75
+        flatReduction: 0
       Slash:
-        coefficient: 0.065
+        coefficient: 0.4
+        flatReduction: 0
       Piercing:
-        coefficient: 0.09
+        coefficient: 0.45
+        flatReduction: 0
       Heat:
-        coefficient: 0.15
-    brokenResistances:
-      Blunt:
-        coefficient: 0.7
-      Slash:
-        coefficient: 0.7
-      Piercing:
-        coefficient: 0.7
-      Heat:
-        coefficient: 0.7
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 0.9
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.4
   - type: Item
     size: Large
   - type: ExplosionResistance
-    damageCoefficient: 0.65
+    # mirror the intact integrity value
+    damageCoefficient: 0.85
   #- type: RadiationSource
   #  intensity: 0.3
   #  slope: 0.2
   - type: MedievalIronHitSound
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 45
 
 - type: entity
   parent: ClothingOuterBase
@@ -1809,6 +2720,7 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 15
   #- type: QualityOfItem
@@ -1833,57 +2745,94 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.49
-        Piercing: 0.75
-        Heat: 0.55
-        Cold: 0.75
+        Blunt: 0.75
+        Slash: 0.5
+        Piercing: 0.62
+        Heat: 1.05
+        Shock: 1.05
+        Cold: 0.95
+        Caustic: 0.95
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 500
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.1
+      damageCoefficient: 0.9
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.975
     unbrokenResistances:
       Blunt:
-        coefficient: 0.1
+        coefficient: 0.75
+        flatReduction: 0
       Slash:
-        coefficient: 0.075
+        coefficient: 0.5
+        flatReduction: 0
       Piercing:
-        coefficient: 0.125
+        coefficient: 0.62
+        flatReduction: 0
       Heat:
-        coefficient: 0.15
-    brokenResistances:
-      Blunt:
-        coefficient: 0.85
-      Slash:
-        coefficient: 0.85
-      Piercing:
-        coefficient: 0.85
-      Heat:
-        coefficient: 0.85
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.6
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.75
+    # mirror the intact integrity value
+    damageCoefficient: 0.9
   #- type: RadiationSource
   #  intensity: 0.3
   #  slope: 0.2
   - type: MedievalIronHitSound
   - type: CurseItem
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 30
 
 - type: entity
   parent: Clothing
   id: MedievalClothingFeetNecromancerLight
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 3
   #- type: QualityOfItem
@@ -1911,41 +2860,75 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
+        Blunt: 0.92
+        Slash: 0.94
         Piercing: 0.95
+        Heat: 1
+        Shock: 1
+        Cold: 1
+        Caustic: 1
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 75
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.8
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.85
+        coefficient: 0.92
+        flatReduction: 0
       Slash:
-        coefficient: 0.85
-      Piercing:
-        coefficient: 0.85
-      Heat:
-        coefficient: 0.9
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
+        coefficient: 0.94
+        flatReduction: 0
       Piercing:
         coefficient: 0.95
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 1
+        flatReduction: 0
+      Shock:
+        coefficient: 1
+        flatReduction: 0
+      Cold:
+        coefficient: 1
+        flatReduction: 0
+      Caustic:
+        coefficient: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
   - type: ExplosionResistance
-    damageCoefficient: 0.95
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ClothingSpeedModifier
     walkModifier: 0.99
     sprintModifier: 0.99
@@ -1954,6 +2937,10 @@
   #  slope: 0.2
   - type: ProtectedFromStepTriggers
   - type: CurseItem
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: ClothingOuterBase
@@ -1981,42 +2968,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.8
-        Piercing: 0.88
-        Heat: 0.77
-        Cold: 0.77
-        Bloodloss: 0.77
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.55
+        Heat: 0.5
+        Cold: 0.5
+        Bloodloss: 1.0
+        Shock: 0.5
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 0.5
+        Holy: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 270
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.18
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.1
+        coefficient: 0.6
+        flatReduction: 0
       Slash:
-        coefficient: 0.12
+        coefficient: 0.5
+        flatReduction: 0
       Piercing:
-        coefficient: 0.3
+        coefficient: 0.55
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.9
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.25
-      Heat: 1
+        coefficient: 0.5
+        flatReduction: 0
+      Shock:
+        coefficient: 0.5
+        flatReduction: 0
+      Cold:
+        coefficient: 0.5
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.5
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -2026,7 +3043,8 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.75
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
   - type: ManaRegen
     regen: 2.2
   - type: SoulboundTrigger
@@ -2038,6 +3056,10 @@
     totalIntensity: 4
     intensitySlope: 4
     maxIntensity: 4
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmer
@@ -2289,42 +3311,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.89
-        Slash: 0.84
-        Piercing: 0.95
-        Heat: 0.85
-        Cold: 0.85
-        Bloodloss: 0.85
+        Blunt: 0.72
+        Slash: 0.76
+        Piercing: 0.78
+        Heat: 0.8
+        Cold: 0.8
+        Bloodloss: 1.0
+        Shock: 0.8
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.8
+        Holy: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 170
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.2
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.12
+        coefficient: 0.72
+        flatReduction: 0
       Slash:
-        coefficient: 0.17
+        coefficient: 0.76
+        flatReduction: 0
       Piercing:
-        coefficient: 0.35
+        coefficient: 0.78
+        flatReduction: 0
       Heat:
-        coefficient: 0.37
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.9
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.25
-      Heat: 1
+        coefficient: 0.8
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 0.8
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -2334,9 +3386,14 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
   - type: ManaRegen
     regen: 1.2
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
@@ -2350,6 +3407,71 @@
     equipDelay: 4
     unequipDelay: 4
     sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_neutral.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.76
+        Piercing: 0.78
+        Heat: 0.8
+        Shock: 0.8
+        Cold: 0.8
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.8
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.76
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.78
+        flatReduction: 0
+      Heat:
+        coefficient: 0.8
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 0.8
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
@@ -2437,6 +3559,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_legion.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_legion.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.76
+        Piercing: 0.78
+        Heat: 0.8
+        Shock: 0.8
+        Cold: 0.8
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.8
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.76
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.78
+        flatReduction: 0
+      Heat:
+        coefficient: 0.8
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 0.8
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLightLegion
@@ -2468,6 +3655,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_ins.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_ins.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.76
+        Piercing: 0.78
+        Heat: 0.8
+        Shock: 0.8
+        Cold: 0.8
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.8
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.76
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.78
+        flatReduction: 0
+      Heat:
+        coefficient: 0.8
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 0.8
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLightIns
@@ -2556,42 +3808,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.92
-        Slash: 0.9
-        Piercing: 0.97
-        Heat: 0.87
-        Cold: 0.87
-        Bloodloss: 0.87
+        Blunt: 0.8
+        Slash: 0.88
+        Piercing: 0.88
+        Heat: 0.8
+        Cold: 0.8
+        Bloodloss: 1.0
+        Shock: 0.8
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.8
+        Holy: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 135
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.2
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.12
+        coefficient: 0.8
+        flatReduction: 0
       Slash:
-        coefficient: 0.17
+        coefficient: 0.88
+        flatReduction: 0
       Piercing:
-        coefficient: 0.35
+        coefficient: 0.88
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.9
-      Slash:
-        coefficient: 0.9
-      Piercing:
-        coefficient: 0.9
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.25
-      Heat: 1
+        coefficient: 0.8
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 0.8
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -2601,9 +3883,14 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.75
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
   - type: ManaRegen
     regen: 0.7
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerWeak
@@ -2680,6 +3967,12 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/goblin_slayer_armor.rsi
 
+  # class override for inherited torso protection
+  - type: MedievalArmorIntegrity
+    unbrokenExplosionResistance:
+      damageCoefficient: 0.85
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
 - type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorForstone
@@ -2703,41 +3996,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.32
+        Blunt: 0.95
         Slash: 0.35
-        Piercing: 0.30
-        Heat: 0.38
-        Cold: 0.6
+        Piercing: 0.4
+        Heat: 0.2
+        Cold: 1.293568091987064
+        Shock: 0.4
+        Caustic: 0.4
+        Poison: 0.4
+        Radiation: 0.4
+        Holy: 0.4
+        Bloodloss: 0.4
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 530
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.1
-    brokenExplosionResistance:
       damageCoefficient: 0.85
+    # torso-only explosion resistance
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
     unbrokenResistances:
       Blunt:
-        coefficient: 0.08
+        coefficient: 0.95
+        flatReduction: 0
       Slash:
-        coefficient: 0.065
+        coefficient: 0.35
+        flatReduction: 0
       Piercing:
-        coefficient: 0.07
+        coefficient: 0.4
+        flatReduction: 0
       Heat:
-        coefficient: 0.15
-    brokenResistances:
-      Blunt:
-        coefficient: 0.7
-      Slash:
-        coefficient: 0.7
-      Piercing:
-        coefficient: 0.7
-      Heat:
-        coefficient: 0.7
-    breakageMultipliers:
-      Piercing: 0.8
-      Blunt: 1.1
-      Slash: 0.8
-      Heat: 1
+        coefficient: 0.2
+        flatReduction: 0
+      Shock:
+        coefficient: 0.4
+        flatReduction: 0
+      Cold:
+        coefficient: 1.293568091987064
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.4
+        flatReduction: 0
+      Poison:
+        coefficient: 0.4
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.4
+        flatReduction: 0
+      Holy:
+        coefficient: 0.4
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 0.4
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.4
   - type: ClothingSpeedModifier
@@ -2746,10 +4070,15 @@
   - type: Item
     size: Huge
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    # mirror the intact integrity value
+    damageCoefficient: 0.85
   - type: MedievalIronHitSound
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingOuterArmorUpIron # imperial medieval
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 25
 
 - type: entity
   parent: ClothingOuterBase
@@ -2757,6 +4086,7 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 36
   #- type: QualityOfItem
@@ -2783,41 +4113,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.19
-        Slash: 0.18
-        Piercing: 0.2
-        Heat: 0.18
-        Cold: 0.32
+        Blunt: 0.52
+        Slash: 0.52
+        Piercing: 0.55
+        Heat: 0.9
+        Shock: 0.625
+        Cold: 0.9
+        Caustic: 0.617283950617
+        Poison: 0.617283950617
+        Radiation: 0.03125
+        Holy: 1
+        Bloodloss: 0.615574022776
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 840
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.05
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.05
+        coefficient: 0.52
+        flatReduction: 0
       Slash:
-        coefficient: 0.05
+        coefficient: 0.52
+        flatReduction: 0
       Piercing:
-        coefficient: 0.05
+        coefficient: 0.55
+        flatReduction: 0
       Heat:
-        coefficient: 0.12
-    brokenResistances:
-      Blunt:
-        coefficient: 0.7
-      Slash:
-        coefficient: 0.7
-      Piercing:
-        coefficient: 0.7
-      Heat:
-        coefficient: 0.7
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 0.625
+        flatReduction: 0
+      Cold:
+        coefficient: 0.9
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.617283950617
+        flatReduction: 0
+      Poison:
+        coefficient: 0.617283950617
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.03125
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 0.615574022776
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.15
   - type: ClothingSpeedModifier
@@ -2826,10 +4187,15 @@
   - type: Item
     size: Huge
   - type: ExplosionResistance
-    damageCoefficient: 0.3
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
   - type: MedievalIronHitSound
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingOuterArmorUpIron # imperial medieval
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorEbonit
@@ -2846,6 +4212,7 @@
   parent: Clothing
   id: MedievalClothingFeetEbonit
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 4
   #- type: QualityOfItem
@@ -2875,41 +4242,75 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
+        Blunt: 0.82
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 1
+        Shock: 0.8
+        Cold: 1
+        Caustic: 0.9
+        Poison: 0.9
+        Radiation: 0.8
+        Holy: 1
+        Bloodloss: 0.95
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 95
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.7
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.75
+        coefficient: 0.82
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.82
+        flatReduction: 0
       Piercing:
-        coefficient: 0.75
+        coefficient: 0.84
+        flatReduction: 0
       Heat:
-        coefficient: 0.85
-    brokenResistances:
-      Blunt:
+        coefficient: 1
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 1
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.9
+        flatReduction: 0
+      Poison:
+        coefficient: 0.9
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
         coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.95
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        flatReduction: 0
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ClothingSpeedModifier
     walkModifier: 0.99
     sprintModifier: 0.99
@@ -2921,6 +4322,10 @@
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingFeetSteel # imperial medieval
   - type: ProtectedFromStepTriggers
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalClothingFeetEbonit
@@ -2941,6 +4346,71 @@
     state: icon
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/forstone.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.98
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.7
+        Shock: 0.8
+        Cold: 1.1
+        Caustic: 0.8
+        Poison: 0.8
+        Radiation: 0.8
+        Holy: 0.8
+        Bloodloss: 0.8
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.98
+        flatReduction: 0
+      Slash:
+        coefficient: 0.75
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.8
+        flatReduction: 0
+      Heat:
+        coefficient: 0.7
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 1.1
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.8
+        flatReduction: 0
+      Poison:
+        coefficient: 0.8
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 0.8
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 0.8
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: ClothingHandsBase
@@ -2948,6 +4418,7 @@
   name: IronGloves
   description: gloves
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 4
   #- type: QualityOfItem
@@ -2979,43 +4450,78 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.84
-        Slash: 0.84
-        Piercing: 0.84
-        Heat: 0.84
-        Cold: 0.95
+        Blunt: 0.86
+        Slash: 0.86
+        Piercing: 0.87
+        Heat: 1
+        Shock: 0.8
+        Cold: 1
+        Caustic: 0.9
+        Poison: 0.9
+        Radiation: 0.8
+        Holy: 1
+        Bloodloss: 0.95
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 105
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.7
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.75
+        coefficient: 0.86
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.86
+        flatReduction: 0
       Piercing:
-        coefficient: 0.75
+        coefficient: 0.87
+        flatReduction: 0
       Heat:
-        coefficient: 0.85
-    brokenResistances:
-      Blunt:
+        coefficient: 1
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 1
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.9
+        flatReduction: 0
+      Poison:
+        coefficient: 0.9
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
         coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.95
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        flatReduction: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalIronGloves # imperial medieval
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalEbonitGloves
@@ -3049,6 +4555,71 @@
     sprite: Imperial/Medieval/Clothing/Gloves/forstone_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/forstone_gloves.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.98
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.7
+        Shock: 0.8
+        Cold: 1.1
+        Caustic: 0.8
+        Poison: 0.8
+        Radiation: 0.8
+        Holy: 0.8
+        Bloodloss: 0.8
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.98
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.8
+        flatReduction: 0
+      Heat:
+        coefficient: 0.7
+        flatReduction: 0
+      Shock:
+        coefficient: 0.8
+        flatReduction: 0
+      Cold:
+        coefficient: 1.1
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.8
+        flatReduction: 0
+      Poison:
+        coefficient: 0.8
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.8
+        flatReduction: 0
+      Holy:
+        coefficient: 0.8
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 0.8
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: ClothingOuterBase
@@ -3084,41 +4655,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.54
-        Slash: 0.46
-        Piercing: 0.48
-        Heat: 0.4
-        Cold: 0.8
+        Blunt: 0.6
+        Slash: 0.8
+        Piercing: 0.7
+        Heat: 1.05
+        Cold: 0.95
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 435
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.1
+      damageCoefficient: 0.9
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.975
     unbrokenResistances:
       Blunt:
-        coefficient: 0.125
-      Slash:
-        coefficient: 0.09
-      Piercing:
-        coefficient: 0.1
-      Heat:
-        coefficient: 0.24
-    brokenResistances:
-      Blunt:
-        coefficient: 0.8
+        coefficient: 0.6
+        flatReduction: 0
       Slash:
         coefficient: 0.8
+        flatReduction: 0
       Piercing:
-        coefficient: 0.8
+        coefficient: 0.7
+        flatReduction: 0
       Heat:
-        coefficient: 0.8
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.5
   - type: ClothingSpeedModifier
@@ -3127,9 +4729,14 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.82
+    # mirror the intact integrity value
+    damageCoefficient: 0.9
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalClothingOuterArmorBrigantin
@@ -3164,6 +4771,12 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
 
+  # class override for inherited torso protection
+  - type: MedievalArmorIntegrity
+    unbrokenExplosionResistance:
+      damageCoefficient: 0.85
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
 - type: entity
   parent: MedievalClothingFeetSteel
   id: MedievalClothingFeetSteelFoxei
@@ -3435,6 +5048,12 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/mcdonalds_armor.rsi
 
+  # class override for inherited torso protection
+  - type: MedievalArmorIntegrity
+    unbrokenExplosionResistance:
+      damageCoefficient: 0.85
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirassLight
   id: MedievalClothingOuterArmorIronCuirassLightMcDonalds
@@ -3523,6 +5142,12 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/crook_armor.rsi
 
+  # class override for inherited torso protection
+  - type: MedievalArmorIntegrity
+    unbrokenExplosionResistance:
+      damageCoefficient: 0.85
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirassLight
   id: MedievalClothingOuterArmorIronCuirassLightCrookLv
@@ -3771,6 +5396,12 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
 
+  # class override for inherited torso protection
+  - type: MedievalArmorIntegrity
+    unbrokenExplosionResistance:
+      damageCoefficient: 0.85
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirassLight
   id: MedievalClothingOuterArmorIronCuirassLightZablik
@@ -3904,6 +5535,71 @@
     sprite: Imperial/Medieval/Clothing/Gloves/northern_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/northern_gloves.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.87
+        Slash: 0.9
+        Piercing: 0.92
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.87
+        flatReduction: 0
+      Slash:
+        coefficient: 0.9
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.92
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: Clothing
@@ -3926,45 +5622,83 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.95
+        Blunt: 0.84
+        Slash: 0.88
+        Piercing: 0.9
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 95
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
-        coefficient: 0.85
+        coefficient: 0.84
+        flatReduction: 0
       Slash:
-        coefficient: 0.85
+        coefficient: 0.88
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
-      Heat:
         coefficient: 0.9
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: ExplosionResistance
-    damageCoefficient: 0.95
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ClothingSpeedModifier
     walkModifier: 0.99
     sprintModifier: 0.99
   - type: ProtectedFromStepTriggers
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLightLegion
@@ -4062,6 +5796,7 @@
   name: studded armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 6
   #- type: QualityOfItem
@@ -4082,41 +5817,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.72
-        Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.6
-        Cold: 0.3
+        Blunt: 0.74
+        Slash: 0.6
+        Piercing: 0.71
+        Heat: 1.15
+        Shock: 0.75
+        Cold: 1
+        Caustic: 1.15
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 80
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.2
+      damageCoefficient: 0.9
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.975
     unbrokenResistances:
       Blunt:
-        coefficient: 0.22
+        coefficient: 0.74
+        flatReduction: 0
       Slash:
-        coefficient: 0.25
+        coefficient: 0.6
+        flatReduction: 0
       Piercing:
-        coefficient: 0.22
+        coefficient: 0.71
+        flatReduction: 0
       Heat:
-        coefficient: 0.32
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        coefficient: 1.15
+        flatReduction: 0
+      Shock:
+        coefficient: 0.75
+        flatReduction: 0
+      Cold:
+        coefficient: 1
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.15
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -4131,6 +5897,10 @@
     node: ground
   - type: WhitelistClothing
     whitelistState: clothing
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: ClothingOuterBase
@@ -4158,41 +5928,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.62
-        Heat: 0.7
-        Cold: 0.54
+        Blunt: 0.85
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 1.0
+        Cold: 1.0
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.2
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.1
+        coefficient: 0.85
+        flatReduction: 0
       Slash:
-        coefficient: 0.15
-      Piercing:
-        coefficient: 0.3
-      Heat:
-        coefficient: 0.35
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
         coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.3
-      Heat: 1
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.9
+        flatReduction: 0
+      Heat:
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -4202,10 +6003,15 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
   - type: Tag
     tags:
     - GoblinArmor
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: ClothingOuterBase
@@ -4213,6 +6019,7 @@
   name: iron armor cuirass
   description: An armored iron plate to protect against melee weapons.
   components:
+  # agreed armor balance
   - type: RDWeight
     value: 8
   #- type: QualityOfItem
@@ -4237,41 +6044,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.45
+        Blunt: 0.8
         Slash: 0.5
-        Piercing: 0.43
-        Heat: 0.5
-        Cold: 0.7
+        Piercing: 0.585
+        Heat: 0.925
+        Shock: 1.075
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1
+        Radiation: 1
+        Holy: 1
+        Bloodloss: 1
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 225
     repairType: Smithing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.15
-    brokenExplosionResistance:
       damageCoefficient: 0.85
+    # torso-only explosion resistance
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
     unbrokenResistances:
       Blunt:
-        coefficient: 0.15
+        coefficient: 0.8
+        flatReduction: 0
       Slash:
-        coefficient: 0.11
+        coefficient: 0.5
+        flatReduction: 0
       Piercing:
-        coefficient: 0.15
+        coefficient: 0.585
+        flatReduction: 0
       Heat:
-        coefficient: 0.25
-    brokenResistances:
-      Blunt:
+        coefficient: 0.925
+        flatReduction: 0
+      Shock:
+        coefficient: 1.075
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
         coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 0.8
-      Heat: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1
+        flatReduction: 0
+      Radiation:
+        coefficient: 1
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1
+        flatReduction: 0
   - type: StaminaResistance
     damageCoefficient: 0.4
   - type: ClothingSpeedModifier
@@ -4280,12 +6118,17 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.82
+    # mirror the intact integrity value
+    damageCoefficient: 0.85
   - type: Tag
     tags:
     - GoblinArmor
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorUpIron
@@ -4326,6 +6169,71 @@
     sprite: Imperial/Medieval/Clothing/Shoes/draconic.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/draconic.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.88
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.88
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingFeetSteel
@@ -4357,6 +6265,71 @@
     sprite: Imperial/Medieval/Clothing/Gloves/draconic.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/draconic.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.94
+        Slash: 0.86
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.94
+        flatReduction: 0
+      Slash:
+        coefficient: 0.86
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.88
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: ClothingOuterBase
@@ -4388,41 +6361,72 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.8
-        Piercing: 0.85
-        Heat: 0.75
-        Cold: 0.5
+        Blunt: 0.8
+        Slash: 0.88
+        Piercing: 0.88
+        Heat: 1.0
+        Cold: 1.0
+        Shock: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 80
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.3
+      damageCoefficient: 0.95
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.85
+      damageCoefficient: 0.9875
     unbrokenResistances:
       Blunt:
-        coefficient: 0.36
+        coefficient: 0.8
+        flatReduction: 0
       Slash:
-        coefficient: 0.4
+        coefficient: 0.88
+        flatReduction: 0
       Piercing:
-        coefficient: 0.52
+        coefficient: 0.88
+        flatReduction: 0
       Heat:
-        coefficient: 0.3
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 0.8
-      Slash: 1.3
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -4432,4 +6436,9 @@
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 0.95
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5

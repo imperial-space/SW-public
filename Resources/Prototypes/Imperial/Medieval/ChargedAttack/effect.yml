@@ -4,6 +4,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/ChargedAttack/effect.rsi
+    color: "#FFD060"
     drawdepth: Effects
   - type: Physics
     canCollide: false

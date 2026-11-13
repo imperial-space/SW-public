@@ -433,7 +433,7 @@
   - productEntity: MedievalBoardingHook
     cost: 25
     reputationForBuying: 1
-  - productEntity: MedievalArrowIronPhysics
+  - productEntity: MedievalNormalArrow
     cost: 2
     reputationForBuying: 0.1
   - productEntity: MedievalMopItem

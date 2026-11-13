@@ -3,6 +3,7 @@ using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.Shared.Imperial.ICCVar;
 using Content.Shared.Interaction;
+using Content.Shared.Damage;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -166,12 +167,15 @@ public sealed partial class TargetOverlay : Overlay
 
     #region Helpers
 
-    private EntityUid? GetFirstIntersectsTarget(MapId mapId, Box2Rotated bounds)
+    private EntityUid? GetFirstIntersectsTarget(MapId mapId, Box2Rotated bounds, bool damageableOnly = false)
     {
         foreach (var ent in _lookupSystem.GetEntitiesIntersecting(mapId, bounds, LookupFlags.All))
         {
-            if (!CheckWhiteList(ent)) continue;
-            if (!CheckBlackList(ent)) continue;
+            if (damageableOnly)
+            {
+                if (!_entityManager.HasComponent<DamageableComponent>(ent)) continue;
+            }
+            else if (!CheckWhiteList(ent) || !CheckBlackList(ent)) continue;
 
             return ent;
         }
@@ -179,13 +183,17 @@ public sealed partial class TargetOverlay : Overlay
         return null;
     }
 
-    private EntityUid? GetClickedEntity(GameplayStateBase screen, MapCoordinates mousePosition, IEye eye)
+    private EntityUid? GetClickedEntity(GameplayStateBase screen, MapCoordinates mousePosition,
+        IEye? eye, bool damageableOnly = false)
     {
-        var ent = screen.GetClickedEntity(mousePosition, eye);
+        var ent = eye == null ? screen.GetClickedEntity(mousePosition) : screen.GetClickedEntity(mousePosition, eye);
 
         if (ent == null) return null;
-        if (!CheckWhiteList(ent.Value)) return null;
-        if (!CheckBlackList(ent.Value)) return null;
+        if (damageableOnly)
+        {
+            if (!_entityManager.HasComponent<DamageableComponent>(ent.Value)) return null;
+        }
+        else if (!CheckWhiteList(ent.Value) || !CheckBlackList(ent.Value)) return null;
 
         return ent;
     }
@@ -252,6 +260,34 @@ public sealed partial class TargetOverlay : Overlay
     #endregion
 
     #region Public API
+
+    /// <summary>
+    /// Melee calls the existing clicked-entity/physics fallback and LOS checks.
+    /// Magic's original selection path and target list are not modified.
+    /// </summary>
+    public EntityUid? TryPickAtCursor(bool requireDamageable = false)
+    {
+        if (_stateManager.CurrentState is not GameplayStateBase screen ||
+            _playerManager.LocalEntity is not { } user)
+            return null;
+
+        var cursor = _eyeManager.PixelToMap(_inputManager.MouseScreenPosition.Position);
+        if (cursor.MapId == MapId.Nullspace || !_mapSystem.TryGetMap(cursor.MapId, out var mapUid))
+            return null;
+
+        var local = Vector2.Transform(cursor.Position, _transformSystem.GetInvWorldMatrix(mapUid.Value));
+        var rotation = -Angle.FromDegrees(_timing.CurTime.TotalMilliseconds / 20);
+        var bounds = new Box2Rotated(Box2.UnitCentered.Translated(local), rotation, local);
+        var target = GetClickedEntity(screen, cursor, null, requireDamageable) ??
+                     GetFirstIntersectsTarget(cursor.MapId, bounds, requireDamageable);
+        if (target is not { } entity || entity == user)
+            return null;
+
+        var from = _transformSystem.GetMapCoordinates(user);
+        var to = _transformSystem.GetMapCoordinates(entity);
+        return _examineSystem.InRangeUnOccluded(from, to,
+            SharedInteractionSystem.MaxRaycastRange, null) ? entity : null;
+    }
 
     public void AddTarget()
     {

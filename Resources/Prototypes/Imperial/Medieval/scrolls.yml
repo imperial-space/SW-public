@@ -38,6 +38,12 @@
       types:
         Heat: 25
     targetType: Magic
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 8.5
+        Slash: 9.85
+        Heat: 9
 
 - type: entity
   name: draft sword
@@ -72,6 +78,12 @@
       types:
         Heat: 18
     targetType: Magic
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 11.1
+        Piercing: 6.5
+        Heat: 7
 
 - type: entity
   name: draft dagger
@@ -104,68 +116,33 @@
       types:
         Heat: 10
     targetType: Magic
-
-- type: entity
-  name: MedievalDraftBaseBow
-  parent: BaseItem # imperial medieval no contraband
-  id: MedievalDraftBaseBow
-  description: The original rooty tooty point and shooty.
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Gun/draft_bow.rsi
-  - type: Item
-    size: Normal
-  - type: Clothing
-    quickEquip: false
-    slots:
-      - Back
-      - suitStorage
-  - type: Wieldable
-    wieldSound:
-      path: /Audio/Items/bow_pull.ogg
-  - type: UseDelay
-    delay: 1
-  - type: GunRequiresWield
-  - type: Gun
-    minAngle: 0
-    maxAngle: 5
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      collection: BulletMiss
-    soundEmpty: null
-  - type: ItemSlots
-    slots:
-      projectiles:
-        name: Projectiles
-        startingItem: null
-        insertSound: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
-        whitelist:
-          tags:
-          - Arrow
-          - Plunger
-  - type: ContainerContainer
-    containers:
-      projectiles: !type:ContainerSlot
-  - type: ContainerAmmoProvider
-    container: projectiles
-  - type: TimedDespawn
-    lifetime: 300    # 900 = 15 minutes
-  - type: SpawnOnDespawn
-    prototype: DraftParticles
-  - type: MedievalWeaponSkillCategory
-    skill: Bow
+  - type: APDamageOnHit
+    damage:
+      types:
+        Slash: 0
+        Piercing: 0
+        Heat: 5
 
 - type: entity
   id: MedievalDraftBowImprovised
-  parent: MedievalDraftBaseBow
+  parent: BaseMedievalBowCharged
   name: draft improvised shortbow
   description: The original rooty tooty point and shooty.
   components:
+  - type: MedievalBowCharge
+    baseBluntImpact: 3
+    basePoiseDamage: 16
+    minChargeTime: 0.25
+    maxChargeTime: 4
+    minChargeMultiplier: 0.4
+    maxChargeMultiplier: 1.5
+    staminaDrainPerSecond: 6
+    staminaDrainInterval: 0.25
+    chargingMoveSpeedMultiplier: 0.9
+    meleeKnockback: 2
+    lastLoadedArrow: MedievalDraftArrowSteelPhysics
   - type: Sprite
+    sprite: Imperial/Medieval/Gun/draft_bow.rsi
     layers:
     - state: unwielded
       map: [ base ]
@@ -175,10 +152,13 @@
     - state: unwielded-plunger
       map: [ plunger ]
       visible: false
-  # to elucidate whats intended here:
-  # arrow is inserted -> ItemMapper sets layer with map `arrow` to visible
-  # bow is wielded -> generic vis sets states of layers with map `arrow` and `base`
-  # arrow is removed -> itemmapper sets layer with map `arrow` to invisible
+  - type: Wieldable
+    wieldSound:
+      path: /Audio/Items/bow_pull.ogg
+  - type: Gun
+    soundGunshot:
+      collection: BulletMiss
+    soundEmpty: null
   - type: Appearance
   - type: ItemMapper
     spriteLayers:
@@ -187,8 +167,8 @@
     mapLayers:
       arrow:
         whitelist:
-          tags:
-          - Arrow
+          components:
+          - PoiseArchery
       plunger:
         whitelist:
           tags:
@@ -210,13 +190,18 @@
     node: ImprovisedBow
   - type: RDWeight
     value: 1.5
+  - type: TimedDespawn
+    lifetime: 300    # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
   - type: PointLight
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
 
+
 - type: entity
-  parent: BaseArrow
+  parent: BasePoiseArrow
   id: MedievalDraftBaseArrow
   abstract: true
   components:
@@ -235,11 +220,16 @@
   name: draft arrow
   description: You can feel the power of the steppe within you.
   components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 28
-        Heat: 5
+  - type: PoiseArchery
+    damageType: Piercing
+    fixedDamage: 5
+    damageMultiplier: 1
+    bluntMultiplier: 1
+    minPoiseMultiplier: 0.25
+    maxPoiseMultiplier: 1
+    secondaryDamageType: Cold
+    secondaryFixedDamage: 2
+    secondaryDamageMultiplier: 0.25
   - type: TimedDespawn
     lifetime: 300    # 900 = 15 minutes
   - type: SpawnOnDespawn
@@ -276,7 +266,7 @@
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
-    
+
 - type: entity
   parent: MedievalBoltSteel
   id: MedievalDraftBoltSteel
@@ -301,6 +291,11 @@
   parent: MedievalBoltBulletSteel
   noSpawn: true
   components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 35
+        Cold: 6
   - type: Sprite
     sprite: Imperial/Medieval/Gun/draft_bolt.rsi
     rotation: -135
@@ -310,12 +305,6 @@
     radius: 1.5
     energy: 1.5
     color: "#39a1ff"
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 56
-        Heat: 7
-    
 - type: entity
   parent: MedievalQuiverSteel
   id: MedievalDraftQuiverSteel
@@ -352,7 +341,7 @@
     contents:
     - id: MedievalDraftArrowSteelPhysics
       amount: 40
-      
+
 - type: entity
   parent: MedievalDraftQuiverSteel
   id: MedievalDraftQuiverSteelFullBolt
@@ -361,7 +350,7 @@
   - type: StorageFill
     contents:
     - id: MedievalDraftBoltSteel
-      amount: 40
+      amount: 20
 
 #scrolls
 - type: entity

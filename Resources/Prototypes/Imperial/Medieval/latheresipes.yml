@@ -1484,15 +1484,55 @@
   stacks:
     WoodPlank: 1
     MedievalIronIngot: 1
-  result: MedievalArrowIronPhysics
+  result: MedievalNormalArrow
+
+- type: CP14Recipe
+  id: MedievalSteelNormalArrow
+  craftTime: 1
+  stacks:
+    WoodPlank: 1
+    MedievalSteelIngot: 1
+  result: MedievalSteelNormalArrow
+
+- type: CP14Recipe
+  id: MedievalBroadheadArrow
+  craftTime: 1
+  stacks:
+    WoodPlank: 1
+    MedievalIronIngot: 1
+  result: MedievalBroadheadArrow
+
+- type: CP14Recipe
+  id: MedievalSteelBroadheadArrow
+  craftTime: 1
+  stacks:
+    WoodPlank: 1
+    MedievalSteelIngot: 1
+  result: MedievalSteelBroadheadArrow
+
+- type: CP14Recipe
+  id: MedievalArrowNeedle
+  craftTime: 1
+  stacks:
+    WoodPlank: 1
+    MedievalSteelIngot: 1
+  result: MedievalArrowNeedle
+
+- type: CP14Recipe
+  id: MedievalSilverNeedleArrow
+  craftTime: 1
+  stacks:
+    WoodPlank: 1
+    MedievalSilver: 1
+    MedievalGold: 1
+  result: MedievalSilverNeedleArrow
 
 - type: CP14Recipe
   id: MedievalArrowPractice
   craftTime: 1
   stacks:
     WoodPlank: 1
-    MedievalSteelIngot: 1
-  result: MedievalArrowSteelPhysics
+  result: MedievalArrowPractice
 
 - type: CP14Recipe
   id: MedievalArrowFire
@@ -1502,6 +1542,14 @@
     MedievalSteelIngot: 1
     MedievalFireSerdolick: 1
   result: MedievalArrowFire
+
+- type: CP14Recipe
+  id: MedievalArrowPayload
+  craftTime: 1
+  stacks:
+    WoodPlank: 1
+    MedievalSteelIngot: 1
+  result: MedievalArrowPayload
 
 - type: CP14Recipe
   id: MedievalGlowStone

@@ -513,6 +513,7 @@
       machine_parts:
 
         !type:Container ""
+
 - type: entity
   id: Medievalalchem_dispenser
   name: alchemical dispenser
@@ -555,7 +556,7 @@
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger
-        damage: 250
+        damage: 500
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -581,7 +582,9 @@
           components:
           - FitsInDispenser
       outputSlot:
-        whitelistFailPopup: chem-master-component-cannot-put-entity-message
+        priority: 0
+        swap: false
+        ejectOnBreak: true
         whitelist:
           tags:
           - Bottle
@@ -945,8 +948,14 @@
     - MedievalBoltPractice
     - MedievalBow
     - MedievalArrow
+    - MedievalSteelNormalArrow
+    - MedievalBroadheadArrow
+    - MedievalSteelBroadheadArrow
+    - MedievalArrowNeedle
+    - MedievalSilverNeedleArrow
     - MedievalArrowPractice
     - MedievalArrowFire
+    - MedievalArrowPayload
     - MedievalWoodenShield2
     - MedievalWoodenShield
     - MedievalWoodenShield3
@@ -1368,6 +1377,7 @@
     - MedievalChemistryEmptyBottleTempering02Craft
     - MedievalChemistryEmptyBottleTempering03Craft
     - MedievalChemistryEmptyBottleTempering04Craft
+    - MedievalChemistryVialTemperingPackCraft
     - PerfumeBottleRecipe
     - MedievalKotel
     - Syringe
@@ -1560,3 +1570,4 @@
       - MedievalDecorBardThrone
       - MedievalDecorBardTower
       - MedievalDecorBardTree
+

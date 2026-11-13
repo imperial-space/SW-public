@@ -70,7 +70,9 @@ public abstract partial class SharedMedievalMagicSystem
                     Performer = GetNetEntity(projectileSpell.Performer),
                     CastSpeedModifier = projectileSpell.SpellCastDoAfter?.SpeedModifier ?? 1.0f,
                     Action = GetNetEntity(projectileSpell.Action),
-                    ProjectileSpeed = projectileSpell.ProjectileSpeed
+                    InputTick = projectileSpell.InputTick,
+                    ProjectileSpeed = projectileSpell.ProjectileSpeed,
+                    TargetSpellType = projectileSpell.TargetSpellType
                 });
                 break;
             case MedievalSpawnSpellEvent spawnSpell:
@@ -111,6 +113,7 @@ public abstract partial class SharedMedievalMagicSystem
                         Coordinates = GetNetCoordinates(projectileSpell.Target),
                         ProjectilePrototype = projectileSpell.ProjectilePrototype,
                         Action = GetNetEntity(projectileSpell.Action),
+                        InputTick = projectileSpell.InputTick,
                         TargetSpellType = projectileSpell.TargetSpellType,
                         ProjectileSpeed = projectileSpell.ProjectileSpeed
                     }

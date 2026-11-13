@@ -34,6 +34,12 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
     /// </remarks>
     public DamageSpecifier BonusDamage = new();
 
+    // Imperial medieval start
+    /// <summary>Charge state captured at contact for a deferred hit; null uses the live weapon state.</summary>
+    public float? ChargeModifierOverride;
+    public bool ChargeConvertsPiercingToBlunt;
+    // Imperial medieval end
+
     /// <summary>
     ///     A list containing every hit entity. Can be zero.
     /// </summary>
@@ -97,3 +103,4 @@ public record struct GetMeleeAttackRateEvent(EntityUid Weapon, float Rate, float
 /// </summary>
 [ByRefEvent]
 public record struct GetHeavyDamageModifierEvent(EntityUid Weapon, FixedPoint2 DamageModifier, float Multipliers, EntityUid User);
+

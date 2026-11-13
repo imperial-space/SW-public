@@ -1,5 +1,4 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.MeleeParry.Components;
 
@@ -14,4 +13,12 @@ public sealed partial class MeleeParryStorageComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool ParryQueued = false;
+
+    /// <summary>
+    /// Last accepted input, restored with authoritative state during prediction.
+    /// The engine's predictive event queue owns timing; this ID only rejects replays.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public uint LastParryInputId;
 }
+

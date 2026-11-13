@@ -5,6 +5,7 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Imperial.Entry;
 using Content.Shared.IoC;
 using Content.Shared.Maps;
+using Content.Shared.Imperial.Medieval.Poise.LightAttack; // Imperial medieval edit
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -45,6 +46,9 @@ namespace Content.Shared.Entry
         public override void PostInit()
         {
             base.PostInit();
+
+            // Imperial medieval edit - register direct cue messages once, before connecting/starting a world.
+            IoCManager.Resolve<AdvancedLightAttackNetwork>().Initialize();
 
             InitTileDefinitions();
             IoCManager.Resolve<MarkingManager>().Initialize();

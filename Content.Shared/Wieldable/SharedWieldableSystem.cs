@@ -1,4 +1,7 @@
 using System.Linq;
+// Imperial medieval start
+using Content.Shared.Damage;
+// Imperial medieval end
 using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -421,6 +424,21 @@ public abstract class SharedWieldableSystem : EntitySystem
             TryUnwield(uid, component, args.User, force: true);
     }
 
+    // Imperial medieval start
+    /// <summary>
+    /// Replaces the two-handed damage bonus without modifying the caller's damage specifier.
+    /// </summary>
+    public void SetBonusDamage(EntityUid uid, DamageSpecifier damage, IncreaseDamageOnWieldComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false) || component.BonusDamage.Equals(damage))
+            return;
+
+        // This component has no network state. Copy only changed values so durability
+        // checks cannot expose their cached damage specifiers to later mutations.
+        component.BonusDamage = new DamageSpecifier(damage);
+    }
+    // Imperial medieval end
+
     private void OnGetMeleeDamage(EntityUid uid, IncreaseDamageOnWieldComponent component, ref GetMeleeDamageEvent args)
     {
         if (!TryComp<WieldableComponent>(uid, out var wield))
@@ -432,3 +450,4 @@ public abstract class SharedWieldableSystem : EntitySystem
         args.Damage += component.BonusDamage;
     }
 }
+

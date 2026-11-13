@@ -60,8 +60,15 @@ public sealed partial class GunComponent : Component
     /// Last time the gun fired.
     /// Used for recoil purposes.
     /// </summary>
-    [DataField]
+    // Imperial medieval edit - restore recoil timing along with the predicted angle.
+    [DataField, AutoNetworkedField]
     public TimeSpan LastFire = TimeSpan.Zero;
+
+    // Imperial medieval start
+    /// <summary>Authoritative shot sequence used by shared projectile spread prediction.</summary>
+    [AutoNetworkedField]
+    public int ProjectilePredictionSequence;
+    // Imperial medieval end
 
     /// <summary>
     /// What the current spread is for shooting. This gets changed every time the gun fires.

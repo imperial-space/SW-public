@@ -40,6 +40,11 @@ namespace Content.Shared.Weapons.Melee.Events
 
         public DamageSpecifier BonusDamage = new();
 
+        // Imperial medieval start
+        /// <summary>For confirmed melee, preserve grip and charge poise from the original impact.</summary>
+        public int? PoiseDamageOverride;
+        // Imperial medieval end
+
         public AttackedEvent(EntityUid used, EntityUid user, EntityCoordinates clickLocation)
         {
             Used = used;
@@ -47,4 +52,11 @@ namespace Content.Shared.Weapons.Melee.Events
             ClickLocation = clickLocation;
         }
     }
+
+    // Imperial medieval start
+    /// <summary>Raised on each melee target after its health and stamina damage resolve.</summary>
+    [ByRefEvent]
+    public readonly record struct MeleeHitResolvedEvent(AttackedEvent Attack);
+    // Imperial medieval end
 }
+

@@ -20,6 +20,7 @@ public sealed class ExplosionOverlaySystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly EntitySystems.ExplosionSystem _prediction = default!; // Imperial medieval edit
 
     public override void Initialize()
     {
@@ -36,6 +37,8 @@ public sealed class ExplosionOverlaySystem : EntitySystem
         if (args.Current is not ExplosionVisualsState state)
             return;
 
+        _prediction.ReconcileVisuals(state.Predictions); // Imperial medieval edit - remove the provisional overlay before drawing this one.
+
         component.Epicenter = state.Epicenter;
         component.SpaceTiles = state.SpaceTiles;
         component.Tiles.Clear();
@@ -49,6 +52,7 @@ public sealed class ExplosionOverlaySystem : EntitySystem
         component.ExplosionType = state.ExplosionType;
         component.SpaceMatrix = state.SpaceMatrix;
         component.SpaceTileSize = state.SpaceTileSize;
+        component.Predictions = state.Predictions; // Imperial medieval edit
     }
 
     private void OnCompRemove(EntityUid uid, ExplosionVisualsComponent component, ComponentRemove args)

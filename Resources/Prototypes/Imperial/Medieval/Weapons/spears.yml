@@ -1,0 +1,752 @@
+- type: entity
+  name: bone spear
+  parent:
+  - BaseItem
+  - BaseSpearCharged
+  - BasePoiseSpear
+  id: SpearBone
+  description: A spear made of bones.
+  components:
+  - type: AdvancedLightAttack
+    preset: Spear
+  - type: PoiseImpact
+    poiseDamage: 12
+  - type: ThrownWeaponPoiseReset
+  - type: PoiseDamage
+    poiseDamage: 7
+  - type: Spear
+  - type: RDWeight
+    value: 4
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/bone_spear.rsi
+    layers:
+    - state: spear
+    - state: spear1
+      map:
+      - "enum.SolutionContainerLayers.Fill"
+      visible: false
+  - type: Construction
+    node: spear
+    graph: SpearBone
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    range: 2.15
+    damage:
+      types:
+        Piercing: 7.2
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    angle: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1.8
+    clickDamageModifier: 1
+    #animation: WeaponArcThrust
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Wieldable
+    useDelayOnWield: false
+    #wieldTime: 0.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 6
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 12
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+          - -0.40,-0.30
+          - -0.30,-0.40
+          - 0.40,0.30
+          - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: MeleeThrowOnHit
+    distance: 0.5
+    speed: 5
+  - type: MedievalWeaponSkillCategory
+    skill: Spear
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 2
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: medieval spear
+  parent: [ BaseItem, BaseSpearCharged, BasePoiseSpear ]
+  id: MedievalSpearT3
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: AdvancedLightAttack
+    preset: Spear
+  - type: PoiseImpact
+    poiseDamage: 16
+  - type: ThrownWeaponPoiseReset
+  - type: PoiseDamage
+    poiseDamage: 8
+  - type: Spear
+  - type: RDWeight
+    value: 4
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_spear.rsi
+    netsync: false
+    state: spear
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    range: 2.4
+    damage:
+      types:
+        Piercing: 8.96
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    angle: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1.8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.4
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Wieldable
+    useDelayOnWield: false
+    #wieldTime: 0.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 8.96
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 15
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: MeleeThrowOnHit
+    distance: 0.5
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
+  - type: MedievalWeaponSkillCategory
+    skill: Spear
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 4
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: medieval spear
+  parent: [ BaseItem, BaseSpearCharged, BasePoiseSpear ]
+  id: MedievalSpearT3Steel
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: AdvancedLightAttack
+    preset: Spear
+  - type: PoiseImpact
+    poiseDamage: 20
+  - type: ThrownWeaponPoiseReset
+  - type: Spear
+  - type: RDWeight
+    value: 4
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_spear.rsi
+    netsync: false
+    state: spear
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    range: 2.4
+    damage:
+      types:
+        Piercing: 12.8
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    angle: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1.8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.4
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Wieldable
+    useDelayOnWield: false
+    #wieldTime: 0.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 12.8
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 18
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: MeleeThrowOnHit
+    distance: 0.5
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: MedievalWeaponSkillCategory
+    skill: Spear
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 5
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: medieval spear
+  parent: [ BaseItem, BaseSpearCharged, BasePoiseSpear ]
+  id: MedievalSpearRusty
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: AdvancedLightAttack
+    preset: Spear
+  - type: PoiseImpact
+    poiseDamage: 10
+  - type: ThrownWeaponPoiseReset
+  - type: Item
+    size: Normal
+  - type: Spear
+  - type: RDWeight
+    value: 4
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_spear_rusty.rsi
+    netsync: false
+    state: spear
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    range: 2.25
+    damage:
+      types:
+        Piercing: 7.68
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    angle: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1.8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.4
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Wieldable
+    useDelayOnWield: false
+    #wieldTime: 0.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 6.4
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 10
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: MedievalWeaponSkillCategory
+    skill: Spear
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 2
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: Pilum
+  parent: [ BaseItem, BaseSpearCharged, BasePoiseSpear ]
+  id: MedievalSpearPilum
+  description: Just a spear
+  components:
+  - type: AdvancedLightAttack
+    preset: Spear
+  - type: PoiseImpact
+    poiseDamage: 25
+  - type: ThrownWeaponPoiseReset
+  - type: PoiseDamage
+    poiseDamage: 6
+  - type: Spear
+  - type: RDWeight
+    value: 4
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/pilum.rsi
+    state: spear
+  - type: Sharp
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Piercing: 9.6
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    angle: 0
+    clickDamageModifier: 1
+    range: 1.5
+  - type: Item
+    size: Normal
+    storedSprite:
+      state: storage
+      sprite: Imperial/Medieval/Melee/pilum_storage_64x.rsi
+    shape:
+    - 0,0,5,0
+    - 0,1,5,1
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 1
+        Piercing: 24
+  - type: APDamageOnThrow
+    damage:
+      types:
+        Piercing: 5
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+    - ThrowingSpear
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: MedievalWeaponSkillCategory
+    skill: Spear
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 2
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: Sulica
+  parent: [ BaseItem, BaseSpearCharged, BasePoiseSpear ]
+  id: MedievalSpearSulica
+  description: Just a spear
+  components:
+  - type: AdvancedLightAttack
+    preset: Spear
+  - type: PoiseImpact
+    poiseDamage: 20
+  - type: ThrownWeaponPoiseReset
+  - type: PoiseDamage
+    poiseDamage: 5
+  - type: Spear
+  - type: RDWeight
+    value: 4
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/sulica.rsi
+    state: spear
+  - type: Sharp
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    wideAnimationRotation: -140
+    attackRate: 0.75
+    damage:
+      types:
+        Piercing: 7.2
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    angle: 0
+    clickDamageModifier: 1
+    range: 1.5
+  - type: Item
+    size: Normal
+    storedSprite:
+      state: storage
+      sprite: Imperial/Medieval/Melee/sulica_storage_64x.rsi
+    shape:
+    - 0,0,5,0
+    - 0,1,5,1
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 1
+        Piercing: 18
+  - type: APDamageOnThrow
+    damage:
+      types:
+        Piercing: 3
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+    - ThrowingSpear
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: MedievalWeaponSkillCategory
+    skill: Spear
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 2
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0

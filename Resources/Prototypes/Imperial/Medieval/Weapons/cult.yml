@@ -1,0 +1,411 @@
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3
+  id: MedievalDaggerCult
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: AdvancedLightAttack
+    preset: Dagger
+  # dedicated thrown hit poise, distinct from melee poise
+  - type: PoiseImpact
+    poiseDamage: 10
+  - type: ThrownWeaponPoiseReset
+  - type: CultRitualMelee
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/dagger_cult.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/dagger_cult.rsi
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    attackRate: 1.34
+    range: 1
+    damage:
+      types:
+        Slash: 2.66
+        ParryAble: 1
+        Blunt: 0
+        Piercing: 2.66
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 1.33
+        Radiation: 1.33
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    soundHit:
+      path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
+    resetOnHandSelected: false
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 12
+        Poison: 1
+        Radiation: 1
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+    - Knife
+  - type: MeleeThrowOnHit
+    distance: 0.3
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 6
+  - type: CurseItem
+    cult: true
+  - type: PoiseDamage
+    poiseDamage: 2
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedSlashSmall
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 1.5
+        Piercing: 1
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerCult
+  id: MedievalDaggerCultLeader
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/dagger_cult_leader.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/dagger_cult_leader.rsi
+
+- type: entity
+  name: medieval spear
+  parent: [ BaseItem, BaseSpearCharged, BasePoiseSpear ]
+  id: MedievalSpearCult
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: AdvancedLightAttack
+    preset: Spear
+  - type: PoiseDamage
+    poiseDamage: 8
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/cult_spear.rsi
+    netsync: false
+    state: spear
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 2
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    range: 2.4
+    damage:
+      types:
+        Piercing: 7.68
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 1.92
+        Radiation: 1.92
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.75
+  - type: Item
+    size: Large
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Wieldable
+    #wieldTime: 0.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 7.68
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 21
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: MeleeThrowOnHit
+    distance: 0.6
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: CurseItem
+    cult: true
+  - type: MedievalWeaponSkillCategory
+    skill: Spear
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 3
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: iron halberd
+  parent: [ BaseItem, BaseSekirCharged, BasePoiseTwoHanded ]
+  id: MedievalIronSekirCult
+  description: A medieval poleaxe.
+  components:
+  - type: AdvancedLightAttack
+    preset: Greataxe
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - FireAxe
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/sekir_cult.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    angle: -120
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.6
+    damage:
+      types:
+        Piercing: 1.8
+        Slash: 4.8
+        Structural: 14
+        ParryAble: 1
+        Blunt: 3.6
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 1.2
+        Radiation: 1.2
+        Holy: 0
+        Bloodloss: 0
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    range: 1.85
+  - type: MedievalMeleeResource
+    resourceWaste: 0.6
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 0
+        Structural: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: Item
+    size: Huge
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: MeleeThrowOnHit
+    distance: 2.5
+    speed: 5
+  - type: CurseItem
+    cult: true
+  - type: PoiseDamage
+    poiseDamage: 20
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: dagger
+  parent: MedievalSaber
+  id: MedievalCultYatagan
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: AdvancedLightAttack
+    preset: Sword
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/sword_cult.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Medieval/Melee/sword_cult.rsi
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    angle: 75
+    cPAnimationOffset: 1
+    range: 1.42
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 1.15
+    damage:
+      types:
+        Slash: 7.8
+        ParryAble: 1
+        Blunt: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0.9
+        Radiation: 0.9
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 5
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+    - Knife
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_saber.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 0.7
+    speed: 5
+  - type: CurseItem
+    cult: true
+  - type: PoiseDamage
+    poiseDamage: 8
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedSlashLarge
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 3
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0

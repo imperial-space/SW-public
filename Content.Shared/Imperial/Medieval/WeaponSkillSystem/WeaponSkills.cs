@@ -19,6 +19,7 @@ public enum MedievalWeaponSkillId
     Bow,
     Throwing,
     Shield,
+    Rapier,
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -84,7 +85,7 @@ public sealed partial class CrossbowSkillComponent : Component
     [DataField("bypassType")] public string BypassType = "Piercing";
     [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 4f;
 }
-    
+
 [RegisterComponent, NetworkedComponent]
 public sealed partial class BowSkillComponent : Component{ }
 
@@ -98,6 +99,13 @@ public sealed partial class ThrowingSkillComponent : Component
 public sealed partial class ShieldSkillComponent : Component
 {
     [DataField("minBlockFraction")] public float MinBlockFraction = 0.70f;
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class RapierSkillComponent : Component
+{
+    [DataField("bonusType")] public string BonusType = "Piercing";
+    [DataField("bonusAmount")] public FixedPoint2 BonusAmount = 0f;
 }
 
 

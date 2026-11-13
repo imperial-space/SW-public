@@ -10,6 +10,7 @@ using Content.Shared.Imperial.TargetOverlay.Events;
 using Content.Shared.Item;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
+using Content.Shared.Projectiles;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -171,11 +172,14 @@ public sealed partial class MedievalMagicSystem
         var spawnMapCoords = _transformSystem.ToMapCoordinates(xform.Coordinates);
         var userVelocity = _physicsSystem.GetMapLinearVelocity(performer);
 
+        var predictionIndex = 0;
+        var launched = false;
         foreach (var (cursorPosition, target) in targets)
         {
             var targetMapCoords = target.HasValue ? _transformSystem.GetMapCoordinates(GetEntity(target.Value)) : cursorPosition;
 
             var projectilePrototype = args.ProjectilePrototype;
+            var key = new ProjectilePredictionKey(args.Action, args.InputTick, predictionIndex++);
             var evBefore = new MedievalBeforeSpawnEntityBySpellEvent()
             {
                 Action = action,
@@ -201,12 +205,15 @@ public sealed partial class MedievalMagicSystem
             RaiseLocalEvent(ent, ev);
             RaiseLocalEvent(action, ev);
 
+            _spellProjectiles.MarkPrediction(ent, performer, key);
+            launched = true;
             _gunSystem.ShootProjectile(ent, direction, userVelocity, performer, performer, speed: args.ProjectileSpeed);
         }
 
         spellCasterComponent.TargetStack.Remove(action);
         spellCasterComponent.SpellStack.Remove(action);
 
+        _spellProjectiles.CompletePrediction(args.Action, args.InputTick, performer, launched);
         base.CastEntityTargetProjectileSpell(args);
     }
 

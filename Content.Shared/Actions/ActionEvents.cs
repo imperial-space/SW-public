@@ -4,6 +4,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing; // Imperial medieval edit
 
 namespace Content.Shared.Actions;
 
@@ -82,6 +83,9 @@ public sealed class GetItemActionsEvent : EntityEventArgs
 [Serializable, NetSerializable]
 public sealed class RequestPerformActionEvent : EntityEventArgs
 {
+    // Imperial medieval edit - preserve the originating input across cast timers and server processing.
+    public GameTick InputTick;
+
     public readonly NetEntity Action;
     public readonly NetEntity? EntityTarget;
     public readonly NetCoordinates? EntityCoordinatesTarget;
@@ -165,6 +169,9 @@ public abstract partial class WorldTargetActionEvent : BaseActionEvent
 [ImplicitDataDefinitionForInheritors]
 public abstract partial class BaseActionEvent : HandledEntityEventArgs
 {
+    // Imperial medieval edit - identity only; the server still validates the action normally.
+    public GameTick InputTick;
+
     /// <summary>
     ///     The user performing the action.
     /// </summary>

@@ -1,4 +1,6 @@
 using Content.Server.Chat.Systems;
+using Content.Server.Imperial.Medieval.Poise.LightAttack; // Imperial medieval edit
+using Content.Server.Imperial.Medieval.Parry; // Imperial medieval edit
 using Content.Server.Movement.Systems;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
@@ -19,6 +21,9 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private readonly LagCompensationSystem _lag = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private readonly MeleeHitConfirmationSystem _confirmation = default!; // Imperial medieval edit
+
+    [Dependency] private readonly ChargedAttackLagCompensationSystem _chargedHistory = default!; // Imperial medieval edit
 
     public override void Initialize()
     {
@@ -40,6 +45,39 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
         _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), Loc.GetString("damage-melee"));
     }
 
+    // Imperial medieval start - scope only the actual charged strike, never its wind-up.
+    protected override bool PerformHeavyAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon,
+        EntityCoordinates coordinates, bool completingAdvanced)
+    {
+        using var strike = _chargedHistory.BeginStrike(user,
+            completingAdvanced && TryComp<ActorComponent>(user, out var actor) ? actor.PlayerSession : null);
+        return base.PerformHeavyAttack(user, weaponUid, weapon, coordinates, completingAdvanced);
+    }
+
+    // Imperial medieval edit - only advanced light resolution gets a historical strike scope.
+    protected override bool ExecuteAdvancedLightStrike(EntityUid user, EntityUid weaponUid,
+        MeleeWeaponComponent weapon, LightAttackEvent attack)
+    {
+        using var strike = _chargedHistory.BeginStrike(user,
+            TryComp<ActorComponent>(user, out var actor) ? actor.PlayerSession : null);
+        return base.ExecuteAdvancedLightStrike(user, weaponUid, weapon, attack);
+    }
+
+    public override bool TryGetLightAttackTargetPosition(EntityUid user, EntityUid target, out Vector2 position)
+    {
+        if (_chargedHistory.TryGetHistoricalPosition(user, target, out position))
+            return true;
+        return base.TryGetLightAttackTargetPosition(user, target, out position);
+    }
+
+    protected override HashSet<EntityUid> ArcRayCast(Vector2 position, Angle angle, Angle arcWidth, float range, MapId mapId, EntityUid ignore)
+    {
+        return _chargedHistory.TryArcRayCast(position, angle, arcWidth, range, mapId, ignore, out var targets)
+            ? targets
+            : base.ArcRayCast(position, angle, arcWidth, range, mapId, ignore);
+    }
+    // Imperial medieval end
+
     protected override bool ArcRaySuccessful(EntityUid targetUid,
         Vector2 position,
         Angle angle,
@@ -49,28 +87,34 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
         EntityUid ignore,
         ICommonSession? session)
     {
-        // Originally the client didn't predict damage effects so you'd intuit some level of how far
-        // in the future you'd need to predict, but then there was a lot of complaining like "why would you add artifical delay" as if ping is a choice.
-        // Now damage effects are predicted but for wide attacks it differs significantly from client and server so your game could be lying to you on hits.
-        // This isn't fair in the slightest because it makes ping a huge advantage and this would be a hidden system.
-        // Now the client tells us what they hit and we validate if it's plausible.
+        // Imperial medieval start - charged discovery and validation share one pose snapshot.
+        if (_chargedHistory.TryValidate(ignore, targetUid, range + 0.1f, session, out var valid))
+            return valid;
+        // Other player wide attacks use the same historical range hook as light attacks.
+        if (session != null)
+            return InRange(ignore, targetUid, range + 0.1f, session);
+        // Imperial medieval end
 
-        // Even if the client is sending entities they shouldn't be able to hit:
-        // A) Wide-damage is split anyway
-        // B) We run the same validation we do for click attacks.
-
-        // Could also check the arc though future effort + if they're aimbotting it's not really going to make a difference.
-
-        // (This runs lagcomp internally and is what clickattacks use)
+        // Keep the existing current-position check for attacks without a session.
         if (!Interaction.InRangeUnobstructed(ignore, targetUid, range + 0.1f, overlapCheck: false))
             return false;
 
-        // TODO: Check arc though due to the aforementioned aimbot + damage split comments it's less important.
         return true;
     }
 
+    // Imperial medieval start
+    protected override bool TryDeferMeleeHit(EntityUid user, EntityUid weapon, List<EntityUid> targets,
+        Action<List<EntityUid>, int?> resolve)
+    {
+        return _confirmation.TrySchedule(user, weapon, targets, resolve);
+    }
+    // Imperial medieval end
+
     protected override bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session)
     {
+        if (_chargedHistory.TryValidate(user, target, range, session, out var historicalValid))
+            return historicalValid;
+
         EntityCoordinates targetCoordinates;
         Angle targetLocalAngle;
 
@@ -120,3 +164,4 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
     }
 }
+

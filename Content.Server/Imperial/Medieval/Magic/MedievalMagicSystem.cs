@@ -10,6 +10,7 @@ using Content.Shared.Imperial.Medieval.Language;
 using Content.Server.Imperial.Medieval.Magic.VolleySpell;
 using Content.Shared.Imperial.Medieval.Magic;
 using Content.Shared.Tag;
+using Content.Shared.Projectiles;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -29,6 +30,7 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly PhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
+    [Dependency] private readonly SharedProjectileSystem _spellProjectiles = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;

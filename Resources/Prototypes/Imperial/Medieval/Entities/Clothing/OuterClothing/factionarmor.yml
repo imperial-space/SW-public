@@ -14,6 +14,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/lorica_recruit.rsi
 
 # Legionary, long sleeve chainmail
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.76
+        Piercing: 0.78
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.76
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.78
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorChainMail
@@ -27,6 +92,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/lorica_soldier.rsi
 
 # Optio, iron cuirass
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.84
+        Slash: 0.55
+        Piercing: 0.65
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.84
+        flatReduction: 0
+      Slash:
+        coefficient: 0.55
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.65
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirass
@@ -39,7 +169,72 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/musculata_optio.rsi
 
-# Tribune, brigandine 
+# Tribune, brigandine
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.5
+        Piercing: 0.55
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.5
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.55
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorBrigantin
@@ -53,6 +248,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/musculata_tribune.rsi
 
 # Legate, lamellar armor
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.8
+        Piercing: 0.7
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.6
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.7
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: ClothingOuterArmorPodWars
@@ -66,6 +326,77 @@
     sprite: Imperial/Medieval/Clothing/Armor/musculata_legate.rsi
 
 # Legate Timelock, iron plate
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.45
+        Piercing: 0.5
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    # torso-only explosion resistance
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
+    # torso-only explosion resistance
+    unbrokenExplosionResistance:
+      damageCoefficient: 0.85
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.7
+        flatReduction: 0
+      Slash:
+        coefficient: 0.45
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.5
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorIron
@@ -79,6 +410,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/musculata_legate_time.rsi
 
 # Treasurer Helper, light leather cuirass
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.52
+        Piercing: 0.55
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.65
+        flatReduction: 0
+      Slash:
+        coefficient: 0.52
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.55
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorLeatherLight
@@ -92,6 +488,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/musculata_treashelper.rsi
 
 # Treasurer, heavy leather cuirass
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.76
+        Piercing: 0.78
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.76
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.78
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorLeatherHeavy
@@ -107,6 +568,71 @@
 # This is Rebels
 
 # Felag, light leather cuirass
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.8
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.6
+        flatReduction: 0
+      Slash:
+        coefficient: 0.7
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.8
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalClothingOuterArmorLeatherLight
@@ -120,6 +646,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/armor_fox1.rsi
 
 # Militiaman, long sleeve chainmail
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.76
+        Piercing: 0.78
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.76
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.78
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
 
 - type: entity
   parent: MedievalClothingOuterArmorChainMail
@@ -133,6 +724,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/armor_fox2.rsi
 
 # Varangian, iron cuirass
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.84
+        Slash: 0.55
+        Piercing: 0.65
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.84
+        flatReduction: 0
+      Slash:
+        coefficient: 0.55
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.65
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirass
@@ -145,7 +801,72 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/armor_fox2_5.rsi
 
-# Foring, brigandine 
+# Foring, brigandine
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.72
+        Slash: 0.5
+        Piercing: 0.55
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.72
+        flatReduction: 0
+      Slash:
+        coefficient: 0.5
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.55
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorBrigantin
@@ -159,6 +880,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/armor_fox3.rsi
 
 # Jarl, lamellar armor
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.8
+        Piercing: 0.7
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.6
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.7
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
 
 - type: entity
   parent: ClothingOuterArmorPodWars
@@ -172,6 +958,77 @@
     sprite: Imperial/Medieval/Clothing/Armor/armor_fox4.rsi
 
 # Jarl Timelock, sturdy iron plate
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.45
+        Piercing: 0.5
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    # torso-only explosion resistance
+    brokenExplosionResistance:
+      damageCoefficient: 0.9625
+    # torso-only explosion resistance
+    unbrokenExplosionResistance:
+      damageCoefficient: 0.85
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.7
+        flatReduction: 0
+      Slash:
+        coefficient: 0.45
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.5
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorIron
@@ -185,6 +1042,71 @@
     sprite: Imperial/Medieval/Clothing/Armor/armor_fox4_5.rsi
 
 # Unused, sprite looks above foring, brigandine
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.52
+        Piercing: 0.55
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.65
+        flatReduction: 0
+      Slash:
+        coefficient: 0.52
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.55
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingOuterArmorBrigantin

@@ -30,15 +30,16 @@
   - type: Tag
     tags:
     - HorseWearable
+  # agreed horse armor resistance reductions
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.55
-        Piercing: 0.8
-        Heat: 0.65
+        Blunt: 0.75
+        Slash: 0.65
+        Piercing: 0.9
+        Heat: 0.75
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.9
   - type: Item
     size: Huge
 
@@ -63,15 +64,16 @@
   - type: Tag
     tags:
     - HorseWearable
+  # agreed horse armor resistance reductions
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.4
-        Piercing: 0.65
-        Heat: 0.4
+        Blunt: 0.65
+        Slash: 0.5
+        Piercing: 0.75
+        Heat: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.6
   - type: Item
     size: Huge
   - type: MedievalIronHitSound
@@ -105,15 +107,16 @@
   - type: Tag
     tags:
     - HorseWearable
+  # agreed horse armor resistance reductions
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.3
-        Piercing: 0.5
-        Heat: 0.2
+        Blunt: 0.5
+        Slash: 0.4
+        Piercing: 0.6
+        Heat: 0.3
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.35
   - type: ClothingSpeedModifier
     walkModifier: 0.86
     sprintModifier: 0.86
@@ -208,11 +211,15 @@
           - HorseWearable
 
 - type: entity
-  parent: SimpleMobBase
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, SimpleMobBase ]
   id: MedievalHorseTransport
   name: horse
   description: MedievalHorseTransport
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 8
   - type: Sprite
     drawdepth: Objects
     sprite: Imperial/Medieval/Transport/horse.rsi
@@ -509,11 +516,12 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: horse
+  # white horse health thresholds
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Critical
-      200: Dead
+      180: Critical
+      270: Dead
   - type: RideableSprint
     accelerationTime: 10
     maxSpeedModifier: 2

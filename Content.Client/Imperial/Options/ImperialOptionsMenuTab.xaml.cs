@@ -175,6 +175,7 @@ public sealed partial class ImperialOptionsMenuTab : Control
         AddButton(ContentKeyFunctions.MedievalDash);
 
         AddButton(ContentKeyFunctions.MedievalMeleeParry);
+        AddButton(ContentKeyFunctions.MedievalMeleeQuickTarget);
         AddOptionButton(
             "ui-options-medieval-parry-sound-label",
             _cfg.GetCVar(CCVars.ParryReadySoundType),

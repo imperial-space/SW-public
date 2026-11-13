@@ -8,4 +8,8 @@ public sealed partial class SetWerewolfMobThresholdsEvent : EntityEventArgs
 
     [DataField]
     public float Death;
+
+    // optional total poise capacity for Thick Fur.
+    [DataField]
+    public int? PoiseThreshold;
 }

@@ -1014,7 +1014,7 @@
 
 - type: listing
   id: DemoMdvShopMedievalArrow
-  productEntity: MedievalArrowIronPhysics
+  productEntity: MedievalNormalArrow
   cost:
     UnknownMedieval: 1
   categories:

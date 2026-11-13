@@ -1,0 +1,852 @@
+- type: entity
+  parent: [ Pickaxe, BaseTwoHandedCharged, BasePoiseTwoHanded ]
+  id: MedievalPickaxe
+  name: MedievalPickaxe
+  description: MedievalPickaxe
+  components:
+  - type: AdvancedLightAttack
+    preset: Default
+  - type: PoiseDamage
+    poiseDamage: 5
+  - type: RDWeight
+    value: 2.5
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+      - Pickaxe
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    damage:
+      types:
+        Piercing: 5.48
+        Structural: 29
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+    attackRate: 1
+    range: 1.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 4.11
+        Structural: 0
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.1
+  - type: MeleeThrowOnHit
+    distance: 0.6
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  parent: [ Pickaxe, BaseTwoHandedCharged, BasePoiseTwoHanded ]
+  id: MedievalPickaxeSteel
+  name: MedievalPickaxe
+  description: MedievalPickaxe
+  components:
+  - type: AdvancedLightAttack
+    preset: Default
+  - type: PoiseDamage
+    poiseDamage: 6
+  - type: RDWeight
+    value: 3
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+      - Pickaxe
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    damage:
+      types:
+        Piercing: 7.1
+        Structural: 47
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+    attackRate: 1
+    range: 1.5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 4.26
+        Structural: 0
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.1
+  - type: MeleeThrowOnHit
+    distance: 0.6
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: pickaxe
+  parent: [ BaseItem, BaseTwoHandedCharged, BasePoiseTwoHanded ]
+  id: MedievalPickaxeEbonit
+  description: Ebonit pickaxe.
+  components:
+  - type: AdvancedLightAttack
+    preset: Default
+  - type: PoiseDamage
+    poiseDamage: 7
+  - type: RDWeight
+    value: 6
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: MeleeParry
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    attackRate: 0.7
+    wideAnimationRotation: -135
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+      params:
+        volume: -3
+    clickDamageModifier: 1
+    damage:
+      types:
+        Piercing: 10.2
+        Structural: 68
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+    range: 1.5
+  - type: Wieldable
+    useDelayOnWield: false
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 6.8
+        Structural: 0
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.05
+  - type: MeleeThrowOnHit
+    distance: 0.04
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 5
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    storedRotation: -45
+  - type: UseDelay
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: pickaxe
+  parent: [ BaseItem, BaseTwoHandedCharged, BasePoiseTwoHanded ]
+  id: MedievalPickaxeForStone
+  description: ForStone pickaxe.
+  components:
+  - type: AdvancedLightAttack
+    preset: Default
+  - type: PoiseDamage
+    poiseDamage: 4
+  - type: RDWeight
+    value: 1
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: MeleeParry
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    attackRate: 1.5
+    wideAnimationRotation: -135
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+      params:
+        volume: -3
+    clickDamageModifier: 1
+    damage:
+      types:
+        Piercing: 4.25
+        Structural: 34
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+    range: 1.5
+  - type: Wieldable
+    useDelayOnWield: false
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 4.25
+        Structural: 0
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.05
+  - type: MeleeThrowOnHit
+    distance: 0.04
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 4
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
+    storedRotation: -45
+  - type: UseDelay
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  parent: [ Shovel, BaseCrushingCharged, BasePoiseBlunt ]
+  id: MedievalShovel
+  name: MedievalShovel
+  description: MedievalShovel
+  components:
+  - type: AdvancedLightAttack
+    preset: Default
+  - type: PoiseDamage
+    poiseDamage: 5
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    attackRate: 0.7
+    wideAnimationRotation: -135
+    clickDamageModifier: 1
+    range: 1.5
+    damage:
+      types:
+        Blunt: 7.2
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 3
+  - type: MeleeThrowOnHit
+    distance: 0.2
+    speed: 5
+  - type: Meltable
+    resourceCount: 1
+  - type: Item
+    size: Large
+  - type: TreasureDigger
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBlunt
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: hoe
+  parent: [ BaseItem, BaseTwoHandedCharged, BasePoiseTwoHanded ]
+  id: MedievalHoe
+  description: It's used for removing weeds or scratching your back.
+  components:
+  - type: AdvancedLightAttack
+    preset: Default
+  - type: PoiseDamage
+    poiseDamage: 4
+  - type: Tag
+    tags:
+    - Hoe
+    - BotanyHoe
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/medieval_hoe.rsi
+    state: icon
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    damage:
+      types:
+        Slash: 4.88
+        ParryAble: 1
+        Blunt: 2.44
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 4
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    attackRate: 1
+    range: 1.5
+  - type: Item
+    sprite: Imperial/Medieval/Melee/medieval_hoe.rsi
+    size: Normal
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Meltable
+    resourceCount: 2
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: plant clippers
+  parent: [ BaseItem, BasePoiseSlashSmall ]
+  id: MedievalClippers
+  description: A tool used to take samples from plants.
+  components:
+  - type: AdvancedLightAttack
+    preset: Dagger
+  - type: RDWeight
+    value: 1
+  - type: Tag
+    tags:
+    - PlantSampleTaker
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/medieval_clippers.rsi
+    state: icon
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    damage:
+      types:
+        Slash: 4.8
+        ParryAble: 1
+        Blunt: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    attackRate: 1
+    range: 1.3
+  - type: Item
+    sprite: Imperial/Medieval/Melee/medieval_clippers.rsi
+    size: Small
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 0.3
+    speed: 5
+  - type: Meltable
+    resourceCount: 2
+  - type: PoiseDamage
+    poiseDamage: 2
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedSlashSmall
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: scythe
+  parent: [ BaseItem, BaseTwoHandedCharged, BasePoiseTwoHanded ]
+  id: MedievalScythe
+  description: A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow.
+  components:
+  - type: AdvancedLightAttack
+    preset: Default
+  - type: PoiseDamage
+    poiseDamage: 12
+  - type: RDWeight
+    value: 1
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/medieval_scythe.rsi
+    state: icon
+    netsync: false
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    damage:
+      types:
+        Slash: 13
+        ParryAble: 1
+        Blunt: 0
+        Piercing: 2.6
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 1.3
+        Structural: 4
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    attackRate: 0.75
+    range: 1.8
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/medieval_scythe.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: StaticPrice
+    price: 40
+  - type: Wieldable
+    useDelayOnWield: false
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 6.5
+        Blunt: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 0.8
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: MedievalBanjoInstrument
+  parent: [ BanjoInstrument, BaseCrushingCharged, BasePoiseBlunt ]
+  id: MedievalBanjoInstrument
+  description: music!
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: PoiseDamage
+    poiseDamage: 8
+  - type: RDWeight
+    value: 1
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -320
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 3.45
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    range: 1.5
+  - type: Item
+    size: Normal
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 6
+        ParryAble: 1
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 0.5
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBlunt
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: Весло
+  parent: [ BaseItem, BasePoiseTwoHanded ]
+  id: MedievalOar
+  description: Обычное деревянное весло которое всем своим видом вселяет в тебя желание кого то ударить им.
+  components:
+  - type: AdvancedLightAttack
+    preset: Quarterstaff
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Ships/Oar.rsi
+    state: icon
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.5
+    clickDamageModifier: 1
+    wideAnimationRotation: '-135'
+    attackRate: 0.5
+    range: 2.75
+    angle: '60'
+    damage:
+      types:
+        Blunt: 8.6
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+  - type: Oar
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 2.2
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0

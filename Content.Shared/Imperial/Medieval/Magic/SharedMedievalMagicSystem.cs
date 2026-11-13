@@ -7,6 +7,7 @@ using Content.Shared.Mind;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Map;
+using Content.Shared.Projectiles;
 
 namespace Content.Shared.Imperial.Medieval.Magic;
 
@@ -14,6 +15,7 @@ namespace Content.Shared.Imperial.Medieval.Magic;
 public abstract partial class SharedMedievalMagicSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly SharedProjectileSystem _projectilePresentation = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speedModifierSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
@@ -65,6 +67,7 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
 
         if (args.Cancelled)
         {
+            RejectProjectilePresentation(spellData, uid);
             RaiseSpellCastFailed(GetEntity(spellData.Action), uid);
             return;
         }
@@ -72,6 +75,7 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
         if (_handsSystem.TryGetEmptyHand(args.User, out _) == false)
         {
             _popupSystem.PopupClient(Loc.GetString("medieval-magic-free-hand-required"), args.User);
+            RejectProjectilePresentation(spellData, uid);
             RaiseSpellCastFailed(GetEntity(spellData.Action), uid);
             return;
         }
@@ -120,6 +124,12 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
         }
 
         return true;
+    }
+
+    private void RejectProjectilePresentation(MedievalSpellData data, EntityUid performer)
+    {
+        if (data is MedievalProjectileSpellData or MedievalEntityTargetProjectileSpellData)
+            _projectilePresentation.CompletePrediction(data.Action, data.InputTick, performer, false);
     }
 
     protected void RaiseSpellCastFailed(EntityUid action, EntityUid performer)

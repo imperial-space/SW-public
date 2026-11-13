@@ -1,0 +1,25 @@
+# Add this parent only to eligible NPC prototypes. Ghost-role variants inherit it.
+# Werewolves, golems, summonable familiars, dragons and Myrmex must not use it.
+- type: entity
+  id: MedievalNpcPoise
+  abstract: true
+  components:
+  - type: Poise
+    npc: true
+    poiseThreshold: 50
+    healthDamageReduction: 0.2
+    explosionDamageReduction: 0.2
+    poiseRecoveryDelay: 30
+    poiseRecoveryInterval: 2
+    poiseRecoveryPerTick: 5
+    poiseBreakDuration: 5
+    poiseBreakRecoveryFraction: 1
+
+# Poise stagger blocks movement and attacks without forcing the NPC to fall over.
+# It deliberately does not inherit the ordinary stun's StunImmune blacklist.
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: MedievalStatusEffectPoiseStagger
+  name: staggered
+  components:
+  - type: StunnedStatusEffect

@@ -20,6 +20,10 @@ public sealed class DelayedSpawnSystem : EntitySystem
             if (comp.IsSpawned) continue;
             if (comp.SpawnTime > _timing.CurTime) continue;
             var entity = Spawn(comp.Proto, Transform(uid).Coordinates);
+
+            var ev = new DelayedSpawnedEvent(entity);//Imperial medieval edit
+            RaiseLocalEvent(uid, ref ev);//Imperial medieval edit
+
             if (comp.Attached)
                 _transform.SetParent(entity, uid);
             comp.IsSpawned = true;

@@ -1,0 +1,510 @@
+- type: entity
+  name: MedievalDaggerNecro
+  parent: [ BaseKnife, BaseDaggerCharged, BasePoiseSlashSmall ]
+  id: MedievalDaggerNecro
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: AdvancedLightAttack
+    preset: Dagger
+  # dedicated thrown hit poise, distinct from melee poise
+  - type: PoiseImpact
+    poiseDamage: 10
+  - type: ThrownWeaponPoiseReset
+  # throwing damage balance
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 12
+        Cold: 1
+        Caustic: 1
+  - type: QuestItem
+    contractName: "любые кинжалы"
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/necro_dagger.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/necro_dagger.rsi
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    attackRate: 1.34
+    range: 1
+    damage:
+      types:
+        Slash: 2.66
+        Caustic: 1.33
+        ParryAble: 1
+        Blunt: 0
+        Piercing: 2.66
+        Heat: 0
+        Shock: 0
+        Cold: 1.33
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    resetOnHandSelected: false
+    soundHit:
+      path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
+    #wideAnimationRotation: -150
+  - type: RadiationSource
+    intensity: 1
+    slope: 1
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: MeleeThrowOnHit
+    distance: 0.3
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 1 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+  - type: PoiseDamage
+    poiseDamage: 2
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedSlashSmall
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 1.5
+        Piercing: 1
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: falshion
+  parent: [ BaseItem, BaseOneHandedCharged, BasePoiseSlashLarge ]
+  id: MedievalFalshionNecro
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Sword
+  - type: RDWeight
+    value: 2
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/necro_iron_sword.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 1
+    damage:
+      types:
+        Slash: 9.2
+        Radiation: 0
+        ParryAble: 1
+        Blunt: 0
+        Piercing: 6.9
+        Heat: 0
+        Shock: 0
+        Cold: 2.3
+        Caustic: 2.3
+        Poison: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/sword_swing.ogg
+    range: 1.5
+  - type: MedievalMeleeResource
+    resourceWaste: 0.4
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/necro_iron_sword.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+    equipSound:
+      path: /Audio/Imperial/Medieval/sword_uneqip.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/sword_eqip.ogg
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10.5
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 0.7
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 5
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedSlashLarge
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: MedievalMaceNecro
+  parent: MedievalMaceT3
+  id: MedievalMaceNecro
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: RDWeight
+    value: 2
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/necro_iron_mace.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Medieval/Melee/necro_iron_mace.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/necro_iron_mace.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    damage:
+      types:
+        Blunt: 12.6
+        Piercing: 5.04
+        Caustic: 1.89
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 1.89
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    resetOnHandSelected: false
+    range: 1.5
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: RadiationSource
+    intensity: 1
+    slope: 1
+  - type: MeleeThrowOnHit
+    distance: 0.4
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 1.5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBluntLight
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: MedievalSpearNecro
+  parent: MedievalSpearT3
+  id: MedievalSpearNecro
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: AdvancedLightAttack
+    preset: Spear
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: Spear
+  - type: RDWeight
+    value: 4
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/necro_iron_spear.rsi
+    netsync: false
+    state: spear
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/necro_iron_spear.rsi
+  - type: MeleeParry
+  - type: MeleeWeapon
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    clickDamageModifier: 1
+    range: 2.4
+    damage:
+      types:
+        Piercing: 7.68
+        Caustic: 1.92
+        ParryAble: 1
+        Blunt: 0
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 1.92
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    angle: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1.8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/spear_swing.ogg
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: RadiationSource
+    intensity: 1
+    slope: 1
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: MeleeThrowOnHit
+    distance: 0.5
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 5
+  - type: MedievalWeaponSkillCategory
+    skill: Spear
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 3
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 7.68
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+
+- type: entity
+  name: MedievalIronHalberdNecro
+  parent: MedievalIronHalberdT3
+  id: MedievalIronHalberdNecro
+  description: A medieval poleaxe.
+  components:
+  - type: AdvancedLightAttack
+    preset: Greataxe
+  - type: PoiseDamage
+    poiseDamage: 22
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/necro_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/necro_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/necro_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.55
+    angle: 150
+    range: 1.8
+    damage:
+      types:
+        Piercing: 0
+        Slash: 16.2
+        Structural: 14
+        Caustic: 2.7
+        ParryAble: 1
+        Blunt: 8.1
+        Heat: 0
+        Shock: 0
+        Cold: 2.7
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: RadiationSource
+    intensity: 1
+    slope: 1
+  - type: MeleeThrowOnHit
+    distance: 1.5
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
+  - type: MedievalWeaponSkillCategory
+    skill: TwoHanded
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0

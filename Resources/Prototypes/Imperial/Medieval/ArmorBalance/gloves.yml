@@ -1,0 +1,508 @@
+# Saved glove balance profiles. Public variants reuse existing public art.
+- type: entity
+  parent: MedievalClothingHandsGlovesColorLightBrown
+  id: MedievalLightLeatherGlovesBase
+  name: light leather gloves base
+  abstract: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.93
+        flatReduction: 0
+      Slash:
+        coefficient: 0.95
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.95
+        flatReduction: 0
+      Heat:
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+    containerArmorHP: 60
+    repairType: Sewing
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
+- type: entity
+  parent: MedievalIronGlovesBrig
+  id: MedievalStrongLeatherGlovesBase
+  name: strong leather gloves base
+  abstract: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.88
+        Slash: 0.91
+        Piercing: 0.91
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.88
+        flatReduction: 0
+      Slash:
+        coefficient: 0.91
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.91
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+    containerArmorHP: 60
+    repairType: Sewing
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalSteelGlovesBase
+  name: steel gloves base
+  abstract: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.89
+        Slash: 0.85
+        Piercing: 0.86
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.89
+        flatReduction: 0
+      Slash:
+        coefficient: 0.85
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.86
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+    containerArmorHP: 60
+    repairType: Smithing
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15
+- type: entity
+  parent: MedievalLightLeatherGlovesBase
+  id: MedievalLightLeatherGloves1
+  name: light leather gloves
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.93
+        flatReduction: 0
+      Slash:
+        coefficient: 0.95
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.95
+        flatReduction: 0
+      Heat:
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+    containerArmorHP: 60
+    repairType: Sewing
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
+- type: entity
+  parent: MedievalLightLeatherGlovesBase
+  id: MedievalLightLeatherGloves2
+  name: light leather gloves
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.94
+        Slash: 0.95
+        Piercing: 0.93
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.94
+        flatReduction: 0
+      Slash:
+        coefficient: 0.95
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.93
+        flatReduction: 0
+      Heat:
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+    containerArmorHP: 60
+    repairType: Sewing
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGloves2
+  name: iron gloves
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.92
+        Slash: 0.87
+        Piercing: 0.89
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.92
+        flatReduction: 0
+      Slash:
+        coefficient: 0.87
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.89
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+    containerArmorHP: 60
+    repairType: Smithing
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10
+- type: entity
+  parent: MedievalSteelGlovesBase
+  id: MedievalSteelGloves
+  name: steel gloves
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.88
+        Slash: 0.86
+        Piercing: 0.87
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.88
+        flatReduction: 0
+      Slash:
+        coefficient: 0.86
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.87
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+    containerArmorHP: 60
+    repairType: Smithing
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15

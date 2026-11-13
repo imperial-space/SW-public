@@ -1,0 +1,107 @@
+# reusable light stamina/wind-up presets. Default visible cue: 0.4 seconds.
+# Add more presets here and reference their IDs from AdvancedLightAttack.preset.
+
+- type: advancedLightAttackPreset
+  id: Default
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Sword
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Dagger
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Rapier
+  staminaCost: 3
+  windup: 0.3
+  raycastArc: 30
+  chargeWindup: 0.5 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Claymore
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Axe
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Greataxe
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Mace
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: ChainMace
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Spear
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Halberd
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Quarterstaff
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: WarHammer
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Warpick
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation
+
+- type: advancedLightAttackPreset
+  id: Lance
+  staminaCost: 5
+  windup: 0.4
+  raycastArc: 30
+  chargeWindup: 0.6 # visible minimum, after preparation

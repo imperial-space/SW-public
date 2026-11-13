@@ -1,0 +1,14 @@
+- type: entity
+  id: ActionMeleeLockOnToggle
+  categories: [ HideSpawnMenu ]
+  name: Melee targeting
+  description: Left-click to lock a target. Selecting one leaves targeting mode; the lock persists.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Poise/MeleeLockOn/action.rsi
+      state: icons
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:MeleeLockOnToggleEvent

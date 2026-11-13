@@ -1554,7 +1554,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: MedievalArrowIronPhysics
+- proto: MedievalNormalArrow
   entities:
   - uid: 277
     components:

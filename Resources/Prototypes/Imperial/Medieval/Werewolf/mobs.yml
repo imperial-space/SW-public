@@ -4,6 +4,13 @@
   id: MedievalMobWerwolfBlack
   description: They're a wolf.
   components:
+  # player werewolf poise and outgoing claw damage.
+  - type: Poise
+    poiseThreshold: 75
+    unarmoredHealthDamageReduction: 0.2
+    brokenHealthDamageMultiplier: 1.2
+  - type: PoiseDamage
+    poiseDamage: 15
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/werwolf.rsi
@@ -236,6 +243,9 @@
   description: s
   categories: [HideSpawnMenu]
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 30
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Werewolf/black.rsi
     state: icon

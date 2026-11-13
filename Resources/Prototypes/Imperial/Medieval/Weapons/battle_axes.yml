@@ -1,0 +1,128 @@
+# Independent Battle Axe family. Steel retains its legacy values pending its balance pass.
+- type: entity
+  id: BaseMedievalBattleAxe
+  abstract: true
+  parent:
+  - BaseItem
+  - BaseOneHandedCharged
+  - BasePoiseSlashLarge
+  components:
+  - type: RDWeight
+    value: 2
+  - type: QuestItem
+    contractName: любые одноручные мечи
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_sword_legion.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.15
+    wideAnimationRotation: -140
+    attackRate: 1.1
+    damage:
+      types:
+        Slash: 18
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/sword_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.4
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_sword_legion.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+    equipSound:
+      path: /Audio/Imperial/Medieval/sword_uneqip.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/sword_eqip.ogg
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10
+  - type: MeleeThrowOnHit
+    distance: 0.7
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3
+  - type: Meltable
+    resourceCount: 4
+- type: entity
+  id: BaseMedievalBattleAxeSteel
+  abstract: true
+  parent: BaseMedievalBattleAxe
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_sword_legion.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.15
+    wideAnimationRotation: -140
+    attackRate: 1.15
+    damage:
+      types:
+        Slash: 22.5
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/sword_swing.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.35
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_sword_legion.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+    equipSound:
+      path: /Audio/Imperial/Medieval/sword_uneqip.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/sword_eqip.ogg
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 11
+  - type: MeleeThrowOnHit
+    distance: 0.7
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 2
+  - type: Meltable
+    resourceCount: 4
+  - type: PoiseDamage
+    poiseDamage: 0

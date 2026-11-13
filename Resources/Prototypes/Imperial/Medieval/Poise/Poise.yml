@@ -1,0 +1,44 @@
+- type: entity
+  abstract: true
+  id: BasePoiseSystem
+  components:
+  - type: PoiseDamage
+
+- type: entity
+  abstract: true
+  id: BasePoiseSlashSmall
+  parent: BasePoiseSystem
+  components:
+  - type: PoiseDamage
+    poiseDamage: 2
+
+- type: entity
+  abstract: true
+  id: BasePoiseSlashLarge
+  parent: BasePoiseSystem
+
+- type: entity
+  abstract: true
+  id: BasePoiseBluntLight
+  parent: BasePoiseSystem
+
+- type: entity
+  abstract: true
+  id: BasePoiseBlunt
+  parent: BasePoiseSystem
+  components:
+  - type: PoiseDamage
+    poiseDamage: 12
+
+- type: entity
+  abstract: true
+  id: BasePoiseSpear
+  parent: BasePoiseSystem
+
+- type: entity
+  abstract: true
+  id: BasePoiseTwoHanded
+  parent: BasePoiseSystem
+  components:
+  - type: PoiseDamage
+    poiseDamage: 20

@@ -352,9 +352,13 @@
 #
 - type: entity
   name: GreyTide
-  parent: BaseMobHuman
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, BaseMobHuman ]
   id: MobGreyTide
   components:
+    # outgoing poise per hit.
+    - type: PoiseDamage
+      poiseDamage: 4
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -369,9 +373,13 @@
 
 - type: entity
   name: MobSkeletonPersonAngry
-  parent: MobSkeletonPerson
+  # opt in to the NPC poise profile.
+  parent: [ MedievalNpcPoise, MobSkeletonPerson ]
   id: MobSkeletonPersonAngry
   components:
+  # outgoing poise per hit.
+  - type: PoiseDamage
+    poiseDamage: 3
   - type: NpcFactionMember
     factions:
       - Syndicate

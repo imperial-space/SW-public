@@ -209132,7 +209132,7 @@ entities:
     - type: CultBloodMelee
     - type: DurabilityDisplay
       dub: Full
-- proto: MedievalArrowIronPhysics
+- proto: MedievalNormalArrow
   entities:
   - uid: 1091
     components:

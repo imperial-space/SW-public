@@ -1,0 +1,770 @@
+- type: entity
+  name: mace
+  parent: [ BaseItem, BaseCrushingLightCharged, BasePoiseBluntLight ]
+  id: MedievalMaceT3
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: RDWeight
+    value: 2
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  # - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_mace.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    damage:
+      types:
+        Blunt: 13.86
+        Piercing: 5.04
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    resetOnHandSelected: false
+    range: 1.5
+  - type: Item
+    size: Normal
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_mace.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 0.3
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBluntLight
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: mace
+  parent: [ BaseItem, BaseCrushingLightCharged, BasePoiseBluntLight ]
+  id: MedievalMaceT3Steel
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: RDWeight
+    value: 2
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  # - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_mace.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.8
+    damage:
+      types:
+        Blunt: 15.12
+        Piercing: 11.34
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    resetOnHandSelected: false
+    range: 1.5
+  - type: Item
+    size: Normal
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 7
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_mace.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 0.4
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
+  - type: PoiseDamage
+    poiseDamage: 10
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBluntLight
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: mace
+  parent: [ BaseItem, BaseCrushingLightCharged, BasePoiseBluntLight ]
+  id: MedievalMaceRusty
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: PoiseDamage
+    poiseDamage: 7
+  - type: RDWeight
+    value: 2
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  # - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_mace_rusty.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.7
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    damage:
+      types:
+        Blunt: 8.82
+        Piercing: 3.15
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    resetOnHandSelected: false
+    range: 1.5
+  - type: Item
+    size: Normal
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_mace_rusty.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: StaminaDamageOnHit
+    damage: 1.5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBluntLight
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: mace
+  parent: [ BaseItem, BaseCrushingCharged, BasePoiseBlunt ]
+  id: MedievalMaceT3Heavy
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: PoiseDamage
+    poiseDamage: 15
+  - type: RDWeight
+    value: 3
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  # - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/heavy_mace.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Blunt: 26.6
+        Piercing: 6.65
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    range: 1.5
+    #resetOnHandSelected: false
+  - type: Item
+    size: Large
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 18
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/heavy_mace.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 0.9
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBlunt
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: mace
+  parent: [ BaseItem, BaseCrushingCharged, BasePoiseBlunt ]
+  id: MedievalMaceT3SteelHeavy
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: PoiseDamage
+    poiseDamage: 15
+  - type: RDWeight
+    value: 4
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  # - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/heavy_mace.rsi
+    state: icon
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Blunt: 15.96
+        Piercing: 13.965
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    range: 1.5
+    #resetOnHandSelected: false
+  - type: Item
+    size: Normal
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 7
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/heavy_mace.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 0.9
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBlunt
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: mace
+  parent: [ BaseItem, BaseCrushingCharged, BasePoiseBlunt ]
+  id: MedievalMaceT3HeavyBone
+  description: An ancient war blade.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: RDWeight
+    value: 3
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  # - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bone_mace.rsi
+    state: icon
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Blunt: 26.6
+        Piercing: 6.65
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 5
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 0
+    range: 1.5
+    #resetOnHandSelected: false
+  - type: Item
+    size: Normal
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 15
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/bone_mace.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: PoiseDamage
+    poiseDamage: 15
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBlunt
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: dagger
+  parent: [ BaseItem, BaseCrushingCharged, BasePoiseBlunt ]
+  id: MedievalPalice
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: RDWeight
+    value: 3.5
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/palice.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/palice.rsi
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.85
+    damage:
+      types:
+        Blunt: 19.5
+        Piercing: 0
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 2
+    range: 1.5
+    #resetOnHandSelected: false
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 12
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/palice.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 0.9
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
+  - type: PoiseDamage
+    poiseDamage: 12
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBlunt
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+
+- type: entity
+  name: dagger
+  parent: [ BaseItem, BaseCrushingCharged, BasePoiseBlunt ]
+  id: MedievalPaliceSteel
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: AdvancedLightAttack
+    preset: Mace
+  - type: PoiseDamage
+    poiseDamage: 14
+  - type: RDWeight
+    value: 3.5
+  - type: QuestItem
+    contractName: "любое дробящее одноручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/palice.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/palice.rsi
+  - type: MeleeParry
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1
+    wideAnimationRotation: -140
+    attackRate: 0.85
+    damage:
+      types:
+        Blunt: 23.94
+        Piercing: 0
+        ParryAble: 1
+        Slash: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+        Structural: 4
+    range: 1.5
+    #resetOnHandSelected: false
+  - type: DisarmMalus
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 14
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/palice.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MeleeThrowOnHit
+    distance: 0.9
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
+  - type: MedievalWeaponSkillCategory
+    skill: OneHandedBlunt
+  - type: APDamageOnHit
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0

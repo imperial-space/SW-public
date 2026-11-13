@@ -48,10 +48,12 @@
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
         coefficient: 0.8
@@ -61,20 +63,6 @@
         coefficient: 0.85
       Heat:
         coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -82,7 +70,8 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
 
 - type: entity
   parent: MedievalClothingHeadBase
@@ -114,6 +103,74 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/salad.rsi
   - type: IngestionBlocker
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.88
+        Slash: 0.8
+        Piercing: 0.82
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.88
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.82
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -125,6 +182,74 @@
     sprite: Imperial/Medieval/Clothing/Head/holy.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/holy.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -138,6 +263,74 @@
     sprite: Imperial/Medieval/Clothing/Head/executor1.rsi
   - type: Meltable
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.92
+        Piercing: 0.95
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.93
+        flatReduction: 0
+      Slash:
+        coefficient: 0.92
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.95
+        flatReduction: 0
+      Heat:
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -151,6 +344,74 @@
     sprite: Imperial/Medieval/Clothing/Head/executor2.rsi
   - type: Meltable
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.92
+        Piercing: 0.95
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.93
+        flatReduction: 0
+      Slash:
+        coefficient: 0.92
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.95
+        flatReduction: 0
+      Heat:
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -253,6 +514,74 @@
     sprite: Imperial/Medieval/Clothing/Head/salad_light.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/salad_light.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.88
+        Slash: 0.8
+        Piercing: 0.82
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.88
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.82
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -264,6 +593,74 @@
     sprite: Imperial/Medieval/Clothing/Head/normand.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/normand.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -279,6 +676,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.92
+        Slash: 0.85
+        Piercing: 0.87
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.92
+        flatReduction: 0
+      Slash:
+        coefficient: 0.85
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.87
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -292,6 +757,74 @@
     sprite: Imperial/Medieval/Clothing/Head/crus_gold.rsi
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetNazal # imperial medieval
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -303,6 +836,74 @@
     sprite: Imperial/Medieval/Clothing/Head/bacinet.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/bacinet.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.85
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.8
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -319,41 +920,76 @@
   - type: IdentityBlocker
     enabled: false
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Blunt: 0.93
+        Slash: 0.86
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.93
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.86
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.88
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
         coefficient: 0.95
-      Slash:
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
         coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -361,7 +997,13 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -373,6 +1015,74 @@
     sprite: Imperial/Medieval/Clothing/Head/crusader.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/crusader.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -384,6 +1094,74 @@
     sprite: Imperial/Medieval/Clothing/Head/goblin_slayer_helmet.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/goblin_slayer_helmet.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.91
+        Piercing: 0.91
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.85
+        flatReduction: 0
+      Slash:
+        coefficient: 0.91
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.91
+        flatReduction: 0
+      Heat:
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -396,45 +1174,85 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leather_hood.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.93
+        Blunt: 0.93
+        Slash: 0.96
+        Piercing: 0.96
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 100
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.93
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.96
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.96
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
         variation: 0.2
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -448,45 +1266,85 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leather_hood2.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.93
+        Blunt: 0.93
+        Slash: 0.96
+        Piercing: 0.96
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 100
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.93
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.96
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.96
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
         variation: 0.2
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -499,45 +1357,85 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leather_hood3.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.93
+        Blunt: 0.92
+        Slash: 0.94
+        Piercing: 0.94
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 100
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.92
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.94
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.94
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
         variation: 0.2
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -640,45 +1538,85 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/cap.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.97
-        Slash: 0.97
-        Piercing: 0.95
+        Blunt: 0.92
+        Slash: 0.94
+        Piercing: 0.94
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.7
+        coefficient: 0.92
+        flatReduction: 0
       Slash:
-        coefficient: 0.8
+        coefficient: 0.94
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.94
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
         variation: 0.2
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -691,11 +1629,32 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leather_helmet.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.93
+        Blunt: 0.85
+        Slash: 0.91
+        Piercing: 0.91
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: Tag
     tags:
     - HidesHair
@@ -705,37 +1664,56 @@
   - type: MedievalArmorIntegrity
     containerArmorHP: 85
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
-      Slash:
-        coefficient: 0.75
-      Piercing:
         coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
+        flatReduction: 0
       Slash:
-        coefficient: 0.95
+        coefficient: 0.91
+        flatReduction: 0
       Piercing:
-        coefficient: 0.95
+        coefficient: 0.91
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
         variation: 0.2
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -763,41 +1741,76 @@
       path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/king_crown.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Blunt: 0.93
+        Slash: 0.86
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.93
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.86
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.88
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
         coefficient: 0.95
-      Slash:
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
         coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: Meltable
     resourceCount: 2
   - type: Tag
@@ -806,6 +1819,11 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -820,41 +1838,76 @@
       path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/king_crown_necro.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
+        Blunt: 0.92
         Slash: 0.85
-        Piercing: 0.95
+        Piercing: 0.87
+        Heat: 0.5
+        Shock: 0.5
+        Cold: 0.5
+        Caustic: 0.5
+        Poison: 1.0
+        Radiation: 0.5
+        Holy: 0.5
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 200
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.92
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
-      Piercing:
         coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
+        flatReduction: 0
       Piercing:
-        coefficient: 0.95
+        coefficient: 0.87
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 0.5
+        flatReduction: 0
+      Shock:
+        coefficient: 0.5
+        flatReduction: 0
+      Cold:
+        coefficient: 0.5
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.5
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.5
+        flatReduction: 0
+      Holy:
+        coefficient: 0.5
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
   - type: Meltable
     resourceCount: 2
   - type: Tag
@@ -864,6 +1917,11 @@
     slots:
     - Hair
   - type: CurseItem
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -876,41 +1934,76 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/necro.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Blunt: 0.8
+        Slash: 0.75
+        Piercing: 0.85
+        Heat: 0.6
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
         coefficient: 0.8
+        flatReduction: 0
       Slash:
         coefficient: 0.75
+        flatReduction: 0
       Piercing:
         coefficient: 0.85
+        flatReduction: 0
       Heat:
         coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -924,6 +2017,11 @@
     slots:
     - Hair
   - type: CurseItem
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -940,41 +2038,76 @@
   - type: IdentityBlocker
     enabled: false
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.85
+        Shock: 0.85
+        Cold: 0.85
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.85
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
         coefficient: 0.8
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.8
+        flatReduction: 0
       Piercing:
         coefficient: 0.85
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 0.85
+        flatReduction: 0
+      Shock:
+        coefficient: 0.85
+        flatReduction: 0
+      Cold:
+        coefficient: 0.85
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.85
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -982,7 +2115,8 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ManaRegen
     regen: 0.7
   - type: Tag
@@ -1000,6 +2134,11 @@
     totalIntensity: 4
     intensitySlope: 4
     maxIntensity: 4
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmer
@@ -1049,41 +2188,76 @@
   - type: IdentityBlocker
     enabled: false
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
+        Blunt: 0.85
         Slash: 0.85
-        Piercing: 0.95
+        Piercing: 0.9
+        Heat: 0.85
+        Shock: 0.85
+        Cold: 0.85
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.85
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
-      Slash:
-        coefficient: 0.75
-      Piercing:
         coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
+        flatReduction: 0
       Slash:
-        coefficient: 0.95
+        coefficient: 0.85
+        flatReduction: 0
       Piercing:
-        coefficient: 0.95
-      Heat:
         coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Heat:
+        coefficient: 0.85
+        flatReduction: 0
+      Shock:
+        coefficient: 0.85
+        flatReduction: 0
+      Cold:
+        coefficient: 0.85
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.85
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -1091,7 +2265,8 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ManaRegen
     regen: 0.5
   - type: Tag
@@ -1100,6 +2275,11 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -1111,6 +2291,74 @@
     sprite: Imperial/Medieval/Clothing/Head/charmer_neutral.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmer_neutral.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.85
+        Shock: 0.85
+        Cold: 0.85
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.85
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.85
+        flatReduction: 0
+      Slash:
+        coefficient: 0.85
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.9
+        flatReduction: 0
+      Heat:
+        coefficient: 0.85
+        flatReduction: 0
+      Shock:
+        coefficient: 0.85
+        flatReduction: 0
+      Cold:
+        coefficient: 0.85
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.85
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
@@ -1463,6 +2711,74 @@
     sprite: Imperial/Medieval/Clothing/Head/charmer_legion.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmer_legion.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.85
+        Shock: 0.85
+        Cold: 0.85
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.85
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.85
+        flatReduction: 0
+      Slash:
+        coefficient: 0.85
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.9
+        flatReduction: 0
+      Heat:
+        coefficient: 0.85
+        flatReduction: 0
+      Shock:
+        coefficient: 0.85
+        flatReduction: 0
+      Cold:
+        coefficient: 0.85
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.85
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLegion
@@ -1485,6 +2801,74 @@
     sprite: Imperial/Medieval/Clothing/Head/charmer_ins.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmer_ins.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.85
+        Shock: 0.85
+        Cold: 0.85
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.85
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.85
+        flatReduction: 0
+      Slash:
+        coefficient: 0.85
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.9
+        flatReduction: 0
+      Heat:
+        coefficient: 0.85
+        flatReduction: 0
+      Shock:
+        coefficient: 0.85
+        flatReduction: 0
+      Cold:
+        coefficient: 0.85
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.85
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerIns
@@ -1519,41 +2903,76 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmer_weak.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
         Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Slash: 0.9
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 0.9
+        Cold: 0.9
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.9
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.9
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.9
+        flatReduction: 0
       Piercing:
         coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
+        flatReduction: 0
       Heat:
         coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Shock:
+        coefficient: 0.9
+        flatReduction: 0
+      Cold:
+        coefficient: 0.9
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.9
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -1561,7 +2980,8 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ManaRegen
     regen: 0.25
   - type: Tag
@@ -1570,6 +2990,11 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
@@ -1657,41 +3082,76 @@
       right:
       - state: inhand-right-rec
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
         Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Slash: 0.92
+        Piercing: 0.92
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
-      Slash:
-        coefficient: 0.75
-      Piercing:
-        coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
         coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Slash:
+        coefficient: 0.92
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.92
+        flatReduction: 0
+      Heat:
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -1699,13 +3159,19 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: Tag
     tags:
     - HidesHair
   - type: HideLayerClothing
     slots:
     - Hair
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1728,6 +3194,74 @@
       - state: inhand-left
       right:
       - state: inhand-right
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1750,6 +3284,74 @@
       - state: inhand-left
       right:
       - state: inhand-right
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1772,6 +3374,74 @@
       - state: inhand-left
       right:
       - state: inhand-right
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1794,6 +3464,74 @@
       - state: inhand-left
       right:
       - state: inhand-right
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1816,6 +3554,74 @@
       - state: inhand-left
       right:
       - state: inhand-right
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1838,6 +3644,74 @@
       - state: inhand-left-leg
       right:
       - state: inhand-right-leg
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1860,6 +3734,74 @@
       - state: inhand-left-leg
       right:
       - state: inhand-right-leg
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1882,6 +3824,74 @@
       - state: inhand-left-leg
       right:
       - state: inhand-right-leg
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1906,6 +3916,74 @@
       - state: inhand-left-leg
       right:
       - state: inhand-right-leg
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.82
+        Piercing: 0.84
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.9
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.84
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetLegionLegioner
@@ -2039,41 +4117,76 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/fox1.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Blunt: 0.85
+        Slash: 0.91
+        Piercing: 0.91
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
-      Slash:
-        coefficient: 0.75
-      Piercing:
         coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
+        flatReduction: 0
       Slash:
-        coefficient: 0.95
+        coefficient: 0.91
+        flatReduction: 0
       Piercing:
-        coefficient: 0.95
+        coefficient: 0.91
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 1.05
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 0.95
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -2081,7 +4194,8 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: IngestionBlocker
     enabled: false
   - type: IdentityBlocker
@@ -2092,6 +4206,11 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -2107,6 +4226,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.86
+        Slash: 0.82
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.86
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.88
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -2122,6 +4309,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.86
+        Slash: 0.82
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.86
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.88
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -2137,6 +4392,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false # parity, people need to know their 2iC
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.86
+        Slash: 0.82
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.86
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.88
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -2154,6 +4477,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.86
+        Slash: 0.82
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.86
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.88
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -2171,6 +4562,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.86
+        Slash: 0.82
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.86
+        flatReduction: 0
+      Slash:
+        coefficient: 0.82
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.88
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Medium
+    multiplierOverride: 1.5
+    poiseIncreaseOverride: 10.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -2182,6 +4641,47 @@
     sprite: Imperial/Medieval/Clothing/Head/helmet_hood.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/helmet_hood.rsi
+  # Heavy leather; medium armor.
+  - type: PoiseArmor
+    armorClass: Medium
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.91
+        Piercing: 0.91
+        Heat: 1.05
+        Shock: 1.0
+        Cold: 0.95
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.85
+      Slash:
+        coefficient: 0.91
+      Piercing:
+        coefficient: 0.91
+      Heat:
+        coefficient: 1.05
+      Shock:
+        coefficient: 1.0
+      Cold:
+        coefficient: 0.95
+      Caustic:
+        coefficient: 1.0
+      Poison:
+        coefficient: 1.0
+      Radiation:
+        coefficient: 1.0
+      Holy:
+        coefficient: 1.0
+      Bloodloss:
+        coefficient: 1.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -2194,41 +4694,76 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/band1.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Blunt: 0.93
+        Slash: 0.96
+        Piercing: 0.96
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.93
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.96
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.96
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -2236,7 +4771,8 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: IdentityBlocker
   - type: Tag
     tags:
@@ -2244,6 +4780,11 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetBand1
@@ -2268,6 +4809,74 @@
     sprite: Imperial/Medieval/Clothing/Head/band3.rsi
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetBand3 # imperial medieval
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.92
+        Slash: 0.94
+        Piercing: 0.94
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.92
+        flatReduction: 0
+      Slash:
+        coefficient: 0.94
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.94
+        flatReduction: 0
+      Heat:
+        coefficient: 1.0
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -2281,41 +4890,76 @@
     sprite: Imperial/Medieval/Clothing/Head/tribe1.rsi
   - type: IdentityBlocker
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
+        Blunt: 0.93
+        Slash: 0.86
+        Piercing: 0.88
+        Heat: 0.95
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.93
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
+        coefficient: 0.86
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.88
+        flatReduction: 0
       Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
         coefficient: 0.95
-      Slash:
+        flatReduction: 0
+      Shock:
+        coefficient: 1.0
+        flatReduction: 0
+      Cold:
+        coefficient: 1.0
+        flatReduction: 0
+      Caustic:
         coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -2323,13 +4967,19 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: Tag
     tags:
     - HidesHair
   - type: HideLayerClothing
     slots:
     - Hair
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetTribe1
@@ -2361,6 +5011,7 @@
   name: normand helmet
   description: Medieval normand helmet
   components:
+  # agreed armor balance
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/ebonit.rsi
   - type: Clothing
@@ -2370,47 +5021,85 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.8
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.82
+        Heat: 0.95
+        Shock: 0.75
+        Cold: 0.95
+        Caustic: 0.8
+        Poison: 0.8
+        Radiation: 0.5
+        Holy: 1
+        Bloodloss: 0.9
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 250
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
     unbrokenResistances:
       Blunt:
         coefficient: 0.8
+        flatReduction: 0
       Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.82
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
         coefficient: 0.75
-      Piercing:
-        coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
+        flatReduction: 0
+      Cold:
         coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.8
+        flatReduction: 0
+      Poison:
+        coefficient: 0.8
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.5
+        flatReduction: 0
+      Holy:
+        coefficient: 1
+        flatReduction: 0
+      Bloodloss:
         coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: Tag
     tags:
     - HidesHair
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 15
 
 - type: entity
   parent: MedievalClothingHeadHelmetEbonit
@@ -2436,49 +5125,90 @@
     unequipDelay: 3
     sprite: Imperial/Medieval/Clothing/Head/forstone.rsi
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.82
-        Slash: 0.82
-        Piercing: 0.82
+        Blunt: 0.97
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.6
+        Shock: 0.7
+        Cold: 1.15
+        Caustic: 0.7
+        Poison: 0.7
+        Radiation: 0.7
+        Holy: 0.7
+        Bloodloss: 0.7
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 250
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.97
+        flatReduction: 0
       Slash:
         coefficient: 0.75
+        flatReduction: 0
       Piercing:
-        coefficient: 0.85
+        coefficient: 0.75
+        flatReduction: 0
       Heat:
         coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
-      Piercing:
-        coefficient: 0.95
-      Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Shock:
+        coefficient: 0.7
+        flatReduction: 0
+      Cold:
+        coefficient: 1.15
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.7
+        flatReduction: 0
+      Poison:
+        coefficient: 0.7
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.7
+        flatReduction: 0
+      Holy:
+        coefficient: 0.7
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 0.7
+        flatReduction: 0
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: Tag
     tags:
     - HidesHair
   - type: HideLayerClothing
     slots:
     - Hair
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 20.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -2503,6 +5233,74 @@
     sprite: Imperial/Medieval/Clothing/Head/northern_helmet.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/northern_helmet.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.92
+        Slash: 0.85
+        Piercing: 0.87
+        Heat: 0.95
+        Shock: 1.05
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.92
+        flatReduction: 0
+      Slash:
+        coefficient: 0.85
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.87
+        flatReduction: 0
+      Heat:
+        coefficient: 0.95
+        flatReduction: 0
+      Shock:
+        coefficient: 1.05
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: WitchersPurpleHat
@@ -2511,41 +5309,76 @@
   description: The purple magic hat
   components:
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
+        Blunt: 0.85
         Slash: 0.85
-        Piercing: 0.95
+        Piercing: 0.9
+        Heat: 0.85
+        Shock: 0.85
+        Cold: 0.85
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 0.85
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
-      Slash:
-        coefficient: 0.75
-      Piercing:
         coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
+        flatReduction: 0
       Slash:
-        coefficient: 0.95
+        coefficient: 0.85
+        flatReduction: 0
       Piercing:
-        coefficient: 0.95
-      Heat:
         coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        flatReduction: 0
+      Heat:
+        coefficient: 0.85
+        flatReduction: 0
+      Shock:
+        coefficient: 0.85
+        flatReduction: 0
+      Cold:
+        coefficient: 0.85
+        flatReduction: 0
+      Caustic:
+        coefficient: 1.0
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.85
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
@@ -2553,9 +5386,15 @@
   - type: Meltable
     resourceCount: 2
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    # mirror the intact integrity value
+    damageCoefficient: 1
   - type: ManaRegen
     regen: 0.5
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
@@ -2584,6 +5423,47 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # Light leather; light armor.
+  - type: PoiseArmor
+    armorClass: Light
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.92
+        Slash: 0.94
+        Piercing: 0.94
+        Heat: 1.0
+        Shock: 1.0
+        Cold: 1.0
+        Caustic: 1.0
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.92
+      Slash:
+        coefficient: 0.94
+      Piercing:
+        coefficient: 0.94
+      Heat:
+        coefficient: 1.0
+      Shock:
+        coefficient: 1.0
+      Cold:
+        coefficient: 1.0
+      Caustic:
+        coefficient: 1.0
+      Poison:
+        coefficient: 1.0
+      Radiation:
+        coefficient: 1.0
+      Holy:
+        coefficient: 1.0
+      Bloodloss:
+        coefficient: 1.0
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -2598,45 +5478,85 @@
   - type: IdentityBlocker
     enabled: false
   - type: Armor
+    # saved helmet balance
     modifiers:
       coefficients:
-        Blunt: 0.9
+        Blunt: 0.92
         Slash: 0.85
-        Piercing: 0.95
+        Piercing: 0.87
+        Heat: 0.5
+        Shock: 0.5
+        Cold: 0.5
+        Caustic: 0.5
+        Poison: 1.0
+        Radiation: 0.5
+        Holy: 0.5
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
   - type: MedievalArmorIntegrity
     containerArmorHP: 125
     repairType: Sewing
+    # torso-only explosion resistance
     unbrokenExplosionResistance:
-      damageCoefficient: 0.75
+      damageCoefficient: 1
+    # torso-only explosion resistance
     brokenExplosionResistance:
-      damageCoefficient: 0.9
+      damageCoefficient: 1
+    # saved helmet balance
     unbrokenResistances:
       Blunt:
-        coefficient: 0.8
+        coefficient: 0.92
+        flatReduction: 0
       Slash:
-        coefficient: 0.75
-      Piercing:
         coefficient: 0.85
-      Heat:
-        coefficient: 0.6
-    brokenResistances:
-      Blunt:
-        coefficient: 0.95
-      Slash:
-        coefficient: 0.95
+        flatReduction: 0
       Piercing:
-        coefficient: 0.95
+        coefficient: 0.87
+        flatReduction: 0
       Heat:
-        coefficient: 0.9
-    breakageMultipliers:
-      Piercing: 1
-      Blunt: 1.2
-      Slash: 1.1
-      Heat: 1
+        coefficient: 0.5
+        flatReduction: 0
+      Shock:
+        coefficient: 0.5
+        flatReduction: 0
+      Cold:
+        coefficient: 0.5
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.5
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 0.5
+        flatReduction: 0
+      Holy:
+        coefficient: 0.5
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
     breakSound:
       path: /Audio/Imperial/Medieval/Armor/integrity_break_leather.ogg
       params:
         variation: 0.2
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Light
+    multiplierOverride: 1.25
+    poiseIncreaseOverride: 5.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetEbonit
@@ -2681,6 +5601,74 @@
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
@@ -2696,6 +5684,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
@@ -2711,6 +5767,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
@@ -2726,6 +5850,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
@@ -2781,6 +5973,74 @@
     sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetNormandFree
@@ -2805,6 +6065,74 @@
     sprite: Imperial/Medieval/Clothing/Head/greenknight.rsi
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
@@ -2816,6 +6144,74 @@
     sprite: Imperial/Medieval/Clothing/Head/foxei_helmet.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/foxei_helmet.rsi
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
@@ -2831,6 +6227,74 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  # saved helmet balance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.9
+        Shock: 1.1
+        Cold: 1.05
+        Caustic: 0.95
+        Poison: 1.0
+        Radiation: 1.0
+        Holy: 1.0
+        Bloodloss: 1.0
+      flatReductions:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
+        Poison: 0
+        Radiation: 0
+        Holy: 0
+        Bloodloss: 0
+  # saved helmet balance
+  - type: MedievalArmorIntegrity
+    unbrokenResistances:
+      Blunt:
+        coefficient: 0.8
+        flatReduction: 0
+      Slash:
+        coefficient: 0.8
+        flatReduction: 0
+      Piercing:
+        coefficient: 0.85
+        flatReduction: 0
+      Heat:
+        coefficient: 0.9
+        flatReduction: 0
+      Shock:
+        coefficient: 1.1
+        flatReduction: 0
+      Cold:
+        coefficient: 1.05
+        flatReduction: 0
+      Caustic:
+        coefficient: 0.95
+        flatReduction: 0
+      Poison:
+        coefficient: 1.0
+        flatReduction: 0
+      Radiation:
+        coefficient: 1.0
+        flatReduction: 0
+      Holy:
+        coefficient: 1.0
+        flatReduction: 0
+      Bloodloss:
+        coefficient: 1.0
+        flatReduction: 0
+  # saved helmet poise
+  - type: PoiseArmor
+    armorClass: Heavy
+    multiplierOverride: 1.8
+    poiseIncreaseOverride: 15.0
 
 - type: entity
   parent: MedievalClothingHeadHelmetShapel

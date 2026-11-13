@@ -6,7 +6,7 @@ namespace Content.Shared.MeleeParry.Components
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class MeleeParryComponent : Component
     {
-        [DataField]
+        [DataField, AutoNetworkedField] // reconcile predicted parry timing.
         [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan ParriedTime = TimeSpan.Zero;
 
@@ -18,8 +18,9 @@ namespace Content.Shared.MeleeParry.Components
         [DataField]
         public SoundSpecifier ParryWindowSound = new SoundCollectionSpecifier("MeleeParryWindow");
 
+        [DataField, AutoNetworkedField]
         [ViewVariables(VVAccess.ReadWrite)]
-        public float ParryWindow = 0.8f;
+        public float ParryWindow = 0.2f;
 
         [DataField, AutoNetworkedField]
         [ViewVariables(VVAccess.ReadWrite)]
@@ -32,6 +33,12 @@ namespace Content.Shared.MeleeParry.Components
         public float ParryStaminaDamage = 20f;
 
         [DataField]
+        public int ParriedPoiseDamage = 25;
+
+        [DataField]
+        public float ParriedAttackLockout = 1.5f;
+
+        [DataField, AutoNetworkedField]
         public TimeSpan LastParryTime;
     }
 
@@ -48,3 +55,4 @@ namespace Content.Shared.MeleeParry.Components
         public float ParriedTime = 0.5f;
     }
 }
+

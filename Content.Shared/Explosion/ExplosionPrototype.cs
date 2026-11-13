@@ -25,6 +25,15 @@ public sealed partial class ExplosionPrototype : IPrototype
     [DataField("damagePerIntensity", required: true)]
     public DamageSpecifier DamagePerIntensity = default!;
 
+    // Imperial medieval start
+    /// <summary>
+    ///     Poise damage per local tile intensity, scaled by explosion resistance.
+    ///     Zero disables poise damage for this explosion type.
+    /// </summary>
+    [DataField("poiseDamagePerIntensity")]
+    public float PoiseDamagePerIntensity;
+    // Imperial medieval end
+
     /// <summary>
     ///     Amount of firestacks to apply in addition to igniting.
     /// </summary>
@@ -83,6 +92,15 @@ public sealed partial class ExplosionPrototype : IPrototype
     /// </summary>
     [DataField]
     public float MaxCombineDistance = 1f;
+
+    // Imperial medieval start
+    /// <summary>
+    /// Whether nearby explosions of this type can combine their intensity budgets.
+    /// Disable this for spells whose individual blast size must remain fixed.
+    /// </summary>
+    [DataField]
+    public bool CanCombine = true;
+    // Imperial medieval end
 
     [DataField("sound")]
     public SoundSpecifier Sound = new SoundCollectionSpecifier("Explosion");

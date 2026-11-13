@@ -99,6 +99,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.MedievalDash);
 
             human.AddFunction(ContentKeyFunctions.MedievalMeleeParry);
+            human.AddFunction(ContentKeyFunctions.MedievalMeleeQuickTarget);
             // Imperial Options End
 
             // actions should be common (for ghosts, mobs, etc)

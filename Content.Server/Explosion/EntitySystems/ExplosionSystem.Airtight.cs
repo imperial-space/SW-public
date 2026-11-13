@@ -3,6 +3,7 @@ using Content.Server.Destructible;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Explosion;
+using Content.Shared.Explosion.Components; // Imperial medieval edit
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Map.Components;
@@ -13,23 +14,7 @@ public sealed partial class ExplosionSystem
 {
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
 
-    private readonly Dictionary<string, int> _explosionTypes = new();
-
-    private void InitAirtightMap()
-    {
-        // Currently explosion prototype hot-reload isn't supported, as it would involve completely re-computing the
-        // airtight map. Could be done, just not yet implemented.
-
-        // for storing airtight entity damage thresholds for all anchored airtight entities, we will use integers in
-        // place of id-strings. This initializes the string <--> id association.
-        // This allows us to replace a Dictionary<string, float> with just a float[].
-        int index = 0;
-        foreach (var prototype in _prototypeManager.EnumeratePrototypes<ExplosionPrototype>())
-        {
-            _explosionTypes.Add(prototype.ID, index);
-            index++;
-        }
-    }
+    // Imperial medieval edit - type indices and tile data are inherited from shared propagation.
 
     // The explosion intensity required to break an entity depends on the explosion type. So it is stored in a
     // Dictionary<string, float>
@@ -40,7 +25,7 @@ public sealed partial class ExplosionSystem
     //
     // We then need this data for every tile on a grid. So this mess of a variable maps the Grid ID and Vector2i grid
     // indices to this tile-data struct.
-    private Dictionary<EntityUid, Dictionary<Vector2i, TileData>> _airtightMap = new();
+    // Imperial medieval edit - the inherited _airtightMap remains authoritative on this server.
 
     public void UpdateAirtightMap(EntityUid gridId, Vector2i tile, MapGridComponent? grid = null, EntityQuery<AirtightComponent>? query = null)
     {
@@ -73,11 +58,19 @@ public sealed partial class ExplosionSystem
 
         while (anchoredEnumerator.MoveNext(out var uid))
         {
-            if (!query.Value.TryGetComponent(uid, out var airtight) || !airtight.AirBlocked)
+            if (!query.Value.TryGetComponent(uid, out var airtight)) // Imperial medieval edit - open doors must clear client blocking state.
                 continue;
 
+            // Imperial medieval start
+            if (!airtight.AirBlocked)
+            {
+                SyncPredictionBlocker(uid.Value, AtmosDirection.Invalid, Array.Empty<float>());
+                continue;
+            }
+            // Imperial medieval end
             blockedDirections |= airtight.AirBlockedDirection;
             var entityTolerances = GetExplosionTolerance(uid.Value, damageQuery, destructibleQuery);
+            SyncPredictionBlocker(uid.Value, airtight.AirBlockedDirection, entityTolerances); // Imperial medieval edit
             for (var i = 0; i < tolerance.Length; i++)
             {
                 tolerance[i] = Math.Max(tolerance[i], entityTolerances[i]);
@@ -89,6 +82,20 @@ public sealed partial class ExplosionSystem
         else
             _airtightMap[gridId].Remove(tile);
     }
+
+    // Imperial medieval start
+    private void SyncPredictionBlocker(EntityUid uid, AtmosDirection directions, float[] tolerance)
+    {
+        if (TerminatingOrDeleted(uid))
+            return;
+        var blocker = EnsureComp<ExplosionBlockerComponent>(uid);
+        if (blocker.BlockedDirections == directions && blocker.Tolerance.AsSpan().SequenceEqual(tolerance))
+            return;
+        blocker.BlockedDirections = directions;
+        blocker.Tolerance = tolerance;
+        Dirty(uid, blocker);
+    }
+    // Imperial medieval end
 
     /// <summary>
     ///     On receiving damage, re-evaluate how much explosion damage is needed to destroy an airtight entity.
@@ -165,18 +172,5 @@ public sealed partial class ExplosionSystem
         return explosionTolerance;
     }
 
-    /// <summary>
-    ///     Data struct that describes the explosion-blocking airtight entities on a tile.
-    /// </summary>
-    public struct TileData
-    {
-        public TileData(float[] explosionTolerance, AtmosDirection blockedDirections)
-        {
-            ExplosionTolerance = explosionTolerance;
-            BlockedDirections = blockedDirections;
-        }
-
-        public float[] ExplosionTolerance;
-        public AtmosDirection BlockedDirections = AtmosDirection.Invalid;
-    }
+    // Imperial medieval edit - TileData moved to SharedExplosionSystem.
 }

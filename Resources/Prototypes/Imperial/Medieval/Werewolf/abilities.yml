@@ -20,6 +20,8 @@
   position: 60,40
   required: [StoneClaws]
   event: !type:SetWerewolfDamageEvent
+    # Steel Claws replaces the base claw poise damage.
+    poiseDamage: 20
     replacements:
       Blunt: 10
       Slash: 13
@@ -51,6 +53,8 @@
   event: !type:SetWerewolfMobThresholdsEvent
     crit: 520
     death: 870
+    # Thick Fur adds 25 to the base 75 poise.
+    poiseThreshold: 100
 
 - type: lycantropyAbility
   id: StoneClaws

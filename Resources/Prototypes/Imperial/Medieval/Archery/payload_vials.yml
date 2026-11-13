@@ -1,0 +1,126 @@
+# Container definitions for the archery payloads. These are defined here only.
+- type: Tag
+  id: MedievalPayloadVial
+
+- type: entity
+  parent: MedievalChemistryVial
+  id: MedievalChemistryVialTempering
+  name: forged potion vial
+  description: A reinforced potion vial that holds 5u.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseChemistryEmptyBottle
+  id: MedievalChemistryVial
+  name: potion vial
+  description: A small refillable vial that holds 5u.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/vial.rsi
+    layers:
+    - state: vial-1
+    - state: vial-1-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: vial-1-
+    inHandsMaxFillLevels: 4
+    inHandsFillBaseName: -fill-
+  - type: Item
+    size: Tiny
+    sprite: Objects/Specific/Chemistry/vial.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 5
+  - type: FitsInDispenser
+    solution: drink
+  - type: SolutionTransfer
+    maxTransferAmount: 5
+    canChangeTransferAmount: true
+  - type: Tag
+    tags:
+    - Bottle
+    - Trash
+    - MedievalPayloadVial
+
+- type: entity
+  parent: MedievalChemistryVial
+  id: MedievalDualChamberArrowVial
+  name: internal arrow vial
+  description: An internal chemical chamber used by a dual-chamber arrow.
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BoxVial
+  id: MedievalChemistryVialPack
+  name: potion vial pack
+  description: A box containing six empty potion vials.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalChemistryVial
+      amount: 6
+  - type: Construction
+    graph: MedievalChemistryVialPack
+    node: ground
+
+- type: entity
+  parent: BoxVial
+  id: MedievalChemistryVialTemperingPack
+  name: forged potion vial pack
+  description: A box containing six reinforced potion vials.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalChemistryVialTempering
+      amount: 6
+
+- type: construction
+  name: potion vial pack
+  id: MedievalChemistryVialPack
+  graph: MedievalChemistryVialPack
+  startNode: start
+  targetNode: ground
+  category: construction-category-misc
+  description: A box containing six empty potion vials.
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryVialPack
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ground
+      steps:
+      - material: MedievalGlina
+        amount: 1
+      - tag: Paper
+        name: ent-MedievalPaper
+        doAfter: 3
+  - node: ground
+    entity: MedievalChemistryVialPack
+

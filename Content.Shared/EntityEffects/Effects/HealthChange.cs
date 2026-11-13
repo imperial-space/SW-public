@@ -92,9 +92,11 @@ namespace Content.Shared.EntityEffects.Effects
             var scale = FixedPoint2.New(1);
             var damageSpec = new DamageSpecifier(Damage);
 
+            var ignoreArmorDamage = false;
             if (args is EntityEffectReagentArgs reagentArgs)
             {
                 scale = ScaleByQuantity ? reagentArgs.Quantity * reagentArgs.Scale : reagentArgs.Scale;
+                ignoreArmorDamage = reagentArgs.OrganEntity != null;
             }
 
             var universalReagentDamageModifier = args.EntityManager.System<DamageableSystem>().UniversalReagentDamageModifier;
@@ -116,11 +118,7 @@ namespace Content.Shared.EntityEffects.Effects
             }
 
             args.EntityManager.System<DamageableSystem>()
-                .TryChangeDamage(
-                    args.TargetEntity,
-                    damageSpec * scale,
-                    IgnoreResistances,
-                    interruptsDoAfters: false);
+            .TryChangeDamage(args.TargetEntity, damageSpec * scale, IgnoreResistances, interruptsDoAfters: false, ignoreArmorDamage: ignoreArmorDamage);
         }
     }
 }

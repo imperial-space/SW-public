@@ -1,6 +1,6 @@
 using Content.Server.CustomDoorKey;
 using Content.Server.Imperial.Medieval.RandomSteal;
-using Content.Server.Imperial.Medieval.Weapons;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -14,31 +14,11 @@ public sealed partial class SkillsSystem
 {
     private void InitializeAgility()
     {
-        SubscribeLocalEvent<SkillsComponent, GetGunSpreadModifiersEvent>(OnGetSpreadMod);
+        // projectile spread is calculated in SharedSkillsSystem.
         SubscribeLocalEvent<SkillsComponent, GetStealChanceModifiersEvent>(OnGetStealChanceMod);
         SubscribeLocalEvent<SkillsComponent, TryGetAdditionalStealTargetEvent>(OnTryGetAdditionalStealTarget);
         SubscribeLocalEvent<SkillsComponent, ModifyLockpickLossChanceEvent>(OnModifyLockpickLossChance);
     }
-    private void OnGetSpreadMod(EntityUid uid, SkillsComponent component, ref GetGunSpreadModifiersEvent args)
-    {
-        var (proto, level) = GetSkill(uid, AgilityId);
-
-        if (level == 10)
-            return;
-
-        var diff = Math.Abs(level - 10);
-
-        // level > 10 — навык высокий, разброс уменьшается (PositiveSpreadModifier: -0.2)
-        // level < 10 — навык низкий, разброс увеличивается (NegativeSpreadModifier: 0.15)
-        float modifier = level > 10
-            ? proto.Modifiers["PositiveSpreadModifier"]  // -0.2
-            : proto.Modifiers["NegativeSpreadModifier"];  // 0.15
-
-        // Формула: args.Modifier * (1 + modifier * diff)
-        args.Modifier *= (1f + modifier * diff);
-        args.Modifier = Math.Max(args.Modifier, 0f);
-    }
-
     private void OnGetStealChanceMod(EntityUid uid, SkillsComponent component, ref GetStealChanceModifiersEvent args)
     {
         var (proto, level) = GetSkill(uid, AgilityId);

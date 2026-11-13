@@ -1,0 +1,157 @@
+- type: entity
+  name: dagger
+  parent: MedievalDaggerT3
+  id: MedievalDaggerT3Silver
+  description: A deadly knife intended for melee confrontations.
+  components:
+  # silver melee stats midway between iron and steel; extra werewolf damage remains separate
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 3.66
+        Piercing: 3.66
+        ParryAble: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/silver_dagger.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/silver_dagger.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/silver_dagger.rsi
+    slots:
+    - belt
+    quickEquip: false
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Slash: 15
+    targetType: Werewolf
+  - type: Meltable
+    resourceCount: 1
+    resourceName: MedievalIngotSilver
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3
+  id: MedievalFalshionT3Silver
+  description: An ancient war blade.
+  components:
+  # silver melee stats midway between iron and steel; extra werewolf damage remains separate
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 13.8
+        Piercing: 10.35
+        ParryAble: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/silver_sword.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/silver_sword.rsi
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Slash: 20
+    targetType: Werewolf
+  - type: Meltable
+    resourceCount: 2
+    resourceName: MedievalIngotSilver
+
+- type: entity
+  name: medieval spear
+  parent: MedievalSpearT3
+  id: MedievalSpearT3Silver
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  # silver melee stats midway between iron and steel; extra werewolf damage remains separate
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 10.88
+        ParryAble: 1
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 10.88
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/silver_spear.rsi
+    netsync: false
+    state: spear
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Piercing: 20
+    targetType: Werewolf
+  - type: Meltable
+    resourceCount: 3
+    resourceName: MedievalIngotSilver
+
+- type: entity
+  name: dagger
+  parent: MedievalSaber
+  id: MedievalSaberSilver
+  description: A deadly knife intended for melee confrontations.
+  components:
+  # silver melee stats midway between iron and steel; extra werewolf damage remains separate
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 10.2
+        ParryAble: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/silver_saber.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Medieval/Melee/silver_saber.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/silver_saber.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Slash: 20
+    targetType: Werewolf
+  - type: Meltable
+    resourceCount: 3
+    resourceName: MedievalIngotSilver
+
+- type: entity
+  name: iron claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreSilver
+  description: A medieval claymore.
+  components:
+  # silver melee stats midway between iron and steel; extra werewolf damage remains separate
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 30
+        Piercing: 9
+        ParryAble: 1
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/silver_claymore_inhand.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/silver_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/silver_claymor.rsi
+    state: icon
+  - type: MedievalSpecialDamageDealer
+    damage:
+      types:
+        Slash: 25
+        Piercing: 5
+    targetType: Werewolf
+  - type: Meltable
+    resourceCount: 6
+    resourceName: MedievalIngotSilver

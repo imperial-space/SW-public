@@ -972,7 +972,7 @@
     sprite: Imperial/Medieval/Clothing/Belt/quiver.rsi
   - type: Storage
     grid:
-    - 0,0,6,6  
+    - 0,0,6,6
     whitelist:
       tags:
       - Bolt
@@ -995,18 +995,18 @@
 
 - type: entity
   parent: MedievalQuiver
-  id: MedievalQuiverFullArrowIronPhysics
-  suffix: Full, IronArrowPhysics
+  id: MedievalQuiverFullNormalArrow
+  suffix: Full, MedievalNormalArrow
   components:
   - type: StorageFill
     contents:
-    - id: MedievalArrowIronPhysics
+    - id: MedievalNormalArrow
       amount: 24
 
 - type: entity
   parent: MedievalQuiver
   id: MedievalQuiverFullArrowSteel
-  suffix: Full, SteelArrow
+  suffix: Full, MedievalArrowSteel
   components:
   - type: StorageFill
     contents:
@@ -1015,12 +1015,42 @@
 
 - type: entity
   parent: MedievalQuiver
-  id: MedievalQuiverFullArrowSteelPhysics
-  suffix: Full, SteelArrowPhysics
+  id: MedievalQuiverFullBroadheadArrow
+  suffix: Full, MedievalBroadheadArrow
   components:
   - type: StorageFill
     contents:
-    - id: MedievalArrowSteelPhysics
+    - id: MedievalBroadheadArrow
+      amount: 24
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullArrowNeedle
+  suffix: Full, MedievalArrowNeedle
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowNeedle
+      amount: 24
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullSilverNeedleArrow
+  suffix: Full, MedievalSilverNeedleArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSilverNeedleArrow
+      amount: 24
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullSteelBroadheadArrow
+  suffix: Full, MedievalSteelBroadheadArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSteelBroadheadArrow
       amount: 24
 
 - type: entity
@@ -1031,7 +1061,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBoltSteel
-      amount: 24
+      amount: 12
 
 - type: entity
   parent: MedievalQuiver
@@ -1041,7 +1071,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBolt
-      amount: 24
+      amount: 12
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -1060,7 +1090,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: MedievalArrowIronPhysics
+    - id: MedievalNormalArrow
       amount: 40
 
 - type: entity
@@ -1070,7 +1100,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: MedievalArrowSteelPhysics
+    - id: MedievalSteelBroadheadArrow
       amount: 40
 
 - type: entity
@@ -1091,7 +1121,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBoltSteel
-      amount: 40
+      amount: 20
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -1101,7 +1131,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBolt
-      amount: 40
+      amount: 20
 
 - type: entity
   parent: MedievalQuiver
@@ -1549,6 +1579,12 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Backpack/charmer_light.rsi
+  # ordinary mage bags and their skins have no resistance bonuses.
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 1.0
+        Caustic: 1.0
 
 - type: entity
   parent: ClothingBackpackSatchelCharmerLight

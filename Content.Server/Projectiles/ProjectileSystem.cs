@@ -30,11 +30,15 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     private void OnStartCollide(EntityUid uid, ProjectileComponent component, ref StartCollideEvent args)
     {
         // This is so entities that shouldn't get a collision are ignored.
-        if (args.OurFixtureId != ProjectileFixture || !args.OtherFixture.Hard
-            || component.ProjectileSpent || component is { Weapon: null, OnlyCollideWhenShot: true })
+        if (!IsProjectileImpact(component, args)) // Imperial medieval edit - shared contact eligibility.
             return;
 
+        // Imperial medieval start
+        TryComp<ProjectilePredictionComponent>(uid, out var prediction);
+        var excludedUser = prediction?.Shooter;
+        // Imperial medieval end
         var target = args.OtherEntity;
+        var targetNetEntity = GetNetEntity(target); // Imperial medieval edit - capture before hit listeners can delete the target.
         // it's here so this check is only done once before possible hit
         var attemptEv = new ProjectileReflectAttemptEvent(uid, component, false);
         RaiseLocalEvent(target, ref attemptEv);
@@ -70,7 +74,8 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         {
             if (modifiedDamage.AnyPositive() && !deleted)
             {
-                _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(target, entityManager: EntityManager));
+                _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(target, entityManager: EntityManager)
+                    .RemoveWhereAttachedEntity(entity => entity == excludedUser)); // Imperial medieval edit
             }
 
             _adminLogger.Add(LogType.BulletHit,
@@ -120,18 +125,38 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         if (!deleted)
         {
-            _guns.PlayImpactSound(target, modifiedDamage, component.SoundHit, component.ForceSound);
+            _guns.PlayImpactSound(target, modifiedDamage, component.SoundHit, component.ForceSound, excludedUser); // Imperial medieval edit
 
             if (!args.OurBody.LinearVelocity.IsLengthZero())
                 _sharedCameraRecoil.KickCamera(target, args.OurBody.LinearVelocity.Normalized());
         }
+
+        // Imperial medieval start - deliver authoritative fallback to the shooter using the same shot identity.
+        if (prediction != null && TryComp(uid, out TransformComponent? impactTransform))
+        {
+            var vary = false;
+            var sound = deleted ? null : _guns.GetProjectileImpactSound(target, modifiedDamage,
+                component.SoundHit, component.ForceSound, out vary);
+            SendImpactPresentation(uid, new ProjectileImpactPresentationEvent
+            {
+                Key = prediction.Key, Target = targetNetEntity, Coordinates = GetNetCoordinates(impactTransform.Coordinates),
+                Sound = sound, VaryPitch = vary,
+                EmbedSound = TryComp<EmbeddableProjectileComponent>(uid, out var embedded) && embedded.EmbeddedIntoUid == target
+                    ? embedded.Sound : null,
+                Effect = component.ImpactEffect, Flash = !deleted && modifiedDamage?.AnyPositive() == true && Exists(component.Shooter),
+                Embedded = embedded?.EmbeddedIntoUid == target,
+            });
+        }
+        Dirty(uid, component);
+        // Imperial medieval end
 
         if (component.DeleteOnCollide && component.ProjectileSpent)
             QueueDel(uid);
 
         if (component.ImpactEffect != null && TryComp(uid, out TransformComponent? xform))
         {
-            RaiseNetworkEvent(new ImpactEffectEvent(component.ImpactEffect, GetNetCoordinates(xform.Coordinates)), Filter.Pvs(xform.Coordinates, entityMan: EntityManager));
+            RaiseNetworkEvent(new ImpactEffectEvent(component.ImpactEffect, GetNetCoordinates(xform.Coordinates)), Filter.Pvs(xform.Coordinates, entityMan: EntityManager)
+                .RemoveWhereAttachedEntity(entity => entity == excludedUser)); // Imperial medieval edit
         }
     }
 }

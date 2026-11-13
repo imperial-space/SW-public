@@ -15,6 +15,8 @@ public abstract class SharedTargetOverlaySystem : EntitySystem
 
     public void StartTargeting(EntityUid uid, EntityUid? sender = null, int maxTargetCount = 1, HashSet<string>? whiteListComponents = null, HashSet<string>? blackListComponents = null)
     {
+        // hook: switching to ranged targeting releases any melee lock.
+        RaiseLocalEvent(new TargetOverlayStartedEvent(uid, sender));
         if (_net.IsClient)
             StartTargetingClient(uid, sender, maxTargetCount, whiteListComponents ?? new(), blackListComponents ?? new());
         else
@@ -27,6 +29,8 @@ public abstract class SharedTargetOverlaySystem : EntitySystem
             StopTargetingClient(uid);
         else
             StopTargetingServer(uid);
+        // hook: release ranged input ownership without changing spell cleanup.
+        RaiseLocalEvent(new TargetOverlayStoppedEvent(uid));
     }
 
     #endregion
