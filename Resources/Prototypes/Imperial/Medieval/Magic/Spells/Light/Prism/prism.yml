@@ -16,6 +16,7 @@
 - type: entity
   id: MedievalMagicWeaponPrism
   parent: BaseItem
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 8
@@ -45,6 +46,7 @@
 - type: entity
   id: MedievalMagicWeaponBeam
   parent: BaseItem
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/magic_beam.rsi

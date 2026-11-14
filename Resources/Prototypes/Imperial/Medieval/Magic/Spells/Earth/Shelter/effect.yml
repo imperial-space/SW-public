@@ -1,8 +1,9 @@
 - type: entity
   id: ShelterSpellCastEffectSenior
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/earth/earthshaking.rsi
     color: "#804128"
     noRot: true
     layers:
@@ -13,4 +14,4 @@
     energy: 2
     color: "#804128"
   - type: TimedDespawn
-    lifetime: 0.5
+    lifetime: 1

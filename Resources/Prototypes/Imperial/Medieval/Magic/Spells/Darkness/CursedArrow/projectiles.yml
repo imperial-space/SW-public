@@ -18,6 +18,7 @@
     totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: CursedArrowImpactEffect
     damage:
       types:
         Blunt: 8

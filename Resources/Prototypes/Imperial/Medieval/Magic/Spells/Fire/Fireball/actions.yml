@@ -17,18 +17,20 @@
   - type: TargetAction
     checkCanAccess: false
     range: 60
+    targetingIndicator: false
   - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFireballBeginner
-      targetSpellType: TargetOnCurrentMousePosition
+      faceTargetWhileCasting: true
+      spawnForwardOffset: 0.9
       spellCastDoAfter:
         delay: 3
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         needHand: true
-        speedModifier: 0.3
+        speedModifier: 0
       speechPoints:
         0:
           speech: medieval-spell-speach-fireball
@@ -36,6 +38,17 @@
           hideChat: true
   - type: SpellCastEffect
     effectProto: FireballSpellCastEffectBeginner
+    forwardEffectProto: FireballChargeEffectBeginner
+    forwardEffectOffset: 0.9
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/Fire/Fireball/pointer.rsi
+          state: pointer
+        alwaysRender: true
+        mixColor: 0
+        opacity: 1
+        inRangeColor: "#ff8a1f"
   - type: ManaDrainSpell
     manaDrain: 70
     canUseWithoutMana: true
@@ -94,6 +107,8 @@
         Burn: 27
   - type: SpellCastEffect
     effectProto: FireballSpellCastEffectMiddle
+    forwardEffectProto: FireballChargeEffectMiddle
+    forwardEffectOffset: 1.0
   - type: MedievalTargetSpell
   - type: Action
     useDelay: 155
@@ -106,18 +121,20 @@
   - type: TargetAction
     checkCanAccess: false
     range: 60
+    targetingIndicator: false
   - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFireballMiddle
-      targetSpellType: TargetOnCurrentMousePosition
+      faceTargetWhileCasting: true
+      spawnForwardOffset: 1.0
       spellCastDoAfter:
         delay: 2.5
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         needHand: true
-        speedModifier: 0.3
+        speedModifier: 0
       speechPoints:
         0:
           speech: medieval-spell-speach-fireball
@@ -141,6 +158,8 @@
         Burn: 32
   - type: SpellCastEffect
     effectProto: FireballSpellCastEffectSenior
+    forwardEffectProto: FireballChargeEffectSenior
+    forwardEffectOffset: 1.1
   - type: MedievalTargetSpell
   - type: Action
     useDelay: 135
@@ -153,18 +172,20 @@
   - type: TargetAction
     checkCanAccess: false
     range: 60
+    targetingIndicator: false
   - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFireballSenior
-      targetSpellType: TargetOnCurrentMousePosition
+      faceTargetWhileCasting: true
+      spawnForwardOffset: 1.1
       spellCastDoAfter:
         delay: 3.5
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         needHand: true
-        speedModifier: 0.3
+        speedModifier: 0
       speechPoints:
         0:
           speech: medieval-spell-speach-fireball

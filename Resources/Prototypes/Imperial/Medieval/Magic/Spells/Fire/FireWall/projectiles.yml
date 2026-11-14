@@ -52,6 +52,8 @@
     state: beginner
   - type: TimedDespawn
     lifetime: 8
+  - type: SpawnOnDespawn
+    prototype: FireWallFadeBeginner
   - type: Brarrier
     spawnedEntity: MedievalFireWallBeginnerClone
     spawnedOnInvalidLocation: MedievalFireWallBeginnerInvalidPosition
@@ -74,6 +76,8 @@
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 8
+  - type: SpawnOnDespawn
+    prototype: FireWallFadeBeginner
 
 - type: entity
   id: MedievalFireWallBeginnerInvalidPosition
@@ -110,9 +114,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
-    state: beginner
+    state: middle
   - type: TimedDespawn
     lifetime: 20
+  - type: SpawnOnDespawn
+    prototype: FireWallFadeMiddle
   - type: IgniteOnCollide
     fixtureId: fix1
     fireStacks: 3
@@ -134,10 +140,12 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
-    state: beginner
+    state: middle
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20
+  - type: SpawnOnDespawn
+    prototype: FireWallFadeMiddle
   - type: IgniteOnCollide
     fixtureId: fix1
     fireStacks: 3
@@ -176,10 +184,12 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
-    state: beginner
+    state: senior
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20
+  - type: SpawnOnDespawn
+    prototype: FireWallFadeSenior
   - type: IgniteOnCollide
     fixtureId: fix1
     fireStacks: 3.5
@@ -201,10 +211,12 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
-    state: beginner
+    state: senior
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20
+  - type: SpawnOnDespawn
+    prototype: FireWallFadeSenior
   - type: IgniteOnCollide
     fixtureId: fix1
     fireStacks: 5

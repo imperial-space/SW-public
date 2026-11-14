@@ -14,6 +14,7 @@
 - type: entity
   id: MedievalMagicLightningRune
   parent: BaseItem
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/lightning_rune.rsi
@@ -49,6 +50,7 @@
 
 - type: entity
   id: MedievalLightningRune
+  categories: [ HideSpawnMenu ]
   components:
     - type: Physics
       bodyType: Static
@@ -87,6 +89,7 @@
 
 - type: entity
   id: MedievalLightningRuneDespawnEffect
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 5

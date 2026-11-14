@@ -1,5 +1,6 @@
 - type: entity
   id: SpikesSpellCastEffectBeginner
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi

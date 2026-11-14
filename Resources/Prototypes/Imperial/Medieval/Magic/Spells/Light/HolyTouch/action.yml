@@ -44,6 +44,6 @@
       speechPoints:
         0:
           speech: medieval-spell-speach-holy-touch
-          color: "#00981C"
+          color: "#FFE57E"
           hideChat: true
   - type: MedievalSpawnOnlyInFreeHands

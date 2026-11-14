@@ -2,6 +2,7 @@
 
 - type: entity
   id: SummonFoliantSpellCastEffectBeginner
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/magic_light.rsi

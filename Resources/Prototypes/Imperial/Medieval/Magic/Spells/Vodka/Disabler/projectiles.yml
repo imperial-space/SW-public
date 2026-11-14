@@ -7,9 +7,9 @@
   parent: BulletRocket
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    sprite: Imperial/Medieval/Magic/Vodka/Disabler/projectiles.rsi
     layers:
-    - state: omnilaser
+    - state: ball
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 36
@@ -20,6 +20,7 @@
     totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: DisablerImpactEffect
     damage:
       types:
         Caustic: 1
@@ -33,9 +34,9 @@
   parent: BulletRocket
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    sprite: Imperial/Medieval/Magic/Vodka/Disabler/projectiles.rsi
     layers:
-    - state: omnilaser
+    - state: ball2
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 64
@@ -46,6 +47,7 @@
     totalIntensity: 1
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: DisablerImpactEffectBig
     damage:
       types:
         Caustic: 1

@@ -23,6 +23,7 @@
     relativeAngle: 90
     linearVelocityIntensy: 0.1
   - type: Projectile
+    impactEffect: CursedArrowImpactEffect
     damage:
       types:
         Blunt: 11
@@ -53,6 +54,7 @@
     relativeAngle: 90
     linearVelocityIntensy: 0.1
   - type: Projectile
+    impactEffect: CursedArrowImpactEffect
     damage:
       types:
         Blunt: 7
@@ -83,6 +85,7 @@
     relativeAngle: 90
     linearVelocityIntensy: 0.1
   - type: Projectile
+    impactEffect: CursedArrowImpactEffectBig
     damage:
       types:
         Blunt: 5

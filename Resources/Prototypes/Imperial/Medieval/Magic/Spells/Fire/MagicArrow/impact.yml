@@ -1,0 +1,37 @@
+# Hit flash for the magic arrow family
+
+- type: entity
+  id: MagicArrowImpactEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/impact.rsi
+      state: impact
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: MagicArrowImpactEffectBig
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/impact_big.rsi
+      state: impact
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu

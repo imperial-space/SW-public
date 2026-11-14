@@ -55,6 +55,8 @@
   description: medieval-store-spells-earth-seedlings-middle-desc
   parent: MedievalActionSeedlingsBeginner
   components:
+  - type: SpellCastEffect
+    effectProto: SeedlingsSpellCastEffectMiddle
   - type: ManaDrainSpell
     manaDrain: 50
     canUseWithoutMana: false
@@ -99,6 +101,8 @@
   description: medieval-store-spells-earth-seedlings-senior-desc
   parent: MedievalActionSeedlingsBeginner
   components:
+  - type: SpellCastEffect
+    effectProto: SeedlingsSpellCastEffectMiddle
   - type: ManaDrainSpell
     manaDrain: 85
     canUseWithoutMana: true

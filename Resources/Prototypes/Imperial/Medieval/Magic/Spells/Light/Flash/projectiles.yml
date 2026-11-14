@@ -5,6 +5,7 @@
   name: Flash
   description: You my sunshine
   parent: BulletRocket
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Light/Flash/projectiles.rsi
@@ -26,6 +27,9 @@
   - type: FlashOnTrigger
     range: 1
     duration: 4.2
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+      - FlashBurstEffectBeginner
 
 # Middle
 
@@ -34,6 +38,7 @@
   name: Flash
   description: You my sunshine
   parent: BulletRocket
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Light/Flash/projectiles.rsi
@@ -58,3 +63,4 @@
   - type: SpawnEntityOnTrigger
     spawnedEntitiesPrototype:
       - FlashWaveEffect
+      - FlashBurstEffectMiddle

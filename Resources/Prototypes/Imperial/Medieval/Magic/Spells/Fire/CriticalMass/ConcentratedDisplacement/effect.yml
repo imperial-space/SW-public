@@ -4,15 +4,16 @@
   id: MedievalEffectConcentratedDisplacementMiddle
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: senior
-  - type: MedievalParticles
-    color: "#764ADB"
-    speed: 2.0
-    particlesCount: 16
-    gravity: 0
-    inverted: true
-    collapseOnMinDistance: true
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/effects.rsi
+    noRot: true
+    drawdepth: Effects
+    layers:
+    - state: displacement_t2
+      shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 0.8
+    color: "#655b9c"
   - type: Physics
   - type: Fixtures
   - type: Brarrier
@@ -24,7 +25,7 @@
     spawnRelativePosition: 1,1
     onlyOneSide: true
   - type: TimedDespawn
-    lifetime: 1.25
+    lifetime: 1.2
 
 - type: entity
   id: ConcentratedDisplacementSpellCastEffectMiddle
@@ -49,15 +50,16 @@
   id: MedievalEffectConcentratedDisplacementSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: senior
-  - type: MedievalParticles
-    color: "#B84ADB"
-    speed: 2.0
-    particlesCount: 16
-    gravity: 0
-    inverted: true
-    collapseOnMinDistance: true
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/effects.rsi
+    noRot: true
+    drawdepth: Effects
+    layers:
+    - state: displacement_t3
+      shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 0.8
+    color: "#7a6cb0"
   - type: Physics
   - type: Fixtures
   - type: Brarrier

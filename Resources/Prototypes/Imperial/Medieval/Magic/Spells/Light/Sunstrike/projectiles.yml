@@ -5,6 +5,7 @@
   parent: BaseBullet
   name: SunstrikeSpot
   description: You better GITTAH WEIGH.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
@@ -37,6 +38,7 @@
 - type: entity
   id: MedievalSunstrikeMiddle
   name: Sunstrike
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
@@ -87,6 +89,7 @@
   parent: MedievalProjectileSunstrikeSpotMiddle
   name: SunstrikeSpot
   description: You better GITTAH WEIGH.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
@@ -105,6 +108,7 @@
   id: MedievalSunstrikeSenior
   parent: MedievalSunstrikeMiddle
   name: Sunstrike
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi

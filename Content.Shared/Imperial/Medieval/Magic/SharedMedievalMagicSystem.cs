@@ -53,6 +53,8 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
 
     protected virtual void OnSpellDoAfterCast(EntityUid uid, MedievalSpellCasterComponent component, MedievalSpellDoAfterEvent args)
     {
+        RemCompDeferred<MedievalCastFacingComponent>(uid);
+
         if (args.Handled) return;
 
         var casterComponent = EnsureComp<MedievalSpellCasterComponent>(uid);

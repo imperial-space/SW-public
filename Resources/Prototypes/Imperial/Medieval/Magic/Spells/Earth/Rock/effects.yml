@@ -1,0 +1,13 @@
+# Dust puff for the stone rocks (appears, crumbles and breaks). Reuses the Earth Spikes dust sprite.
+
+- type: entity
+  id: MedievalRockDust
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Spikes/projectiles.rsi
+    noRot: true
+    layers:
+    - state: dust
+  - type: TimedDespawn
+    lifetime: 0.35

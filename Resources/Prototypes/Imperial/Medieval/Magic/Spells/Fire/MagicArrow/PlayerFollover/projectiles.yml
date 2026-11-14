@@ -20,6 +20,7 @@
     totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: MagicArrowImpactEffect
     damage:
       types:
         Blunt: 24
@@ -46,6 +47,7 @@
     totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: MagicArrowImpactEffect
     damage:
       types:
         Blunt: 22.5
@@ -72,6 +74,7 @@
     totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
+    impactEffect: MagicArrowImpactEffectBig
     damage:
       types:
         Blunt: 27

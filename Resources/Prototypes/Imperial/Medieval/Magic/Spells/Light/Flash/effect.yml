@@ -1,5 +1,6 @@
 - type: entity
   id: FlashWaveEffect
+  categories: [ HideSpawnMenu ]
   components:
   - type: ShockWave
     speed: 0.95
@@ -27,6 +28,7 @@
 
 - type: entity
   id: FlashSpellCastEffectBeginner
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/flash.rsi
@@ -42,3 +44,38 @@
   - type: TimedDespawn
     lifetime: 0.5
 
+- type: entity
+  id: FlashBurstEffectBeginner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/Flash/burst.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: beginner
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2.5
+    color: "#FFE57E"
+  - type: TimedDespawn
+    lifetime: 0.32
+
+- type: entity
+  id: FlashBurstEffectMiddle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/Flash/burst.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: middle
+      shader: unshaded
+  - type: PointLight
+    radius: 3.5
+    energy: 3
+    color: "#FFE57E"
+  - type: TimedDespawn
+    lifetime: 0.32

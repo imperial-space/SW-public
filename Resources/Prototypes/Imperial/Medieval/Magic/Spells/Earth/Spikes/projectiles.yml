@@ -23,8 +23,10 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Earth/Spikes/projectiles.rsi
-    state: beginner
     drawdepth: FloorTiles
+    layers:
+    - state: beginner
+    - state: dust
   - type: TimedDespawn
     lifetime: 1.5
   - type: Clickable

@@ -4,15 +4,16 @@
   id: MedievalEffectCriticalMassMiddle
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: senior
-  - type: MedievalParticles
-    color: "#FF5400"
-    speed: 2.0
-    particlesCount: 32
-    gravity: 0
-    inverted: true
-    collapseOnMinDistance: true
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/effects.rsi
+    noRot: true
+    drawdepth: Effects
+    layers:
+    - state: supermass_t2
+      shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 0.8
+    color: "#6f86b4"
   - type: RepeatingTrigger
     delay: 2.2
   - type: ExplodeOnTrigger
@@ -29,15 +30,16 @@
   id: MedievalEffectCriticalMassSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: senior
-  - type: MedievalParticles
-    color: "#29B8DB"
-    speed: 2.0
-    particlesCount: 32
-    gravity: 0
-    inverted: true
-    collapseOnMinDistance: true
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/effects.rsi
+    noRot: true
+    drawdepth: Effects
+    layers:
+    - state: supermass_t3
+      shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 0.8
+    color: "#7fb0b8"
   - type: RepeatingTrigger
     delay: 2.2
   - type: ExplodeOnTrigger

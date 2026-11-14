@@ -2,18 +2,15 @@
 
 - type: entity
   id: MedievalProjectileLightFollower
+  categories: [ HideSpawnMenu ]
   components:
     - type: CargoSellBlacklist
     - type: Sprite
-      sprite: Objects/Fun/pondering_orb.rsi
-      state: icon
-    - type: MedievalParticles
-      color: cyan
-      speed: 2.0
-      particlesCount: 32
-      gravity: 0
-      inverted: true
-      collapseOnMinDistance: true
+      sprite: Imperial/Medieval/Magic/Light/MagicLight/orb.rsi
+      noRot: true
+      layers:
+      - state: orb
+        shader: unshaded
     - type: PointLight
       color: cyan
       energy: 2
@@ -74,6 +71,7 @@
 - type: entity
   id: MedievalProjectileLightOrbiter
   parent: MedievalProjectileLightFollower
+  categories: [ HideSpawnMenu ]
   components:
     - type: PointLight
       color: cyan
@@ -84,6 +82,7 @@
 
 - type: entity
   id: MedievalLightSphereDespawnEffect
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 5
@@ -95,6 +94,7 @@
 
 - type: entity
   id: MedievalEventEffectSparkleTrail
+  categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: Objects/Fun/pondering_orb.rsi

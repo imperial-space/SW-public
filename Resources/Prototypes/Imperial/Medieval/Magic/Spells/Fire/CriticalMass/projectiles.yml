@@ -2,15 +2,16 @@
   id: MedievalEffectCriticalMassBeginner
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: senior
-  - type: MedievalParticles
-    color: "#F5E72D"
-    speed: 2.0
-    particlesCount: 16
-    gravity: 0
-    inverted: true
-    collapseOnMinDistance: true
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/effects.rsi
+    noRot: true
+    drawdepth: Effects
+    layers:
+    - state: supermass_t1
+      shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 0.8
+    color: "#655b9c"
   - type: RepeatingTrigger
     delay: 1.2
   - type: ExplodeOnTrigger

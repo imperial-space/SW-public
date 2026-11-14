@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -17,6 +18,7 @@ public sealed partial class EffectSystem : EntitySystem
 
         SubscribeLocalEvent<SpellCastEffectComponent, MedievalBeforeCastSpellEvent>(OnBeforeCast);
         SubscribeLocalEvent<SpellCastEffectComponent, MedievalAfterCastSpellEvent>(OnAfterCast);
+        SubscribeLocalEvent<SpellCastEffectComponent, MedievalFailCastSpellEvent>(OnFailCast);
     }
 
     private void OnBeforeCast(EntityUid uid, SpellCastEffectComponent component, ref MedievalBeforeCastSpellEvent args)
@@ -32,6 +34,15 @@ public sealed partial class EffectSystem : EntitySystem
         {
             var Effect = Spawn(component.EffectProto, Transform(args.Performer).Coordinates);
             _transform.SetParent(Effect, args.Performer);
+
+            if (component.ForwardEffectProto is { } forwardProto)
+            {
+                var forward = Spawn(forwardProto, Transform(args.Performer).Coordinates);
+                _transform.SetParent(forward, args.Performer);
+                _transform.SetLocalPosition(forward, new Vector2(0f, -component.ForwardEffectOffset));
+                component.ForwardEffect = forward;
+            }
+
             CanSpawn = false;
         }
         return;
@@ -40,7 +51,24 @@ public sealed partial class EffectSystem : EntitySystem
     private void OnAfterCast(EntityUid uid, SpellCastEffectComponent component, ref MedievalAfterCastSpellEvent args)
     {
         CanSpawn = true;
-        return;
+        RemoveForwardEffect(component);
+    }
+
+    private void OnFailCast(EntityUid uid, SpellCastEffectComponent component, MedievalFailCastSpellEvent args)
+    {
+        CanSpawn = true;
+        RemoveForwardEffect(component);
+    }
+
+    private void RemoveForwardEffect(SpellCastEffectComponent component)
+    {
+        if (component.ForwardEffect is not { } effect)
+            return;
+
+        component.ForwardEffect = null;
+
+        if (_net.IsServer && !TerminatingOrDeleted(effect))
+            QueueDel(effect);
     }
 
     #region Helpers

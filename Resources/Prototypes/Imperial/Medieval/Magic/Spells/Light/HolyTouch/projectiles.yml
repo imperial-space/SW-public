@@ -2,10 +2,11 @@
   id: HolyTouch
   parent: BaseItem
   name: Holy Touch
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Melee/hand.rsi
-    state: bananium
+    sprite: Imperial/Medieval/Magic/Light/HolyTouch/hand.rsi
+    state: holy
   - type: Unremoveable
   - type: HolySalt
   - type: MedievalSpellOnInteract

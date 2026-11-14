@@ -1,17 +1,37 @@
 - type: entity
   id: SeedlingsSpellCastEffectBeginner
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/earth/earthshaking.rsi
     color: "#AB8C00"
     noRot: true
     layers:
-      - state: beginner
+      - state: middle
         shader: unshaded
   - type: PointLight
     radius: 3
     energy: 2
     color: "#AB8C00"
   - type: TimedDespawn
-    lifetime: 5
-      
+    lifetime: 3
+
+# Middle and Senior (the cast takes 5 s, the longest circle available is 4 s)
+
+- type: entity
+  id: SeedlingsSpellCastEffectMiddle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/earth/earthshaking.rsi
+    color: "#AB8C00"
+    noRot: true
+    layers:
+      - state: senior
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#AB8C00"
+  - type: TimedDespawn
+    lifetime: 4

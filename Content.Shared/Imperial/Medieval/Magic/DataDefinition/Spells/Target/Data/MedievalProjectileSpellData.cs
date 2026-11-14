@@ -17,4 +17,10 @@ public sealed partial class MedievalProjectileSpellData : MedievalTargetSpellDat
 
     [DataField]
     public float ProjectileSpeed = 20f;
+
+    /// <summary>
+    /// How far in front of the caster (towards the target) the projectile appears, in tiles.
+    /// </summary>
+    [DataField]
+    public float SpawnForwardOffset = 0f;
 }

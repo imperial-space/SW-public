@@ -120,7 +120,7 @@
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
-      state: beginner
+      state: middle
   - type: TargetAction
     checkCanAccess: false
     range: 60

@@ -28,7 +28,7 @@
     range: 60
   - type: WorldTargetAction
     event: !type:MedievalLightningSpellEvent
-      spawnedEffectPrototype: MedievalLightningExplosion
+      spawnedEffectPrototype: MedievalLightningExplosionLight
       amplitude: 0.4
       offset: 0.5,0.0
       lightningCollideEffects:
@@ -95,7 +95,7 @@
     range: 60
   - type: WorldTargetAction
     event: !type:MedievalLightningSpellEvent
-      spawnedEffectPrototype: MedievalLightningExplosion
+      spawnedEffectPrototype: MedievalLightningExplosionLight
       amplitude: 0.4
       offset: 0.5,0.0
       lightningCollideEffects:
@@ -131,3 +131,5 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 22
+  - type: SpellCastEffect
+    effectProto: LightningSpellCastEffectSenior
