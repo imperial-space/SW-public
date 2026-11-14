@@ -87,7 +87,9 @@ public sealed partial class IngestionSystem
         }
 
         // Time is additive because I said so.
-        args.Time += entity.Comp.Delay;
+        args.Time += args.User == args.Target
+            ? entity.Comp.Delay
+            : entity.Comp.ForceFeedDelay;
     }
 
     private void OnStorageEdible(Entity<StorageComponent> ent, ref EdibleEvent args)
