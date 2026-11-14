@@ -1,0 +1,67 @@
+- type: entity
+  id: RevenantBossSummoningCrystal
+  localizationId: Revenant_Boss_Summoning_Crystal
+  components:
+  - type: Sprite
+    layers:
+    - texture: Imperial/Medieval/Structures/RevenantBossCrystal/crystal_boss_summon.png
+      offset: 0.015625, 0
+      map: [enum.BossCrystalVisuals.Layer]
+    scale: 0.20143885, 0.20143885
+    offset: 0, 0.5
+    noRot: true
+    drawdepth: OverMobs
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BossCrystalVisuals.Cracked:
+        enum.BossCrystalVisuals.Layer:
+          False: {texture: Imperial/Medieval/Structures/RevenantBossCrystal/crystal_boss_summon.png, offset: "0.015625, 0"}
+          True: {texture: Imperial/Medieval/Structures/RevenantBossCrystal/crystal_boss_summon_cracked.png, offset: "0, 0"}
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      crystal:
+        shape: !type:PhysShapeCircle
+          radius: 0.6
+        hard: true
+        layer: [MobLayer]
+        mask: [MobMask]
+  - type: BossArenaProtected
+  - type: BossPresentation
+    bobSpeedMultiplier: 0.125
+    animateLight: false
+  - type: BossSummoningTrigger
+    breakToSummon: true
+    health: 100
+    crackedFraction: 0.5
+    hitSound:
+      collection: GlassCrack
+    spawnEffect: RevenantBossSummonBurst
+    additionalSpawnEffects: [ConcentratedDisplacementSpellCastEffectSenior]
+    spawnCameraKick: 0.2
+    breakSound:
+      collection: GlassBreak
+  - type: PointLight
+    color: "#B277FF"
+    radius: 7
+    energy: 1
+
+- type: entity
+  id: RevenantBossSummonBurst
+  parent: ShockWaveEffect
+  categories: [HideSpawnMenu]
+  components:
+  - type: ShockWaveDistortion
+    speed: 5
+    maxDistance: 4
+    distortion: 0.08
+  - type: TimedDespawn
+    lifetime: 1

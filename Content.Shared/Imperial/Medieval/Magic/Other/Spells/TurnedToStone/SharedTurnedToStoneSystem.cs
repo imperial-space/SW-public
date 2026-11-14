@@ -88,6 +88,8 @@ public abstract partial class SharedTurnedToStoneSystem : EntitySystem
 
     protected bool CanTurnToStone(EntityUid uid)
     {
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid))
+            return false;
         if (!HasComp<DamageableComponent>(uid)) return false;
 
         var ev = new BeforeTurnetToStone();

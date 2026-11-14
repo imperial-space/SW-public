@@ -90,7 +90,7 @@ public sealed partial class BossSystem
 
     private void OnBossHealDoAfter(EntityUid uid, TimedBossHealComponent component, BossHealDoAfterEvent args)
     {
-        if (!TryComp<BossAttackComponent>(uid, out var attack))
+        if (args.Cancelled || !TryComp<BossAttackComponent>(uid, out var attack))
             return;
 
         if (!TryComp<BossComponent>(attack.Boss, out var bossComp))
@@ -100,12 +100,14 @@ public sealed partial class BossSystem
 
         RemComp<TimedBossHealComponent>(uid);
 
-        if (EntityQuery<TimedBossHealComponent>().Any())
+        if (EntityManager.AllEntities<TimedBossHealComponent>().Any(entity => entity.Owner != uid &&
+            TryComp<BossAttackComponent>(entity, out var other) && other.Boss == attack.Boss))
             return;
 
         _appearance.SetData(attack.Boss, AdditionalBossVisuals.State, "healing");
         Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(0.9f), () =>
         {
+            if (!Exists(attack.Boss) || Terminating(attack.Boss)) return;
             _appearance.SetData(attack.Boss, AdditionalBossVisuals.State, "none");
         });
     }
@@ -146,11 +148,12 @@ public sealed partial class BossSystem
 
     private void OnTrapInit(EntityUid uid, TrapPlayersOnMapComponent component, MapInitEvent args)
     {
+        if (!TryComp<BossAttackComponent>(uid, out var attack)) return;
         var players = new List<EntityUid>();
-        var query = AllEntityQuery<FightingBossComponent>();
+        var query = AllEntityQuery<BossLegacyParticipantComponent>();
         while (query.MoveNext(out var target, out var comp))
         {
-            if (Transform(target).GridUid != null && Transform(target).GridUid == Transform(uid).GridUid)
+            if (comp.Boss == attack.Boss && Transform(target).GridUid != null && Transform(target).GridUid == Transform(uid).GridUid)
                 players.Add(target);
         }
 
@@ -163,7 +166,7 @@ public sealed partial class BossSystem
         if (!_mapLoader.TryLoadMap(component.MapPath, out var map, out var grids, new DeserializationOptions() { InitializeMaps = true }))
             return;
 
-        var mapId = map.Value.Comp.MapId;
+        component.Map = map.Value.Owner;
         var ents = grids.Select(x => Transform(x.Owner).ChildEnumerator);
         var spawns = new List<EntityCoordinates>();
 
@@ -174,6 +177,14 @@ public sealed partial class BossSystem
                 if (_tag.HasTag(target, component.SpawnTag))
                     spawns.Add(Transform(target).Coordinates);
             }
+        }
+
+        if (spawns.Count == 0)
+        {
+            _map.DeleteMap(map.Value.Comp.MapId);
+            component.Map = EntityUid.Invalid;
+            QueueDel(uid);
+            return;
         }
 
         _random.Shuffle(players);
@@ -241,14 +252,21 @@ public sealed partial class BossSystem
         if (component.Map is not { Valid: true })
             return;
 
+        var map = component.Map;
+        component.Map = EntityUid.Invalid;
+        var trapped = component.Trapped.ToArray();
+        component.Trapped.Clear();
         var coords = Transform(uid).Coordinates;
-        foreach (var item in component.Trapped)
+        foreach (var item in trapped)
         {
-            _transform.SetCoordinates(item, coords);
+            if (!Exists(item) || Terminating(item)) continue;
+            if (coords.IsValid(EntityManager) && !Terminating(coords.EntityId))
+                _transform.SetCoordinates(item, coords);
             RemComp<BossTrappedComponent>(item);
         }
 
-        _map.DeleteMap(Comp<MapComponent>(component.Map).MapId);
+        if (!Terminating(map) && TryComp<MapComponent>(map, out var mapComp))
+            _map.DeleteMap(mapComp.MapId);
         QueueDel(uid);
         SpawnAtPosition(component.SpawnOnDespawn, coords);
     }
@@ -321,7 +339,9 @@ public sealed partial class BossSystem
             if (comp.ExplodeTime > _timing.CurTime)
                 continue;
 
-            if (_lookup.GetEntitiesInRange<FightingBossComponent>(Transform(uid).Coordinates, 3f).Count > 1)
+            if (TryComp<BossLegacyParticipantComponent>(uid, out var fight) &&
+                _lookup.GetEntitiesInRange<BossLegacyParticipantComponent>(Transform(uid).Coordinates, 3f)
+                    .Count(entity => Comp<BossLegacyParticipantComponent>(entity).Boss == fight.Boss) > 1)
                 _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 85, 10, 7, null, 0, 0, false);
 
             QueueDel(GetEntity(comp.NetEntity));

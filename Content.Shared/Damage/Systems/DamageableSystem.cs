@@ -185,6 +185,13 @@ namespace Content.Shared.Damage
                 return damage;
             }
 
+            //Imperial medieval start
+            damage = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>()
+                .FilterDamage(uid.Value, damage, origin);
+            if (damage.Empty)
+                return damage;
+            //Imperial medieval stop
+
             var before = new BeforeDamageChangedEvent(damage, origin);
             RaiseLocalEvent(uid.Value, ref before);
 

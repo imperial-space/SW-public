@@ -585,7 +585,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
 
         var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, null);
-        RaiseLocalEvent(meleeUid, hitEvent);
+        //Imperial medieval start
+        using (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().WithSource(user, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Melee))
+            RaiseLocalEvent(meleeUid, hitEvent);
+        //Imperial medieval stop
 
         if (hitEvent.Handled)
             return;
@@ -755,7 +758,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         // Raise event before doing damage so we can cancel damage if the event is handled
         var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, direction);
-        RaiseLocalEvent(meleeUid, hitEvent);
+        //Imperial medieval start
+        using (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().WithSource(user, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Melee))
+            RaiseLocalEvent(meleeUid, hitEvent);
+        //Imperial medieval stop
 
         if (hitEvent.Handled)
             return true;
@@ -1080,8 +1086,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         const float bufferLength = 0.2f;
         var visualLength = length - bufferLength;
 
-        if (localPos.Length() > visualLength)
+        //Imperial medieval start
+        if (Content.Shared.Imperial.Medieval.Weapons.MeleeSwingVisuals.IsSwingAnimation(animation))
+            localPos = localPos.Normalized() * length;
+        else if (localPos.Length() > visualLength)
             localPos = localPos.Normalized() * visualLength;
+        //Imperial medieval stop
 
         DoLunge(user, weapon, angle, localPos, animation);
     }

@@ -1,0 +1,38 @@
+- type: tile
+  id: RevenantBossArenaFloor
+  parent: FloorChromite
+  name: Revenant_Boss_Floor
+  indestructible: true
+  weather: false
+
+- type: entity
+  id: RevenantBossArenaCenterBlocker
+  localizationId: Revenant_Boss_Center
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      center:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: true
+        layer:
+        - HighImpassable
+        - MidImpassable
+        - LowImpassable
+        mask: []
+  - type: BossArenaProtected
+  - type: BossArenaCenterBlocker
+
+- type: entity
+  id: RevenantBossArenaMap
+  localizationId: Revenant_Boss_Arena
+  categories: [HideSpawnMenu]
+
+- type: entity
+  id: RevenantBossArenaCombatGrid
+  localizationId: Revenant_Boss_Platform
+  categories: [HideSpawnMenu]

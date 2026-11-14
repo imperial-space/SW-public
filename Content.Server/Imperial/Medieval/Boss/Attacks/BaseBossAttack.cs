@@ -12,6 +12,15 @@ public abstract partial class BossAttack
     public float Cooldown = 0f;
 
     [DataField]
+    public float CastTime;
+
+    [DataField]
+    public string CastName = string.Empty;
+
+    [DataField]
+    public Content.Shared.Imperial.Medieval.Boss.BossTelegraphPattern? Telegraph;
+
+    [DataField]
     public float Priority = 1f;
 
     public TimeSpan NextAttack = TimeSpan.Zero;

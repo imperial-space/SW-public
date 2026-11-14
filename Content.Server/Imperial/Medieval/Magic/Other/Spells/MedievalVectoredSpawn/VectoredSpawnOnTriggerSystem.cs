@@ -44,7 +44,12 @@ public sealed partial class VectoredSpawnOnTriggerSystem : EntitySystem
         for (var i = 0; i < length; i++)
         {
             var resultCoords = new MapCoordinates(coords.Position + component.SpawnPositions[i], coords.MapId);
+            var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+            if (!rules.CanSpawn(component.SpawnedEntityID, resultCoords))
+                continue;
+            using var sourceScope = rules.WithSource(uid);
             var entityClone = Spawn(component.SpawnedEntityID, resultCoords);
+            rules.TagSpell(entityClone, uid);
         }
     }
 }

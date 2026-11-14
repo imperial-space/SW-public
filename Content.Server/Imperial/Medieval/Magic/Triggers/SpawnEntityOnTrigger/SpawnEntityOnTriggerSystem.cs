@@ -28,7 +28,12 @@ public sealed partial class SpawnEntityOnTriggerSystem : EntitySystem
             var data = _prototypeManager.Index(entProtoId);
             var offsetCoords = new MapCoordinates(spawnCoord.Position + data.PlacementOffset, spawnCoord.MapId);
 
-            Spawn(entProtoId, offsetCoords);
+            var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+            if (!rules.CanSpawn(entProtoId, offsetCoords))
+                continue;
+            using var sourceScope = rules.WithSource(uid);
+            var spawned = Spawn(entProtoId, offsetCoords);
+            rules.TagSpell(spawned, uid);
         }
     }
 }

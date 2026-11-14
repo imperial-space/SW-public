@@ -1,0 +1,7 @@
+- type: entity
+  id: RevenantBossArenaWall
+  localizationId: Revenant_Boss_Wall
+  parent: WallCultIndestructible
+  components:
+  - type: Godmode
+  - type: BossArenaProtected

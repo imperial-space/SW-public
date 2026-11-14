@@ -64,9 +64,9 @@ public sealed partial class MedievalMagicSystem
             };
 
             RaiseLocalEvent(action, ref evBefore);
-            if (evBefore.Cancelled) continue;
+            if (evBefore.Cancelled || !CanSpawnArenaSpell(projectilePrototype, xform.Coordinates, performer, action)) continue;
 
-            var ent = Spawn(projectilePrototype, xform.Coordinates);
+            var ent = SpawnArenaSpell(projectilePrototype, xform.Coordinates, performer);
             var direction = spawnedDirection.RotateVec(targetMapCoords.Position - spawnMapCoords.Position);
             var rotation = spawnedDirection;
 
@@ -113,9 +113,9 @@ public sealed partial class MedievalMagicSystem
         };
 
         RaiseLocalEvent(action, ref evBefore);
-        if (evBefore.Cancelled) return;
+        if (evBefore.Cancelled || !CanSpawnArenaSpell(evBefore.SpawnedEntityPrototype, relativeCoords, performer, action)) return;
 
-        var ent = Spawn(evBefore.SpawnedEntityPrototype, relativeCoords);
+        var ent = SpawnArenaSpell(evBefore.SpawnedEntityPrototype, relativeCoords, performer);
         var rotation = Angle.FromDegrees(0);
 
         if (TryComp<ShowSpawnedEntityComponent>(action, out var showSpawnedEntityComponent))

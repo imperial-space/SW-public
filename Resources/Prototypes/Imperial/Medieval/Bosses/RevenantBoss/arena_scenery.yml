@@ -1,0 +1,16 @@
+- type: tile
+  id: RevenantBossArenaPitFloor
+  sprite: /Textures/Imperial/Medieval/Tiles/RevenantArena/transparent.png
+  variants: 1
+  indestructible: true
+  name: Revenant_Boss_Pit_Floor
+  baseTurf: Space
+  isSubfloor: true
+  friction: 0.8
+  heatCapacity: 700000
+
+- type: entity
+  id: RevenantBossArenaSceneryGrid
+  localizationId: Revenant_Boss_Scenery
+  categories:
+  - HideSpawnMenu

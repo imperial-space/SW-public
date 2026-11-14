@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "copyright": "Brazier flame-only cels created with built-in imagegen from the existing Pjeta-provided brazier artwork; original metal, front rim and coal-bed pixels retained. Source and prompt in README.md.",
+    "size": {
+        "x": 128,
+        "y": 128
+    },
+    "states": [
+        {
+            "name": "off",
+            "directions": 1,
+            "delays": [
+                [
+                    1.0
+                ]
+            ]
+        }
+    ]
+}

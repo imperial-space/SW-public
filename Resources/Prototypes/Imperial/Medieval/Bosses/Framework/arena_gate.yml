@@ -1,0 +1,54 @@
+- type: entity
+  id: BossArenaReturnPortal
+  localizationId: Boss_Encounter_Return_Flame
+  categories: [HideSpawnMenu]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Effects/portal.rsi
+    noRot: true
+    drawdepth: Effects
+    layers:
+    - state: portal-artifact
+      shader: unshaded
+  - type: Clickable
+  - type: InteractionOutline
+  - type: BossArenaExitTimer
+  - type: BossArenaGate
+    open: true
+    returnToGate: true
+  - type: BossArenaProtected
+
+- type: entity
+  id: BossArenaGateFlameLight
+  localizationId: Boss_Encounter_Gate_Flame_Light
+  categories: [HideSpawnMenu]
+  components:
+  - type: PointLight
+    enabled: false
+    radius: 4
+    energy: 2
+    color: "#FAB041"
+
+- type: entity
+  id: BossArenaGateConeLight
+  parent: BossArenaGateFlameLight
+  localizationId: Boss_Encounter_Gate_Cone_Light
+
+- type: entity
+  id: BaseBossArenaGate
+  abstract: true
+  localizationId: Boss_Arena_Gate
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Effects/portal.rsi
+    state: portal-artifact
+    noRot: true
+    drawdepth: Effects
+  - type: Clickable
+  - type: InteractionOutline
+  - type: BossArenaProtected
+  - type: BossArenaGate

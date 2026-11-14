@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "copyright": "Review-only triple incision composed from the installed Execution trail, matching the new three-blade impact. Free for anyone to use, modify and redistribute under CC0 1.0.",
+  "size": {
+    "x": 256,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "strike",
+      "directions": 1,
+      "delays": [
+        [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      ]
+    }
+  ],
+  "license": "CC0-1.0"
+}

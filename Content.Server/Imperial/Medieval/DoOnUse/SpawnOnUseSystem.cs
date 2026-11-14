@@ -13,6 +13,10 @@ public sealed partial class AddActionOnUseSystem : EntitySystem
     }
     private void UseInHandEvent(EntityUid uid, SpawnOnUseComponent component, UseInHandEvent ev)
     {
+        var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+        if (!rules.CanSpawn(component.EntityPrototype, uid.ToCoordinates()))
+            return;
+        using var arenaSource = rules.WithSource(ev.User);
         SpawnAtPosition(component.EntityPrototype, uid.ToCoordinates());
         QueueDel(uid);
     }

@@ -129,6 +129,13 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         if (!effectProtoData.TryGetComponent<StatusEffectComponent>(out var effectProtoComp, Factory))
             return false;
 
+        //Imperial medieval start
+        if ((effectProtoData.TryGetComponent<Content.Shared.Stunnable.StunnedStatusEffectComponent>(out _, Factory) ||
+             effectProtoData.TryGetComponent<Content.Shared.Stunnable.KnockdownStatusEffectComponent>(out _, Factory)) &&
+            EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().BlocksControl(uid))
+            return false;
+        //Imperial medieval stop
+
         if (!_whitelist.CheckBoth(uid, effectProtoComp.Blacklist, effectProtoComp.Whitelist))
             return false;
 

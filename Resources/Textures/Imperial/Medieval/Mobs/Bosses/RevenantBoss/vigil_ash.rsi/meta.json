@@ -1,0 +1,58 @@
+{
+    "version": 1,
+    "copyright": "Review-only Vigil: built-in imagegen fire; dissolve and fragments animate the existing Revenant boss pixels. Source, prompt and attribution retained in README.md.",
+    "size": {
+        "x": 192,
+        "y": 192
+    },
+    "states": [
+        {
+            "name": "vanish",
+            "directions": 1,
+            "delays": [
+                [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05
+                ]
+            ]
+        },
+        {
+            "name": "reform",
+            "directions": 1,
+            "delays": [
+                [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05
+                ]
+            ]
+        }
+    ]
+}

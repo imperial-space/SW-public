@@ -66,6 +66,9 @@ public sealed partial class TriggerSystem : EntitySystem
     /// <returns>Whether or not the trigger has sucessfully activated an effect.</returns>
     public bool Trigger(EntityUid trigger, EntityUid? user = null, string? key = null)
     {
+        //Imperial medieval start
+        using var arenaSource = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().WithSource(trigger);
+        //Imperial medieval stop
         var attemptTriggerEvent = new AttemptTriggerEvent(user, key);
         RaiseLocalEvent(trigger, ref attemptTriggerEvent);
         if (attemptTriggerEvent.Cancelled)

@@ -1,0 +1,15 @@
+- type: entity
+  id: RevenantBossArenaEntrance
+  localizationId: Revenant_Boss_Arrival
+  parent: MarkerBase
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: false
+    layers:
+    - state: blue
+    - sprite: Markers/teg_arrow.rsi
+      state: arrow
+      offset: 0, -0.7
+  - type: BossArenaEntrance

@@ -64,6 +64,14 @@ public sealed class FloorTileSystem : EntitySystem
         // this looks a bit sussy but it might be because it needs to be able to place off of grids and expand them
         var location = args.ClickLocation.AlignWithClosestGridTile();
         var locationMap = _transform.ToMapCoordinates(location);
+        //Imperial medieval start
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(locationMap, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+        {
+            args.Handled = true;
+            _popup.PopupClient(Loc.GetString("Revenant_Boss_Rules_No_Building"), args.User, args.User);
+            return;
+        }
+        //Imperial medieval stop
         if (locationMap.MapId == MapId.Nullspace)
             return;
 
@@ -190,6 +198,13 @@ public sealed class FloorTileSystem : EntitySystem
 
     public bool CanPlaceTile(EntityUid gridUid, MapGridComponent component, Vector2i gridIndices, [NotNullWhen(false)] out string? reason)
     {
+        //Imperial medieval start
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(gridUid, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+        {
+            reason = Loc.GetString("Revenant_Boss_Rules_No_Building");
+            return false;
+        }
+        //Imperial medieval stop
         var ev = new FloorTileAttemptEvent(gridIndices);
         RaiseLocalEvent(gridUid, ref ev);
 

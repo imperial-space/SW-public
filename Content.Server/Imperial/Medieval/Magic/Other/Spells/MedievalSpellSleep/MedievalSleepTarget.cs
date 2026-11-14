@@ -27,4 +27,7 @@ public sealed partial class MedievalSleepTargetComponent : Component
 
     [DataField]
     public bool CanPutToSleep = true;
+
+    [DataField]
+    public EntityUid? Caster;
 }

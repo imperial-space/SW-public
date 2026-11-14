@@ -243,6 +243,11 @@ namespace Content.Server.Construction
         /// <remarks>This method also updates the construction pathfinding automatically, if the node change succeeds.</remarks>
         public bool ChangeNode(EntityUid uid, EntityUid? userUid, string id, bool performActions = true, ConstructionComponent? construction = null)
         {
+            //Imperial medieval start
+            if (userUid != null && !HasComp<Content.Shared.Item.ItemComponent>(uid) &&
+                EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(uid, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+                return false;
+            //Imperial medieval stop
             if (!Resolve(uid, ref construction))
                 return false;
 

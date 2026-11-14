@@ -1,0 +1,5211 @@
+- type: entity
+  id: VeyrathBackgroundArt
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossArenaContentDefinition
+    arenaId: revenant
+    role: background
+    sceneryFile: /Maps/Imperial/Medieval/revenant-scenery.yml
+    decorations:
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -15.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -14.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -13.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -12.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -11.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -10.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -9.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -8.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -7.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -6.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -5.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -4.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -3.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -2.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -1.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: -0.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 0.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 1.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 2.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 3.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 4.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 5.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 6.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 7.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 8.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 9.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 10.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 11.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 12.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 13.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 14.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 15.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaBackdropChasm
+      position: 16.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -23.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -22.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -21.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -20.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -19.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -18.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -17.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -16.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -15.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -15.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -15.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -15.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -14.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -14.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -14.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -14.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -13.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -13.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -13.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -13.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -13.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -13.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -12.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -12.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -12.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -12.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -12.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -12.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -12.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -12.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -11.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -11.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -11.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -11.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -11.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -11.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -11.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -11.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -10.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -9.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -8.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -7.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -6.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -5.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -4.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -3.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -2.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -1.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: -0.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 0.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 1.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 2.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 3.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 4.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 5.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 6.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 7.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 8.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 9.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 10.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 11.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 12.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 12.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 12.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 12.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 12.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 12.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 12.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 12.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 13.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 13.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 13.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 13.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 13.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 13.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 13.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 13.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 14.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 14.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 14.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 14.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 14.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 14.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 15.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 15.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 15.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 15.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 16.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 16.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 16.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 16.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 17.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 18.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 19.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 20.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 21.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 22.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 23.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaFogChasm
+      position: 24.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaBackground
+      position: 0.5,0.5
+      scenery: false
+    - prototype: RevenantBossArenaBackgroundSeam
+      position: 0.5,0.5
+      scenery: false

@@ -1,0 +1,2814 @@
+- type: entity
+  id: VeyrathArenaArt
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossArenaContentDefinition
+    arenaId: revenant
+    role: floor
+    sceneryFile: /Maps/Imperial/Medieval/revenant-scenery.yml
+    decorations:
+    - prototype: RevenantBossArenaWall
+      position: -27.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -27.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -26.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -25.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -24.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -23.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -22.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -21.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -20.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -19.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -18.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -17.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -16.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -15.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -14.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -13.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -12.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -11.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -10.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -9.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -8.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -7.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -6.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -5.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -4.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -3.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -3.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -3.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -3.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -3.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -3.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -3.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -3.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -2.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -2.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -2.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -2.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -2.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -2.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -2.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -2.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -1.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -1.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -1.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -1.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -1.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -1.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -1.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -1.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -0.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -0.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -0.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -0.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -0.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -0.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -0.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: -0.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 0.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 0.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 0.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 0.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 0.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 0.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 0.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 0.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 1.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 1.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 1.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 1.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 1.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 1.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 1.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 1.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 2.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 2.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 2.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 2.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 2.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 2.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 2.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 2.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 3.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 3.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 3.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 3.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 3.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 3.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 3.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 3.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 4.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 4.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 4.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 4.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 4.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 4.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 4.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 4.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 5.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 6.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 7.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,-27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 8.5,28.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 9.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 10.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,-26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 11.5,27.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 12.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 13.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,-25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 14.5,26.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,-24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 15.5,25.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 16.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,-23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 17.5,24.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,-22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 18.5,23.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 19.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 20.5,22.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 21.5,21.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,19.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 22.5,20.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 23.5,18.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,16.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 24.5,17.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 25.5,15.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,12.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,13.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 26.5,14.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,9.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,10.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 27.5,11.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,-7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,-6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,-5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,-4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,-3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,-2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,-1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,-0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,0.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,1.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,2.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,3.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,4.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,5.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,6.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,7.5
+      scenery: true
+    - prototype: RevenantBossArenaWall
+      position: 28.5,8.5
+      scenery: true
+    - prototype: RevenantBossArenaEdges
+      position: 0.5,0.5
+      scenery: false
+    - prototype: RevenantBossBrazierFloorMount
+      position: -3.5,4.5
+      scenery: false
+    - prototype: RevenantBossBrazierFloorMount
+      position: 4.5,4.5
+      scenery: false
+    - prototype: RevenantBossBrazierFloorMount
+      position: -3.5,-3.5
+      scenery: false
+    - prototype: RevenantBossBrazierFloorMount
+      position: 4.5,-3.5
+      scenery: false
+    - prototype: RevenantBossArenaRune
+      position: 0.5,0.5
+      scenery: false
+    tiles:
+    - tile: RevenantBossArenaFloorR01C01
+      position: -5, 5
+    - tile: RevenantBossArenaFloorR01C02
+      position: -4, 5
+    - tile: RevenantBossArenaFloorR01C03
+      position: -3, 5
+    - tile: RevenantBossArenaFloorR01C04
+      position: -2, 5
+    - tile: RevenantBossArenaFloorR01C05
+      position: -1, 5
+    - tile: RevenantBossArenaFloorR01C06
+      position: 0, 5
+    - tile: RevenantBossArenaFloorR01C07
+      position: 1, 5
+    - tile: RevenantBossArenaFloorR01C08
+      position: 2, 5
+    - tile: RevenantBossArenaFloorR01C09
+      position: 3, 5
+    - tile: RevenantBossArenaFloorR01C10
+      position: 4, 5
+    - tile: RevenantBossArenaFloorR01C11
+      position: 5, 5
+    - tile: RevenantBossArenaFloorR02C01
+      position: -5, 4
+    - tile: RevenantBossArenaFloorR02C02
+      position: -4, 4
+    - tile: RevenantBossArenaFloorR02C03
+      position: -3, 4
+    - tile: RevenantBossArenaFloorR02C04
+      position: -2, 4
+    - tile: RevenantBossArenaFloorR02C05
+      position: -1, 4
+    - tile: RevenantBossArenaFloorR02C06
+      position: 0, 4
+    - tile: RevenantBossArenaFloorR02C07
+      position: 1, 4
+    - tile: RevenantBossArenaFloorR02C08
+      position: 2, 4
+    - tile: RevenantBossArenaFloorR02C09
+      position: 3, 4
+    - tile: RevenantBossArenaFloorR02C10
+      position: 4, 4
+    - tile: RevenantBossArenaFloorR02C11
+      position: 5, 4
+    - tile: RevenantBossArenaFloorR03C01
+      position: -5, 3
+    - tile: RevenantBossArenaFloorR03C02
+      position: -4, 3
+    - tile: RevenantBossArenaFloorR03C03
+      position: -3, 3
+    - tile: RevenantBossArenaFloorR03C04
+      position: -2, 3
+    - tile: RevenantBossArenaFloorR03C05
+      position: -1, 3
+    - tile: RevenantBossArenaFloorR03C06
+      position: 0, 3
+    - tile: RevenantBossArenaFloorR03C07
+      position: 1, 3
+    - tile: RevenantBossArenaFloorR03C08
+      position: 2, 3
+    - tile: RevenantBossArenaFloorR03C09
+      position: 3, 3
+    - tile: RevenantBossArenaFloorR03C10
+      position: 4, 3
+    - tile: RevenantBossArenaFloorR03C11
+      position: 5, 3
+    - tile: RevenantBossArenaFloorR04C01
+      position: -5, 2
+    - tile: RevenantBossArenaFloorR04C02
+      position: -4, 2
+    - tile: RevenantBossArenaFloorR04C03
+      position: -3, 2
+    - tile: RevenantBossArenaFloorR04C04
+      position: -2, 2
+    - tile: RevenantBossArenaFloorR04C05
+      position: -1, 2
+    - tile: RevenantBossArenaFloorR04C06
+      position: 0, 2
+    - tile: RevenantBossArenaFloorR04C07
+      position: 1, 2
+    - tile: RevenantBossArenaFloorR04C08
+      position: 2, 2
+    - tile: RevenantBossArenaFloorR04C09
+      position: 3, 2
+    - tile: RevenantBossArenaFloorR04C10
+      position: 4, 2
+    - tile: RevenantBossArenaFloorR04C11
+      position: 5, 2
+    - tile: RevenantBossArenaFloorR05C01
+      position: -5, 1
+    - tile: RevenantBossArenaFloorR05C02
+      position: -4, 1
+    - tile: RevenantBossArenaFloorR05C03
+      position: -3, 1
+    - tile: RevenantBossArenaFloorR05C04
+      position: -2, 1
+    - tile: RevenantBossArenaFloorR05C05
+      position: -1, 1
+    - tile: RevenantBossArenaFloorR05C06
+      position: 0, 1
+    - tile: RevenantBossArenaFloorR05C07
+      position: 1, 1
+    - tile: RevenantBossArenaFloorR05C08
+      position: 2, 1
+    - tile: RevenantBossArenaFloorR05C09
+      position: 3, 1
+    - tile: RevenantBossArenaFloorR05C10
+      position: 4, 1
+    - tile: RevenantBossArenaFloorR05C11
+      position: 5, 1
+    - tile: RevenantBossArenaFloorR06C01
+      position: -5, 0
+    - tile: RevenantBossArenaFloorR06C02
+      position: -4, 0
+    - tile: RevenantBossArenaFloorR06C03
+      position: -3, 0
+    - tile: RevenantBossArenaFloorR06C04
+      position: -2, 0
+    - tile: RevenantBossArenaFloorR06C05
+      position: -1, 0
+    - tile: RevenantBossArenaFloorR06C06
+      position: 0, 0
+    - tile: RevenantBossArenaFloorR06C07
+      position: 1, 0
+    - tile: RevenantBossArenaFloorR06C08
+      position: 2, 0
+    - tile: RevenantBossArenaFloorR06C09
+      position: 3, 0
+    - tile: RevenantBossArenaFloorR06C10
+      position: 4, 0
+    - tile: RevenantBossArenaFloorR06C11
+      position: 5, 0
+    - tile: RevenantBossArenaFloorR07C01
+      position: -5, -1
+    - tile: RevenantBossArenaFloorR07C02
+      position: -4, -1
+    - tile: RevenantBossArenaFloorR07C03
+      position: -3, -1
+    - tile: RevenantBossArenaFloorR07C04
+      position: -2, -1
+    - tile: RevenantBossArenaFloorR07C05
+      position: -1, -1
+    - tile: RevenantBossArenaFloorR07C06
+      position: 0, -1
+    - tile: RevenantBossArenaFloorR07C07
+      position: 1, -1
+    - tile: RevenantBossArenaFloorR07C08
+      position: 2, -1
+    - tile: RevenantBossArenaFloorR07C09
+      position: 3, -1
+    - tile: RevenantBossArenaFloorR07C10
+      position: 4, -1
+    - tile: RevenantBossArenaFloorR07C11
+      position: 5, -1
+    - tile: RevenantBossArenaFloorR08C01
+      position: -5, -2
+    - tile: RevenantBossArenaFloorR08C02
+      position: -4, -2
+    - tile: RevenantBossArenaFloorR08C03
+      position: -3, -2
+    - tile: RevenantBossArenaFloorR08C04
+      position: -2, -2
+    - tile: RevenantBossArenaFloorR08C05
+      position: -1, -2
+    - tile: RevenantBossArenaFloorR08C06
+      position: 0, -2
+    - tile: RevenantBossArenaFloorR08C07
+      position: 1, -2
+    - tile: RevenantBossArenaFloorR08C08
+      position: 2, -2
+    - tile: RevenantBossArenaFloorR08C09
+      position: 3, -2
+    - tile: RevenantBossArenaFloorR08C10
+      position: 4, -2
+    - tile: RevenantBossArenaFloorR08C11
+      position: 5, -2
+    - tile: RevenantBossArenaFloorR09C01
+      position: -5, -3
+    - tile: RevenantBossArenaFloorR09C02
+      position: -4, -3
+    - tile: RevenantBossArenaFloorR09C03
+      position: -3, -3
+    - tile: RevenantBossArenaFloorR09C04
+      position: -2, -3
+    - tile: RevenantBossArenaFloorR09C05
+      position: -1, -3
+    - tile: RevenantBossArenaFloorR09C06
+      position: 0, -3
+    - tile: RevenantBossArenaFloorR09C07
+      position: 1, -3
+    - tile: RevenantBossArenaFloorR09C08
+      position: 2, -3
+    - tile: RevenantBossArenaFloorR09C09
+      position: 3, -3
+    - tile: RevenantBossArenaFloorR09C10
+      position: 4, -3
+    - tile: RevenantBossArenaFloorR09C11
+      position: 5, -3
+    - tile: RevenantBossArenaFloorR10C01
+      position: -5, -4
+    - tile: RevenantBossArenaFloorR10C02
+      position: -4, -4
+    - tile: RevenantBossArenaFloorR10C03
+      position: -3, -4
+    - tile: RevenantBossArenaFloorR10C04
+      position: -2, -4
+    - tile: RevenantBossArenaFloorR10C05
+      position: -1, -4
+    - tile: RevenantBossArenaFloorR10C06
+      position: 0, -4
+    - tile: RevenantBossArenaFloorR10C07
+      position: 1, -4
+    - tile: RevenantBossArenaFloorR10C08
+      position: 2, -4
+    - tile: RevenantBossArenaFloorR10C09
+      position: 3, -4
+    - tile: RevenantBossArenaFloorR10C10
+      position: 4, -4
+    - tile: RevenantBossArenaFloorR10C11
+      position: 5, -4
+    - tile: RevenantBossArenaFloorR11C01
+      position: -5, -5
+    - tile: RevenantBossArenaFloorR11C02
+      position: -4, -5
+    - tile: RevenantBossArenaFloorR11C03
+      position: -3, -5
+    - tile: RevenantBossArenaFloorR11C04
+      position: -2, -5
+    - tile: RevenantBossArenaFloorR11C05
+      position: -1, -5
+    - tile: RevenantBossArenaFloorR11C06
+      position: 0, -5
+    - tile: RevenantBossArenaFloorR11C07
+      position: 1, -5
+    - tile: RevenantBossArenaFloorR11C08
+      position: 2, -5
+    - tile: RevenantBossArenaFloorR11C09
+      position: 3, -5
+    - tile: RevenantBossArenaFloorR11C10
+      position: 4, -5
+    - tile: RevenantBossArenaFloorR11C11
+      position: 5, -5

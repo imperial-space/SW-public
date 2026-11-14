@@ -1,0 +1,89 @@
+- type: entity
+  id: RevenantBossScythe
+  parent: MedievalScythe
+  localizationId: Revenant_Boss_Scythe
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/revenant_scythe.rsi
+    state: item
+  - type: Item
+    sprite: Imperial/Medieval/Melee/revenant_scythe.rsi
+    inhandVisuals:
+      left:
+      - state: carry-front-left
+        map: [inhand-left]
+      - state: carry-rear-left
+        map: [inhand-left-rear]
+      right:
+      - state: carry-front-right
+        map: [inhand-right]
+      - state: carry-rear-right
+        map: [inhand-right-rear]
+      middle:
+      - state: carry-front-right
+        map: [inhand-middle]
+      - state: carry-rear-right
+        map: [inhand-middle-rear]
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/revenant_scythe.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 16
+        ParryAble: 1
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 16
+  - type: Wieldable
+  - type: ChargedAttack
+    minAttackTime: 0
+    maxAttackTime: 4
+    staticModifier: 1
+  - type: MeleeSwing
+    style: RevenantScytheSwing
+    maximumSwingScale: 2
+    requireWielded: true
+  - type: ItemNameColor
+    color: "#FF8B23"
+    pulseColor: "#FFB74F"
+    pulseSeconds: 3.2
+
+- type: meleeSwingStyle
+  id: RevenantScytheSwing
+  texture: /Textures/Imperial/Medieval/Melee/revenant_scythe_swipe.rsi
+  leftState: left-to-right
+  rightState: right-to-left
+  frameCount: 35
+  frameSeconds: 0.02
+  referenceSwingSeconds: 0.45
+  playbackSpeed: 1.15
+  arc: 210
+  anchorPixels: 112, 112
+  referenceRadiusPixels: 96
+  reachScale: 1.2823217627252834
+  handOffset: -0.015625, -0.125
+  weaponTexture: /Textures/Imperial/Medieval/Melee/revenant_scythe.rsi
+  weaponState: item
+  weaponPivotPixels: 35.17531378895271, 54.860460371807406
+  weaponAngle: 117.84037725505172
+  fadeStart: 0.405
+  motion:
+  - {time: 0, progress: 0}
+  - {time: 0.135, progress: 0.5}
+  - {time: 0.405, progress: 1}
+  wieldedFront: wielded-front
+  wieldedRear: wielded-rear
+  leftFront: carry-front-left
+  leftRear: carry-rear-left
+  rightFront: carry-front-right
+  rightRear: carry-rear-right
+
+- type: entity
+  id: VeyrathCofferWeapon
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossArenaContentDefinition
+    arenaId: revenant
+    role: coffer-weapon
+    prototype: RevenantBossScythe

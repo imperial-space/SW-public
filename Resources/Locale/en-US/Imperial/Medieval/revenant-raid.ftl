@@ -1,0 +1,14 @@
+boss-arena-party-full = The arena is full. Only 8 players can enter.
+boss-arena-spell-disabled = This spell is disabled in the boss arena.
+boss-raid-title = Raid
+boss-raid-hide = Hide
+boss-raid-show = Show
+boss-raid-lock = Lock
+boss-raid-unlock = Unlock
+boss-raid-lock-tooltip = Lock the raid HUD in place.
+boss-raid-unlock-tooltip = Unlock the raid HUD to move it.
+boss-raid-locked = Raid HUD locked. Press Unlock to move it.
+boss-raid-critical = CRITICAL
+boss-raid-dead = DEAD
+boss-raid-offline = OFFLINE
+boss-raid-drag = Hold the left mouse button on the title bar to move the raid HUD. Use − / + to resize it, or Lock to fix it in place.

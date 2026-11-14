@@ -42,6 +42,13 @@ public sealed class ChasmSystem : EntitySystem
             if (_timing.CurTime < chasm.NextDeletionTime)
                 continue;
 
+            //Imperial medieval start
+            var ev = new ChasmFallCompleteEvent();
+            RaiseLocalEvent(uid, ref ev);
+            if (ev.Handled)                                                     // the arena can return the body instead of deleting it
+                continue;
+            //Imperial medieval stop
+
             QueueDel(uid);
         }
     }
@@ -55,16 +62,23 @@ public sealed class ChasmSystem : EntitySystem
         StartFalling(uid, component, args.Tripper);
     }
 
+    //Imperial medieval start
     public void StartFalling(EntityUid chasm, ChasmComponent component, EntityUid tripper, bool playSound = true)
+    {
+        StartFalling(tripper);
+
+        if (playSound)
+            _audio.PlayPredicted(component.FallingSound, chasm, tripper);
+    }
+
+    public void StartFalling(EntityUid tripper)
     {
         var falling = AddComp<ChasmFallingComponent>(tripper);
 
         falling.NextDeletionTime = _timing.CurTime + falling.DeletionTime;
         _blocker.UpdateCanMove(tripper);
-
-        if (playSound)
-            _audio.PlayPredicted(component.FallingSound, chasm, tripper);
     }
+    //Imperial medieval stop
 
     private void OnStepTriggerAttempt(EntityUid uid, ChasmComponent component, ref StepTriggerAttemptEvent args)
     {

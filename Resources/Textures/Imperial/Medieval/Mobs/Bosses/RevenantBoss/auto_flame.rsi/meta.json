@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "copyright": "Review-only Revenant auto attack. Flame cels generated with built-in imagegen; pixel export by Codex. Free for anyone to use, modify and redistribute under CC0 1.0.",
+  "size": {
+    "x": 192,
+    "y": 160
+  },
+  "states": [
+    {
+      "name": "flight",
+      "directions": 1,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "impact",
+      "directions": 1,
+      "delays": [
+        [
+          0.04,
+          0.06,
+          0.12,
+          0.28,
+          0.02
+        ]
+      ]
+    },
+    {
+      "name": "charge",
+      "directions": 1,
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    },
+    {
+      "name": "trail",
+      "directions": 1,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ],
+  "license": "CC0-1.0"
+}

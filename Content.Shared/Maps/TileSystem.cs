@@ -92,6 +92,10 @@ public sealed class TileSystem : EntitySystem
 
     public bool PryTile(TileRef tileRef, bool pryPlating)
     {
+        //Imperial medieval start
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(tileRef.GridUid, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+            return false;
+        //Imperial medieval stop
         var tile = tileRef.Tile;
 
         if (tile.IsEmpty)
@@ -114,6 +118,10 @@ public sealed class TileSystem : EntitySystem
 
     public bool ReplaceTile(TileRef tileref, ContentTileDefinition replacementTile, EntityUid grid, MapGridComponent? component = null)
     {
+        //Imperial medieval start
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(grid, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+            return false;
+        //Imperial medieval stop
         DebugTools.Assert(tileref.GridUid == grid);
 
         if (!Resolve(grid, ref component))
@@ -133,6 +141,10 @@ public sealed class TileSystem : EntitySystem
 
     public bool DeconstructTile(TileRef tileRef)
     {
+        //Imperial medieval start
+        if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(tileRef.GridUid, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+            return false;
+        //Imperial medieval stop
         if (tileRef.Tile.IsEmpty)
             return false;
 

@@ -132,6 +132,11 @@ public sealed class FoldableSystem : EntitySystem
     /// </summary>
     public bool TrySetFolded(EntityUid uid, FoldableComponent comp, bool state)
     {
+        //Imperial medieval start
+        if (!state && (HasComp<EntityStorageComponent>(uid) || HasComp<StrapComponent>(uid)) &&
+            EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(uid, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Equipment))
+            return false;
+        //Imperial medieval stop
         if (state == comp.IsFolded)
             return false;
 

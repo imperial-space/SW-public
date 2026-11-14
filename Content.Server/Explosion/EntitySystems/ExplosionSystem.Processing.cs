@@ -444,6 +444,12 @@ public sealed partial class ExplosionSystem
         float? fireStacksOnIgnite,
         EntityUid? cause)
     {
+        //Imperial medieval start
+        var arenaRules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+        if (arenaRules.BlocksFriendlyEffect(uid))
+            return;
+        //Imperial medieval stop
+
         if (originalDamage != null)
         {
             GetEntitiesToDamage(uid, originalDamage, id, intensity);
@@ -464,7 +470,9 @@ public sealed partial class ExplosionSystem
                 }
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                _damageableSystem.TryChangeDamage(entity, damage * _damageableSystem.UniversalExplosionDamageModifier, ignoreResistances: true);
+                //Imperial medieval start
+                _damageableSystem.TryChangeDamage(entity, damage * _damageableSystem.UniversalExplosionDamageModifier, ignoreResistances: true, origin: arenaRules.CurrentSource?.Player);
+                //Imperial medieval stop
 
             }
         }
@@ -679,6 +687,10 @@ sealed class Explosion
     /// <summary>
     ///     Initialize a new instance for processing
     /// </summary>
+    //Imperial medieval start
+    public Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem.SpellSource? ArenaSource;
+    //Imperial medieval stop
+
     public Explosion(ExplosionSystem system,
         ExplosionPrototype explosionType,
         ExplosionSpaceTileFlood? spaceData,
@@ -828,6 +840,9 @@ sealed class Explosion
     /// </summary>
     public int Process(int processingTarget)
     {
+        //Imperial medieval start
+        using var arenaSource = _entMan.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().WithSource(ArenaSource);
+        //Imperial medieval stop
         // In case the explosion terminated early last tick due to exceeding the allocated processing time, use this
         // time to update the tiles.
         SetTiles();
@@ -926,4 +941,7 @@ public sealed class QueuedExplosion(ExplosionPrototype proto)
     public int MaxTileBreak;
     public bool CanCreateVacuum;
     public EntityUid? Cause; // The entity that exploded, for logging purposes.
+    //Imperial medieval start
+    public Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem.SpellSource? ArenaSource;
+    //Imperial medieval stop
 }

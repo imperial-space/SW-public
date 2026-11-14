@@ -4,6 +4,9 @@ using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
 using Content.Shared.Imperial.Medieval.ChargedAttack;
+//Imperial medieval start
+using Content.Shared.Imperial.Medieval.Weapons;
+//Imperial medieval stop
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
@@ -135,7 +138,11 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         }
 
         // imperial medieval charged attack start
-        if (TryComp<ChargedAttackComponent>(weaponUid, out var charged))
+        //Imperial medieval start
+        if (TryComp<ChargedAttackComponent>(weaponUid, out var charged) &&
+            (!HasComp<MeleeSwingComponent>(weaponUid) ||
+             EntityManager.System<MeleeSwingSystem>().CanCharge(weaponUid, entity)))
+        //Imperial medieval stop
         {
             if (!charged.CurrentAttacking)
             {

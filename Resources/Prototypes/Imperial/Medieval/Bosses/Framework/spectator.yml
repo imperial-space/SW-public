@@ -1,0 +1,36 @@
+- type: entity
+  id: BossArenaPonderingOrb
+  localizationId: Boss_Encounter_Pondering_Orb
+  save: false
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Objects/Fun/pondering_orb.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+      shader: unshaded
+  - type: PointLight
+    radius: 2
+    color: "#00CCFF"
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Godmode
+  - type: BossArenaProtected
+  - type: BossArenaSpectatorOrb
+  - type: ActivatableUI
+    key: enum.BossArenaSpectatorUiKey.Key
+    verbText: Boss_Encounter_Spectator_Verb
+  - type: UserInterface
+    interfaces:
+      enum.BossArenaSpectatorUiKey.Key:
+        type: BossArenaSpectatorBoundUserInterface
+
+- type: entity
+  id: BossArenaSpectatorCamera
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Eye
+    drawFov: false

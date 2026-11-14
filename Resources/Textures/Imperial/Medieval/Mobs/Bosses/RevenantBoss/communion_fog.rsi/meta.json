@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "copyright": "Review-only Communion pixels generated with built-in imagegen; original sources and prompts retained. Free for anyone to use, modify and redistribute under CC0 1.0.",
+  "size": {
+    "x": 384,
+    "y": 384
+  },
+  "states": [
+    {
+      "name": "fog",
+      "directions": 1,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    }
+  ],
+  "license": "CC0-1.0"
+}

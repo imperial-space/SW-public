@@ -7,4 +7,6 @@ public sealed partial class FightingBossComponent : Component
 {
     [DataField, AutoNetworkedField]
     public NetEntity? Boss;
+    [DataField, AutoNetworkedField]
+    public bool UseEncounterHud;
 }

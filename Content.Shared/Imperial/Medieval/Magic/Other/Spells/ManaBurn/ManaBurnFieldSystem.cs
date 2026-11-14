@@ -28,6 +28,8 @@ public sealed partial class ManaBurnFieldSystem : EntitySystem
                 foreach (var entity in _lookup.GetEntitiesInRange(coords, comp.Radius))
                 {
                     if (!_net.IsServer) continue;
+                    if (EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>()
+                        .BlocksFriendlyEffect(entity, comp.Owner, Content.Shared.Imperial.Medieval.Boss.BossArenaDamageKind.Spells)) continue;
                     comp.BurnTime = _timing.CurTime + comp.BurnDelay;
                     if (TryComp<ManaComponent>(entity, out var player))
                     {

@@ -31,7 +31,8 @@ public sealed partial class MedievalSpellOnInteractSystem : EntitySystem
             : component.Effects;
 
         foreach (var effect in effects)
-            effect.Effect(new EntityEffectBaseArgs(args.Target.Value, EntityManager));
+            EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().ApplySpellEffect(
+                effect, new EntityEffectBaseArgs(args.Target.Value, EntityManager, args.User), args.User);
 
         _audioSystem.PlayPvs(component.SoundOnInteract, args.User);
 

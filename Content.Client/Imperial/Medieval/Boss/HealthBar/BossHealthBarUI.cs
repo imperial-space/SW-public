@@ -37,6 +37,21 @@ public sealed class BossHealthBarUI : BoxContainer
     private float _filledRatio = 1f;
     private float _ghostRatio = 1f;
 
+    private float _displayScale = 1;
+
+    public void SetDisplayScale(float scale)
+    {
+        if (MathF.Abs(_displayScale - scale) < 0.001f) return;
+        _displayScale = scale;
+        SetWidth = MinWidth = BarWidth * scale;
+        _bar.SetWidth = _bar.MinWidth = BarWidth * scale;
+        _bar.SetHeight = _bar.MinHeight = BarHeight * scale;
+        _bar.MinSize = new Vector2(BarWidth, BarHeight) * scale;
+        _bossNameLabel.Margin = new Thickness(0, 0, 0, 4 * scale);
+        if (_resourceCache.TryGetResource<FontResource>(new ResPath("/Fonts/Imperial/Vinque/Vinque.otf"), out var font))
+            _bossNameLabel.FontOverride = new VectorFont(font, Math.Max(1, (int)MathF.Round(16 * scale)));
+    }
+
     public BossHealthBarUI()
     {
         IoCManager.InjectDependencies(this);

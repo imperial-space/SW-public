@@ -105,6 +105,11 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
         EntityCoordinates target,
         bool isContinuation = false)
     {
+        if (!EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().CanCast(spell, performer, target))
+        {
+            _popupSystem.PopupClient(Loc.GetString("boss-arena-spell-disabled"), performer, performer);
+            return false;
+        }
         var ev = new MedievalBeforeCastSpellEvent(performer, target)
         {
             IsContinuation = isContinuation

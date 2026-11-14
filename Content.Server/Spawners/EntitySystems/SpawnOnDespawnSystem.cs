@@ -19,7 +19,12 @@ public sealed class SpawnOnDespawnSystem : EntitySystem
         if (!TryComp(uid, out TransformComponent? xform))
             return;
 
+        //Imperial medieval start
+        var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+        using var source = rules.WithSource(uid);
         var newBrush = Spawn(comp.Prototype, xform.Coordinates); // imperial medieval start
+        rules.TagSpell(newBrush, uid);
+        //Imperial medieval stop
 
         if (TryComp<CultBloodPaintComponent>(uid, out var rune) && rune != null)
         {

@@ -300,6 +300,11 @@ public sealed class MedievalMeleeResourceSystem : EntitySystem
 
     private void OnMeleeHit(EntityUid uid, MedievalMeleeResourceComponent component, MeleeHitEvent args)
     {
+        foreach (var hit in args.HitEntities)
+            if (HasComp<Content.Server.Imperial.Medieval.Boss.BossEncounterComponent>(hit) &&
+                EntityManager.System<Content.Server.Imperial.Medieval.Boss.BossTelegraphSystem>().TryGetArena(hit, out _))
+                return;
+
         component.Resource -= component.ResourceWaste * CheckBadTarget(uid, component, args);
 
         if (component.Resource < 0f)

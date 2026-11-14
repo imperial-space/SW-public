@@ -1,0 +1,6 @@
+- type: bossSoundtrack
+  id: destination
+  name: Boss_Soundtrack_Destination
+  intro: /Audio/Imperial/Medieval/RevenantBoss/Destination/intro.wav
+  loop: /Audio/Imperial/Medieval/RevenantBoss/Destination/loop.wav
+  outro: /Audio/Imperial/Medieval/RevenantBoss/Destination/outro.wav

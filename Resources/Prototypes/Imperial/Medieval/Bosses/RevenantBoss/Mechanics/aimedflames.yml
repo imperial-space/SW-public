@@ -1,0 +1,28 @@
+- type: entity
+  id: VeyrathAimedFlamesMechanic
+  categories: [HideSpawnMenu]
+  components:
+  - type: BossMechanicDefinition
+    encounter: veyrath
+    feature: AimedFlames
+    autoProjectilePrototype: RevenantBossAutoFlame
+- type: entity
+  id: RevenantBossAutoFlame
+  components:
+  - type: BossAutoProjectile
+    flight:
+      sprite: Imperial/Medieval/Mobs/Bosses/RevenantBoss/auto_flame.rsi
+      state: flight
+    charge:
+      sprite: Imperial/Medieval/Mobs/Bosses/RevenantBoss/auto_flame.rsi
+      state: charge
+    trail:
+      sprite: Imperial/Medieval/Mobs/Bosses/RevenantBoss/auto_flame.rsi
+      state: trail
+    impact:
+      sprite: Imperial/Medieval/Mobs/Bosses/RevenantBoss/auto_flame.rsi
+      state: impact
+    scale: 0.5
+    anchorPixels: 120, 80
+    speed: 10
+    handOffset: 0, 0.5

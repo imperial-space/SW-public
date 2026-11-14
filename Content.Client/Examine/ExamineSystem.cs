@@ -1,3 +1,6 @@
+//Imperial medieval start
+using Content.Client.Imperial.Medieval.Items;
+//Imperial medieval stop
 using System.Linq;
 using System.Numerics;
 using System.Threading;
@@ -242,6 +245,9 @@ namespace Content.Client.Examine
                 var labelMessage = FormattedMessage.FromMarkupPermissive($"[bold]{itemName}[/bold]");
                 var label = new RichTextLabel();
                 label.SetMessage(labelMessage);
+                //Imperial medieval start
+                EntityManager.System<ItemNameColorSystem>().Apply(label, target);
+                //Imperial medieval stop
                 hBox.AddChild(label);
             }
             else

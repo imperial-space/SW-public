@@ -53,7 +53,12 @@ public sealed partial class BrarrierSystem : EntitySystem
                 if (metaDataComponent.EntityPrototype == null) continue;
                 if (!CanSpawn(component, barrierBounds, clone.Item2)) continue;
 
-                Spawn(component.SpawnedEntity, clone.Item2);
+                var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+                if (!rules.CanSpawn(component.SpawnedEntity, clone.Item2))
+                    continue;
+                using var sourceScope = rules.WithSource(uid);
+                var spawned = Spawn(component.SpawnedEntity, clone.Item2);
+                rules.TagSpell(spawned, uid);
             }
         }
     }

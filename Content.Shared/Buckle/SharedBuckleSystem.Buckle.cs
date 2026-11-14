@@ -325,6 +325,11 @@ public abstract partial class SharedBuckleSystem
             return false;
         }
 
+        //Imperial medieval start
+        if (HasComp<Content.Shared.Imperial.Medieval.Boss.BossArenaProtectedComponent>(buckleUid) &&
+            EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>().RuleDenied(buckleUid, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Control))
+            return false;
+        //Imperial medieval stop
         var buckleAttempt = new BuckleAttemptEvent((strapUid, strapComp), (buckleUid, buckleComp), user, popup);
         RaiseLocalEvent(buckleUid, ref buckleAttempt);
         if (buckleAttempt.Cancelled)

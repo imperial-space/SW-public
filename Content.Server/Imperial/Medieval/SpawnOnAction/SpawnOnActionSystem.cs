@@ -23,6 +23,9 @@ public sealed partial class SpawnOnActionSystem : EntitySystem
     private void OnUse(EntityUid uid, SpawnOnActionComponent comp, SpawnOnActionEvent ev)
     {
         if (ev.Handled) return;
+        var rules = EntityManager.System<Content.Shared.Imperial.Medieval.Boss.SharedBossArenaRulesSystem>();
+        if (rules.RuleDenied(ev.Performer, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building) || rules.RuleDenied(ev.Target, Content.Shared.Imperial.Medieval.Boss.BossArenaRule.Building))
+            return;
         if (comp.IsFirst)
         {
             comp.Object = Spawn(comp.Prototype, ev.Target);
