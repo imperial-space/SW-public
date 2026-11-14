@@ -1048,6 +1048,21 @@
   - productEntity: CarrotSeeds
     cost: 15
     reputationForBuying: 0.5
+  - productEntity: MedievalBeetSeeds
+    cost: 10
+    reputationForBuying: 0.3
+  - productEntity: MedievalSugarBeetSeeds
+    cost: 15
+    reputationForBuying: 0.5
+  - productEntity: MedievalCucumberSeeds
+    cost: 15
+    reputationForBuying: 0.5
+  - productEntity: MedievalSweetPepperSeeds
+    cost: 15
+    reputationForBuying: 0.5
+  - productEntity: GrapeSeeds
+    cost: 20
+    reputationForBuying: 0.6
   - productEntity: MedievalBlackSpotHorseWhistle
     cost: 360
     reputationForBuying: 12

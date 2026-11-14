@@ -1061,6 +1061,9 @@
     - MedievalOarCraft
     - SmokingPipeCraft
     - RollingPinCraft
+    - MedievalBowlWoodCraft
+    - MedievalPlateWoodCraft
+    - MedievalPlateSmallWoodCraft
     - MedievalWoodenFloorRoofItem
     - MedievalCartRecipe
     - MedievalDecorBoxEmptyRecipe
@@ -1149,6 +1152,13 @@
     - MaterialGunpowder10
     - MedievalCoal
     - MedievalCoal10
+    - MedievalBowlGlinaCraft
+    - MedievalPlateGlinaCraft
+    - MedievalPlateSmallGlinaCraft
+    - FoodPlateCraft
+    - FoodPlateSmallCraft
+    - MedievalJugCraft
+    - MedievalJugGlinaCraft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1501,6 +1511,22 @@
     - FoodPlateTinCraft
     - FoodPlateMuffinTinCraft
     - FoodKebabSkewerCraft
+    - MedievalBowlIronCraft
+    - MedievalPlateIronCraft
+    - MedievalPlateSmallIronCraft
+    - MedievalJugIronCraft
+    - MedievalBowlSteelCraft
+    - MedievalPlateSteelCraft
+    - MedievalPlateSmallSteelCraft
+    - MedievalJugSteelCraft
+    - MedievalBowlEbonitCraft
+    - MedievalPlateEbonitCraft
+    - MedievalPlateSmallEbonitCraft
+    - MedievalBowlGoldCraft
+    - MedievalPlateGoldCraft
+    - MedievalPlateSmallGoldCraft
+    - MedievalJugGoldCraft
+    - MedievalBreadTinCraft
     - MedievalDaggerSilver
     - MedievalFalshionSilver
     - MedievalSpearSilver
