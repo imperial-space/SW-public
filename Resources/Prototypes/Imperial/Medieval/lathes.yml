@@ -601,36 +601,151 @@
     radius: 2
 
 - type: entity
+  parent: BaseStructure
   id: MedievalCampfire
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: campfire
-  description: A campfire with a pot hung over it. Cook a stew or a dish from a recipe.
+  description: A campfire with a pot hung over it. Feed it wood, put food and water in the pot and wait.
   components:
-  - type: ApcPowerReceiver
-    needsPower: false
-  - type: Microwave
+  - type: Anchorable
+    delay: 2
+  - type: InteractionOutline
+  - type: Transform
+    noRot: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Sprite
+    netsync: false
+    sprite: Imperial/Medieval/Lathe/campfire.rsi
+    drawdepth: SmallObjects
+    snapCardinals: true
+    layers:
+    - state: stones
+    - state: ash
+    - state: log1-fresh
+      visible: false
+      map: [ "log1" ]
+    - state: log2-fresh
+      visible: false
+      map: [ "log2" ]
+    - state: log3-fresh
+      visible: false
+      map: [ "log3" ]
+    - state: log4-fresh
+      visible: false
+      map: [ "log4" ]
+    - state: embers
+      shader: unshaded
+      visible: false
+      map: [ "embers" ]
+    - state: mw_running_unlit
+      shader: unshaded
+      offset: 0, -0.09375
+      visible: false
+      map: [ "fire" ]
+    - state: frame
+    - state: pot-steam
+      visible: false
+      map: [ "pot" ]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.PowerDeviceVisuals.VisualState:
-        enum.MicrowaveVisualizerLayers.Base:
-          Idle: { state: "mw" }
-          Broken: { state: "mwb" }
-          Cooking: { state: "mw" }
-        enum.MicrowaveVisualizerLayers.BaseUnlit:
-          Idle: { state: "mw_unlit" }
-          Broken: { state: "mw_unlit" }
-          Cooking: { state: "mw_running_unlit" }
-      enum.PowerDeviceVisuals.Powered:
-        enum.MicrowaveVisualizerLayers.BaseUnlit:
-          True: { visible: true }
-          False: { visible: false }
-  - type: ActivatableUI
-    key: enum.MicrowaveUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.MicrowaveUiKey.Key:
-        type: MedievalCampfireBoundUserInterface # imperial medieval - medieval-styled microwave menu
+      enum.MedievalHearthVisuals.State:
+        embers:
+          Out: { visible: false }
+          Dying: { visible: true }
+          Low: { visible: false }
+          Burning: { visible: false }
+        fire:
+          Out: { visible: false }
+          Dying: { visible: false }
+          Low: { visible: true, state: fire-low }
+          Burning: { visible: true, state: mw_running_unlit }
+      enum.MedievalHearthVisuals.Logs:
+        log1:
+          0: { visible: false }
+          1: { visible: true }
+          2: { visible: true }
+          3: { visible: true }
+          4: { visible: true }
+        log2:
+          0: { visible: false }
+          1: { visible: false }
+          2: { visible: true }
+          3: { visible: true }
+          4: { visible: true }
+        log3:
+          0: { visible: false }
+          1: { visible: false }
+          2: { visible: false }
+          3: { visible: true }
+          4: { visible: true }
+        log4:
+          0: { visible: false }
+          1: { visible: false }
+          2: { visible: false }
+          3: { visible: false }
+          4: { visible: true }
+      enum.MedievalPotVisuals.State:
+        pot:
+          Empty: { visible: false }
+          Idle: { visible: false }
+          Cooking: { visible: true, state: pot-steam }
+          Ready: { visible: true, state: pot-ready }
+          Burnt: { visible: true, state: pot-burnt }
+  - type: PointLight
+    enabled: false
+    radius: 4
+    energy: 2.5
+    color: "#FFC90C"
+  - type: AmbientSound
+    enabled: false
+    volume: -5
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: MedievalHearth
+    fuelSound:
+      path: /Audio/Effects/fire.ogg
+    fuels:
+      Log: 360
+    stackFuels:
+      WoodPlank: 180
+  - type: MedievalCookingPot
+    ingredientWhitelist:
+      components:
+      - Edible
+      - Produce
+    ingredientBlacklist:
+      components:
+      - SolutionTransfer
+      - Log
+      tags:
+      - Soup
+    bowlWhitelist:
+      tags:
+      - MedievalBowl
+    readySound:
+      path: /Audio/Effects/Chemistry/bubbles.ogg
+    warnSound:
+      path: /Audio/Effects/sizzle.ogg
+    serveSound:
+      collection: MedievalLadlePour
+    addSound:
+      path: /Audio/Effects/Fluids/splash.ogg
+      params:
+        volume: -12
+    simmerSound:
+      path: /Audio/Imperial/Medieval/Cooking/pot_brewing.ogg
+  - type: ContainerContainer
+    containers:
+      pot_ingredients: !type:Container
+  - type: SolutionContainerManager
+    solutions:
+      pot:
+        maxVol: 120
+  - type: RefillableSolution
+    solution: pot
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -642,17 +757,6 @@
         - MachineMask
         layer:
         - MachineLayer
-  - type: Sprite
-    netsync: false
-    sprite: Imperial/Medieval/Lathe/campfire.rsi
-    drawdepth: SmallObjects
-    snapCardinals: true
-    layers:
-    - state: mw0
-      map: [ "enum.MicrowaveVisualizerLayers.Base" ]
-    - state: mw_unlit
-      shader: unshaded
-      map: [ "enum.MicrowaveVisualizerLayers.BaseUnlit" ]
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger
@@ -660,18 +764,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  #- type: UpgradePowerDraw
-  #  powerDrawMultiplier: 0.75
-  #  scaling: Exponential
-  - type: Machine
-    board: MicrowaveMachineCircuitboard
-  - type: ContainerContainer
-    containers:
-      microwave_entity_container: !type:Container ""
-      machine_board: !type:Container ""
-      machine_parts:
 
-        !type:Container ""
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: MedievalAlcPlace
@@ -968,6 +1061,9 @@
     - MedievalOarCraft
     - SmokingPipeCraft
     - RollingPinCraft
+    - MedievalBowlWoodCraft
+    - MedievalPlateWoodCraft
+    - MedievalPlateSmallWoodCraft
     - MedievalWoodenFloorRoofItem
     - MedievalCartRecipe
     - MedievalDecorBoxEmptyRecipe
@@ -1056,6 +1152,13 @@
     - MaterialGunpowder10
     - MedievalCoal
     - MedievalCoal10
+    - MedievalBowlGlinaCraft
+    - MedievalPlateGlinaCraft
+    - MedievalPlateSmallGlinaCraft
+    - FoodPlateCraft
+    - FoodPlateSmallCraft
+    - MedievalJugCraft
+    - MedievalJugGlinaCraft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1408,6 +1511,22 @@
     - FoodPlateTinCraft
     - FoodPlateMuffinTinCraft
     - FoodKebabSkewerCraft
+    - MedievalBowlIronCraft
+    - MedievalPlateIronCraft
+    - MedievalPlateSmallIronCraft
+    - MedievalJugIronCraft
+    - MedievalBowlSteelCraft
+    - MedievalPlateSteelCraft
+    - MedievalPlateSmallSteelCraft
+    - MedievalJugSteelCraft
+    - MedievalBowlEbonitCraft
+    - MedievalPlateEbonitCraft
+    - MedievalPlateSmallEbonitCraft
+    - MedievalBowlGoldCraft
+    - MedievalPlateGoldCraft
+    - MedievalPlateSmallGoldCraft
+    - MedievalJugGoldCraft
+    - MedievalBreadTinCraft
     - MedievalDaggerSilver
     - MedievalFalshionSilver
     - MedievalSpearSilver

@@ -75,6 +75,7 @@
   - type: Tag
     tags:
     - Trash
+    - MedievalBowl # Imperial Medieval
   # Imperial Medieval Start
   - type: Currency
     price:

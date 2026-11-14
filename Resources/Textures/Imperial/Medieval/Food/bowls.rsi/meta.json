@@ -241,6 +241,62 @@
     {
       "name": "inhand-right-caesar-2",
       "directions": 4
+    },
+    {
+      "name": "mess-1"
+    },
+    {
+      "name": "mess-2"
+    },
+    {
+      "name": "mess-3"
+    },
+    {
+      "name": "mess-4"
+    },
+    {
+      "name": "inhand-left-mess-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-mess-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-mess-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-mess-2",
+      "directions": 4
+    },
+    {
+      "name": "burnt-1"
+    },
+    {
+      "name": "burnt-2"
+    },
+    {
+      "name": "burnt-3"
+    },
+    {
+      "name": "burnt-4"
+    },
+    {
+      "name": "inhand-left-burnt-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-burnt-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-burnt-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-burnt-2",
+      "directions": 4
     }
   ]
 }

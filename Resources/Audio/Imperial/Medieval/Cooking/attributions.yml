@@ -1,0 +1,9 @@
+- files: ["ladle_pour_1.ogg", "ladle_pour_2.ogg", "ladle_pour_3.ogg", "ladle_pour_4.ogg"]
+  license: "Zapsplat Standard License"
+  copyright: "Sound effects obtained from https://www.zapsplat.com (soup ladle pack), converted to mono ogg and trimmed"
+  source: "https://www.zapsplat.com/sound-effect-pack/soup-ladle/"
+
+- files: ["pot_brewing.ogg"]
+  license: "CC0-1.0"
+  copyright: "by Urkki69 of Freesound.org."
+  source: "https://freesound.org/people/Urkki69/sounds/756308/"
