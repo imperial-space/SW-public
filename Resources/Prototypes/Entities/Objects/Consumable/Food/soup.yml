@@ -562,10 +562,10 @@
   id: FoodOatmeal
   description: A nice bowl of oatmeal.
   components:
-  - type: FlavorProfile
+  - type: FlavorProfile # imperial medieval
     flavors:
       - oats
-      - milk
+      - water
   - type: Sprite
     layers:
     - state: bowl
@@ -1190,11 +1190,10 @@
   description: A hot soup of meat and greens.
   # Imperial Medieval End
   components:
-  - type: FlavorProfile
+  - type: FlavorProfile # imperial medieval
     flavors:
       - meaty
-      - tomato
-      - carrot
+      - potatoes
   # Imperial Medieval Start
   - type: Sprite
     sprite: Imperial/Medieval/Food/bowls.rsi

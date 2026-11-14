@@ -1,0 +1,188 @@
+- type: CP14Recipe
+  id: MedievalBowlWoodCraft
+  craftTime: 4
+  stacks:
+    WoodPlank: 1
+  result: MedievalBowlWood
+
+- type: CP14Recipe
+  id: MedievalPlateWoodCraft
+  craftTime: 4
+  stacks:
+    WoodPlank: 1
+  result: MedievalPlateWood
+
+- type: CP14Recipe
+  id: MedievalPlateSmallWoodCraft
+  craftTime: 4
+  stacks:
+    WoodPlank: 1
+  result: MedievalPlateSmallWood
+
+- type: CP14Recipe
+  id: MedievalBowlIronCraft
+  craftTime: 4
+  stacks:
+    MedievalIronIngot: 1
+  result: MedievalBowlIron
+
+- type: CP14Recipe
+  id: MedievalPlateIronCraft
+  craftTime: 4
+  stacks:
+    MedievalIronIngot: 1
+  result: MedievalPlateIron
+
+- type: CP14Recipe
+  id: MedievalPlateSmallIronCraft
+  craftTime: 4
+  stacks:
+    MedievalIronIngot: 1
+  result: MedievalPlateSmallIron
+
+- type: CP14Recipe
+  id: MedievalJugIronCraft
+  craftTime: 4
+  stacks:
+    MedievalIronIngot: 2
+  result: MedievalJugIron
+
+- type: CP14Recipe
+  id: MedievalBowlSteelCraft
+  craftTime: 6
+  stacks:
+    MedievalSteelIngot: 1
+  result: MedievalBowlSteel
+
+- type: CP14Recipe
+  id: MedievalPlateSteelCraft
+  craftTime: 6
+  stacks:
+    MedievalSteelIngot: 1
+  result: MedievalPlateSteel
+
+- type: CP14Recipe
+  id: MedievalPlateSmallSteelCraft
+  craftTime: 6
+  stacks:
+    MedievalSteelIngot: 1
+  result: MedievalPlateSmallSteel
+
+- type: CP14Recipe
+  id: MedievalJugSteelCraft
+  craftTime: 6
+  stacks:
+    MedievalSteelIngot: 2
+  result: MedievalJugSteel
+
+- type: CP14Recipe
+  id: MedievalBowlEbonitCraft
+  craftTime: 6
+  stacks:
+    MedievalEbonitIngot: 1
+  result: MedievalBowlEbonit
+
+- type: CP14Recipe
+  id: MedievalPlateEbonitCraft
+  craftTime: 6
+  stacks:
+    MedievalEbonitIngot: 1
+  result: MedievalPlateEbonit
+
+- type: CP14Recipe
+  id: MedievalPlateSmallEbonitCraft
+  craftTime: 6
+  stacks:
+    MedievalEbonitIngot: 1
+  result: MedievalPlateSmallEbonit
+
+- type: CP14Recipe
+  id: MedievalBowlGoldCraft
+  craftTime: 15
+  stacks:
+    MedievalGold: 2
+  result: MedievalBowlGold
+
+- type: CP14Recipe
+  id: MedievalPlateGoldCraft
+  craftTime: 15
+  stacks:
+    MedievalGold: 2
+  result: MedievalPlateGold
+
+- type: CP14Recipe
+  id: MedievalPlateSmallGoldCraft
+  craftTime: 15
+  stacks:
+    MedievalGold: 1
+  result: MedievalPlateSmallGold
+
+- type: CP14Recipe
+  id: MedievalJugGoldCraft
+  craftTime: 15
+  stacks:
+    MedievalGold: 3
+  result: MedievalJugGold
+
+- type: CP14Recipe
+  id: MedievalBreadTinCraft
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 1
+  result: MedievalBreadTin
+
+- type: CP14Recipe
+  id: MedievalBowlGlinaCraft
+  craftTime: 10
+  stacks:
+    MedievalGlina: 2
+    MedievalCoal: 1
+  result: MedievalBowlGlina
+
+- type: CP14Recipe
+  id: MedievalPlateGlinaCraft
+  craftTime: 10
+  stacks:
+    MedievalGlina: 2
+    MedievalCoal: 1
+  result: MedievalPlateGlina
+
+- type: CP14Recipe
+  id: MedievalPlateSmallGlinaCraft
+  craftTime: 10
+  stacks:
+    MedievalGlina: 1
+    MedievalCoal: 1
+  result: MedievalPlateSmallGlina
+
+- type: CP14Recipe
+  id: FoodPlateCraft
+  craftTime: 10
+  stacks:
+    MedievalGlina: 2
+    MedievalCoal: 1
+  result: FoodPlate
+
+- type: CP14Recipe
+  id: FoodPlateSmallCraft
+  craftTime: 10
+  stacks:
+    MedievalGlina: 1
+    MedievalCoal: 1
+  result: FoodPlateSmall
+
+- type: CP14Recipe
+  id: MedievalJugCraft
+  craftTime: 10
+  stacks:
+    MedievalGlina: 3
+    MedievalCoal: 1
+  result: MedievalJug
+
+- type: CP14Recipe
+  id: MedievalJugGlinaCraft
+  craftTime: 10
+  stacks:
+    MedievalGlina: 3
+    MedievalCoal: 1
+  result: MedievalJugGlina
