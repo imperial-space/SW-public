@@ -19,7 +19,13 @@ public sealed partial class MedievalCookingPotComponent : Component
     public string SolutionId = "pot";
 
     [DataField]
-    public int MaxIngredients = 4;
+    public int MaxIngredients = 8;
+
+    /// <summary>
+    ///     How many items of one prototype the pot takes.
+    /// </summary>
+    [DataField]
+    public int MaxPerProduct = 3;
 
     [DataField]
     public EntityWhitelist? IngredientWhitelist;
@@ -122,6 +128,12 @@ public sealed partial class MedievalCookingPotComponent : Component
 
     [ViewVariables]
     public int Portions;
+
+    /// <summary>
+    ///     Share of the dish's nutrition each portion keeps.
+    /// </summary>
+    [ViewVariables]
+    public float PortionNutrition = 1f;
 
     [ViewVariables]
     public EntProtoId? Result;

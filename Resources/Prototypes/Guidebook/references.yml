@@ -6,7 +6,6 @@
   children:
   - Chemicals
   - Drinks
-  - FoodRecipes
   - Writing
 
 - type: guideEntry

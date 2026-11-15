@@ -88,18 +88,28 @@
   - id: MedievalFoodBeet
     count: 2
   - id: FoodPotato
-  - tag: Meat
-    excludeTags: [ Cooked, Cutlet ]
+  - ids: [ FoodMeatCutlet, FoodMeatChickenCutlet ]
+  extras:
+  - MedievalFoodBeet
+  - FoodPotato
+  - FoodCarrot
+  - FoodMeatCutlet
+  - FoodMeatChickenCutlet
   cookTime: 90
   result: FoodSoupBeet
 
 - type: medievalCookRecipe
   id: MedievalCookMeatStew
   ingredients:
-  - tag: Meat
-    excludeTags: [ Cooked, Cutlet ]
+  - ids: [ FoodMeatCutlet, FoodMeatChickenCutlet ]
     count: 2
   - id: FoodPotato
+  extras:
+  - FoodMeatCutlet
+  - FoodMeatChickenCutlet
+  - FoodPotato
+  - FoodCarrot
+  - FoodMushroom
   cookTime: 100
   result: FoodSoupStew
 
@@ -108,7 +118,13 @@
   ingredients:
   - id: FoodCarrot
   - id: FoodPotato
-  - tag: Vegetable
+  extras:
+  - FoodCarrot
+  - FoodPotato
+  - FoodMushroom
+  - MedievalFoodBeet
+  - MedievalFoodCucumber
+  - MedievalFoodSweetPepper
   cookTime: 75
   result: FoodSoupVegetable
 
@@ -116,7 +132,11 @@
   id: MedievalCookMushroomSoup
   ingredients:
   - id: FoodMushroom
-    count: 3
+    count: 2
+  extras:
+  - FoodMushroom
+  - MedievalFoodSweetPepper
+  - MedievalFoodCucumber
   cookTime: 70
   result: FoodSoupMushroom
 
@@ -124,7 +144,10 @@
   id: MedievalCookPurpleMushroomSoup
   ingredients:
   - id: MedievalMushroom1
-    count: 3
+    count: 2
+  extras:
+  - MedievalMushroom1
+  - FoodMushroom
   cookTime: 70
   result: MedievalFoodSoupMushroomPurple
 
@@ -132,7 +155,10 @@
   id: MedievalCookMashedPotato
   ingredients:
   - id: FoodPotato
-    count: 3
+    count: 2
+  extras:
+  - FoodPotato
+  - MedievalFoodPotatoClean
   water: 40
   cookTime: 60
   result: MedievalFoodPotatoMashed
@@ -142,7 +168,9 @@
   id: MedievalCookPorridge
   ingredients:
   - id: WheatBushel
-    count: 3
+    count: 2
+  extras:
+  - WheatBushel
   water: 40
   cookTime: 60
   result: FoodOatmeal
