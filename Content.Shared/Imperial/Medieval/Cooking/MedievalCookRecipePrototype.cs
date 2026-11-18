@@ -5,8 +5,8 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Imperial.Medieval.Cooking;
 
 /// <summary>
-///     imperial medieval - what a cooking pot makes out of what lies in it. The pot has to hold the core
-///     ingredients (in any order) and enough water. Anything else in it has to be one of the extras.
+///     imperial medieval - what a cooking pot makes out of what lies in it. The pot has to hold every core
+///     ingredient at least once (in any order) and enough water. Anything else in it has to be one of the extras.
 /// </summary>
 [Prototype("medievalCookRecipe")]
 public sealed partial class MedievalCookRecipePrototype : IPrototype
@@ -33,7 +33,7 @@ public sealed partial class MedievalCookRecipePrototype : IPrototype
     public int Portions = 4;
 
     /// <summary>
-    ///     Items that may lie in the pot besides the core. Each one makes a portion more.
+    ///     Each one makes a portion more, up to <see cref="MaxPortions"/>.
     /// </summary>
     [DataField]
     public List<EntProtoId> Extras = new();
@@ -41,15 +41,9 @@ public sealed partial class MedievalCookRecipePrototype : IPrototype
     [DataField]
     public int MaxPortions = 6;
 
-    /// <summary>
-    ///     Share of the nutrition every portion loses for each portion an extra added.
-    /// </summary>
     [DataField]
     public float ExtraSatietyLoss = 0.1f;
 
-    /// <summary>
-    ///     One portion, already in a bowl.
-    /// </summary>
     [DataField(required: true)]
     public EntProtoId Result;
 
@@ -67,8 +61,8 @@ public sealed partial class MedievalCookRecipePrototype : IPrototype
 }
 
 /// <summary>
-///     One line of a recipe: <see cref="Count"/> items of an exact prototype, of any prototype from a list,
-///     or of anything with a tag.
+///     One line of a recipe: an exact prototype, any prototype from a list, or anything with a tag.
+///     <see cref="Count"/> is the full amount: one is enough to cook, the full core gives all the portions.
 /// </summary>
 [DataDefinition]
 public sealed partial class MedievalCookIngredient

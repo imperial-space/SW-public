@@ -80,7 +80,7 @@ public sealed class MedievalPotIcons : LayoutContainer
     private bool _potHovered;
 
     /// <summary>
-    ///     Asks to take an item out; false when nothing was asked for, e.g. the player's hands are full.
+    ///     False when nothing was asked for, e.g. the player's hands are full.
     /// </summary>
     public Func<EntityUid, bool>? TryTake;
 
@@ -120,7 +120,7 @@ public sealed class MedievalPotIcons : LayoutContainer
     }
 
     /// <summary>
-    ///     Puts the control over the pot. <paramref name="tile"/> is the size of a map tile on screen.
+    ///     <paramref name="tile"/> is the size of a map tile on screen.
     /// </summary>
     public void Place(Vector2 potOnScreen, float tile)
     {
@@ -547,9 +547,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         public float Age;
     }
 
-    /// <summary>
-    ///     One kind of ingredient: its sprite, how many there are and the one a click takes out.
-    /// </summary>
     private sealed class Icon : Control
     {
         private readonly EntityPrototypeView _view = NewView();

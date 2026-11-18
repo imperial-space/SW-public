@@ -45,7 +45,6 @@ public sealed class MedievalPotIconsSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    // interface objects only, the pot's own state stays in its components
     private readonly Dictionary<EntityUid, MedievalPotIcons> _shown = new();
     private readonly LayoutContainer _root = new() { MouseFilter = Control.MouseFilterMode.Ignore };
     private Control? _screen;

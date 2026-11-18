@@ -345,9 +345,6 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         return pot.ServeSound;
     }
 
-    /// <summary>
-    ///     Throws away everything in the pot: ingredients, water and the finished dish.
-    /// </summary>
     private void Reset(EntityUid uid, MedievalCookingPotComponent pot)
     {
         _container.CleanContainer(pot.Ingredients);

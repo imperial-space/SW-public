@@ -21,9 +21,6 @@ public sealed partial class MedievalCookingPotComponent : Component
     [DataField]
     public int MaxIngredients = 8;
 
-    /// <summary>
-    ///     How many items of one prototype the pot takes.
-    /// </summary>
     [DataField]
     public int MaxPerProduct = 3;
 
@@ -36,9 +33,6 @@ public sealed partial class MedievalCookingPotComponent : Component
     [DataField]
     public EntityWhitelist? IngredientBlacklist;
 
-    /// <summary>
-    ///     What counts as an empty bowl a portion can be ladled into.
-    /// </summary>
     [DataField]
     public EntityWhitelist? BowlWhitelist;
 
@@ -112,7 +106,7 @@ public sealed partial class MedievalCookingPotComponent : Component
     public MedievalPotState State;
 
     /// <summary>
-    ///     The recipe the current ingredients match; progress belongs to it and is dropped when it changes.
+    ///     Progress belongs to this recipe and is dropped when it changes.
     /// </summary>
     [ViewVariables]
     public string? Recipe;
@@ -129,9 +123,6 @@ public sealed partial class MedievalCookingPotComponent : Component
     [ViewVariables]
     public int Portions;
 
-    /// <summary>
-    ///     Share of the dish's nutrition each portion keeps.
-    /// </summary>
     [ViewVariables]
     public float PortionNutrition = 1f;
 

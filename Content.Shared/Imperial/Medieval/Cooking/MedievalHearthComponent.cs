@@ -18,7 +18,7 @@ public sealed partial class MedievalHearthComponent : Component
     public float BurnTime;
 
     /// <summary>
-    ///     How many logs fit in the fire. Each one is drawn on its own.
+    ///     Each log is drawn on its own.
     /// </summary>
     [DataField]
     public int LogSlots = 4;
@@ -29,9 +29,6 @@ public sealed partial class MedievalHearthComponent : Component
     [DataField]
     public float SlotBurnTime = 360f;
 
-    /// <summary>
-    ///     At or below this many seconds left the fire is shown as dying.
-    /// </summary>
     [DataField]
     public float DyingBurnTime = 120f;
 
@@ -42,9 +39,6 @@ public sealed partial class MedievalHearthComponent : Component
     [DataField]
     public Dictionary<EntProtoId, float> Fuels = new();
 
-    /// <summary>
-    ///     Seconds of burning one unit of this stack adds.
-    /// </summary>
     [DataField]
     public Dictionary<ProtoId<StackPrototype>, float> StackFuels = new();
 
