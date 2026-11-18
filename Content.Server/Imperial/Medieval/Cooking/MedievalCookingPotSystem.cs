@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Destructible;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Popups;
+using Content.Server.Stack;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Destructible;
@@ -13,6 +14,7 @@ using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Cooking;
 using Content.Shared.Interaction;
 using Content.Shared.Players.RateLimiting;
+using Content.Shared.Stacks;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
@@ -43,6 +45,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
@@ -192,8 +195,22 @@ public sealed class MedievalCookingPotSystem : EntitySystem
             return;
         }
 
-        if (!_hands.TryDropIntoContainer(user, item, pot.Ingredients))
+        // a stack goes in one unit at a time, otherwise one click would count a whole stack as a single ingredient
+        if (TryComp<StackComponent>(item, out var stack) && stack.Count > 1)
+        {
+            if (_stack.Split(item, 1, Transform(user).Coordinates, stack) is not { } unit)
+                return;
+
+            if (!_container.Insert(unit, pot.Ingredients))
+            {
+                _stack.TryAdd(unit, item);
+                return;
+            }
+        }
+        else if (!_hands.TryDropIntoContainer(user, item, pot.Ingredients))
+        {
             return;
+        }
 
         _popup.PopupEntity(Loc.GetString("medieval-pot-added", ("item", MetaData(item).EntityName)), uid, user);
         _audio.PlayPvs(pot.AddSound, uid);
@@ -429,10 +446,11 @@ public sealed class MedievalCookingPotSystem : EntitySystem
     {
         pot.Portions = recipe?.Portions ?? pot.MessPortions;
         pot.PortionNutrition = 1f;
-        if (recipe != null && TryMatch(recipe, pot.Ingredients.ContainedEntities, out var extras))
+        if (recipe != null && TryMatch(recipe, pot.Ingredients.ContainedEntities, out var extras, out var coreShare))
         {
-            var added = Math.Clamp(extras, 0, Math.Max(0, recipe.MaxPortions - recipe.Portions));
-            pot.Portions += added;
+            var basePortions = Math.Max(1, (int) MathF.Round(recipe.Portions * coreShare, MidpointRounding.AwayFromZero));
+            var added = Math.Clamp(extras, 0, Math.Max(0, recipe.MaxPortions - basePortions));
+            pot.Portions = basePortions + added;
             pot.PortionNutrition = Math.Max(MinNutrition, 1f - recipe.ExtraSatietyLoss * added);
         }
 
@@ -522,7 +540,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
     {
         foreach (var recipe in _prototypes.EnumeratePrototypes<MedievalCookRecipePrototype>())
         {
-            if (TryMatch(recipe, pot.Ingredients.ContainedEntities, out _))
+            if (TryMatch(recipe, pot.Ingredients.ContainedEntities, out _, out _))
                 return true;
         }
 
@@ -538,7 +556,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         var water = GetWater(uid);
         foreach (var recipe in _prototypes.EnumeratePrototypes<MedievalCookRecipePrototype>())
         {
-            if (water >= recipe.Water && TryMatch(recipe, items, out _))
+            if (water >= recipe.Water && TryMatch(recipe, items, out _, out _))
                 return recipe;
         }
 
@@ -546,30 +564,35 @@ public sealed class MedievalCookingPotSystem : EntitySystem
     }
 
     /// <summary>
-    ///     The core of the recipe has to be there in full, everything left over has to be one of its extras.
+    ///     Every core ingredient has to be there at least once, and how much of the full core is there sets the
+    ///     portions. Everything left over has to be one of the extras.
     /// </summary>
-    private bool TryMatch(MedievalCookRecipePrototype recipe, IReadOnlyList<EntityUid> items, out int extras)
+    private bool TryMatch(MedievalCookRecipePrototype recipe, IReadOnlyList<EntityUid> items, out int extras, out float coreShare)
     {
         extras = 0;
+        coreShare = 0f;
         _free.Clear();
         _free.AddRange(items);
+
+        var taken = 0;
+        var full = 0;
 
         // the narrowest lines first, so a wide line can't swallow an item another line is waiting for
         foreach (var line in recipe.Ingredients)
         {
-            if (line.Id != null && !TakeMatching(line, _free))
+            if (line.Id != null && !TakeMatching(line, _free, ref taken))
                 return false;
         }
 
         foreach (var line in recipe.Ingredients)
         {
-            if (line.Id == null && line.Ids.Count > 0 && !TakeMatching(line, _free))
+            if (line.Id == null && line.Ids.Count > 0 && !TakeMatching(line, _free, ref taken))
                 return false;
         }
 
         foreach (var line in recipe.Ingredients)
         {
-            if (line.Id == null && line.Ids.Count == 0 && !TakeMatching(line, _free))
+            if (line.Id == null && line.Ids.Count == 0 && !TakeMatching(line, _free, ref taken))
                 return false;
         }
 
@@ -580,22 +603,31 @@ public sealed class MedievalCookingPotSystem : EntitySystem
                 return false;
         }
 
+        foreach (var line in recipe.Ingredients)
+        {
+            full += line.Count;
+        }
+
         extras = _free.Count;
+        coreShare = full > 0 ? (float) taken / full : 1f;
         return true;
     }
 
-    private bool TakeMatching(MedievalCookIngredient line, List<EntityUid> items)
+    private bool TakeMatching(MedievalCookIngredient line, List<EntityUid> items, ref int taken)
     {
-        for (var taken = 0; taken < line.Count; taken++)
+        var got = 0;
+        while (got < line.Count)
         {
             var index = items.FindIndex(item => IsIngredient(line, item));
             if (index < 0)
-                return false;
+                break;
 
             items.RemoveAt(index);
+            got++;
         }
 
-        return true;
+        taken += got;
+        return got > 0;
     }
 
     private bool IsIngredient(MedievalCookIngredient line, EntityUid item)

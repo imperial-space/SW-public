@@ -297,6 +297,258 @@
     {
       "name": "inhand-right-burnt-2",
       "directions": 4
+    },
+    {
+      "name": "worm-1"
+    },
+    {
+      "name": "worm-2"
+    },
+    {
+      "name": "worm-3"
+    },
+    {
+      "name": "worm-4"
+    },
+    {
+      "name": "inhand-left-worm-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-worm-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-worm-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-worm-2",
+      "directions": 4
+    },
+    {
+      "name": "rotten-1"
+    },
+    {
+      "name": "rotten-2"
+    },
+    {
+      "name": "rotten-3"
+    },
+    {
+      "name": "rotten-4"
+    },
+    {
+      "name": "inhand-left-rotten-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-rotten-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-rotten-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-rotten-2",
+      "directions": 4
+    },
+    {
+      "name": "crab-1"
+    },
+    {
+      "name": "crab-2"
+    },
+    {
+      "name": "crab-3"
+    },
+    {
+      "name": "crab-4"
+    },
+    {
+      "name": "inhand-left-crab-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-crab-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-crab-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-crab-2",
+      "directions": 4
+    },
+    {
+      "name": "fish-1"
+    },
+    {
+      "name": "fish-2"
+    },
+    {
+      "name": "fish-3"
+    },
+    {
+      "name": "fish-4"
+    },
+    {
+      "name": "inhand-left-fish-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-fish-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-fish-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-fish-2",
+      "directions": 4
+    },
+    {
+      "name": "garlic-1"
+    },
+    {
+      "name": "garlic-2"
+    },
+    {
+      "name": "garlic-3"
+    },
+    {
+      "name": "garlic-4"
+    },
+    {
+      "name": "inhand-left-garlic-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-garlic-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-garlic-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-garlic-2",
+      "directions": 4
+    },
+    {
+      "name": "cheese-1"
+    },
+    {
+      "name": "cheese-2"
+    },
+    {
+      "name": "cheese-3"
+    },
+    {
+      "name": "cheese-4"
+    },
+    {
+      "name": "inhand-left-cheese-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-cheese-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-cheese-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-cheese-2",
+      "directions": 4
+    },
+    {
+      "name": "tomato-1"
+    },
+    {
+      "name": "tomato-2"
+    },
+    {
+      "name": "tomato-3"
+    },
+    {
+      "name": "tomato-4"
+    },
+    {
+      "name": "inhand-left-tomato-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-tomato-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-tomato-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-tomato-2",
+      "directions": 4
+    },
+    {
+      "name": "cucumber-1"
+    },
+    {
+      "name": "cucumber-2"
+    },
+    {
+      "name": "cucumber-3"
+    },
+    {
+      "name": "cucumber-4"
+    },
+    {
+      "name": "inhand-left-cucumber-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-cucumber-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-cucumber-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-cucumber-2",
+      "directions": 4
+    },
+    {
+      "name": "apple_chicken-1"
+    },
+    {
+      "name": "apple_chicken-2"
+    },
+    {
+      "name": "apple_chicken-3"
+    },
+    {
+      "name": "apple_chicken-4"
+    },
+    {
+      "name": "inhand-left-apple_chicken-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-apple_chicken-1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-apple_chicken-2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-apple_chicken-2",
+      "directions": 4
     }
   ]
 }

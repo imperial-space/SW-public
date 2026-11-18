@@ -37,7 +37,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -75,7 +75,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 8
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -88,28 +88,32 @@
   - id: MedievalFoodBeet
     count: 2
   - id: FoodPotato
-  - ids: [ FoodMeatCutlet, FoodMeatChickenCutlet ]
+    count: 2
+  - ids: [ FoodMeatCutlet, FoodMeatChicken ]
   extras:
   - MedievalFoodBeet
   - FoodPotato
   - FoodCarrot
   - FoodMeatCutlet
-  - FoodMeatChickenCutlet
+  - FoodMeatChicken
   cookTime: 90
   result: FoodSoupBeet
 
 - type: medievalCookRecipe
   id: MedievalCookMeatStew
   ingredients:
-  - ids: [ FoodMeatCutlet, FoodMeatChickenCutlet ]
-    count: 2
+  - ids: [ FoodMeatCutlet, FoodMeatChicken ]
+    count: 3
   - id: FoodPotato
+    count: 2
   extras:
   - FoodMeatCutlet
-  - FoodMeatChickenCutlet
+  - FoodMeatChicken
   - FoodPotato
   - FoodCarrot
   - FoodMushroom
+  portions: 3
+  maxPortions: 5
   cookTime: 100
   result: FoodSoupStew
 
@@ -117,7 +121,9 @@
   id: MedievalCookVegetableStew
   ingredients:
   - id: FoodCarrot
+    count: 2
   - id: FoodPotato
+    count: 2
   extras:
   - FoodCarrot
   - FoodPotato
@@ -125,6 +131,8 @@
   - MedievalFoodBeet
   - MedievalFoodCucumber
   - MedievalFoodSweetPepper
+  portions: 3
+  maxPortions: 5
   cookTime: 75
   result: FoodSoupVegetable
 
@@ -132,11 +140,13 @@
   id: MedievalCookMushroomSoup
   ingredients:
   - id: FoodMushroom
-    count: 2
+    count: 3
   extras:
   - FoodMushroom
   - MedievalFoodSweetPepper
   - MedievalFoodCucumber
+  portions: 2
+  maxPortions: 4
   cookTime: 70
   result: FoodSoupMushroom
 
@@ -144,10 +154,12 @@
   id: MedievalCookPurpleMushroomSoup
   ingredients:
   - id: MedievalMushroom1
-    count: 2
+    count: 3
   extras:
   - MedievalMushroom1
   - FoodMushroom
+  portions: 2
+  maxPortions: 4
   cookTime: 70
   result: MedievalFoodSoupMushroomPurple
 
@@ -155,10 +167,12 @@
   id: MedievalCookMashedPotato
   ingredients:
   - id: FoodPotato
-    count: 2
+    count: 3
   extras:
   - FoodPotato
   - MedievalFoodPotatoClean
+  portions: 3
+  maxPortions: 5
   water: 40
   cookTime: 60
   result: MedievalFoodPotatoMashed
@@ -171,7 +185,145 @@
     count: 2
   extras:
   - WheatBushel
+  portions: 3
+  maxPortions: 5
   water: 40
   cookTime: 60
   result: FoodOatmeal
   silentServe: true
+
+- type: medievalCookRecipe
+  id: MedievalCookWormSoup
+  ingredients:
+  - id: Worm
+    count: 3
+  portions: 2
+  cookTime: 60
+  result: MedievalFoodSoupWorm
+
+- type: medievalCookRecipe
+  id: MedievalCookRottenSoup
+  ingredients:
+  - id: FoodMeatRotten
+  extras:
+  - FoodMeatRotten
+  - Worm
+  portions: 1
+  maxPortions: 3
+  cookTime: 70
+  result: MedievalFoodSoupRotten
+
+- type: medievalCookRecipe
+  id: MedievalCookCrabSoup
+  ingredients:
+  - id: FoodMeatCrab
+    count: 3
+  extras:
+  - FoodMeatCrab
+  - FoodPotato
+  - FoodGarlic
+  portions: 2
+  maxPortions: 4
+  cookTime: 80
+  result: MedievalFoodSoupCrab
+
+- type: medievalCookRecipe
+  id: MedievalCookFishSoup
+  ingredients:
+  - ids: [ FishPlotva, FishLin, FishSterlyad, FishOkun, FishZherekh, FishSom, FishKefal, FishKambalaTurbo, FishGoldSpar, FishStavrida, FishZubatka, FishTuna ]
+  - id: FoodPotato
+    count: 2
+  extras:
+  - FishPlotva
+  - FishLin
+  - FishSterlyad
+  - FishOkun
+  - FishZherekh
+  - FishSom
+  - FishKefal
+  - FishKambalaTurbo
+  - FishGoldSpar
+  - FishStavrida
+  - FishZubatka
+  - FishTuna
+  - FoodPotato
+  - FoodCarrot
+  - FoodGarlic
+  portions: 3
+  maxPortions: 5
+  cookTime: 80
+  result: MedievalFoodSoupFish
+
+- type: medievalCookRecipe
+  id: MedievalCookGarlicSoup
+  ingredients:
+  - id: FoodGarlic
+  - id: FoodPotato
+    count: 2
+  extras:
+  - FoodGarlic
+  - FoodPotato
+  portions: 2
+  maxPortions: 4
+  cookTime: 70
+  result: MedievalFoodSoupGarlic
+
+- type: medievalCookRecipe
+  id: MedievalCookCheeseSoup
+  ingredients:
+  - ids: [ FoodCheeseSlice, MedievalFoodCheesePiece, MedievalFoodCheeseGoatSlice, MedievalFoodCheeseGoatPiece ]
+    count: 2
+  - id: FoodPotato
+    count: 2
+  extras:
+  - FoodCheeseSlice
+  - MedievalFoodCheesePiece
+  - MedievalFoodCheeseGoatSlice
+  - MedievalFoodCheeseGoatPiece
+  - FoodPotato
+  portions: 2
+  maxPortions: 4
+  cookTime: 70
+  result: MedievalFoodSoupCheese
+
+- type: medievalCookRecipe
+  id: MedievalCookTomatoSoup
+  ingredients:
+  - id: FoodTomato
+    count: 3
+  extras:
+  - FoodTomato
+  - MedievalFoodSweetPepper
+  - FoodGarlic
+  portions: 2
+  maxPortions: 4
+  cookTime: 65
+  result: MedievalFoodSoupTomato
+
+- type: medievalCookRecipe
+  id: MedievalCookCucumberSoup
+  ingredients:
+  - id: MedievalFoodCucumber
+    count: 3
+  extras:
+  - MedievalFoodCucumber
+  - MedievalFoodSweetPepper
+  - FoodGarlic
+  portions: 2
+  maxPortions: 4
+  cookTime: 60
+  result: MedievalFoodSoupCucumber
+
+- type: medievalCookRecipe
+  id: MedievalCookAppleChickenSoup
+  ingredients:
+  - id: FoodApple
+  - ids: [ MedievalFoodChickenWhole, FoodMeatChicken ]
+  - id: FoodOrange
+  extras:
+  - FoodApple
+  - FoodOrange
+  portions: 2
+  maxPortions: 4
+  cookTime: 80
+  result: MedievalFoodSoupAppleChicken
