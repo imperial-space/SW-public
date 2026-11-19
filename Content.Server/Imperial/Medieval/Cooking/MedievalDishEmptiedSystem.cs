@@ -7,10 +7,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Cooking;
 
-/// <summary>
-///     imperial medieval - a served dish that was poured out turns back into the bowl it came in,
-///     instead of staying an empty "stew".
-/// </summary>
 public sealed class MedievalDishEmptiedSystem : EntitySystem
 {
     private const string DishSolution = "food";
@@ -32,7 +28,7 @@ public sealed class MedievalDishEmptiedSystem : EntitySystem
         if (!IsEmpty(ent))
             return;
 
-        // eating drains the solution too and removes the dish itself a moment later, so look again next tick
+        // eating also drains it, check again next tick
         Timer.Spawn(0, () => ReturnBowl(ent));
     }
 
@@ -46,7 +42,7 @@ public sealed class MedievalDishEmptiedSystem : EntitySystem
         if (TerminatingOrDeleted(ent) || !IsEmpty(ent) || ent.Comp.Bowl is not { } bowlId)
             return;
 
-        // map coordinates: the dish may lie in a bag, whose local coordinates mean nothing outside it
+        // map coords, the dish may be in a bag
         var bowl = Spawn(bowlId, _transform.GetMapCoordinates(ent));
         _container.TryGetContainingContainer((ent.Owner, null, null), out var container);
         var holder = container != null && HasComp<HandsComponent>(container.Owner) ? container.Owner : (EntityUid?) null;

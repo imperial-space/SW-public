@@ -36,7 +36,7 @@ public sealed class MedievalHearthSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, MedievalHearthComponent hearth, ComponentStartup args)
     {
-        // a hearth placed with fuel in its prototype starts lit
+        // starts lit if the prototype has fuel
         UpdateState(uid, hearth, true);
     }
 
@@ -81,9 +81,6 @@ public sealed class MedievalHearthSystem : EntitySystem
         args.PushMarkup($"[color={GetExamineColor(hearth).ToHex()}]{Loc.GetString(key)}[/color]");
     }
 
-    /// <summary>
-    ///     A bigger pile burns hotter: the text goes from orange to red with every log added.
-    /// </summary>
     private static Color GetExamineColor(MedievalHearthComponent hearth)
     {
         switch (hearth.State)

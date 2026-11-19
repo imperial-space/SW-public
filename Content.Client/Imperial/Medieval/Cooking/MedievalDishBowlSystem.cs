@@ -6,10 +6,6 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.Medieval.Cooking;
 
-/// <summary>
-///     imperial medieval - draws a served dish on the bowl it was ladled into instead of the default one,
-///     on the ground and in the hands.
-/// </summary>
 public sealed class MedievalDishBowlSystem : EntitySystem
 {
     private const string BowlPrefix = "MedievalBowl";
@@ -49,13 +45,13 @@ public sealed class MedievalDishBowlSystem : EntitySystem
 
     private void OnGetHeldVisuals(EntityUid uid, MedievalDishBowlComponent comp, GetInhandVisualsEvent args)
     {
-        // the bowls come in materials: MedievalBowlGold uses the bowl-gold-inhand-left state and so on
+        // MedievalBowlGold uses bowl-gold-inhand-left and so on
         if (comp.Bowl is not { } bowl || !bowl.Id.StartsWith(BowlPrefix) || args.Layers.Count == 0)
             return;
 
         var material = bowl.Id.Substring(BowlPrefix.Length).ToLowerInvariant();
         var (key, original) = args.Layers[0];
-        // a new layer: the original is the prototype's own data and is shared by every dish
+        // new layer, the original is shared prototype data
         var layer = new PrototypeLayerData
         {
             RsiPath = BowlRsi.ToString(),

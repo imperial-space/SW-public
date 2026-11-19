@@ -5,10 +5,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Cooking;
 
-/// <summary>
-///     imperial medieval - a pot that cooks what is put in it while its fire burns. Ingredients lie in a container,
-///     water is a solution. When a recipe matches, it cooks by itself, and left too long on the fire it burns.
-/// </summary>
 [RegisterComponent]
 public sealed partial class MedievalCookingPotComponent : Component
 {
@@ -27,36 +23,22 @@ public sealed partial class MedievalCookingPotComponent : Component
     [DataField]
     public EntityWhitelist? IngredientWhitelist;
 
-    /// <summary>
-    ///     What never goes in as an ingredient even if it passes the whitelist, e.g. bottles you pour from.
-    /// </summary>
     [DataField]
     public EntityWhitelist? IngredientBlacklist;
 
     [DataField]
     public EntityWhitelist? BowlWhitelist;
 
-    /// <summary>
-    ///     Seconds a finished dish can stay on a lit fire before it burns.
-    /// </summary>
+    // all times are in seconds
     [DataField]
     public float ReadyWindow = 90f;
 
-    /// <summary>
-    ///     The smell of burning starts this many seconds before the dish burns.
-    /// </summary>
     [DataField]
     public float WarnBefore = 30f;
 
-    /// <summary>
-    ///     Ingredients that match no recipe turn into a poor stew after this many seconds.
-    /// </summary>
     [DataField]
     public float MessCookTime = 60f;
 
-    /// <summary>
-    ///     A lone ingredient is not a dish: the pot only starts a poor stew from this many ingredients.
-    /// </summary>
     [DataField]
     public int MessMinIngredients = 2;
 
@@ -72,9 +54,6 @@ public sealed partial class MedievalCookingPotComponent : Component
     [DataField]
     public EntProtoId BurntResult = "MedievalFoodBurntMess";
 
-    /// <summary>
-    ///     Seconds it takes to pour everything out, so a stray click doesn't throw a finished dish away.
-    /// </summary>
     [DataField]
     public float EmptyDelay = 2f;
 
@@ -87,9 +66,7 @@ public sealed partial class MedievalCookingPotComponent : Component
     [DataField]
     public SoundSpecifier? ServeSound;
 
-    /// <summary>
-    ///     Water is shown to players in measures of this many units, not in raw units.
-    /// </summary>
+    // players see water in measures of this size
     [DataField]
     public int WaterMeasure = 20;
 
@@ -105,9 +82,6 @@ public sealed partial class MedievalCookingPotComponent : Component
     [ViewVariables]
     public MedievalPotState State;
 
-    /// <summary>
-    ///     Progress belongs to this recipe and is dropped when it changes.
-    /// </summary>
     [ViewVariables]
     public string? Recipe;
 

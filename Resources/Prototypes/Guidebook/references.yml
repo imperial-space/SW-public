@@ -15,7 +15,7 @@
   filterEnabled: True
 
 # Imperial Medieval Start
-# vanilla food recipe guides removed, Spellward has its own cooking
+# vanilla food recipe guides removed
 # Imperial Medieval End
 
 - type: guideEntry

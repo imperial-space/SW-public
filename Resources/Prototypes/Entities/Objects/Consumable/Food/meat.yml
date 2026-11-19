@@ -309,7 +309,7 @@
         - ReagentId: Fat
           Quantity: 9
   # Imperial Medieval Start
-  # a raw piece is a leg or a wing, so it is not cut into cutlets
+  # chicken pieces are not cut into cutlets
   # Imperial Medieval End
   - type: InternalTemperature
     conductivity: 0.41
