@@ -22,7 +22,6 @@ public enum MedievalHearthState : byte
 public enum MedievalPotVisuals : byte
 {
     State,
-    // read by the icons floating above the pot
     Result,
     Portions,
     Water,

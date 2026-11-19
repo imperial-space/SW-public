@@ -56,8 +56,7 @@
     node: MeatSpike
   - type: GuideHelp
     guides:
-    - Chef
-    - FoodRecipes
+    - Chef # imperial medieval: FoodRecipes removed
   - type: ContainerContainer
     containers:
       body: !type:ContainerSlot

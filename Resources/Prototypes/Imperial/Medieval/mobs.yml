@@ -1427,8 +1427,8 @@
   components:
   - type: Butcherable
     spawned:
-    - id: FoodMeat
-      amount: 2
+    - id: MedievalFoodChickenWhole
+      amount: 1
     - id: MedievalLeather1
       amount: 1
   - type: NocturnBadFood

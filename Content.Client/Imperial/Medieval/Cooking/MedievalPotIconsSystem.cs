@@ -13,20 +13,16 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.Medieval.Cooking;
 
-/// <summary>
-///     imperial medieval - keeps a <see cref="MedievalPotIcons"/> over every cooking pot the player is near,
-///     feeds it what the pot holds and passes clicks on its icons to the server.
-/// </summary>
 public sealed class MedievalPotIconsSystem : EntitySystem
 {
     private const float ShowRange = 7f;
-    // a pot already shown stays a little longer, so walking along the edge does not rebuild its icons
+    // bigger than ShowRange so icons don't flicker at the edge
     private const float HideRange = 8f;
     private const float HoverRadius = 0.6f;
     private const string ViewportContainer = "ViewportContainer";
     private const int HashPrime = 397;
 
-    // boxed once: the appearance is read every frame
+    // boxed once, read every frame
     private static readonly Enum StateKey = MedievalPotVisuals.State;
     private static readonly Enum ResultKey = MedievalPotVisuals.Result;
     private static readonly Enum PortionsKey = MedievalPotVisuals.Portions;
@@ -45,12 +41,10 @@ public sealed class MedievalPotIconsSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    // interface objects only, the pot's own state stays in its components
     private readonly Dictionary<EntityUid, MedievalPotIcons> _shown = new();
     private readonly LayoutContainer _root = new() { MouseFilter = Control.MouseFilterMode.Ignore };
     private Control? _screen;
 
-    // reused every frame, never hold anything between calls
     private readonly HashSet<EntityUid> _near = new();
     private readonly List<EntityUid> _gone = new();
     private readonly List<MedievalPotIcons.Entry> _entries = new();
@@ -59,7 +53,7 @@ public sealed class MedievalPotIconsSystem : EntitySystem
     {
         base.Initialize();
 
-        // the icons are placed from the eye position, so it has to be final for this frame or they lag behind a moving player
+        // after eye lerp, or icons lag behind a moving player
         UpdatesAfter.Add(typeof(EyeLerpingSystem));
         UpdatesAfter.Add(typeof(SharedEyeSystem));
     }
@@ -86,10 +80,7 @@ public sealed class MedievalPotIconsSystem : EntitySystem
         RemoveFarPots();
     }
 
-    /// <summary>
-    ///     The icons live where speech bubbles do: inside the game view, under the HUD and the windows.
-    ///     The screen is replaced when the player changes the HUD layout, so this is looked at every frame.
-    /// </summary>
+    // the HUD layout can change, so check every frame
     private void AttachRoot()
     {
         var screen = _ui.ActiveScreen;
@@ -108,7 +99,7 @@ public sealed class MedievalPotIconsSystem : EntitySystem
             }
             catch (ArgumentException)
             {
-                // a screen without a game view of the usual kind: the window layer will do
+                // no usual game view, use the window layer
             }
         }
 
@@ -122,7 +113,6 @@ public sealed class MedievalPotIconsSystem : EntitySystem
         var playerPos = _transform.GetWorldPosition(playerXform);
         var mouse = _eye.PixelToMap(_input.MouseScreenPosition);
         var canTake = _hands.TryGetEmptyHand(player, out _);
-        // an eye that sees through walls sees the icons through them too
         var wallsHide = _examine.IsOccluded(player);
 
         var query = EntityQueryEnumerator<MedievalCookingPotComponent, TransformComponent>();
@@ -141,7 +131,7 @@ public sealed class MedievalPotIconsSystem : EntitySystem
             icons ??= AddIcons(uid);
             icons.Interactive = canTake;
 
-            // not checked every frame, it is a ray cast
+            // ray cast, so not every frame
             if (_timing.RealTime >= icons.NextSightCheck)
             {
                 icons.NextSightCheck = _timing.RealTime + SightCheckInterval;
@@ -151,7 +141,7 @@ public sealed class MedievalPotIconsSystem : EntitySystem
             Place(icons, worldPos);
 
             var hovered = mouse.MapId == map && (mouse.Position - worldPos).LengthSquared() < HoverRadius * HoverRadius;
-            // the state first: a finished dish has to send the ingredients down before they are seen gone
+            // state first so ingredients sink before they vanish
             SyncState(uid, icons, hovered);
             SyncContents(uid, pot, icons);
         }
@@ -179,7 +169,7 @@ public sealed class MedievalPotIconsSystem : EntitySystem
         if (!_container.TryGetContainer(uid, pot.ContainerId, out var container))
             return;
 
-        // indexed loops: enumerating the read-only list would allocate every frame
+        // indexed loop, foreach allocates here
         var items = container.ContainedEntities;
         var signature = items.Count;
         for (var i = 0; i < items.Count; i++)
@@ -193,7 +183,7 @@ public sealed class MedievalPotIconsSystem : EntitySystem
         _entries.Clear();
         for (var i = 0; i < items.Count; i++)
         {
-            // an item the server has not sent yet: leave the signature stale and try again next frame
+            // not sent by the server yet, retry next frame
             if (!TryComp(items[i], out MetaDataComponent? meta) || meta.EntityPrototype == null)
             {
                 signature = -1;
@@ -258,7 +248,7 @@ public sealed class MedievalPotIconsSystem : EntitySystem
 
     private bool RequestTake(EntityUid pot, EntityUid item)
     {
-        // the server decides; this only saves a request it would turn down
+        // client check only, the server decides
         if (_player.LocalEntity is not { } player || !_hands.TryGetEmptyHand(player, out _))
             return false;
 

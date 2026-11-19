@@ -68,3 +68,367 @@
       - state: bowl-inhand-left
       right:
       - state: bowl-inhand-right
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupWorm
+  name: worm soup
+  description: A thin broth with worms in it. It fools the belly, not the tongue.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupWorm
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: worm-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: worm-
+    changeColor: false
+    inHandsFillBaseName: -worm-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 2
+        - ReagentId: Water
+          Quantity: 8
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupRotten
+  name: rotten soup
+  description: A stew boiled from spoiled meat. It smells terrible. You can eat it, but you will regret it.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupRotten
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: rotten-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: rotten-
+    changeColor: false
+    inHandsFillBaseName: -rotten-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: GastroToxin
+          Quantity: 2
+        - ReagentId: Water
+          Quantity: 8
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupCrab
+  name: crab soup
+  description: A thick soup with pieces of crab.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupCrab
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: crab-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: crab-
+    changeColor: false
+    inHandsFillBaseName: -crab-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 4
+        - ReagentId: Water
+          Quantity: 6
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupFish
+  name: fish soup
+  description: A rich soup of fresh fish and potatoes.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupFish
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: fish-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: fish-
+    changeColor: false
+    inHandsFillBaseName: -fish-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Water
+          Quantity: 8
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupGarlic
+  name: garlic soup
+  description: A creamy soup with garlic. It wakes you up and smells through the whole tavern.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupGarlic
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: garlic-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: garlic-
+    changeColor: false
+    inHandsFillBaseName: -garlic-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Water
+          Quantity: 8
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupCheese
+  name: cheese soup
+  description: A thick soup with melted cheese.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupCheese
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: cheese-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: cheese-
+    changeColor: false
+    inHandsFillBaseName: -cheese-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Fat
+          Quantity: 3
+        - ReagentId: Water
+          Quantity: 8
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupTomato
+  name: tomato soup
+  description: A bright soup of ripe tomatoes.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupTomato
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: tomato-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: tomato-
+    changeColor: false
+    inHandsFillBaseName: -tomato-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Water
+          Quantity: 8
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupCucumber
+  name: cucumber soup
+  description: A light cool soup of cucumbers. Refreshing.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupCucumber
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: cucumber-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: cucumber-
+    changeColor: false
+    inHandsFillBaseName: -cucumber-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Water
+          Quantity: 12
+
+- type: entity
+  parent: FoodBowlBase
+  id: MedievalFoodSoupAppleChicken
+  name: apples in chicken broth
+  description: Chicken broth with apple and orange slices. Sweet, sour and warming.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - MedievalSoupAppleChicken
+  - type: Sprite
+    sprite: Imperial/Medieval/Food/bowls.rsi
+    layers:
+    - state: bowl
+    - state: apple_chicken-4
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: apple_chicken-
+    changeColor: false
+    inHandsFillBaseName: -apple_chicken-
+    inHandsMaxFillLevels: 2
+  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bowl-inhand-left
+      right:
+      - state: bowl-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Water
+          Quantity: 8

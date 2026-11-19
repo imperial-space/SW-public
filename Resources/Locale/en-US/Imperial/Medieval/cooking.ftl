@@ -8,6 +8,7 @@ medieval-hearth-examine-low = The fire burns with a small, steady flame.
 medieval-pot-busy = The stew is not ready yet.
 medieval-pot-has-dish = There is a finished dish in the pot. Take it out first.
 medieval-pot-full = The pot is full.
+medieval-pot-too-many = The pot already holds enough of { $item }.
 medieval-pot-added = You put { $item } in the pot.
 medieval-pot-nothing-to-serve = There is nothing to ladle yet.
 medieval-pot-emptied = You pour everything out of the pot.

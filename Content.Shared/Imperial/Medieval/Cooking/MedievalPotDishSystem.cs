@@ -3,17 +3,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Cooking;
 
-/// <summary>
-///     imperial medieval - makes a served dish leave the bowl it was ladled into once eaten, and look like it.
-///     It lives apart from the pot system because the edible component only allows access from named systems.
-/// </summary>
+// separate system because EdibleComponent limits write access
 public sealed class MedievalPotDishSystem : EntitySystem
 {
     public override void Initialize()
     {
         base.Initialize();
 
-        // eating is predicted, so the client has to know the trash as well
+        // eating is predicted, the client needs the trash too
         SubscribeLocalEvent<MedievalDishBowlComponent, AfterAutoHandleStateEvent>(OnState);
     }
 
@@ -30,7 +27,7 @@ public sealed class MedievalPotDishSystem : EntitySystem
         if (ent.Comp.Bowl is { } bowl)
             ApplyTrash(ent, bowl);
 
-        // a component state event can only be subscribed to once, so the sprite side listens to this instead
+        // the state event allows one subscriber, the sprite system uses this
         var ev = new MedievalDishBowlChangedEvent();
         RaiseLocalEvent(ent, ref ev);
     }
@@ -42,8 +39,5 @@ public sealed class MedievalPotDishSystem : EntitySystem
     }
 }
 
-/// <summary>
-///     Raised on a served dish when the bowl it came in has been received from the server.
-/// </summary>
 [ByRefEvent]
 public readonly record struct MedievalDishBowlChangedEvent;

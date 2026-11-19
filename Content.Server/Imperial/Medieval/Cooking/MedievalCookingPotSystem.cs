@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Destructible;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Popups;
+using Content.Server.Stack;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Destructible;
@@ -13,6 +14,7 @@ using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Cooking;
 using Content.Shared.Interaction;
 using Content.Shared.Players.RateLimiting;
+using Content.Shared.Stacks;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
@@ -30,6 +32,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
     private const string Water = "Water";
     private const string BowlSolution = "food";
     private const float SimmerVolume = -4f;
+    private const float MinNutrition = 0.5f;
     private const string TakeRateLimitKey = "MedievalPotTake";
 
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -42,6 +45,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
@@ -49,7 +53,6 @@ public sealed class MedievalCookingPotSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly MedievalPotDishSystem _dishes = default!;
 
-    // reused for recipe matching, never holds anything between calls
     private readonly List<EntityUid> _free = new();
 
     public override void Initialize()
@@ -57,7 +60,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<MedievalCookingPotComponent, ComponentInit>(OnInit);
-        // fuel is tried first, so a log feeds the fire instead of landing in the pot
+        // fuel goes to the fire first
         SubscribeLocalEvent<MedievalCookingPotComponent, InteractUsingEvent>(OnInteractUsing, after: new[] { typeof(MedievalHearthSystem) });
         SubscribeLocalEvent<MedievalCookingPotComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<MedievalCookingPotComponent, ExaminedEvent>(OnExamined);
@@ -92,7 +95,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
 
         if (_whitelist.IsWhitelistPass(pot.BowlWhitelist, args.Used))
         {
-            // a bowl with something in it is for pouring in, which another system handles
+            // filled bowls are for pouring, handled elsewhere
             var done = pot.State is MedievalPotState.Ready or MedievalPotState.Burnt;
             if (!done && !IsBowlEmpty(args.Used))
                 return;
@@ -185,17 +188,50 @@ public sealed class MedievalCookingPotSystem : EntitySystem
             return;
         }
 
-        if (!_hands.TryDropIntoContainer(user, item, pot.Ingredients))
+        if (CountOfProduct(pot, item) >= pot.MaxPerProduct)
+        {
+            _popup.PopupEntity(Loc.GetString("medieval-pot-too-many", ("item", MetaData(item).EntityName)), uid, user);
             return;
+        }
+
+        // one unit from a stack at a time
+        if (TryComp<StackComponent>(item, out var stack) && stack.Count > 1)
+        {
+            if (_stack.Split(item, 1, Transform(user).Coordinates, stack) is not { } unit)
+                return;
+
+            if (!_container.Insert(unit, pot.Ingredients))
+            {
+                _stack.TryAdd(unit, item);
+                return;
+            }
+        }
+        else if (!_hands.TryDropIntoContainer(user, item, pot.Ingredients))
+        {
+            return;
+        }
 
         _popup.PopupEntity(Loc.GetString("medieval-pot-added", ("item", MetaData(item).EntityName)), uid, user);
         _audio.PlayPvs(pot.AddSound, uid);
         ContentsChanged(uid, pot, true);
     }
 
+    private int CountOfProduct(MedievalCookingPotComponent pot, EntityUid item)
+    {
+        var prototype = MetaData(item).EntityPrototype?.ID;
+        var count = 0;
+        foreach (var held in pot.Ingredients.ContainedEntities)
+        {
+            if (MetaData(held).EntityPrototype?.ID == prototype)
+                count++;
+        }
+
+        return count;
+    }
+
     private void OnTakeRequest(MedievalPotTakeRequestEvent msg, EntitySessionEventArgs args)
     {
-        // the pot and the item are whatever the client sent: only the sender's own body is trusted
+        // pot and item come from the client
         if (args.SenderSession.AttachedEntity is not { } user)
             return;
 
@@ -216,7 +252,6 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         if (pot.State is MedievalPotState.Ready or MedievalPotState.Burnt)
             return;
 
-        // with no free hand the item would only fall next to the pot
         if (!_hands.TryGetEmptyHand(user, out _) || !_container.Remove(item, pot.Ingredients))
             return;
 
@@ -224,9 +259,6 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         ContentsChanged(uid, pot, true);
     }
 
-    /// <summary>
-    ///     What the icons above the pot show. It rides on the appearance, so everyone who sees the pot has it.
-    /// </summary>
     private void UpdateVisuals(EntityUid uid, MedievalCookingPotComponent pot)
     {
         if (TerminatingOrDeleted(uid))
@@ -253,16 +285,16 @@ public sealed class MedievalCookingPotSystem : EntitySystem
             return;
         }
 
-        // the bowl is swapped for a filled one, so the hand it was in is free again
         var bowlId = MetaData(bowl).EntityPrototype?.ID;
         var sturdy = TryComp<DestructibleComponent>(bowl, out var destructible) && destructible.Thresholds.Count == 0;
         Del(bowl);
         var portion = Spawn(result, Transform(user).Coordinates);
         if (bowlId != null)
             _dishes.SetBowl(portion, bowlId);
-        // a bowl that can't break doesn't start breaking because there is food in it
+        // unbreakable bowls stay unbreakable
         if (sturdy)
             RemComp<DestructibleComponent>(portion);
+        ThinPortion(portion, pot.PortionNutrition);
         _hands.PickupOrDrop(user, portion);
         var serveSound = GetServeSound(pot);
         if (serveSound != null)
@@ -273,6 +305,21 @@ public sealed class MedievalCookingPotSystem : EntitySystem
             ClearDish(uid, pot);
         else
             UpdateVisuals(uid, pot);
+    }
+
+    // thin only the food so the bowl still looks full
+    private void ThinPortion(EntityUid portion, float share)
+    {
+        if (share >= 1f || !_solutions.TryGetSolution(portion, BowlSolution, out var soln, out var contents))
+            return;
+
+        foreach (var entry in contents.Contents.ToArray())
+        {
+            if (entry.Reagent.Prototype == Water)
+                continue;
+
+            _solutions.RemoveReagent(soln.Value, entry.Reagent, entry.Quantity * (1f - share));
+        }
     }
 
     private bool IsBowlEmpty(EntityUid bowl)
@@ -290,9 +337,6 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         return pot.ServeSound;
     }
 
-    /// <summary>
-    ///     Throws away everything in the pot: ingredients, water and the finished dish.
-    /// </summary>
     private void Reset(EntityUid uid, MedievalCookingPotComponent pot)
     {
         _container.CleanContainer(pot.Ingredients);
@@ -303,9 +347,6 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         ClearDish(uid, pot);
     }
 
-    /// <summary>
-    ///     Forgets the finished dish only; water poured in while it waited stays.
-    /// </summary>
     private void ClearDish(EntityUid uid, MedievalCookingPotComponent pot)
     {
         pot.Portions = 0;
@@ -325,7 +366,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         var query = EntityQueryEnumerator<MedievalCookingPotComponent>();
         while (query.MoveNext(out var uid, out var pot))
         {
-            // nothing to cook and nothing to burn: the pot is only looked at again when its contents change
+            // idle until the contents change
             if (pot.State == MedievalPotState.Burnt || (pot.State != MedievalPotState.Ready && pot.Recipe == null))
                 continue;
 
@@ -389,17 +430,26 @@ public sealed class MedievalCookingPotSystem : EntitySystem
 
     private void Finish(EntityUid uid, MedievalCookingPotComponent pot, MedievalCookRecipePrototype? recipe)
     {
+        pot.Portions = recipe?.Portions ?? pot.MessPortions;
+        pot.PortionNutrition = 1f;
+        if (recipe != null && TryMatch(recipe, pot.Ingredients.ContainedEntities, out var extras, out var coreShare))
+        {
+            var basePortions = Math.Max(1, (int) MathF.Round(recipe.Portions * coreShare, MidpointRounding.AwayFromZero));
+            var added = Math.Clamp(extras, 0, Math.Max(0, recipe.MaxPortions - basePortions));
+            pot.Portions = basePortions + added;
+            pot.PortionNutrition = Math.Max(MinNutrition, 1f - recipe.ExtraSatietyLoss * added);
+        }
+
         _container.CleanContainer(pot.Ingredients);
 
         pot.Result = recipe?.Result ?? pot.MessResult;
-        pot.Portions = recipe?.Portions ?? pot.MessPortions;
         pot.Recipe = recipe?.ID;
         pot.Progress = 0f;
         pot.ReadyTimer = 0f;
         pot.Warned = false;
 
         SetState(uid, pot, MedievalPotState.Ready);
-        // drained after the state change, so the solution event doesn't look for a recipe in a finished pot
+        // drain after SetState or the solution event looks for a recipe
         if (_solutions.TryGetSolution(uid, pot.SolutionId, out var solution, out _))
             _solutions.RemoveAllSolution(solution.Value);
 
@@ -407,10 +457,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         _audio.PlayPvs(pot.ReadySound, uid);
     }
 
-    /// <summary>
-    ///     The recipe is only looked up here, when ingredients or liquid change. Adding or taking out an ingredient
-    ///     also starts the cooking over, so a dish is never finished half way through being put together.
-    /// </summary>
+    // adding or taking an item restarts cooking
     private void ContentsChanged(EntityUid uid, MedievalCookingPotComponent pot, bool restart)
     {
         if (pot.State is MedievalPotState.Ready or MedievalPotState.Burnt)
@@ -437,7 +484,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
 
     private bool HasContents(EntityUid uid, MedievalCookingPotComponent pot)
     {
-        // any liquid counts, not only water: otherwise a pot of beer could never be poured out
+        // any liquid, so a pot of beer can be poured out
         return pot.Ingredients.ContainedEntities.Count > 0
             || _solutions.TryGetSolution(uid, pot.SolutionId, out _, out var solution) && solution.Volume > FixedPoint2.Zero;
     }
@@ -460,23 +507,16 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         return _solutions.GetTotalPrototypeQuantity(uid, Water);
     }
 
-    /// <summary>
-    ///     Anything edible that fits no recipe still boils into something, as long as there is water.
-    /// </summary>
     private bool IsMess(EntityUid uid, MedievalCookingPotComponent pot)
     {
         return pot.Ingredients.ContainedEntities.Count >= pot.MessMinIngredients && GetWater(uid) >= pot.MessWater;
     }
 
-    /// <summary>
-    ///     True when the ingredients already match a recipe and only the water is missing,
-    ///     so the pot waits for water instead of boiling a mess.
-    /// </summary>
     private bool FitsAnyRecipe(MedievalCookingPotComponent pot)
     {
         foreach (var recipe in _prototypes.EnumeratePrototypes<MedievalCookRecipePrototype>())
         {
-            if (Matches(recipe, pot.Ingredients.ContainedEntities))
+            if (TryMatch(recipe, pot.Ingredients.ContainedEntities, out _, out _))
                 return true;
         }
 
@@ -492,52 +532,84 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         var water = GetWater(uid);
         foreach (var recipe in _prototypes.EnumeratePrototypes<MedievalCookRecipePrototype>())
         {
-            if (water >= recipe.Water && Matches(recipe, items))
+            if (water >= recipe.Water && TryMatch(recipe, items, out _, out _))
                 return recipe;
         }
 
         return null;
     }
 
-    private bool Matches(MedievalCookRecipePrototype recipe, IReadOnlyList<EntityUid> items)
+    // every core line needs at least one item, Count is the full amount
+    private bool TryMatch(MedievalCookRecipePrototype recipe, IReadOnlyList<EntityUid> items, out int extras, out float coreShare)
     {
+        extras = 0;
+        coreShare = 0f;
         _free.Clear();
         _free.AddRange(items);
 
-        // exact prototypes first, so a tag line can't swallow an item another line is waiting for
+        var taken = 0;
+        var full = 0;
+
+        // narrowest lines first so wide ones don't take their items
         foreach (var line in recipe.Ingredients)
         {
-            if (line.Id != null && !TakeMatching(line, items: _free))
+            if (line.Id != null && !TakeMatching(line, _free, ref taken))
                 return false;
         }
 
         foreach (var line in recipe.Ingredients)
         {
-            if (line.Id == null && !TakeMatching(line, items: _free))
+            if (line.Id == null && line.Ids.Count > 0 && !TakeMatching(line, _free, ref taken))
                 return false;
         }
 
-        return _free.Count == 0;
+        foreach (var line in recipe.Ingredients)
+        {
+            if (line.Id == null && line.Ids.Count == 0 && !TakeMatching(line, _free, ref taken))
+                return false;
+        }
+
+        foreach (var item in _free)
+        {
+            var prototype = MetaData(item).EntityPrototype?.ID;
+            if (prototype == null || !recipe.Extras.Contains(prototype))
+                return false;
+        }
+
+        foreach (var line in recipe.Ingredients)
+        {
+            full += line.Count;
+        }
+
+        extras = _free.Count;
+        coreShare = full > 0 ? (float) taken / full : 1f;
+        return true;
     }
 
-    private bool TakeMatching(MedievalCookIngredient line, List<EntityUid> items)
+    private bool TakeMatching(MedievalCookIngredient line, List<EntityUid> items, ref int taken)
     {
-        for (var taken = 0; taken < line.Count; taken++)
+        var got = 0;
+        while (got < line.Count)
         {
             var index = items.FindIndex(item => IsIngredient(line, item));
             if (index < 0)
-                return false;
+                break;
 
             items.RemoveAt(index);
+            got++;
         }
 
-        return true;
+        taken += got;
+        return got > 0;
     }
 
     private bool IsIngredient(MedievalCookIngredient line, EntityUid item)
     {
         if (line.Id is { } id)
             return MetaData(item).EntityPrototype?.ID == id.Id;
+
+        if (line.Ids.Count > 0)
+            return MetaData(item).EntityPrototype?.ID is { } prototype && line.Ids.Contains(prototype);
 
         return line.Tag is { } tag && _tag.HasTag(item, tag) && !_tag.HasAnyTag(item, line.ExcludeTags);
     }

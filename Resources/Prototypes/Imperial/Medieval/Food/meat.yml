@@ -136,6 +136,9 @@
   - type: Sprite
     sprite: Imperial/Medieval/Food/meat.rsi
     state: chicken3-raw
+  - type: SliceableFood
+    count: 2
+    slice: FoodMeatChicken
   - type: SolutionContainerManager
     solutions:
       food:

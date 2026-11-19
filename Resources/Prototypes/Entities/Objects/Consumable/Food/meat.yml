@@ -308,9 +308,9 @@
           Quantity: 9
         - ReagentId: Fat
           Quantity: 9
-  - type: SliceableFood
-    count: 3
-    slice: FoodMeatChickenCutlet
+  # Imperial Medieval Start
+  # chicken pieces are not cut into cutlets
+  # Imperial Medieval End
   - type: InternalTemperature
     conductivity: 0.41
   - type: Construction
