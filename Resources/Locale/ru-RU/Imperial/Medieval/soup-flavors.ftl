@@ -5,5 +5,5 @@ flavor-base-MedievalSoupFish = наваристо и слегка солоно
 flavor-base-MedievalSoupGarlic = мягко, с острой ноткой
 flavor-base-MedievalSoupCheese = густо и сливочно
 flavor-base-MedievalSoupTomato = кисловато-сладко
-flavor-base-MedievalSoupCucumber = свежо и прохладно
+flavor-base-MedievalSoupCucumber = свежо, с кислинкой
 flavor-base-MedievalSoupAppleChicken = сладко-кисло и наваристо

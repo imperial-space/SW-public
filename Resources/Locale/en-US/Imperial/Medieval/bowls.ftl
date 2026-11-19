@@ -17,6 +17,6 @@ ent-MedievalFoodSoupCheese = cheese soup
 ent-MedievalFoodSoupTomato = tomato soup
     .desc = A bright soup of ripe tomatoes.
 ent-MedievalFoodSoupCucumber = cucumber soup
-    .desc = A light cool soup of cucumbers. Refreshing.
+    .desc = A light cucumber soup with a sour touch.
 ent-MedievalFoodSoupAppleChicken = apples in chicken broth
     .desc = Chicken broth with apple and orange slices. Sweet, sour and warming.

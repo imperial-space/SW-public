@@ -17,6 +17,6 @@ ent-MedievalFoodSoupCheese = сырный суп
 ent-MedievalFoodSoupTomato = томатный суп
     .desc = Яркий суп из спелых помидоров.
 ent-MedievalFoodSoupCucumber = огуречный суп
-    .desc = Лёгкий холодный суп из огурцов. Освежает.
+    .desc = Лёгкий суп из огурцов с кислинкой.
 ent-MedievalFoodSoupAppleChicken = яблоки в курином бульоне
     .desc = Куриный бульон с дольками яблока и апельсина. Сладко, кисло и согревает.

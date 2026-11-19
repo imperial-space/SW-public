@@ -5,5 +5,5 @@ flavor-base-MedievalSoupFish = rich and lightly salty
 flavor-base-MedievalSoupGarlic = mild, with a sharp edge
 flavor-base-MedievalSoupCheese = thick and creamy
 flavor-base-MedievalSoupTomato = tangy and sweet
-flavor-base-MedievalSoupCucumber = fresh and cool
+flavor-base-MedievalSoupCucumber = fresh and a bit sour
 flavor-base-MedievalSoupAppleChicken = sweet, sour and rich
