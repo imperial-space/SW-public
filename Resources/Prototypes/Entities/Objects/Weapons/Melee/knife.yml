@@ -47,8 +47,7 @@
     storedRotation: -45
   - type: GuideHelp
     guides:
-    - Chef
-    - FoodRecipes
+    - Chef # imperial medieval: FoodRecipes removed
   - type: MeleeWeapon # imperial medieval start
     range: 1
     resetOnHandSelected: false
@@ -84,8 +83,7 @@
     sprite: Objects/Weapons/Melee/cleaver.rsi
   - type: GuideHelp
     guides:
-    - Chef
-    - FoodRecipes
+    - Chef # imperial medieval: FoodRecipes removed
 
 - type: entity
   name: combat knife
