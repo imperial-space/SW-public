@@ -15,11 +15,12 @@ public sealed partial class ManaRegenComponent : Component
     [DataField]
     public EntityUid? Equipee;
 
-    [DataField]
+    // This has been replaced with a global timer.
+    /*[DataField]
     public TimeSpan ReloadTime = TimeSpan.FromSeconds(1f);
 
 
     [ViewVariables]
-    public TimeSpan EndTime = TimeSpan.FromSeconds(0f);
+    public TimeSpan EndTime = TimeSpan.FromSeconds(0f);*/
 
 }

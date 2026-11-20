@@ -8,7 +8,8 @@ namespace Content.Shared.Imperial.Medieval.Magic.Mana;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ManaComponent : Component
 {
-    public const float DefaultRegenMultiplier = 10f;
+    public const float DefaultRegenMultiplier = 1f;
+    public const float DefaultRaceCompensator = 1f; // multiplier for races that dont regen every second
 
     [DataField]
     public float RegenRaceModifier = 1f;
@@ -23,19 +24,23 @@ public sealed partial class ManaComponent : Component
     public float MaxMana = 100f;
 
     [DataField, AutoNetworkedField]
-    public float Regen = 0.25f;
+    public float Regen = 2.5f;
 
     [DataField, AutoNetworkedField]
     public float RegenMultiplier = DefaultRegenMultiplier;
-
+    [DataField, AutoNetworkedField]
+    public float RaceTimeCompensator = DefaultRaceCompensator;
+    [DataField, AutoNetworkedField]
+    public float CurrentPassiveManaChange = 0f; // Final passive mana change applied to character on reload
+    [ViewVariables]
+    public Dictionary<EntityUid, float> PassiveManaChanges = new(); //Passive mana sources currently affecting player
 
     [DataField]
     public ProtoId<AlertPrototype> ManaAlert = "Mana";
 
 
     [DataField("reloadTime")]
-    public TimeSpan ReloadTime = TimeSpan.FromSeconds(10f);
-
+    public TimeSpan ReloadTime = TimeSpan.FromSeconds(1f);
 
     [ViewVariables]
     public Dictionary<EntityUid, float> CastedSpells = new();
