@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -29,6 +30,12 @@ public sealed partial class MedievalCookingPotComponent : Component
     [DataField]
     public EntityWhitelist? BowlWhitelist;
 
+    [DataField]
+    public string BowlSolution = "food";
+
+    [DataField]
+    public ProtoId<ReagentPrototype> WaterReagent = "Water";
+
     // all times are in seconds
     [DataField]
     public float ReadyWindow = 90f;
@@ -53,6 +60,9 @@ public sealed partial class MedievalCookingPotComponent : Component
 
     [DataField]
     public EntProtoId BurntResult = "MedievalFoodBurntMess";
+
+    [DataField]
+    public float MinPortionNutrition = 0.5f;
 
     [DataField]
     public float EmptyDelay = 2f;

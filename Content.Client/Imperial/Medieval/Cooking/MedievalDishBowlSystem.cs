@@ -1,16 +1,14 @@
 using Content.Client.Items.Systems;
 using Content.Shared.Hands;
 using Content.Shared.Imperial.Medieval.Cooking;
+using Content.Shared.Item;
 using Robust.Client.GameObjects;
-using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Imperial.Medieval.Cooking;
 
 public sealed class MedievalDishBowlSystem : EntitySystem
 {
-    private const string BowlPrefix = "MedievalBowl";
-    private static readonly ResPath BowlRsi = new("/Textures/Imperial/Medieval/Food/Dishes/bowl.rsi");
-
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly ItemSystem _item = default!;
 
@@ -45,17 +43,20 @@ public sealed class MedievalDishBowlSystem : EntitySystem
 
     private void OnGetHeldVisuals(EntityUid uid, MedievalDishBowlComponent comp, GetInhandVisualsEvent args)
     {
-        // MedievalBowlGold uses bowl-gold-inhand-left and so on
-        if (comp.Bowl is not { } bowl || !bowl.Id.StartsWith(BowlPrefix) || args.Layers.Count == 0)
+        if (comp.Bowl is not { } bowl
+            || args.Layers.Count == 0
+            || !PrototypeManager.TryIndex(bowl, out EntityPrototype? proto)
+            || !proto.TryGetComponent<ItemComponent>(out var item, EntityManager.ComponentFactory)
+            || !item.InhandVisuals.TryGetValue(args.Location, out var bowlLayers)
+            || bowlLayers.Count == 0)
             return;
 
-        var material = bowl.Id.Substring(BowlPrefix.Length).ToLowerInvariant();
         var (key, original) = args.Layers[0];
         // new layer, the original is shared prototype data
         var layer = new PrototypeLayerData
         {
-            RsiPath = BowlRsi.ToString(),
-            State = $"bowl-{material}-inhand-{args.Location.ToString().ToLowerInvariant()}",
+            RsiPath = bowlLayers[0].RsiPath ?? item.RsiPath,
+            State = bowlLayers[0].State,
             MapKeys = original.MapKeys,
         };
         args.Layers[0] = (key, layer);

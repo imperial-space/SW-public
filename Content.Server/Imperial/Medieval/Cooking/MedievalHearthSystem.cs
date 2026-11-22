@@ -12,6 +12,7 @@ namespace Content.Server.Imperial.Medieval.Cooking;
 public sealed class MedievalHearthSystem : EntitySystem
 {
     private const float TickInterval = 1f;
+    private const int BurningLogs = 2;
 
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -86,15 +87,15 @@ public sealed class MedievalHearthSystem : EntitySystem
         switch (hearth.State)
         {
             case MedievalHearthState.Out:
-                return Color.FromHex("#8a8178");
+                return hearth.OutColor;
             case MedievalHearthState.Dying:
-                return Color.FromHex("#c9a458");
+                return hearth.DyingColor;
             case MedievalHearthState.Low:
-                return Color.FromHex("#e0b24a");
+                return hearth.LowColor;
         }
 
-        var heat = (GetLogCount(hearth) - 2) / (float) Math.Max(1, hearth.LogSlots - 2);
-        return Color.InterpolateBetween(Color.FromHex("#e8923a"), Color.FromHex("#d8402a"), Math.Clamp(heat, 0f, 1f));
+        var heat = (GetLogCount(hearth) - BurningLogs) / (float) Math.Max(1, hearth.LogSlots - BurningLogs);
+        return Color.InterpolateBetween(hearth.WarmColor, hearth.HotColor, Math.Clamp(heat, 0f, 1f));
     }
 
     private bool TryGetFuel(MedievalHearthComponent hearth, EntityUid used, out float seconds)
@@ -151,7 +152,7 @@ public sealed class MedievalHearthSystem : EntitySystem
         if (logs == 0)
             return MedievalHearthState.Out;
 
-        if (logs > 1)
+        if (logs >= BurningLogs)
             return MedievalHearthState.Burning;
 
         return hearth.BurnTime <= hearth.DyingBurnTime ? MedievalHearthState.Dying : MedievalHearthState.Low;

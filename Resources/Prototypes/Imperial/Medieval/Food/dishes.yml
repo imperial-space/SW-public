@@ -12,6 +12,7 @@
       state: fill-1
       visible: false
   - type: Item
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
     inhandVisuals:
       left:
       - state: bowl-wood-inhand-left
@@ -34,6 +35,7 @@
       state: fill-1
       visible: false
   - type: Item
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
     inhandVisuals:
       left:
       - state: bowl-iron-inhand-left
@@ -56,6 +58,7 @@
       state: fill-1
       visible: false
   - type: Item
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
     inhandVisuals:
       left:
       - state: bowl-steel-inhand-left
@@ -78,6 +81,7 @@
       state: fill-1
       visible: false
   - type: Item
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
     inhandVisuals:
       left:
       - state: bowl-gold-inhand-left
@@ -100,6 +104,7 @@
       state: fill-1
       visible: false
   - type: Item
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
     inhandVisuals:
       left:
       - state: bowl-ebonit-inhand-left
@@ -122,6 +127,7 @@
       state: fill-1
       visible: false
   - type: Item
+    sprite: Imperial/Medieval/Food/Dishes/bowl.rsi
     inhandVisuals:
       left:
       - state: bowl-glina-inhand-left

@@ -30,6 +30,21 @@ public sealed partial class MedievalHearthComponent : Component
     [DataField]
     public SoundSpecifier? FuelSound;
 
+    [DataField]
+    public Color OutColor = Color.FromHex("#8a8178");
+
+    [DataField]
+    public Color DyingColor = Color.FromHex("#c9a458");
+
+    [DataField]
+    public Color LowColor = Color.FromHex("#e0b24a");
+
+    [DataField]
+    public Color WarmColor = Color.FromHex("#e8923a");
+
+    [DataField]
+    public Color HotColor = Color.FromHex("#d8402a");
+
     [ViewVariables]
     public MedievalHearthState State;
 

@@ -9,8 +9,6 @@ namespace Content.Server.Imperial.Medieval.Cooking;
 
 public sealed class MedievalDishEmptiedSystem : EntitySystem
 {
-    private const string DishSolution = "food";
-
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
@@ -32,9 +30,9 @@ public sealed class MedievalDishEmptiedSystem : EntitySystem
         Timer.Spawn(0, () => ReturnBowl(ent));
     }
 
-    private bool IsEmpty(EntityUid dish)
+    private bool IsEmpty(Entity<MedievalDishBowlComponent> dish)
     {
-        return _solutions.TryGetSolution(dish, DishSolution, out _, out var solution) && solution.Volume <= 0;
+        return _solutions.TryGetSolution(dish.Owner, dish.Comp.Solution, out _, out var solution) && solution.Volume <= 0;
     }
 
     private void ReturnBowl(Entity<MedievalDishBowlComponent> ent)

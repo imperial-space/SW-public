@@ -8,4 +8,7 @@ public sealed partial class MedievalDishBowlComponent : Component
 {
     [DataField, AutoNetworkedField]
     public EntProtoId? Bowl;
+
+    [DataField]
+    public string Solution = "food";
 }

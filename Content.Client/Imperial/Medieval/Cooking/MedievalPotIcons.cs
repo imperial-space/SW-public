@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Client.Imperial.Medieval.UserInterface.Elements;
-using Content.Client.Resources;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -51,8 +50,8 @@ public sealed class MedievalPotIcons : LayoutContainer
     private const float DropStartTiles = 1.1f;
     private const float DropArcTiles = 0.3f;
 
-    private static readonly StyleBoxFlat WaterFull = new() { BackgroundColor = Color.FromHex("#5b95c9") };
-    private static readonly StyleBoxFlat WaterEmpty = new() { BackgroundColor = Color.FromHex("#2f241c") };
+    private static readonly StyleBoxFlat WaterFull = new() { BackgroundColor = MedievalUiStyle.Water };
+    private static readonly StyleBoxFlat WaterEmpty = new() { BackgroundColor = MedievalUiStyle.WaterEmpty };
 
     private readonly List<Icon> _icons = new();
     private readonly List<Drop> _drops = new();
@@ -453,11 +452,7 @@ public sealed class MedievalPotIcons : LayoutContainer
     // Label has no shadow, so a second label is drawn under it
     private sealed class CountLabel : Control
     {
-        private const string FontPath = "/Fonts/Boxfont-round/Boxfont Round.ttf";
-        private const int FontSize = 10;
         private const float ShadowOffset = 1f;
-
-        private static readonly Color ShadowColor = Color.FromHex("#160e0a");
 
         private readonly Label _shadow;
         private readonly Label _text;
@@ -475,11 +470,11 @@ public sealed class MedievalPotIcons : LayoutContainer
         {
             MouseFilter = MouseFilterMode.Ignore;
 
-            var font = IoCManager.Resolve<IResourceCache>().GetFont(FontPath, FontSize);
+            var font = MedievalUiStyle.CountFont(IoCManager.Resolve<IResourceCache>());
             _shadow = new Label
             {
                 FontOverride = font,
-                FontColorOverride = ShadowColor,
+                FontColorOverride = MedievalUiStyle.TextShadow,
                 Margin = new Thickness(ShadowOffset, ShadowOffset, 0, 0),
                 MouseFilter = MouseFilterMode.Ignore,
             };

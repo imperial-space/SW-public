@@ -29,10 +29,6 @@ public sealed class MedievalCookingPotSystem : EntitySystem
 {
     private const float TickInterval = 1f;
     private const string MessKey = "mess";
-    private const string Water = "Water";
-    private const string BowlSolution = "food";
-    private const float SimmerVolume = -4f;
-    private const float MinNutrition = 0.5f;
     private const string TakeRateLimitKey = "MedievalPotTake";
 
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -97,7 +93,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         {
             // filled bowls are for pouring, handled elsewhere
             var done = pot.State is MedievalPotState.Ready or MedievalPotState.Burnt;
-            if (!done && !IsBowlEmpty(args.Used))
+            if (!done && !IsBowlEmpty(args.Used, pot))
                 return;
 
             args.Handled = true;
@@ -279,7 +275,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
             return;
         }
 
-        if (!IsBowlEmpty(bowl))
+        if (!IsBowlEmpty(bowl, pot))
         {
             _popup.PopupEntity(Loc.GetString("medieval-pot-bowl-full"), uid, user);
             return;
@@ -294,7 +290,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         // unbreakable bowls stay unbreakable
         if (sturdy)
             RemComp<DestructibleComponent>(portion);
-        ThinPortion(portion, pot.PortionNutrition);
+        ThinPortion(portion, pot);
         _hands.PickupOrDrop(user, portion);
         var serveSound = GetServeSound(pot);
         if (serveSound != null)
@@ -308,23 +304,24 @@ public sealed class MedievalCookingPotSystem : EntitySystem
     }
 
     // thin only the food so the bowl still looks full
-    private void ThinPortion(EntityUid portion, float share)
+    private void ThinPortion(EntityUid portion, MedievalCookingPotComponent pot)
     {
-        if (share >= 1f || !_solutions.TryGetSolution(portion, BowlSolution, out var soln, out var contents))
+        var share = pot.PortionNutrition;
+        if (share >= 1f || !_solutions.TryGetSolution(portion, pot.BowlSolution, out var soln, out var contents))
             return;
 
         foreach (var entry in contents.Contents.ToArray())
         {
-            if (entry.Reagent.Prototype == Water)
+            if (entry.Reagent.Prototype == pot.WaterReagent.Id)
                 continue;
 
             _solutions.RemoveReagent(soln.Value, entry.Reagent, entry.Quantity * (1f - share));
         }
     }
 
-    private bool IsBowlEmpty(EntityUid bowl)
+    private bool IsBowlEmpty(EntityUid bowl, MedievalCookingPotComponent pot)
     {
-        return !_solutions.TryGetSolution(bowl, BowlSolution, out _, out var contents)
+        return !_solutions.TryGetSolution(bowl, pot.BowlSolution, out _, out var contents)
             || contents.Volume <= FixedPoint2.Zero;
     }
 
@@ -437,7 +434,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
             var basePortions = Math.Max(1, (int) MathF.Round(recipe.Portions * coreShare, MidpointRounding.AwayFromZero));
             var added = Math.Clamp(extras, 0, Math.Max(0, recipe.MaxPortions - basePortions));
             pot.Portions = basePortions + added;
-            pot.PortionNutrition = Math.Max(MinNutrition, 1f - recipe.ExtraSatietyLoss * added);
+            pot.PortionNutrition = Math.Max(pot.MinPortionNutrition, 1f - recipe.ExtraSatietyLoss * added);
         }
 
         _container.CleanContainer(pot.Ingredients);
@@ -491,7 +488,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
 
     private int GetWaterMeasures(EntityUid uid, MedievalCookingPotComponent pot)
     {
-        return (int) (GetWater(uid) / Math.Max(1, pot.WaterMeasure));
+        return (int) (GetWater(uid, pot) / Math.Max(1, pot.WaterMeasure));
     }
 
     private int GetMaxWaterMeasures(EntityUid uid, MedievalCookingPotComponent pot)
@@ -502,14 +499,14 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         return (int) (solution.MaxVolume / Math.Max(1, pot.WaterMeasure));
     }
 
-    private FixedPoint2 GetWater(EntityUid uid)
+    private FixedPoint2 GetWater(EntityUid uid, MedievalCookingPotComponent pot)
     {
-        return _solutions.GetTotalPrototypeQuantity(uid, Water);
+        return _solutions.GetTotalPrototypeQuantity(uid, pot.WaterReagent.Id);
     }
 
     private bool IsMess(EntityUid uid, MedievalCookingPotComponent pot)
     {
-        return pot.Ingredients.ContainedEntities.Count >= pot.MessMinIngredients && GetWater(uid) >= pot.MessWater;
+        return pot.Ingredients.ContainedEntities.Count >= pot.MessMinIngredients && GetWater(uid, pot) >= pot.MessWater;
     }
 
     private bool FitsAnyRecipe(MedievalCookingPotComponent pot)
@@ -529,7 +526,7 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         if (items.Count == 0)
             return null;
 
-        var water = GetWater(uid);
+        var water = GetWater(uid, pot);
         foreach (var recipe in _prototypes.EnumeratePrototypes<MedievalCookRecipePrototype>())
         {
             if (water >= recipe.Water && TryMatch(recipe, items, out _, out _))
@@ -634,6 +631,6 @@ public sealed class MedievalCookingPotSystem : EntitySystem
         }
 
         if (pot.SimmerStream == null && pot.SimmerSound != null)
-            pot.SimmerStream = _audio.PlayPvs(pot.SimmerSound, uid, AudioParams.Default.WithLoop(true).WithVolume(SimmerVolume))?.Entity;
+            pot.SimmerStream = _audio.PlayPvs(pot.SimmerSound, uid, pot.SimmerSound.Params.WithLoop(true))?.Entity;
     }
 }
