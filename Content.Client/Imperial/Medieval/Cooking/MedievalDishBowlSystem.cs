@@ -9,6 +9,7 @@ namespace Content.Client.Imperial.Medieval.Cooking;
 
 public sealed class MedievalDishBowlSystem : EntitySystem
 {
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly ItemSystem _item = default!;
 
@@ -45,10 +46,13 @@ public sealed class MedievalDishBowlSystem : EntitySystem
     {
         if (comp.Bowl is not { } bowl
             || args.Layers.Count == 0
-            || !PrototypeManager.TryIndex(bowl, out EntityPrototype? proto)
-            || !proto.TryGetComponent<ItemComponent>(out var item, EntityManager.ComponentFactory)
-            || !item.InhandVisuals.TryGetValue(args.Location, out var bowlLayers)
-            || bowlLayers.Count == 0)
+            || !_proto.TryIndex(bowl, out EntityPrototype? proto)
+            || !proto.TryGetComponent<ItemComponent>(out var item, EntityManager.ComponentFactory))
+            return;
+
+        // ItemComponent allows only reads, a method call on the field counts as execute
+        var visuals = item.InhandVisuals;
+        if (!visuals.TryGetValue(args.Location, out var bowlLayers) || bowlLayers.Count == 0)
             return;
 
         var (key, original) = args.Layers[0];
