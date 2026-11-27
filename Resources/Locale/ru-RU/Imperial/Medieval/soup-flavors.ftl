@@ -1,0 +1,9 @@
+flavor-base-MedievalSoupWorm = пресно и водянисто
+flavor-base-MedievalSoupRotten = кисло и тошнотворно
+flavor-base-MedievalSoupCrab = сладковато и солоно
+flavor-base-MedievalSoupFish = наваристо и слегка солоно
+flavor-base-MedievalSoupGarlic = мягко, с острой ноткой
+flavor-base-MedievalSoupCheese = густо и сливочно
+flavor-base-MedievalSoupTomato = кисловато-сладко
+flavor-base-MedievalSoupCucumber = свежо, с кислинкой
+flavor-base-MedievalSoupAppleChicken = сладко-кисло и наваристо

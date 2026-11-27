@@ -935,8 +935,7 @@
       task: RuminantCompound
   - type: GuideHelp
     guides:
-    - Chef
-    - FoodRecipes
+    - Chef # imperial medieval: FoodRecipes removed
 # imperial medieval start
   - type: NocturnBadFood
     timesCanBeBiten: 4

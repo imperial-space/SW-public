@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Client.Imperial.Medieval.UserInterface.Elements;
-using Content.Client.Resources;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -10,11 +9,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.Medieval.Cooking;
 
-/// <summary>
-///     imperial medieval - what one cooking pot holds, drawn as small icons floating above it. Equal ingredients
-///     share an icon with a count, a click on an icon takes one out, and the finished dish takes their place.
-///     All sizes are fractions of a map tile on screen, so the icons keep their place when the view is zoomed.
-/// </summary>
 public sealed class MedievalPotIcons : LayoutContainer
 {
     public struct Entry
@@ -28,7 +22,7 @@ public sealed class MedievalPotIcons : LayoutContainer
     private const float WidthTiles = 4f;
     private const float HeightTiles = 2.1f;
     private const float IconTiles = 0.5f;
-    // the bowl sprite has more empty margin than the ingredients, so it needs a bigger box to look as large
+    // the bowl sprite has more empty margin
     private const float DishTiles = 0.7f;
     private const float PitchTiles = 0.41f;
     private const float RowTiles = 0.9f;
@@ -56,8 +50,8 @@ public sealed class MedievalPotIcons : LayoutContainer
     private const float DropStartTiles = 1.1f;
     private const float DropArcTiles = 0.3f;
 
-    private static readonly StyleBoxFlat WaterFull = new() { BackgroundColor = Color.FromHex("#5b95c9") };
-    private static readonly StyleBoxFlat WaterEmpty = new() { BackgroundColor = Color.FromHex("#2f241c") };
+    private static readonly StyleBoxFlat WaterFull = new() { BackgroundColor = MedievalUiStyle.Water };
+    private static readonly StyleBoxFlat WaterEmpty = new() { BackgroundColor = MedievalUiStyle.WaterEmpty };
 
     private readonly List<Icon> _icons = new();
     private readonly List<Drop> _drops = new();
@@ -79,25 +73,13 @@ public sealed class MedievalPotIcons : LayoutContainer
     private float _waterAlpha;
     private bool _potHovered;
 
-    /// <summary>
-    ///     Asks to take an item out; false when nothing was asked for, e.g. the player's hands are full.
-    /// </summary>
     public Func<EntityUid, bool>? TryTake;
 
-    /// <summary>
-    ///     Icons only catch the mouse while the player could take something. Otherwise clicks go through
-    ///     them to the world, so a player holding a tool can still use it on what stands behind.
-    /// </summary>
+    // when false, clicks go through to the world
     public bool Interactive;
 
-    /// <summary>
-    ///     Set by the system that owns this control: when the pot was last checked for being in sight.
-    /// </summary>
     public TimeSpan NextSightCheck;
 
-    /// <summary>
-    ///     What the contents looked like at the last sync, so an unchanged pot is not gone through again.
-    /// </summary>
     public int Signature = -1;
 
     public MedievalPotIcons()
@@ -119,9 +101,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         AddChild(_portions);
     }
 
-    /// <summary>
-    ///     Puts the control over the pot. <paramref name="tile"/> is the size of a map tile on screen.
-    /// </summary>
     public void Place(Vector2 potOnScreen, float tile)
     {
         if (MathF.Abs(tile - _tile) > TileTolerance)
@@ -141,9 +120,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         SetPosition(this, new Vector2(MathF.Round(corner.X), MathF.Round(corner.Y)));
     }
 
-    /// <summary>
-    ///     The first sync after the control appears shows the contents as they are; later ones animate the change.
-    /// </summary>
     public void SetContents(List<Entry> entries)
     {
         foreach (var icon in _icons)
@@ -183,7 +159,7 @@ public sealed class MedievalPotIcons : LayoutContainer
         }
 
         _synced = true;
-        // placed now, not on the next frame, so a new icon is never drawn in the corner first
+        // place now so new icons don't flash in the corner
         Animate(0f);
     }
 
@@ -206,12 +182,10 @@ public sealed class MedievalPotIcons : LayoutContainer
 
         if (!cooked)
         {
-            // already there when the player came, or one dish turning into another as it burns
             _dishAge = first ? PopTime : 0f;
             return;
         }
 
-        // the ingredients go down into the pot, and the dish comes up once they are gone
         _dishAge = -SinkTime;
         foreach (var icon in _icons)
         {
@@ -220,9 +194,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         }
     }
 
-    /// <summary>
-    ///     Water is only shown while it changes or while the pot is being pointed at.
-    /// </summary>
     public void SetWater(int water, int max, bool potHovered)
     {
         _potHovered = potHovered;
@@ -287,9 +258,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         }
     }
 
-    /// <summary>
-    ///     The icons that stay share the row evenly and slide to their new places when one comes or goes.
-    /// </summary>
     private void SlideIcons(float delta, float centre)
     {
         var staying = 0;
@@ -339,7 +307,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         }
         else if (icon.Age < PopTime)
         {
-            // still waiting for its item to fall into the pot, or rising out of it
             var t = Math.Clamp(icon.Age / PopTime, 0f, 1f);
             x = MathHelper.Lerp(centre, icon.X, EaseOut(t));
             y = MathHelper.Lerp(mouth, y, EaseOut(t));
@@ -367,7 +334,6 @@ public sealed class MedievalPotIcons : LayoutContainer
                 continue;
             }
 
-            // an arc from the upper right down into the pot, shrinking from the item's real size
             var t = drop.Age / FallTime;
             var eased = t * t;
             var x = MathHelper.Lerp(centre + _tile, centre, eased);
@@ -462,9 +428,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         return 1f - inverse * inverse * inverse;
     }
 
-    /// <summary>
-    ///     Overshoots a little before settling, which is what makes an icon "pop".
-    /// </summary>
     private static float EaseOutBack(float t)
     {
         const float overshoot = 1.9f;
@@ -486,17 +449,10 @@ public sealed class MedievalPotIcons : LayoutContainer
         return new CountLabel();
     }
 
-    /// <summary>
-    ///     A pixel-font number with a one pixel shadow. <see cref="Label"/> has no shadow of its own, so the shadow is a
-    ///     second label under the first.
-    /// </summary>
+    // Label has no shadow, so a second label is drawn under it
     private sealed class CountLabel : Control
     {
-        private const string FontPath = "/Fonts/Boxfont-round/Boxfont Round.ttf";
-        private const int FontSize = 10;
         private const float ShadowOffset = 1f;
-
-        private static readonly Color ShadowColor = Color.FromHex("#160e0a");
 
         private readonly Label _shadow;
         private readonly Label _text;
@@ -514,11 +470,11 @@ public sealed class MedievalPotIcons : LayoutContainer
         {
             MouseFilter = MouseFilterMode.Ignore;
 
-            var font = IoCManager.Resolve<IResourceCache>().GetFont(FontPath, FontSize);
+            var font = MedievalUiStyle.CountFont(IoCManager.Resolve<IResourceCache>());
             _shadow = new Label
             {
                 FontOverride = font,
-                FontColorOverride = ShadowColor,
+                FontColorOverride = MedievalUiStyle.TextShadow,
                 Margin = new Thickness(ShadowOffset, ShadowOffset, 0, 0),
                 MouseFilter = MouseFilterMode.Ignore,
             };
@@ -547,9 +503,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         public float Age;
     }
 
-    /// <summary>
-    ///     One kind of ingredient: its sprite, how many there are and the one a click takes out.
-    /// </summary>
     private sealed class Icon : Control
     {
         private readonly EntityPrototypeView _view = NewView();
@@ -612,7 +565,6 @@ public sealed class MedievalPotIcons : LayoutContainer
         {
             _view.Scale = new Vector2(scale, scale);
 
-            // nothing to click or count while the item is still falling in or the icon is on its way out
             var settled = Leaving == LeaveKind.None && Age >= 0f;
             _count.Visible = settled && Count > 1;
 

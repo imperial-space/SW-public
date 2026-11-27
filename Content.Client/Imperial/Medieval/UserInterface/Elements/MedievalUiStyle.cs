@@ -36,15 +36,24 @@ public static class MedievalUiStyle
     /// <summary>Enchanted things at work, e.g. the mortar grinding on its own.</summary>
     public static readonly Color Magic = Color.FromHex("#b89ae8");
 
+    public static readonly Color Water = Color.FromHex("#5b95c9");
+    public static readonly Color WaterEmpty = Color.FromHex("#2f241c");
+    public static readonly Color TextShadow = Color.FromHex("#160e0a");
+
     /// <summary>Medieval lettering for titles and buttons. Small print stays in the regular font to stay readable.</summary>
     private const string FontPath = "/Fonts/Imperial/Vinque/Vinque.otf";
 
     private const int TitleFontSize = 18;
     private const int TextFontSize = 14;
 
+    private const string CountFontPath = "/Fonts/Boxfont-round/Boxfont Round.ttf";
+    private const int CountFontSize = 10;
+
     public static Font TitleFont(IResourceCache cache) => cache.GetFont(FontPath, TitleFontSize);
 
     public static Font TextFont(IResourceCache cache) => cache.GetFont(FontPath, TextFontSize);
+
+    public static Font CountFont(IResourceCache cache) => cache.GetFont(CountFontPath, CountFontSize);
 
     /// <summary>Puts the medieval lettering on labels and on the text of buttons.</summary>
     public static void ApplyTextFont(IResourceCache cache, params Control[] controls)

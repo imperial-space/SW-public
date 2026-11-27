@@ -1,20 +1,15 @@
 using Content.Client.Items.Systems;
 using Content.Shared.Hands;
 using Content.Shared.Imperial.Medieval.Cooking;
+using Content.Shared.Item;
 using Robust.Client.GameObjects;
-using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Imperial.Medieval.Cooking;
 
-/// <summary>
-///     imperial medieval - draws a served dish on the bowl it was ladled into instead of the default one,
-///     on the ground and in the hands.
-/// </summary>
 public sealed class MedievalDishBowlSystem : EntitySystem
 {
-    private const string BowlPrefix = "MedievalBowl";
-    private static readonly ResPath BowlRsi = new("/Textures/Imperial/Medieval/Food/Dishes/bowl.rsi");
-
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly ItemSystem _item = default!;
 
@@ -49,17 +44,23 @@ public sealed class MedievalDishBowlSystem : EntitySystem
 
     private void OnGetHeldVisuals(EntityUid uid, MedievalDishBowlComponent comp, GetInhandVisualsEvent args)
     {
-        // the bowls come in materials: MedievalBowlGold uses the bowl-gold-inhand-left state and so on
-        if (comp.Bowl is not { } bowl || !bowl.Id.StartsWith(BowlPrefix) || args.Layers.Count == 0)
+        if (comp.Bowl is not { } bowl
+            || args.Layers.Count == 0
+            || !_proto.TryIndex(bowl, out EntityPrototype? proto)
+            || !proto.TryGetComponent<ItemComponent>(out var item, EntityManager.ComponentFactory))
             return;
 
-        var material = bowl.Id.Substring(BowlPrefix.Length).ToLowerInvariant();
+        // ItemComponent allows only reads, a method call on the field counts as execute
+        var visuals = item.InhandVisuals;
+        if (!visuals.TryGetValue(args.Location, out var bowlLayers) || bowlLayers.Count == 0)
+            return;
+
         var (key, original) = args.Layers[0];
-        // a new layer: the original is the prototype's own data and is shared by every dish
+        // new layer, the original is shared prototype data
         var layer = new PrototypeLayerData
         {
-            RsiPath = BowlRsi.ToString(),
-            State = $"bowl-{material}-inhand-{args.Location.ToString().ToLowerInvariant()}",
+            RsiPath = bowlLayers[0].RsiPath ?? item.RsiPath,
+            State = bowlLayers[0].State,
             MapKeys = original.MapKeys,
         };
         args.Layers[0] = (key, layer);

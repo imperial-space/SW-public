@@ -8,6 +8,7 @@ medieval-hearth-examine-low = Огонь горит ровным небольш�
 medieval-pot-busy = Варево ещё не сварилось.
 medieval-pot-has-dish = В котелке уже готовое блюдо. Сначала разберите его.
 medieval-pot-full = Котелок полон.
+medieval-pot-too-many = В котелке уже достаточно: { $item }.
 medieval-pot-added = Вы кладёте { $item } в котелок.
 medieval-pot-nothing-to-serve = Здесь пока нечего разливать.
 medieval-pot-emptied = Вы выливаете всё из котелка.

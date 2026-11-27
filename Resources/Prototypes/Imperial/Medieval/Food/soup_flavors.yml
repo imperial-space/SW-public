@@ -1,0 +1,44 @@
+- type: flavor
+  id: MedievalSoupWorm
+  flavorType: Base
+  description: flavor-base-MedievalSoupWorm
+
+- type: flavor
+  id: MedievalSoupRotten
+  flavorType: Base
+  description: flavor-base-MedievalSoupRotten
+
+- type: flavor
+  id: MedievalSoupCrab
+  flavorType: Base
+  description: flavor-base-MedievalSoupCrab
+
+- type: flavor
+  id: MedievalSoupFish
+  flavorType: Base
+  description: flavor-base-MedievalSoupFish
+
+- type: flavor
+  id: MedievalSoupGarlic
+  flavorType: Base
+  description: flavor-base-MedievalSoupGarlic
+
+- type: flavor
+  id: MedievalSoupCheese
+  flavorType: Base
+  description: flavor-base-MedievalSoupCheese
+
+- type: flavor
+  id: MedievalSoupTomato
+  flavorType: Base
+  description: flavor-base-MedievalSoupTomato
+
+- type: flavor
+  id: MedievalSoupCucumber
+  flavorType: Base
+  description: flavor-base-MedievalSoupCucumber
+
+- type: flavor
+  id: MedievalSoupAppleChicken
+  flavorType: Base
+  description: flavor-base-MedievalSoupAppleChicken

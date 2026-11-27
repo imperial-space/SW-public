@@ -737,6 +737,8 @@
         volume: -12
     simmerSound:
       path: /Audio/Imperial/Medieval/Cooking/pot_brewing.ogg
+      params:
+        volume: -4
   - type: ContainerContainer
     containers:
       pot_ingredients: !type:Container
