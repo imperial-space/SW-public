@@ -32,6 +32,7 @@
   - type: PlayAudioAfterSpellCast
     sound:
       path: /Audio/Imperial/Medieval/Magic/Spells/shockwave.ogg
+      volume: -6
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
