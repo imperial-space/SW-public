@@ -71,7 +71,7 @@ public sealed partial class EdibleComponent : Component
     ///     Should probably be smaller for small items like pills.
     /// </summary>
     [DataField]
-    public TimeSpan ForceFeedDelay = TimeSpan.FromSeconds(3f);
+    public TimeSpan ForceFeedDelay = TimeSpan.FromSeconds(5f);
 
     /// <summary>
     /// For mobs that are food, requires killing them before eating.
